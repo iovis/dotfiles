@@ -1,0 +1,4 @@
+.vim/bundle/*
+.vim/sessions/*
+.vim/.VimballRecord
+.vim/.netrwhist

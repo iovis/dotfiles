@@ -1,0 +1,283 @@
+set nocompatible
+filetype indent on
+syntax enable
+colorscheme zellner
+set autoindent
+set autoread
+set autowrite
+" set background=dark
+set backspace=indent,eol,start   " Fix backspace not deleting tabs, also make delimiteMate work
+set breakindent
+set conceallevel=0
+set expandtab
+set hidden    " remember undo after quitting
+set hlsearch
+set ignorecase
+set incsearch
+set laststatus=2
+set linespace=2
+set magic
+set mouse=a
+set nobackup
+set nofoldenable
+set nostartofline
+set noswapfile
+set nowritebackup
+set number
+set pastetoggle=<F2>
+set relativenumber
+set scrolloff=7
+set shiftwidth=2
+set showmatch
+set smartcase
+set softtabstop=2
+set splitbelow
+set splitright
+set tabstop=2
+set ttymouse=xterm2
+set updatetime=750
+set virtualedit=block
+set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn
+set wildignorecase
+set wildmenu
+set wildmode=longest:full,full
+let showbreak = '└ '
+
+" Netrw options
+let g:netrw_altv = 1
+let g:netrw_banner = 0
+let g:netrw_browse_split = 4
+let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro rnu'
+let g:netrw_fastbrowse = 2
+let g:netrw_list_hide= '.*\.pyc$,\.DS_Store'
+let g:netrw_liststyle = 1
+let g:netrw_silent = 1
+let g:netrw_sort_options = 'i'
+let g:netrw_sort_sequence = '[\/]$'
+let g:netrw_special_syntax = 1
+let g:netrw_winsize = 25
+
+" CUSTOM KEYBINDINGS
+" Vim specific
+inoremap jj <Esc>
+let mapleader = "\<Space>"
+
+" Some expansions
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+inoremap ,m <c-o>A-><c-f>
+inoremap ,M ->
+inoremap ,n =>
+inoremap ,, <c-o>A,
+inoremap ;; <c-o>A;
+inoremap (<cr> (<cr>)<esc>O
+inoremap {<cr> {<cr>}<esc>O
+inoremap {; {<cr>};<esc>O
+inoremap {, {<cr>},<esc>O
+inoremap [<cr> [<cr>]<esc>O
+inoremap [; [<cr>];<esc>O
+inoremap [, [<cr>],<esc>O
+
+" QOL remappings
+cnoremap <c-a> <c-b>
+nnoremap <leader>x :qa<cr>
+nnoremap <leader>X :qa!<cr>
+nnoremap <leader>w :w!<cr>
+nnoremap <leader>c :bdelete!<cr>
+nnoremap Q :bdelete<cr>
+nnoremap º :close<cr>
+nnoremap ª :%bdelete<cr>
+nnoremap Ñ ?
+nnoremap ñ /
+nnoremap Y y$
+nnoremap <expr> j v:count ? 'j' : 'gj'
+nnoremap <expr> k v:count ? 'k' : 'gk'
+nnoremap M <c-w>o
+nnoremap - ]c
+nnoremap _ [c
+nnoremap ç :cnext<cr>
+nnoremap Ç :cprevious<cr>
+nnoremap <leader>ç :cwindow<cr>
+nnoremap <leader>n :lnext<cr>
+nnoremap <leader>p :lprevious<cr>
+noremap H g^
+noremap L g$
+noremap ' `
+noremap <silent> <leader><cr> :noh<cr>
+
+" bind K to search word under cursor in project
+nnoremap K :silent grep! "\b<cword>\b"<CR>:copen<CR>
+
+" Change word under cursor or selection with yanked
+nnoremap R diw"0P
+vnoremap R "_d"0P
+
+" Repeat command on each line of visual selection
+vnoremap . :normal .<cr>
+
+" Maintain Visual Mode after shifting > and <
+vnoremap < <gv
+vnoremap > >gv
+
+" Don't jump to the next ocurrence with * and #
+nnoremap * :silent keepjumps normal! mi*`i<CR>
+nnoremap # :silent keepjumps normal! mi#`i<CR>
+
+" If I have a visual selection and press * I want it to show ocurrences
+vnoremap * ymi/<c-r>"<cr>`i
+vnoremap # y?<c-r>"<cr>
+
+" Save with root permissions
+command! W w !sudo tee % > /dev/null
+
+" Open file explorer
+nnoremap <silent> <leader>k :Lexplore<cr>
+
+" Quick replace word under cursor
+nnoremap <leader>s  :%s/\<<c-r><c-w>\>//g<left><left>
+vnoremap <leader>s y:%s/<c-r>"//g<left><left>
+
+" Copy to clipboard
+nnoremap <leader>y "+y
+nnoremap <leader>Y "+y$
+vnoremap <leader>y "+y
+nnoremap <leader>d "+d
+nnoremap <leader>D "+D
+vnoremap <leader>d "+d
+
+" Quick uppercase or lowercase word
+nnoremap <leader>U mzgUiw`z
+nnoremap <leader>u mzguiw`z
+
+" Move a line of text using alt+[jk]
+nnoremap <silent> <M-j> mz:m+<cr>`z
+nnoremap <silent> <M-k> mz:m-2<cr>`z
+vnoremap <silent> <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vnoremap <silent> <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+" Navigate buffers
+nnoremap <BS> <C-^>
+nnoremap <tab>   :bnext<cr>
+nnoremap <s-tab> :bprevious<cr>
+nnoremap <leader>1 :bfirst<cr>
+nnoremap <leader>0 :blast<cr>
+nnoremap <leader><Tab> :enew<cr>
+nnoremap <leader><leader> :ls<cr>:b!<space>
+
+" Remapping <tab> makes <c-i> not work
+nnoremap <c-e> <c-i>
+
+" Tags
+nnoremap <leader>T :silent execute "!ctags &"<cr>
+nnoremap t <C-]>
+nnoremap <leader>t g]
+set tags=.tags,.gemtags
+
+" Work with splits
+nnoremap <leader>v <C-W>v
+nnoremap <leader>h <C-W>s
+
+" Fast vimrc editing
+nnoremap <leader>e :e! $MYVIMRC<cr>
+nnoremap <leader>E :so $MYVIMRC<cr>
+
+" Duplicate file
+nnoremap <leader>D :saveas <C-R>=fnameescape(expand('%:h')).'/'<cr>
+
+" Sessions
+nnoremap <c-s> :mksession! ~/.vim/sessions/
+nnoremap <c-p> :source ~/.vim/sessions/
+
+" Make
+nnoremap <leader>m :make %<cr>
+
+" Commands
+augroup vimrc
+  " Remove whitespace on save
+  autocmd BufWritePre * :%s/\s\+$//e
+
+  " Fold method='indent' + manual folding (with zo and zc)
+  au BufReadPre * setlocal foldmethod=indent
+  au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+
+  " Return to last edit position when opening files (You want this!)
+  autocmd BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal! g`\"" |
+        \ endif
+augroup END
+
+" Smooth Grepping
+command! -nargs=+ -complete=file_in_path -bar Grep silent! grep! <args> | redraw!
+nnoremap <leader>f  :Grep<space>
+vnoremap <leader>f y:Grep <c-r>"
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --vimgrep\ $*
+  set grepformat=%f:%l:%c:%m
+
+  " :Ag command
+  command! -nargs=+ -complete=file -bar Ag silent grep! <args>|cwindow|redraw!
+
+  " Mappings
+  nnoremap <leader>f  :Ag<space>
+  vnoremap <leader>f y:Ag <c-r>"
+endif
+
+" Hex mode
+" ex command for toggling hex mode - define mapping if desired
+command! -bar Hexmode call ToggleHex()
+
+" helper function to toggle hex mode
+function! ToggleHex()
+  " hex mode should be considered a read-only operation
+  " save values for modified and read-only for restoration later,
+  " and clear the read-only flag for now
+  let l:modified=&mod
+  let l:oldreadonly=&readonly
+  let &readonly=0
+  let l:oldmodifiable=&modifiable
+  let &modifiable=1
+  if !exists("b:editHex") || !b:editHex
+    " save old options
+    let b:oldft=&ft
+    let b:oldbin=&bin
+    " set new options
+    setlocal binary " make sure it overrides any textwidth, etc.
+    silent :e " this will reload the file without trickeries
+              "(DOS line endings will be shown entirely )
+    let &ft="xxd"
+    " set status
+    let b:editHex=1
+    " switch to hex editor
+    %!xxd
+  else
+    " restore old options
+    let &ft=b:oldft
+    if !b:oldbin
+      setlocal nobinary
+    endif
+    " set status
+    let b:editHex=0
+    " return to normal editing
+    %!xxd -r
+  endif
+  " restore values for modified and read only state
+  let &mod=l:modified
+  let &readonly=l:oldreadonly
+  let &modifiable=l:oldmodifiable
+endfunction
+
+
+" Status line
+set statusline=%F%m%r%h%w%=[%{&ff}]%y[%p%%][%l/%L]
+
+" tmux navigator
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Fuzzy search
+nnoremap <leader>o :e **/

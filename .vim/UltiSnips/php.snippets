@@ -1,0 +1,57 @@
+snippet atkc "ATK Controller"
+<?php
+
+class controller_$1 extends AbstractController
+{
+	public function init()
+	{
+		parent::init();
+
+		$0
+	}
+}
+endsnippet
+
+snippet atkp "ATK Page"
+<?php
+
+class page_$1 extends Page
+{
+	public function init()
+	{
+		parent::init();
+
+		$0
+	}
+}
+endsnippet
+
+snippet atkv "ATK View"
+<?php
+
+class $1 extends View
+{
+	public function init()
+	{
+		parent::init();
+
+		$0
+	}
+}
+endsnippet
+
+snippet atkm "ATK Model"
+<?php
+
+class Model_$1 extends Model_Table
+{
+	public $entity_code='${2:tablename}';
+
+	function init()
+	{
+		parent::init();
+
+		$0
+	}
+}
+endsnippet
