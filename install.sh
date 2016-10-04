@@ -5,23 +5,15 @@
 ############################
 
 ########## Variables
-
 dir=~/.dotfiles
 olddir=~/dotfiles_old
 files=".zshrc .vimrc .vim .tmux.conf .gitignore_global .gitconfig .tern-config .ctags .agignore .pryrc"
-config_files=""
+config_files="mpv nvim"
 
-##########
 
 # create dotfiles_old in homedir
-echo "Creating $olddir for backup of any existing dotfiles in ~"
 mkdir -p $olddir
-echo "...done"
-
-# change to the dotfiles directory
-echo "Changing to the $dir directory"
 cd $dir
-echo "...done"
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
 for file in $files; do
@@ -31,7 +23,16 @@ for file in $files; do
     ln -snf $dir/$file ~/$file
 done
 
+# Same for .config files and folders
+mkdir ~/.config
+
+for file in $config_files; do
+    echo "Moving any existing dotfiles from ~/.config to $olddir"
+    mv ~/.config/$file ~/dotfiles_old/
+    echo "Creating symlink to $file in the config directory."
+    ln -snf $dir/$file ~/.config/$file
+done
+
 # Neovim
-# mkdir ~/.config
 # ln -s ~/.dotfiles/.vim ~/.config/nvim
 # ln -s ~/.dotfiles/.vimrc ~/.config/nvim/init.vim
