@@ -8,7 +8,7 @@
 
 dir=~/.dotfiles
 olddir=~/dotfiles_old
-files=".zshrc .vimrc .vim .tmux.conf .gitignore_global .gitconfig .tern-config .ctags .agignore"
+files=".zshrc .vimrc .vim .tmux.conf .gitignore_global .gitconfig .tern-config .ctags .agignore .pryrc"
 config_files=""
 
 ##########
