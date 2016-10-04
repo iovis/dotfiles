@@ -1,0 +1,13 @@
+--recurse=yes
+--tag-relative=yes
+-f .tags
+
+--python-kinds=-i
+
+--exclude=.git
+--exclude=.idea
+--exclude=.tmp
+--exclude=tmp
+--exclude=dist
+--exclude=.sass-cache
+--exclude=node_modules

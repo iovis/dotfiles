@@ -6,9 +6,9 @@
 
 ########## Variables
 
-dir=~/.dotfiles        # dotfiles directory
-olddir=~/dotfiles_old  # old dotfiles backup directory
-files=".zshrc .vimrc .vim .tmux.conf"    # list of files/folders to symlink in homedir
+dir=~/.dotfiles
+olddir=~/dotfiles_old
+files=".zshrc .vimrc .vim .tmux.conf .gitignore_global .gitconfig .tern-config .ctags .agignore"
 config_files=""
 
 ##########
@@ -28,7 +28,7 @@ for file in $files; do
     echo "Moving any existing dotfiles from ~ to $olddir"
     mv ~/$file ~/dotfiles_old/
     echo "Creating symlink to $file in home directory."
-    ln -s $dir/$file ~/$file
+    ln -snf $dir/$file ~/$file
 done
 
 # Neovim

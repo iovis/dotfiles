@@ -1,0 +1,50 @@
+[filter "media"]
+  clean = git media clean %f
+  smudge = git media smudge %f
+  required = true
+[user]
+  name = David Marchante
+  email = davidmarchan@gmail.com
+[core]
+  excludesfile = /Users/david/.gitignore_global
+  autocrlf = input
+[difftool "phpstorm"]
+  cmd = /Applications/PhpStorm.app/Contents/MacOS/phpstorm
+  trustExitCode = true
+[difftool "sublimerge"]
+  cmd = subl -n --wait \"$REMOTE\" \"$LOCAL\" --command \"sublimerge_diff_views {\\\"left_read_only\\\": true, \\\"right_read_only\\\": true}\"
+[diff]
+  tool = vimdiff
+[difftool]
+  prompt = false
+[mergetool "phpstorm"]
+  cmd = /Applications/PhpStorm.app/Contents/MacOS/phpstorm
+  trustExitCode = true
+[mergetool "sublimerge"]
+  cmd = subl -n --wait \"$REMOTE\" \"$BASE\" \"$LOCAL\" \"$MERGED\" --command \"sublimerge_diff_views\"
+  trustExitCode = false
+[mergetool]
+  prompt = false
+  keepBackup = false
+[merge]
+  tool = vimdiff
+  conflictstyle = diff3
+[push]
+  default = simple
+[color]
+  ui = auto
+; [pull]
+  ; rebase = preserve
+[pull]
+  rebase = true
+[credential]
+  helper = osxkeychain
+[mergetool "Kaleidoscope"]
+  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+  trustexitcode = true
+[difftool "Kaleidoscope"]
+  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[filter "lfs"]
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge %f
+  required = true
