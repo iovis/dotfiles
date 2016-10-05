@@ -473,12 +473,14 @@ nnoremap <leader>ñ :CtrlPLine<cr>
 
 " FZF
 set rtp+=/usr/local/opt/fzf
-nnoremap <leader><leader> :Buffers<cr>
-nnoremap <leader>o :GFiles<cr>
-nnoremap <leader>O :Files<cr>
-nnoremap <leader>H :History<cr>
-nnoremap <leader>r :BTags<cr>
-nnoremap <leader>R :Tags<cr>
+let g:fzf_command_prefix = 'FZF'
+nnoremap <leader><leader> :FZFBuffers<cr>
+nnoremap <leader>o :FZFGFiles<cr>
+nnoremap <leader>O :FZFFiles<cr>
+nnoremap <leader>H :FZFHistory<cr>
+nnoremap <leader>r :FZFBTags<cr>
+nnoremap <leader>R :FZFTags<cr>
+nnoremap <leader>ñ :FZFLines<cr>
 
 " Session
 nnoremap <c-s> :SaveSession<space>
