@@ -281,3 +281,6 @@ nnoremap <C-H> <C-W><C-H>
 
 " Fuzzy search
 nnoremap <leader>o :e **/
+
+" History
+nnoremap <leader>H :browse old<cr>
