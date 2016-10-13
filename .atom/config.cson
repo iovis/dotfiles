@@ -1,0 +1,186 @@
+"*":
+  Zen:
+    fullscreen: false
+  "advanced-open-file":
+    createFileInstantly: true
+  "atom-autocomplete-php": {}
+  "atom-beautify":
+    css:
+      align_assignments: true
+      convert_quotes: "single"
+      force_indentation: true
+      newline_between_rules: true
+      no_lead_zero: true
+    general:
+      _analyticsUserId: "c275d206-8cab-4bed-995e-9190c6572c40"
+    js:
+      space_after_anon_function: true
+    python:
+      max_line_length: 120
+      sort_imports: true
+  "atom-color-highlight": {}
+  "atom-ctags":
+    autoBuildTagsWhenActive: true
+    buildTimeout: 60000
+    cmd: "/usr/local/bin/ctags"
+    cmdArgs: "--exclude=node_modules --exclude=.git --exclude=.idea --exclude=bower_components --exclude=.sass-cache --exclude=.tmp --exclude=tmp/* --exclude=dist/* --exclude=db/* --exclude=log/* --exclude=package.json"
+    disableComplete: true
+  "atom-material-ui":
+    colors:
+      abaseColor: "#292929"
+      predefinedColor: "Blue"
+    fonts: {}
+    tabs: {}
+    treeView:
+      compactList: true
+    ui:
+      animations: false
+      panelContrast: true
+  "autocomplete-plus":
+    backspaceTriggersAutocomplete: true
+    useCoreMovementCommands: false
+  "autocomplete-python": {}
+  "autocomplete-ruby": {}
+  autosave:
+    enabled: true
+  "base16-ocean-dark":
+    uiModification: false
+  "choose-pane":
+    labelChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  core:
+    excludeVcsIgnoredPaths: false
+    followSymlinks: true
+    ignoredNames: [
+      ".git"
+      ".idea"
+      "node_modules"
+      "*.pyc"
+      "*.pyo"
+      "*.exe"
+      "*.dll"
+      "*.obj"
+      "*.o"
+      "*.a"
+      "*.lib"
+      "*.so"
+      "*.dylib"
+      "*.ncb"
+      "*.sdf"
+      "*.suo"
+      "*.pdb"
+      "*.idb"
+      ".DS_Store"
+      "*.class"
+      "*.psd"
+      "*.db"
+      "*.sublime-workspace"
+      "config.codekit"
+      "sftp-config.json"
+      ".tags*"
+    ]
+    packagesWithKeymapsDisabled: [
+      "emmet"
+    ]
+    projectHome: "/Users/david/Sites"
+    telemetryConsent: "limited"
+    themes: [
+      "atom-material-ui"
+      "atom-material-syntax-dark"
+    ]
+    useCustomTitleBar: true
+  docblockr: {}
+  editor:
+    fontFamily: "Fira Code"
+    invisibles: {}
+    lineHeight: 1.4
+    preferredLineLength: 120
+    scrollPastEnd: true
+    showIndentGuide: true
+  emmet: {}
+  "exception-reporting":
+    userId: "fee66806-5b58-2159-6b31-3dddd9a0e6df"
+  "git-plus": {}
+  "highlight-line":
+    enableBackgroundColor: false
+  "isotope-ui":
+    fontFamily: "Source Sans Pro"
+  linter:
+    errorPanelHeight: 145
+    showErrorPanel: false
+    subtleLinterErrors: [
+      "scss-lint"
+    ]
+  "linter-js-yaml": {}
+  "linter-pep8":
+    ignoreErrorCodes: [
+      "E402"
+    ]
+    maxLineLength: 120
+    pep8ExecutablePath: "/usr/local/bin/pep8"
+  "linter-phpcs":
+    phpcsExecutablePath: "/usr/local/bin/phpcs"
+  "linter-phpmd":
+    phpmdExecutablePath: "/usr/local/Cellar/php-code-sniffer/2.3.3/bin/phpcs"
+  "linter-pylint":
+    executable: "/usr/local/bin/pylint"
+  "linter-rubocop": {}
+  "linter-scss-lint":
+    executablePath: "/Users/david/.rbenv/shims/scss-lint"
+  "linter-tidy": {}
+  "merge-conflicts": {}
+  minimap:
+    plugins:
+      pigments: true
+      pigmentsDecorationsZIndex: 0
+  "one-dark-ui": {}
+  pigments: {}
+  tablr:
+    csvEditor:
+      columnDelimiter: ";"
+      comment: "none"
+      header: true
+    tableEditor:
+      scrollPastEnd: true
+  "toggle-quotes": {}
+  "travis-ci-status": {}
+  "tree-view":
+    hideIgnoredNames: true
+  "vim-mode":
+    useClipboardAsDefaultRegister: false
+    useSmartcaseForSearch: true
+  "vim-mode-plus":
+    highlightSearch: true
+    incrementalSearch: true
+    stayOnDelete: true
+    stayOnTransformString: true
+    stayOnYank: true
+    useSmartcaseForSearch: true
+    useSmartcaseForSearchCurrentWord: true
+  welcome:
+    showOnStartup: false
+  whitespace:
+    ignoreWhitespaceOnCurrentLine: false
+".console.python.text":
+  editor:
+    preferredLineLength: 120
+".diff.source":
+  editor:
+    preferredLineLength: 120
+".html.php.text":
+  editor:
+    preferredLineLength: 120
+    tabLength: 4
+".python.regexp.source":
+  editor:
+    preferredLineLength: 120
+".python.source":
+  editor:
+    preferredLineLength: 120
+    tabLength: 4
+".python.text.traceback":
+  editor:
+    preferredLineLength: 120
+".source.yaml":
+  editor:
+    preferredLineLength: 120
+    tabLength: 4

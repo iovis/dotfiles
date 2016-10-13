@@ -1,5 +1,12 @@
-.vim/bundle/*
-.vim/sessions/*
+.atom/.apm/*
+.atom/blob-store/*
+.atom/compile-cache/*
+.atom/git-time-machine/*
+.atom/packages/*
+.atom/recovery/*
+.atom/storage/*
 .vim/.VimballRecord
 .vim/.netrwhist
+.vim/bundle/*
+.vim/sessions/*
 mpv/watch_later/*
