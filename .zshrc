@@ -55,18 +55,16 @@ export EDITOR='vim'
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LESS="-iMSx4 -FXR"
-# export MANPAGER="col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -"
 export MANPAGER="nvim -c 'set ft=man' -"
 export PAGER=less
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
-export PATH="/Users/david/.node/bin:$PATH"            # Node modules path
-export PATH="/Users/david/.composer/vendor/bin:$PATH" # Composer modules path
-export PATH="/Users/david/.rbenv/shims:$PATH"         # Rbenv shims path
-export PATH="/opt/metasploit-framework/bin:$PATH"     # Metasploit binaries path
+# export PATH="$HOME/.yarn/bin:$PATH"
+export PATH="$HOME/.node/bin:$PATH"
+export PATH="$HOME/.rbenv/shims:$PATH"
 export PROJECT_HOME=$HOME/Sites
-export RBENV_ROOT="/Users/david/.rbenv"
+export RBENV_ROOT="$HOME/.rbenv"
 eval "$(rbenv init -)"
-eval "$(hub alias -s)" # alias git=hub
+eval "$(hub alias -s)"
 
 # Custom aliases
 alias d='du -sh'
