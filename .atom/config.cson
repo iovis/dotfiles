@@ -134,6 +134,9 @@
       pigmentsDecorationsZIndex: 0
   "one-dark-ui": {}
   pigments: {}
+  "project-manager":
+    alwaysOpenInSameWindow: true
+    includeGitRepositories: true
   tablr:
     csvEditor:
       columnDelimiter: ";"

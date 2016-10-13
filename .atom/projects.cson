@@ -1,45 +1,13 @@
-apr2_frontend:
-  title: "apr2_frontend"
-  paths: [
-    "/Users/david/Sites/apr2/frontend"
-  ]
-apr2_downloader:
-  title: "apr2_downloader"
-  paths: [
-    "/Users/david/Sites/apr2/downloader"
-  ]
-apr2_backend:
-  title: "apr2_backend"
-  paths: [
-    "/Users/david/Sites/apr2/backend"
-  ]
-apr2_sanciones:
-  title: "apr2_sanciones"
-  paths: [
-    "/Users/david/Sites/apr2/sanciones"
-  ]
-elab:
-  title: "elab"
-  paths: [
-    "/Users/david/Sites/elab"
-  ]
-ubersichtwidgets:
-  title: "Ubersicht widgets"
-  paths: [
-    "/Users/david/Dropbox/Ubersicht/widgets"
-  ]
-peerflixrb:
-  title: "peerflixrb"
-  paths: [
-    "/Users/david/Sites/gems/peerflixrb"
-  ]
-acupuntura:
-  title: "acupuntura"
-  paths: [
-    "/Users/david/Sites/acupuntura"
-  ]
-addic7eddownloader:
-  title: "Addic7ed Downloader"
-  paths: [
-    "/Users/david/Sites/gems/addic7ed_downloader"
-  ]
+[
+  {
+    title: "sanciones"
+    group: ""
+    paths: [
+      "/Users/david/Sites/apr2/sanciones"
+    ]
+    icon: "icon-repo"
+    settings: {}
+    devMode: false
+    template: null
+  }
+]
