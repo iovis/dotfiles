@@ -44,26 +44,27 @@
 
 # Normal mode
 'atom-text-editor.vim-mode-plus.normal-mode':
-  'space w': 'core:save'
+  'H': 'vim-mode-plus:move-to-first-character-of-line'
+  'L': 'vim-mode-plus:move-to-last-character-of-line'
   'Q': 'pane:close'
+  'ctrl-h': 'focus-pane-or-panel:focus-on-left'
   'ctrl-i': 'cursor-history:next'
-  'ctrl-o': 'cursor-history:prev'
-  'ctrl-w K': 'paner:very-top'
-  'ctrl-w J': 'paner:very-bottom'
-  'ctrl-w H': 'paner:very-left'
-  'ctrl-w L': 'paner:very-right'
-  'ctrl-w v': 'paner:split-left'
-  'space h': 'pane:splitDownAndCopyActiveItem'
-  'space v': 'pane:splitRightAndCopyActiveItem'
   'ctrl-j': 'focus-pane-or-panel:focus-below'
   'ctrl-k': 'focus-pane-or-panel:focus-above'
-  'ctrl-h': 'focus-pane-or-panel:focus-on-left'
   'ctrl-l': 'focus-pane-or-panel:focus-on-right'
-  'space k': 'tree-view:toggle'
+  'ctrl-o': 'cursor-history:prev'
+  'ctrl-w H': 'paner:very-left'
+  'ctrl-w J': 'paner:very-bottom'
+  'ctrl-w K': 'paner:very-top'
+  'ctrl-w L': 'paner:very-right'
+  'ctrl-w v': 'paner:split-left'
   'space K': 'tree-view:reveal-active-file'
+  'space h': 'pane:splitDownAndCopyActiveItem'
+  'space k': 'tree-view:toggle'
+  'space o': 'fuzzy-finder:toggle-file-finder'
+  'space v': 'pane:splitRightAndCopyActiveItem'
+  'space w': 'core:save'
   't': 'atom-ctags:go-to-declaration'
-  'L': 'vim-mode-plus:move-to-last-character-of-line'
-  'H': 'vim-mode-plus:move-to-first-character-of-line'
 
 # Visual mode mappings
 'atom-text-editor.vim-mode-plus.visual-mode':
@@ -72,13 +73,13 @@
 
 # Change autocomplete-plus movements: (Deactivate in settings use core movement commands)
 'body atom-text-editor.autocomplete-active':
-  'ctrl-space': 'autocomplete-plus:cancel'
-  'ctrl-p': 'autocomplete-plus:move-up'
   'ctrl-n': 'autocomplete-plus:move-down'
-  'pageup': 'autocomplete-plus:page-up'
-  'pagedown': 'autocomplete-plus:page-down'
-  'home': 'autocomplete-plus:move-to-top'
+  'ctrl-p': 'autocomplete-plus:move-up'
+  'ctrl-space': 'autocomplete-plus:cancel'
   'end': 'autocomplete-plus:move-to-bottom'
+  'home': 'autocomplete-plus:move-to-top'
+  'pagedown': 'autocomplete-plus:page-down'
+  'pageup': 'autocomplete-plus:page-up'
   'tab': 'autocomplete-plus:confirm'
 
 # Tree-view navigation
@@ -89,6 +90,7 @@
   'shift-g': 'core:move-to-bottom'
   'ctrl-h': 'focus-pane-or-panel:focus-on-left'
   'ctrl-l': 'focus-pane-or-panel:focus-on-right'
+  'space o': 'fuzzy-finder:toggle-file-finder'
 
 '.platform-darwin .find-and-replace atom-text-editor':
   'ctrl-j': 'focus-pane-or-panel:focus-below'
