@@ -288,6 +288,20 @@ endif
 nnoremap <leader>v <C-W>v
 nnoremap <leader>h <C-W>s
 
+" sort operator and mappings
+function! SortLinesOpFunc(...)
+    '[,']sort
+endfunction
+
+function! SortReverseLinesOpFunc(...)
+    '[,']sort!
+endfunction
+
+nnoremap <silent> gs :<C-U>set operatorfunc=SortLinesOpFunc<CR>g@
+vnoremap <silent> gs :sort<cr>
+nnoremap <silent> gr :<C-U>set operatorfunc=SortReverseLinesOpFunc<CR>g@
+vnoremap <silent> gr :sort!<cr>
+
 " Fast vimrc editing
 nnoremap <leader>e :e! $MYVIMRC<cr>
 nnoremap <leader>E :so $MYVIMRC<cr>
