@@ -2,6 +2,7 @@
   Zen:
     fullscreen: false
   "advanced-open-file":
+    createDirectories: true
     createFileInstantly: true
   "atom-autocomplete-php": {}
   "atom-beautify":
