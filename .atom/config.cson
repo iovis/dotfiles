@@ -28,8 +28,8 @@
     disableComplete: true
   "atom-material-ui":
     colors:
-      abaseColor: "#292929"
-      predefinedColor: "Blue"
+      abaseColor: "#607d8b"
+      predefinedColor: "Blue Grey"
     fonts: {}
     tabs: {}
     treeView:
@@ -92,6 +92,7 @@
   docblockr: {}
   editor:
     fontFamily: "Fira Code"
+    fontSize: 16
     invisibles: {}
     lineHeight: 1.4
     preferredLineLength: 120
@@ -134,7 +135,8 @@
       pigments: true
       pigmentsDecorationsZIndex: 0
   "one-dark-ui": {}
-  pigments: {}
+  pigments:
+    dismissableReloadNotifications: false
   "project-manager":
     alwaysOpenInSameWindow: true
     includeGitRepositories: true

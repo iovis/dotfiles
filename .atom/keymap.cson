@@ -23,10 +23,8 @@
 # This file uses CoffeeScript Object Notation (CSON).
 # If you are unfamiliar with CSON, you can read more about it here:
 # https://github.com/bevry/cson#what-is-cson
-'body':
-  'cmd-t': 'application:new-file'
-
 '.platform-darwin atom-workspace':
+  'cmd-t': 'application:new-file'
   'cmd-n': 'advanced-open-file:toggle'
 
 # Vim insert mode mappings
@@ -38,19 +36,25 @@
   ', m': 'user:arrowEOL'
   ', n': 'user:fatarrow'
 
+# NOT insert mode
 'atom-text-editor.vim-mode-plus:not(.insert-mode)':
+  'H': 'vim-mode-plus:move-to-first-character-of-line'
+  'L': 'vim-mode-plus:move-to-last-character-of-line'
   'ñ': 'vim-mode-plus:search'
   'Ñ': 'vim-mode-plus:reverse-search'
   'g r': 'vim-mode-plus:reverse'
   'g s': 'vim-mode-plus:sort'
   'ctrl-s': 'vim-mode-plus:transform-string-by-select-list'
   'space enter': 'vim-mode-plus:clear-highlight-search'
-  '-': 'choose-pane:start'
+  'space h': 'pane:split-down-and-copy-active-item'
+  'space v': 'pane:split-right-and-copy-active-item'
+  '-': 'tree-view:toggle-focus'
+  'alt-j': 'editor:move-line-down'
+  'alt-k': 'editor:move-line-up'
+  'g c': 'vim-mode-plus:toggle-line-comments'
 
 # Normal mode
 'atom-text-editor.vim-mode-plus.normal-mode':
-  'H': 'vim-mode-plus:move-to-first-character-of-line'
-  'L': 'vim-mode-plus:move-to-last-character-of-line'
   'Q': 'pane:close'
   'ctrl-h': 'focus-pane-or-panel:focus-on-left'
   'ctrl-i': 'cursor-history:next'
@@ -58,18 +62,19 @@
   'ctrl-k': 'focus-pane-or-panel:focus-above'
   'ctrl-l': 'focus-pane-or-panel:focus-on-right'
   'ctrl-o': 'cursor-history:prev'
-  'ctrl-w H': 'paner:very-left'
-  'ctrl-w J': 'paner:very-bottom'
-  'ctrl-w K': 'paner:very-top'
-  'ctrl-w L': 'paner:very-right'
-  'ctrl-w v': 'paner:split-left'
-  'space K': 'tree-view:reveal-active-file'
-  'space h': 'pane:splitDownAndCopyActiveItem'
+  'ctrl-H': 'paner:very-left'
+  'ctrl-J': 'paner:very-bottom'
+  'ctrl-K': 'paner:very-top'
+  'ctrl-L': 'paner:very-right'
+  'g c c': 'editor:toggle-line-comments'
+  'space g s': 'fuzzy-finder:toggle-git-status-finder'
   'space k': 'tree-view:toggle'
+  'space K': 'tree-view:reveal-active-file'
   'space o': 'fuzzy-finder:toggle-file-finder'
-  'space v': 'pane:splitRightAndCopyActiveItem'
+  'space space': 'fuzzy-finder:toggle-buffer-finder'
   'space w': 'core:save'
-  't': 'atom-ctags:go-to-declaration'
+  'space z': 'vim-mode-plus:maximize-pane'
+  't': 'symbols-view:go-to-declaration'
 
 # Visual mode mappings
 'atom-text-editor.vim-mode-plus.visual-mode':
@@ -90,11 +95,12 @@
 # Tree-view navigation
 # -------------------------
 '.tree-view':
-  '-': 'choose-pane:start'
+  '-': 'tree-view:collapse-directory'
   'g g': 'core:move-to-top'
   'shift-g': 'core:move-to-bottom'
   'ctrl-h': 'focus-pane-or-panel:focus-on-left'
   'ctrl-l': 'focus-pane-or-panel:focus-on-right'
+  'space k': 'tree-view:toggle'
   'space o': 'fuzzy-finder:toggle-file-finder'
 
 '.platform-darwin .find-and-replace atom-text-editor':
@@ -107,6 +113,3 @@
 
 '.project-folder atom-text-editor[mini]':
   'cmd-enter': 'project-folder:replace'
-
-'atom-text-editor#choose-pane-editor':
-  '-': 'choose-pane:last-focused'
