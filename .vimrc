@@ -140,8 +140,7 @@ let g:netrw_sort_sequence = '[\/]$'
 let g:netrw_winsize = 25
 
 if has('nvim')
-  tnoremap jk <C-\><C-n>
-  tnoremap kj <C-\><C-n>
+  tnoremap jj <C-\><C-n>
   tnoremap <c-h> <C-\><C-n><C-w>h
   tnoremap <c-j> <C-\><C-n><C-w>j
   tnoremap <c-k> <C-\><C-n><C-w>k
@@ -168,8 +167,7 @@ endif
 
 " CUSTOM KEYBINDINGS
 " Vim specific
-inoremap jk <Esc>
-inoremap kj <Esc>
+inoremap jj <Esc>
 let mapleader = "\<Space>"
 
 " Some expansions

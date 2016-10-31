@@ -59,8 +59,7 @@ let g:netrw_winsize = 25
 
 " CUSTOM KEYBINDINGS
 " Vim specific
-inoremap jk <Esc>
-inoremap kj <Esc>
+inoremap jj <Esc>
 let mapleader = "\<Space>"
 
 " Some expansions
