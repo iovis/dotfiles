@@ -140,7 +140,8 @@ let g:netrw_sort_sequence = '[\/]$'
 let g:netrw_winsize = 25
 
 if has('nvim')
-  tnoremap jj <C-\><C-n>
+  tnoremap jk <C-\><C-n>
+  tnoremap kj <C-\><C-n>
   tnoremap <c-h> <C-\><C-n><C-w>h
   tnoremap <c-j> <C-\><C-n><C-w>j
   tnoremap <c-k> <C-\><C-n><C-w>k
@@ -167,7 +168,8 @@ endif
 
 " CUSTOM KEYBINDINGS
 " Vim specific
-inoremap jj <Esc>
+inoremap jk <Esc>
+inoremap kj <Esc>
 let mapleader = "\<Space>"
 
 " Some expansions
@@ -257,10 +259,22 @@ nnoremap <leader>U mzgUiw`z
 nnoremap <leader>u mzguiw`z
 
 " Move a line of text using alt+[jk]
+" Weird characters are when meta key is not recognized
 nnoremap <silent> <M-j> mz:m+<cr>`z
 nnoremap <silent> <M-k> mz:m-2<cr>`z
 vnoremap <silent> <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vnoremap <silent> <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+nnoremap <silent> j   mz:m+<cr>`z
+nnoremap <silent> k   mz:m-2<cr>`z
+vnoremap <silent> j   :m'>+<cr>`<my`>mzgv`yo`z
+vnoremap <silent> k   :m'<-2<cr>`>my`<mzgv`yo`z
+nnoremap <silent> <M-k> mz:m-2<cr>`z
+vnoremap <silent> <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vnoremap <silent> <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+nnoremap <silent> ¶ mz:m+<cr>`z
+nnoremap <silent> § mz:m-2<cr>`z
+vnoremap <silent> ¶ :m'>+<cr>`<my`>mzgv`yo`z
+vnoremap <silent> § :m'<-2<cr>`>my`<mzgv`yo`z
 
 " Navigate buffers
 nnoremap <BS> <C-^>
