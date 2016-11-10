@@ -67,6 +67,7 @@
   'ctrl-K': 'paner:very-top'
   'ctrl-L': 'paner:very-right'
   'g c c': 'editor:toggle-line-comments'
+  'space \'': 'toggle-quotes:toggle'
   'space g s': 'fuzzy-finder:toggle-git-status-finder'
   'space k': 'tree-view:toggle'
   'space K': 'tree-view:reveal-active-file'
