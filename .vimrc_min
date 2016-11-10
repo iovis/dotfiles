@@ -79,30 +79,31 @@ inoremap [, [<cr>],<esc>O
 
 " QOL remappings
 cnoremap <c-a> <c-b>
-nnoremap <leader>x :qa<cr>
-nnoremap <leader>X :qa!<cr>
-nnoremap <leader>w :w!<cr>
-nnoremap <leader>c :bdelete!<cr>
-nnoremap Q :bdelete<cr>
-nnoremap º :close<cr>
-nnoremap ª :%bdelete<cr>
-nnoremap Ñ ?
-nnoremap ñ /
-nnoremap Y y$
-nnoremap <expr> j v:count ? 'j' : 'gj'
-nnoremap <expr> k v:count ? 'k' : 'gk'
-nnoremap M <c-w>o
 nnoremap - ]c
 nnoremap _ [c
-nnoremap ç :cnext<cr>
-nnoremap Ç :cprevious<cr>
-nnoremap <leader>ç :cwindow<cr>
+nnoremap <expr> j v:count ? 'j' : 'gj'
+nnoremap <expr> k v:count ? 'k' : 'gk'
+nnoremap <leader>X :qa!<cr>
+nnoremap <leader>c :%bdelete<cr>
 nnoremap <leader>n :lnext<cr>
 nnoremap <leader>p :lprevious<cr>
-noremap H g^
-noremap L g$
+nnoremap <leader>q :close<cr>
+nnoremap <leader>w :w!<cr>
+nnoremap <leader>x :qa<cr>
+nnoremap <leader>ç :cwindow<cr>
+nnoremap M <c-w>o
+nnoremap Q @q
+nnoremap Y y$
+nnoremap ª :bdelete!<cr>
+nnoremap º :bdelete<cr>
+nnoremap Ç :cprevious<cr>
+nnoremap Ñ ?
+nnoremap ç :cnext<cr>
+nnoremap ñ /
 noremap ' `
 noremap <silent> <leader><cr> :noh<cr>
+noremap H g^
+noremap L g$
 
 " bind K to search word under cursor in project
 nnoremap K :silent grep! "\b<cword>\b"<CR>:copen<CR>

@@ -27,7 +27,7 @@ call dein#add('junegunn/goyo.vim')
 call dein#add('justinmk/vim-sneak')
 call dein#add('kchmck/vim-coffee-script')
 call dein#add('majutsushi/tagbar')
-call dein#add('marcweber/vim-addon-mw-utils')
+call dein#add('marcweber/vim-addon-mw-utils')  " Required by vim-snippets
 call dein#add('mattn/emmet-vim')
 call dein#add('metakirby5/codi.vim')
 call dein#add('moll/vim-bbye')
@@ -44,15 +44,15 @@ call dein#add('sirver/ultisnips')
 call dein#add('sjl/gundo.vim')
 call dein#add('terryma/vim-multiple-cursors')
 call dein#add('tommcdo/vim-lion')
-call dein#add('tomtom/tlib_vim')
+call dein#add('tomtom/tlib_vim')                 " Required by vim-snippets
 call dein#add('tpope/vim-abolish')
+call dein#add('tpope/vim-bundler')
 call dein#add('tpope/vim-characterize')          " Use ga to see additional representations of that character
 call dein#add('tpope/vim-commentary')
 call dein#add('tpope/vim-eunuch')                " Unix helpers (:Move, :Remove...)
 call dein#add('tpope/vim-dispatch')
 call dein#add('tpope/vim-fugitive')
 call dein#add('tpope/vim-git')
-call dein#add('tpope/vim-markdown')
 call dein#add('tpope/vim-rails')
 call dein#add('tpope/vim-repeat')
 call dein#add('tpope/vim-sleuth')                " Auto-detect indentation
@@ -187,30 +187,31 @@ inoremap [, [<cr>],<esc>O
 
 " QOL remappings
 cnoremap <c-a> <c-b>
-nnoremap <leader>x :qa<cr>
-nnoremap <leader>X :qa!<cr>
-nnoremap <leader>w :w!<cr>
-nnoremap <leader>c :bdelete!<cr>
-nnoremap Q :bdelete<cr>
-nnoremap º :close<cr>
-nnoremap ª :%bdelete<cr>
-nnoremap Ñ ?
-nnoremap ñ /
-nnoremap Y y$
-nnoremap <expr> j v:count ? 'j' : 'gj'
-nnoremap <expr> k v:count ? 'k' : 'gk'
-nnoremap M <c-w>o
 nnoremap - ]c
 nnoremap _ [c
-nnoremap ç :cnext<cr>
-nnoremap Ç :cprevious<cr>
-nnoremap <leader>ç :cwindow<cr>
+nnoremap <expr> j v:count ? 'j' : 'gj'
+nnoremap <expr> k v:count ? 'k' : 'gk'
+nnoremap <leader>X :qa!<cr>
+nnoremap <leader>c :%bdelete<cr>
 nnoremap <leader>n :lnext<cr>
 nnoremap <leader>p :lprevious<cr>
-noremap H g^
-noremap L g$
+nnoremap <leader>q :close<cr>
+nnoremap <leader>w :w!<cr>
+nnoremap <leader>x :qa<cr>
+nnoremap <leader>ç :cwindow<cr>
+nnoremap M <c-w>o
+nnoremap Q @q
+nnoremap Y y$
+nnoremap ª :bdelete!<cr>
+nnoremap º :bdelete<cr>
+nnoremap Ç :cprevious<cr>
+nnoremap Ñ ?
+nnoremap ç :cnext<cr>
+nnoremap ñ /
 noremap ' `
 noremap <silent> <leader><cr> :noh<cr>
+noremap H g^
+noremap L g$
 
 " bind K to search word under cursor in project
 nnoremap K :silent grep! "\b<cword>\b"<CR>:copen<CR>
@@ -286,12 +287,8 @@ nnoremap <c-e> <c-i>
 " Tags
 nnoremap t <C-]>
 nnoremap <leader>t g]
+nnoremap <leader>T :VimProcBang ctags<cr>
 set tags=.tags,.gemtags
-if has('nvim')
-  nnoremap <leader>T :call jobstart('ctags')<cr>
-else
-  nnoremap <leader>T :call job_start('ctags')<cr>
-endif
 
 " Work with splits
 nnoremap <leader>v <C-W>v
@@ -445,8 +442,9 @@ nnoremap <silent> <leader>k :NERDTreeToggle<cr>
 nnoremap <silent> <leader>K :NERDTreeFind<cr>
 
 " Ysurround: Swap double quotes with single quotes
-nnoremap <leader>' :normal cs"'<cr>
-nnoremap <leader>" :normal cs'"<cr>
+" mzgUiw`z
+nnoremap <leader>' :normal mzcs"'`z<cr>
+nnoremap <leader>" :normal mzcs'"`z<cr>
 
 " Fugitive
 nnoremap <Leader>ga :Gwrite<CR>
@@ -466,8 +464,8 @@ nnoremap <silent> <leader>z :Goyo<cr>
 nnoremap U :GundoToggle<cr>
 
 " Don't mess up the layout when closing buffers
-nnoremap <leader>q :Bdelete<cr>
-nnoremap <leader>Q :Bdelete!<cr>
+nnoremap º :Bdelete<cr>
+nnoremap ª :Bdelete!<cr>
 
 " Neomake (linter)
 let g:neomake_python_flake8_args = ['--ignore', 'E402,E501']
