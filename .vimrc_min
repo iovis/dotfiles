@@ -84,10 +84,10 @@ nnoremap _ [c
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
 nnoremap <leader>X :qa!<cr>
-nnoremap <leader>c :%bdelete<cr>
+nnoremap <leader>c :close<cr>
 nnoremap <leader>n :lnext<cr>
 nnoremap <leader>p :lprevious<cr>
-nnoremap <leader>q :close<cr>
+nnoremap <leader>q :%bdelete<cr>
 nnoremap <leader>w :w!<cr>
 nnoremap <leader>x :qa<cr>
 nnoremap <leader>ç :cwindow<cr>
