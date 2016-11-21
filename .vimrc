@@ -94,8 +94,6 @@ set backspace=indent,eol,start   " Fix backspace not deleting tabs, also make de
 set breakindent
 set conceallevel=0
 set expandtab
-set guifont=Fira\ Code:h15
-" set guifont=Monospace\ 10
 set hidden    " remember undo after quitting
 set hlsearch
 set ignorecase
@@ -152,15 +150,15 @@ endif
 
 " GUI options
 if has("gui_running")
-  let macvim_hig_shift_movement = 1
-  set guioptions+=a
+  set guicursor+=a:blinkon0
+  set guifont=Fira\ Code:h16
+  " set guifont=Monospace\ 10
   set guioptions-=L
   set guioptions-=R
   set guioptions-=T
   set guioptions-=l
   set guioptions-=m
   set guioptions-=r
-  set guicursor+=a:blinkon0
   set macligatures
   set visualbell t_vb=
 endif
