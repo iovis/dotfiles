@@ -156,6 +156,7 @@ if has("gui_running")
   set guioptions-=L
   set guioptions-=R
   set guioptions-=T
+  set guioptions-=a
   set guioptions-=l
   set guioptions-=m
   set guioptions-=r
