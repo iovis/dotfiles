@@ -187,7 +187,6 @@ inoremap [, [<cr>],<esc>O
 " QOL remappings
 cnoremap <c-a> <c-b>
 nnoremap - ]c
-nnoremap _ [c
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
 nnoremap <leader>X :qa!<cr>
@@ -201,6 +200,7 @@ nnoremap <leader>ç :cwindow<cr>
 nnoremap M <c-w>o
 nnoremap Q @q
 nnoremap Y y$
+nnoremap _ [c
 nnoremap ª :bdelete!<cr>
 nnoremap º :bdelete<cr>
 nnoremap Ç :cprevious<cr>
@@ -211,6 +211,7 @@ noremap ' `
 noremap <silent> <leader><cr> :noh<cr>
 noremap H g^
 noremap L g$
+vnoremap Q :norm @q<cr>
 
 " bind K to search word under cursor in project
 nnoremap K :silent grep! "\b<cword>\b"<CR>:copen<CR>
