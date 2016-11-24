@@ -102,3 +102,5 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+### Visual Studio Code ###
+.vscode/
