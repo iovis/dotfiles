@@ -67,14 +67,19 @@ eval "$(rbenv init -)"
 eval "$(hub alias -s)"
 
 # Custom aliases
-alias d='du -sh'
 alias agrep='alias | grep'
+alias d='du -sh'
 alias flushcache="dscacheutil -flushcache"
 alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 alias gcam="git commit -v -am"
 alias gitconfig="vim ~/.gitconfig"
 alias hosts="sudo vim /etc/hosts"
+alias https='http --default-scheme=https'
+alias kwm='brew services start koekeishiya/kwm/kwm'
+alias kwmstop='brew services stop koekeishiya/kwm/kwm'
 alias libupdate="brew update; brew upgrade; gem update --system; echo '\nOutdated gems'; gem outdated; npm -g outdated; pip list --outdated --format=columns;"
+alias ni='nvim'
+alias pf='peerflixrb'
 alias pipdump="pip freeze > requirements.txt"
 alias pipi="pip install"
 alias pipo="pip list --outdated --format=columns"
@@ -83,10 +88,6 @@ alias rebuildlaunchservices="/System/Library/Frameworks/CoreServices.framework/F
 alias updatedb="sudo /usr/libexec/locate.updatedb"
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
 alias zshrc="vim ~/.zshrc"
-alias pf='peerflixrb'
-alias ni='nvim'
-alias kwm='brew services start koekeishiya/kwm/kwm'
-alias kwmstop='brew services stop koekeishiya/kwm/kwm'
 
 # Aliases for managing de local development machine
 #alias deploy_webserver="sudo httpd -k start; mysql.server start"
