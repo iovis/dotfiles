@@ -1,7 +1,7 @@
 "dein Scripts-----------------------------
 set nocompatible
 
-set runtimepath^=~/.dotfiles/.vim/bundle/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.dotfiles/.vim/bundle/repos/github.com/Shougo/dein.vim
 call dein#begin(expand('~/.dotfiles/.vim/bundle'))
 call dein#add('Shougo/dein.vim')
 
