@@ -16,6 +16,8 @@
       _analyticsUserId: "c275d206-8cab-4bed-995e-9190c6572c40"
     js:
       space_after_anon_function: true
+    php:
+      default_beautifier: "PHPCBF"
     python:
       max_line_length: 120
       sort_imports: true
