@@ -25,6 +25,7 @@ gitignore
 grunt
 gulp
 heroku
+httpie
 jsontools
 nmap
 npm
