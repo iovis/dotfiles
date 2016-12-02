@@ -1,6 +1,3 @@
-BASE16_SHELL="$HOME/.config/base16-shell/base16-default.dark.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
-
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -26,8 +23,11 @@ git
 git-flow
 gitignore
 grunt
+gulp
 heroku
+jsontools
 nmap
+npm
 osx
 pip
 postgres
@@ -39,6 +39,7 @@ ruby
 thefuck
 tmux
 virtualenvwrapper
+websearch
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -75,6 +76,7 @@ alias gcam="git commit -v -am"
 alias gitconfig="vim ~/.gitconfig"
 alias hosts="sudo vim /etc/hosts"
 alias https='http --default-scheme=https'
+alias hyper="vim ~/.hyper.js"
 alias kwm='brew services start koekeishiya/kwm/kwm'
 alias kwmstop='brew services stop koekeishiya/kwm/kwm'
 alias libupdate="brew update; brew upgrade; gem update --system; echo '\nOutdated gems'; gem outdated; npm -g outdated; pip list --outdated --format=columns;"
@@ -85,25 +87,20 @@ alias pipi="pip install"
 alias pipo="pip list --outdated --format=columns"
 alias pipu="pip install -U"
 alias rebuildlaunchservices="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user"
+alias so="source ~/.zshrc"
+alias ss="sudo nginx; mysql.server start; sudo php-fpm &; memcached &; echo 'server started'"
+alias ssr="sstop && sstart"
+alias sss="ps auxc | grep -E 'nginx|httpd|mysqld|php-fpm|sshd|memcached|postgres' || echo 'Server stopped'"
+alias st="sudo nginx -s quit; mysql.server stop; sudo killall php-fpm; killall memcached; sss"
 alias updatedb="sudo /usr/libexec/locate.updatedb"
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
 alias zshrc="vim ~/.zshrc"
-
-# Aliases for managing de local development machine
-#alias deploy_webserver="sudo httpd -k start; mysql.server start"
-#alias undeploy_webserver="sudo httpd -k stop; mysql.server stop"
-#alias deploy_webserver="sudo nginx; postgres -D /usr/local/var/postgres;"
-#alias undeploy_webserver="sudo nginx -s quit; pg_ctl -D /usr/local/var/postgres stop"
-alias deploy_webserver="sudo nginx; mysql.server start; sudo php-fpm &; memcached &"
-alias undeploy_webserver="sudo nginx -s quit; mysql.server stop; sudo killall php-fpm; killall memcached"
-alias check_webserver="ps auxc | grep -E 'nginx|httpd|mysqld|php-fpm|sshd|memcached|postgres'"
-alias restart_webserver="undeploy_webserver && deploy_webserver"
 
 # Disable fucking <C-s> flow control
 stty -ixon
 
 # TEVA
-alias sync_backend="rsync-synchronize --rsh='ssh -p3105' kgordeev@192.168.240.7:/servicios/var/batch/ser/ /Users/david/Sites/apr2/backend/ser/; rsync-synchronize --rsh='ssh -p3105' kgordeev@192.168.240.7:/servicios/logs/ser/ /Users/david/Sites/apr2/backend/logs/"
+alias sync_ser="rsync-synchronize --rsh='ssh -p3105' kgordeev@192.168.240.7:/servicios/var/batch/ser/ /Users/david/Sites/apr2/backend/ser/; rsync-synchronize --rsh='ssh -p3105' kgordeev@192.168.240.7:/servicios/logs/ser/ /Users/david/Sites/apr2/backend/logs/"
 
 # Set the correct file and directory permissions
 function chmodfiles() {
