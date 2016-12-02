@@ -78,12 +78,7 @@ endif
 "End dein Scripts-------------------------
 
 " CUSTOM SETTINGS
-set t_Co=256
-let base16colorspace=256
 colorscheme base16-default-dark
-" let g:hybrid_custom_term_colors = 1
-" let g:hybrid_reduced_contrast = 1
-" colorscheme hybrid
 
 syntax enable
 set autoindent
@@ -118,6 +113,7 @@ set softtabstop=2
 set splitbelow
 set splitright
 set tabstop=2
+set termguicolors
 set updatetime=750
 set virtualedit=block
 set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn
@@ -131,18 +127,21 @@ let g:netrw_altv = 1
 let g:netrw_banner = 0
 let g:netrw_browse_split = 4
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro rnu'
-let g:netrw_list_hide= '.*\.pyc$,\.DS_Store'
-let g:netrw_liststyle = 1
+let g:netrw_list_hide = '.*\.pyc$,\.DS_Store'
+let g:netrw_liststyle = 3
+let g:netrw_silent = 1
 let g:netrw_sort_options = 'i'
 let g:netrw_sort_sequence = '[\/]$'
+let g:netrw_special_syntax = 1
 let g:netrw_winsize = 25
 
 if has('nvim')
-  tnoremap jj <C-\><C-n>
+  set inccommand=split
   tnoremap <c-h> <C-\><C-n><C-w>h
   tnoremap <c-j> <C-\><C-n><C-w>j
   tnoremap <c-k> <C-\><C-n><C-w>k
   tnoremap <c-l> <C-\><C-n><C-w>l
+  tnoremap jj <C-\><C-n>
 else
   " Mouse support
   set ttymouse=xterm2
