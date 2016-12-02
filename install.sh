@@ -7,7 +7,7 @@
 ########## Variables
 dir=~/.dotfiles
 olddir=~/dotfiles_old
-files=".agignore .atom .bashrc .ctags .gemrc .gitconfig .gitignore_global .pryrc .psqlrc .tern-config .tmux.conf .vim .vimrc .zshrc"
+files=".agignore .atom .bashrc .ctags .gemrc .gitconfig .gitignore_global .hyper.js .pryrc .psqlrc .tern-config .tmux.conf .vim .vimrc .zshrc"
 config_files="mpv nvim"
 
 
@@ -32,7 +32,3 @@ for file in $config_files; do
     echo "Creating symlink to $file in the config directory."
     ln -snf $dir/$file ~/.config/$file
 done
-
-# Neovim
-# ln -s ~/.dotfiles/.vim ~/.config/nvim
-# ln -s ~/.dotfiles/.vimrc ~/.config/nvim/init.vim
