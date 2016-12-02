@@ -31,6 +31,10 @@ module.exports = {
 
     // custom css to embed in the terminal window
     termCSS: `
+      x-screen x-row {
+        font-variant-ligatures: initial;
+      }
+
       x-screen a {
         color: #71a6ba;
       }
