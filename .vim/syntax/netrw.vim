@@ -1,6 +1,6 @@
 " Language   : Netrw Listing Syntax
 " Maintainer : Charles E. Campbell
-" Last change: Aug 18, 2016
+" Last change: Oct 31, 2016
 " Version    : 20	NOT RELEASED
 " ---------------------------------------------------------------------
 if exists("b:current_syntax")
@@ -52,7 +52,7 @@ syn match  netrwLink		"-->"				contained skipwhite
 " -----------------------------
 " Special filetype highlighting {{{1
 " -----------------------------
-if exists("g:netrw_special_syntax") && netrw_special_syntax
+if exists("g:netrw_special_syntax") && g:netrw_special_syntax
  if exists("+suffixes") && &suffixes != ""
   let suflist= join(split(&suffixes,','))
   let suflist= escape(substitute(suflist," ",'\\|','g'),'.~')

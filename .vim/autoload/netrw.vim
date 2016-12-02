@@ -1,7 +1,7 @@
 " netrw.vim: Handles file transfer and remote directory listing across
 "            AUTOLOAD SECTION
-" Date:		Aug 22, 2016
-" Version:	161	ASTRO-ONLY
+" Date:		Nov 22, 2016
+" Version:	162f	ASTRO-ONLY
 " Maintainer:	Charles E Campbell <NdrOchip@ScampbellPfamily.AbizM-NOSPAM>
 " GetLatestVimScripts: 1075 1 :AutoInstall: netrw.vim
 " Copyright:    Copyright (C) 2016 Charles E. Campbell {{{1
@@ -39,7 +39,7 @@ if exists("s:needspatches")
  endfor
 endif
 
-let g:loaded_netrw = "v161"
+let g:loaded_netrw = "v162f"
 if !exists("s:NOTE")
  let s:NOTE    = 0
  let s:WARNING = 1
@@ -64,7 +64,7 @@ setl cpo&vim
 "   Usage: netrw#ErrorMsg(s:NOTE | s:WARNING | s:ERROR,"some message",error-number)
 "          netrw#ErrorMsg(s:NOTE | s:WARNING | s:ERROR,["message1","message2",...],error-number)
 "          (this function can optionally take a list of messages)
-"  Jan 19, 2016 : max errnum currently is 103
+"  Nov 11, 2016 : max errnum currently is 104
 fun! netrw#ErrorMsg(level,msg,errnum)
 "  call Dfunc("netrw#ErrorMsg(level=".a:level." msg<".a:msg."> errnum=".a:errnum.") g:netrw_use_errorwindow=".g:netrw_use_errorwindow)
 
@@ -190,6 +190,14 @@ if !exists("s:LONGLIST")
 endif
 
 " ---------------------------------------------------------------------
+" Default option values: {{{2
+let g:netrw_localcopycmdopt    = ""
+let g:netrw_localcopydircmdopt = ""
+let g:netrw_localmkdiropt      = ""
+let g:netrw_localmovecmdopt    = ""
+let g:netrw_localrmdiropt      = ""
+
+" ---------------------------------------------------------------------
 " Default values for netrw's global protocol variables {{{2
 call s:NetrwInit("g:netrw_use_errorwindow",1)
 
@@ -247,6 +255,7 @@ call s:NetrwInit("g:netrw_http_put_cmd","curl -T")
 call s:NetrwInit("g:netrw_keepj","keepj")
 call s:NetrwInit("g:netrw_rcp_cmd"  , "rcp")
 call s:NetrwInit("g:netrw_rsync_cmd", "rsync")
+call s:NetrwInit("g:netrw_rsync_sep", "/")
 if !exists("g:netrw_scp_cmd")
  if executable("scp")
   call s:NetrwInit("g:netrw_scp_cmd" , "scp -q")
@@ -373,7 +382,8 @@ if !exists("g:netrw_localcopycmd")
   if g:netrw_cygwin
    let g:netrw_localcopycmd= "cp"
   else
-   let g:netrw_localcopycmd= expand("$COMSPEC")." /c copy"
+   let g:netrw_localcopycmd   = expand("$COMSPEC")
+   let g:netrw_localcopycmdopt= " /c copy"
   endif
  elseif has("unix") || has("macunix")
   let g:netrw_localcopycmd= "cp"
@@ -384,14 +394,20 @@ endif
 if !exists("g:netrw_localcopydircmd")
  if has("win32") || has("win95") || has("win64") || has("win16")
   if g:netrw_cygwin
-   let g:netrw_localcopydircmd= "cp -R"
+   let g:netrw_localcopydircmd   = "cp"
+   let g:netrw_localcopydircmdopt= " -R"
   else
-   let g:netrw_localcopycmd= expand("$COMSPEC")." /c xcopy /e /c /h /i /k"
+   let g:netrw_localcopydircmd   = expand("$COMSPEC")
+   let g:netrw_localcopydircmdopt= " /c xcopy /e /c /h /i /k"
   endif
- elseif has("unix") || has("macunix")
-  let g:netrw_localcopydircmd= "cp -R"
+ elseif has("unix")
+  let g:netrw_localcopydircmd   = "cp"
+  let g:netrw_localcopydircmdopt= " -R"
+ elseif has("macunix")
+  let g:netrw_localcopydircmd   = "cp"
+  let g:netrw_localcopydircmdopt= " -R"
  else
-  let g:netrw_localcopycmd= ""
+  let g:netrw_localcopydircmd= ""
  endif
 endif
 if exists("g:netrw_local_mkdir")
@@ -402,7 +418,8 @@ if has("win32") || has("win95") || has("win64") || has("win16")
   if g:netrw_cygwin
    call s:NetrwInit("g:netrw_localmkdir","mkdir")
   else
-   let g:netrw_localmkdir= expand("$COMSPEC")." /c mkdir"
+   let g:netrw_localmkdir   = expand("$COMSPEC")
+   let g:netrw_localmkdiropt= " /c mkdir"
   endif
 else
  call s:NetrwInit("g:netrw_localmkdir","mkdir")
@@ -417,7 +434,8 @@ if !exists("g:netrw_localmovecmd")
   if g:netrw_cygwin
    let g:netrw_localmovecmd= "mv"
   else
-   let g:netrw_localmovecmd= expand("$COMSPEC")." /c move"
+   let g:netrw_localmovecmd   = expand("$COMSPEC")
+   let g:netrw_localmovecmdopt= " /c move"
   endif
  elseif has("unix") || has("macunix")
   let g:netrw_localmovecmd= "mv"
@@ -435,7 +453,8 @@ if v:version < 704 || (v:version == 704 && !has("patch1107"))
    if g:netrw_cygwin
     call s:NetrwInit("g:netrw_localrmdir","rmdir")
    else
-    let g:netrw_localrmdir= expand("$COMSPEC")." /c rmdir"
+    let g:netrw_localrmdir   = expand("$COMSPEC")
+    let g:netrw_localrmdiropt= " /c rmdir"
    endif
  else
   call s:NetrwInit("g:netrw_localrmdir","rmdir")
@@ -898,7 +917,7 @@ fun! netrw#Explore(indx,dosplit,style,...)
       NetrwKeepj call netrw#ErrorMsg(s:WARNING,"using Nexplore or <s-down> improperly; see help for netrw-starstar",40)
       if has("clipboard")
        sil! let @* = keepregstar
-       sil! let @+ = keepregstar
+       sil! let @+ = keepregplus
       endif
       sil! let @/ = keepregslash
 "      call Dret("netrw#Explore")
@@ -923,7 +942,7 @@ fun! netrw#Explore(indx,dosplit,style,...)
       NetrwKeepj call netrw#ErrorMsg(s:WARNING,"using Pexplore or <s-up> improperly; see help for netrw-starstar",41)
       if has("clipboard")
        sil! let @* = keepregstar
-       sil! let @+ = keepregstar
+       sil! let @+ = keepregplus
       endif
       sil! let @/ = keepregslash
 "      call Dret("netrw#Explore")
@@ -977,8 +996,8 @@ fun! netrw#Explore(indx,dosplit,style,...)
        keepalt call netrw#ErrorMsg(s:WARNING,'no files matched pattern<'.pattern.'>',45)
        if &hls | let keepregslash= s:ExplorePatHls(pattern) | endif
        if has("clipboard")
-        sil! let @* = keepregstar
-        sil! let @+ = keepregstar
+	sil! let @* = keepregstar
+	sil! let @+ = keepregplus
        endif
        sil! let @/ = keepregslash
 "       call Dret("netrw#Explore : no files matched pattern")
@@ -1014,7 +1033,7 @@ fun! netrw#Explore(indx,dosplit,style,...)
       keepalt NetrwKeepj call netrw#ErrorMsg(s:WARNING,"no files matched",42)
       if has("clipboard")
        sil! let @* = keepregstar
-       sil! let @+ = keepregstar
+       sil! let @+ = keepregplus
       endif
       sil! let @/ = keepregslash
 "      call Dret("netrw#Explore : no files matched")
@@ -1062,7 +1081,7 @@ fun! netrw#Explore(indx,dosplit,style,...)
     endif
     if has("clipboard")
      sil! let @* = keepregstar
-     sil! let @+ = keepregstar
+     sil! let @+ = keepregplus
     endif
     sil! let @/ = keepregslash
 "    call Dret("netrw#Explore : missing +path_extra")
@@ -1116,7 +1135,9 @@ fun! netrw#Explore(indx,dosplit,style,...)
      let prvfname= fname
     endfor
 "    call Decho("explore_match<".s:explore_match.">",'~'.expand("<slnum>"))
-    exe "2match netrwMarkFile /".s:explore_match."/"
+    if has("syntax") && exists("g:syntax_on") && g:syntax_on
+     exe "2match netrwMarkFile /".s:explore_match."/"
+    endif
    endif
    echo "<s-up>==Pexplore  <s-down>==Nexplore"
   else
@@ -1133,7 +1154,7 @@ fun! netrw#Explore(indx,dosplit,style,...)
   let s:netrw_events= 2
   if has("clipboard")
    sil! let @* = keepregstar
-   sil! let @+ = keepregstar
+   sil! let @+ = keepregplus
   endif
   sil! let @/ = keepregslash
 "  call Dret("netrw#Explore : @/<".@/.">")
@@ -1174,10 +1195,11 @@ fun! netrw#Lexplore(count,rightside,...)
   else
    let lexwinnr= 0
   endif
+"  call Decho("lexwinnr=".lexwinnr,'~'.expand("<slnum>"))
 
   if lexwinnr > 0
    " close down netrw explorer window
-"  call Decho("t:netrw_lexbufnr#".t:netrw_lexbufnr.": close down netrw window",'~'.expand("<slnum>"))
+"   call Decho("t:netrw_lexbufnr#".t:netrw_lexbufnr.": close down netrw window",'~'.expand("<slnum>"))
    exe lexwinnr."wincmd w"
    let g:netrw_winsize = -winwidth(0)
    let t:netrw_lexposn = winsaveview()
@@ -1203,15 +1225,17 @@ fun! netrw#Lexplore(count,rightside,...)
    let curfile= expand("%")
 "   call Decho("curfile<".curfile.">",'~'.expand("<slnum>"))
    exe (a:rightside? "botright" : "topleft")." vertical ".((g:netrw_winsize > 0)? (g:netrw_winsize*winwidth(0))/100 : -g:netrw_winsize) . " new"
+"   call Decho("new buf#".bufnr("%")." win#".winnr())
    if a:0 > 0 && a1 != ""
 "    call Decho("case 1: Explore ".a1,'~'.expand("<slnum>"))
+    call netrw#Explore(0,0,0,a1)
     exe "Explore ".fnameescape(a1)
    elseif curfile =~ '^\a\{3,}://'
 "    call Decho("case 2: Explore ".substitute(curfile,'[^/\\]*$','',''),'~'.expand("<slnum>"))
-    exe "Explore ".substitute(curfile,'[^/\\]*$','','')
+    call netrw#Explore(0,0,0,substitute(curfile,'[^/\\]*$','',''))
    else
 "    call Decho("case 3: Explore .",'~'.expand("<slnum>"))
-    Explore .
+    call netrw#Explore(0,0,0,".")
    endif
    if a:count != 0
     let g:netrw_winsize = netrw_winsize
@@ -1351,7 +1375,7 @@ fun! netrw#Obtain(islocal,fname,...)
 "     call Decho("transfer files one at a time",'~'.expand("<slnum>"))
      for fname in fnamelist
 "      call Decho("system(".g:netrw_localcopycmd." ".s:ShellEscape(fname)." ".s:ShellEscape(topath).")",'~'.expand("<slnum>"))
-      call system(g:netrw_localcopycmd." ".s:ShellEscape(fname)." ".s:ShellEscape(topath))
+      call system(g:netrw_localcopycmd.g:netrw_localcopycmdopt." ".s:ShellEscape(fname)." ".s:ShellEscape(topath))
       if v:shell_error != 0
        call netrw#ErrorMsg(s:WARNING,"consider setting g:netrw_localcopycmd<".g:netrw_localcopycmd."> to something that works",80)
 "       call Dret("s:NetrwObtain 0 : failed: ".g:netrw_localcopycmd." ".s:ShellEscape(fname)." ".s:ShellEscape(topath))
@@ -1363,7 +1387,7 @@ fun! netrw#Obtain(islocal,fname,...)
 "     call Decho("transfer files with one command",'~'.expand("<slnum>"))
      let filelist= join(map(deepcopy(fnamelist),"s:ShellEscape(v:val)"))
 "     call Decho("system(".g:netrw_localcopycmd." ".filelist." ".s:ShellEscape(topath).")",'~'.expand("<slnum>"))
-     call system(g:netrw_localcopycmd." ".filelist." ".s:ShellEscape(topath))
+     call system(g:netrw_localcopycmd.g:netrw_localcopycmdopt." ".filelist." ".s:ShellEscape(topath))
      if v:shell_error != 0
       call netrw#ErrorMsg(s:WARNING,"consider setting g:netrw_localcopycmd<".g:netrw_localcopycmd."> to something that works",80)
 "      call Dret("s:NetrwObtain 0 : failed: ".g:netrw_localcopycmd." ".filelist." ".s:ShellEscape(topath))
@@ -1397,7 +1421,7 @@ fun! netrw#Obtain(islocal,fname,...)
     else
      let path= ""
     endif
-    let filelist= join(map(deepcopy(fnamelist),'s:ShellEscape(g:netrw_machine.":".path.v:val,1)'))
+    let filelist= join(map(deepcopy(fnamelist),'escape(s:ShellEscape(g:netrw_machine.":".path.v:val,1)," ")'))
     call s:NetrwExe(s:netrw_silentxfer."!".g:netrw_scp_cmd.s:ShellEscape(useport,1)." ".filelist." ".s:ShellEscape(tgtdir,1))
 
    elseif b:netrw_method == 2
@@ -1621,9 +1645,6 @@ fun! s:NetrwOptionRestore(vt)
   if exists("{a:vt}netrw_rokeep")   |let &l:ro     = {a:vt}netrw_rokeep      |unlet {a:vt}netrw_rokeep   |endif
   if exists("{a:vt}netrw_selkeep")  |let &l:sel    = {a:vt}netrw_selkeep     |unlet {a:vt}netrw_selkeep  |endif
   if exists("{a:vt}netrw_spellkeep")|let &l:spell  = {a:vt}netrw_spellkeep   |unlet {a:vt}netrw_spellkeep|endif
-  if has("clipboard")
-   if exists("{a:vt}netrw_starkeep") |let @*        = {a:vt}netrw_starkeep    |unlet {a:vt}netrw_starkeep |endif
-  endif
   " Problem: start with liststyle=0; press <i> : result, following line resets l:ts.
 "  if exists("{a:vt}netrw_tskeep")   |let &l:ts     = {a:vt}netrw_tskeep      |unlet {a:vt}netrw_tskeep   |endif
   if exists("{a:vt}netrw_twkeep")   |let &l:tw     = {a:vt}netrw_twkeep      |unlet {a:vt}netrw_twkeep   |endif
@@ -1656,9 +1677,10 @@ fun! s:NetrwOptionRestore(vt)
    endif
   endif
   if has("clipboard")
-   if exists("{a:vt}netrw_regstar") |sil! let @*= {a:vt}netrw_regstar |unlet {a:vt}netrw_regstar |endif
+   if exists("{a:vt}netrw_starkeep") |sil! let @*= {a:vt}netrw_starkeep |unlet {a:vt}netrw_starkeep |endif
+   if exists("{a:vt}netrw_pluskeep") |sil! let @+= {a:vt}netrw_pluskeep |unlet {a:vt}netrw_pluskeep |endif
   endif
-  if exists("{a:vt}netrw_regslash")|sil! let @/= {a:vt}netrw_regslash|unlet {a:vt}netrw_regslash|endif
+  if exists("{a:vt}netrw_slashkeep")|sil! let @/= {a:vt}netrw_slashkeep|unlet {a:vt}netrw_slashkeep|endif
 
 "  call Decho("g:netrw_keepdir=".g:netrw_keepdir.": getcwd<".getcwd()."> acd=".&acd,'~'.expand("<slnum>"))
 "  call Decho("fo=".&fo.(exists("+acd")? " acd=".&acd : " acd doesn't exist"),'~'.expand("<slnum>"))
@@ -1736,9 +1758,6 @@ fun! s:NetrwOptionSave(vt)
   if !g:netrw_use_noswf
    let {a:vt}netrw_swfkeep  = &l:swf
   endif
-  if has("clipboard")
-   let {a:vt}netrw_starkeep = @*
-  endif
   let {a:vt}netrw_tskeep    = &l:ts
   let {a:vt}netrw_twkeep    = &l:tw           " textwidth
   let {a:vt}netrw_wigkeep   = &l:wig          " wildignore
@@ -1751,9 +1770,10 @@ fun! s:NetrwOptionSave(vt)
    let {a:vt}netrw_dirkeep  = getcwd()
   endif
   if has("clipboard")
-   if &go =~# 'a' | sil! let {a:vt}netrw_regstar = @* | endif
+   sil! let {a:vt}netrw_starkeep = @*
+   sil! let {a:vt}netrw_pluskeep = @+
   endif
-  sil! let {a:vt}netrw_regslash= @/
+  sil! let {a:vt}netrw_slashkeep= @/
 
 "  call Decho("settings buf#".bufnr("%")."<".bufname("%").">: ".((&l:ma == 0)? "no" : "")."ma ".((&l:mod == 0)? "no" : "")."mod ".((&l:bl == 0)? "no" : "")."bl ".((&l:ro == 0)? "no" : "")."ro fo=".&l:fo." a:vt=".a:vt,'~'.expand("<slnum>"))
 "  call Dret("s:NetrwOptionSave : tab#".tabpagenr()." win#".winnr())
@@ -2111,7 +2131,7 @@ fun! netrw#NetRead(mode,...)
     else
       let tmpfile_get = tmpfile
     endif
-    call s:NetrwExe(s:netrw_silentxfer."!".g:netrw_scp_cmd.useport." ".s:ShellEscape(g:netrw_machine.":".b:netrw_fname,1)." ".s:ShellEscape(tmpfile_get,1))
+    call s:NetrwExe(s:netrw_silentxfer."!".g:netrw_scp_cmd.useport." ".escape(s:ShellEscape(g:netrw_machine.":".b:netrw_fname,1),' ')." ".s:ShellEscape(tmpfile_get,1))
     let result           = s:NetrwGetFile(readcmd, tmpfile, b:netrw_method)
     let b:netrw_lastfile = choice
 
@@ -2193,7 +2213,7 @@ fun! netrw#NetRead(mode,...)
    " NetRead: (rsync) NetRead Method #7 {{{3
    elseif     b:netrw_method  == 7
 "    call Decho("read via rsync (method #7)",'~'.expand("<slnum>"))
-    call s:NetrwExe(s:netrw_silentxfer."!".g:netrw_rsync_cmd." ".s:ShellEscape(g:netrw_machine.":".b:netrw_fname,1)." ".s:ShellEscape(tmpfile,1))
+    call s:NetrwExe(s:netrw_silentxfer."!".g:netrw_rsync_cmd." ".s:ShellEscape(g:netrw_machine.g:netrw_rsync_sep.b:netrw_fname,1)." ".s:ShellEscape(tmpfile,1))
     let result		 = s:NetrwGetFile(readcmd,tmpfile, b:netrw_method)
     let b:netrw_lastfile = choice
 
@@ -2535,7 +2555,7 @@ fun! netrw#NetWrite(...) range
      let url= g:netrw_choice
      call s:NetrwExe(s:netrw_silentxfer."!".g:netrw_http_put_cmd." ".s:ShellEscape(tmpfile,1)." ".s:ShellEscape(url,1) )
     elseif !exists("g:netrw_quiet")
-     call netrw#ErrorMsg(s:ERROR,"can't write to http using <".g:netrw_http_put_cmd".">".",16)
+     call netrw#ErrorMsg(s:ERROR,"can't write to http using <".g:netrw_http_put_cmd.">".",16)
     endif
 
    ".........................................
@@ -2579,7 +2599,7 @@ fun! netrw#NetWrite(...) range
    " NetWrite: (rsync) NetWrite Method #7 {{{3
    elseif     b:netrw_method == 7
 "    call Decho("write via rsync (method #7)",'~'.expand("<slnum>"))
-    call s:NetrwExe(s:netrw_silentxfer."!".g:netrw_rsync_cmd." ".s:ShellEscape(tmpfile,1)." ".s:ShellEscape(g:netrw_machine.":".b:netrw_fname,1))
+    call s:NetrwExe(s:netrw_silentxfer."!".g:netrw_rsync_cmd." ".s:ShellEscape(tmpfile,1)." ".s:ShellEscape(g:netrw_machine.g:netrw_rsync_sep.b:netrw_fname,1))
     let b:netrw_lastfile = choice
 
    ".........................................
@@ -2799,7 +2819,7 @@ fun! s:NetrwGetFile(readcmd, tfile, method)
    let iskkeep= &l:isk
    setl isk-=/
    let &l:isk= iskkeep
-"   call Dredir("renamed buffer back to remote filename<".rfile."> : expand(%)<".expand("%").">","ls!")
+"   call Dredir("ls!","NetrwGetFile (renamed buffer back to remote filename<".rfile."> : expand(%)<".expand("%").">)")
    let line1 = 1
    let line2 = line("$")
 
@@ -2870,13 +2890,13 @@ endfun
 "  g:netrw_port   = optional port number (for ftp)
 "  g:netrw_choice = copy of input url (choice)
 fun! s:NetrwMethod(choice)
-"   call Dfunc("NetrwMethod(a:choice<".a:choice.">)")
+"   call Dfunc("s:NetrwMethod(a:choice<".a:choice.">)")
 
    " sanity check: choice should have at least three slashes in it
    if strlen(substitute(a:choice,'[^/]','','g')) < 3
     call netrw#ErrorMsg(s:ERROR,"not a netrw-style url; netrw uses protocol://[user@]hostname[:port]/[path])",78)
     let b:netrw_method = -1
-"    call Dret("NetrwMethod : incorrect url format<".a:choice.">")
+"    call Dret("s:NetrwMethod : incorrect url format<".a:choice.">")
     return
    endif
 
@@ -2989,7 +3009,7 @@ fun! s:NetrwMethod(choice)
    endif
 
    if curmachine != g:netrw_machine
-    if exists("s:netwr_hup[".g:netrw_machine."]")
+    if exists("s:netrw_hup[".g:netrw_machine."]")
      call NetUserPass("ftp:".g:netrw_machine)
     elseif exists("s:netrw_passwd")
      " if there's a change in hostname, require password re-entry
@@ -3119,7 +3139,7 @@ fun! s:NetrwMethod(choice)
 "   call Decho("s:netrw_passwd <".s:netrw_passwd.">",'~'.expand("<slnum>"))
 "  endif					"Decho
 "  call Decho("b:netrw_fname  <".b:netrw_fname.">",'~'.expand("<slnum>"))
-"  call Dret("NetrwMethod : b:netrw_method=".b:netrw_method." g:netrw_port=".g:netrw_port)
+"  call Dret("s:NetrwMethod : b:netrw_method=".b:netrw_method." g:netrw_port=".g:netrw_port)
 endfun
 
 " ------------------------------------------------------------------------
@@ -3568,7 +3588,7 @@ fun! s:NetrwBrowse(islocal,dirname)
 "  call Dfunc("s:NetrwBrowse(islocal=".a:islocal." dirname<".a:dirname.">) liststyle=".w:netrw_liststyle." ".g:loaded_netrw." buf#".bufnr("%")."<".bufname("%")."> win#".winnr())
 "  call Decho("modified=".&modified." modifiable=".&modifiable." readonly=".&readonly,'~'.expand("<slnum>"))
 "  call Decho("tab#".tabpagenr()." win#".winnr()." buf#".bufnr("%")."<".bufname("%")."> line#".line(".")." col#".col(".")." winline#".winline()." wincol#".wincol(),'~'.expand("<slnum>"))
-"  call Dredir("ls!")
+"  call Dredir("ls!","s:NetrwBrowse")
 
   " save alternate-file's filename if w:netrw_rexlocal doesn't exist
   " This is useful when one edits a local file, then :e ., then :Rex
@@ -3612,9 +3632,11 @@ fun! s:NetrwBrowse(islocal,dirname)
   call s:NetrwOptionSave("w:")
 
   " s:NetrwBrowse : re-instate any marked files {{{3
-  if exists("s:netrwmarkfilelist_{bufnr('%')}")
-"   call Decho("clearing marked files",'~'.expand("<slnum>"))
-   exe "2match netrwMarkFile /".s:netrwmarkfilemtch_{bufnr("%")}."/"
+  if has("syntax") && exists("g:syntax_on") && g:syntax_on
+   if exists("s:netrwmarkfilelist_{bufnr('%')}")
+"    call Decho("clearing marked files",'~'.expand("<slnum>"))
+    exe "2match netrwMarkFile /".s:netrwmarkfilemtch_{bufnr("%")}."/"
+   endif
   endif
 
   if a:islocal && exists("w:netrw_acdkeep") && w:netrw_acdkeep
@@ -3696,13 +3718,15 @@ fun! s:NetrwBrowse(islocal,dirname)
   let reusing= s:NetrwGetBuffer(a:islocal,dirname)
 
   " maintain markfile highlighting
-  if exists("s:netrwmarkfilemtch_{bufnr('%')}") && s:netrwmarkfilemtch_{bufnr("%")} != ""
-"   call Decho("bufnr(%)=".bufnr('%'),'~'.expand("<slnum>"))
-"   call Decho("exe 2match netrwMarkFile /".s:netrwmarkfilemtch_{bufnr("%")}."/",'~'.expand("<slnum>"))
-   exe "2match netrwMarkFile /".s:netrwmarkfilemtch_{bufnr("%")}."/"
-  else
-"   call Decho("2match none",'~'.expand("<slnum>"))
-   2match none
+  if has("syntax") && exists("g:syntax_on") && g:syntax_on
+   if exists("s:netrwmarkfilemtch_{bufnr('%')}") && s:netrwmarkfilemtch_{bufnr("%")} != ""
+" "   call Decho("bufnr(%)=".bufnr('%'),'~'.expand("<slnum>"))
+" "   call Decho("exe 2match netrwMarkFile /".s:netrwmarkfilemtch_{bufnr("%")}."/",'~'.expand("<slnum>"))
+    exe "2match netrwMarkFile /".s:netrwmarkfilemtch_{bufnr("%")}."/"
+   else
+" "   call Decho("2match none",'~'.expand("<slnum>"))
+    2match none
+   endif
   endif
   if reusing && line("$") > 1
    call s:NetrwOptionRestore("w:")
@@ -3965,13 +3989,13 @@ fun! s:NetrwFullPath(filename)
 endfun
 
 " ---------------------------------------------------------------------
-" s:NetrwGetBuffer: {{{2
+" s:NetrwGetBuffer: [get a new|find an old netrw] buffer for a netrw listing {{{2
 "   returns 0=cleared buffer
 "           1=re-used buffer (buffer not cleared)
 fun! s:NetrwGetBuffer(islocal,dirname)
 "  call Dfunc("s:NetrwGetBuffer(islocal=".a:islocal." dirname<".a:dirname.">) liststyle=".g:netrw_liststyle)
 "  call Decho("settings buf#".bufnr("%")."<".bufname("%").">: ".((&l:ma == 0)? "no" : "")."ma ".((&l:mod == 0)? "no" : "")."mod ".((&l:bl == 0)? "no" : "")."bl ".((&l:ro == 0)? "no" : "")."ro fo=".&l:fo,'~'.expand("<slnum>"))
-"  call Decho("netrwbuf dictionary=".string(s:netrwbuf),'~'.expand("<slnum>"))
+"  call Decho("netrwbuf dictionary=".(exists("s:netrwbuf")? string(s:netrwbuf) : 'n/a'),'~'.expand("<slnum>"))
   let dirname= a:dirname
 
   " re-use buffer if possible {{{3
@@ -4249,18 +4273,21 @@ fun! s:NetrwGetWord()
 endfun
 
 " ---------------------------------------------------------------------
-" s:NetrwListSettings: make standard settings for a netrw listing {{{2
+" s:NetrwListSettings: make standard settings for making a netrw listing {{{2
+"                      g:netrw_bufsettings will be used after the listing is produced.
+"                      Called by s:NetrwGetBuffer()
 fun! s:NetrwListSettings(islocal)
 "  call Dfunc("s:NetrwListSettings(islocal=".a:islocal.")")
 "  call Decho("settings buf#".bufnr("%")."<".bufname("%").">: ".((&l:ma == 0)? "no" : "")."ma ".((&l:mod == 0)? "no" : "")."mod ".((&l:bl == 0)? "no" : "")."bl ".((&l:ro == 0)? "no" : "")."ro fo=".&l:fo,'~'.expand("<slnum>"))
   let fname= bufname("%")
 "  "  call Decho("(NetrwListSettings) setl bt=nofile nobl ma nonu nowrap noro nornu",'~'.expand("<slnum>"))
-  setl bt=nofile nobl ma nonu nowrap noro nornu
+  "              nobl noma nomod nonu noma nowrap ro   nornu  (std g:netrw_bufsettings)
+  setl bt=nofile nobl ma         nonu      nowrap noro nornu
   call s:NetrwBufRename(fname)
   if g:netrw_use_noswf
    setl noswf
   endif
-"  call Dredir("ls!")
+"  call Dredir("ls!","s:NetrwListSettings")
 "  call Decho("(NetrwListSettings) exe setl ts=".(g:netrw_maxfilenamelen+1),'~'.expand("<slnum>"))
   exe "setl ts=".(g:netrw_maxfilenamelen+1)
   setl isk+=.,~,-
@@ -4521,7 +4548,7 @@ fun! s:NetrwBrowseChgDir(islocal,newdir,...)
    let @@= ykeep
 "   call Decho("b:netrw_curdir doesn't exist!",'~'.expand("<slnum>"))
 "   call Decho("getcwd<".getcwd().">",'~'.expand("<slnum>"))
-"   call Dredir("ls!")
+"   call Dredir("ls!","s:NetrwBrowseChgDir")
 "   call Dret("s:NetrwBrowseChgDir")
    return
   endif
@@ -4947,7 +4974,7 @@ fun! s:NetrwBrowseUpDir(islocal)
     while 1
      keepj call search('^'.s:treedepthstring.curfile,"w")
      let treepath= s:NetrwTreePath(w:netrw_treetop)
- "    call Decho("..current treepath<".treepath.">",'~'.expand("<slnum>"))
+" "    call Decho("..current treepath<".treepath.">",'~'.expand("<slnum>"))
      if treepath == curpath
       break
      endif
@@ -4981,8 +5008,8 @@ endfun
 fun! netrw#BrowseX(fname,remote)
 "  call Dfunc("netrw#BrowseX(fname<".a:fname."> remote=".a:remote.")")
 
-  " if its really just a directory, then do a "gf" instead
-  if (a:remote == 0 && isdirectory(a:fname)) || (a:remote == 1 && fname =~ '/$' && fname !~ '^https\=:')
+  " if its really just a local directory, then do a "gf" instead
+  if (a:remote == 0 && isdirectory(a:fname)) || (a:remote == 1 && a:fname =~ '/$' && a:fname !~ '^https\=:')
    norm! gf
 "   call Dret("netrw#BrowseX : did gf instead")
   endif
@@ -5146,6 +5173,11 @@ fun! netrw#BrowseX(fname,remote)
    call s:NetrwExe("sil !setsid xdg-open ".s:ShellEscape(fname,1).redir)
    let ret= v:shell_error
 
+  elseif has("unix") && $DESKTOP_SESSION == "mate" && executable("atril")
+"   call Decho("unix and atril",'~'.expand("<slnum>"))
+   call s:NetrwExe("sil !atril ".s:ShellEscape(fname,1).redir)
+   let ret= v:shell_error
+
   elseif has("unix") && executable("xdg-open")
 "   call Decho("unix and xdg-open",'~'.expand("<slnum>"))
    call s:NetrwExe("sil !xdg-open ".s:ShellEscape(fname,1).redir)
@@ -5226,7 +5258,7 @@ endfun
 "                   to become an unlisted buffer, so in that case don't bwipe it.
 fun! s:NetrwBufRename(newname)
 "  call Dfunc("s:NetrwBufRename(newname<".a:newname.">) buf(%)#".bufnr("%")."<".bufname(bufnr("%")).">")
-"  call Dredir("ls!","before rename")
+"  call Dredir("ls!","s:NetrwBufRename (before rename)")
   let oldbufname= bufname(bufnr("%"))
 "  call Decho("buf#".bufnr("%").": oldbufname<".oldbufname.">",'~'.expand("<slnum>"))
   if oldbufname != a:newname
@@ -5237,15 +5269,21 @@ fun! s:NetrwBufRename(newname)
     exe "bwipe! ".oldbufnr
    endif
   endif
-"  call Dredir("ls!","after rename")
+"  call Dredir("ls!","s:NetrwBufRename (after rename)")
 "  call Dret("s:NetrwBufRename : buf#".bufnr("%").": oldname<".oldbufname."> newname<".a:newname."> expand(%)<".expand("%").">")
 endfun
 
 " ---------------------------------------------------------------------
 " netrw#CheckIfRemote: returns 1 if current file looks like an url, 0 else {{{2
-fun! netrw#CheckIfRemote()
-"  call Dfunc("netrw#CheckIfRemote()")
-  if expand("%") =~ '^\a\{3,}://'
+fun! netrw#CheckIfRemote(...)
+"  call Dfunc("netrw#CheckIfRemote() a:0=".a:0)
+  if a:0 > 0
+   let curfile= a:1
+  else
+   let curfile= expand("%")
+  endif
+"  call Decho("curfile<".curfile.">")
+  if curfile =~ '^\a\{3,}://'
 "   call Dret("netrw#CheckIfRemote 1")
    return 1
   else
@@ -5842,19 +5880,19 @@ fun! s:NetrwListHide()
 
    " Prune the list by hiding any files which match
    if g:netrw_hide == 1
-"    call Decho("..hiding<".hide.">,'~'.expand("<slnum>"))
+"    call Decho("..hiding<".hide.">",'~'.expand("<slnum>"))
     exe 'sil! NetrwKeepj '.w:netrw_bannercnt.',$g'.sep.hide.sep.'d'
    elseif g:netrw_hide == 2
-"    call Decho("..showing<".hide.">,'~'.expand("<slnum>"))
+"    call Decho("..showing<".hide.">",'~'.expand("<slnum>"))
     exe 'sil! NetrwKeepj '.w:netrw_bannercnt.',$g'.sep.hide.sep.'s@^@ /-KEEP-/ @'
    endif
-"   call Decho("..result: ".string(getline(w:netrw_bannercnt,'$')))
+"   call Decho("..result: ".string(getline(w:netrw_bannercnt,'$')),'~'.expand("<slnum>"))
   endwhile
   if g:netrw_hide == 2
    exe 'sil! NetrwKeepj '.w:netrw_bannercnt.',$v@^ /-KEEP-/ @d'
-"   call Decho("..v KEEP: ".string(getline(w:netrw_bannercnt,'$')))
+"   call Decho("..v KEEP: ".string(getline(w:netrw_bannercnt,'$')),'~'.expand("<slnum>"))
    exe 'sil! NetrwKeepj '.w:netrw_bannercnt.',$s@^\%( /-KEEP-/ \)\+@@e'
-"   call Decho("..g KEEP: ".string(getline(w:netrw_bannercnt,'$')))
+"   call Decho("..g KEEP: ".string(getline(w:netrw_bannercnt,'$')),'~'.expand("<slnum>"))
   endif
 
   " remove any blank lines that have somehow remained.
@@ -5922,7 +5960,7 @@ fun! s:NetrwMakeDir(usrhost)
     let netrw_origdir= s:NetrwGetcwd(1)
     call s:NetrwLcd(b:netrw_curdir)
 "    call Decho("netrw_origdir<".netrw_origdir.">: lcd b:netrw_curdir<".fnameescape(b:netrw_curdir).">",'~'.expand("<slnum>"))
-    call s:NetrwExe("sil! !".g:netrw_localmkdir.' '.s:ShellEscape(newdirname,1))
+    call s:NetrwExe("sil! !".g:netrw_localmkdir.g:netrw_localmkdiropt.' '.s:ShellEscape(newdirname,1))
     if v:shell_error != 0
      let @@= ykeep
      call netrw#ErrorMsg(s:ERROR,"consider setting g:netrw_localmkdir<".g:netrw_localmkdir."> to something that works",80)
@@ -6597,14 +6635,16 @@ fun! s:NetrwMarkFile(islocal,fname)
   endif
 
   " set up 2match'ing to netrwmarkfilemtch_# list
-  if exists("s:netrwmarkfilemtch_{curbufnr}") && s:netrwmarkfilemtch_{curbufnr} != ""
-"   call Decho("exe 2match netrwMarkFile /".s:netrwmarkfilemtch_{curbufnr}."/",'~'.expand("<slnum>"))
-   if exists("g:did_drchip_netrwlist_syntax")
-    exe "2match netrwMarkFile /".s:netrwmarkfilemtch_{curbufnr}."/"
+  if has("syntax") && exists("g:syntax_on") && g:syntax_on
+   if exists("s:netrwmarkfilemtch_{curbufnr}") && s:netrwmarkfilemtch_{curbufnr} != ""
+" "   call Decho("exe 2match netrwMarkFile /".s:netrwmarkfilemtch_{curbufnr}."/",'~'.expand("<slnum>"))
+    if exists("g:did_drchip_netrwlist_syntax")
+     exe "2match netrwMarkFile /".s:netrwmarkfilemtch_{curbufnr}."/"
+    endif
+   else
+" "   call Decho("2match none",'~'.expand("<slnum>"))
+    2match none
    endif
-  else
-"   call Decho("2match none",'~'.expand("<slnum>"))
-   2match none
   endif
   let @@= ykeep
 "  call Dret("s:NetrwMarkFile : s:netrwmarkfilelist_".curbufnr."<".(exists("s:netrwmarkfilelist_{curbufnr}")? string(s:netrwmarkfilelist_{curbufnr}) : " doesn't exist").">")
@@ -6690,18 +6730,15 @@ fun! s:NetrwMarkFileCompress(islocal)
       if g:netrw_keepdir
        let fname= s:ShellEscape(s:ComposePath(curdir,fname))
       endif
-     else
-      let fname= s:ShellEscape(b:netrw_curdir.fname,1)
-     endif
-     if executable(exe)
-      if a:islocal
-       call system(exe." ".fname)
-      else
-       NetrwKeepj call s:RemoteSystem(exe." ".fname)
+      call system(exe." ".fname)
+      if v:shell_error
+       NetrwKeepj call netrw#ErrorMsg(s:WARNING,"unable to apply<".exe."> to file<".fname.">",50)
       endif
      else
-      NetrwKeepj call netrw#ErrorMsg(s:WARNING,"unable to apply<".exe."> to file<".fname.">",50)
+      let fname= s:ShellEscape(b:netrw_curdir.fname,1)
+      NetrwKeepj call s:RemoteSystem(exe." ".fname)
      endif
+
     endif
     unlet sfx
 
@@ -6710,6 +6747,9 @@ fun! s:NetrwMarkFileCompress(islocal)
     elseif a:islocal
      " fname not a compressed file, so compress it
      call system(netrw#WinPath(g:netrw_compress)." ".s:ShellEscape(s:ComposePath(b:netrw_curdir,fname)))
+     if v:shell_error
+      call netrw#ErrorMsg(s:WARNING,"consider setting g:netrw_compress<".g:netrw_compress."> to something that works",104)
+     endif
     else
      " fname not a compressed file, so compress it
      NetrwKeepj call s:RemoteSystem(netrw#WinPath(g:netrw_compress)." ".s:ShellEscape(fname))
@@ -6761,7 +6801,7 @@ fun! s:NetrwMarkFileCopy(islocal,...)
   if a:islocal &&  s:netrwmftgt_islocal
    " Copy marked files, local directory to local directory
 "   call Decho("copy from local to local",'~'.expand("<slnum>"))
-   if !executable(g:netrw_localcopycmd) && g:netrw_localcopycmd !~ '^'.expand("$COMSPEC").'\s'
+   if !executable(g:netrw_localcopycmd)
     call netrw#ErrorMsg(s:ERROR,"g:netrw_localcopycmd<".g:netrw_localcopycmd."> not executable on your system, aborting",91)
 "    call Dfunc("s:NetrwMarkFileMove : g:netrw_localcopycmd<".g:netrw_localcopycmd."> n/a!")
     return
@@ -6843,7 +6883,7 @@ fun! s:NetrwMarkFileCopy(islocal,...)
 "   call Decho("tgt    <".tgt.">",'~'.expand("<slnum>"))
 "   call Decho("copycmd<".copycmd.">",'~'.expand("<slnum>"))
 "   call Decho("system(".copycmd." '".args."' '".tgt."')",'~'.expand("<slnum>"))
-   call system(copycmd." '".args."' '".tgt."'")
+   call system(copycmd.g:netrw_localcopycmdopt." '".args."' '".tgt."'")
    if v:shell_error != 0
     if exists("b:netrw_curdir") && b:netrw_curdir != getcwd() && !g:netrw_keepdir
      call netrw#ErrorMsg(s:ERROR,"copy failed; perhaps due to vim's current directory<".getcwd()."> not matching netrw's (".b:netrw_curdir.") (see :help netrw-c)",101)
@@ -6875,7 +6915,7 @@ fun! s:NetrwMarkFileCopy(islocal,...)
    if exists("*mkdir")
     call mkdir(tmpdir)
    else
-    call s:NetrwExe("sil! !".g:netrw_localmkdir.' '.s:ShellEscape(tmpdir,1))
+    call s:NetrwExe("sil! !".g:netrw_localmkdir.g:netrw_localmkdiropt.' '.s:ShellEscape(tmpdir,1))
     if v:shell_error != 0
      call netrw#ErrorMsg(s:WARNING,"consider setting g:netrw_localmkdir<".g:netrw_localmkdir."> to something that works",80)
 "     call Dret("s:NetrwMarkFileCopy : failed: sil! !".g:netrw_localmkdir.' '.s:ShellEscape(tmpdir,1) )
@@ -6893,7 +6933,7 @@ fun! s:NetrwMarkFileCopy(islocal,...)
      endfor
      call s:NetrwLcd(curdir)
      if v:version < 704 || (v:version == 704 && !has("patch1107"))
-      call s:NetrwExe("sil !".g:netrw_localrmdir." ".s:ShellEscape(tmpdir,1))
+      call s:NetrwExe("sil !".g:netrw_localrmdir.g:netrw_localrmdiropt." ".s:ShellEscape(tmpdir,1))
       if v:shell_error != 0
        call netrw#ErrorMsg(s:WARNING,"consider setting g:netrw_localrmdir<".g:netrw_localrmdir."> to something that works",80)
 " "      call Dret("s:NetrwMarkFileCopy : failed: sil !".g:netrw_localrmdir." ".s:ShellEscape(tmpdir,1) )
@@ -7432,15 +7472,15 @@ fun! s:NetrwMarkFileMove(islocal)
    " move: local -> local
 "   call Decho("move from local to local",'~'.expand("<slnum>"))
 "   call Decho("local to local move",'~'.expand("<slnum>"))
-   if !executable(g:netrw_localmovecmd) && g:netrw_localmovecmd !~ '^'.expand("$COMSPEC").'\s'
+   if !executable(g:netrw_localmovecmd)
     call netrw#ErrorMsg(s:ERROR,"g:netrw_localmovecmd<".g:netrw_localmovecmd."> not executable on your system, aborting",90)
 "    call Dfunc("s:NetrwMarkFileMove : g:netrw_localmovecmd<".g:netrw_localmovecmd."> n/a!")
     return
    endif
-   let tgt         = s:ShellEscape(s:netrwmftgt)
+   let tgt = s:ShellEscape(s:netrwmftgt)
 "   call Decho("tgt<".tgt.">",'~'.expand("<slnum>"))
    if !g:netrw_cygwin && (has("win32") || has("win95") || has("win64") || has("win16"))
-    let tgt         = substitute(tgt, '/','\\','g')
+    let tgt= substitute(tgt, '/','\\','g')
 "    call Decho("windows exception: tgt<".tgt.">",'~'.expand("<slnum>"))
     if g:netrw_localmovecmd =~ '\s'
      let movecmd     = substitute(g:netrw_localmovecmd,'\s.*$','','')
@@ -7460,7 +7500,7 @@ fun! s:NetrwMarkFileMove(islocal)
      let fname= substitute(fname,'/','\\','g')
     endif
 "    call Decho("system(".movecmd." ".s:ShellEscape(fname)." ".tgt.")",'~'.expand("<slnum>"))
-    let ret= system(movecmd." ".s:ShellEscape(fname)." ".tgt)
+    let ret= system(movecmd.g:netrw_localmovecmdopt." ".s:ShellEscape(fname)." ".tgt)
     if v:shell_error != 0
      if exists("b:netrw_curdir") && b:netrw_curdir != getcwd() && !g:netrw_keepdir
       call netrw#ErrorMsg(s:ERROR,"move failed; perhaps due to vim's current directory<".getcwd()."> not matching netrw's (".b:netrw_curdir.") (see :help netrw-c)",100)
@@ -7715,12 +7755,13 @@ fun! s:NetrwMarkFileTag(islocal)
    call s:NetrwUnmarkAll()
 
    if a:islocal
-    if executable(g:netrw_ctags)
-"     call Decho("call system(".g:netrw_ctags." ".netrwmarkfilelist.")",'~'.expand("<slnum>"))
-     call system(g:netrw_ctags." ".netrwmarkfilelist)
-    else
+
+"    call Decho("call system(".g:netrw_ctags." ".netrwmarkfilelist.")",'~'.expand("<slnum>"))
+    call system(g:netrw_ctags." ".netrwmarkfilelist)
+    if v:shell_error
      call netrw#ErrorMsg(s:ERROR,"g:netrw_ctags<".g:netrw_ctags."> is not executable!",51)
     endif
+
    else
     let cmd   = s:RemoteSystem(g:netrw_ctags." ".netrwmarkfilelist)
     call netrw#Obtain(a:islocal,"tags")
@@ -8175,7 +8216,7 @@ fun! s:NetrwObtain(islocal)
    call netrw#Obtain(islocal,s:netrwmarkfilelist_{bufnr('%')})
    call s:NetrwUnmarkList(bufnr('%'),b:netrw_curdir)
   else
-   call netrw#Obtain(a:islocal,expand("<cWORD>"))
+   call netrw#Obtain(a:islocal,s:NetrwGetWord())
   endif
   let @@= ykeep
 
@@ -8210,14 +8251,16 @@ fun! s:NetrwPrevWinOpen(islocal)
   if lastwinnr == 1
    " if only one window, open a new one first
 "   call Decho("only one window, so open a new one (g:netrw_alto=".g:netrw_alto.")",'~'.expand("<slnum>"))
+   " g:netrw_preview=0: preview window shown in a horizontally split window
+   " g:netrw_preview=1: preview window shown in a vertically   split window
    if g:netrw_preview
     " vertically split preview window
-    let winsz= (g:netrw_winsize > 0)? (g:netrw_winsize*winheight(0))/100 : -g:netrw_winsize
+    let winsz= (g:netrw_winsize > 0)? (g:netrw_winsize*winwidth(0))/100 : -g:netrw_winsize
 "    call Decho("exe ".(g:netrw_alto? "top " : "bot ")."vert ".winsz."wincmd s",'~'.expand("<slnum>"))
     exe (g:netrw_alto? "top " : "bot ")."vert ".winsz."wincmd s"
    else
     " horizontally split preview window
-    let winsz= (g:netrw_winsize > 0)? (g:netrw_winsize*winwidth(0))/100 : -g:netrw_winsize
+    let winsz= (g:netrw_winsize > 0)? (g:netrw_winsize*winheight(0))/100 : -g:netrw_winsize
 "    call Decho("exe ".(g:netrw_alto? "bel " : "abo ").winsz."wincmd s",'~'.expand("<slnum>"))
     exe (g:netrw_alto? "bel " : "abo ").winsz."wincmd s"
    endif
@@ -8474,7 +8517,7 @@ fun! s:NetrwUpload(fname,tgt,...)
       bw!|q
      endif
     elseif !exists("b:netrw_method") || b:netrw_method < 0
-"     call Dfunc("netrw#NetrwUpload : unsupported method")
+"     call Dret("s:#NetrwUpload : unsupported method")
      return
     endif
    else
@@ -8552,13 +8595,15 @@ fun! s:NetrwRefresh(islocal,dirname)
   NetrwKeepj call winrestview(screenposn)
 
   " restore file marks
-  if exists("s:netrwmarkfilemtch_{bufnr('%')}") && s:netrwmarkfilemtch_{bufnr("%")} != ""
-"   call Decho("exe 2match netrwMarkFile /".s:netrwmarkfilemtch_{bufnr("%")}."/",'~'.expand("<slnum>"))
-   exe "2match netrwMarkFile /".s:netrwmarkfilemtch_{bufnr("%")}."/"
-  else
-"   call Decho("2match none  (bufnr(%)=".bufnr("%")."<".bufname("%").">)",'~'.expand("<slnum>"))
-   2match none
-  endif
+  if has("syntax") && exists("g:syntax_on") && g:syntax_on
+   if exists("s:netrwmarkfilemtch_{bufnr('%')}") && s:netrwmarkfilemtch_{bufnr("%")} != ""
+" "   call Decho("exe 2match netrwMarkFile /".s:netrwmarkfilemtch_{bufnr("%")}."/",'~'.expand("<slnum>"))
+    exe "2match netrwMarkFile /".s:netrwmarkfilemtch_{bufnr("%")}."/"
+   else
+" "   call Decho("2match none  (bufnr(%)=".bufnr("%")."<".bufname("%").">)",'~'.expand("<slnum>"))
+    2match none
+   endif
+ endif
 
 "  restore
   let @@= ykeep
@@ -9418,7 +9463,7 @@ fun! s:PerformListing(islocal)
 "   call Decho("g:netrw_banner=".g:netrw_banner.": banner ".(g:netrw_banner? "enabled" : "suppressed").": (line($)=".line("$")." byte2line(1)=".byte2line(1)." bannercnt=".w:netrw_bannercnt.")",'~'.expand("<slnum>"))
   endif
 
-  " show copy/move target, if any
+  " show copy/move target, if any {{{3
   if g:netrw_banner
    if exists("s:netrwmftgt") && exists("s:netrwmftgt_islocal")
 "    call Decho("--show copy/move target<".s:netrwmftgt.">",'~'.expand("<slnum>"))
@@ -10338,7 +10383,7 @@ fun! netrw#LocalBrowseCheck(dirname)
 "  call Dfunc("netrw#LocalBrowseCheck(dirname<".a:dirname.">")
 "  call Decho("isdir<".a:dirname."> =".isdirectory(s:NetrwFile(a:dirname)).((exists("s:treeforceredraw")? " treeforceredraw" : "")).'~'.expand("<slnum>"))
 "  call Decho("settings buf#".bufnr("%")."<".bufname("%").">: ".((&l:ma == 0)? "no" : "")."ma ".((&l:mod == 0)? "no" : "")."mod ".((&l:bl == 0)? "no" : "")."bl ".((&l:ro == 0)? "no" : "")."ro fo=".&l:fo,'~'.expand("<slnum>"))
-"  call Dredir("ls!","ls!")
+"  call Dredir("ls!","netrw#LocalBrowseCheck")
 "  call Decho("tab#".tabpagenr()." win#".winnr()." buf#".bufnr("%")."<".bufname("%")."> line#".line(".")." col#".col(".")." winline#".winline()." wincol#".wincol(),'~'.expand("<slnum>"))
 "  call Decho("current buffer#".bufnr("%")."<".bufname("%")."> ft=".&ft,'~'.expand("<slnum>"))
 
@@ -10964,6 +11009,7 @@ fun! netrw#Access(ilist)
    endif
   elseif a:ilist == 1
    return s:netrwmftgt
+  endif
 endfun
 
 " ---------------------------------------------------------------------
@@ -11098,11 +11144,12 @@ fun! s:ComposePath(base,subdir)
     let ret = a:base.a:subdir
    endif
 
-  elseif a:subdir =~ '^\a:[/\\][^/\\]' && (has("win32") || has("win95") || has("win64") || has("win16"))
+   " COMBAK: test on windows with changing to root directory: :e C:/
+  elseif a:subdir =~ '^\a:[/\\]\([^/\\]\|$\)' && (has("win32") || has("win95") || has("win64") || has("win16"))
 "   call Decho("windows",'~'.expand("<slnum>"))
    let ret= a:subdir
 
-  elseif a:base =~ '^\a:[/\\][^/\\]' && (has("win32") || has("win95") || has("win64") || has("win16"))
+  elseif a:base =~ '^\a:[/\\]\([^/\\]\|$\)' && (has("win32") || has("win95") || has("win64") || has("win16"))
 "   call Decho("windows",'~'.expand("<slnum>"))
    if a:base =~ '[/\\]$'
     let ret= a:base.a:subdir
@@ -11518,17 +11565,19 @@ endfun
 " ---------------------------------------------------------------------
 " s:NetrwExe: executes a string using "!" {{{2
 fun! s:NetrwExe(cmd)
-"  call Dfunc("s:NetrwExe(a:cmd)")
+"  call Dfunc("s:NetrwExe(a:cmd<".a:cmd.">)")
   if has("win32") && &shell !~? 'cmd' && !g:netrw_cygwin
+"    call Decho("using win32:",expand("<slnum>"))
     let savedShell=[&shell,&shellcmdflag,&shellxquote,&shellxescape,&shellquote,&shellpipe,&shellredir,&shellslash]
     set shell& shellcmdflag& shellxquote& shellxescape&
     set shellquote& shellpipe& shellredir& shellslash&
     exe a:cmd
     let [&shell,&shellcmdflag,&shellxquote,&shellxescape,&shellquote,&shellpipe,&shellredir,&shellslash] = savedShell
   else
+"   call Decho("exe ".a:cmd,'~'.expand("<slnum>"))
    exe a:cmd
   endif
-"  call Dret("s:NetrwExe")
+"  call Dret("s:NetrwExe : v:shell_error=".v:shell_error)
 endfun
 
 " ---------------------------------------------------------------------
@@ -11817,8 +11866,10 @@ fun! s:NetrwRexplore(islocal,dirname)
 "   call Decho("s:rexposn_".bufnr('%')."<".bufname("%")."> doesn't exist",'~'.expand("<slnum>"))
   endif
 
-  if exists("s:explore_match")
-   exe "2match netrwMarkFile /".s:explore_match."/"
+  if has("syntax") && exists("g:syntax_on") && g:syntax_on
+   if exists("s:explore_match")
+    exe "2match netrwMarkFile /".s:explore_match."/"
+   endif
   endif
 
 "  call Decho("settings buf#".bufnr("%")."<".bufname("%").">: ".((&l:ma == 0)? "no" : "")."ma ".((&l:mod == 0)? "no" : "")."mod ".((&l:bl == 0)? "no" : "")."bl ".((&l:ro == 0)? "no" : "")."ro fo=".&l:fo,'~'.expand("<slnum>"))
