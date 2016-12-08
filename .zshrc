@@ -1,9 +1,9 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
+# ZSH_THEME="robbyrussell"
 ZSH_THEME="agnoster"
 # ZSH_THEME="avit"
-# ZSH_THEME="cloud"
 # ZSH_THEME="gentoo"
 
 # Uncomment following line if you want to  shown in the command execution time stamp
@@ -152,6 +152,7 @@ codi() {
     startinsert |\
     Codi ${1:-python}"
 }
+
 ncodi() {
   nvim $2 -c \
     "let g:startify_disable_at_vimenter = 1 |\
