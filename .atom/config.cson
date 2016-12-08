@@ -42,7 +42,8 @@
   "autocomplete-plus":
     backspaceTriggersAutocomplete: true
     useCoreMovementCommands: false
-  "autocomplete-python": {}
+  "autocomplete-python":
+    useKite: false
   "autocomplete-ruby": {}
   autosave:
     enabled: true
@@ -51,6 +52,9 @@
   "choose-pane":
     labelChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
   core:
+    disabledPackages: [
+      "background-tips"
+    ]
     excludeVcsIgnoredPaths: false
     followSymlinks: true
     ignoredNames: [
