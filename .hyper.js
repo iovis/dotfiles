@@ -104,7 +104,8 @@ module.exports = {
     "hyperlinks",
     "hyperterm-tab-icons",
     "hyperterm-paste",
-    "hyperterm-cursor"
+    "hyperterm-cursor",
+    "hyperterm-alternatescroll"
   ],
 
   // in development, you can create a directory under
