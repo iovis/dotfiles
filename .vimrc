@@ -58,7 +58,7 @@ call dein#add('tpope/vim-repeat')
 call dein#add('tpope/vim-sleuth')                " Auto-detect indentation
 call dein#add('tpope/vim-speeddating')
 call dein#add('tpope/vim-surround')
-call dein#add('valloric/youcompleteme')
+call dein#add('Valloric/YouCompleteMe')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('vim-ruby/vim-ruby')
