@@ -32,3 +32,6 @@ for file in $config_files; do
     echo "Creating symlink to $file in the config directory."
     ln -snf $dir/$file ~/.config/$file
 done
+
+# Sublime Text 3
+ln -s ~/.dotfiles/sublime/User ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User

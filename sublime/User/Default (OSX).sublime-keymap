@@ -1,0 +1,57 @@
+[
+  // Vintageous
+  {"keys": ["j", "j"], "command": "_enter_normal_mode", "args": {"mode": "mode_insert"}, "context": [{"key": "vi_insert_mode_aware"}] },
+  {"keys": ["ctrl+d"], "command": "press_key", "args": {"key": "<C-d>"}, "context": [{"key": "vi_command_mode_aware"}]},
+  {"keys": ["ctrl+u"], "command": "press_key", "args": {"key": "<C-u>"}, "context": [{"key": "vi_command_mode_aware"}]},
+
+  // Origami (Panes)
+  { "keys": ["ctrl+k"], "command": "travel_to_pane", "args": {"direction": "up"}, "context": [{"key": "vi_command_mode_aware"}] },
+  { "keys": ["ctrl+l"], "command": "travel_to_pane", "args": {"direction": "right"}, "context": [{"key": "vi_command_mode_aware"}] },
+  { "keys": ["ctrl+j"], "command": "travel_to_pane", "args": {"direction": "down"}, "context": [{"key": "vi_command_mode_aware"}] },
+  { "keys": ["ctrl+h"], "command": "travel_to_pane", "args": {"direction": "left"}, "context": [{"key": "vi_command_mode_aware"}] },
+
+  { "keys": ["ctrl+shift+h"], "command": "carry_file_to_pane", "args": {"direction": "up"}, "context": [{"key": "vi_command_mode_aware"}] },
+  { "keys": ["ctrl+shift+l"], "command": "carry_file_to_pane", "args": {"direction": "right"}, "context": [{"key": "vi_command_mode_aware"}] },
+  { "keys": ["ctrl+shift+j"], "command": "carry_file_to_pane", "args": {"direction": "down"}, "context": [{"key": "vi_command_mode_aware"}] },
+  { "keys": ["ctrl+shift+h"], "command": "carry_file_to_pane", "args": {"direction": "left"}, "context": [{"key": "vi_command_mode_aware"}] },
+
+  { "keys": ["Q"], "command": "destroy_pane", "args": {"direction": "self"}, "context": [{"key": "vi_command_mode_aware"}] },
+  { "keys": ["M"], "command": "set_layout", "args": { "cols": [0.0, 1.0], "rows": [0.0, 1.0], "cells": [[0, 0, 1, 1]] }, "context": [{"key": "vi_command_mode_aware"}] },
+
+  { "keys": ["t"], "command": "goto_definition", "context": [{"key": "vi_command_mode_aware"}] },
+
+  // Tab management
+  { "keys": ["ctrl+alt+t"], "command": "show_panel", "args": {"panel": "console", "toggle": true} },
+  { "keys": ["super+t"], "command": "new_file" },
+  { "keys": ["super+n"], "command": "advanced_new_file_new"},
+  { "keys": ["super+alt+n"], "command": "advanced_new_file_new", "args": {"is_python": true}},
+
+  // Swap quotes
+  {
+    "keys": ["super+shift+'"],
+    "command": "bh_key",
+    "args": {
+      "lines": true,
+      "plugin": {
+        "type": ["single_quote", "double_quote", "py_single_quote", "py_double_quote"],
+        "command": "bh_modules.swapquotes"
+      }
+    }
+  },
+
+  { "keys": ["super+{"], "command": "fold" },
+  { "keys": ["super+}"], "command": "unfold" },
+
+  // { "keys": ["super+shift+enter"], "command": "run_macro_file", "args": { "file": "Packages/User/semicolon.sublime-macro" } },
+  // { "keys": ["shift+enter"], "command": "run_macro_file", "args": { "file": "Packages/User/semicolon-NoNL.sublime-macro" } },
+  // { "keys": ["super+shift+."], "command": "run_macro_file", "args": { "file": "Packages/User/colon-NoNL.sublime-macro" } },
+
+  // { "keys": ["super+shift+enter"], "command": "run_macro_file", "args": { "file": "Packages/User/colon.sublime-macro" },
+  //   "context": [{ "key": "selector", "operator": "equal", "operand": "source.python"}]},
+
+  { "keys": [",", "M"], "command": "run_macro_file", "args": { "file": "Packages/User/arrow.sublime-macro" } },
+  // { "keys": [",", "m"], "command": "run_macro_file", "args": { "file": "Packages/User/eol-arrow.sublime-macro" } },
+  // { "keys": [",", "n"], "command": "run_macro_file", "args": { "file": "Packages/User/fatarrow.sublime-macro" } },
+  { "keys": ["super+shift+a"], "command": "alignment" },
+  { "keys": ["alt+ctrl+down"], "command": "goto_python_definition"}
+]
