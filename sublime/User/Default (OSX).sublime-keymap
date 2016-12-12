@@ -15,9 +15,8 @@
   { "keys": ["ctrl+shift+j"], "command": "carry_file_to_pane", "args": {"direction": "down"}, "context": [{"key": "vi_command_mode_aware"}] },
   { "keys": ["ctrl+shift+h"], "command": "carry_file_to_pane", "args": {"direction": "left"}, "context": [{"key": "vi_command_mode_aware"}] },
 
-  { "keys": ["Q"], "command": "destroy_pane", "args": {"direction": "self"}, "context": [{"key": "vi_command_mode_aware"}] },
+  { "keys": ["Q"], "command": "run_macro", "context": [{"key": "vi_command_mode_aware"}] },
   { "keys": ["M"], "command": "set_layout", "args": { "cols": [0.0, 1.0], "rows": [0.0, 1.0], "cells": [[0, 0, 1, 1]] }, "context": [{"key": "vi_command_mode_aware"}] },
-
   { "keys": ["t"], "command": "goto_definition", "context": [{"key": "vi_command_mode_aware"}] },
 
   // Tab management
@@ -42,16 +41,16 @@
   { "keys": ["super+{"], "command": "fold" },
   { "keys": ["super+}"], "command": "unfold" },
 
-  // { "keys": ["super+shift+enter"], "command": "run_macro_file", "args": { "file": "Packages/User/semicolon.sublime-macro" } },
-  // { "keys": ["shift+enter"], "command": "run_macro_file", "args": { "file": "Packages/User/semicolon-NoNL.sublime-macro" } },
-  // { "keys": ["super+shift+."], "command": "run_macro_file", "args": { "file": "Packages/User/colon-NoNL.sublime-macro" } },
+  { "keys": ["super+shift+enter"], "command": "run_macro_file", "args": { "file": "Packages/User/semicolon.sublime-macro" } },
+  { "keys": ["shift+enter"], "command": "run_macro_file", "args": { "file": "Packages/User/semicolon-NoNL.sublime-macro" } },
+  { "keys": ["super+shift+."], "command": "run_macro_file", "args": { "file": "Packages/User/colon-NoNL.sublime-macro" } },
 
-  // { "keys": ["super+shift+enter"], "command": "run_macro_file", "args": { "file": "Packages/User/colon.sublime-macro" },
-  //   "context": [{ "key": "selector", "operator": "equal", "operand": "source.python"}]},
+  { "keys": ["super+shift+enter"], "command": "run_macro_file", "args": { "file": "Packages/User/colon.sublime-macro" },
+    "context": [{ "key": "selector", "operator": "equal", "operand": "source.python"}]},
 
-  { "keys": [",", "M"], "command": "run_macro_file", "args": { "file": "Packages/User/arrow.sublime-macro" } },
-  // { "keys": [",", "m"], "command": "run_macro_file", "args": { "file": "Packages/User/eol-arrow.sublime-macro" } },
-  // { "keys": [",", "n"], "command": "run_macro_file", "args": { "file": "Packages/User/fatarrow.sublime-macro" } },
+  { "keys": [",", "M"], "command": "run_macro_file", "args": { "file": "Packages/User/arrow.sublime-macro" }, "context": [{"key": "vi_insert_mode_aware"}] },
+  { "keys": [",", "m"], "command": "run_macro_file", "args": { "file": "Packages/User/eol-arrow.sublime-macro" }, "context": [{"key": "vi_insert_mode_aware"}] },
+  { "keys": [",", "n"], "command": "run_macro_file", "args": { "file": "Packages/User/fatarrow.sublime-macro" }, "context": [{"key": "vi_insert_mode_aware"}] },
   { "keys": ["super+shift+a"], "command": "alignment" },
   { "keys": ["alt+ctrl+down"], "command": "goto_python_definition"}
 ]
