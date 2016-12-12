@@ -1,0 +1,8 @@
+{
+	"extensions":
+	[
+		"php"
+	],
+	"tab_size": 4,
+	"word_separators": "./\\()\"'-:,.;<>~!@#%^&*|+=[]{}`~?"
+}

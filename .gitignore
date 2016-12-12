@@ -10,11 +10,11 @@
 .vim/bundle/*
 .vim/sessions/*
 mpv/watch_later/*
-/sublime/User/Package Control.cache
-/sublime/User/Package Control.merged-ca-bundle
-/sublime/User/oscrypto-ca-bundle.crt
-/sublime/User/Package Control.user-ca-bundle
-/sublime/User/Package Control.last-run
-/sublime/User/Color Highlighter/ColorPicker
-/sublime/User/Projects
-/sublime/User/Color Highlighter
+sublime/User/*/
+sublime/User/Package Control.ca-bundle
+sublime/User/Package Control.ca-certs/
+sublime/User/Package Control.ca-list
+sublime/User/Package Control.cache/
+sublime/User/Package Control.last-run
+sublime/User/Package Control.system-ca-bundle
+sublime/User/oscrypto-ca-bundle.crt

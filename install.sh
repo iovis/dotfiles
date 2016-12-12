@@ -7,6 +7,7 @@
 ########## Variables
 dir=~/.dotfiles
 olddir=~/dotfiles_old
+sublime_dir="~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User"
 files=".agignore .atom .bashrc .ctags .gemrc .gitconfig .gitignore_global .hyper.js .pryrc .psqlrc .tern-config .tmux.conf .vim .vimrc .zshrc"
 config_files="mpv nvim"
 
@@ -34,4 +35,6 @@ for file in $config_files; do
 done
 
 # Sublime Text 3
-ln -s ~/.dotfiles/sublime/User ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
+echo "\nIf you want to sync Sublime Text, fire these"
+echo "mv ${sublime_dir} ${olddir}"
+echo "ln -snf ~/.dotfiles/sublime/User ${sublime_dir}"

@@ -1,0 +1,23 @@
+[
+	{
+		"args":
+		{
+			"characters": " ="
+		},
+		"command": "insert"
+	},
+	{
+		"args":
+		{
+			"characters": ">"
+		},
+		"command": "insert"
+	},
+	{
+		"args":
+		{
+			"characters": " "
+		},
+		"command": "insert"
+	}
+]

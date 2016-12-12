@@ -1,0 +1,14 @@
+{
+  "autocomplete": true,
+  "select_searched_symbol": false,
+  "opts": [
+    "--exclude=node_modules",
+    "--exclude=.git",
+    "--exclude=.idea",
+    "--exclude=bower_components",
+    "--exclude=.sass-cache",
+    "--exclude=.tmp",
+    "--exclude=tmp",
+    "--exclude=dist"
+  ]
+}
