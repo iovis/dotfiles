@@ -38,6 +38,12 @@
     }
   },
 
+  // Git status
+  { "keys": ["j"], "command": "git_status_move", "args": {"goto": "item:next"}, "context": [ { "key": "selector", "operator": "equal", "operand": "text.git-status" } ] },
+  { "keys": ["k"], "command": "git_status_move", "args": {"goto": "item:prev"}, "context": [ { "key": "selector", "operator": "equal", "operand": "text.git-status" } ] },
+  { "keys": ["J"], "command": "git_status_move", "args": {"goto": "section:next"}, "context": [ { "key": "selector", "operator": "equal", "operand": "text.git-status" } ] },
+  { "keys": ["K"], "command": "git_status_move", "args": {"goto": "section:prev"}, "context": [ { "key": "selector", "operator": "equal", "operand": "text.git-status" } ] },
+
   { "keys": ["super+{"], "command": "fold" },
   { "keys": ["super+}"], "command": "unfold" },
 
