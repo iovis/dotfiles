@@ -1,4 +1,4 @@
-*pi_netrw.txt*  For Vim version 8.0.  Last change: 2016 Nov 22
+*pi_netrw.txt*  For Vim version 8.0.  Last change: 2016 Dec 20
 
 	    ------------------------------------------------
 	    NETRW REFERENCE MANUAL    by Charles E. Campbell
@@ -3842,6 +3842,9 @@ netrw:
 				  escaped (ie. 'file\ name').
 				* Also fixed obtain (|netrw-O|) to be able to
 				  obtain files with spaces in their names
+		Dec 20, 2016	* (xc1427) Reported that using "I" (|netrw-I|)
+				  when atop "Hiding" in the banner also caused
+				  the active-banner hiding control to occur
 	v157:	Apr 20, 2016	* (Nicola) had set up a "nmap <expr> ..." with
 				  a function that returned a 0 while silently
 				  invoking a shell command.  The shell command

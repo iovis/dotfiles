@@ -1,7 +1,7 @@
 " netrw.vim: Handles file transfer and remote directory listing across
 "            AUTOLOAD SECTION
-" Date:		Nov 22, 2016
-" Version:	162f	ASTRO-ONLY
+" Date:		Dec 20, 2016
+" Version:	162h	ASTRO-ONLY
 " Maintainer:	Charles E Campbell <NdrOchip@ScampbellPfamily.AbizM-NOSPAM>
 " GetLatestVimScripts: 1075 1 :AutoInstall: netrw.vim
 " Copyright:    Copyright (C) 2016 Charles E. Campbell {{{1
@@ -39,7 +39,7 @@ if exists("s:needspatches")
  endfor
 endif
 
-let g:loaded_netrw = "v162f"
+let g:loaded_netrw = "v162h"
 if !exists("s:NOTE")
  let s:NOTE    = 0
  let s:WARNING = 1
@@ -3644,7 +3644,7 @@ fun! s:NetrwBrowse(islocal,dirname)
 "   call Decho("handle w:netrw_acdkeep:",'~'.expand("<slnum>"))
 "   call Decho("NetrwKeepj lcd ".fnameescape(dirname)." (due to w:netrw_acdkeep=".w:netrw_acdkeep." - acd=".&acd.")",'~'.expand("<slnum>"))
    call s:NetrwLcd(dirname)
-   call s:NetrwSafeOptions()
+   "   call s:NetrwSafeOptions() " tst953 failed with this enabled.
 "   call Decho("getcwd<".getcwd().">",'~'.expand("<slnum>"))
 
   elseif !a:islocal && dirname !~ '[\/]$' && dirname !~ '^"'
@@ -4381,12 +4381,14 @@ fun! s:NetrwBannerCtrl(islocal)
   call s:NetrwRefresh(a:islocal,s:NetrwBrowseChgDir(a:islocal,'./'))
 
   " keep cursor on the filename
-  let fname= s:NetrwGetWord()
-  sil NetrwKeepj $
-  let result= search('\%(^\%(|\+\s\)\=\|\s\{2,}\)\zs'.escape(fname,'.\[]*$^').'\%(\s\{2,}\|$\)','bc')
-"  call Decho("search result=".result." w:netrw_bannercnt=".(exists("w:netrw_bannercnt")? w:netrw_bannercnt : 'N/A'),'~'.expand("<slnum>"))
-  if result <= 0 && exists("w:netrw_bannercnt")
-   exe "NetrwKeepj ".w:netrw_bannercnt
+  if g:netrw_banner && exists("w:netrw_bannercnt") && line(".") >= w:netrw_bannercnt
+   let fname= s:NetrwGetWord()
+   sil NetrwKeepj $
+   let result= search('\%(^\%(|\+\s\)\=\|\s\{2,}\)\zs'.escape(fname,'.\[]*$^').'\%(\s\{2,}\|$\)','bc')
+ "  call Decho("search result=".result." w:netrw_bannercnt=".(exists("w:netrw_bannercnt")? w:netrw_bannercnt : 'N/A'),'~'.expand("<slnum>"))
+   if result <= 0 && exists("w:netrw_bannercnt")
+    exe "NetrwKeepj ".w:netrw_bannercnt
+   endif
   endif
   let @@= ykeep
 "  call Dret("s:NetrwBannerCtrl : g:netrw_banner=".g:netrw_banner)

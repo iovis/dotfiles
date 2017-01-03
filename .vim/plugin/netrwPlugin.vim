@@ -20,7 +20,7 @@
 if &cp || exists("g:loaded_netrwPlugin")
  finish
 endif
-let g:loaded_netrwPlugin = "v162f"
+let g:loaded_netrwPlugin = "v162h"
 let s:keepcpo = &cpo
 set cpo&vim
 "DechoRemOn
