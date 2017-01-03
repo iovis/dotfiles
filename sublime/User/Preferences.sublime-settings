@@ -22,7 +22,7 @@
 	"bold_folder_labels": true,
 	"caret_style": "phase",
 	"close_windows_when_empty": false,
-	"color_scheme": "Packages/Material Theme/schemes/Material-Theme-Darker.tmTheme",
+	"color_scheme": "Packages/User/SublimeLinter/base16-default-dark (SL).tmTheme",
 	"drag_text": false,
 	"enable_tab_scrolling": false,
 	"ensure_newline_at_eof_on_save": true,
