@@ -92,6 +92,7 @@ alias startwebserver="brew services start nginx; brew services start php70; brew
 alias statuswebserver="brew services list"
 alias stopwebserver="brew services stop nginx; brew services stop php70; brew services stop mysql; brew services stop memcached"
 alias updatedb="sudo /usr/libexec/locate.updatedb"
+alias vimin="vim -u ~/.dotfiles/.vimrc_min"
 alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
 alias xdebug="vim /usr/local/etc/php/7.0/conf.d/ext-xdebug.ini"
 alias zshrc="vim ~/.zshrc"
