@@ -4,7 +4,7 @@ syntax enable
 colorscheme zellner
 set autoindent
 set autoread
-set autowrite
+set autowriteall
 " set background=dark
 set backspace=indent,eol,start   " Fix backspace not deleting tabs, also make delimiteMate work
 set breakindent
@@ -211,6 +211,9 @@ nnoremap <leader>m :make %<cr>
 
 " Commands
 augroup vimrc
+  " Autosave on focus lost
+  autocmd FocusLost * silent! wa
+
   " Remove whitespace on save
   autocmd BufWritePre * :%s/\s\+$//e
 

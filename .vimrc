@@ -43,6 +43,7 @@ call dein#add('shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('sirver/ultisnips')
 call dein#add('sjl/gundo.vim')
 call dein#add('terryma/vim-multiple-cursors')
+call dein#add('tmux-plugins/vim-tmux-focus-events')
 call dein#add('tommcdo/vim-lion')
 call dein#add('tomtom/tlib_vim')                 " Required by vim-snippets
 call dein#add('tpope/vim-abolish')
@@ -83,7 +84,7 @@ colorscheme base16-default-dark
 syntax enable
 set autoindent
 set autoread
-set autowrite
+set autowriteall
 set background=dark
 set backspace=indent,eol,start   " Fix backspace not deleting tabs, also make delimiteMate work
 set breakindent
@@ -320,6 +321,9 @@ nnoremap <leader>m :make %<cr>
 
 " Commands
 augroup vimrc
+  " Autosave on focus lost
+  autocmd FocusLost * silent! wa
+
   " Remove whitespace on save
   autocmd BufWritePre * :%s/\s\+$//e
 
@@ -438,7 +442,6 @@ nnoremap <silent> <leader>k :NERDTreeToggle<cr>
 nnoremap <silent> <leader>K :NERDTreeFind<cr>
 
 " Ysurround: Swap double quotes with single quotes
-" mzgUiw`z
 nnoremap <leader>' :normal mzcs"'`z<cr>
 nnoremap <leader>" :normal mzcs'"`z<cr>
 
@@ -500,8 +503,8 @@ let g:fzf_command_prefix = 'FZF'
 " nnoremap <leader>ñ :FZFLines<cr>
 
 " Session
-nnoremap <c-s> :SaveSession<space>
-nnoremap <c-p> :OpenSession<space>
+nnoremap <c-s> :SaveSession!<space>
+nnoremap <c-p> :OpenSession!<space>
 
 " Tagbar
 let g:tagbar_compact = 1
