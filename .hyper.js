@@ -99,13 +99,14 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: [
+    "hyper-simple-highlight-active-session",
+    "hyperlinks",
     "hypersixteen",
     "hyperterm-1password",
-    "hyperlinks",
-    "hyperterm-tab-icons",
-    "hyperterm-paste",
+    "hyperterm-alternatescroll",
     "hyperterm-cursor",
-    "hyperterm-alternatescroll"
+    // "hyperterm-paste",
+    "hyperterm-tab-icons"
   ],
 
   // in development, you can create a directory under
