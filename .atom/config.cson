@@ -16,8 +16,7 @@
       _analyticsUserId: "c275d206-8cab-4bed-995e-9190c6572c40"
     js:
       space_after_anon_function: true
-    php:
-      default_beautifier: "PHPCBF"
+    php: {}
     python:
       max_line_length: 120
       sort_imports: true
@@ -84,6 +83,7 @@
       "config.codekit"
       "sftp-config.json"
       ".tags*"
+      ".vscode"
     ]
     packagesWithKeymapsDisabled: [
       "emmet"
@@ -92,13 +92,13 @@
     telemetryConsent: "limited"
     themes: [
       "atom-material-ui"
-      "atom-material-syntax-dark"
+      "base16-tomorrow-dark-theme"
     ]
     useCustomTitleBar: true
   docblockr: {}
   editor:
     fontFamily: "Fira Code"
-    fontSize: 17
+    fontSize: 16
     invisibles: {}
     lineHeight: 1.4
     preferredLineLength: 120
@@ -107,7 +107,9 @@
   emmet: {}
   "exception-reporting":
     userId: "fee66806-5b58-2159-6b31-3dddd9a0e6df"
-  "git-plus": {}
+  "git-plus":
+    general:
+      _analyticsUserId: "606f97ec-92ee-4102-a7dd-34588cf8c952"
   "highlight-line":
     enableBackgroundColor: false
   "isotope-ui":
