@@ -52,6 +52,7 @@
   'alt-j': 'editor:move-line-down'
   'alt-k': 'editor:move-line-up'
   'g c': 'vim-mode-plus:toggle-line-comments'
+  'g l': 'aligner:align'
 
 # Normal mode
 'atom-text-editor.vim-mode-plus.normal-mode':

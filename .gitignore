@@ -5,6 +5,7 @@
 .atom/packages/*
 .atom/recovery/*
 .atom/storage/*
+.atom/split-diff
 .vim/.VimballRecord
 .vim/.netrwhist
 .vim/bundle/*

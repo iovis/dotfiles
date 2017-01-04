@@ -148,6 +148,13 @@
   "project-manager":
     alwaysOpenInSameWindow: true
     includeGitRepositories: true
+  "regex-railroad-diagram": {}
+  "split-diff":
+    diffWords: true
+    ignoreWhitespace: true
+    leftEditorColor: "red"
+    rightEditorColor: "green"
+    syncHorizontalScroll: true
   tablr:
     csvEditor:
       columnDelimiter: ";"
