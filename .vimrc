@@ -32,7 +32,6 @@ call dein#add('mattn/emmet-vim')
 call dein#add('metakirby5/codi.vim')
 call dein#add('moll/vim-bbye')
 call dein#add('nginx.vim')
-call dein#add('osyo-manga/vim-over')
 call dein#add('pangloss/vim-javascript')
 call dein#add('pbrisbin/vim-mkdir')
 call dein#add('raimondi/delimitMate.git')
@@ -245,6 +244,9 @@ nnoremap <silent> <leader>k :Lexplore<cr>
 " Quick replace word under cursor
 nnoremap <leader>s  :%s/\<<c-r><c-w>\>//g<left><left>
 vnoremap <leader>s y:%s/<c-r>"//g<left><left>
+
+" Quick very magic substitue
+nnoremap <leader>S :%s/\v//g<left><left><left>
 
 " Copy to clipboard
 nnoremap <leader>y "+y
@@ -476,10 +478,6 @@ augroup END
 vmap <leader>a= gl=
 vmap <leader>am gl=>
 vmap <leader>a: gl:
-
-" Vim Over (live substitutions)
-nnoremap <leader>S  :OverCommandLine<cr>%s/\<<c-r><c-w>\>//g<left><left>
-vnoremap <leader>S y:OverCommandLine<cr>%s/<c-r>"//g<left><left>
 
 " CtrlP
 let g:ctrlp_map = ''

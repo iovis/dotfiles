@@ -135,6 +135,9 @@ nnoremap <silent> <leader>k :Vexplore<cr>
 nnoremap <leader>s  :%s/\<<c-r><c-w>\>//g<left><left>
 vnoremap <leader>s y:%s/<c-r>"//g<left><left>
 
+" Quick very magic substitue
+nnoremap <leader>S :%s/\v//g<left><left><left>
+
 " Copy to clipboard
 nnoremap <leader>y "+y
 nnoremap <leader>Y "+y$
