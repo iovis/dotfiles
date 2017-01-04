@@ -47,10 +47,17 @@ source $ZSH/oh-my-zsh.sh
 
 # Set vi mode for readline
 set -o vi
-bindkey "jj" vi-cmd-mode
+bindkey "^?" backward-delete-char
+bindkey "^A" vi-digit-or-beginning-of-line
+bindkey "^E" vi-end-of-line
+bindkey "^N" up-line-or-beginning-search
+bindkey "^P" down-line-or-beginning-search
+bindkey "^[." insert-last-word
 bindkey "^[OA" up-line-or-beginning-search
 bindkey "^[OB" down-line-or-beginning-search
-bindkey "^[." insert-last-word
+bindkey "jj" vi-cmd-mode
+bindkey -M vicmd H vi-first-non-blank
+bindkey -M vicmd L vi-end-of-line
 
 # Environment variables
 export EDITOR="vim"
