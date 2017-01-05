@@ -36,6 +36,7 @@ call dein#add('pangloss/vim-javascript')
 call dein#add('pbrisbin/vim-mkdir')
 call dein#add('raimondi/delimitMate.git')
 call dein#add('rking/ag.vim')
+call dein#add('romainl/vim-qf')
 call dein#add('scrooloose/nerdtree')
 call dein#add('shawncplus/phpcomplete.vim')
 call dein#add('shougo/vimproc.vim', {'build' : 'make'})
@@ -390,6 +391,7 @@ endfunction
 """""""""""""""""""
 " Some plugin settings
 let delimitMate_expand_cr = 1
+let g:ag_apply_qmappings = 0
 let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
@@ -421,12 +423,12 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 
-  " :Ag command
-  command! -nargs=+ -complete=file -bar Ag silent grep! <args>|cwindow|redraw!
+  " Custom :Ag command
+  " command! -nargs=+ -complete=file -bar Ag silent grep! <args>|cwindow|redraw!
 
   " Mappings
-  nnoremap <leader>f  :Ag<space>
-  vnoremap <leader>f y:Ag <c-r>"
+  nnoremap <leader>f  :Ag!<space>
+  vnoremap <leader>f y:Ag! <c-r>"
 endif
 
 " NERDTree
@@ -474,11 +476,6 @@ augroup neomake
   autocmd! BufWritePost,BufEnter * Neomake
 augroup END
 
-" Alignment (visual selections)
-vmap <leader>a= gl=
-vmap <leader>am gl=>
-vmap <leader>a: gl:
-
 " CtrlP
 let g:ctrlp_map = ''
 nnoremap <leader>o :CtrlP<cr>
@@ -513,3 +510,13 @@ nnoremap <leader>m :Make %<cr>
 
 " Sneak
 let g:sneak#use_ic_scs = 1
+
+" Quickfix mappings
+nmap <Home> <Plug>QfCprevious
+nmap <End>  <Plug>QfCnext
+nmap <C-Home> <Plug>QfLprevious
+nmap <C-End>  <Plug>QfLnext
+nmap ç <Plug>QfSwitch
+nmap Ç <Plug>QfCtoggle
+nmap <leader>ç <Plug>QfLtoggle
+let g:qf_mapping_ack_style = 1
