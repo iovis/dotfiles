@@ -6,8 +6,8 @@
 
 --exclude=.git
 --exclude=.idea
---exclude=.tmp
---exclude=tmp
---exclude=dist
 --exclude=.sass-cache
---exclude=node_modules
+--exclude=.tmp
+--exclude=.vscode
+--exclude=dist
+--exclude=tmp
