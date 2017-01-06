@@ -31,6 +31,7 @@ call dein#add('marcweber/vim-addon-mw-utils')  " Required by vim-snippets
 call dein#add('mattn/emmet-vim')
 call dein#add('metakirby5/codi.vim')
 call dein#add('moll/vim-bbye')
+call dein#add('mxw/vim-jsx')
 call dein#add('nginx.vim')
 call dein#add('pangloss/vim-javascript')
 call dein#add('pbrisbin/vim-mkdir')
@@ -385,32 +386,44 @@ function! ToggleHex()
   let &modifiable=l:oldmodifiable
 endfunction
 
-
 """""""""""""""""""
 " Plugin specific "
 """""""""""""""""""
 " Some plugin settings
+hi CSVColumnEven ctermbg=242 guibg=#6C6C6C
+hi CSVColumnOdd  term=NONE   ctermbg=NONE
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeMinimalUI = 1
+let NERDTreeShowBookmarks = 1
+let NERDTreeShowLineNumbers = 1
 let delimitMate_expand_cr = 1
-let g:ag_apply_qmappings = 0
 let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:ag_apply_qmappings = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'tomorrow'
+let g:ctrlp_map = ''
+let g:fzf_command_prefix = 'FZF'
 let g:gitgutter_map_keys = 0
+let g:jsx_ext_required = 0
+let g:neomake_python_flake8_args = ['--ignore', 'E402,E501']
+let g:qf_mapping_ack_style = 1
 let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
+let g:sneak#use_ic_scs = 1
+let g:tagbar_compact = 1
 let g:tmux_navigator_save_on_switch = 1
 let g:vim_markdown_folding_disabled = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_complete_in_comments = 1 " Completion in comments
-let g:ycm_complete_in_strings = 1 " Completion in string
-let g:ycm_key_list_select_completion   = ['<C-j>', '<C-n>', '<Down>']
+let g:ycm_complete_in_comments = 1
+let g:ycm_complete_in_strings = 1
 let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>', '<Up>']
-hi CSVColumnEven ctermbg=242 guibg=#6C6C6C
-hi CSVColumnOdd  term=NONE   ctermbg=NONE
+let g:ycm_key_list_select_completion = ['<C-j>', '<C-n>', '<Down>']
+set rtp+=/usr/local/opt/fzf
 
 " The Silver Searcher
 if executable('ag')
@@ -432,12 +445,6 @@ if executable('ag')
 endif
 
 " NERDTree
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeIgnore = ['\.pyc$']
-let NERDTreeMinimalUI = 1
-let NERDTreeShowBookmarks = 1
-let NERDTreeShowLineNumbers = 1
-
 augroup nerdtree
   autocmd! FileType nerdtree setlocal relativenumber
 augroup END
@@ -463,21 +470,19 @@ nnoremap <Leader>gr :Gremove<CR>
 " Distraction free
 nnoremap <silent> <leader>z :Goyo<cr>
 
-" Gundo (show undo tree)
+" Gundo
 nnoremap U :GundoToggle<cr>
 
 " Don't mess up the layout when closing buffers
 nnoremap º :Bdelete<cr>
 nnoremap ª :Bdelete!<cr>
 
-" Neomake (linter)
-let g:neomake_python_flake8_args = ['--ignore', 'E402,E501']
+" Neomake
 augroup neomake
   autocmd! BufWritePost,BufEnter * Neomake
 augroup END
 
 " CtrlP
-let g:ctrlp_map = ''
 nnoremap <leader>o :CtrlP<cr>
 nnoremap <leader>O :e **/
 nnoremap <leader><leader> :CtrlPBuffer<cr>
@@ -487,8 +492,6 @@ nnoremap <leader>R :CtrlPTag<cr>
 nnoremap <leader>ñ :CtrlPLine<cr>
 
 " FZF
-set rtp+=/usr/local/opt/fzf
-let g:fzf_command_prefix = 'FZF'
 " nnoremap <leader><leader> :FZFBuffers<cr>
 " nnoremap <leader>o :FZFGFiles<cr>
 " nnoremap <leader>O :FZFFiles<cr>
@@ -502,21 +505,16 @@ nnoremap <c-s> :SaveSession!<space>
 nnoremap <c-p> :OpenSession!<space>
 
 " Tagbar
-let g:tagbar_compact = 1
 nmap <leader>l :TagbarToggle<CR>
 
 " Make
 nnoremap <leader>m :Make %<cr>
 
-" Sneak
-let g:sneak#use_ic_scs = 1
-
 " Quickfix mappings
-nmap <Home> <Plug>QfCprevious
-nmap <End>  <Plug>QfCnext
-nmap <C-Home> <Plug>QfLprevious
-nmap <C-End>  <Plug>QfLnext
-nmap ç <Plug>QfSwitch
-nmap Ç <Plug>QfCtoggle
+nmap <C-End>   <Plug>QfLnext
+nmap <C-Home>  <Plug>QfLprevious
+nmap <End>     <Plug>QfCnext
+nmap <Home>    <Plug>QfCprevious
 nmap <leader>ç <Plug>QfLtoggle
-let g:qf_mapping_ack_style = 1
+nmap Ç <Plug>QfCtoggle
+nmap ç <Plug>QfSwitch
