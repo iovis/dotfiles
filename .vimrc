@@ -7,7 +7,6 @@ call dein#add('Shougo/dein.vim')
 
 " Add or remove your plugins here:
 call dein#add('airblade/vim-gitgutter')
-call dein#add('ap/vim-css-color')
 call dein#add('benekastah/neomake')
 call dein#add('cakebaker/scss-syntax.vim')
 call dein#add('chiel92/vim-autoformat')
@@ -23,7 +22,7 @@ call dein#add('honza/vim-snippets')
 call dein#add('jmcantrell/vim-virtualenv')
 call dein#add('junegunn/fzf.vim')
 call dein#add('junegunn/goyo.vim')
-" call dein#add('junegunn/vim-peekaboo')
+call dein#add('junegunn/vim-peekaboo')
 call dein#add('justinmk/vim-sneak')
 call dein#add('kchmck/vim-coffee-script')
 call dein#add('majutsushi/tagbar')
@@ -189,31 +188,37 @@ inoremap [, [<cr>],<esc>O
 " QOL remappings
 cnoremap <c-a> <c-b>
 nnoremap - ]c
+nnoremap <C-End>  :lnext<cr>
+nnoremap <C-Home> :lprevious<cr>
+nnoremap <End>    :cnext<cr>
+nnoremap <Home>   :cprevious<cr>
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
 nnoremap <leader>X :qa!<cr>
 nnoremap <leader>c :close<cr>
-nnoremap <leader>n :lnext<cr>
-nnoremap <leader>p :lprevious<cr>
+nnoremap <leader>n :e <C-R>=fnameescape(expand('%:h')).'/'<cr>
+nnoremap <leader>p :set wrap!<cr>
 nnoremap <leader>q :%bdelete<cr>
 nnoremap <leader>w :w!<cr>
 nnoremap <leader>x :qa<cr>
-nnoremap <leader>ç :cwindow<cr>
+nnoremap <leader>Ç :lclose<cr>
+nnoremap <leader>ç :lwindow<cr>
 nnoremap M <c-w>o
 nnoremap Q @q
 nnoremap Y y$
 nnoremap _ [c
 nnoremap ª :bdelete!<cr>
 nnoremap º :bdelete<cr>
-nnoremap Ç :cprevious<cr>
+nnoremap Ç :cclose<cr>
 nnoremap Ñ ?
-nnoremap ç :cnext<cr>
+nnoremap ç :cwindow<cr>
 nnoremap ñ /
 noremap ' `
 noremap <silent> <leader><cr> :noh<cr>
 noremap H g^
 noremap L g$
 vnoremap Q :norm @q<cr>
+
 
 " bind K to search word under cursor in project
 nnoremap K :silent grep! "\b<cword>\b"<CR>:copen<CR>
