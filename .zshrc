@@ -1,46 +1,67 @@
-# Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="agnoster"
-# ZSH_THEME="avit"
-# ZSH_THEME="gentoo"
-# ZSH_THEME="robbyrussell"
+# https://github.com/bhilburn/powerlevel9k
+ZSH_THEME="powerlevel9k/powerlevel9k"
 
-# Uncomment following line if you want to  shown in the command execution time stamp
-# in the history command output. The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|
-# yyyy-mm-dd
+POWERLEVEL9K_STATUS_VERBOSE=false
+POWERLEVEL9K_CUSTOM_SHOW_APPLE="echo "
+POWERLEVEL9K_CUSTOM_SHOW_APPLE_BACKGROUND="black"
+POWERLEVEL9K_CUSTOM_SHOW_APPLE_FOREGROUND="white"
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+  custom_show_apple
+  # context
+  # load
+  dir
+  rbenv
+  virtualenv
+  vcs
+  # root_indicator
+)
+
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+  # ip
+  # ram
+  # docker_machine
+  status
+  background_jobs
+  vi_mode
+  # time
+  # battery
+)
+
 HIST_STAMPS="yyyy-mm-dd"
 
 plugins=(
-brew
-bundler
-capistrano
-colorize
-docker
-docker-compose
-gem
-git
-git-flow
-gitignore
-grunt
-gulp
-heroku
-httpie
-jsontools
-nmap
-npm
-osx
-pip
-postgres
-python
-rails
-rbenv
-rsync
-ruby
-thefuck
-tmux
-virtualenvwrapper
-websearch
+  brew
+  bundler
+  capistrano
+  colorize
+  docker
+  docker-compose
+  gem
+  git
+  git-flow
+  gitignore
+  grunt
+  gulp
+  heroku
+  httpie
+  jsontools
+  nmap
+  npm
+  osx
+  pip
+  postgres
+  python
+  rails
+  rbenv
+  rsync
+  ruby
+  thefuck
+  tmux
+  virtualenvwrapper
+  websearch
 )
 
 source $ZSH/oh-my-zsh.sh
