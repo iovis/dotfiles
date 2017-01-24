@@ -116,7 +116,6 @@
     fontFamily: "Source Sans Pro"
   linter:
     errorPanelHeight: 145
-    showErrorPanel: false
     subtleLinterErrors: [
       "scss-lint"
     ]
