@@ -13,7 +13,7 @@ call dein#add('chiel92/vim-autoformat')
 call dein#add('chrisbra/csv.vim')
 call dein#add('chriskempson/base16-vim')
 call dein#add('christoomey/vim-tmux-navigator')
-call dein#add('ctrlpvim/ctrlp.vim')
+" call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('elzr/vim-json')
 call dein#add('ervandew/supertab')
 call dein#add('haya14busa/dein-command.vim')
@@ -402,6 +402,7 @@ let NERDTreeIgnore = ['\.pyc$']
 let NERDTreeMinimalUI = 1
 let NERDTreeShowBookmarks = 1
 let NERDTreeShowLineNumbers = 1
+let b:lion_squeeze_spaces = 1
 let delimitMate_expand_cr = 1
 let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:UltiSnipsExpandTrigger = "<tab>"
@@ -411,7 +412,7 @@ let g:ag_apply_qmappings = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'tomorrow'
-let g:ctrlp_map = ''
+" let g:ctrlp_map = ''
 let g:fzf_command_prefix = 'FZF'
 let g:gitgutter_map_keys = 0
 let g:jsx_ext_required = 0
@@ -436,10 +437,10 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag -Q -l --nocolor --hidden -g "" %s'
+  " let g:ctrlp_user_command = 'ag -Q -l --nocolor --hidden -g "" %s'
 
   " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
+  " let g:ctrlp_use_caching = 0
 
   " Custom :Ag command
   " command! -nargs=+ -complete=file -bar Ag silent grep! <args>|cwindow|redraw!
@@ -461,17 +462,6 @@ nnoremap <silent> <leader>K :NERDTreeFind<cr>
 nnoremap <leader>' :normal mzcs"'`z<cr>
 nnoremap <leader>" :normal mzcs'"`z<cr>
 
-" Fugitive
-nnoremap <Leader>ga :Gwrite<CR>
-nnoremap <Leader>gcc :Gcommit<CR>
-nnoremap <Leader>gco :Gread<CR>
-nnoremap <Leader>gp :Gpush<CR>
-nnoremap <Leader>gl :Gpull<CR>
-nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>gb :Gblame<CR>
-nnoremap <Leader>gd :Gvdiff<CR>
-nnoremap <Leader>gr :Gremove<CR>
-
 " Distraction free
 nnoremap <silent> <leader>z :Goyo<cr>
 
@@ -485,25 +475,27 @@ nnoremap ª :Bdelete!<cr>
 " Neomake
 augroup neomake
   autocmd! BufWritePost,BufEnter * Neomake
+  command! Fixneo call neomake#signs#DefineHighlights() | call neomake#highlights#DefineHighlights()
+  nnoremap <leader>- :Fixneo<cr>
 augroup END
 
 " CtrlP
-nnoremap <leader>o :CtrlP<cr>
-nnoremap <leader>O :e **/
-nnoremap <leader><leader> :CtrlPBuffer<cr>
-nnoremap <leader>H :CtrlPMRUFiles<cr>
-nnoremap <leader>r :CtrlPBufTag<cr>
-nnoremap <leader>R :CtrlPTag<cr>
-nnoremap <leader>ñ :CtrlPLine<cr>
+" nnoremap <leader><leader> :CtrlPBuffer<cr>
+" nnoremap <leader>H :CtrlPMRUFiles<cr>
+" nnoremap <leader>O :e **/
+" nnoremap <leader>R :CtrlPTag<cr>
+" nnoremap <leader>o :CtrlP<cr>
+" nnoremap <leader>r :CtrlPBufTag<cr>
+" nnoremap <leader>ñ :CtrlPLine<cr>
 
 " FZF
-" nnoremap <leader><leader> :FZFBuffers<cr>
-" nnoremap <leader>o :FZFGFiles<cr>
-" nnoremap <leader>O :FZFFiles<cr>
-" nnoremap <leader>H :FZFHistory<cr>
-" nnoremap <leader>r :FZFBTags<cr>
-" nnoremap <leader>R :FZFTags<cr>
-" nnoremap <leader>ñ :FZFLines<cr>
+nnoremap <leader><leader> :FZFBuffers<cr>
+nnoremap <leader>H :FZFHistory<cr>
+nnoremap <leader>O :FZFFiles<cr>
+nnoremap <leader>R :FZFTags<cr>
+nnoremap <leader>o :FZFGFiles<cr>
+nnoremap <leader>r :FZFBTags<cr>
+nnoremap <leader>ñ :FZFLines<cr>
 
 " Session
 nnoremap <c-s> :SaveSession!<space>
@@ -516,8 +508,8 @@ nmap <leader>l :TagbarToggle<CR>
 nnoremap <leader>m :Make %<cr>
 
 " Quickfix mappings
-nmap <C-End>   <Plug>QfLnext
-nmap <C-Home>  <Plug>QfLprevious
+nmap <C-Home>  <Plug>QfLnext
+nmap <C-End>   <Plug>QfLprevious
 nmap <End>     <Plug>QfCnext
 nmap <Home>    <Plug>QfCprevious
 nmap <leader>ç <Plug>QfLtoggle
