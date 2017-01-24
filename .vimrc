@@ -314,6 +314,23 @@ vnoremap <silent> gs :sort<cr>
 nnoremap <silent> gr :<C-U>set operatorfunc=SortReverseLinesOpFunc<CR>g@
 vnoremap <silent> gr :sort!<cr>
 
+" Grep operator
+nnoremap <leader>g :set operatorfunc=GrepOperator<cr>g@
+vnoremap <leader>g :<c-u>call GrepOperator(visualmode())<cr>
+
+function! GrepOperator(type)
+    if a:type ==# 'v'
+        normal! `<v`>y
+    elseif a:type ==# 'char'
+        normal! `[v`]y
+    else
+        return
+    endif
+
+    silent execute "grep! -R " . shellescape(@@) . " ."
+    copen
+endfunction
+
 " Fast vimrc editing
 nnoremap <leader>e :e! $MYVIMRC<cr>
 nnoremap <leader>E :so $MYVIMRC<cr>
