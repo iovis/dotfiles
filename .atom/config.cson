@@ -48,6 +48,7 @@
     enabled: true
   "base16-ocean-dark":
     uiModification: false
+  "base16-syntax": {}
   "choose-pane":
     labelChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
   core:
