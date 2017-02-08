@@ -120,6 +120,10 @@
     subtleLinterErrors: [
       "scss-lint"
     ]
+  "linter-eslint":
+    disableWhenNoEslintConfig: false
+    eslintrcPath: "~/.eslintrc.json"
+    useGlobalEslint: true
   "linter-js-yaml": {}
   "linter-pep8":
     ignoreErrorCodes: [
