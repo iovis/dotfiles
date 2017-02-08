@@ -1,10 +1,4 @@
 [
-  // Vintageous
-  {"keys": ["j", "j"], "command": "_enter_normal_mode", "args": {"mode": "mode_insert"}, "context": [{"key": "vi_insert_mode_aware"}] },
-  {"keys": ["ctrl+d"], "command": "press_key", "args": {"key": "<C-d>"}, "context": [{"key": "vi_command_mode_aware"}]},
-  {"keys": ["ctrl+u"], "command": "press_key", "args": {"key": "<C-u>"}, "context": [{"key": "vi_command_mode_aware"}]},
-
-  // Normal mode bindings
   // Origami (Panes)
   { "keys": ["ctrl+k"], "command": "travel_to_pane", "args": {"direction": "up"}, "context": [{"key": "vi_command_mode_aware"}] },
   { "keys": ["ctrl+l"], "command": "travel_to_pane", "args": {"direction": "right"}, "context": [{"key": "vi_command_mode_aware"}] },
@@ -27,6 +21,10 @@
   { "keys": ["k"], "command": "move", "args": {"by": "lines", "forward": false}, "context": [ {"key": "control", "operand": "sidebar_tree"} ] },
   { "keys": ["l"], "command": "move", "args": {"by": "characters", "forward": true}, "context": [ {"key": "control", "operand": "sidebar_tree"} ] },
 
+  // Normal mode bindings
+  {"keys": ["j", "j"], "command": "_enter_normal_mode", "args": {"mode": "mode_insert"}, "context": [{"key": "vi_insert_mode_aware"}] },
+  {"keys": ["ctrl+d"], "command": "press_key", "args": {"key": "<C-d>"}, "context": [{"key": "vi_command_mode_aware"}]},
+  {"keys": ["ctrl+u"], "command": "press_key", "args": {"key": "<C-u>"}, "context": [{"key": "vi_command_mode_aware"}]},
   { "keys": ["Q"], "command": "run_macro", "context": [{"key": "vi_command_mode_aware"}] },
   { "keys": ["M"], "command": "set_layout", "args": { "cols": [0.0, 1.0], "rows": [0.0, 1.0], "cells": [[0, 0, 1, 1]] }, "context": [{"key": "vi_command_mode_aware"}] },
   { "keys": ["t"], "command": "goto_definition", "context": [{"key": "vi_command_mode_aware"}] },
@@ -62,19 +60,22 @@
   { "keys": ["J"], "command": "git_status_move", "args": {"goto": "section:next"}, "context": [ { "key": "selector", "operator": "equal", "operand": "text.git-status" } ] },
   { "keys": ["K"], "command": "git_status_move", "args": {"goto": "section:prev"}, "context": [ { "key": "selector", "operator": "equal", "operand": "text.git-status" } ] },
 
-  { "keys": ["super+{"], "command": "fold" },
-  { "keys": ["super+}"], "command": "unfold" },
+  // Insert mode keybindings
+  { "keys": [",", "M"], "command": "run_macro_file", "args": { "file": "Packages/User/arrow.sublime-macro" }, "context": [{"key": "vi_insert_mode_aware"}] },
+  { "keys": [",", "m"], "command": "run_macro_file", "args": { "file": "Packages/User/eol-arrow.sublime-macro" }, "context": [{"key": "vi_insert_mode_aware"}] },
+  { "keys": [",", "n"], "command": "run_macro_file", "args": { "file": "Packages/User/fatarrow.sublime-macro" }, "context": [{"key": "vi_insert_mode_aware"}] },
+  { "keys": [",", "M"], "command": "run_macro_file", "args": { "file": "Packages/User/arrow.sublime-macro" }, "context": [{"key": "vi_insert_mode_aware"}] },
+  { "keys": [";", ";"], "command": "run_macro_file", "args": { "file": "Packages/User/semicolon-NoNL.sublime-macro" }, "context": [{"key": "vi_insert_mode_aware"}] },
 
+  // Global keybindings
   { "keys": ["super+shift+enter"], "command": "run_macro_file", "args": { "file": "Packages/User/semicolon.sublime-macro" } },
   { "keys": ["shift+enter"], "command": "run_macro_file", "args": { "file": "Packages/User/semicolon-NoNL.sublime-macro" } },
   { "keys": ["super+shift+."], "command": "run_macro_file", "args": { "file": "Packages/User/colon-NoNL.sublime-macro" } },
 
   { "keys": ["super+shift+enter"], "command": "run_macro_file", "args": { "file": "Packages/User/colon.sublime-macro" },
     "context": [{ "key": "selector", "operator": "equal", "operand": "source.python"}]},
-
-  { "keys": [",", "M"], "command": "run_macro_file", "args": { "file": "Packages/User/arrow.sublime-macro" }, "context": [{"key": "vi_insert_mode_aware"}] },
-  { "keys": [",", "m"], "command": "run_macro_file", "args": { "file": "Packages/User/eol-arrow.sublime-macro" }, "context": [{"key": "vi_insert_mode_aware"}] },
-  { "keys": [",", "n"], "command": "run_macro_file", "args": { "file": "Packages/User/fatarrow.sublime-macro" }, "context": [{"key": "vi_insert_mode_aware"}] },
+  { "keys": ["super+{"], "command": "fold" },
+  { "keys": ["super+}"], "command": "unfold" },
   { "keys": ["super+shift+a"], "command": "alignment" },
   { "keys": ["alt+ctrl+down"], "command": "goto_python_definition"}
 ]
