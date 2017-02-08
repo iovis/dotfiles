@@ -100,7 +100,10 @@ eval "$(thefuck --alias)"
 
 # Custom aliases
 alias agrep="alias | grep"
+alias canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias d="du -sh"
+alias fb="chrome --app='https://www.facebook.com/messages/t/'"
 alias flushcache="dscacheutil -flushcache"
 alias gcam="git commit -v -am"
 alias gitconfig="vim ~/.gitconfig"
