@@ -72,6 +72,7 @@
   'space c': 'pane:close'
   'space g s': 'fuzzy-finder:toggle-git-status-finder'
   'space k': 'tree-view:toggle'
+  'space m': 'paner:maximize'
   'space o': 'fuzzy-finder:toggle-file-finder'
   'space space': 'fuzzy-finder:toggle-buffer-finder'
   'space w': 'core:save'
