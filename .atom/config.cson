@@ -138,6 +138,8 @@
   "linter-scss-lint":
     executablePath: "/Users/david/.rbenv/shims/scss-lint"
   "linter-tidy": {}
+  "linter-ui-default":
+    panelHeight: 433
   "merge-conflicts": {}
   minimap:
     plugins:
