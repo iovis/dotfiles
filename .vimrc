@@ -443,10 +443,10 @@ let g:tagbar_compact = 1
 let g:tmux_navigator_save_on_switch = 1
 let g:vim_markdown_folding_disabled = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_complete_in_comments = 1
-let g:ycm_complete_in_strings = 1
-let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>', '<Up>']
-let g:ycm_key_list_select_completion = ['<C-j>', '<C-n>', '<Down>']
+" let g:ycm_complete_in_comments = 1
+" let g:ycm_complete_in_strings = 1
+" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 set rtp+=/usr/local/opt/fzf
 
 " The Silver Searcher
