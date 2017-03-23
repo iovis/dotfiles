@@ -102,8 +102,8 @@ module.exports = {
     "hyper-simple-highlight-active-session",
     "hyperlinks",
     "hypersixteen",
-    "hyperterm-1password",
-    "hyperterm-alternatescroll",
+    // "hyperterm-1password",
+    // "hyperterm-alternatescroll",
     "hyperterm-cursor",
     // "hyperterm-paste",
     "hyperterm-tab-icons"
