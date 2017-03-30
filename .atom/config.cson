@@ -114,7 +114,6 @@
   "isotope-ui":
     fontFamily: "Source Sans Pro"
   linter:
-    errorPanelHeight: 145
     subtleLinterErrors: [
       "scss-lint"
     ]
