@@ -36,7 +36,7 @@
   { "keys": [" ", "o"], "command": "show_overlay", "args": {"overlay": "goto", "show_files": true}, "context": [{"key": "vi_command_mode_aware"}] },
 
   // Tab management
-  { "keys": ["ctrl+alt+t"], "command": "show_panel", "args": {"panel": "console", "toggle": true} },
+  { "keys": ["super+alt+i"], "command": "show_panel", "args": {"panel": "console", "toggle": true} },
   { "keys": ["super+t"], "command": "new_file" },
   { "keys": ["super+n"], "command": "advanced_new_file_new"},
   { "keys": ["super+alt+n"], "command": "advanced_new_file_new", "args": {"is_python": true}},
