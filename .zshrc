@@ -91,6 +91,7 @@ export PAGER="less"
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$HOME/.node/bin:$PATH"
 export PATH="$HOME/.rbenv/shims:$PATH"
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
 export PROJECT_HOME="$HOME/Sites"
 export RBENV_ROOT="$HOME/.rbenv"
 
