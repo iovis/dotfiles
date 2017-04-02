@@ -284,7 +284,7 @@ nnoremap <tab> :bnext<cr>
 nnoremap <s-tab> :bprevious<cr>
 nnoremap <leader>1 :bfirst<cr>
 nnoremap <leader>0 :blast<cr>
-nnoremap <leader><Tab> :enew<cr>
+nnoremap <leader>t :enew<cr>
 nnoremap <leader><leader> :ls<cr>:b!<space>
 
 " Remapping <tab> makes <c-i> not work
@@ -292,7 +292,7 @@ nnoremap <c-e> <c-i>
 
 " Tags
 nnoremap t <C-]>
-nnoremap <leader>t g]
+nnoremap T g]
 nnoremap <leader>T :VimProcBang ctags<cr>
 set tags=.tags,.gemtags
 
