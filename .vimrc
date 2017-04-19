@@ -291,6 +291,8 @@ nnoremap <c-e> <c-i>
 " Tags
 nnoremap t <C-]>
 nnoremap T g]
+nnoremap gt :vsp <cr>:exec("tag ".expand("<cword>"))<cr>
+nnoremap gT :sp <cr>:exec("tag ".expand("<cword>"))<cr>
 nnoremap <leader>T :VimProcBang ctags<cr>
 set tags=.tags,.gemtags
 
