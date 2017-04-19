@@ -13,7 +13,6 @@ call dein#add('chiel92/vim-autoformat')
 call dein#add('chrisbra/csv.vim')
 call dein#add('chriskempson/base16-vim')
 call dein#add('christoomey/vim-tmux-navigator')
-" call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('elzr/vim-json')
 call dein#add('haya14busa/dein-command.vim')
 call dein#add('henrik/vim-indexed-search')
@@ -21,7 +20,6 @@ call dein#add('honza/vim-snippets')
 call dein#add('jmcantrell/vim-virtualenv')
 call dein#add('junegunn/fzf.vim')
 call dein#add('junegunn/goyo.vim')
-" call dein#add('junegunn/vim-peekaboo')
 call dein#add('justinmk/vim-sneak')
 call dein#add('kana/vim-textobj-entire')
 call dein#add('kana/vim-textobj-indent')
@@ -429,7 +427,6 @@ let g:ag_apply_qmappings = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'tomorrow'
-" let g:ctrlp_map = ''
 let g:fzf_command_prefix = 'FZF'
 let g:gitgutter_map_keys = 0
 let g:jsx_ext_required = 0
@@ -453,15 +450,6 @@ set rtp+=/usr/local/opt/fzf
 if executable('ag')
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  " let g:ctrlp_user_command = 'ag -Q -l --nocolor --hidden -g "" %s'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  " let g:ctrlp_use_caching = 0
-
-  " Custom :Ag command
-  " command! -nargs=+ -complete=file -bar Ag silent grep! <args>|cwindow|redraw!
 
   " Mappings
   nnoremap <leader>f  :Ag!<space>
@@ -496,15 +484,6 @@ augroup neomake
   command! Fixneo call neomake#signs#DefineHighlights() | call neomake#highlights#DefineHighlights()
   nnoremap <leader>- :Fixneo<cr>
 augroup END
-
-" CtrlP
-" nnoremap <leader><leader> :CtrlPBuffer<cr>
-" nnoremap <leader>H :CtrlPMRUFiles<cr>
-" nnoremap <leader>O :e **/
-" nnoremap <leader>R :CtrlPTag<cr>
-" nnoremap <leader>o :CtrlP<cr>
-" nnoremap <leader>r :CtrlPBufTag<cr>
-" nnoremap <leader>ñ :CtrlPLine<cr>
 
 " FZF
 nnoremap <leader><leader> :FZFBuffers<cr>
