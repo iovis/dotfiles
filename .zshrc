@@ -9,9 +9,11 @@ plugins=(
   colorize
   docker
   docker-compose
+  encode64
   gem
   git
   git-flow
+  github
   gitignore
   grunt
   gulp
@@ -21,6 +23,7 @@ plugins=(
   nmap
   npm
   osx
+  perms
   pip
   postgres
   python
