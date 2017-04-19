@@ -94,10 +94,11 @@
       "atom-material-ui"
       "base16-tomorrow-dark-theme"
     ]
-    useCustomTitleBar: true
+    titleBar: "custom-inset"
   docblockr: {}
   editor:
     fontFamily: "Fira Code"
+    fontSize: 16
     invisibles: {}
     lineHeight: 1.4
     preferredLineLength: 120
@@ -153,6 +154,7 @@
     alwaysOpenInSameWindow: true
     includeGitRepositories: true
   "regex-railroad-diagram": {}
+  "relative-numbers": {}
   "split-diff":
     diffWords: true
     ignoreWhitespace: true
