@@ -87,31 +87,14 @@ alias pipi="pip install"
 alias pipo="pip list --outdated --format=columns"
 alias pipu="pip install -U"
 alias rebuildlaunchservices="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user"
-alias restartwebserver="stopwebserver && startwebserver"
 alias so="source ~/.zshrc"
-alias startwebserver="brew services start nginx; brew services start php70; brew services start mysql; brew services start memcached"
-alias statuswebserver="brew services list"
-alias stopwebserver="brew services stop nginx; brew services stop php70; brew services stop mysql; brew services stop memcached"
 alias updatedb="sudo /usr/libexec/locate.updatedb"
 alias vimin="vim -u ~/.dotfiles/.vimrc_min"
 alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
-alias xdebug="vim /usr/local/etc/php/7.0/conf.d/ext-xdebug.ini"
 alias zshrc="vim ~/.zshrc"
 
 # Disable fucking <C-s> flow control
 stty -ixon
-
-# TEVA
-alias sync_ser="rsync-synchronize --rsh='ssh -p3105' kgordeev@192.168.240.7:/servicios/var/batch/ser/ /Users/david/Sites/apr2/backend/ser/; rsync-synchronize --rsh='ssh -p3105' kgordeev@192.168.240.7:/servicios/logs/ser/ /Users/david/Sites/apr2/backend/logs/"
-
-# Set the correct file and directory permissions
-function chmodfiles() {
-  find $1 -type f -print0 | xargs -0 chmod 0644
-}
-
-function chmoddirs() {
-  find $1 -type d -print0 | xargs -0 chmod 0755
-}
 
 # Find macOS junk files
 function findjunk() {
