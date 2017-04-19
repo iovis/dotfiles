@@ -67,10 +67,6 @@ export PATH="/usr/local/opt/sqlite/bin:$PATH"
 export PROJECT_HOME="$HOME/Sites"
 export RBENV_ROOT="$HOME/.rbenv"
 
-eval "$(hub alias -s)"
-eval "$(rbenv init -)"
-eval "$(thefuck --alias)"
-
 # Custom aliases
 alias agrep="alias | grep"
 alias bcu="brew cask install --force $(brew cask list) && brew cask cleanup"
