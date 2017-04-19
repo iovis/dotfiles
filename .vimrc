@@ -422,7 +422,6 @@ let delimitMate_expand_cr = 1
 let g:UltiSnipsExpandTrigger = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
-let g:UltiSnipsListSnippets = "<c-b>"
 let g:ag_apply_qmappings = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -493,6 +492,7 @@ nnoremap <leader>R :FZFTags<cr>
 nnoremap <leader>o :FZFGFiles<cr>
 nnoremap <leader>r :FZFBTags<cr>
 nnoremap <leader>ñ :FZFLines<cr>
+nnoremap <leader>j :FZFSnippets<cr>
 
 " Session
 nnoremap <c-s> :SaveSession!<space>
