@@ -425,6 +425,7 @@ let g:UltiSnipsExpandTrigger = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
 let g:ag_apply_qmappings = 0
+let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'tomorrow'
