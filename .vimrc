@@ -482,7 +482,7 @@ nnoremap <leader>ª :Bdelete!<cr>
 
 " Neomake
 augroup neomake
-  autocmd! BufWritePost,BufEnter * Neomake
+  autocmd! BufWritePost * Neomake
   command! Fixneo call neomake#signs#DefineHighlights() | call neomake#highlights#DefineHighlights()
   nnoremap <leader>- :Fixneo<cr>
 augroup END
