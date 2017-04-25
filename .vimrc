@@ -477,8 +477,8 @@ nnoremap <silent> <leader>z :Goyo<cr>
 nnoremap U :GundoToggle<cr>
 
 " Don't mess up the layout when closing buffers
-nnoremap º :Bdelete<cr>
-nnoremap ª :Bdelete!<cr>
+nnoremap <leader>º :Bdelete<cr>
+nnoremap <leader>ª :Bdelete!<cr>
 
 " Neomake
 augroup neomake
