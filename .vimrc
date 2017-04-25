@@ -504,8 +504,9 @@ nnoremap <c-p> :OpenSession!<space>
 " Tagbar
 nmap <leader>l :TagbarToggle<CR>
 
-" Make
+" Dispatch
 nnoremap <leader>m :Make %<cr>
+nnoremap <leader>: :Start<space>
 
 " Quickfix mappings
 nmap <C-Home>  <Plug>QfLnext
