@@ -54,11 +54,11 @@ bindkey -M vicmd H vi-first-non-blank
 bindkey -M vicmd L vi-end-of-line
 
 # Environment variables
-export EDITOR="vim"
+export EDITOR="nvim"
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export LESS="-iMSx4 -FXR"
-export MANPAGER="nvim -c 'set ft=man' -"
+export MANPAGER="$EDITOR -c 'set ft=man' -"
 export PAGER="less"
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$HOME/.node/bin:$PATH"
@@ -75,8 +75,8 @@ alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias d="du -sh"
 alias flushcache="dscacheutil -flushcache"
 alias gcam="git commit -v -am"
-alias gitconfig="vim ~/.gitconfig"
-alias hosts="sudo vim /etc/hosts"
+alias gitconfig="$EDITOR ~/.gitconfig"
+alias hosts="sudo $EDITOR /etc/hosts"
 alias https="http --default-scheme=https"
 alias libupdate="brew update; brew upgrade; gem update --system; echo '\nOutdated gems'; gem outdated; npm -g outdated; pip list --outdated --format=columns;"
 alias ni="nvim"
@@ -91,7 +91,7 @@ alias so="source ~/.zshrc"
 alias updatedb="sudo /usr/libexec/locate.updatedb"
 alias vimin="vim -u ~/.dotfiles/.vimrc_min"
 alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
-alias zshrc="vim ~/.zshrc"
+alias zshrc="$EDITOR ~/.zshrc"
 
 # Disable fucking <C-s> flow control
 stty -ixon
