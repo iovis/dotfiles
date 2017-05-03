@@ -33,6 +33,7 @@ plugins=(
   ruby
   thefuck
   tmux
+  tmuxinator
   virtualenvwrapper
   websearch
 )
