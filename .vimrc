@@ -36,7 +36,6 @@ call dein#add('pangloss/vim-javascript')
 call dein#add('pbrisbin/vim-mkdir')
 call dein#add('raimondi/delimitMate.git')
 call dein#add('rking/ag.vim')
-call dein#add('romainl/vim-qf')
 call dein#add('scrooloose/nerdtree')
 call dein#add('shawncplus/phpcomplete.vim')
 call dein#add('shougo/vimproc.vim', {'build' : 'make'})
@@ -507,12 +506,3 @@ nmap <leader>l :TagbarToggle<CR>
 " Dispatch
 nnoremap <leader>m :Make %<cr>
 nnoremap <leader>: :Start<space>
-
-" Quickfix mappings
-nmap <C-Home>  <Plug>QfLnext
-nmap <C-End>   <Plug>QfLprevious
-nmap <End>     <Plug>QfCnext
-nmap <Home>    <Plug>QfCprevious
-nmap <leader>ç <Plug>QfLtoggle
-nmap Ç <Plug>QfCtoggle
-nmap ç <Plug>QfSwitch
