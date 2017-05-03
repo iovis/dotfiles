@@ -1,6 +1,5 @@
 --recurse=yes
 --tag-relative=yes
--f .tags
 
 --python-kinds=-i
 
@@ -11,3 +10,4 @@
 --exclude=.vscode
 --exclude=dist
 --exclude=tmp
+--exclude=bower_components
