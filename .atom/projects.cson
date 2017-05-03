@@ -1,13 +1,15 @@
 [
   {
     title: "sanciones"
-    group: ""
     paths: [
       "/Users/david/Sites/apr2/sanciones"
     ]
     icon: "icon-repo"
-    settings: {}
-    devMode: false
-    template: null
+  }
+  {
+    title: "Rubicon"
+    paths: [
+      "/Users/david/Sites/rubicon"
+    ]
   }
 ]
