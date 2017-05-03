@@ -496,6 +496,11 @@ nnoremap <leader>r :FZFBTags<cr>
 nnoremap <leader>ñ :FZFLines<cr>
 nnoremap <leader>j :FZFSnippets<cr>
 
+augroup fzf
+  autocmd FileType fzf tnoremap <buffer> <c-k> <up>
+  autocmd FileType fzf tnoremap <buffer> <c-j> <down>
+augroup END
+
 " Session
 nnoremap <c-s> :SaveSession!<space>
 nnoremap <c-p> :OpenSession!<space>
