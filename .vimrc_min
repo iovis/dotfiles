@@ -67,6 +67,7 @@ inoremap ,M ->
 inoremap ,n =>
 inoremap ,, <c-o>A,
 inoremap ;; <c-o>A;
+inoremap <M-o> <Esc>o
 inoremap (<cr> (<cr>)<esc>O
 inoremap {<cr> {<cr>}<esc>O
 inoremap {; {<cr>};<esc>O
