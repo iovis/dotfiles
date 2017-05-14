@@ -1,3 +1,10 @@
+begin
+  require 'awesome_print'
+  AwesomePrint.pry! if AwesomePrint
+rescue LoadError
+  p 'awesome_print not installed'
+end
+
 # Use _pry_.config.pager = true to use 'less'
 # Pry.config.pager = false
 
