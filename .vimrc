@@ -173,7 +173,6 @@ inoremap ,M ->
 inoremap ,n =>
 inoremap ,, <c-o>A,
 inoremap ;; <c-o>A;
-inoremap <M-o> <Esc>o
 " inoremap (<cr> (<cr>)<esc>O
 " inoremap {<cr> {<cr>}<esc>O
 " inoremap [<cr> [<cr>]<esc>O
@@ -215,6 +214,9 @@ noremap <silent> <leader><cr> :noh<cr>
 noremap H g^
 noremap L g$
 vnoremap Q :norm @q<cr>
+inoremap <m-o> <esc>o
+inoremap <c-a> <home>
+inoremap <c-e> <end>
 
 
 " bind K to search word under cursor in project
