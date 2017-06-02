@@ -104,14 +104,15 @@ alias stop="brew services stop postgresql; brew services stop memcached"
 alias tsr="tmuxinator start rubicon"
 
 # Rubicon servers
-alias demo="ssh ubuntu@52.6.99.70"
 alias demo2="ssh ubuntu@52.207.86.71"
+alias demo="ssh ubuntu@52.6.99.70"
+alias demosfpdh="ssh ubuntu@35.165.146.237"
 alias demowest="ssh ubuntu@52.43.65.31"
-alias purserver="ssh ubuntu@52.202.106.44"
-alias narakaserver="ssh ubuntu@35.160.120.60"
 alias dev="ssh ubuntu@52.203.137.139"
-alias workerstaging="ssh ubuntu@54.208.3.232"
+alias narakaserver="ssh ubuntu@35.160.120.60"
+alias purserver="ssh ubuntu@52.202.106.44"
 alias workerdev="ssh ubuntu@54.175.64.198"
+alias workerstaging="ssh ubuntu@54.208.3.232"
 
 # Disable fucking <C-s> flow control
 stty -ixon
