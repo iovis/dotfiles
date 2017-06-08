@@ -82,8 +82,6 @@ nnoremap <C-End>  :lnext<cr>
 nnoremap <C-Home> :lprevious<cr>
 nnoremap <End>    :cnext<cr>
 nnoremap <Home>   :cprevious<cr>
-nnoremap <expr> j v:count ? 'j' : 'gj'
-nnoremap <expr> k v:count ? 'k' : 'gk'
 nnoremap <leader>X :qa!<cr>
 nnoremap <leader>c :close<cr>
 nnoremap <leader>n :e <C-R>=fnameescape(expand('%:h')).'/'<cr>
@@ -238,6 +236,7 @@ nnoremap <c-p> :source ~/.vim/sessions/
 
 " Make
 nnoremap <leader>m :make %<cr>
+nnoremap <leader>: :!
 
 " Commands
 augroup vimrc
