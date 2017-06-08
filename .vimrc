@@ -48,12 +48,13 @@ call dein#add('tomtom/tlib_vim')                 " Required by vim-snippets
 call dein#add('tpope/vim-bundler')
 call dein#add('tpope/vim-characterize')          " Use ga to see additional representations of that character
 call dein#add('tpope/vim-commentary')
-call dein#add('tpope/vim-eunuch')                " Unix helpers (:Move, :Remove...)
 call dein#add('tpope/vim-dispatch')
+call dein#add('tpope/vim-eunuch')                " Unix helpers (:Move, :Remove...)
 call dein#add('tpope/vim-fugitive')
 call dein#add('tpope/vim-git')
 call dein#add('tpope/vim-rails')
 call dein#add('tpope/vim-repeat')
+call dein#add('tpope/vim-rhubarb')
 call dein#add('tpope/vim-speeddating')
 call dein#add('tpope/vim-surround')
 call dein#add('valloric/youcompleteme')
@@ -464,7 +465,7 @@ endif
 
 " NERDTree
 augroup nerdtree
-  autocmd! FileType nerdtree setlocal relativenumber
+  autocmd FileType nerdtree setlocal relativenumber
 augroup END
 
 nnoremap <silent> <leader>k :NERDTreeToggle<cr>
@@ -486,9 +487,8 @@ nnoremap <leader>ª :Bdelete!<cr>
 
 " Neomake
 augroup neomake
-  autocmd! BufWritePost * Neomake
+  autocmd BufWritePost * Neomake
   command! Fixneo call neomake#signs#DefineHighlights() | call neomake#highlights#DefineHighlights()
-  nnoremap <leader>- :Fixneo<cr>
 augroup END
 
 " FZF
@@ -505,6 +505,9 @@ augroup fzf
   autocmd FileType fzf tnoremap <buffer> <c-k> <up>
   autocmd FileType fzf tnoremap <buffer> <c-j> <down>
 augroup END
+
+" Fugitive
+nnoremap <leader>- :Gstatus<cr>
 
 " Session
 nnoremap <c-s> :SaveSession!<space>
