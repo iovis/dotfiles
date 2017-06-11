@@ -32,12 +32,16 @@
       abaseColor: "#607d8b"
       predefinedColor: "Blue Grey"
     fonts: {}
-    tabs: {}
+    tabs:
+      compactTabs: true
     treeView:
       compactList: true
     ui:
       animations: false
       panelContrast: true
+      panelShadows: true
+  "atom-package-deps":
+    ignored: []
   "autocomplete-plus":
     backspaceTriggersAutocomplete: true
     useCoreMovementCommands: false
@@ -103,7 +107,6 @@
     lineHeight: 1.4
     preferredLineLength: 120
     scrollPastEnd: true
-    showIndentGuide: true
   emmet: {}
   "exception-reporting":
     userId: "fee66806-5b58-2159-6b31-3dddd9a0e6df"
@@ -139,9 +142,11 @@
     executablePath: "/Users/david/.rbenv/shims/scss-lint"
   "linter-tidy": {}
   "linter-ui-default":
-    panelHeight: 414
+    panelHeight: 433
+    showPanel: true
   "merge-conflicts": {}
   minimap:
+    disablePythonDocLinks: true
     plugins:
       pigments: true
       pigmentsDecorationsZIndex: 0
