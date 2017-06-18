@@ -351,23 +351,21 @@ nnoremap <leader>m :make %<cr>
 nnoremap <leader>: :!
 
 " Commands
-augroup vimrc
-  " Autosave on focus lost
-  autocmd FocusLost * silent! wa
+" Autosave on focus lost
+autocmd FocusLost * silent! wa
 
-  " Remove whitespace on save
-  autocmd BufWritePre * :%s/\s\+$//e
+" Remove whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
 
-  " Fold method='indent' + manual folding (with zo and zc)
-  au BufReadPre * setlocal foldmethod=indent
-  au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+" Fold method='indent' + manual folding (with zo and zc)
+au BufReadPre * setlocal foldmethod=indent
+au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
 
-  " Return to last edit position when opening files (You want this!)
-  autocmd BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \   exe "normal! g`\"" |
-        \ endif
-augroup END
+" Return to last edit position when opening files (You want this!)
+autocmd BufReadPost *
+      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
 
 " Hex mode
 " ex command for toggling hex mode - define mapping if desired
@@ -466,10 +464,7 @@ if executable('ag')
 endif
 
 " NERDTree
-augroup nerdtree
-  autocmd FileType nerdtree setlocal relativenumber
-augroup END
-
+autocmd FileType nerdtree setlocal relativenumber
 nnoremap <silent> <leader>k :NERDTreeToggle<cr>
 nnoremap <silent> <leader>K :NERDTreeFind<cr>
 
@@ -488,10 +483,7 @@ nnoremap <leader>º :Bdelete<cr>
 nnoremap <leader>ª :Bdelete!<cr>
 
 " Neomake
-augroup neomake
-  autocmd BufWritePost * Neomake
-  command! Fixneo call neomake#signs#DefineHighlights() | call neomake#highlights#DefineHighlights()
-augroup END
+autocmd BufWritePost * Neomake
 
 " FZF
 nnoremap <leader><leader> :FZFBuffers<cr>
@@ -503,10 +495,8 @@ nnoremap <leader>r :FZFBTags<cr>
 nnoremap <leader>ñ :FZFLines<cr>
 nnoremap <leader>j :FZFSnippets<cr>
 
-augroup fzf
-  autocmd FileType fzf tnoremap <buffer> <c-k> <up>
-  autocmd FileType fzf tnoremap <buffer> <c-j> <down>
-augroup END
+autocmd FileType fzf tnoremap <buffer> <c-k> <up>
+autocmd FileType fzf tnoremap <buffer> <c-j> <down>
 
 " Fugitive
 nnoremap <leader>- :Gstatus<cr>
