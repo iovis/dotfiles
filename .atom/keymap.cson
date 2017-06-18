@@ -35,6 +35,7 @@
   ', M': 'user:arrow'
   ', m': 'user:arrowEOL'
   ', n': 'user:fatarrow'
+  '; ;': 'user:semicolonizeNoNL'
 
 # NOT insert mode
 'atom-text-editor.vim-mode-plus:not(.insert-mode)':
@@ -48,6 +49,7 @@
   'space enter': 'vim-mode-plus:clear-highlight-search'
   'space h': 'pane:split-down-and-copy-active-item'
   'space v': 'pane:split-right-and-copy-active-item'
+  'space -': 'github:toggle-git-tab'
   '-': 'tree-view:toggle-focus'
   'alt-j': 'editor:move-line-down'
   'alt-k': 'editor:move-line-up'

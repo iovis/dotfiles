@@ -143,7 +143,6 @@
   "linter-tidy": {}
   "linter-ui-default":
     panelHeight: 433
-    showPanel: true
   "merge-conflicts": {}
   minimap:
     disablePythonDocLinks: true
