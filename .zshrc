@@ -78,6 +78,7 @@ alias flushcache="dscacheutil -flushcache"
 alias flushmemcached="echo 'flush_all' | nc localhost 11211"
 alias gcam="git commit -v -am"
 alias gitconfig="$EDITOR ~/.gitconfig"
+alias gemo="gem outdated | grep -f ~/.rbenv/default-gems"
 alias hosts="sudo $EDITOR /etc/hosts"
 alias https="http --default-scheme=https"
 alias libupdate="brew update; brew upgrade; gem update --system; echo '\nOutdated gems'; gem outdated; npm -g outdated; pip list --outdated --format=columns;"
@@ -95,6 +96,14 @@ alias vimin="vim -u ~/.dotfiles/.vimrc_min"
 alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
 alias zshrc="$EDITOR ~/.zshrc"
 
+# TEVA
+alias empresas="ssh -p 3105 jdelsaz@192.168.240.10"
+alias empresas_pre="ssh -p 3105 jdelsaz@192.168.243.10"
+alias intranet="ssh -p 3105 kgordeev@192.168.240.7"
+alias intranet_pre="ssh -p 3105 kgordeev@192.168.243.7"
+alias validador="ssh -p 3105 jdelsaz@192.168.240.8"
+alias validador_pre="ssh -p 3105 jdelsaz@192.168.243.8"
+
 # Rubicon
 alias cdr="cd ~/Sites/rubicon"
 alias restartwebserver="stopwebserver && startwebserver"
@@ -102,16 +111,17 @@ alias restoredump="pg_restore --verbose --clean --no-acl --no-owner -h localhost
 alias start="brew services start postgresql; brew services start memcached"
 alias status="brew services list"
 alias stop="brew services stop postgresql; brew services stop memcached"
-alias tsr="tmuxinator start rubicon"
+alias tsr="tmuxinator start rubicon_server"
 
 # Rubicon servers
 alias demo2="ssh ubuntu@52.207.86.71"
 alias demo="ssh ubuntu@52.6.99.70"
-alias sfdph-qa="ssh ubuntu@35.165.146.237"
 alias demowest="ssh ubuntu@52.43.65.31"
 alias dev="ssh ubuntu@52.203.137.139"
+alias jenkins="ssh jenkins@34.207.114.111"
 alias narakaserver="ssh ubuntu@35.160.120.60"
 alias purserver="ssh ubuntu@52.202.106.44"
+alias sfdph-qa="ssh ubuntu@35.165.146.237"
 alias workerdev="ssh ubuntu@54.175.64.198"
 alias workerstaging="ssh ubuntu@54.208.3.232"
 
