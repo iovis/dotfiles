@@ -111,7 +111,8 @@ alias restoredump="pg_restore --verbose --clean --no-acl --no-owner -h localhost
 alias start="brew services start postgresql; brew services start memcached"
 alias status="brew services list"
 alias stop="brew services stop postgresql; brew services stop memcached"
-alias tsr="tmuxinator start rubicon_server"
+alias tsr="tmuxinator start rubicon"
+alias tsrs="tmuxinator start rubicon_server"
 
 # Rubicon servers
 alias demo2="ssh ubuntu@52.207.86.71"
