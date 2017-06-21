@@ -1,5 +1,6 @@
 "dein Scripts-----------------------------
 set nocompatible
+filetype off
 
 set runtimepath+=~/.dotfiles/.vim/bundle/repos/github.com/Shougo/dein.vim
 call dein#begin(expand('~/.dotfiles/.vim/bundle'))
@@ -67,7 +68,6 @@ call dein#add('xolox/vim-misc')
 call dein#add('xolox/vim-session')
 
 call dein#end()
-filetype plugin indent on
 
 " If you want to install not installed plugins on startup.
 if dein#check_install()
@@ -77,6 +77,7 @@ endif
 "End dein Scripts-------------------------
 
 " CUSTOM SETTINGS
+filetype plugin indent on
 colorscheme base16-default-dark
 
 syntax enable
