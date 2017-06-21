@@ -221,8 +221,8 @@ noremap L g$
 vnoremap Q :norm @q<cr>
 
 " bind K to search word under cursor in project
-nnoremap K  :silent grep! "\b<cword>\b"<CR>:copen<CR>
-vnoremap K y:silent grep! "<c-r>""<CR>:copen<CR>
+nnoremap K  :silent grep! "\b<cword>\b"<cr>:copen<cr>
+vnoremap K y:silent grep! "<c-r>""<cr>:copen<cr>
 
 " Change word under cursor or selection with yanked
 nnoremap R ciw<c-r>0<esc>
