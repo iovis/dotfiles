@@ -27,6 +27,7 @@ call dein#add('kana/vim-textobj-entire')
 call dein#add('kana/vim-textobj-indent')
 call dein#add('kana/vim-textobj-user')
 call dein#add('kchmck/vim-coffee-script')
+call dein#add('leafgarland/typescript-vim')
 call dein#add('majutsushi/tagbar')
 call dein#add('marcweber/vim-addon-mw-utils')  " Required by vim-snippets
 call dein#add('mattn/emmet-vim')
@@ -446,6 +447,8 @@ let g:session_autosave = 'yes'
 let g:sneak#use_ic_scs = 1
 let g:tagbar_compact = 1
 let g:tmux_navigator_save_on_switch = 1
+let g:typescript_compiler_binary = 'tsc'
+let g:typescript_compiler_options = ''
 let g:vim_markdown_folding_disabled = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_complete_in_comments = 1
@@ -511,3 +514,8 @@ nmap <leader>l :TagbarToggle<CR>
 " Dispatch
 nnoremap <leader>m :Make %<cr>
 nnoremap <leader>: :Start<space>
+
+" Typescript
+autocmd FileType typescript nnoremap <buffer> t :YcmCompleter GoToDefinition<cr>
+autocmd FileType typescript nnoremap <buffer> T :YcmCompleter GoToReferences<cr>
+autocmd FileType typescript nnoremap <buffer> <leader>t :YcmCompleter GetType<cr>
