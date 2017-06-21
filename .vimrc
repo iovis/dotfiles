@@ -170,18 +170,21 @@ let mapleader = "\<Space>"
 
 " Some expansions
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
-inoremap ,m <c-o>A-><c-f>
-inoremap ,M ->
-inoremap ,n =>
 inoremap ,, <c-o>A,
+inoremap ,M ->
+inoremap ,m <c-o>A-><c-f>
+inoremap ,n =>
 inoremap ;; <c-o>A;
+inoremap <c-a> <home>
+inoremap <c-e> <end>
+inoremap <m-o> <esc>o
 " inoremap (<cr> (<cr>)<esc>O
-" inoremap {<cr> {<cr>}<esc>O
 " inoremap [<cr> [<cr>]<esc>O
-inoremap {; {<cr>};<esc>O
-inoremap {, {<cr>},<esc>O
-inoremap [; [<cr>];<esc>O
+" inoremap {<cr> {<cr>}<esc>O
 inoremap [, [<cr>],<esc>O
+inoremap [; [<cr>];<esc>O
+inoremap {, {<cr>},<esc>O
+inoremap {; {<cr>};<esc>O
 
 " QOL remappings
 cnoremap <c-a> <c-b>
@@ -216,10 +219,6 @@ noremap <silent> <leader><cr> :noh<cr>
 noremap H g^
 noremap L g$
 vnoremap Q :norm @q<cr>
-inoremap <m-o> <esc>o
-inoremap <c-a> <home>
-inoremap <c-e> <end>
-
 
 " bind K to search word under cursor in project
 nnoremap K  :silent grep! "\b<cword>\b"<CR>:copen<CR>
