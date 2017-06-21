@@ -16,9 +16,9 @@ call dein#add('chriskempson/base16-vim')
 call dein#add('christoomey/vim-tmux-navigator')
 call dein#add('digitaltoad/vim-pug')
 call dein#add('elzr/vim-json')
-call dein#add('google/vim-searchindex')
 call dein#add('haya14busa/dein-command.vim')
 call dein#add('honza/vim-snippets')
+call dein#add('iovis9/vim-searchindex')
 call dein#add('jmcantrell/vim-virtualenv')
 call dein#add('junegunn/fzf.vim')
 call dein#add('junegunn/goyo.vim')
@@ -236,14 +236,6 @@ vnoremap . :normal .<cr>
 " Maintain Visual Mode after shifting > and <
 vnoremap < <gv
 vnoremap > >gv
-
-" Don't jump to the next ocurrence with * and #
-nnoremap * :silent keepjumps normal! mi*`i<CR>
-nnoremap # :silent keepjumps normal! mi#`i<CR>
-
-" If I have a visual selection and press * I want it to show ocurrences
-vnoremap * ymi/<c-r>"<cr>`i
-vnoremap # y?<c-r>"<cr>
 
 " Save with root permissions
 command! W w !sudo tee % > /dev/null
