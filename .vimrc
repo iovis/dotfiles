@@ -237,6 +237,10 @@ vnoremap . :normal .<cr>
 vnoremap < <gv
 vnoremap > >gv
 
+" If I have a visual selection and press * I want it to show ocurrences
+vnoremap * ymi/<c-r>"<cr>`i
+vnoremap # y?<c-r>"<cr>
+
 " Save with root permissions
 command! W w !sudo tee % > /dev/null
 
