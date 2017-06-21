@@ -117,8 +117,8 @@ nnoremap K  :silent grep! "\b<cword>\b"<CR>:copen<CR>
 vnoremap K y:silent grep! "<c-r>""<CR>:copen<CR>
 
 " Change word under cursor or selection with yanked
-nnoremap R diw"0P
-vnoremap R "_d"0P
+nnoremap R ciw<c-r>0<esc>
+vnoremap R "0p
 
 " Repeat command on each line of visual selection
 vnoremap . :normal .<cr>
