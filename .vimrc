@@ -120,7 +120,7 @@ set virtualedit=block
 set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn
 set wildignorecase
 set wildmenu
-set wildmode=longest:full,full
+set wildmode=full
 let showbreak = '└ '
 
 " Netrw options
