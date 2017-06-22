@@ -462,6 +462,9 @@ if executable('ag')
   vnoremap <leader>f y:Ag! -Q <c-r>"
 endif
 
+" Alignment (lion)
+nmap <leader>a= mzglip='z
+
 " NERDTree
 autocmd FileType nerdtree setlocal relativenumber
 nnoremap <silent> <leader>k :NERDTreeToggle<cr>
