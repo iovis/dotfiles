@@ -424,7 +424,7 @@ let delimitMate_expand_cr = 1
 let g:UltiSnipsExpandTrigger = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
-let g:ag_apply_qmappings = 0
+let g:ag_highlight = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -458,8 +458,8 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 
   " Mappings
-  nnoremap <leader>f  :Ag!<space>
-  vnoremap <leader>f y:Ag! <c-r>"
+  nnoremap <leader>f  :Ag! -Q<space>
+  vnoremap <leader>f y:Ag! -Q <c-r>"
 endif
 
 " NERDTree
