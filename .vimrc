@@ -294,8 +294,7 @@ nnoremap t <C-]>
 nnoremap T g]
 nnoremap gt :vsp <cr>:exec("tag ".expand("<cword>"))<cr>
 nnoremap gT :sp <cr>:exec("tag ".expand("<cword>"))<cr>
-nnoremap <leader>T :VimProcBang ctags -f .tags<cr>
-set tags=.tags,.gemtags
+nnoremap <leader>T :VimProcBang ctags<cr>
 
 " Work with splits
 nnoremap <leader>v <C-W>v
@@ -430,14 +429,12 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'tomorrow'
 let g:fzf_command_prefix = 'FZF'
-let g:fzf_tags_command = 'ctags -f .tags'
 let g:gitgutter_map_keys = 0
 let g:jsx_ext_required = 0
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_php_enabled_makers = ['php', 'phpmd']
 let g:neomake_python_flake8_args = ['--ignore', 'E402,E501']
 let g:qf_mapping_ack_style = 1
-let g:rails_ctags_arguments = ['-f .tags', '--languages=ruby']
 let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
 let g:sneak#use_ic_scs = 1

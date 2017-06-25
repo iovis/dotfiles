@@ -188,7 +188,6 @@ nnoremap T g]
 nnoremap gt :vsp <cr>:exec("tag ".expand("<cword>"))<cr>
 nnoremap gT :sp <cr>:exec("tag ".expand("<cword>"))<cr>
 nnoremap <leader>T :silent execute "!ctags &"<cr>
-set tags=.tags,.gemtags
 
 " Work with splits
 nnoremap <leader>v <C-W>v
