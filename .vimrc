@@ -22,7 +22,6 @@ call dein#add('iovis9/vim-searchindex')
 call dein#add('jmcantrell/vim-virtualenv')
 call dein#add('junegunn/fzf.vim')
 call dein#add('junegunn/goyo.vim')
-call dein#add('justinmk/vim-sneak')
 call dein#add('kana/vim-textobj-entire')
 call dein#add('kana/vim-textobj-indent')
 call dein#add('kana/vim-textobj-user')
@@ -437,7 +436,6 @@ let g:neomake_python_flake8_args = ['--ignore', 'E402,E501']
 let g:qf_mapping_ack_style = 1
 let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
-let g:sneak#use_ic_scs = 1
 let g:tagbar_compact = 1
 let g:tmux_navigator_save_on_switch = 1
 let g:typescript_compiler_binary = 'tsc'
