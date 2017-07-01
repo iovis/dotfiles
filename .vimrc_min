@@ -7,12 +7,14 @@ set autowriteall
 set backspace=indent,eol,start
 set breakindent
 set conceallevel=0
+set cursorline
 set expandtab
 set hidden
 set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2
+set lazyredraw
 set linespace=2
 set magic
 set mouse=a
@@ -121,6 +123,7 @@ nnoremap ç :cwindow<cr>
 nnoremap ñ /
 noremap ' `
 noremap <silent> <leader><cr> :noh<cr>
+noremap <silent> <leader>, :set relativenumber! cursorline!<cr>
 noremap H g^
 noremap L g$
 vnoremap Q :norm @q<cr>

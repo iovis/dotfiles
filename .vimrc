@@ -88,11 +88,13 @@ set background=dark
 set backspace=indent,eol,start   " Fix backspace not deleting tabs, also make delimiteMate work
 set breakindent
 set conceallevel=0
+set cursorline  " Highlight current line (slow as fuck)
 set expandtab
 set hidden    " remember undo after quitting
 set hlsearch
 set ignorecase
 set incsearch
+set lazyredraw  " Try to not draw while doing macros (helps with scrolling performance)
 set laststatus=2
 set linespace=2
 set magic
@@ -218,6 +220,7 @@ nnoremap ç :cwindow<cr>
 nnoremap ñ /
 noremap ' `
 noremap <silent> <leader><cr> :noh<cr>
+noremap <silent> <leader>, :set relativenumber! cursorline!<cr>
 noremap H g^
 noremap L g$
 vnoremap Q :norm @q<cr>
