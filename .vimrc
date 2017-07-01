@@ -138,13 +138,14 @@ let g:netrw_winsize = 25
 
 if has('nvim')
   set inccommand=split
-  tnoremap <c-h> <C-\><C-n><C-w>h
-  tnoremap <c-j> <C-\><C-n><C-w>j
-  tnoremap <c-k> <C-\><C-n><C-w>k
-  tnoremap <c-l> <C-\><C-n><C-w>l
-  tnoremap jj <C-\><C-n>
+  autocmd TermOpen * setlocal relativenumber
+
+  tnoremap <c-h> <c-\><c-n><C-w>h
+  tnoremap <c-j> <c-\><c-n><C-w>j
+  tnoremap <c-k> <c-\><c-n><C-w>k
+  tnoremap <c-l> <c-\><c-n><C-w>l
+  tnoremap <esc> <c-\><c-n>
 else
-  " Mouse support
   set ttymouse=xterm2
 endif
 
