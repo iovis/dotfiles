@@ -512,8 +512,10 @@ nnoremap <c-p> :OpenSession!<space>
 nmap <leader>l :TagbarToggle<CR>
 
 " Dispatch
-nnoremap <leader>m :Make %<cr>
 nnoremap <leader>: :Start<space>
+nnoremap <leader>m :Dispatch<cr>
+vnoremap <leader>: :Start<space>
+vnoremap <leader>m :Dispatch<cr>
 
 " Typescript
 autocmd FileType typescript nnoremap <buffer> t :YcmCompleter GoToDefinition<cr>
