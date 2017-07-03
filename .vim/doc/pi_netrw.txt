@@ -1,4 +1,4 @@
-*pi_netrw.txt*  For Vim version 8.0.  Last change: 2017 Jan 13
+*pi_netrw.txt*  For Vim version 8.0.  Last change: 2017 Mar 21
 
 	    ------------------------------------------------
 	    NETRW REFERENCE MANUAL    by Charles E. Campbell
@@ -73,7 +73,7 @@ Copyright: Copyright (C) 2016 Charles E Campbell    *netrw-copyright*
       Improving Browsing..................................|netrw-ssh-hack|
       Listing Bookmarks And History.......................|netrw-qb|
       Making A New Directory..............................|netrw-d|
-      Making The Browsing Directory The Current Directory.|netrw-c|
+      Making The Browsing Directory The Current Directory.|netrw-cd|
       Marking Files.......................................|netrw-mf|
       Unmarking Files.....................................|netrw-mF|
       Marking Files By Location List......................|netrw-qL|
@@ -83,6 +83,7 @@ Copyright: Copyright (C) 2016 Charles E Campbell    *netrw-copyright*
       Marked Files: Arbitrary Shell Command, En Bloc......|netrw-mX|
       Marked Files: Arbitrary Vim Command.................|netrw-mv|
       Marked Files: Argument List.........................|netrw-ma| |netrw-mA|
+      Marked Files: Buffer List...........................|netrw-cb| |netrw-cB|
       Marked Files: Compression And Decompression.........|netrw-mz|
       Marked Files: Copying...............................|netrw-mc|
       Marked Files: Diff..................................|netrw-md|
@@ -479,7 +480,7 @@ file using root-relative paths, use the full path:
 ==============================================================================
 4. Network-Oriented File Transfer			*netrw-xfer* {{{1
 
-Network-oriented file transfer under Vim is implemented by a VimL-based script
+Network-oriented file transfer under Vim is implemented by a vim script
 (<netrw.vim>) using plugin techniques.  It currently supports both reading and
 writing across networks using rcp, scp, ftp or ftp+<.netrc>, scp, fetch,
 dav/cadaver, rsync, or sftp.
@@ -2085,7 +2086,7 @@ Associated setting variables:	|g:netrw_localmkdir|   |g:netrw_mkdir_cmd|
 				|g:netrw_remote_mkdir| |netrw-%|
 
 
-MAKING THE BROWSING DIRECTORY THE CURRENT DIRECTORY	*netrw-c* {{{2
+MAKING THE BROWSING DIRECTORY THE CURRENT DIRECTORY	*netrw-cd* {{{2
 
 By default, |g:netrw_keepdir| is 1.  This setting means that the current
 directory will not track the browsing directory. (done for backwards
@@ -2099,6 +2100,9 @@ maintains its own separate notion of the current directory, in order to make
 the two directories the same, use the "c" map (just type c).  That map will
 set Vim's notion of the current directory to netrw's current browsing
 directory.
+
+*netrw-c* : This map's name has been changed to cd (see |netrw-cd|).
+          This change was done to allow for |netrw-cb| and |netrw-cB| maps.
 
 Associated setting variable: |g:netrw_keepdir|
 
@@ -2288,7 +2292,17 @@ MARKED FILES: ARGUMENT LIST				*netrw-ma* *netrw-mA*
 Using ma, one moves filenames from the marked file list to the argument list.
 Using mA, one moves filenames from the argument list to the marked file list.
 
-See Also: |netrw-qF| |argument-list| |:args|
+See Also: |netrw-cb| |netrw-cB| |netrw-qF| |argument-list| |:args|
+
+
+MARKED FILES: BUFFER LIST				*netrw-cb* *netrw-cB*
+	    (See |netrw-mf| and |netrw-mr| for how to mark files)
+		      (uses the global marked-file list)
+
+Using cb, one moves  filenames from the marked file list to the buffer list.
+Using cB, one copies filenames from the buffer list to the marked file list.
+
+See Also: |netrw-ma| |netrw-mA| |netrw-qF| |buffer-list| |:buffers|
 
 
 MARKED FILES: COMPRESSION AND DECOMPRESSION		*netrw-mz* {{{2
@@ -2805,7 +2819,7 @@ your browsing preferences.  (see also: |netrw-settings|)
   *g:netrw_localmkdiropt*	=""             Linux/Unix/MacOS/Cygwin
 				=" /c mkdir"                    Windows
 				Options for |g:netrw_localmkdir|
-				 
+
   *g:netrw_localmovecmd*	="mv"           Linux/Unix/MacOS/Cygwin
 				=expand("$COMSPEC")             Windows
 				Moves marked files (|netrw-mf|) to target
@@ -2815,7 +2829,7 @@ your browsing preferences.  (see also: |netrw-settings|)
 				=" /c move"                     Windows
 				Options for |g:netrw_localmovecmd|
 
-  *g:netrw_localrmdir*		="rmdir"        Linux/Unix/MacOS/Cygwin  
+  *g:netrw_localrmdir*		="rmdir"        Linux/Unix/MacOS/Cygwin
  				=expand("$COMSPEC")             Windows
 				Remove directory command (rmdir)
 				This variable is only used if your vim is
@@ -3863,6 +3877,15 @@ netrw:
 				  Unfortunately, the directions for eliciting
 				  the problem weren't complete, so I may or
 				  may not have fixed that issue.
+		Feb 06, 2017	* Implemented cb and cB.  Changed "c" to "cd".
+				  (see |netrw-cb|, |netrw-cB|, and |netrw-cd|)
+		Mar 21, 2017	* previously, netrw would specify (safe) settings
+				  even when the setting was already safe for
+				  netrw.  Netrw now attempts to leave such
+				  already-netrw-safe settings alone.
+				  (affects s:NetrwOptionRestore() and
+				  s:NetrwSafeOptions(); also introduced
+				  s:NetrwRestoreSetting())
 	v157:	Apr 20, 2016	* (Nicola) had set up a "nmap <expr> ..." with
 				  a function that returned a 0 while silently
 				  invoking a shell command.  The shell command
