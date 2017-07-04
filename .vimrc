@@ -263,10 +263,6 @@ nnoremap <leader>d "+d
 nnoremap <leader>D "+D
 vnoremap <leader>d "+d
 
-" Quick uppercase or lowercase word
-nnoremap <leader>U mzgUiw`z
-nnoremap <leader>u mzguiw`z
-
 " Move a line of text using alt+[jk]
 " Weird characters are when meta key is not recognized
 nnoremap <silent> <M-j> mz:m+<cr>`z
