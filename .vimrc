@@ -191,11 +191,12 @@ inoremap {; {<cr>};<esc>O
 
 " QOL remappings
 cnoremap <c-a> <c-b>
-nnoremap - ]c
 nnoremap <C-End>  :lnext<cr>
 nnoremap <C-Home> :lprevious<cr>
 nnoremap <End>    :cnext<cr>
 nnoremap <Home>   :cprevious<cr>
+nnoremap <c-down> ]c
+nnoremap <c-up>   [c
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
 nnoremap <leader>X :qa!<cr>
@@ -210,7 +211,6 @@ nnoremap <leader>ç :lwindow<cr>
 nnoremap M <c-w>o
 nnoremap Q @q
 nnoremap Y y$
-nnoremap _ [c
 nnoremap ª :bdelete!<cr>
 nnoremap º :bdelete<cr>
 nnoremap Ç :cclose<cr>
