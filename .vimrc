@@ -223,6 +223,8 @@ noremap <silent> <leader>, :set relativenumber! cursorline!<cr>
 noremap H g^
 noremap L g$
 vnoremap Q :norm @q<cr>
+onoremap ar a]
+onoremap ir i]
 
 " bind K to search word under cursor in project
 nnoremap K  :silent grep! "\b<cword>\b"<cr>:copen<cr>
