@@ -94,40 +94,40 @@ inoremap {<cr> {<cr>}<esc>O
 
 " QOL remappings
 cnoremap <c-a> <c-b>
-nnoremap <C-End>  :lnext<cr>
-nnoremap <C-Home> :lprevious<cr>
-nnoremap <End>    :cnext<cr>
-nnoremap <Home>   :cprevious<cr>
 nnoremap <c-down> ]c
 nnoremap <c-up>   [c
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
-nnoremap <leader>X :qa!<cr>
-nnoremap <leader>c :close<cr>
 nnoremap <leader>n :e <C-R>=fnameescape(expand('%:h')).'/'<cr>
-nnoremap <leader>p :set wrap!<cr>
-nnoremap <leader>q :%bdelete<cr>
-nnoremap <leader>w :w!<cr>
-nnoremap <leader>x :qa<cr>
-nnoremap <leader>Ç :lclose<cr>
-nnoremap <leader>ç :lwindow<cr>
+nnoremap <silent> <c-end>   :lnext<cr>
+nnoremap <silent> <c-home>  :lprevious<cr>
+nnoremap <silent> <end>     :cnext<cr>
+nnoremap <silent> <home>    :cprevious<cr>
+nnoremap <silent> <leader>X :qa!<cr>
+nnoremap <silent> <leader>c :close<cr>
+nnoremap <silent> <leader>p :set wrap!<cr>
+nnoremap <silent> <leader>q :%bdelete<cr>
+nnoremap <silent> <leader>w :w!<cr>
+nnoremap <silent> <leader>x :qa<cr>
+nnoremap <silent> <leader>Ç :lclose<cr>
+nnoremap <silent> <leader>ç :lwindow<cr>
+nnoremap <silent> ª :bdelete!<cr>
+nnoremap <silent> º :bdelete<cr>
+nnoremap <silent> Ç :cclose<cr>
+nnoremap <silent> ç :cwindow<cr>
 nnoremap M <c-w>o
 nnoremap Q @q
 nnoremap Y y$
-nnoremap ª :bdelete!<cr>
-nnoremap º :bdelete<cr>
-nnoremap Ç :cclose<cr>
 nnoremap Ñ ?
-nnoremap ç :cwindow<cr>
 nnoremap ñ /
 noremap ' `
-noremap <silent> <leader><cr> :noh<cr>
 noremap <silent> <leader>, :set relativenumber! cursorline!<cr>
+noremap <silent> <leader><cr> :noh<cr>
 noremap H g^
 noremap L g$
-vnoremap Q :norm @q<cr>
 onoremap ar a]
 onoremap ir i]
+vnoremap <silent> Q :norm @q<cr>
 
 " bind K to search word under cursor in project
 nnoremap K  :silent grep! "\b<cword>\b"<cr>:copen<cr>
@@ -138,7 +138,7 @@ nnoremap R ciw<c-r>0<esc>
 vnoremap R "0p
 
 " Repeat command on each line of visual selection
-vnoremap . :normal .<cr>
+vnoremap <silent> . :normal .<cr>
 
 " Maintain Visual Mode after shifting > and <
 vnoremap < <gv
@@ -182,11 +182,11 @@ vnoremap <silent> § :m'<-2<cr>`>my`<mzgv`yo`z
 
 " Navigate buffers
 nnoremap <BS> <C-^>
-nnoremap <tab>   :bnext<cr>
-nnoremap <s-tab> :bprevious<cr>
-nnoremap <leader>1 :bfirst<cr>
-nnoremap <leader>0 :blast<cr>
-nnoremap <leader>t :enew<cr>
+nnoremap <silent> <tab> :bnext<cr>
+nnoremap <silent> <s-tab> :bprevious<cr>
+nnoremap <silent> <leader>1 :bfirst<cr>
+nnoremap <silent> <leader>0 :blast<cr>
+nnoremap <silent> <leader>t :enew<cr>
 nnoremap <leader><leader> :ls<cr>:b!<space>
 
 " Remapping <tab> makes <c-i> not work
@@ -197,9 +197,9 @@ nnoremap t <C-]>
 nnoremap T g]
 vnoremap t <C-]>
 vnoremap T g]
-nnoremap gt :vsp <cr>:exec("tag ".expand("<cword>"))<cr>
-nnoremap gT :sp <cr>:exec("tag ".expand("<cword>"))<cr>
-nnoremap <leader>T :silent execute "!ctags &"<cr>
+nnoremap <silent> gt :vsp <cr>:exec("tag ".expand("<cword>"))<cr>
+nnoremap <silent> gT :sp <cr>:exec("tag ".expand("<cword>"))<cr>
+nnoremap <silent> <leader>T :VimProcBang ctags<cr>
 
 " Work with splits
 nnoremap <leader>v <C-W>v
@@ -220,8 +220,8 @@ nnoremap <silent> gr :<C-U>set operatorfunc=SortReverseLinesOpFunc<CR>g@
 vnoremap <silent> gr :sort!<cr>
 
 " Grep operator
-nnoremap <leader>g :set operatorfunc=GrepOperator<cr>g@
-vnoremap <leader>g :<c-u>call GrepOperator(visualmode())<cr>
+nnoremap <silent> <leader>g :set operatorfunc=GrepOperator<cr>g@
+vnoremap <silent> <leader>g :<c-u>call GrepOperator(visualmode())<cr>
 
 function! GrepOperator(type)
     if a:type ==# 'v'
@@ -237,41 +237,39 @@ function! GrepOperator(type)
 endfunction
 
 " Fast vimrc editing
-nnoremap <leader>e :e! $MYVIMRC<cr>
-nnoremap <leader>E :so $MYVIMRC<cr>
+nnoremap <silent> <leader>e :e! $MYVIMRC<cr>
+nnoremap <silent> <leader>E :so $MYVIMRC<cr>
 
 " Duplicate file
-nnoremap <leader>D :saveas <C-R>=fnameescape(expand('%:h')).'/'<cr>
+nnoremap <silent> <leader>D :saveas <C-R>=fnameescape(expand('%:h')).'/'<cr>
 
 " Sessions
 nnoremap <c-s> :mksession! ~/.vim/sessions/
 nnoremap <c-p> :source ~/.vim/sessions/
 
 " Make
-nnoremap <leader>m :make %<cr>
+nnoremap <silent> <leader>m :make<cr>
 nnoremap <leader>: :!
 
 " Commands
-augroup vimrc
-  " Autosave on focus lost
-  autocmd FocusLost * silent! wa
+" Autosave on focus lost
+autocmd FocusLost * silent! wa
 
-  " Remove whitespace on save
-  autocmd BufWritePre * :%s/\s\+$//e
+" Remove whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
 
-  " Fold method='indent' + manual folding (with zo and zc)
-  au BufReadPre * setlocal foldmethod=indent
-  au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+" Fold method='indent' + manual folding (with zo and zc)
+au BufReadPre * setlocal foldmethod=indent
+au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
 
-  " Return to last edit position when opening files (You want this!)
-  autocmd BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \   exe "normal! g`\"" |
-        \ endif
-augroup END
+" Return to last edit position when opening files (You want this!)
+autocmd BufReadPost *
+      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
 
 " Smooth Grepping
-command! -nargs=+ -complete=file_in_path -bar Grep silent! grep! <args> | redraw!
+command! -nargs=+ -complete=file -bar Grep silent! grep! <args>|cwindow|redraw!
 nnoremap <leader>f  :Grep<space>
 vnoremap <leader>f y:Grep <c-r>"
 
@@ -356,7 +354,7 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <leader>o :e **/
 
 " History
-nnoremap <leader>H :browse old<cr>
+nnoremap <silent> <leader>H :browse old<cr>
 
 """"""""""""""""""""""""""""""""
 " Start Apprentice colorscheme "

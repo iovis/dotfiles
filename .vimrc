@@ -188,40 +188,40 @@ inoremap {; {<cr>};<esc>O
 
 " QOL remappings
 cnoremap <c-a> <c-b>
-nnoremap <C-End>  :lnext<cr>
-nnoremap <C-Home> :lprevious<cr>
-nnoremap <End>    :cnext<cr>
-nnoremap <Home>   :cprevious<cr>
 nnoremap <c-down> ]c
 nnoremap <c-up>   [c
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
-nnoremap <leader>X :qa!<cr>
-nnoremap <leader>c :close<cr>
 nnoremap <leader>n :e <C-R>=fnameescape(expand('%:h')).'/'<cr>
-nnoremap <leader>p :set wrap!<cr>
-nnoremap <leader>q :%bdelete<cr>
-nnoremap <leader>w :w!<cr>
-nnoremap <leader>x :qa<cr>
-nnoremap <leader>Ç :lclose<cr>
-nnoremap <leader>ç :lwindow<cr>
+nnoremap <silent> <c-end>   :lnext<cr>
+nnoremap <silent> <c-home>  :lprevious<cr>
+nnoremap <silent> <end>     :cnext<cr>
+nnoremap <silent> <home>    :cprevious<cr>
+nnoremap <silent> <leader>X :qa!<cr>
+nnoremap <silent> <leader>c :close<cr>
+nnoremap <silent> <leader>p :set wrap!<cr>
+nnoremap <silent> <leader>q :%bdelete<cr>
+nnoremap <silent> <leader>w :w!<cr>
+nnoremap <silent> <leader>x :qa<cr>
+nnoremap <silent> <leader>Ç :lclose<cr>
+nnoremap <silent> <leader>ç :lwindow<cr>
+nnoremap <silent> ª :bdelete!<cr>
+nnoremap <silent> º :bdelete<cr>
+nnoremap <silent> Ç :cclose<cr>
+nnoremap <silent> ç :cwindow<cr>
 nnoremap M <c-w>o
 nnoremap Q @q
 nnoremap Y y$
-nnoremap ª :bdelete!<cr>
-nnoremap º :bdelete<cr>
-nnoremap Ç :cclose<cr>
 nnoremap Ñ ?
-nnoremap ç :cwindow<cr>
 nnoremap ñ /
 noremap ' `
-noremap <silent> <leader><cr> :noh<cr>
 noremap <silent> <leader>, :set relativenumber! cursorline!<cr>
+noremap <silent> <leader><cr> :noh<cr>
 noremap H g^
 noremap L g$
-vnoremap Q :norm @q<cr>
 onoremap ar a]
 onoremap ir i]
+vnoremap <silent> Q :norm @q<cr>
 
 " bind K to search word under cursor in project
 nnoremap K  :silent grep! "\b<cword>\b"<cr>:copen<cr>
@@ -232,7 +232,7 @@ nnoremap R ciw<c-r>0<esc>
 vnoremap R "0p
 
 " Repeat command on each line of visual selection
-vnoremap . :normal .<cr>
+vnoremap <silent> . :normal .<cr>
 
 " Maintain Visual Mode after shifting > and <
 vnoremap < <gv
@@ -273,11 +273,11 @@ vnoremap <silent> § :m'<-2<cr>`>my`<mzgv`yo`z
 
 " Navigate buffers
 nnoremap <BS> <C-^>
-nnoremap <tab> :bnext<cr>
-nnoremap <s-tab> :bprevious<cr>
-nnoremap <leader>1 :bfirst<cr>
-nnoremap <leader>0 :blast<cr>
-nnoremap <leader>t :enew<cr>
+nnoremap <silent> <tab> :bnext<cr>
+nnoremap <silent> <s-tab> :bprevious<cr>
+nnoremap <silent> <leader>1 :bfirst<cr>
+nnoremap <silent> <leader>0 :blast<cr>
+nnoremap <silent> <leader>t :enew<cr>
 nnoremap <leader><leader> :ls<cr>:b!<space>
 
 " Remapping <tab> makes <c-i> not work
@@ -288,9 +288,9 @@ nnoremap t <C-]>
 nnoremap T g]
 vnoremap t <C-]>
 vnoremap T g]
-nnoremap gt :vsp <cr>:exec("tag ".expand("<cword>"))<cr>
-nnoremap gT :sp <cr>:exec("tag ".expand("<cword>"))<cr>
-nnoremap <leader>T :VimProcBang ctags<cr>
+nnoremap <silent> gt :vsp <cr>:exec("tag ".expand("<cword>"))<cr>
+nnoremap <silent> gT :sp <cr>:exec("tag ".expand("<cword>"))<cr>
+nnoremap <silent> <leader>T :VimProcBang ctags<cr>
 
 " Work with splits
 nnoremap <leader>v <C-W>v
@@ -311,8 +311,8 @@ nnoremap <silent> gr :<C-U>set operatorfunc=SortReverseLinesOpFunc<CR>g@
 vnoremap <silent> gr :sort!<cr>
 
 " Grep operator
-nnoremap <leader>g :set operatorfunc=GrepOperator<cr>g@
-vnoremap <leader>g :<c-u>call GrepOperator(visualmode())<cr>
+nnoremap <silent> <leader>g :set operatorfunc=GrepOperator<cr>g@
+vnoremap <silent> <leader>g :<c-u>call GrepOperator(visualmode())<cr>
 
 function! GrepOperator(type)
     if a:type ==# 'v'
@@ -328,18 +328,18 @@ function! GrepOperator(type)
 endfunction
 
 " Fast vimrc editing
-nnoremap <leader>e :e! $MYVIMRC<cr>
-nnoremap <leader>E :so $MYVIMRC<cr>
+nnoremap <silent> <leader>e :e! $MYVIMRC<cr>
+nnoremap <silent> <leader>E :so $MYVIMRC<cr>
 
 " Duplicate file
-nnoremap <leader>D :saveas <C-R>=fnameescape(expand('%:h')).'/'<cr>
+nnoremap <silent> <leader>D :saveas <C-R>=fnameescape(expand('%:h')).'/'<cr>
 
 " Sessions
 nnoremap <c-s> :mksession! ~/.vim/sessions/
 nnoremap <c-p> :source ~/.vim/sessions/
 
 " Make
-nnoremap <leader>m :make %<cr>
+nnoremap <silent> <leader>m :make<cr>
 nnoremap <leader>: :!
 
 " Commands
@@ -463,52 +463,52 @@ nnoremap <silent> <leader>k :NERDTreeToggle<cr>
 nnoremap <silent> <leader>K :NERDTreeFind<cr>
 
 " Ysurround: Swap double quotes with single quotes
-nnoremap <leader>' :normal mzcs"'`z<cr>
-nnoremap <leader>" :normal mzcs'"`z<cr>
+nnoremap <silent> <leader>' :normal mzcs"'`z<cr>
+nnoremap <silent> <leader>" :normal mzcs'"`z<cr>
 
 " Distraction free
 nnoremap <silent> <leader>z :Goyo<cr>
 
 " Gundo
-nnoremap U :GundoToggle<cr>
+nnoremap <silent> U :GundoToggle<cr>
 
 " Don't mess up the layout when closing buffers
-nnoremap <leader>º :Bdelete<cr>
-nnoremap <leader>ª :Bdelete!<cr>
+nnoremap <silent> <leader>º :Bdelete<cr>
+nnoremap <silent> <leader>ª :Bdelete!<cr>
 
 " Neomake
 autocmd BufWritePost * Neomake
 
 " FZF
-nnoremap <leader><leader> :FZFBuffers<cr>
-nnoremap <leader>H :FZFHistory<cr>
-nnoremap <leader>O :FZFFiles<cr>
-nnoremap <leader>R :FZFTags<cr>
-nnoremap <leader>o :FZFGFiles<cr>
-nnoremap <leader>r :FZFBTags<cr>
-nnoremap <leader>ñ :FZFLines<cr>
-nnoremap <leader>j :FZFSnippets<cr>
+nnoremap <silent> <leader><leader> :FZFBuffers<cr>
+nnoremap <silent> <leader>H :FZFHistory<cr>
+nnoremap <silent> <leader>O :FZFFiles<cr>
+nnoremap <silent> <leader>R :FZFTags<cr>
+nnoremap <silent> <leader>o :FZFGFiles<cr>
+nnoremap <silent> <leader>r :FZFBTags<cr>
+nnoremap <silent> <leader>ñ :FZFLines<cr>
+nnoremap <silent> <leader>j :FZFSnippets<cr>
 
-autocmd FileType fzf tnoremap <buffer> <c-k> <up>
-autocmd FileType fzf tnoremap <buffer> <c-j> <down>
+autocmd FileType fzf tnoremap <silent> <buffer> <c-k> <up>
+autocmd FileType fzf tnoremap <silent> <buffer> <c-j> <down>
 
 " Fugitive
-nnoremap <leader>- :Gstatus<cr>
+nnoremap <silent> <leader>- :Gstatus<cr>
 
 " Session
 nnoremap <c-s> :SaveSession!<space>
 nnoremap <c-p> :OpenSession!<space>
 
 " Tagbar
-nmap <leader>l :TagbarToggle<CR>
+nmap <silent> <leader>l :TagbarToggle<CR>
 
 " Dispatch
 nnoremap <leader>: :Start<space>
-nnoremap <leader>m :Dispatch<cr>
+nnoremap <silent> <leader>m :Dispatch<cr>
 vnoremap <leader>: :Start<space>
-vnoremap <leader>m :Dispatch<cr>
+vnoremap <silent> <leader>m :Dispatch<cr>
 
 " Typescript
-autocmd FileType typescript nnoremap <buffer> t :YcmCompleter GoToDefinition<cr>
-autocmd FileType typescript nnoremap <buffer> T :YcmCompleter GoToReferences<cr>
-autocmd FileType typescript nnoremap <buffer> <leader>t :YcmCompleter GetType<cr>
+autocmd FileType typescript nnoremap <silent> <buffer> t :YcmCompleter GoToDefinition<cr>
+autocmd FileType typescript nnoremap <silent> <buffer> T :YcmCompleter GoToReferences<cr>
+autocmd FileType typescript nnoremap <silent> <buffer> <leader>t :YcmCompleter GetType<cr>
