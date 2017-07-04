@@ -181,9 +181,6 @@ inoremap ;; <c-o>A;
 inoremap <c-a> <home>
 inoremap <c-e> <end>
 inoremap <m-o> <esc>o
-" inoremap (<cr> (<cr>)<esc>O
-" inoremap [<cr> [<cr>]<esc>O
-" inoremap {<cr> {<cr>}<esc>O
 inoremap [, [<cr>],<esc>O
 inoremap [; [<cr>];<esc>O
 inoremap {, {<cr>},<esc>O
