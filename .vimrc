@@ -430,6 +430,7 @@ let g:jsx_ext_required = 0
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_php_enabled_makers = ['php', 'phpmd']
 let g:neomake_python_flake8_args = ['--ignore', 'E402,E501']
+let g:neomake_yaml_yamllint_args = ['-f', 'parsable', '-d', 'relaxed']
 let g:qf_mapping_ack_style = 1
 let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
