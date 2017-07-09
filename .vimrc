@@ -406,110 +406,124 @@ endfunction
 """""""""""""""""""
 " Plugin specific "
 """""""""""""""""""
-" Some plugin settings
-hi CSVColumnEven ctermbg=242 guibg=#6C6C6C
-hi CSVColumnOdd  term=NONE   ctermbg=NONE
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeIgnore = ['\.pyc$']
-let NERDTreeMinimalUI = 1
-let NERDTreeShowBookmarks = 1
-let NERDTreeShowLineNumbers = 1
-let b:lion_squeeze_spaces = 1
-let delimitMate_expand_cr = 1
-let g:UltiSnipsExpandTrigger = "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
-let g:UltiSnipsJumpForwardTrigger = "<c-j>"
-let g:ag_highlight = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-let g:airline_theme = 'tomorrow'
-let g:fzf_command_prefix = 'FZF'
-let g:gitgutter_map_keys = 0
-let g:jsx_ext_required = 0
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_php_enabled_makers = ['php', 'phpmd']
-let g:neomake_python_flake8_args = ['--ignore', 'E402,E501']
-let g:neomake_yaml_yamllint_args = ['-f', 'parsable', '-d', 'relaxed']
-let g:qf_mapping_ack_style = 1
-let g:session_autoload = 'no'
-let g:session_autosave = 'yes'
-let g:tagbar_compact = 1
-let g:tmux_navigator_save_on_switch = 1
-let g:typescript_compiler_binary = 'tsc'
-let g:typescript_compiler_options = ''
-let g:vim_markdown_folding_disabled = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_complete_in_comments = 1
-let g:ycm_complete_in_strings = 1
-let g:ycm_python_binary_path = 'python'
-set rtp+=/usr/local/opt/fzf
-
-" The Silver Searcher
+" ag
 if executable('ag')
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
 
-  " Mappings
+  let g:ag_highlight = 1
   nnoremap <leader>f  :Ag! -Q<space>
   vnoremap <leader>f y:Ag! -Q <c-r>"
 endif
 
-" Alignment (lion)
-nmap <leader>a= mzglip='z
+" airline
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'tomorrow'
 
-" NERDTree
-autocmd FileType nerdtree setlocal relativenumber
-nnoremap <silent> <leader>k :NERDTreeToggle<cr>
-nnoremap <silent> <leader>K :NERDTreeFind<cr>
+" autoformat
+nnoremap <silent> <leader>b :Autoformat<cr>
 
-" Ysurround: Swap double quotes with single quotes
-nnoremap <silent> <leader>' :normal mzcs"'`z<cr>
-nnoremap <silent> <leader>" :normal mzcs'"`z<cr>
-
-" Distraction free
-nnoremap <silent> <leader>z :Goyo<cr>
-
-" Gundo
-nnoremap <silent> U :GundoToggle<cr>
-
-" Don't mess up the layout when closing buffers
-nnoremap <silent> <leader>º :Bdelete<cr>
+" bdelete (don't close pane)
 nnoremap <silent> <leader>ª :Bdelete!<cr>
+nnoremap <silent> <leader>º :Bdelete<cr>
 
-" Neomake
-autocmd BufWritePost * Neomake
+" csv
+hi CSVColumnEven ctermbg=242 guibg=#6C6C6C
+hi CSVColumnOdd  term=NONE   ctermbg=NONE
 
-" FZF
-nnoremap <silent> <leader><leader> :FZFBuffers<cr>
-nnoremap <silent> <leader>H :FZFHistory<cr>
-nnoremap <silent> <leader>O :FZFFiles<cr>
-nnoremap <silent> <leader>R :FZFTags<cr>
-nnoremap <silent> <leader>o :FZFGFiles<cr>
-nnoremap <silent> <leader>r :FZFBTags<cr>
-nnoremap <silent> <leader>ñ :FZFLines<cr>
-nnoremap <silent> <leader>j :FZFSnippets<cr>
+" delimitmate
+let delimitMate_expand_cr = 1
 
-autocmd FileType fzf tnoremap <silent> <buffer> <c-k> <up>
-autocmd FileType fzf tnoremap <silent> <buffer> <c-j> <down>
-
-" Fugitive
-nnoremap <silent> <leader>- :Gstatus<cr>
-
-" Session
-nnoremap <c-s> :SaveSession!<space>
-nnoremap <c-p> :OpenSession!<space>
-
-" Tagbar
-nmap <silent> <leader>l :TagbarToggle<CR>
-
-" Dispatch
+" dispatch
 nnoremap <leader>: :Start<space>
 nnoremap <silent> <leader>m :Dispatch<cr>
 vnoremap <leader>: :Start<space>
 vnoremap <silent> <leader>m :Dispatch<cr>
 
-" Typescript
-autocmd FileType typescript nnoremap <silent> <buffer> t :YcmCompleter GoToDefinition<cr>
-autocmd FileType typescript nnoremap <silent> <buffer> T :YcmCompleter GoToReferences<cr>
+" fugitive
+nnoremap <silent> <leader>- :Gstatus<cr>gg<c-n>
+
+" fzf
+autocmd FileType fzf tnoremap <silent> <buffer> <c-j> <down>
+autocmd FileType fzf tnoremap <silent> <buffer> <c-k> <up>
+let g:fzf_command_prefix = 'FZF'
+nnoremap <silent> <leader><leader> :FZFBuffers<cr>
+nnoremap <silent> <leader>H :FZFHistory<cr>
+nnoremap <silent> <leader>O :FZFFiles<cr>
+nnoremap <silent> <leader>R :FZFTags<cr>
+nnoremap <silent> <leader>j :FZFSnippets<cr>
+nnoremap <silent> <leader>o :FZFGFiles<cr>
+nnoremap <silent> <leader>r :FZFBTags<cr>
+nnoremap <silent> <leader>ñ :FZFLines<cr>
+set rtp+=/usr/local/opt/fzf
+
+" gitgutter
+let g:gitgutter_map_keys = 0
+
+" goyo
+nnoremap <silent> <leader>z :Goyo<cr>
+
+" gundo
+nnoremap <silent> U :GundoToggle<cr>
+
+" jsx
+let g:jsx_ext_required = 0
+
+" lion
+let b:lion_squeeze_spaces = 1
+nmap <leader>a= mzglip='z
+
+" neomake
+autocmd BufWritePost * Neomake
+let g:neomake_go_enabled_makers = ['golint', 'govet', 'go' ]
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_php_enabled_makers = ['php', 'phpmd']
+let g:neomake_python_flake8_args = ['--ignore', 'E402,E501']
+let g:neomake_yaml_yamllint_args = ['-f', 'parsable', '-d', 'relaxed']
+
+" nerdtree
+autocmd FileType nerdtree setlocal relativenumber
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeMinimalUI = 1
+let NERDTreeShowBookmarks = 1
+let NERDTreeShowLineNumbers = 1
+nnoremap <silent> <leader>K :NERDTreeFind<cr>
+nnoremap <silent> <leader>k :NERDTreeToggle<cr>
+
+" session
+let g:session_autoload = 'no'
+let g:session_autosave = 'yes'
+nnoremap <c-p> :OpenSession!<space>
+nnoremap <c-s> :SaveSession!<space>
+
+" tagbar
+let g:tagbar_compact = 1
+nmap <silent> <leader>l :TagbarToggle<CR>
+
+" tmux navigator
+let g:tmux_navigator_save_on_switch = 1
+
+" typescript
 autocmd FileType typescript nnoremap <silent> <buffer> <leader>t :YcmCompleter GetType<cr>
+autocmd FileType typescript nnoremap <silent> <buffer> T :YcmCompleter GoToReferences<cr>
+autocmd FileType typescript nnoremap <silent> <buffer> t :YcmCompleter GoToDefinition<cr>
+let g:typescript_compiler_binary = 'tsc'
+let g:typescript_compiler_options = ''
+
+" ultisnips
+let g:UltiSnipsExpandTrigger = "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+
+" ysurround: Swap double quotes with single quotes
+nnoremap <silent> <leader>" :normal mzcs'"`z<cr>
+nnoremap <silent> <leader>' :normal mzcs"'`z<cr>
+
+" youcompleteme
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_complete_in_comments = 1
+let g:ycm_complete_in_strings = 1
+let g:ycm_python_binary_path = 'python'
