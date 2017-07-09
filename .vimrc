@@ -188,8 +188,8 @@ inoremap {; {<cr>};<esc>O
 
 " QOL remappings
 cnoremap <c-a> <c-b>
-nnoremap <c-down> ]c
-nnoremap <c-up>   [c
+nmap     <c-down> ]c
+nmap     <c-up>   [c
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
 nnoremap <leader>n :e <C-R>=fnameescape(expand('%:h')).'/'<cr>
@@ -461,6 +461,8 @@ set rtp+=/usr/local/opt/fzf
 
 " gitgutter
 let g:gitgutter_map_keys = 0
+nmap [c <Plug>GitGutterPrevHunk
+nmap ]c <Plug>GitGutterNextHunk
 
 " goyo
 nnoremap <silent> <leader>z :Goyo<cr>
