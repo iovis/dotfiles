@@ -2,6 +2,23 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME='agnoster'
 HIST_STAMPS="yyyy-mm-dd"
 
+# Environment variables
+export EDITOR="nvim"
+export GOPATH="$HOME/.go"
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+export LESS="-iMSx4 -FXR"
+export MANPAGER="$EDITOR -c 'set ft=man' -"
+export PAGER="less"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+export PATH="$HOME/.node/bin:$PATH"
+export PATH="$HOME/.rbenv/shims:$PATH"
+export PATH="$GOPATH/bin:$PATH"
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
+export PROJECT_HOME="$HOME/Sites"
+export RBENV_ROOT="$HOME/.rbenv"
+
 plugins=(
   brew
   bundler
@@ -54,24 +71,9 @@ bindkey "jj" vi-cmd-mode
 bindkey -M vicmd H vi-first-non-blank
 bindkey -M vicmd L vi-end-of-line
 
-# Environment variables
-export EDITOR="nvim"
-export GOPATH="$HOME/go"
-export LANG="en_US.UTF-8"
-export LC_ALL="en_US.UTF-8"
-export LESS="-iMSx4 -FXR"
-export MANPAGER="$EDITOR -c 'set ft=man' -"
-export PAGER="less"
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
-export PATH="$HOME/.node/bin:$PATH"
-export PATH="$HOME/.rbenv/shims:$PATH"
-export PATH="$GOPATH/bin:$PATH"
-export PATH="/usr/local/opt/sqlite/bin:$PATH"
-export PROJECT_HOME="$HOME/Sites"
-export RBENV_ROOT="$HOME/.rbenv"
-
 # Custom aliases
 alias agrep="alias | grep"
+alias aliases="$EDITOR ~/.aliases"
 alias bcu="brew cask install --force $(brew cask list) && brew cask cleanup"
 alias canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
@@ -100,35 +102,8 @@ alias vimrin="vimr --nvim -u ~/.dotfiles/.vimrc_min"
 alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
 alias zshrc="$EDITOR ~/.zshrc"
 
-# TEVA
-alias empresas="ssh -p 3105 jdelsaz@192.168.240.10"
-alias empresas_pre="ssh -p 3105 jdelsaz@192.168.243.10"
-alias intranet="ssh -p 3105 kgordeev@192.168.240.7"
-alias intranet_pre="ssh -p 3105 kgordeev@192.168.243.7"
-alias validador="ssh -p 3105 jdelsaz@192.168.240.8"
-alias validador_pre="ssh -p 3105 jdelsaz@192.168.243.8"
-
-# Rubicon
-alias cdr="cd ~/Sites/rubicon"
-alias restartwebserver="stopwebserver && startwebserver"
-alias restoredump="pg_restore --verbose --clean --no-acl --no-owner -h localhost -d rubicon_development"
-alias start="brew services start postgresql; brew services start memcached"
-alias status="brew services list"
-alias stop="brew services stop postgresql; brew services stop memcached"
-alias tsr="tmuxinator start rubicon"
-alias tsrs="tmuxinator start rubicon_server"
-
-# Rubicon servers
-alias demo2="ssh ubuntu@52.207.86.71"
-alias demo="ssh ubuntu@52.6.99.70"
-alias demowest="ssh ubuntu@52.43.65.31"
-alias dev="ssh ubuntu@52.203.137.139"
-alias jenkins="ssh jenkins@34.207.114.111"
-alias narakaserver="ssh ubuntu@35.160.120.60"
-alias purserver="ssh ubuntu@52.202.106.44"
-alias sfdph-qa="ssh ubuntu@35.165.146.237"
-alias workerdev="ssh ubuntu@54.175.64.198"
-alias workerstaging="ssh ubuntu@54.208.3.232"
+# External aliases
+source ~/.aliases
 
 # Disable fucking <C-s> flow control
 stty -ixon
