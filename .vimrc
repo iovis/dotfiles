@@ -361,7 +361,7 @@ nnoremap <c-p> :source ~/.vim/sessions/
 
 " Make
 nnoremap <silent> <leader>m :make<cr>
-nnoremap <leader>: :!
+nnoremap <leader>. :!
 
 " Commands
 " Autosave on focus lost
@@ -448,9 +448,9 @@ hi CSVColumnOdd  term=NONE   ctermbg=NONE
 let delimitMate_expand_cr = 1
 
 " dispatch
-nnoremap <leader>: :Start<space>
+nnoremap <leader>. :Start<space>
 nnoremap <silent> <leader>m :Dispatch<cr>
-vnoremap <leader>: :Start<space>
+vnoremap <leader>. :Start<space>
 vnoremap <silent> <leader>m :Dispatch<cr>
 
 " fugitive

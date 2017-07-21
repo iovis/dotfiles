@@ -273,7 +273,7 @@ nnoremap <c-p> :source ~/.vim/sessions/
 
 " Make
 nnoremap <silent> <leader>m :make<cr>
-nnoremap <leader>: :!
+nnoremap <leader>. :!
 
 " Commands
 " Autosave on focus lost
