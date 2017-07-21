@@ -44,6 +44,7 @@ call dein#add('shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('sirver/ultisnips')
 call dein#add('sjl/gundo.vim')
 call dein#add('terryma/vim-multiple-cursors')
+call dein#add('thoughtbot/vim-rspec')
 call dein#add('tmux-plugins/vim-tmux-focus-events')
 call dein#add('tommcdo/vim-lion')
 call dein#add('tomtom/tlib_vim')                 " Required by vim-snippets
@@ -502,6 +503,13 @@ let NERDTreeShowBookmarks = 1
 let NERDTreeShowLineNumbers = 1
 nnoremap <silent> <leader>K :NERDTreeFind<cr>
 nnoremap <silent> <leader>k :NERDTreeToggle<cr>
+
+" rspec
+let g:rspec_command = "Dispatch bundle exec rspec -fd {spec}"
+nnoremap <leader>sf :call RunCurrentSpecFile()<cr>
+nnoremap <leader>ss :call RunNearestSpec()<cr>
+nnoremap <leader>sl :call RunLastSpec()<cr>
+nnoremap <leader>sa :call RunAllSpecs()<cr>
 
 " session
 let g:session_autoload = 'no'
