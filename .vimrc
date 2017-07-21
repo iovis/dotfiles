@@ -252,8 +252,10 @@ command! W w !sudo tee % > /dev/null
 nnoremap <silent> <leader>k :Lexplore<cr>
 
 " Quick replace word under cursor
-nnoremap s  :%s/\<<c-r><c-w>\>//g<left><left>
-vnoremap s y:%s/<c-r>"//g<left><left>
+nnoremap s  :%s///g<left><left><left>
+nnoremap S  :%s/\<<c-r><c-w>\>//g<left><left>
+vnoremap s  :%s///g<left><left><left>
+vnoremap S y:%s/<c-r>"//g<left><left>
 
 " Copy to clipboard
 nnoremap <leader>y "+y
