@@ -310,21 +310,39 @@ vnoremap <silent> gs :sort<cr>
 nnoremap <silent> gr :<C-U>set operatorfunc=SortReverseLinesOpFunc<CR>g@
 vnoremap <silent> gr :sort!<cr>
 
+" Smooth Grepping
+command! -nargs=+ -complete=file -bar Grep silent! grep! <args>|cwindow|redraw!
+nnoremap <leader>f  :Grep -R<space>
+vnoremap <leader>f y:Grep -R "<c-r>""
+
+" The Silver Searcher
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  let g:ag_highlight = 1
+  nnoremap <leader>f  :Ag! -Q<space>
+  vnoremap <leader>f y:Ag! -Q "<c-r>""
+endif
+
 " Grep operator
 nnoremap <silent> <leader>g :set operatorfunc=GrepOperator<cr>g@
 vnoremap <silent> <leader>g :<c-u>call GrepOperator(visualmode())<cr>
 
 function! GrepOperator(type)
-    if a:type ==# 'v'
-        normal! `<v`>y
-    elseif a:type ==# 'char'
-        normal! `[v`]y
-    else
-        return
-    endif
+  if a:type ==# 'v'
+    normal! `<v`>y
+  elseif a:type ==# 'char'
+    normal! `[v`]y
+  else
+    return
+  endif
 
-    silent execute "grep! -R " . shellescape(@@) . " ."
-    copen
+  if executable('ag')
+    silent execute "Ag " . shellescape(@@)
+  else
+    silent execute "Grep -R " . shellescape(@@) . " ."
+  endif
 endfunction
 
 " Fast vimrc editing
@@ -406,16 +424,6 @@ endfunction
 """""""""""""""""""
 " Plugin specific "
 """""""""""""""""""
-" ag
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  let g:ag_highlight = 1
-  nnoremap <leader>f  :Ag! -Q<space>
-  vnoremap <leader>f y:Ag! -Q <c-r>"
-endif
-
 " airline
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#enabled = 1
