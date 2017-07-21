@@ -122,6 +122,8 @@ nnoremap Ñ ?
 nnoremap ñ /
 noremap ' `
 noremap <silent> <leader>, :set relativenumber! cursorline!<cr>
+noremap <silent> <leader>2 :set shiftwidth=2 tabstop=2<cr>
+noremap <silent> <leader>4 :set shiftwidth=4 tabstop=4<cr>
 noremap <silent> <leader><cr> :noh<cr>
 noremap H g^
 noremap L g$
