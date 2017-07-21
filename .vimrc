@@ -286,12 +286,10 @@ nnoremap <leader><leader> :ls<cr>:b!<space>
 nnoremap <c-e> <c-i>
 
 " Tags
-nnoremap t <C-]>
+nmap t <c-]>
 nnoremap T g]
-vnoremap t <C-]>
-vnoremap T g]
-nnoremap <silent> gt :vsp <cr>:exec("tag ".expand("<cword>"))<cr>
-nnoremap <silent> gT :sp <cr>:exec("tag ".expand("<cword>"))<cr>
+nmap <silent> gt :vsp <cr><c-]>
+nmap <silent> gT :sp <cr><c-]>
 nnoremap <silent> <leader>T :VimProcBang ctags<cr>
 
 " Work with splits
