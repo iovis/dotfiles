@@ -175,17 +175,13 @@ let mapleader = "\<Space>"
 " Some expansions
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 inoremap ,, <c-o>A,
+inoremap ;; <c-o>A;
 inoremap ,M ->
 inoremap ,m <c-o>A-><c-f>
 inoremap ,n =>
-inoremap ;; <c-o>A;
 inoremap <c-a> <home>
 inoremap <c-e> <end>
 inoremap <m-o> <esc>o
-inoremap [, [<cr>],<esc>O
-inoremap [; [<cr>];<esc>O
-inoremap {, {<cr>},<esc>O
-inoremap {; {<cr>};<esc>O
 
 " QOL remappings
 cnoremap <c-a> <c-b>
