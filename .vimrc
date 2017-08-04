@@ -52,6 +52,7 @@ call dein#add('tpope/vim-bundler')
 call dein#add('tpope/vim-characterize')          " Use ga to see additional representations of that character
 call dein#add('tpope/vim-commentary')
 call dein#add('tpope/vim-dispatch')
+call dein#add('tpope/vim-endwise')
 call dein#add('tpope/vim-eunuch')                " Unix helpers (:Move, :Remove...)
 call dein#add('tpope/vim-fugitive')
 call dein#add('tpope/vim-git')
