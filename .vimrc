@@ -326,6 +326,9 @@ if executable('ag')
   let g:ag_highlight = 1
   nnoremap <leader>f  :Ag! -Q<space>
   vnoremap <leader>f y:Ag! -Q "<c-r>""
+
+  nnoremap K  :silent Ag! -Q "\b<cword>\b"<cr>
+  vnoremap K y:silent Ag! -Q "<c-r>""<cr>
 endif
 
 " Grep operator
