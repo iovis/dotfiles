@@ -14,7 +14,6 @@ export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="$HOME/.rbenv/shims:$PATH"
 export PATH="$GOPATH/bin:$PATH"
-export PATH="/usr/local/opt/sqlite/bin:$PATH"
 export PROJECT_HOME="$HOME/Sites"
 export RBENV_ROOT="$HOME/.rbenv"
 
@@ -51,7 +50,6 @@ plugins=(
   tmux
   tmuxinator
   virtualenvwrapper
-  websearch
   yarn
 )
 
