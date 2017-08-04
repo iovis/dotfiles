@@ -322,10 +322,10 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 
   let g:ag_highlight = 1
-  nnoremap <leader>f  :Ag! -Q<space>
+  nnoremap <leader>f  :Ag! -Q ""<left>
   vnoremap <leader>f y:Ag! -Q "<c-r>""
 
-  nnoremap K  :silent Ag! -Q "\b<cword>\b"<cr>
+  nnoremap K  :silent Ag! -Q "<c-r><c-w>"<cr>
   vnoremap K y:silent Ag! -Q "<c-r>""<cr>
 endif
 
