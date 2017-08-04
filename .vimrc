@@ -204,8 +204,6 @@ nnoremap <silent> <leader>w :w!<cr>
 nnoremap <silent> <leader>x :qa<cr>
 nnoremap <silent> <leader>Ç :lclose<cr>
 nnoremap <silent> <leader>ç :lwindow<cr>
-nnoremap <silent> ª :bdelete!<cr>
-nnoremap <silent> º :bdelete<cr>
 nnoremap <silent> Ç :cclose<cr>
 nnoremap <silent> ç :cwindow<cr>
 nnoremap M <c-w>o
@@ -224,10 +222,6 @@ onoremap ar a]
 onoremap ir i]
 vnoremap <silent> Q :norm @q<cr>
 
-" bind K to search word under cursor in project
-nnoremap K  :silent grep! "\b<cword>\b"<cr>:copen<cr>
-vnoremap K y:silent grep! "<c-r>""<cr>:copen<cr>
-
 " Change word under cursor or selection with yanked
 nnoremap R ciw<c-r>0<esc>
 vnoremap R "0p
@@ -245,9 +239,6 @@ vnoremap # y?<c-r>"<cr>
 
 " Save with root permissions
 command! W w !sudo tee % > /dev/null
-
-" Open file explorer
-nnoremap <silent> <leader>k :Lexplore<cr>
 
 " Quick replace word under cursor
 nnoremap s  :%s///g<left><left><left>
@@ -269,10 +260,6 @@ nnoremap <silent> <M-j> mz:m+<cr>`z
 nnoremap <silent> <M-k> mz:m-2<cr>`z
 vnoremap <silent> <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vnoremap <silent> <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-nnoremap <silent> ¶ mz:m+<cr>`z
-nnoremap <silent> § mz:m-2<cr>`z
-vnoremap <silent> ¶ :m'>+<cr>`<my`>mzgv`yo`z
-vnoremap <silent> § :m'<-2<cr>`>my`<mzgv`yo`z
 
 " Navigate buffers
 nnoremap <BS> <C-^>
@@ -281,7 +268,6 @@ nnoremap <silent> <s-tab> :bprevious<cr>
 nnoremap <silent> <leader>1 :bfirst<cr>
 nnoremap <silent> <leader>0 :blast<cr>
 nnoremap <silent> <leader>t :enew<cr>
-nnoremap <leader><leader> :ls<cr>:b!<space>
 
 " Remapping <tab> makes <c-i> not work
 nnoremap <c-e> <c-i>
@@ -310,11 +296,6 @@ nnoremap <silent> gs :<C-U>set operatorfunc=SortLinesOpFunc<CR>g@
 vnoremap <silent> gs :sort<cr>
 nnoremap <silent> gr :<C-U>set operatorfunc=SortReverseLinesOpFunc<CR>g@
 vnoremap <silent> gr :sort!<cr>
-
-" Smooth Grepping
-command! -nargs=+ -complete=file -bar Grep silent! grep! <args>|cwindow|redraw!
-nnoremap <leader>f  :Grep -R<space>
-vnoremap <leader>f y:Grep -R "<c-r>""
 
 " The Silver Searcher
 if executable('ag')
@@ -345,7 +326,7 @@ function! GrepOperator(type)
   if executable('ag')
     silent execute "Ag " . shellescape(@@)
   else
-    silent execute "Grep -R " . shellescape(@@) . " ."
+    silent execute "grep -R " . shellescape(@@) . " ."
   endif
 endfunction
 
@@ -355,14 +336,6 @@ nnoremap <silent> <leader>E :so $MYVIMRC<cr>
 
 " Duplicate file
 nnoremap <silent> <leader>D :saveas <C-R>=fnameescape(expand('%:h')).'/'<cr>
-
-" Sessions
-nnoremap <c-s> :mksession! ~/.vim/sessions/
-nnoremap <c-p> :source ~/.vim/sessions/
-
-" Make
-nnoremap <silent> <leader>m :make<cr>
-nnoremap <leader>. :!
 
 " Commands
 " Autosave on focus lost
@@ -451,7 +424,6 @@ let delimitMate_expand_cr = 1
 " dispatch
 nnoremap <leader>. :Start<space>
 nnoremap <silent> <leader>m :Dispatch<cr>
-vnoremap <leader>. :Start<space>
 vnoremap <silent> <leader>m :Dispatch<cr>
 
 " fugitive
