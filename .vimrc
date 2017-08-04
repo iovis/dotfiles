@@ -460,15 +460,15 @@ nnoremap <silent> <leader>- :Gstatus<cr>gg<c-n>
 " fzf
 autocmd FileType fzf tnoremap <silent> <buffer> <c-j> <down>
 autocmd FileType fzf tnoremap <silent> <buffer> <c-k> <up>
-let g:fzf_command_prefix = 'FZF'
-nnoremap <silent> <leader><leader> :FZFBuffers<cr>
-nnoremap <silent> <leader>H :FZFHistory<cr>
-nnoremap <silent> <leader>O :FZFFiles<cr>
-nnoremap <silent> <leader>R :FZFTags<cr>
-nnoremap <silent> <leader>j :FZFSnippets<cr>
-nnoremap <silent> <leader>o :FZFGFiles<cr>
-nnoremap <silent> <leader>r :FZFBTags<cr>
-nnoremap <silent> <leader>ñ :FZFLines<cr>
+let g:fzf_command_prefix = 'F'
+nnoremap <silent> <leader><leader> :FBuffers<cr>
+nnoremap <silent> <leader>H :FHistory<cr>
+nnoremap <silent> <leader>O :FFiles<cr>
+nnoremap <silent> <leader>R :FTags<cr>
+nnoremap <silent> <leader>j :FSnippets<cr>
+nnoremap <silent> <leader>o :FGFiles<cr>
+nnoremap <silent> <leader>r :FBTags<cr>
+nnoremap <silent> <leader>ñ :FLines<cr>
 set rtp+=/usr/local/opt/fzf
 
 " gitgutter
