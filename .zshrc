@@ -12,7 +12,6 @@ export MANPAGER="$EDITOR -c 'set ft=man' -"
 export PAGER="less"
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-export PATH="$HOME/.node/bin:$PATH"
 export PATH="$HOME/.rbenv/shims:$PATH"
 export PATH="$GOPATH/bin:$PATH"
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
@@ -53,6 +52,7 @@ plugins=(
   tmuxinator
   virtualenvwrapper
   websearch
+  yarn
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -85,7 +85,7 @@ alias gemo="gem outdated | grep -f ~/.rbenv/default-gems"
 alias gitconfig="$EDITOR ~/.gitconfig"
 alias hosts="sudo $EDITOR /etc/hosts"
 alias https="http --default-scheme=https"
-alias libupdate="brew update; brew upgrade; gem update --system; echo '\nOutdated gems'; gem outdated; npm -g outdated; pip list --outdated --format=columns;"
+alias libupdate="brew update; brew upgrade; yarn global upgrade; gem update --system; echo '\nOutdated gems'; gem outdated; pip list --outdated --format=columns;"
 alias ni="nvim"
 alias nin="nvim -u ~/.dotfiles/.vimrc_min"
 alias npms="npm ls -g --depth=0"
