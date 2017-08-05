@@ -36,7 +36,6 @@ call dein#add('mxw/vim-jsx')
 call dein#add('vim-scripts/nginx.vim')
 call dein#add('pangloss/vim-javascript')
 call dein#add('pbrisbin/vim-mkdir')
-call dein#add('raimondi/delimitMate.git')
 call dein#add('rking/ag.vim')
 call dein#add('scrooloose/nerdtree')
 call dein#add('shawncplus/phpcomplete.vim')
@@ -69,6 +68,10 @@ call dein#add('vim-ruby/vim-ruby')
 call dein#add('wellle/targets.vim')
 call dein#add('xolox/vim-misc')
 call dein#add('xolox/vim-session')
+
+" This one goes after YouCompleteMe so it doesn't
+" overload the imap <bs> mapping
+call dein#add('raimondi/delimitMate.git')
 
 call dein#end()
 
