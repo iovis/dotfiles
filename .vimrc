@@ -204,6 +204,8 @@ nnoremap <silent> <leader>w :w!<cr>
 nnoremap <silent> <leader>x :qa<cr>
 nnoremap <silent> <leader>Ç :lclose<cr>
 nnoremap <silent> <leader>ç :lwindow<cr>
+nnoremap <silent> ª :bdelete!<cr>
+nnoremap <silent> º :bdelete<cr>
 nnoremap <silent> Ç :cclose<cr>
 nnoremap <silent> ç :cwindow<cr>
 nnoremap M <c-w>o
