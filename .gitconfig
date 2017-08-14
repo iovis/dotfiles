@@ -8,33 +8,21 @@
 [core]
   excludesfile = /Users/david/.gitignore_global
   autocrlf = input
-[difftool "phpstorm"]
-  cmd = /Applications/PhpStorm.app/Contents/MacOS/phpstorm
-  trustExitCode = true
-[difftool "sublimerge"]
-  cmd = subl -n --wait \"$REMOTE\" \"$LOCAL\" --command \"sublimerge_diff_views {\\\"left_read_only\\\": true, \\\"right_read_only\\\": true}\"
-[diff]
-  tool = vimdiff
-[difftool]
-  prompt = false
-[mergetool "phpstorm"]
-  cmd = /Applications/PhpStorm.app/Contents/MacOS/phpstorm
-  trustExitCode = true
-[mergetool "sublimerge"]
-  cmd = subl -n --wait \"$REMOTE\" \"$BASE\" \"$LOCAL\" \"$MERGED\" --command \"sublimerge_diff_views\"
-  trustExitCode = false
-[mergetool]
-  prompt = false
-  keepBackup = false
 [merge]
   tool = vimdiff
-  conflictstyle = diff3
+[mergetool]
+  prompt = true
+[mergetool "vimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[difftool]
+  prompt = false
+  keepBackup = false
+[diff]
+  tool = vimdiff
 [push]
   default = simple
 [color]
   ui = auto
-; [pull]
-  ; rebase = preserve
 [pull]
   rebase = true
 [credential]
