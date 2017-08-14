@@ -340,7 +340,7 @@ nnoremap <silent> <leader>e :e! $MYVIMRC<cr>
 nnoremap <silent> <leader>E :so $MYVIMRC<cr>
 
 " Duplicate file
-nnoremap <silent> <leader>D :saveas <C-R>=fnameescape(expand('%:h')).'/'<cr>
+nnoremap <leader>W :saveas <C-R>=fnameescape(expand('%:h')).'/'<cr>
 
 " Commands
 " Autosave on focus lost
