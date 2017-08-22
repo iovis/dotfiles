@@ -99,6 +99,7 @@ nnoremap <silent> <c-end>   :lnext<cr>
 nnoremap <silent> <c-home>  :lprevious<cr>
 nnoremap <silent> <end>     :cnext<cr>
 nnoremap <silent> <home>    :cprevious<cr>
+nnoremap <silent> <leader>= <c-w>=
 nnoremap <silent> <leader>X :qa!<cr>
 nnoremap <silent> <leader>c :close<cr>
 nnoremap <silent> <leader>p :set wrap!<cr>
