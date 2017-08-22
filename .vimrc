@@ -490,7 +490,7 @@ nnoremap <silent> <leader>K :NERDTreeFind<cr>
 nnoremap <silent> <leader>k :NERDTreeToggle<cr>
 
 " rspec
-let g:rspec_command = "Dispatch bundle exec rspec -fd {spec}"
+let g:rspec_command = "Dispatch bundle exec bin/rspec {spec}"
 nnoremap <leader>sf :call RunCurrentSpecFile()<cr>
 nnoremap <leader>ss :call RunNearestSpec()<cr>
 nnoremap <leader>sl :call RunLastSpec()<cr>
