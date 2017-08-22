@@ -223,8 +223,6 @@ noremap <silent> <leader>4 :set shiftwidth=4 tabstop=4<cr>
 noremap <silent> <leader><cr> :noh<cr>
 noremap H g^
 noremap L g$
-onoremap ar a]
-onoremap ir i]
 vnoremap <silent> Q :norm @q<cr>
 
 " Change word under cursor or selection with yanked
@@ -505,6 +503,9 @@ nnoremap <c-s> :SaveSession!<space>
 " tagbar
 let g:tagbar_compact = 1
 nmap <silent> <leader>l :TagbarToggle<CR>
+
+" targets
+let g:targets_pairs = '()b {}B []r <>'
 
 " tmux navigator
 let g:tmux_navigator_save_on_switch = 1
