@@ -265,6 +265,10 @@ nnoremap <silent> <M-j> mz:m+<cr>`z
 nnoremap <silent> <M-k> mz:m-2<cr>`z
 vnoremap <silent> <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vnoremap <silent> <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+nnoremap <silent> ¶ mz:m+<cr>`z
+nnoremap <silent> § mz:m-2<cr>`z
+vnoremap <silent> ¶ :m'>+<cr>`<my`>mzgv`yo`z
+vnoremap <silent> § :m'<-2<cr>`>my`<mzgv`yo`z
 
 " Navigate buffers
 nnoremap <BS> <C-^>
