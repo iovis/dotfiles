@@ -1,4 +1,4 @@
-*pi_netrw.txt*  For Vim version 8.0.  Last change: 2017 Mar 21
+*pi_netrw.txt*  For Vim version 8.0.  Last change: 2017 Jul 27
 
 	    ------------------------------------------------
 	    NETRW REFERENCE MANUAL    by Charles E. Campbell
@@ -224,7 +224,7 @@ EXTERNAL APPLICATIONS AND PROTOCOLS			*netrw-externapp* {{{2
 
 		    elinks : "-source >"
 		    links  : "-dump >"
-		    curl   : "-o"
+		    curl   : "-L -o"
 		    wget   : "-q -O"
 		    fetch  : "-o"
 <
@@ -2101,7 +2101,7 @@ the two directories the same, use the "c" map (just type c).  That map will
 set Vim's notion of the current directory to netrw's current browsing
 directory.
 
-*netrw-c* : This map's name has been changed to cd (see |netrw-cd|).
+*netrw-c* : This map's name has been changed from "c" to cd (see |netrw-cd|).
           This change was done to allow for |netrw-cb| and |netrw-cB| maps.
 
 Associated setting variable: |g:netrw_keepdir|
@@ -3886,6 +3886,12 @@ netrw:
 				  (affects s:NetrwOptionRestore() and
 				  s:NetrwSafeOptions(); also introduced
 				  s:NetrwRestoreSetting())
+		Jun 26, 2017	* (Christian Brabandt) provided a patch to
+				  allow curl to follow redirects (ie. -L
+				  option)
+		Jun 26, 2017	* (Callum Howard) reported a problem with
+				  :Lexpore not removing the Lexplore window
+				  after a change-directory
 	v157:	Apr 20, 2016	* (Nicola) had set up a "nmap <expr> ..." with
 				  a function that returned a 0 while silently
 				  invoking a shell command.  The shell command
