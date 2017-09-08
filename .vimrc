@@ -490,11 +490,11 @@ nnoremap <silent> <leader>K :NERDTreeFind<cr>
 nnoremap <silent> <leader>k :NERDTreeToggle<cr>
 
 " rspec
-let g:rspec_command = "Dispatch bundle exec bin/rspec {spec}"
-nnoremap <leader>sf :call RunCurrentSpecFile()<cr>
-nnoremap <leader>ss :call RunNearestSpec()<cr>
-nnoremap <leader>sl :call RunLastSpec()<cr>
-nnoremap <leader>sa :call RunAllSpecs()<cr>
+let g:rspec_command = "Dispatch bin/rspec {spec}"
+autocmd FileType ruby nnoremap <silent> <buffer> <leader>sf :call RunCurrentSpecFile()<cr>
+autocmd FileType ruby nnoremap <silent> <buffer> <leader>ss :call RunNearestSpec()<cr>
+autocmd FileType ruby nnoremap <silent> <buffer> <leader>sl :call RunLastSpec()<cr>
+autocmd FileType ruby nnoremap <silent> <buffer> <leader>sa :call RunAllSpecs()<cr>
 
 " session
 let g:session_autoload = 'no'
