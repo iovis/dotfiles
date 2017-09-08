@@ -462,7 +462,7 @@ nmap ]c <Plug>GitGutterNextHunk
 nnoremap <silent> <leader>z :Goyo<cr>
 
 " gundo
-nnoremap <silent> U :GundoToggle<cr>
+nnoremap <silent> <leader>u :GundoToggle<cr>
 
 " jsx
 let g:jsx_ext_required = 0
