@@ -517,7 +517,6 @@ let g:targets_pairs = '()b {}B []r <>'
 let g:tmux_navigator_save_on_switch = 1
 
 " typescript
-autocmd FileType typescript nnoremap <silent> <buffer> <leader>t :YcmCompleter GetType<cr>
 autocmd FileType typescript nnoremap <silent> <buffer> T :YcmCompleter GoToReferences<cr>
 autocmd FileType typescript nnoremap <silent> <buffer> t :YcmCompleter GoToDefinition<cr>
 let g:typescript_compiler_binary = 'tsc'
