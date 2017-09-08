@@ -543,3 +543,11 @@ let g:ycm_python_binary_path = 'python'
 command! Dcup   !docker-compose up -d
 command! Dcps   !docker-compose ps
 command! Dcstop !docker-compose stop
+
+" US ANSI layout
+" nnoremap <silent> <leader>` :Bdelete<cr>
+" nnoremap <silent> <leader>~ :Bdelete!<cr>
+" nnoremap <silent> \  :cwindow<cr>
+" nnoremap <silent> \| :cclose<cr>
+" nnoremap <silent> `  :bdelete<cr>
+" nnoremap <silent> ~  :bdelete!<cr>
