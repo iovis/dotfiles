@@ -22,6 +22,7 @@ call dein#add('iovis9/vim-searchindex')
 call dein#add('jmcantrell/vim-virtualenv')
 call dein#add('junegunn/fzf.vim')
 call dein#add('junegunn/goyo.vim')
+call dein#add('justinmk/vim-sneak')
 call dein#add('kana/vim-textobj-entire')
 call dein#add('kana/vim-textobj-indent')
 call dein#add('kana/vim-textobj-user')
@@ -245,10 +246,10 @@ vnoremap # y?<c-r>"<cr>
 command! W w !sudo tee % > /dev/null
 
 " Quick replace word under cursor
-nnoremap s  :%s///g<left><left><left>
-nnoremap S  :%s/\<<c-r><c-w>\>//g<left><left>
-vnoremap s  :%s///g<left><left><left>
-vnoremap S y:%s/<c-r>"//g<left><left>
+nnoremap <leader>s  :%s///g<left><left><left>
+nnoremap <leader>S  :%s/\<<c-r><c-w>\>//g<left><left>
+vnoremap <leader>s  :%s///g<left><left><left>
+vnoremap <leader>S y:%s/<c-r>"//g<left><left>
 
 " Copy to clipboard
 nnoremap <leader>y "+y
@@ -500,6 +501,10 @@ let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
 nnoremap <c-p> :OpenSession!<space>
 nnoremap <c-s> :SaveSession!<space>
+
+" sneak
+let g:sneak#s_next = 1
+let g:sneak#use_ic_scs = 1
 
 " tagbar
 let g:tagbar_compact = 1
