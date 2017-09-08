@@ -283,7 +283,7 @@ nnoremap <c-e> <c-i>
 
 " Tags
 nmap t <c-]>
-nnoremap T g]
+nmap T g]
 nmap <silent> gt :vsp <cr><c-]>
 nmap <silent> gT :sp <cr><c-]>
 nnoremap <silent> <leader>T :VimProcBang ctags<cr>
