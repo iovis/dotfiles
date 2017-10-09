@@ -419,6 +419,7 @@ let g:airline_theme = 'tomorrow'
 
 " autoformat
 nnoremap <silent> <leader>b :Autoformat<cr>
+autocmd FileType javascript nnoremap <silent> <buffer> <leader>b :!eslint --fix %<cr>
 
 " bdelete (don't close pane)
 nnoremap <silent> <leader>ª :Bdelete!<cr>
