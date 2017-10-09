@@ -164,3 +164,6 @@ ncodi() {
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Keep at the end
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
