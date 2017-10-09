@@ -128,6 +128,15 @@ onoremap ar a]
 onoremap ir i]
 vnoremap <silent> Q :norm @q<cr>
 
+" Properly indent text when pasting
+nnoremap p p`[v`]=
+nnoremap P P`[v`]=
+nnoremap gp p
+nnoremap gP P
+
+" Select last inserted text
+nnoremap gV `[v`]
+
 " bind K to search word under cursor in project
 nnoremap K  :silent grep! "\b<cword>\b"<cr>:copen<cr>
 vnoremap K y:silent grep! "<c-r>""<cr>:copen<cr>

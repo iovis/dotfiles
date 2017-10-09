@@ -228,6 +228,15 @@ noremap H g^
 noremap L g$
 vnoremap <silent> Q :norm @q<cr>
 
+" Properly indent text when pasting
+nnoremap p p`[v`]=
+nnoremap P P`[v`]=
+nnoremap gp p
+nnoremap gP P
+
+" Select last inserted text
+nnoremap gV `[v`]
+
 " Change word under cursor or selection with yanked
 nnoremap R ciw<c-r>0<esc>
 vnoremap R "0p
