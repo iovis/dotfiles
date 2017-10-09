@@ -82,6 +82,7 @@ alias flushcache="dscacheutil -flushcache"
 alias flushmemcached="echo 'flush_all' | nc localhost 11211"
 alias gcam="git commit -v -am"
 alias gemo="gem outdated | grep -f ~/.rbenv/default-gems"
+alias git=hub
 alias gitconfig="$EDITOR ~/.gitconfig"
 alias hosts="sudo $EDITOR /etc/hosts"
 alias https="http --default-scheme=https"
