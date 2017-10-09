@@ -28,6 +28,7 @@ call dein#add('kana/vim-textobj-indent')
 call dein#add('kana/vim-textobj-user')
 call dein#add('kchmck/vim-coffee-script')
 call dein#add('leafgarland/typescript-vim')
+call dein#add('machakann/vim-highlightedyank')
 call dein#add('majutsushi/tagbar')
 call dein#add('marcweber/vim-addon-mw-utils')  " Required by vim-snippets
 call dein#add('mattn/emmet-vim')
@@ -463,6 +464,9 @@ nnoremap <silent> <leader>z :Goyo<cr>
 
 " gundo
 nnoremap <silent> <leader>u :GundoToggle<cr>
+
+" highlightedyank
+hi HighlightedyankRegion ctermbg=110 ctermfg=235 guibg=#8fafd7 guifg=#262626 cterm=NONE gui=NONE
 
 " jsx
 let g:jsx_ext_required = 0
