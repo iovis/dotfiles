@@ -1,88 +1,77 @@
-"dein Scripts-----------------------------
 set nocompatible
 filetype off
 
-set runtimepath+=~/.dotfiles/.vim/bundle/repos/github.com/Shougo/dein.vim
-call dein#begin(expand('~/.dotfiles/.vim/bundle'))
-call dein#add('Shougo/dein.vim')
+call plug#begin()
 
 " Add or remove your plugins here:
-call dein#add('airblade/vim-gitgutter')
-call dein#add('benekastah/neomake')
-call dein#add('cakebaker/scss-syntax.vim')
-call dein#add('chiel92/vim-autoformat')
-call dein#add('chrisbra/csv.vim')
-call dein#add('chriskempson/base16-vim')
-call dein#add('christoomey/vim-tmux-navigator')
-call dein#add('digitaltoad/vim-pug')
-call dein#add('elzr/vim-json')
-call dein#add('haya14busa/dein-command.vim')
-call dein#add('honza/vim-snippets')
-call dein#add('iovis9/vim-searchindex')
-call dein#add('jmcantrell/vim-virtualenv')
-call dein#add('junegunn/fzf.vim')
-call dein#add('junegunn/goyo.vim')
-call dein#add('justinmk/vim-sneak')
-call dein#add('kana/vim-textobj-entire')
-call dein#add('kana/vim-textobj-indent')
-call dein#add('kana/vim-textobj-user')
-call dein#add('kchmck/vim-coffee-script')
-call dein#add('leafgarland/typescript-vim')
-call dein#add('machakann/vim-highlightedyank')
-call dein#add('majutsushi/tagbar')
-call dein#add('marcweber/vim-addon-mw-utils')  " Required by vim-snippets
-call dein#add('mattn/emmet-vim')
-call dein#add('metakirby5/codi.vim')
-call dein#add('moll/vim-bbye')
-call dein#add('mxw/vim-jsx')
-call dein#add('vim-scripts/nginx.vim')
-call dein#add('pangloss/vim-javascript')
-call dein#add('pbrisbin/vim-mkdir')
-call dein#add('rking/ag.vim')
-call dein#add('scrooloose/nerdtree')
-call dein#add('shawncplus/phpcomplete.vim')
-call dein#add('shougo/vimproc.vim', {'build' : 'make'})
-call dein#add('sirver/ultisnips')
-call dein#add('sjl/gundo.vim')
-call dein#add('terryma/vim-multiple-cursors')
-call dein#add('thoughtbot/vim-rspec')
-call dein#add('tmux-plugins/vim-tmux-focus-events')
-call dein#add('tommcdo/vim-lion')
-call dein#add('tomtom/tlib_vim')                 " Required by vim-snippets
-call dein#add('tpope/vim-bundler')
-call dein#add('tpope/vim-characterize')          " Use ga to see additional representations of that character
-call dein#add('tpope/vim-commentary')
-call dein#add('tpope/vim-dispatch')
-call dein#add('tpope/vim-endwise')
-call dein#add('tpope/vim-eunuch')                " Unix helpers (:Move, :Remove...)
-call dein#add('tpope/vim-fugitive')
-call dein#add('tpope/vim-git')
-call dein#add('tpope/vim-ragtag')
-call dein#add('tpope/vim-rails')
-call dein#add('tpope/vim-repeat')
-call dein#add('tpope/vim-rhubarb')
-call dein#add('tpope/vim-speeddating')
-call dein#add('tpope/vim-surround')
-call dein#add('valloric/youcompleteme')
-call dein#add('vim-airline/vim-airline')
-call dein#add('vim-airline/vim-airline-themes')
-call dein#add('vim-ruby/vim-ruby')
-call dein#add('wellle/targets.vim')
-call dein#add('xolox/vim-misc')
-call dein#add('xolox/vim-session')
+Plug 'airblade/vim-gitgutter'
+Plug 'benekastah/neomake'
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'chiel92/vim-autoformat'
+Plug 'chrisbra/csv.vim'
+Plug 'chriskempson/base16-vim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'digitaltoad/vim-pug'
+Plug 'elzr/vim-json'
+Plug 'honza/vim-snippets'
+Plug 'iovis9/vim-searchindex'
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'justinmk/vim-sneak'
+Plug 'kana/vim-textobj-entire'
+Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-user'
+Plug 'kchmck/vim-coffee-script'
+Plug 'leafgarland/typescript-vim'
+Plug 'machakann/vim-highlightedyank'
+Plug 'majutsushi/tagbar'
+Plug 'marcweber/vim-addon-mw-utils'  " Required by vim-snippets
+Plug 'mattn/emmet-vim'
+Plug 'metakirby5/codi.vim'
+Plug 'moll/vim-bbye'
+Plug 'mxw/vim-jsx'
+Plug 'vim-scripts/nginx.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'pbrisbin/vim-mkdir'
+Plug 'rking/ag.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'shawncplus/phpcomplete.vim'
+Plug 'shougo/vimproc.vim', {'do' : 'make'}
+Plug 'sirver/ultisnips'
+Plug 'sjl/gundo.vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'thoughtbot/vim-rspec'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'tommcdo/vim-lion'
+Plug 'tomtom/tlib_vim'                 " Required by vim-snippets
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-characterize'          " Use ga to see additional representations of that character
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-eunuch'                " Unix helpers (:Move, :Remove...)
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-git'
+Plug 'tpope/vim-ragtag'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-surround'
+Plug 'valloric/youcompleteme'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-ruby/vim-ruby'
+Plug 'wellle/targets.vim'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
 
 " This one goes after YouCompleteMe so it doesn't
 " overload the imap <bs> mapping
-call dein#add('raimondi/delimitMate.git')
+Plug 'raimondi/delimitMate'
 
-call dein#end()
-
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
-
-"End dein Scripts-------------------------
+call plug#end()
 
 " CUSTOM SETTINGS
 filetype plugin indent on

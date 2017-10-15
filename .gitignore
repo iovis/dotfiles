@@ -8,7 +8,9 @@
 .atom/split-diff
 .vim/.VimballRecord
 .vim/.netrwhist
+.vim/autoload/plug.vim
 .vim/bundle/*
+.vim/plugged/*
 .vim/sessions/*
 mpv/watch_later/*
 sublime/User/*/
