@@ -69,6 +69,8 @@ bindkey "^[OB" down-line-or-beginning-search
 bindkey "jj" vi-cmd-mode
 bindkey -M vicmd H vi-first-non-blank
 bindkey -M vicmd L vi-end-of-line
+bindkey "^N" autosuggest-accept
+bindkey "^P" forward-word
 
 # Custom aliases
 alias agrep="alias | grep"
@@ -165,5 +167,9 @@ ncodi() {
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Keep at the end
+## Keep at the end
+# Autosuggestions
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# ZSH syntax highlightning
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
