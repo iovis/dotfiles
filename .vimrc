@@ -312,6 +312,7 @@ if executable('ag')
 
   let g:ag_highlight = 1
   nnoremap <leader>f  :Ag! -Q ""<left>
+  nnoremap <leader>F  :Ag! -Q ""<left><c-r><c-w>
   vnoremap <leader>f y:Ag! -Q "<c-r>""
 
   nnoremap K  :silent Ag! -Q "<c-r><c-w>"<cr>

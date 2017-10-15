@@ -230,6 +230,7 @@ vnoremap <silent> gr :sort!<cr>
 " Smooth Grepping
 command! -nargs=+ -complete=file -bar Grep silent! grep! <args>|cwindow|redraw!
 nnoremap <leader>f  :Grep -R<space>
+nnoremap <leader>F  :Grep -R ""<left><c-r><c-w>
 vnoremap <leader>f y:Grep -R "<c-r>""
 
 " The Silver Searcher
@@ -243,6 +244,7 @@ if executable('ag')
 
   " Mappings
   nnoremap <leader>f  :Ag<space>
+  nnoremap <leader>F  :Ag! -Q ""<left><c-r><c-w>
   vnoremap <leader>f y:Ag "<c-r>""
 endif
 
