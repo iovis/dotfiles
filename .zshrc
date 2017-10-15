@@ -21,37 +21,25 @@ export RBENV_ROOT="$HOME/.rbenv"
 plugins=(
   brew
   bundler
-  capistrano
   colorize
   docker
   docker-compose
   encode64
   gem
   git
-  git-flow
-  github
-  gitignore
-  grunt
-  gulp
-  heroku
   httpie
   jsontools
-  nmap
   npm
   osx
   perms
-  pip
-  postgres
-  python
+  # pip
+  # postgres
   rails
   rbenv
   rsync
-  ruby
-  thefuck
   tmux
-  tmuxinator
-  virtualenvwrapper
-  yarn
+  # tmuxinator
+  # virtualenvwrapper
 )
 
 source $ZSH/oh-my-zsh.sh
