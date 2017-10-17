@@ -41,19 +41,19 @@ module.exports = {
     `,
 
     // custom css to embed in the terminal window
-    termCSS: `
-      x-screen a {
-        color: #71a6ba;
-      }
+    // termCSS: `
+    //   x-screen a {
+    //     color: #71a6ba;
+    //   }
 
-      x-screen a.hover {
-        text-decoration: underline;
-      }
+    //   x-screen a.hover {
+    //     text-decoration: underline;
+    //   }
 
-      x-row {
-        line-height: 1.2em;
-      }
-    `,
+    //   x-row {
+    //     line-height: 1.2em;
+    //   }
+    // `,
 
     // set to `true` (without backticks) if you're using a Linux setup that doesn't show native menus
     // default: `false` on Linux, `true` on Windows (ignored on macOS)
@@ -133,7 +133,7 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: [
-    "hyper-simple-highlight-active-session",
+    // "hyper-simple-highlight-active-session",
     "hyperlinks",
     "hypersixteen",
     // "hyperterm-1password",
