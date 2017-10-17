@@ -1,5 +1,35 @@
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME='agnoster'
+
+# https://github.com/bhilburn/powerlevel9k
+ZSH_THEME="powerlevel9k/powerlevel9k"
+
+POWERLEVEL9K_STATUS_VERBOSE=false
+POWERLEVEL9K_CUSTOM_SHOW_APPLE="echo "
+POWERLEVEL9K_CUSTOM_SHOW_APPLE_BACKGROUND="black"
+POWERLEVEL9K_CUSTOM_SHOW_APPLE_FOREGROUND="white"
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+  status
+  custom_show_apple
+  # context
+  # load
+  dir
+  # rbenv
+  # virtualenv
+  vcs
+  # root_indicator
+)
+
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+  # ip
+  # ram
+  # docker_machine
+  # vi_mode
+  background_jobs
+  time
+  # battery
+)
+
 HIST_STAMPS="yyyy-mm-dd"
 
 # Environment variables
