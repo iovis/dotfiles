@@ -21,15 +21,15 @@ export RBENV_ROOT="$HOME/.rbenv"
 plugins=(
   brew
   bundler
-  colorize
+  # colorize
   docker
   docker-compose
   encode64
   gem
   git
   httpie
-  jsontools
-  npm
+  # jsontools
+  # npm
   osx
   perms
   # pip
