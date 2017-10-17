@@ -182,6 +182,7 @@
   "vim-mode-plus":
     highlightSearch: true
     incrementalSearch: true
+    notifiedCoffeeScriptNoLongerSupportedToExtendVMP: true
     stayOnDelete: true
     stayOnTransformString: true
     stayOnYank: true
