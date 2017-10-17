@@ -145,6 +145,7 @@ if has('nvim')
   tnoremap jj    <c-\><c-n>
 else
   set ttymouse=xterm2
+  set notermguicolors
 endif
 
 " GUI options
