@@ -26,6 +26,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   # docker_machine
   # vi_mode
   background_jobs
+  rbenv
   time
   # battery
 )
@@ -98,6 +99,7 @@ alias c="pygmentize -O style=native -f console256 -g"
 alias canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias d="du -sh"
+alias files="ag --no-color -g ''"
 alias flushcache="dscacheutil -flushcache"
 alias flushmemcached="echo 'flush_all' | nc localhost 11211"
 alias gcam="git commit -v -am"
