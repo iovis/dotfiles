@@ -446,15 +446,18 @@ nmap <silent> <leader>B :Gblame<cr>
 " fzf
 autocmd FileType fzf tnoremap <silent> <buffer> <c-j> <down>
 autocmd FileType fzf tnoremap <silent> <buffer> <c-k> <up>
-let g:fzf_command_prefix = 'F'
-nnoremap <silent> <leader><leader> :FBuffers<cr>
-nnoremap <silent> <leader>H :FHistory<cr>
-nnoremap <silent> <leader>O :FFiles<cr>
-nnoremap <silent> <leader>R :FTags<cr>
-nnoremap <silent> <leader>j :FSnippets<cr>
-nnoremap <silent> <leader>o :FGFiles<cr>
-nnoremap <silent> <leader>r :FBTags<cr>
-nnoremap <silent> <leader>ñ :FLines<cr>
+nnoremap <silent> <leader><leader> :Buffers<cr>
+nnoremap <silent> <leader>: :History:<cr>
+nnoremap <silent> <leader>C :Commits<cr>
+nnoremap <silent> <leader>F :Filetypes<cr>
+nnoremap <silent> <leader>H :History<cr>
+nnoremap <silent> <leader>L :Commits<cr>
+nnoremap <silent> <leader>O :Files<cr>
+nnoremap <silent> <leader>R :Tags<cr>
+nnoremap <silent> <leader>j :GFiles?<cr>
+nnoremap <silent> <leader>o :GFiles<cr>
+nnoremap <silent> <leader>r :BTags<cr>
+nnoremap <silent> <leader>ñ :Lines<cr>
 set rtp+=/usr/local/opt/fzf
 
 " gitgutter
