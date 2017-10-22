@@ -441,6 +441,7 @@ vnoremap <silent> <leader>m :Dispatch<cr>
 
 " fugitive
 nmap <silent> <leader>- :Gstatus<cr><c-n>
+nmap <silent> <leader>B :Gblame<cr>
 
 " fzf
 autocmd FileType fzf tnoremap <silent> <buffer> <c-j> <down>
