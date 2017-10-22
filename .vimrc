@@ -29,12 +29,12 @@ Plug 'majutsushi/tagbar'
 Plug 'marcweber/vim-addon-mw-utils'  " Required by vim-snippets
 Plug 'mattn/emmet-vim'
 Plug 'metakirby5/codi.vim'
+Plug 'mileszs/ack.vim'
 Plug 'moll/vim-bbye'
 Plug 'mxw/vim-jsx'
 Plug 'vim-scripts/nginx.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'pbrisbin/vim-mkdir'
-Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'shawncplus/phpcomplete.vim'
 Plug 'shougo/vimproc.vim', {'do' : 'make'}
@@ -306,20 +306,6 @@ vnoremap <silent> gs :sort<cr>
 nnoremap <silent> gr :<C-U>set operatorfunc=SortReverseLinesOpFunc<CR>g@
 vnoremap <silent> gr :sort!<cr>
 
-" The Silver Searcher
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  let g:ag_highlight = 1
-  nnoremap <leader>f  :Ag! -Q ""<left>
-  nnoremap <leader>F  :Ag! -Q ""<left><c-r><c-w>
-  vnoremap <leader>f y:Ag! -Q "<c-r>""
-
-  nnoremap K  :silent Ag! -Q "<c-r><c-w>"<cr>
-  vnoremap K y:silent Ag! -Q "<c-r>""<cr>
-endif
-
 " Grep operator
 nnoremap <silent> <leader>g :set operatorfunc=GrepOperator<cr>g@
 vnoremap <silent> <leader>g :<c-u>call GrepOperator(visualmode())<cr>
@@ -334,7 +320,7 @@ function! GrepOperator(type)
   endif
 
   if executable('ag')
-    silent execute "Ag " . shellescape(@@)
+    silent execute "Ack! -Q " . shellescape(@@)
   else
     silent execute "grep -R " . shellescape(@@) . " ."
   endif
@@ -411,6 +397,21 @@ endfunction
 """""""""""""""""""
 " Plugin specific "
 """""""""""""""""""
+" Ack
+let g:ackhighlight = 1
+let g:ack_use_dispatch = 1
+let g:ackprg = 'ag --vimgrep --smart-case'
+nnoremap <leader>f  :Ack! -Q ""<left>
+nnoremap <leader>F  :Ack! -Q ""<left><c-r><c-w>
+vnoremap <leader>f y:Ack! -Q "<c-r>""
+nnoremap K  :silent Ack! -Q "<c-r><c-w>"<cr>
+vnoremap K y:silent Ack! -Q "<c-r>""<cr>
+
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
+
 " airline
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#enabled = 1
