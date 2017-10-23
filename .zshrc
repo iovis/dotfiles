@@ -60,7 +60,7 @@ plugins=(
   git
   httpie
   # jsontools
-  # npm
+  npm
   osx
   perms
   # pip
