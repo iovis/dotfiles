@@ -294,44 +294,24 @@ nnoremap <leader>h <C-W>s
 
 " sort operator and mappings
 function! SortLinesOpFunc(...)
-    '[,']sort
+  '[,']sort
 endfunction
 
 function! SortReverseLinesOpFunc(...)
-    '[,']sort!
+  '[,']sort!
 endfunction
 
-nnoremap <silent> gs :<C-U>set operatorfunc=SortLinesOpFunc<CR>g@
+nnoremap <silent> gs :<c-u>set operatorfunc=SortLinesOpFunc<cr>g@
 vnoremap <silent> gs :sort<cr>
-nnoremap <silent> gr :<C-U>set operatorfunc=SortReverseLinesOpFunc<CR>g@
+nnoremap <silent> gr :<c-u>set operatorfunc=SortReverseLinesOpFunc<cr>g@
 vnoremap <silent> gr :sort!<cr>
-
-" Grep operator
-nnoremap <silent> <leader>g :set operatorfunc=GrepOperator<cr>g@
-vnoremap <silent> <leader>g :<c-u>call GrepOperator(visualmode())<cr>
-
-function! GrepOperator(type)
-  if a:type ==# 'v'
-    normal! `<v`>y
-  elseif a:type ==# 'char'
-    normal! `[v`]y
-  else
-    return
-  endif
-
-  if executable('ag')
-    silent execute "Ack! -Q " . shellescape(@@)
-  else
-    silent execute "grep -R " . shellescape(@@) . " ."
-  endif
-endfunction
 
 " Fast vimrc editing
 nnoremap <silent> <leader>e :e! $MYVIMRC<cr>
 nnoremap <silent> <leader>E :so $MYVIMRC<cr>
 
 " Duplicate file
-nnoremap <leader>W :saveas <C-R>=fnameescape(expand('%:h')).'/'<cr>
+nnoremap <leader>W :saveas <c-r>=fnameescape(expand('%:h')).'/'<cr>
 
 " Commands
 " Autosave on focus lost

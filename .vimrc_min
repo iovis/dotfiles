@@ -137,10 +137,6 @@ nnoremap gP P
 " Select last inserted text
 nnoremap gV `[v`]
 
-" bind K to search word under cursor in project
-nnoremap K  :silent grep! "\b<cword>\b"<cr>:copen<cr>
-vnoremap K y:silent grep! "<c-r>""<cr>:copen<cr>
-
 " Change word under cursor or selection with yanked
 nnoremap R ciw<c-r>0<esc>
 vnoremap R "0p
@@ -215,11 +211,11 @@ nnoremap <leader>h <C-W>s
 
 " sort operator and mappings
 function! SortLinesOpFunc(...)
-    '[,']sort
+  '[,']sort
 endfunction
 
 function! SortReverseLinesOpFunc(...)
-    '[,']sort!
+  '[,']sort!
 endfunction
 
 nnoremap <silent> gs :<C-U>set operatorfunc=SortLinesOpFunc<CR>g@
@@ -229,44 +225,18 @@ vnoremap <silent> gr :sort!<cr>
 
 " Smooth Grepping
 command! -nargs=+ -complete=file -bar Grep silent! grep! <args>|cwindow|redraw!
-nnoremap <leader>f  :Grep -R<space>
+nnoremap <leader>f  :Grep -R ""<left>
 nnoremap <leader>F  :Grep -R ""<left><c-r><c-w>
 vnoremap <leader>f y:Grep -R "<c-r>""
+nnoremap K  :silent Grep -R "\b<cword>\b"<cr>:copen<cr>
+vnoremap K y:silent Grep -R "<c-r>""<cr>:copen<cr>
 
 " The Silver Searcher
 if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --vimgrep\ $*
   set grepformat=%f:%l:%c:%m
-
-  " :Ag command
-  command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-
-  " Mappings
-  nnoremap <leader>f  :Ag<space>
-  nnoremap <leader>F  :Ag! -Q ""<left><c-r><c-w>
-  vnoremap <leader>f y:Ag "<c-r>""
 endif
-
-" Grep operator
-nnoremap <silent> <leader>g :set operatorfunc=GrepOperator<cr>g@
-vnoremap <silent> <leader>g :<c-u>call GrepOperator(visualmode())<cr>
-
-function! GrepOperator(type)
-  if a:type ==# 'v'
-    normal! `<v`>y
-  elseif a:type ==# 'char'
-    normal! `[v`]y
-  else
-    return
-  endif
-
-  if executable('ag')
-    execute "Ag " . shellescape(@@)
-  else
-    execute "Grep -R " . shellescape(@@) . " ."
-  endif
-endfunction
 
 " Fast vimrc editing
 nnoremap <silent> <leader>e :e! $MYVIMRC<cr>
