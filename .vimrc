@@ -26,8 +26,8 @@ Plug 'marcweber/vim-addon-mw-utils'  " Required by vim-snippets
 Plug 'mattn/emmet-vim'
 Plug 'metakirby5/codi.vim'
 Plug 'mileszs/ack.vim'
-Plug 'moll/vim-bbye'
 Plug 'pbrisbin/vim-mkdir'
+Plug 'qpkorr/vim-bufkill'
 Plug 'scrooloose/nerdtree'
 Plug 'shawncplus/phpcomplete.vim'
 Plug 'sheerun/vim-polyglot'
@@ -395,9 +395,9 @@ let g:airline_theme = 'tomorrow'
 nnoremap <silent> <leader>b :Autoformat<cr>
 autocmd FileType javascript nnoremap <silent> <buffer> <leader>b :!eslint --fix %<cr>
 
-" bdelete (don't close pane)
-nnoremap <silent> <leader>ª :Bdelete!<cr>
-nnoremap <silent> <leader>º :Bdelete<cr>
+" bufkill
+nnoremap <silent> <leader>ª :BD!<cr>
+nnoremap <silent> <leader>º :BD<cr>
 
 " csv
 hi CSVColumnEven ctermbg=242 guibg=#6C6C6C
