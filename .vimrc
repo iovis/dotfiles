@@ -6,11 +6,13 @@ call plug#begin()
 " Add or remove your plugins here:
 Plug 'airblade/vim-gitgutter'
 Plug 'benekastah/neomake'
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'chiel92/vim-autoformat'
 Plug 'chrisbra/csv.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'digitaltoad/vim-pug'
+Plug 'fishbullet/deoplete-ruby'
 Plug 'honza/vim-snippets'
 Plug 'iovis9/vim-searchindex'
 Plug 'junegunn/fzf.vim'
@@ -25,12 +27,14 @@ Plug 'majutsushi/tagbar'
 Plug 'marcweber/vim-addon-mw-utils'  " Required by vim-snippets
 Plug 'mattn/emmet-vim'
 Plug 'metakirby5/codi.vim'
+Plug 'mhartington/nvim-typescript'
 Plug 'mileszs/ack.vim'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'qpkorr/vim-bufkill'
+Plug 'raimondi/delimitMate'
 Plug 'scrooloose/nerdtree'
-Plug 'shawncplus/phpcomplete.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'shougo/vimproc.vim', {'do' : 'make'}
 Plug 'sirver/ultisnips'
 Plug 'sjl/gundo.vim'
@@ -53,16 +57,12 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
-Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'wellle/targets.vim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
-
-" This one goes after YouCompleteMe so it doesn't
-" overload the imap <bs> mapping
-Plug 'raimondi/delimitMate'
+Plug 'zchee/deoplete-jedi'
 
 call plug#end()
 
@@ -410,6 +410,23 @@ hi CSVColumnOdd  term=NONE   ctermbg=NONE
 let delimitMate_expand_cr = 1
 let delimitMate_expand_space = 1
 
+" deoplete
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
+call deoplete#custom#set('ultisnips', 'rank', 9999)
+
+inoremap <expr><tab> pumvisible()? "\<c-n>" : "\<tab>"
+inoremap <expr><s-tab> pumvisible()? "\<c-p>" : "\<s-tab>"
+
+" deoplete + multiple cursors fix
+function! Multiple_cursors_before()
+  let b:deoplete_disable_auto_complete = 1
+endfunction
+
+function! Multiple_cursors_after()
+  let b:deoplete_disable_auto_complete = 0
+endfunction
+
 " dispatch
 nnoremap <leader>. :Start<space>
 nnoremap <silent> <leader>m :Dispatch<cr>
@@ -524,12 +541,6 @@ let g:UltiSnipsJumpForwardTrigger = "<c-j>"
 " ysurround: Swap double quotes with single quotes
 nnoremap <silent> <leader>" :normal mzcs'"`z<cr>
 nnoremap <silent> <leader>' :normal mzcs"'`z<cr>
-
-" youcompleteme
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_complete_in_comments = 1
-let g:ycm_complete_in_strings = 1
-let g:ycm_python_binary_path = 'python'
 
 """""""""""""""""""""
 "  Custom commands  "
