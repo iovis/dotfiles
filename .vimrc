@@ -416,8 +416,16 @@ nnoremap <silent> <leader>m :Dispatch<cr>
 vnoremap <silent> <leader>m :Dispatch<cr>
 
 " fugitive
-nmap <silent> <leader>- :Gstatus<cr><c-n>
-nmap <silent> <leader>B :Gblame<cr>
+nmap <silent> <leader>gb :Gblame<cr>
+nmap <silent> <leader>gd :Gdiff<cr>
+nmap <silent> <leader>gh :Glog<cr>
+nmap <silent> <leader>gl :Gpull<cr>
+nmap <silent> <leader>gm :Gmerge<cr>
+nmap <silent> <leader>go :Gread<cr>
+nmap <silent> <leader>gp :Gpush<cr>
+nmap <silent> <leader>gr :Gbrowse<cr>
+nmap <silent> <leader>gs :Gstatus<cr><c-n>
+nmap <silent> <leader>gw :Gwrite<cr>
 
 " fzf
 autocmd FileType fzf tnoremap <silent> <buffer> <c-j> <down>
