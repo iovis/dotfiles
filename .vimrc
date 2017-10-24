@@ -434,7 +434,7 @@ vnoremap <silent> <leader>m :Dispatch<cr>
 
 " fugitive
 nmap <silent> <leader>gb :Gblame<cr>
-nmap <silent> <leader>gd :Gdiff<cr>
+nmap <silent> <leader>gd :Gvdiff<cr>
 nmap <silent> <leader>gh :Glog<cr>
 nmap <silent> <leader>gl :Gpull<cr>
 nmap <silent> <leader>gm :Gmerge<cr>
