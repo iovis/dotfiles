@@ -218,7 +218,7 @@ nnoremap gp p
 nnoremap gP P
 
 " Repeat command in last tmux split. "-t !" refers to last pane
-nnoremap <silent> <leader>- :silent !tmux send-keys -t \! Up Enter<cr>
+nnoremap <silent> <leader>i :silent !tmux send-keys -t \! Up Enter<cr>
 
 " Select last inserted text
 nnoremap gV `[v`]
@@ -433,6 +433,7 @@ nnoremap <silent> <leader>m :Dispatch<cr>
 vnoremap <silent> <leader>m :Dispatch<cr>
 
 " fugitive
+nmap <silent> <leader>- :Gstatus<cr><c-n>
 nmap <silent> <leader>gb :Gblame<cr>
 nmap <silent> <leader>gd :Gvdiff<cr>
 nmap <silent> <leader>gh :Glog<cr>
