@@ -1,15 +1,18 @@
 snippet pr "Pull Request template for RubiconMD"
-[RMD-${1:YYYY}] ${2:Title of the PR}
-
-[JIRA](https://rubiconmd.atlassian.net/browse/RMD-$1)
-
+${2:[RMD-${1:YYYY}] }${3:Title of the PR}
+`!p
+if t[2] and t[1]:
+	snip.rv = "\n[JIRA](https://rubiconmd.atlassian.net/browse/RMD-{})\n".format(t[1])
+else:
+	snip.rv = ""
+`
 **Changes:**
-- $3
+- $4
 
 **Checklist:**
-- [${4:x}] \`rspec\` passes
-- [${5:x}] added appropriate documentation
+- [${5: }] \`rspec\` passes
+- [${6: }] added appropriate documentation
 
 **How to test:**
-- $6
+- $7
 endsnippet
