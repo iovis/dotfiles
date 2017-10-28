@@ -1,8 +1,17 @@
 snippet pr "Pull Request template for RubiconMD"
-${2:[${1:`git rev-parse --abbrev-ref HEAD | cut -d"/" -f2 | cut -d"_" -f1`}] }${3:Title of the PR}
+${1:`!p
+import subprocess
+branch = subprocess.check_output(["git", "rev-parse", "--abbrev-ref", "HEAD"]).strip()
+
+match = re.search('RMD-\d+', str(branch))
+jira_card = match and match.group()
+
+if jira_card:
+		snip.rv = "[%s] " % jira_card
+`}${2:Title of the PR}
 `!p
-if t[2] and t[1]:
-	snip.rv = "\n[JIRA](https://rubiconmd.atlassian.net/browse/{})\n".format(t[1])
+if jira_card and t[1]:
+	snip.rv = "\n[JIRA](https://rubiconmd.atlassian.net/browse/{})\n".format(jira_card)
 else:
 	snip.rv = ""
 `
