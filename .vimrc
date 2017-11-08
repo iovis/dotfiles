@@ -169,17 +169,20 @@ inoremap ;; <c-o>A;
 inoremap ,M ->
 inoremap ,m <c-o>A-><c-f>
 inoremap ,n =>
-inoremap <c-a> <home>
-inoremap <c-e> <end>
-inoremap <m-o> <esc>o
 
 " QOL remappings
 cnoremap <c-a> <c-b>
+inoremap <c-a> <home>
+inoremap <c-e> <end>
+inoremap <m-O> <esc>O
+inoremap <m-o> <esc>o
 nmap     <c-down> ]c
 nmap     <c-up>   [c
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
 nnoremap <leader>n :e <C-R>=fnameescape(expand('%:h')).'/'<cr>
+nnoremap <m-O> O<esc>
+nnoremap <m-o> o<esc>
 nnoremap <silent> <c-end>   :lnext<cr>
 nnoremap <silent> <c-home>  :lprevious<cr>
 nnoremap <silent> <end>     :cnext<cr>
