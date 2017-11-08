@@ -183,6 +183,9 @@ codi() {
      Codi ${1:-ruby}"
 }
 
+# Z
+. /usr/local/etc/profile.d/z.sh
+
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
