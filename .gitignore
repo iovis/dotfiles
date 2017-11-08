@@ -8,8 +8,6 @@
 .atom/split-diff
 .vim/.VimballRecord
 .vim/.netrwhist
-.vim/autoload/plug.vim
-.vim/autoload/plug.vim.old
 .vim/bundle/*
 .vim/plugged/*
 .vim/sessions/*
