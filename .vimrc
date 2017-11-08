@@ -549,6 +549,8 @@ nnoremap <silent> <leader>' :normal mzcs"'`z<cr>
 command! Dcup   !docker-compose up -d
 command! Dcps   !docker-compose ps
 command! Dcstop !docker-compose stop
+command! -nargs=? -complete=file Canary !open <args> -a Google\ Chrome\ Canary
+command! -nargs=? -complete=file Chrome !open <args> -a Google\ Chrome
 
 " US ANSI layout
 " nnoremap <silent> <leader>` :Bdelete<cr>
