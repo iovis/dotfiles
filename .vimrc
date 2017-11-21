@@ -509,7 +509,6 @@ augroup neomake_commands
   autocmd BufWritePost * Neomake
 augroup end
 let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_php_enabled_makers = ['php', 'phpmd']
 let g:neomake_python_flake8_args = ['--ignore', 'E402,E501']
 let g:neomake_yaml_yamllint_args = ['-f', 'parsable', '-d', 'relaxed']
 
