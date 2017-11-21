@@ -503,6 +503,10 @@ let g:jsx_ext_required = 0
 let b:lion_squeeze_spaces = 1
 nmap <leader>a= mzglip='z
 
+" multiple_cursors
+let g:multi_cursor_exit_from_insert_mode = 0
+let g:multi_cursor_exit_from_visual_mode = 0
+
 " neomake
 augroup neomake_commands
   autocmd!
