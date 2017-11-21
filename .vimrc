@@ -113,7 +113,7 @@ set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn
 set wildignorecase
 set wildmenu
 set wildmode=full
-let showbreak = '└ '
+let &showbreak = '└ '
 
 " Netrw options
 let g:netrw_altv = 1
@@ -143,7 +143,7 @@ else
 endif
 
 " GUI options
-if has("gui_running")
+if has('gui_running')
   set guicursor+=a:blinkon0
   set guifont=Fira\ Code:h16
   " set guifont=Monospace\ 10
@@ -317,22 +317,26 @@ nnoremap <silent> <leader>es :so $MYVIMRC<cr>
 " Duplicate file
 nnoremap <leader>W :saveas <c-r>=fnameescape(expand('%:h')).'/'<cr>
 
-" Commands
-" Autosave on focus lost
-autocmd FocusLost * silent! wa
+" Autocmds
+augroup vimrc
+  autocmd!
 
-" Remove whitespace on save
-autocmd BufWritePre * :%s/\s\+$//e
+  " Autosave on focus lost
+  autocmd FocusLost * silent! wa
 
-" Fold method='indent' + manual folding (with zo and zc)
-au BufReadPre * setlocal foldmethod=indent
-au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+  " Remove whitespace on save
+  autocmd BufWritePre * :%s/\s\+$//e
 
-" Return to last edit position when opening files (You want this!)
-autocmd BufReadPost *
-      \ if line("'\"") > 0 && line("'\"") <= line("$") |
-      \   exe "normal! g`\"" |
-      \ endif
+  " Fold method='indent' + manual folding (with zo and zc)
+  au BufReadPre * setlocal foldmethod=indent
+  au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+
+  " Return to last edit position when opening files (You want this!)
+  autocmd BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal! g`\"" |
+        \ endif
+augroup end
 
 " Hex mode
 " ex command for toggling hex mode - define mapping if desired
@@ -348,7 +352,7 @@ function! ToggleHex()
   let &readonly=0
   let l:oldmodifiable=&modifiable
   let &modifiable=1
-  if !exists("b:editHex") || !b:editHex
+  if !exists('b:editHex') || !b:editHex
     " save old options
     let b:oldft=&ft
     let b:oldbin=&bin
@@ -404,7 +408,10 @@ let g:airline_theme = 'tomorrow'
 
 " autoformat
 nnoremap <silent> <leader>b :Autoformat<cr>
-autocmd FileType javascript nnoremap <silent> <buffer> <leader>b :!eslint --fix %<cr>
+augroup javascript_commands
+  autocmd!
+  autocmd FileType javascript nnoremap <silent> <buffer> <leader>b :!eslint --fix %<cr>
+augroup end
 
 " bufkill
 nnoremap <silent> <leader>ª :BD!<cr>
@@ -454,8 +461,11 @@ nmap <silent> <leader>gs :Gstatus<cr><c-n>
 nmap <silent> <leader>gw :Gwrite<cr>
 
 " fzf
-autocmd FileType fzf tnoremap <silent> <buffer> <c-j> <down>
-autocmd FileType fzf tnoremap <silent> <buffer> <c-k> <up>
+augroup fzf_commands
+  autocmd!
+  autocmd FileType fzf tnoremap <silent> <buffer> <c-j> <down>
+  autocmd FileType fzf tnoremap <silent> <buffer> <c-k> <up>
+augroup end
 nnoremap <silent> <leader><leader> :Buffers<cr>
 nnoremap <silent> <leader>: :History:<cr>
 nnoremap <silent> <leader>C :Commits<cr>
@@ -492,15 +502,20 @@ let b:lion_squeeze_spaces = 1
 nmap <leader>a= mzglip='z
 
 " neomake
-autocmd BufWritePost * Neomake
-let g:neomake_go_enabled_makers = ['golint', 'govet', 'go' ]
+augroup neomake_commands
+  autocmd!
+  autocmd BufWritePost * Neomake
+augroup end
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_php_enabled_makers = ['php', 'phpmd']
 let g:neomake_python_flake8_args = ['--ignore', 'E402,E501']
 let g:neomake_yaml_yamllint_args = ['-f', 'parsable', '-d', 'relaxed']
 
 " nerdtree
-autocmd FileType nerdtree setlocal relativenumber
+augroup nerdtree_commands
+  autocmd!
+  autocmd FileType nerdtree setlocal relativenumber
+augroup end
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeIgnore = ['\.pyc$']
 let NERDTreeMinimalUI = 1
@@ -510,11 +525,14 @@ nnoremap <silent> <leader>K :NERDTreeFind<cr>
 nnoremap <silent> <leader>k :NERDTreeToggle<cr>
 
 " rspec
-let g:rspec_command = "Dispatch bin/rspec {spec}"
-autocmd FileType ruby nnoremap <silent> <buffer> <leader>sf :call RunCurrentSpecFile()<cr>
-autocmd FileType ruby nnoremap <silent> <buffer> <leader>ss :call RunNearestSpec()<cr>
-autocmd FileType ruby nnoremap <silent> <buffer> <leader>sl :call RunLastSpec()<cr>
-autocmd FileType ruby nnoremap <silent> <buffer> <leader>sa :call RunAllSpecs()<cr>
+let g:rspec_command = 'Dispatch bin/rspec {spec}'
+augroup rspec_commands
+  autocmd!
+  autocmd FileType ruby nnoremap <silent> <buffer> <leader>sf :call RunCurrentSpecFile()<cr>
+  autocmd FileType ruby nnoremap <silent> <buffer> <leader>ss :call RunNearestSpec()<cr>
+  autocmd FileType ruby nnoremap <silent> <buffer> <leader>sl :call RunLastSpec()<cr>
+  autocmd FileType ruby nnoremap <silent> <buffer> <leader>sa :call RunAllSpecs()<cr>
+augroup end
 
 " session
 let g:session_autoload = 'no'
@@ -537,15 +555,18 @@ let g:targets_pairs = '()b {}B []r <>'
 let g:tmux_navigator_save_on_switch = 1
 
 " typescript
-autocmd FileType typescript nnoremap <silent> <buffer> T :YcmCompleter GoToReferences<cr>
-autocmd FileType typescript nnoremap <silent> <buffer> t :YcmCompleter GoToDefinition<cr>
+augroup typescript_commands
+  autocmd!
+  autocmd FileType typescript nnoremap <silent> <buffer> T :YcmCompleter GoToReferences<cr>
+  autocmd FileType typescript nnoremap <silent> <buffer> t :YcmCompleter GoToDefinition<cr>
+augroup end
 let g:typescript_compiler_binary = 'tsc'
 let g:typescript_compiler_options = ''
 
 " ultisnips
-let g:UltiSnipsExpandTrigger = "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
-let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+let g:UltiSnipsExpandTrigger = '<c-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
+let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 
 " ysurround: Swap double quotes with single quotes
 nnoremap <silent> <leader>" :normal mzcs'"`z<cr>
