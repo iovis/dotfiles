@@ -414,6 +414,8 @@ augroup javascript_commands
 augroup end
 
 " bufkill
+let g:BufKillActionWhenBufferDisplayedInAnotherWindow = 'kill'
+let g:BufKillCreateMappings = 0
 nnoremap <silent> <leader>ª :BD!<cr>
 nnoremap <silent> <leader>º :BD<cr>
 
