@@ -35,7 +35,6 @@ Plug 'raimondi/delimitMate'
 Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'shougo/vimproc.vim', {'do' : 'make'}
 Plug 'sirver/ultisnips'
 Plug 'sjl/gundo.vim'
 Plug 'terryma/vim-multiple-cursors'
@@ -285,7 +284,7 @@ nmap t <c-]>
 nmap T g]
 nmap <silent> gt :vsp <cr><c-]>
 nmap <silent> gT :sp <cr><c-]>
-nnoremap <silent> <leader>T :VimProcBang ctags<cr>
+nnoremap <silent> <leader>T :Dispatch ctags<cr>
 
 " Work with splits
 nnoremap <leader>v <C-W>v
