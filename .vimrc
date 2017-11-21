@@ -529,6 +529,10 @@ let NERDTreeShowLineNumbers = 1
 nnoremap <silent> <leader>K :NERDTreeFind<cr>
 nnoremap <silent> <leader>k :NERDTreeToggle<cr>
 
+" rails
+nnoremap <silent> <leader>E :Server!<cr>
+nnoremap <silent> <leader>B :Console<cr>
+
 " rspec
 let g:rspec_command = 'Dispatch bin/rspec {spec}'
 augroup rspec_commands
