@@ -96,19 +96,21 @@ nnoremap <c-up>   [c
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
 nnoremap <leader>n :e <C-R>=fnameescape(expand('%:h')).'/'<cr>
-nnoremap <m-O> O<esc>
-nnoremap <m-o> o<esc>
+nnoremap <m-O> mzO<esc>`z
+nnoremap <m-o> mzo<esc>`z
 nnoremap <silent> <c-end>   :lnext<cr>
 nnoremap <silent> <c-home>  :lprevious<cr>
 nnoremap <silent> <end>     :cnext<cr>
 nnoremap <silent> <home>    :cprevious<cr>
 nnoremap <silent> <leader>= <c-w>=
 nnoremap <silent> <leader>X :qa!<cr>
+nnoremap <silent> <leader>_ <c-w>_
 nnoremap <silent> <leader>c :close<cr>
 nnoremap <silent> <leader>p :set wrap!<cr>
 nnoremap <silent> <leader>q :%bdelete<cr>
 nnoremap <silent> <leader>w :w!<cr>
 nnoremap <silent> <leader>x :qa<cr>
+nnoremap <silent> <leader>\| <c-w>\|
 nnoremap <silent> <leader>Ç :lclose<cr>
 nnoremap <silent> <leader>ç :lwindow<cr>
 nnoremap <silent> ª :bdelete!<cr>
@@ -242,8 +244,10 @@ if executable('ag')
 endif
 
 " Fast vimrc editing
-nnoremap <silent> <leader>e :e! $MYVIMRC<cr>
-nnoremap <silent> <leader>E :so $MYVIMRC<cr>
+nnoremap <silent> <leader>ee :e! $MYVIMRC<cr>
+nnoremap <silent> <leader>ev :vs $MYVIMRC<cr>
+nnoremap <silent> <leader>eh :sp $MYVIMRC<cr>
+nnoremap <silent> <leader>es :so $MYVIMRC<cr>
 
 " Duplicate file
 nnoremap <leader>W :saveas <C-R>=fnameescape(expand('%:h')).'/'<cr>
