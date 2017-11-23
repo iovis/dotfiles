@@ -302,9 +302,9 @@ function! SortReverseLinesOpFunc(...)
 endfunction
 
 nnoremap <silent> gs :<c-u>set operatorfunc=SortLinesOpFunc<cr>g@
-vnoremap <silent> gs :sort<cr>
+xnoremap <silent> gs :sort<cr>
 nnoremap <silent> gr :<c-u>set operatorfunc=SortReverseLinesOpFunc<cr>g@
-vnoremap <silent> gr :sort!<cr>
+xnoremap <silent> gr :sort!<cr>
 
 " Fast vimrc editing
 nnoremap <silent> <leader>ee :e! $MYVIMRC<cr>
