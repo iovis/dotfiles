@@ -199,6 +199,8 @@ nnoremap <silent> <leader>x :qa<cr>
 nnoremap <silent> <leader>\| <c-w>\|
 nnoremap <silent> <leader>Ç :lclose<cr>
 nnoremap <silent> <leader>ç :lwindow<cr>
+nnoremap <silent> g2 :set shiftwidth=2 softtabstop=2 noexpandtab \| retab<cr>gg=G
+nnoremap <silent> g4 :set shiftwidth=4 softtabstop=4 noexpandtab \| retab<cr>gg=G
 nnoremap <silent> ª :bdelete!<cr>
 nnoremap <silent> º :bdelete<cr>
 nnoremap <silent> Ç :cclose<cr>
@@ -210,8 +212,6 @@ nnoremap Ñ ?
 nnoremap ñ /
 noremap ' `
 noremap <silent> <leader>, :set relativenumber! cursorline!<cr>
-noremap <silent> <leader>2 :set shiftwidth=2 tabstop=2<cr>
-noremap <silent> <leader>4 :set shiftwidth=4 tabstop=4<cr>
 noremap <silent> <leader><cr> :noh<cr>
 noremap H g^
 noremap L g$
