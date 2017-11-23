@@ -190,13 +190,13 @@ nnoremap <silent> <end>     :cnext<cr>
 nnoremap <silent> <home>    :cprevious<cr>
 nnoremap <silent> <leader>= <c-w>=
 nnoremap <silent> <leader>X :qa!<cr>
+nnoremap <silent> <leader>\| <c-w>\|
 nnoremap <silent> <leader>_ <c-w>_
 nnoremap <silent> <leader>c :close<cr>
 nnoremap <silent> <leader>p :set wrap!<cr>
 nnoremap <silent> <leader>q :%bdelete<cr>
 nnoremap <silent> <leader>w :w!<cr>
 nnoremap <silent> <leader>x :qa<cr>
-nnoremap <silent> <leader>\| <c-w>\|
 nnoremap <silent> <leader>Ç :lclose<cr>
 nnoremap <silent> <leader>ç :lwindow<cr>
 nnoremap <silent> g2 :set shiftwidth=2 softtabstop=2 noexpandtab \| retab<cr>gg=G
@@ -215,7 +215,7 @@ noremap <silent> <leader>, :set relativenumber! cursorline!<cr>
 noremap <silent> <leader><cr> :noh<cr>
 noremap H g^
 noremap L g$
-vnoremap <silent> Q :norm @q<cr>
+xnoremap <silent> Q :norm @q<cr>
 
 " Properly indent text when pasting
 nnoremap p p`[v`]=
@@ -231,18 +231,18 @@ nnoremap gV `[v`]
 
 " Change word under cursor or selection with yanked
 nnoremap R ciw<c-r>0<esc>
-vnoremap R "0p
+xnoremap R "0p
 
 " Repeat command on each line of visual selection
-vnoremap <silent> . :normal .<cr>
+xnoremap <silent> . :normal .<cr>
 
 " Maintain Visual Mode after shifting > and <
-vnoremap < <gv
-vnoremap > >gv
+xnoremap < <gv
+xnoremap > >gv
 
 " If I have a visual selection and press * I want it to show ocurrences
-vnoremap * ymi/<c-r>"<cr>`i
-vnoremap # y?<c-r>"<cr>
+xnoremap * ymi/<c-r>"<cr>`i
+xnoremap # y?<c-r>"<cr>
 
 " Save with root permissions
 command! W w !sudo tee % > /dev/null
@@ -250,34 +250,32 @@ command! W w !sudo tee % > /dev/null
 " Quick replace word under cursor
 nnoremap <leader>s  :%s///g<left><left><left>
 nnoremap <leader>S  :%s/\<<c-r><c-w>\>//g<left><left>
-vnoremap <leader>s  :%s///g<left><left><left>
-vnoremap <leader>S y:%s/<c-r>"//g<left><left>
+xnoremap <leader>s  :%s///g<left><left><left>
+xnoremap <leader>S y:%s/<c-r>"//g<left><left>
 
 " Copy to clipboard
 nnoremap <leader>y "+y
 nnoremap <leader>Y "+y$
-vnoremap <leader>y "+y
+xnoremap <leader>y "+y
 nnoremap <leader>d "+d
 nnoremap <leader>D "+D
-vnoremap <leader>d "+d
+xnoremap <leader>d "+d
 
 " Move a line of text using alt+[jk]
 " Weird characters are when meta key is not recognized
 nnoremap <silent> <M-j> :m+<cr>==
 nnoremap <silent> <M-k> :m-2<cr>==
-vnoremap <silent> <M-j> :m'>+<cr>`<my`>mzgv=gv`yo`z
-vnoremap <silent> <M-k> :m'<-2<cr>`>my`<mzgv=gv`yo`z
+xnoremap <silent> <M-j> :m'>+<cr>`<my`>mzgv=gv`yo`z
+xnoremap <silent> <M-k> :m'<-2<cr>`>my`<mzgv=gv`yo`z
 nnoremap <silent> ¶ :m+<cr>==
 nnoremap <silent> § :m-2<cr>==
-vnoremap <silent> ¶ :m'>+<cr>`<my`>mzgv=gv`yo`z
-vnoremap <silent> § :m'<-2<cr>`>my`<mzgv=gv`yo`z
+xnoremap <silent> ¶ :m'>+<cr>`<my`>mzgv=gv`yo`z
+xnoremap <silent> § :m'<-2<cr>`>my`<mzgv=gv`yo`z
 
 " Navigate buffers
 nnoremap <BS> <C-^>
 nnoremap <silent> <tab> :bnext<cr>
 nnoremap <silent> <s-tab> :bprevious<cr>
-nnoremap <silent> <leader>1 :bfirst<cr>
-nnoremap <silent> <leader>0 :blast<cr>
 nnoremap <silent> <leader>t :enew<cr>
 
 " Remapping <tab> makes <c-i> not work
@@ -390,10 +388,9 @@ let g:ackhighlight = 1
 let g:ack_use_dispatch = 1
 let g:ackprg = 'ag --vimgrep --smart-case'
 nnoremap <leader>f  :Ack! -Q ""<left>
-nnoremap <leader>F  :Ack! -Q ""<left><c-r><c-w>
-vnoremap <leader>f y:Ack! -Q "<c-r>""
+xnoremap <leader>f y:Ack! -Q "<c-r>""
 nnoremap K  :silent Ack! -Q "<c-r><c-w>"<cr>
-vnoremap K y:silent Ack! -Q "<c-r>""<cr>
+xnoremap K y:silent Ack! -Q "<c-r>""<cr>
 
 if executable('ag')
   " Use Ag over Grep
@@ -447,7 +444,7 @@ endfunction
 " dispatch
 nnoremap <leader>. :Start<space>
 nnoremap <silent> <leader>m :Dispatch<cr>
-vnoremap <silent> <leader>m :Dispatch<cr>
+xnoremap <silent> <leader>m :Dispatch<cr>
 
 " fugitive
 nmap <silent> <leader>- :Gstatus<cr><c-n>

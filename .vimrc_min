@@ -104,13 +104,13 @@ nnoremap <silent> <end>     :cnext<cr>
 nnoremap <silent> <home>    :cprevious<cr>
 nnoremap <silent> <leader>= <c-w>=
 nnoremap <silent> <leader>X :qa!<cr>
+nnoremap <silent> <leader>\| <c-w>\|
 nnoremap <silent> <leader>_ <c-w>_
 nnoremap <silent> <leader>c :close<cr>
 nnoremap <silent> <leader>p :set wrap!<cr>
 nnoremap <silent> <leader>q :%bdelete<cr>
 nnoremap <silent> <leader>w :w!<cr>
 nnoremap <silent> <leader>x :qa<cr>
-nnoremap <silent> <leader>\| <c-w>\|
 nnoremap <silent> <leader>Ç :lclose<cr>
 nnoremap <silent> <leader>ç :lwindow<cr>
 nnoremap <silent> g2 :set shiftwidth=2 softtabstop=2 noexpandtab \| retab<cr>gg=G
@@ -131,7 +131,7 @@ noremap H g^
 noremap L g$
 onoremap ar a]
 onoremap ir i]
-vnoremap <silent> Q :norm @q<cr>
+xnoremap <silent> Q :norm @q<cr>
 
 " Properly indent text when pasting
 nnoremap p p`[v`]=
@@ -144,22 +144,22 @@ nnoremap gV `[v`]
 
 " Change word under cursor or selection with yanked
 nnoremap R ciw<c-r>0<esc>
-vnoremap R "0p
+xnoremap R "0p
 
 " Repeat command on each line of visual selection
-vnoremap <silent> . :normal .<cr>
+xnoremap <silent> . :normal .<cr>
 
 " Maintain Visual Mode after shifting > and <
-vnoremap < <gv
-vnoremap > >gv
+xnoremap < <gv
+xnoremap > >gv
 
 " Don't jump to the next ocurrence with * and #
 nnoremap * :silent keepjumps normal! mi*`i<CR>
 nnoremap # :silent keepjumps normal! mi#`i<CR>
 
 " If I have a visual selection and press * I want it to show ocurrences
-vnoremap * ymi/<c-r>"<cr>`i
-vnoremap # y?<c-r>"<cr>
+xnoremap * ymi/<c-r>"<cr>`i
+xnoremap # y?<c-r>"<cr>
 
 " Save with root permissions
 command! W w !sudo tee % > /dev/null
@@ -170,33 +170,31 @@ nnoremap <silent> <leader>k :Lexplore<cr>
 " Quick replace word under cursor
 nnoremap s  :%s///g<left><left><left>
 nnoremap S  :%s/\<<c-r><c-w>\>//g<left><left>
-vnoremap s  :%s///g<left><left><left>
-vnoremap S y:%s/<c-r>"//g<left><left>
+xnoremap s  :%s///g<left><left><left>
+xnoremap S y:%s/<c-r>"//g<left><left>
 
 " Copy to clipboard
 nnoremap <leader>y "+y
 nnoremap <leader>Y "+y$
-vnoremap <leader>y "+y
+xnoremap <leader>y "+y
 nnoremap <leader>d "+d
 nnoremap <leader>D "+D
-vnoremap <leader>d "+d
+xnoremap <leader>d "+d
 
 " Move a line of text using alt+[jk]
 nnoremap <silent> <M-j> :m+<cr>==
 nnoremap <silent> <M-k> :m-2<cr>==
-vnoremap <silent> <M-j> :m'>+<cr>`<my`>mzgv=gv`yo`z
-vnoremap <silent> <M-k> :m'<-2<cr>`>my`<mzgv=gv`yo`z
+xnoremap <silent> <M-j> :m'>+<cr>`<my`>mzgv=gv`yo`z
+xnoremap <silent> <M-k> :m'<-2<cr>`>my`<mzgv=gv`yo`z
 nnoremap <silent> ¶ :m+<cr>==
 nnoremap <silent> § :m-2<cr>==
-vnoremap <silent> ¶ :m'>+<cr>`<my`>mzgv=gv`yo`z
-vnoremap <silent> § :m'<-2<cr>`>my`<mzgv=gv`yo`z
+xnoremap <silent> ¶ :m'>+<cr>`<my`>mzgv=gv`yo`z
+xnoremap <silent> § :m'<-2<cr>`>my`<mzgv=gv`yo`z
 
 " Navigate buffers
 nnoremap <BS> <C-^>
 nnoremap <silent> <tab> :bnext<cr>
 nnoremap <silent> <s-tab> :bprevious<cr>
-nnoremap <silent> <leader>1 :bfirst<cr>
-nnoremap <silent> <leader>0 :blast<cr>
 nnoremap <silent> <leader>t :enew<cr>
 nnoremap <leader><leader> :ls<cr>:b!<space>
 
@@ -224,17 +222,16 @@ function! SortReverseLinesOpFunc(...)
 endfunction
 
 nnoremap <silent> gs :<C-U>set operatorfunc=SortLinesOpFunc<CR>g@
-vnoremap <silent> gs :sort<cr>
+xnoremap <silent> gs :sort<cr>
 nnoremap <silent> gr :<C-U>set operatorfunc=SortReverseLinesOpFunc<CR>g@
-vnoremap <silent> gr :sort!<cr>
+xnoremap <silent> gr :sort!<cr>
 
 " Smooth Grepping
 command! -nargs=+ -complete=file -bar Grep silent! grep! <args>|cwindow|redraw!
 nnoremap <leader>f  :Grep -R ""<left>
-nnoremap <leader>F  :Grep -R ""<left><c-r><c-w>
-vnoremap <leader>f y:Grep -R "<c-r>""
+xnoremap <leader>f y:Grep -R "<c-r>""
 nnoremap K  :silent Grep -R "\b<cword>\b"<cr>:copen<cr>
-vnoremap K y:silent Grep -R "<c-r>""<cr>:copen<cr>
+xnoremap K y:silent Grep -R "<c-r>""<cr>:copen<cr>
 
 " The Silver Searcher
 if executable('ag')
