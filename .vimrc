@@ -467,7 +467,6 @@ augroup fzf_commands
 augroup end
 nnoremap <silent> <leader><leader> :Buffers<cr>
 nnoremap <silent> <leader>: :History:<cr>
-nnoremap <silent> <leader>C :Commits<cr>
 nnoremap <silent> <leader>F :Filetypes<cr>
 nnoremap <silent> <leader>H :History<cr>
 nnoremap <silent> <leader>L :Commits<cr>
@@ -531,7 +530,7 @@ let g:peekaboo_delay = 400
 
 " rails
 nnoremap <silent> <leader>E :Server!<cr>
-nnoremap <silent> <leader>B :Console<cr>
+nnoremap <silent> <leader>C :Console<cr>
 
 " rspec
 let g:rspec_command = 'Dispatch bin/rspec {spec}'
