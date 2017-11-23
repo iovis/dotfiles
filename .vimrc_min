@@ -347,6 +347,9 @@ nnoremap <leader>o :e **/
 " History
 nnoremap <silent> <leader>H :browse old<cr>
 
+" Filetype
+nnoremap <leader>F :setf<space>
+
 " 'apprentice.vim' -- Vim color scheme.
 " Author:       Romain Lafourcade (romainlafourcade@gmail.com)
 " Description:  Essentially a streamlining and conversion to xterm colors of
