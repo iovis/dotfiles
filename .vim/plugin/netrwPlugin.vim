@@ -20,7 +20,7 @@
 if &cp || exists("g:loaded_netrwPlugin")
  finish
 endif
-let g:loaded_netrwPlugin = "v162m"
+let g:loaded_netrwPlugin = "v162"
 let s:keepcpo = &cpo
 set cpo&vim
 "DechoRemOn
@@ -59,7 +59,7 @@ com! -count=1 -nargs=*	Nread		let s:svpos= winsaveview()<bar>call netrw#NetRead(
 com! -range=% -nargs=*	Nwrite		let s:svpos= winsaveview()<bar><line1>,<line2>call netrw#NetWrite(<f-args>)<bar>call winrestview(s:svpos)
 com! -nargs=*		NetUserPass	call NetUserPass(<f-args>)
 com! -nargs=*	        Nsource		let s:svpos= winsaveview()<bar>call netrw#NetSource(<f-args>)<bar>call winrestview(s:svpos)
-com! -nargs=?		Ntree		call netrw#SetTreetop(<q-args>)
+com! -nargs=?		Ntree		call netrw#SetTreetop(1,<q-args>)
 
 " Commands: :Explore, :Sexplore, Hexplore, Vexplore, Lexplore {{{2
 com! -nargs=* -bar -bang -count=0 -complete=dir	Explore		call netrw#Explore(<count>,0,0+<bang>0,<q-args>)

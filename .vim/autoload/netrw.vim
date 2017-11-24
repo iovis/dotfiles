@@ -1,7 +1,7 @@
 " netrw.vim: Handles file transfer and remote directory listing across
 "            AUTOLOAD SECTION
-" Date:		Jul 27, 2017
-" Version:	162m	ASTRO-ONLY
+" Date:		Nov 03, 2017
+" Version:	162
 " Maintainer:	Charles E Campbell <NdrOchip@ScampbellPfamily.AbizM-NOSPAM>
 " GetLatestVimScripts: 1075 1 :AutoInstall: netrw.vim
 " Copyright:    Copyright (C) 2016 Charles E. Campbell {{{1
@@ -39,7 +39,7 @@ if exists("s:needspatches")
  endfor
 endif
 
-let g:loaded_netrw = "v162m"
+let g:loaded_netrw = "v162"
 if !exists("s:NOTE")
  let s:NOTE    = 0
  let s:WARNING = 1
@@ -1213,7 +1213,9 @@ fun! netrw#Lexplore(count,rightside,...)
    if lexwinnr < curwin
     let curwin= curwin - 1
    endif
-   exe curwin."wincmd w"
+   if lexwinnr != curwin
+    exe curwin."wincmd w"
+   endif
    unlet t:netrw_lexbufnr
 "   call Decho("unlet t:netrw_lexbufnr")
 
@@ -2751,9 +2753,13 @@ endfun
 " ---------------------------------------------------------------------
 " netrw#SetTreetop: resets the tree top to the current directory/specified directory {{{2
 "                   (implements the :Ntree command)
-fun! netrw#SetTreetop(...)
-"  call Dfunc("netrw#SetTreetop(".((a:0 > 0)? a:1 : "").") a:0=".a:0)
+fun! netrw#SetTreetop(iscmd,...)
+"  call Dfunc("netrw#SetTreetop(iscmd=".a:iscmd." ".((a:0 > 0)? a:1 : "").") a:0=".a:0)
+"  call Decho("w:netrw_treetop<".w:netrw_treetop.">")
 
+  " iscmd==0: netrw#SetTreetop called using gn mapping
+  " iscmd==1: netrw#SetTreetop called using :Ntree from the command line
+"  call Decho("(iscmd=".a:iscmd.": called using :Ntree from command line",'~'.expand("<slnum>"))
   " clear out the current tree
   if exists("w:netrw_treetop")
 "   call Decho("clearing out current tree",'~'.expand("<slnum>"))
@@ -2764,8 +2770,9 @@ fun! netrw#SetTreetop(...)
 "   call Decho("freeing w:netrw_treedict",'~'.expand("<slnum>"))
    unlet w:netrw_treedict
   endif
+"  call Decho("inittreetop<".(exists("inittreetop")? inittreetop : "n/a").">")
 
-  if a:1 == "" && exists("inittreetop")
+  if (a:iscmd == 0 || a:1 == "") && exists("inittreetop")
    let treedir= s:NetrwTreePath(inittreetop)
 "   call Decho("treedir<".treedir.">",'~'.expand("<slnum>"))
   else
@@ -2774,7 +2781,7 @@ fun! netrw#SetTreetop(...)
     let treedir= a:1
    elseif exists("b:netrw_curdir") && (isdirectory(s:NetrwFile(b:netrw_curdir."/".a:1)) || a:1 =~ '^\a\{3,}://')
     let treedir= b:netrw_curdir."/".a:1
-"    call Decho("a:1<".a:1."> is NOT a directory, trying treedir<".treedir.">",'~'.expand("<slnum>"))
+"    call Decho("a:1<".a:1."> is NOT a directory, using treedir<".treedir.">",'~'.expand("<slnum>"))
    else
     " normally the cursor is left in the message window.
     " However, here this results in the directory being listed in the message window, which is not wanted.
@@ -2785,13 +2792,18 @@ fun! netrw#SetTreetop(...)
    endif
   endif
 "  call Decho("treedir<".treedir.">",'~'.expand("<slnum>"))
+
+  " determine if treedir is remote or local
   let islocal= expand("%") !~ '^\a\{3,}://'
 "  call Decho("islocal=".islocal,'~'.expand("<slnum>"))
+
+  " browse the resulting directory
   if islocal
    call netrw#LocalBrowseCheck(s:NetrwBrowseChgDir(islocal,treedir))
   else
    call s:NetrwBrowse(islocal,s:NetrwBrowseChgDir(islocal,treedir))
   endif
+
 "  call Dret("netrw#SetTreetop")
 endfun
 
@@ -5696,9 +5708,12 @@ fun! s:NetrwHome()
   endif
   " insure that the home directory exists
   if g:netrw_dirhistmax > 0 && !isdirectory(s:NetrwFile(home))
+"   call Decho("insure that the home<".home."> directory exists")
    if exists("g:netrw_mkdir")
+"    call Decho("call system(".g:netrw_mkdir." ".s:ShellEscape(s:NetrwFile(home)).")")
     call system(g:netrw_mkdir." ".s:ShellEscape(s:NetrwFile(home)))
    else
+"    call Decho("mkdir(".home.")")
     call mkdir(home)
    endif
   endif
@@ -6279,7 +6294,7 @@ fun! s:NetrwMaps(islocal)
    nnoremap <buffer> <silent> <nowait> gd	:<c-u>call <SID>NetrwForceChgDir(1,<SID>NetrwGetWord())<cr>
    nnoremap <buffer> <silent> <nowait> gf	:<c-u>call <SID>NetrwForceFile(1,<SID>NetrwGetWord())<cr>
    nnoremap <buffer> <silent> <nowait> gh	:<c-u>call <SID>NetrwHidden(1)<cr>
-   nnoremap <buffer> <silent> <nowait> gn	:<c-u>call netrw#SetTreetop(<SID>NetrwGetWord())<cr>
+   nnoremap <buffer> <silent> <nowait> gn	:<c-u>call netrw#SetTreetop(0,<SID>NetrwGetWord())<cr>
    nnoremap <buffer> <silent> <nowait> gp	:<c-u>call <SID>NetrwChgPerm(1,b:netrw_curdir)<cr>
    nnoremap <buffer> <silent> <nowait> I	:<c-u>call <SID>NetrwBannerCtrl(1)<cr>
    nnoremap <buffer> <silent> <nowait> i	:<c-u>call <SID>NetrwListStyle(1)<cr>
@@ -10418,7 +10433,7 @@ fun! netrw#FileUrlEdit(fname)
 "  call Decho("fname2396<".fname2396.">",'~'.expand("<slnum>"))
 "  call Decho("plainfname<".plainfname.">",'~'.expand("<slnum>"))
   exe "sil doau BufReadPre ".fname2396e
-  exe 'NetrwKeepj edit '.plainfname
+  exe 'NetrwKeepj keepalt edit '.plainfname
   exe 'sil! NetrwKeepj keepalt bdelete '.fnameescape(a:fname)
 
 "  call Decho("ro=".&l:ro." ma=".&l:ma." mod=".&l:mod." wrap=".&l:wrap." (filename<".expand("%")."> win#".winnr()." ft<".&ft.">)",'~'.expand("<slnum>"))
