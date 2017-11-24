@@ -430,10 +430,6 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 
 " autoformat
 nnoremap <silent> <leader>b :Autoformat<cr>
-augroup javascript_commands
-  autocmd!
-  autocmd FileType javascript nnoremap <silent> <buffer> <leader>b :!eslint --fix %<cr>
-augroup end
 
 " bufkill
 let g:BufKillActionWhenBufferDisplayedInAnotherWindow = 'kill'
