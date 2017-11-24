@@ -430,6 +430,7 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 
 " autoformat
 nnoremap <silent> <leader>b :Autoformat<cr>
+xnoremap <silent> <leader>b :Autoformat<cr>
 
 " bufkill
 let g:BufKillActionWhenBufferDisplayedInAnotherWindow = 'kill'
