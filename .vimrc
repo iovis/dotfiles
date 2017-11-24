@@ -431,6 +431,8 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 " autoformat
 nnoremap <silent> <leader>b :Autoformat<cr>
 xnoremap <silent> <leader>b :Autoformat<cr>
+let g:formatdef_sqlformat_sql = '"sqlformat -k upper -r -"'
+let g:formatters_sql = ['sqlformat_sql']
 
 " bufkill
 let g:BufKillActionWhenBufferDisplayedInAnotherWindow = 'kill'
