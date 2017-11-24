@@ -33,6 +33,7 @@ Plug 'mileszs/ack.vim'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'qpkorr/vim-bufkill'
 Plug 'raimondi/delimitMate'
+Plug 'schickling/vim-bufonly'
 Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -439,6 +440,9 @@ let g:BufKillActionWhenBufferDisplayedInAnotherWindow = 'kill'
 let g:BufKillCreateMappings = 0
 nnoremap <silent> <leader>ª :BD!<cr>
 nnoremap <silent> <leader>º :BD<cr>
+
+" bufonly
+nnoremap <silent> <leader>Q :BufOnly!<cr>
 
 " csv
 hi CSVColumnEven ctermbg=242 guibg=#6C6C6C
