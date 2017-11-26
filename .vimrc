@@ -395,10 +395,10 @@ xnoremap <leader>f y:Ack! -Q "<c-r>""
 nnoremap K  :silent Ack! -Q "<c-r><c-w>"<cr>
 xnoremap K y:silent Ack! -Q "<c-r>""<cr>
 
+" Use Ag over Grep
 if executable('ag')
-  " Use Ag over Grep
   set grepprg=ag\ --vimgrep
-  set grepformat^=%f:%l:%c:%m
+  set grepformat=%f:%l:%c:%m
 endif
 
 " airline
