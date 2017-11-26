@@ -608,6 +608,16 @@ let g:UltiSnipsExpandTrigger = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 
+" vader
+augroup vader_commands
+  au!
+  autocmd FileType vim   nnoremap <buffer> <leader>ss :source % \| echo 'sourced ' . expand("%")<cr>
+  autocmd FileType vim   nnoremap <buffer> <leader>sr ggyG:@"<cr>
+  autocmd FileType vim   xnoremap <buffer> <leader>sr y:@"<cr>
+  autocmd FileType vader nnoremap <silent> <buffer> <leader>m  :Vader %<cr>
+  autocmd FileType vader nnoremap <silent> <buffer> <leader>sf :Vader test/*<cr>
+augroup END
+
 " ysurround: Swap double quotes with single quotes
 nnoremap <silent> <leader>" :normal mzcs'"`z<cr>
 nnoremap <silent> <leader>' :normal mzcs"'`z<cr>
