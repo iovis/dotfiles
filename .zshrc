@@ -172,7 +172,7 @@ function t() {
 
 # Codi
 # Usage: codi [filetype] [filename]
-codi() {
+function codi() {
   nvim $2 -c \
     "set bt=nofile ls=0 noru nonu nornu |\
      hi ColorColumn ctermbg=NONE |\
@@ -181,6 +181,10 @@ codi() {
      AirlineToggle |\
      startinsert |\
      Codi ${1:-ruby}"
+}
+
+function vader() {
+  nvim -c "Vader $1"
 }
 
 # Z
