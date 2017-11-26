@@ -45,6 +45,7 @@ Plug 'thoughtbot/vim-rspec'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tommcdo/vim-lion'
 Plug 'tomtom/tlib_vim'                 " Required by vim-snippets
+Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-characterize'          " Use ga to see additional representations of that character
 Plug 'tpope/vim-commentary'
