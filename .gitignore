@@ -4,13 +4,14 @@
 .atom/git-time-machine/*
 .atom/packages/*
 .atom/recovery/*
-.atom/storage/*
 .atom/split-diff
+.atom/storage/*
 .vim/.VimballRecord
 .vim/.netrwhist
 .vim/bundle/*
 .vim/plugged/*
 .vim/sessions/*
+.vim/spell/*
 mpv/watch_later/*
 sublime/User/*/
 sublime/User/Package Control.ca-bundle

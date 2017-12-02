@@ -58,6 +58,7 @@
   core:
     disabledPackages: [
       "background-tips"
+      "autocomplete-paths"
     ]
     excludeVcsIgnoredPaths: false
     followSymlinks: true
@@ -165,6 +166,7 @@
     leftEditorColor: "red"
     rightEditorColor: "green"
     syncHorizontalScroll: true
+  "status-bar": {}
   tablr:
     csvEditor:
       columnDelimiter: ";"
@@ -182,7 +184,6 @@
   "vim-mode-plus":
     highlightSearch: true
     incrementalSearch: true
-    notifiedCoffeeScriptNoLongerSupportedToExtendVMP: true
     stayOnDelete: true
     stayOnTransformString: true
     stayOnYank: true
