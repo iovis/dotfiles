@@ -318,6 +318,9 @@ nnoremap <silent> <leader>es :so $MYVIMRC<cr>
 " Duplicate file
 nnoremap <leader>W :saveas <c-r>=fnameescape(expand('%:h')).'/'<cr>
 
+" Toggle spell check
+nnoremap <leader>A :setlocal spell! spelllang=en_us<cr>
+
 " Autocmds
 augroup vimrc
   autocmd!
