@@ -542,7 +542,7 @@ augroup neomake_commands
 augroup end
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_python_flake8_args = ['--ignore', 'E402,E501']
-let g:neomake_yaml_yamllint_args = ['-f', 'parsable', '-d', 'relaxed']
+let g:neomake_yaml_yamllint_args = ['-f', 'parsable']
 let g:neomake_error_sign = { 'text': '●', 'texthl': 'NeomakeErrorSign' }
 let g:neomake_warning_sign = { 'text': '●', 'texthl': 'NeomakeWarningSign' }
 let g:neomake_message_sign = { 'text': '●', 'texthl': 'NeomakeMessageSign' }
