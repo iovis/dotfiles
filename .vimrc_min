@@ -231,11 +231,11 @@ nnoremap <silent> gr :<C-U>set operatorfunc=SortReverseLinesOpFunc<CR>g@
 xnoremap <silent> gr :sort!<cr>
 
 " Smooth Grepping
-command! -nargs=+ -complete=file -bar Grep silent! grep! <args>|cwindow|redraw!
-nnoremap <leader>f  :Grep -R ""<left>
-xnoremap <leader>f y:Grep -R "<c-r>""
-nnoremap K  :silent Grep -R "\b<cword>\b"<cr>:copen<cr>
-xnoremap K y:silent Grep -R "<c-r>""<cr>:copen<cr>
+command! -nargs=+ -complete=file Grep silent! grep! -R <args>|cwindow|redraw!
+nnoremap <leader>f  :Grep ""<left>
+xnoremap <leader>f y:Grep "<c-r>""
+nnoremap K  :silent Grep "\b<cword>\b"<cr>
+xnoremap K y:silent Grep "<c-r>""<cr>
 
 " The Silver Searcher
 if executable('ag')
