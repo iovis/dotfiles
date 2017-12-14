@@ -1,6 +1,10 @@
 set nocompatible
 filetype indent on
-syntax enable
+
+if !has('g:syntax_on')
+  syntax enable
+endif
+
 set autoindent
 set autoread
 set autowriteall

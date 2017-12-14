@@ -74,7 +74,10 @@ call plug#end()
 filetype plugin indent on
 colorscheme base16-default-dark
 
-syntax enable
+if !has('g:syntax_on')
+  syntax enable
+endif
+
 set autoindent
 set autoread
 set autowriteall
