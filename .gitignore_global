@@ -104,3 +104,6 @@ __pycache__/
 
 ### Visual Studio Code ###
 .vscode/
+
+### TernJS ###
+.tern-port
