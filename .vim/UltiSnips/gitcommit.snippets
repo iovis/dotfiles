@@ -11,18 +11,18 @@ jira_card = jira_match and jira_match.group()
 title_match = re.search("RMD-\d+_(.*)'", str(branch))
 
 if title_match:
-		pr_title = title_match.group(1).replace('_', ' ').title()
+    pr_title = title_match.group(1).replace('_', ' ').title()
 else:
-		pr_title = 'Title of the PR'
+    pr_title = 'Title of the PR'
 
 if jira_card:
-		snip.rv = "[%s] " % jira_card
+    snip.rv = "[%s] " % jira_card
 `${1:`!p snip.rv = pr_title`}
 `!p
 if jira_card:
-	snip.rv = "\n[JIRA](https://rubiconmd.atlassian.net/browse/{})\n".format(jira_card)
+    snip.rv = "\n[JIRA](https://rubiconmd.atlassian.net/browse/{})\n".format(jira_card)
 else:
-	snip.rv = ""
+    snip.rv = ""
 `
 **Changes:**
 - $2
