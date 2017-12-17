@@ -533,13 +533,20 @@ augroup neomake_commands
   autocmd!
   autocmd BufWritePost * Neomake
 augroup end
+
+let g:neomake_error_sign   = { 'text': '●', 'texthl': 'NeomakeErrorSign' }
+let g:neomake_info_sign    = { 'text': '●', 'texthl': 'NeomakeInfoSign' }
+let g:neomake_message_sign = { 'text': '●', 'texthl': 'NeomakeMessageSign' }
+let g:neomake_warning_sign = { 'text': '●', 'texthl': 'NeomakeWarningSign' }
+
+let g:neomake_html_enabled_makers = ['htmlhint']
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_python_flake8_args = ['--ignore', 'E402,E501']
 let g:neomake_yaml_yamllint_args = ['-f', 'parsable']
-let g:neomake_error_sign = { 'text': '●', 'texthl': 'NeomakeErrorSign' }
-let g:neomake_warning_sign = { 'text': '●', 'texthl': 'NeomakeWarningSign' }
-let g:neomake_message_sign = { 'text': '●', 'texthl': 'NeomakeMessageSign' }
-let g:neomake_info_sign = {'text': '●', 'texthl': 'NeomakeInfoSign'}
+
+if executable($PWD . '/node_modules/.bin/eslint')
+  let g:neomake_javascript_eslint_exe = $PWD . '/node_modules/.bin/eslint'
+endif
 
 " Netrw
 let g:netrw_altv = 1
