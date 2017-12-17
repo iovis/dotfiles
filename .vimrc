@@ -218,6 +218,9 @@ nnoremap gP P
 " Repeat command in last tmux split. "-t !" refers to last pane
 nnoremap <silent> <leader>i :silent !tmux send-keys -t \! Up Enter<cr>
 
+" Execute current line in last tmux split
+nnoremap <silent> <leader>I :silent exec '!tmux send-keys -t \! ' . shellescape(getline('.')) . ' Enter'<cr><cr>
+
 " Select last inserted text
 nnoremap gV `[v`]
 
