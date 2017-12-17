@@ -14,8 +14,7 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
   # context
   # load
   dir
-  # rbenv
-  # virtualenv
+  virtualenv
   vcs
   # root_indicator
 )
@@ -70,7 +69,7 @@ plugins=(
   rsync
   tmux
   # tmuxinator
-  # virtualenvwrapper
+  virtualenvwrapper
 )
 
 source $ZSH/oh-my-zsh.sh
