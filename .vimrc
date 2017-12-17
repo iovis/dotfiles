@@ -491,6 +491,7 @@ augroup fzf_commands
 augroup end
 nnoremap <silent> <leader><leader> :Buffers<cr>
 nnoremap <silent> <leader>: :History:<cr>
+nnoremap <silent> <leader>B :BCommits<cr>
 nnoremap <silent> <leader>F :Filetypes<cr>
 nnoremap <silent> <leader>H :History<cr>
 nnoremap <silent> <leader>L :Commits<cr>
