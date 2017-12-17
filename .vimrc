@@ -121,20 +121,6 @@ set wildmenu
 set wildmode=full
 let &showbreak = '└ '
 
-" Netrw options
-let g:netrw_altv = 1
-let g:netrw_banner = 0
-let g:netrw_browse_split = 4
-let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro rnu'
-let g:netrw_fastbrowse = 2
-let g:netrw_list_hide = '.*\.pyc$,\.DS_Store'
-let g:netrw_liststyle = 3
-let g:netrw_silent = 1
-let g:netrw_sort_options = 'i'
-let g:netrw_sort_sequence = '[\/]$'
-let g:netrw_special_syntax = 1
-let g:netrw_winsize = 25
-
 if has('nvim')
   set inccommand=split
 
@@ -456,8 +442,8 @@ hi CSVColumnEven ctermbg=242 guibg=#6C6C6C
 hi CSVColumnOdd  term=NONE   ctermbg=NONE
 
 " delimitmate
-let delimitMate_expand_cr = 1
-let delimitMate_expand_space = 1
+let g:delimitMate_expand_cr = 1
+let g:delimitMate_expand_space = 1
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
@@ -551,21 +537,36 @@ let g:neomake_warning_sign = { 'text': '●', 'texthl': 'NeomakeWarningSign' }
 let g:neomake_message_sign = { 'text': '●', 'texthl': 'NeomakeMessageSign' }
 let g:neomake_info_sign = {'text': '●', 'texthl': 'NeomakeInfoSign'}
 
+" Netrw
+let g:netrw_altv = 1
+let g:netrw_banner = 0
+let g:netrw_browse_split = 4
+let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro rnu'
+let g:netrw_fastbrowse = 2
+let g:netrw_list_hide = '.*\.pyc$,\.DS_Store'
+let g:netrw_liststyle = 3
+let g:netrw_silent = 1
+let g:netrw_sort_options = 'i'
+let g:netrw_sort_sequence = '[\/]$'
+let g:netrw_special_syntax = 1
+let g:netrw_winsize = 25
+" nnoremap <silent> <leader>k :Lexplore<cr>
+
 " nerdtree
 augroup nerdtree_commands
   autocmd!
   autocmd FileType nerdtree setlocal relativenumber
 augroup end
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeIgnore = ['\.pyc$']
-let NERDTreeMinimalUI = 1
-let NERDTreeShowBookmarks = 1
-let NERDTreeShowLineNumbers = 1
+let g:NERDTreeAutoDeleteBuffer = 1
+let g:NERDTreeIgnore = ['\.pyc$']
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeShowBookmarks = 1
+let g:NERDTreeShowLineNumbers = 1
 nnoremap <silent> <leader>K :NERDTreeFind<cr>
 nnoremap <silent> <leader>k :NERDTreeToggle<cr>
 
 " peekaboo
-let g:peekaboo_delay = 400
+let g:peekaboo_delay = 500
 
 " rails
 nnoremap <silent> <leader>E :Server!<cr>
@@ -632,6 +633,7 @@ nnoremap <silent> <leader>' :normal mzcs"'`z<cr>
 """""""""""""""""""""
 "  Custom commands  "
 """""""""""""""""""""
+" Docker management
 command! Dcup   !docker-compose up -d
 command! Dcps   !docker-compose ps
 command! Dcstop !docker-compose stop
