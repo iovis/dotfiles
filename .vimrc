@@ -470,6 +470,13 @@ nnoremap <leader>. :Start<space>
 nnoremap <silent> <leader>m :Dispatch<cr>
 xnoremap <silent> <leader>m :Dispatch<cr>
 
+" emmet
+let g:user_emmet_settings = {
+\  'javascript.jsx' : {
+\      'extends' : 'jsx',
+\  },
+\}
+
 " fugitive
 nmap <silent> <leader>- :Gstatus<cr><c-n>
 nmap <silent> <leader>gb :Gblame<cr>
