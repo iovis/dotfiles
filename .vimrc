@@ -491,13 +491,21 @@ nmap <silent> <leader>gs :Gstatus<cr><c-n>
 nmap <silent> <leader>gw :Gwrite<cr>
 
 " fzf
+set rtp+=/usr/local/opt/fzf
+
 augroup fzf_commands
   autocmd!
   autocmd FileType fzf tnoremap <silent> <buffer> <c-j> <down>
   autocmd FileType fzf tnoremap <silent> <buffer> <c-k> <up>
 augroup end
-nnoremap <silent> <leader><leader> :Buffers<cr>
+
+" Use git files if inside a git repo, otherwise look for everything
+nnoremap <expr> <leader>o system('git rev-parse --is-inside-work-tree') =~ 'true'
+  \ ? ':GFiles<cr>'
+  \ : ':Files<cr>'
+
 nnoremap <silent> <leader>: :History:<cr>
+nnoremap <silent> <leader><leader> :Buffers<cr>
 nnoremap <silent> <leader>B :BCommits<cr>
 nnoremap <silent> <leader>F :Filetypes<cr>
 nnoremap <silent> <leader>H :History<cr>
@@ -505,10 +513,8 @@ nnoremap <silent> <leader>L :Commits<cr>
 nnoremap <silent> <leader>O :Files<cr>
 nnoremap <silent> <leader>R :Tags<cr>
 nnoremap <silent> <leader>j :GFiles?<cr>
-nnoremap <silent> <leader>o :GFiles<cr>
 nnoremap <silent> <leader>r :BTags<cr>
 nnoremap <silent> <leader>ñ :Lines<cr>
-set rtp+=/usr/local/opt/fzf
 
 " gitgutter
 let g:gitgutter_map_keys = 0
