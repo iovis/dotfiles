@@ -55,6 +55,7 @@ plugins=(
   docker
   docker-compose
   encode64
+  eslint
   gem
   git
   httpie
