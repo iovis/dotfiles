@@ -562,6 +562,7 @@ let g:netrw_sort_sequence = '[\/]$'
 let g:netrw_special_syntax = 1
 let g:netrw_winsize = 25
 " nnoremap <silent> <leader>k :Lexplore<cr>
+" nnoremap <silent> - :Vexplore<cr>
 
 " nerdtree
 augroup nerdtree_commands
@@ -575,6 +576,7 @@ let g:NERDTreeIgnore = ['\.pyc$']
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeShowBookmarks = 1
 let g:NERDTreeShowLineNumbers = 1
+nnoremap <silent> - :NERDTreeFind<cr>
 nnoremap <silent> <leader>K :NERDTreeFind<cr>
 nnoremap <silent> <leader>k :NERDTreeToggle<cr>
 
