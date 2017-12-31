@@ -219,7 +219,7 @@ nnoremap gP P
 nnoremap <silent> <leader>i :silent !tmux send-keys -t \! Up Enter<cr>
 
 " Execute current line in last tmux split
-nnoremap <silent> <leader>I :silent exec '!tmux send-keys -t \! ' . shellescape(getline('.')) . ' Enter'<cr><cr>
+nnoremap <silent> <leader>I :silent exec '!tmux send-keys -t \! ' . shellescape(getline('.')) . ' Enter'<cr>
 
 " Select last inserted text
 nnoremap gV `[v`]
@@ -603,12 +603,21 @@ nnoremap <silent> <leader>C :Console<cr>
 
 " rspec
 let g:rspec_command = 'Dispatch bin/rspec {spec}'
-augroup rspec_commands
+augroup ruby_commands
   autocmd!
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>sf :call RunCurrentSpecFile()<cr>
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>ss :call RunNearestSpec()<cr>
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>sl :call RunLastSpec()<cr>
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>sa :call RunAllSpecs()<cr>
+
+  " Execute line in rails runner
+  autocmd FileType ruby nnoremap <silent> <buffer> <leader>sr :silent execute '!tmux send-keys -t \! rails Space runner Space "' . shellescape(getline('.')) . '" Enter'<cr>
+
+  " Execute current spec in last pane
+  autocmd FileType ruby nnoremap <silent> <buffer> <leader>si :silent execute '!tmux send-keys -t \! rspec Space ' . shellescape(expand('%') . ':' . line(".")) . ' Enter'<cr>
+
+  " Execute current spec file in last pane
+  autocmd FileType ruby nnoremap <silent> <buffer> <leader>so :silent execute '!tmux send-keys -t \! rspec Space ' . shellescape(expand('%')) . ' Enter'<cr>
 augroup end
 
 " session

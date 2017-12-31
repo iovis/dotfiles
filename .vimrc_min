@@ -129,6 +129,12 @@ nnoremap P P`[v`]=
 nnoremap gp p
 nnoremap gP P
 
+" Repeat command in last tmux split. "-t !" refers to last pane
+nnoremap <silent> <leader>i :silent !tmux send-keys -t \! Up Enter<cr>:redraw!<cr>
+
+" Execute current line in last tmux split
+nnoremap <silent> <leader>I :silent exec '!tmux send-keys -t \! ' . shellescape(getline('.')) . ' Enter'<cr>:redraw!<cr>
+
 " Select last inserted text
 nnoremap gV `[v`]
 
@@ -354,6 +360,23 @@ let g:netrw_sort_options = 'i'
 let g:netrw_sort_sequence = '[\/]$'
 let g:netrw_special_syntax = 1
 let g:netrw_winsize = 25
+
+" Ruby
+augroup ruby_commands
+  autocmd!
+  autocmd FileType ruby nnoremap <buffer> <leader>sf :execute '!bin/rspec ' . shellescape(expand('%'))<cr>
+  autocmd FileType ruby nnoremap <buffer> <leader>ss :execute '!bin/rspec ' . shellescape(expand('%') . ':' . line('.'))<cr>
+  autocmd FileType ruby nnoremap <buffer> <leader>sa :execute '!bin/rspec'<cr>
+
+  " Execute line in rails runner
+  autocmd FileType ruby nnoremap <silent> <buffer> <leader>sr :silent execute '!tmux send-keys -t \! rails Space runner Space "' . shellescape(getline('.')) . '" Enter'<cr>:redraw!<cr>
+
+  " Execute current spec in last pane
+  autocmd FileType ruby nnoremap <silent> <buffer> <leader>si :silent execute '!tmux send-keys -t \! rspec Space ' . shellescape(expand('%') . ':' . line(".")) . ' Enter'<cr>:redraw!<cr>
+
+  " Execute current spec file in last pane
+  autocmd FileType ruby nnoremap <silent> <buffer> <leader>so :silent execute '!tmux send-keys -t \! rspec Space ' . shellescape(expand('%')) . ' Enter'<cr>:redraw!<cr>
+augroup end
 
 " 'apprentice.vim' -- Vim color scheme.
 " Author:       Romain Lafourcade (romainlafourcade@gmail.com)
