@@ -595,7 +595,7 @@ nnoremap <silent> <leader>K :NERDTreeFind<cr>
 nnoremap <silent> <leader>k :NERDTreeToggle<cr>
 
 " peekaboo
-let g:peekaboo_delay = 500
+let g:peekaboo_delay = 750
 
 " rails
 nnoremap <silent> <leader>E :Server!<cr>
