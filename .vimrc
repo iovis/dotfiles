@@ -63,8 +63,6 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'wellle/targets.vim'
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'zchee/deoplete-jedi'
 
@@ -619,12 +617,6 @@ augroup ruby_commands
   " Execute current spec file in last pane
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>so :silent execute '!tmux send-keys -t \! rspec Space ' . shellescape(expand('%')) . ' Enter'<cr>
 augroup end
-
-" session
-let g:session_autoload = 'no'
-let g:session_autosave = 'yes'
-nnoremap <c-p> :OpenSession!<space>
-nnoremap <c-s> :SaveSession!<space>
 
 " sneak
 let g:sneak#s_next = 1
