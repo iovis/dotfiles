@@ -30,6 +30,7 @@ Plug 'marcweber/vim-addon-mw-utils'  " Required by vim-snippets
 Plug 'mattn/emmet-vim'
 Plug 'metakirby5/codi.vim'
 Plug 'mhartington/nvim-typescript'
+Plug 'mhinz/vim-startify'
 Plug 'mileszs/ack.vim'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'qpkorr/vim-bufkill'
@@ -621,6 +622,14 @@ augroup end
 " sneak
 let g:sneak#s_next = 1
 let g:sneak#use_ic_scs = 1
+
+" startify
+let g:startify_session_dir = '~/.vim/sessions'
+let g:startify_session_persistence = 1
+let g:startify_session_sort = 1
+nnoremap <leader>P :Startify<cr>
+nnoremap <c-p> :SLoad<space>
+nnoremap <c-s> :SSave!<space>
 
 " tagbar
 let g:tagbar_compact = 1
