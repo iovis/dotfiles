@@ -7,21 +7,21 @@
 ########## Variables
 dir=~/.dotfiles
 olddir=~/dotfiles_old
-sublime_dir="~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User"
 files=".agignore .atom .bashrc .ctags .eslintrc.json .gemrc .gitconfig .gitignore_global .hyper.js .pryrc .psqlrc .tern-config .tmux.conf .vim .vimrc .zshrc"
+sublime_dir="$HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/User"
 config_files="mpv nvim"
 
 
 # create dotfiles_old in homedir
 mkdir -p $olddir
-cd $dir
+cd $dir || exit
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
 for file in $files; do
     echo "Moving any existing dotfiles from ~ to $olddir"
-    mv ~/$file ~/dotfiles_old/
+    mv "$HOME/$file" ~/dotfiles_old/
     echo "Creating symlink to $file in home directory."
-    ln -snf $dir/$file ~/$file
+    ln -snf "$dir/$file" "$HOME/$file"
 done
 
 # Same for .config files and folders
@@ -29,9 +29,9 @@ mkdir ~/.config
 
 for file in $config_files; do
     echo "Moving any existing dotfiles from ~/.config to $olddir"
-    mv ~/.config/$file ~/dotfiles_old/
+    mv "$HOME/.config/$file" ~/dotfiles_old/
     echo "Creating symlink to $file in the config directory."
-    ln -snf $dir/$file ~/.config/$file
+    ln -snf "$dir/$file" "$HOME/.config/$file"
 done
 
 # Sublime Text 3
