@@ -248,6 +248,10 @@ nnoremap <silent> <leader>es :so $MYVIMRC<cr>
 " Duplicate file
 nnoremap <leader>W :saveas <C-R>=fnameescape(expand('%:h')).'/'<cr>
 
+" Scratch buffer
+command! ScratchBuffer enew | setlocal buftype=nofile bufhidden=hide noswapfile
+nnoremap <silent> <leader>J :ScratchBuffer<cr>
+
 " Sessions
 nnoremap <c-s> :mksession! ~/.vim/sessions/
 nnoremap <c-p> :source ~/.vim/sessions/

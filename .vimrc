@@ -313,6 +313,10 @@ nnoremap <leader>W :saveas <c-r>=fnameescape(expand('%:h')).'/'<cr>
 " Toggle spell check
 nnoremap <leader>A :setlocal spell! spelllang=en_us<cr>
 
+" Scratch buffer
+command! ScratchBuffer enew | setlocal buftype=nofile bufhidden=hide noswapfile
+nnoremap <silent> <leader>J :ScratchBuffer<cr>
+
 " Autocmds
 augroup vimrc
   autocmd!
