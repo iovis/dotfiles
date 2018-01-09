@@ -101,6 +101,8 @@ nnoremap <silent> <leader>p :set wrap!<cr>
 nnoremap <silent> <leader>q :%bdelete<cr>
 nnoremap <silent> <leader>w :w!<cr>
 nnoremap <silent> <leader>x :qa<cr>
+nnoremap <silent> <leader>ª :bp!\|bd! #<cr>
+nnoremap <silent> <leader>º :bp\|bd #<cr>
 nnoremap <silent> <leader>Ç :lclose<cr>
 nnoremap <silent> <leader>ç :lwindow<cr>
 nnoremap <silent> g2 :set shiftwidth=2 softtabstop=2 noexpandtab \| retab<cr>gg=G

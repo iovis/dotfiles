@@ -33,7 +33,6 @@ Plug 'mhartington/nvim-typescript'
 Plug 'mhinz/vim-startify'
 Plug 'mileszs/ack.vim'
 Plug 'pbrisbin/vim-mkdir'
-Plug 'qpkorr/vim-bufkill'
 Plug 'raimondi/delimitMate'
 Plug 'schickling/vim-bufonly'
 Plug 'scrooloose/nerdtree'
@@ -188,6 +187,8 @@ nnoremap <silent> <leader>p :set wrap!<cr>
 nnoremap <silent> <leader>q :%bdelete<cr>
 nnoremap <silent> <leader>w :w!<cr>
 nnoremap <silent> <leader>x :qa<cr>
+nnoremap <silent> <leader>ª :bp!\|bd! #<cr>
+nnoremap <silent> <leader>º :bp\|bd #<cr>
 nnoremap <silent> <leader>Ç :lclose<cr>
 nnoremap <silent> <leader>ç :lwindow<cr>
 nnoremap <silent> g2 :set shiftwidth=2 softtabstop=2 noexpandtab \| retab<cr>gg=G
@@ -429,12 +430,6 @@ nnoremap <silent> <leader>b :Autoformat<cr>
 xnoremap <silent> <leader>b :Autoformat<cr>
 let g:formatdef_sqlformat_sql = '"sqlformat -k upper -r -"'
 let g:formatters_sql = ['sqlformat_sql']
-
-" bufkill
-let g:BufKillActionWhenBufferDisplayedInAnotherWindow = 'kill'
-let g:BufKillCreateMappings = 0
-nnoremap <silent> <leader>ª :BD!<cr>
-nnoremap <silent> <leader>º :BD<cr>
 
 " bufonly
 nnoremap <silent> <leader>Q :BufOnly!<cr>
