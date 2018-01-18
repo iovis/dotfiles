@@ -585,10 +585,9 @@ augroup end
 let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeIgnore = ['\.pyc$']
 let g:NERDTreeMinimalUI = 1
-let g:NERDTreeShowBookmarks = 1
+" let g:NERDTreeShowBookmarks = 1
 let g:NERDTreeShowLineNumbers = 1
 nnoremap <silent> - :NERDTreeFind<cr>
-nnoremap <silent> <leader>K :NERDTreeFind<cr>
 nnoremap <silent> <leader>k :NERDTreeToggle<cr>
 
 " peekaboo
