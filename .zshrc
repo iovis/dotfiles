@@ -61,6 +61,7 @@ plugins=(
   httpie
   # jsontools
   npm
+  ng
   osx
   perms
   # pip
