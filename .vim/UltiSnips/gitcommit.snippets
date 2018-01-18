@@ -3,33 +3,33 @@ import subprocess
 
 
 def get_branch():
-		return subprocess.check_output(["git", "rev-parse", "--abbrev-ref", "HEAD"]).decode("utf-8")
+    return subprocess.check_output(["git", "rev-parse", "--abbrev-ref", "HEAD"]).decode("utf-8")
 
 def get_jira_card(branch):
-		jira_match = re.search(r'RMD-\d+', branch)
-		return jira_match and jira_match.group()
+    jira_match = re.search(r'RMD-\d+', branch)
+    return jira_match and jira_match.group()
 
 def titleize(string):
-		return string.replace('_', ' ').title()
+    return string.replace('_', ' ').title()
 
 def get_pr_title(branch):
-		# Branch with Jira card
-		# david/RMD-1478_backend_count
-		title_match = re.search(r"RMD-\d+_(.*)", branch)
+    # Branch with Jira card
+    # david/RMD-1478_backend_count
+    title_match = re.search(r"RMD-\d+_(.*)", branch)
 
-		if title_match:
-				return titleize(title_match.group(1))
+    if title_match:
+        return titleize(title_match.group(1))
 
-		# Branch without Jira card, with namespace
-		# david/backend_count
-		title_match = re.search(r"\w+/(.*)", branch)
+    # Branch without Jira card, with namespace
+    # david/backend_count
+    title_match = re.search(r"\w+/(.*)", branch)
 
-		if title_match:
-				return titleize(title_match.group(1))
+    if title_match:
+        return titleize(title_match.group(1))
 
-		# Normal branch
-		# backend_count
-		return titleize(branch)
+    # Normal branch
+    # backend_count
+    return titleize(branch)
 
 endglobal
 
@@ -40,24 +40,35 @@ branch = get_branch()
 jira_card = get_jira_card(branch)
 title = get_pr_title(branch)
 
+# Title
 `${1:sfdph-qa}`!p
+
 if jira_card:
-	snip.rv = "|{} ".format(jira_card)
+    snip.rv = "|{} ".format(jira_card)
 else:
-	snip.rv = "| "
+    snip.rv = "| "
+
 `${2:`!p snip.rv = title`}
 `!p
+
+# Show JIRA card URL
+snip.rv = ""
 if jira_card:
-    snip.rv = "\n[JIRA](https://rubiconmd.atlassian.net/browse/{})\n".format(jira_card)
-else:
-    snip.rv = ""
-`
+    snip += "[JIRA](https://rubiconmd.atlassian.net/browse/{})\n".format(jira_card)
+
+`${3:`!p
+
+# Show related PRs if merging to master
+if t[1] == "master":
+    snip += "**Related PRs:**\n"
+
+`}
 **Changes:**
-- $3
+- $4
 
 **Checklist:**
-- [${4:x}] \`rspec\` passes
+- [${5:x}] \`rspec\` passes
 
 **How to test:**
-- $5
+- $6
 endsnippet
