@@ -173,6 +173,10 @@ function t() {
   tree -I '.git|node_modules|bower_components|.DS_Store' --dirsfirst --filelimit 50 -L ${1:-3} -aC $2
 }
 
+function renamedb() {
+  psql -h localhost -c "alter database $1 rename to $2"
+}
+
 # Codi
 # Usage: codi [filetype] [filename]
 function codi() {
