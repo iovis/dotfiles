@@ -53,13 +53,21 @@ if jira_card:
 if jira_card:
     snip += "[JIRA](https://rubiconmd.atlassian.net/browse/{})\n".format(jira_card)
 
-`${3:`!p
+``!p
 
 # Show related PRs if merging to master
 if t[1] == "master":
-    snip += "**Related PRs:**\n"
+    snip += "**Related PRs:**\n#"
 
-`}
+`${3:`!p
+
+if t[1] == "master":
+    snip.rv = "1234"
+`}`!p
+
+if t[1] == "master":
+    snip.rv = "\n"
+`
 **Changes:**
 - $4
 
