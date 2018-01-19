@@ -3,7 +3,7 @@ import subprocess
 
 
 def get_branch():
-    return subprocess.check_output(["git", "rev-parse", "--abbrev-ref", "HEAD"]).decode("utf-8")
+    return subprocess.check_output(["git", "rev-parse", "--abbrev-ref", "HEAD"]).strip().decode("utf-8")
 
 def get_jira_card(branch):
     jira_match = re.search(r'RMD-\d+', branch)
