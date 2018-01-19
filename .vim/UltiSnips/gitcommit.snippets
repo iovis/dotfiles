@@ -40,19 +40,16 @@ branch = get_branch()
 jira_card = get_jira_card(branch)
 title = get_pr_title(branch)
 
-# Title
-`${1:sfdph-qa}`!p
+# Title: (target_branch|JIRA Title Of The PR)
+`${1:sfdph-qa}|`!p
 
 if jira_card:
-    snip.rv = "|{} ".format(jira_card)
-else:
-    snip.rv = "| "
+    snip.rv = "{} ".format(jira_card)
 
 `${2:`!p snip.rv = title`}
 `!p
 
 # Show JIRA card URL
-snip.rv = ""
 if jira_card:
     snip += "[JIRA](https://rubiconmd.atlassian.net/browse/{})\n".format(jira_card)
 
