@@ -178,6 +178,10 @@ function renamedb() {
   psql -h localhost -c "alter database $1 rename to $2"
 }
 
+function switchdb() {
+  renamedb rubicon_development $1 && renamedb $2 rubicon_development
+}
+
 # Codi
 # Usage: codi [filetype] [filename]
 function codi() {
