@@ -619,7 +619,8 @@ let g:sneak#s_next = 1
 let g:sneak#use_ic_scs = 1
 
 " startify
-let g:startify_session_dir = '~/.vim/sessions'
+let g:startify_change_to_vcs_root = 1
+let g:startify_custom_header = []
 let g:startify_session_persistence = 1
 let g:startify_session_sort = 1
 nnoremap <leader>P :Startify<cr>
