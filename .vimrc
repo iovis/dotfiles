@@ -468,12 +468,11 @@ xnoremap <silent> <leader>m :Dispatch<cr>
 " emmet
 let g:user_emmet_settings = {
 \  'javascript.jsx' : {
-\      'extends' : 'jsx',
+\    'extends' : 'jsx',
 \  },
 \}
 
 " fugitive
-nmap <silent> <leader>- :Gstatus<cr><c-n>
 nmap <silent> <leader>gb :Gblame<cr>
 nmap <silent> <leader>gd :Gvdiff<cr>
 nmap <silent> <leader>gh :Glog<cr>
@@ -484,6 +483,7 @@ nmap <silent> <leader>gp :Gpush<cr>
 nmap <silent> <leader>gr :Gbrowse<cr>
 nmap <silent> <leader>gs :Gstatus<cr><c-n>
 nmap <silent> <leader>gw :Gwrite<cr>
+xmap <silent> <leader>gr :Gbrowse<cr>
 
 " fzf
 set rtp+=/usr/local/opt/fzf
@@ -691,6 +691,21 @@ function! OpenInBrowser(browser, ...)
   endif
 
   execute '!open "' . l:route . '" -a ' . shellescape(a:browser)
+endfunction
+
+" MacOS Quick-Look
+command! -nargs=? -complete=file QuickLook silent call QuickLookFunction(<f-args>)
+nnoremap <leader>- :QuickLook<cr>
+
+function! QuickLookFunction(...)
+  if a:0 == 0
+    " If no files given, open current file
+    let l:file = expand('%')
+  else
+    let l:file = a:1
+  endif
+
+  execute '!qlmanage -p ' . shellescape(l:file) . ' &> /dev/null'
 endfunction
 
 " US ANSI layout
