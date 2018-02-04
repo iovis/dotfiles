@@ -37,7 +37,10 @@ Plug 'raimondi/delimitMate'
 Plug 'schickling/vim-bufonly'
 Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
+Plug 'shougo/context_filetype.vim'
 Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'shougo/neco-syntax'
+Plug 'shougo/neco-vim'
 Plug 'sirver/ultisnips'
 Plug 'sjl/gundo.vim'
 Plug 'terryma/vim-multiple-cursors'
@@ -63,7 +66,6 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'wellle/targets.vim'
-Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'zchee/deoplete-jedi'
 
 call plug#end()
@@ -447,17 +449,17 @@ let g:delimitMate_expand_space = 1
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#tag#cache_limit_size = 5000000
 call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
-call deoplete#custom#set('ultisnips', 'rank', 9999)
-
+call deoplete#custom#set('ultisnips', 'rank', 1000)
+call deoplete#custom#set('syntax', 'rank', 100)
+" Use tab to go through the results
 inoremap <expr><tab> pumvisible()? "\<c-n>" : "\<tab>"
 inoremap <expr><s-tab> pumvisible()? "\<c-p>" : "\<s-tab>"
-
 " deoplete + multiple cursors fix
 function! Multiple_cursors_before()
   let b:deoplete_disable_auto_complete = 1
 endfunction
-
 function! Multiple_cursors_after()
   let b:deoplete_disable_auto_complete = 0
 endfunction
