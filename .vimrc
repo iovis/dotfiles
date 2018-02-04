@@ -647,9 +647,11 @@ let g:typescript_compiler_binary = 'tsc'
 let g:typescript_compiler_options = ''
 
 " ultisnips
+let g:UltiSnipsEditSplit = 'horizontal'
 let g:UltiSnipsExpandTrigger = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
+" let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips/']
 
 " vader
 augroup vader_commands
