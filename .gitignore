@@ -10,6 +10,7 @@
 .vim/.netrwhist
 .vim/bundle/*
 .vim/plugged/*
+.vim/session/*
 .vim/sessions/*
 .vim/spell/*
 mpv/watch_later/*
