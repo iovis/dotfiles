@@ -58,6 +58,7 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'                " Unix helpers (:Move, :Remove...)
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
+Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-repeat'
