@@ -674,21 +674,19 @@ augroup END
 nnoremap <silent> <leader>" :normal mzcs'"`z<cr>
 nnoremap <silent> <leader>' :normal mzcs"'`z<cr>
 
-"""""""""""""""""""""
-"  Custom commands  "
-"""""""""""""""""""""
+" Custom commands {{{ "
 " Docker management
 command! Dcup   !docker-compose up -d
 command! Dcps   !docker-compose ps
 command! Dcstop !docker-compose stop
 
 " Open in Browser
-command! -nargs=? -complete=file Canary silent call OpenInBrowser('Google Chrome Canary', <f-args>)
-command! -nargs=? -complete=file Chrome silent call OpenInBrowser('Google Chrome', <f-args>)
-command! -nargs=? -complete=file Firefox silent call OpenInBrowser('Firefox', <f-args>)
+command! -nargs=? -complete=file Canary     silent call OpenInBrowser('Google Chrome Canary', <f-args>)
+command! -nargs=? -complete=file Chrome     silent call OpenInBrowser('Google Chrome', <f-args>)
+command! -nargs=? -complete=file Firefox    silent call OpenInBrowser('Firefox', <f-args>)
 command! -nargs=? -complete=file FirefoxDev silent call OpenInBrowser('FirefoxDeveloperEdition', <f-args>)
-command! -nargs=? -complete=file Safari silent call OpenInBrowser('Safari', <f-args>)
-command! -nargs=? -complete=file SafariDev silent call OpenInBrowser('Safari Technology Preview', <f-args>)
+command! -nargs=? -complete=file Safari     silent call OpenInBrowser('Safari', <f-args>)
+command! -nargs=? -complete=file SafariDev  silent call OpenInBrowser('Safari Technology Preview', <f-args>)
 
 function! OpenInBrowser(browser, ...)
   if a:0 == 0
@@ -714,11 +712,13 @@ function! QuickLookFunction(...)
 
   execute '!qlmanage -p ' . shellescape(l:file) . ' &> /dev/null'
 endfunction
+" }}} Custom commands "
 
-" US ANSI layout
+" US ANSI layout {{{ "
 " nnoremap <silent> <leader>` :Bdelete<cr>
 " nnoremap <silent> <leader>~ :Bdelete!<cr>
 " nnoremap <silent> \  :cwindow<cr>
 " nnoremap <silent> \| :cclose<cr>
 " nnoremap <silent> `  :bdelete<cr>
 " nnoremap <silent> ~  :bdelete!<cr>
+" }}} US ANSI layout "
