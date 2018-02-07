@@ -381,6 +381,12 @@ function! ToggleHex()
   let &modifiable=l:oldmodifiable
 endfunction
 
+" Colors
+" hi IncSearch ctermbg=none ctermfg=110 term=bold,underline guibg=#8fafd7 guifg=#262626
+" hi Search ctermbg=none ctermfg=110 term=bold,underline guibg=#8fafd7 guifg=#262626
+" hi IncSearch ctermbg=none ctermfg=110 term=bold,underline guibg=none guifg=#8fafd7 gui=underline,bold
+" hi Search ctermbg=none ctermfg=110 term=bold,underline guibg=none guifg=#8fafd7 gui=underline,bold
+
 """""""""""""""""""
 " Plugin specific "
 """""""""""""""""""
