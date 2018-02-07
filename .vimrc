@@ -39,6 +39,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'shougo/context_filetype.vim'
 Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'shougo/echodoc.vim'
 Plug 'shougo/neco-syntax'
 Plug 'shougo/neco-vim'
 Plug 'sirver/ultisnips'
@@ -464,6 +465,12 @@ endfunction
 nnoremap <leader>. :Start<space>
 nnoremap <silent> <leader>m :Dispatch<cr>
 xnoremap <silent> <leader>m :Dispatch<cr>
+
+" echodoc {{{ "
+set cmdheight=2
+set noshowmode
+let g:echodoc_enable_at_startup = 1
+" }}} echodoc "
 
 " emmet
 let g:user_emmet_settings = {
