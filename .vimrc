@@ -652,11 +652,12 @@ let g:tmux_navigator_save_on_switch = 1
 " typescript
 augroup typescript_commands
   autocmd!
-  autocmd FileType typescript nnoremap <silent> <buffer> T :YcmCompleter GoToReferences<cr>
-  autocmd FileType typescript nnoremap <silent> <buffer> t :YcmCompleter GoToDefinition<cr>
+  autocmd FileType typescript nnoremap <silent> <buffer> T  :TSRefs<cr>
+  autocmd FileType typescript nnoremap <silent> <buffer> gT :TSDoc<cr>
+  autocmd FileType typescript nnoremap <silent> <buffer> gt :TSDefPreview<cr>
+  autocmd FileType typescript nnoremap <silent> <buffer> t  :TSDef<cr>
 augroup end
-let g:typescript_compiler_binary = 'tsc'
-let g:typescript_compiler_options = ''
+let g:nvim_typescript#signature_complete = 1
 
 " ultisnips
 let g:UltiSnipsEditSplit = 'horizontal'
