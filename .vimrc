@@ -566,19 +566,24 @@ endif
 
 " Netrw
 let g:netrw_altv = 1
-let g:netrw_banner = 0
+" let g:netrw_banner = 0
 let g:netrw_browse_split = 4
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro rnu'
 let g:netrw_fastbrowse = 2
-let g:netrw_list_hide = '.*\.pyc$,\.DS_Store'
+" let g:netrw_list_hide = '.*\.pyc$,\.DS_Store'
 let g:netrw_liststyle = 3
 let g:netrw_silent = 1
 let g:netrw_sort_options = 'i'
-let g:netrw_sort_sequence = '[\/]$'
+" let g:netrw_sort_sequence = '[\/]$'
 let g:netrw_special_syntax = 1
 let g:netrw_winsize = 25
 " nnoremap <silent> <leader>k :Lexplore<cr>
 " nnoremap <silent> - :Vexplore<cr>
+" augroup netrw_commands
+"   autocmd!
+"   autocmd FileType netrw nnoremap <buffer> <c-l> <c-w>l
+"   autocmd FileType netrw nmap <buffer> <c-r> <Plug>NetrwRefresh
+" augroup END
 
 " nerdtree
 augroup nerdtree_commands
