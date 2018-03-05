@@ -110,7 +110,7 @@ alias git=hub
 alias gitconfig="$EDITOR ~/.gitconfig"
 alias hosts="sudo $EDITOR /etc/hosts"
 alias https="http --default-scheme=https"
-alias libupdate="brew update; brew upgrade; npm -g outdated; gem update --system; echo '\nOutdated gems'; gemo; pip list --outdated --format=columns;"
+alias libupdate="brew update; brew upgrade; npm -g outdated; gem update --system; echo '\nOutdated gems'; gemo; pip list --outdated --format=columns; softwareupdate -l"
 alias listdbs="psql -h localhost -c '\l'"
 alias ni="nvim"
 alias nin="nvim -u ~/.dotfiles/.vimrc_min"
