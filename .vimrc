@@ -207,6 +207,7 @@ nnoremap Ñ ?
 nnoremap ñ /
 noremap ' `
 noremap <silent> <leader>, :set relativenumber! cursorline!<cr>
+noremap <silent> <leader>; :set number! relativenumber! cursorline!<cr>
 noremap <silent> <leader><cr> :noh<cr>
 noremap H g^
 noremap L g$
