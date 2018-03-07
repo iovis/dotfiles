@@ -87,6 +87,8 @@ nnoremap <expr> k v:count ? 'k' : 'gk'
 nnoremap <leader>n :e <C-R>=fnameescape(expand('%:h')).'/'<cr>
 nnoremap <m-O> mzO<esc>`z
 nnoremap <m-o> mzo<esc>`z
+nnoremap Ø     mzO<esc>`z
+nnoremap ø     mzo<esc>`z
 nnoremap <silent> <c-end>   :lnext<cr>
 nnoremap <silent> <c-home>  :lprevious<cr>
 nnoremap <silent> <end>     :cnext<cr>
