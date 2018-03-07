@@ -395,6 +395,49 @@ augroup ruby_commands
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>so :silent execute '!tmux send-keys -t \! rspec Space ' . shellescape(expand('%')) . ' Enter'<cr>:redraw!<cr>
 augroup end
 
+" Custom commands {{{ "
+" Docker management
+command! Dcup   !docker-compose up -d
+command! Dcps   !docker-compose ps
+command! Dcstop !docker-compose stop
+
+" Open in Browser
+command! -nargs=? -complete=file Canary     silent call OpenInBrowser('Google Chrome Canary', <f-args>)
+command! -nargs=? -complete=file Chrome     silent call OpenInBrowser('Google Chrome', <f-args>)
+command! -nargs=? -complete=file Firefox    silent call OpenInBrowser('Firefox', <f-args>)
+command! -nargs=? -complete=file FirefoxDev silent call OpenInBrowser('FirefoxDeveloperEdition', <f-args>)
+command! -nargs=? -complete=file Safari     silent call OpenInBrowser('Safari', <f-args>)
+command! -nargs=? -complete=file SafariDev  silent call OpenInBrowser('Safari Technology Preview', <f-args>)
+
+nnoremap <silent> <leader>< :Canary<cr>
+
+function! OpenInBrowser(browser, ...)
+  if a:0 == 0
+    let l:route = 'http://localhost:3000'
+  else
+    let l:route = a:1
+  endif
+
+  execute '!open "' . l:route . '" -a ' . shellescape(a:browser)
+endfunction
+
+" MacOS Quick-Look
+command! -nargs=? -complete=file QuickLook silent call QuickLookFunction(<f-args>)
+nnoremap <leader>- :QuickLook<cr>
+
+function! QuickLookFunction(...)
+  if a:0 == 0
+    " If no files given, open current file
+    let l:file = expand('%')
+  else
+    let l:file = a:1
+  endif
+
+  execute '!qlmanage -p ' . shellescape(l:file) . ' &> /dev/null'
+endfunction
+" }}} Custom commands "
+
+" External Plugins {{{ "
 " 'apprentice.vim' -- Vim color scheme.
 " Author:       Romain Lafourcade (romainlafourcade@gmail.com)
 " Description:  Essentially a streamlining and conversion to xterm colors of
@@ -965,3 +1008,4 @@ if v:version < 703
   exe "delfunction Buftabline_render\n" . s:transpile()
   delfunction s:transpile
 endif
+" }}} External Plugins "
