@@ -103,6 +103,7 @@
   docblockr: {}
   editor:
     fontFamily: "Fira Code"
+    fontSize: 15
     invisibles: {}
     lineHeight: 1.4
     preferredLineLength: 120
