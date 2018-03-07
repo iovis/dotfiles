@@ -396,15 +396,15 @@ endfunction
 " Ack
 let g:ackhighlight = 1
 let g:ack_use_dispatch = 1
-let g:ackprg = 'ag --vimgrep --smart-case'
-nnoremap <leader>f  :Ack! -Q ""<left>
-xnoremap <leader>f y:Ack! -Q "<c-r>""
-nnoremap K  :silent Ack! -Q "<c-r><c-w>"<cr>
-xnoremap K y:silent Ack! -Q "<c-r>""<cr>
+let g:ackprg = 'rg --vimgrep --smart-case'
+nnoremap <leader>f  :Ack! -F ""<left>
+xnoremap <leader>f y:Ack! -F "<c-r>""
+nnoremap K  :silent Ack! -F "<c-r><c-w>"<cr>
+xnoremap K y:silent Ack! -F "<c-r>""<cr>
 
-" Use Ag over Grep
-if executable('ag')
-  set grepprg=ag\ --vimgrep
+" Use rg over Grep
+if executable('rg')
+  set grepprg=ag\ --vimgrep\ --smart-case
   set grepformat=%f:%l:%c:%m
 endif
 
