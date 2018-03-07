@@ -602,6 +602,7 @@ augroup nerdtree_commands
   autocmd FileType nerdtree setlocal relativenumber
   autocmd FileType nerdtree nnoremap <buffer> . :<c-u> <c-r>=g:NERDTreeFileNode.GetSelected().path.str()<cr><home>
   autocmd FileType nerdtree nmap <buffer> ! .!
+  autocmd FileType nerdtree nnoremap <buffer> <leader>- :QuickLook <c-r>=g:NERDTreeFileNode.GetSelected().path.str()<cr><cr>
 augroup end
 let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeIgnore = ['\.pyc$']
