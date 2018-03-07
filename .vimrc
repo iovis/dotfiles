@@ -455,7 +455,7 @@ let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
 
 " deoplete
-let g:deoplete#auto_complete_delay = 150
+let g:deoplete#auto_complete_delay = 100
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#tag#cache_limit_size = 5000000
 call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
