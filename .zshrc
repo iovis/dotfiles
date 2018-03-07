@@ -14,7 +14,7 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
   # context
   # load
   dir
-  virtualenv
+  # virtualenv
   vcs
   # root_indicator
 )
@@ -41,7 +41,7 @@ export LESS="-iMSx4 -FXR"
 export MANPAGER="$EDITOR -c 'set ft=man' -"
 export PAGER="less"
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+export PATH="/usr/local/opt/python@2/libexec/bin:$PATH"
 export PATH="$HOME/.rbenv/shims:$PATH"
 export PATH="$GOPATH/bin:$PATH"
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
@@ -71,7 +71,7 @@ plugins=(
   rsync
   tmux
   # tmuxinator
-  virtualenvwrapper
+  # virtualenvwrapper
 )
 
 source $ZSH/oh-my-zsh.sh
