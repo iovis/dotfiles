@@ -706,6 +706,8 @@ command! -nargs=? -complete=file FirefoxDev silent call OpenInBrowser('FirefoxDe
 command! -nargs=? -complete=file Safari     silent call OpenInBrowser('Safari', <f-args>)
 command! -nargs=? -complete=file SafariDev  silent call OpenInBrowser('Safari Technology Preview', <f-args>)
 
+nnoremap <silent> <leader>< :Canary<cr>
+
 function! OpenInBrowser(browser, ...)
   if a:0 == 0
     let l:route = 'http://localhost:3000'
