@@ -410,10 +410,14 @@ command! -nargs=? -complete=file Safari     silent call OpenInBrowser('Safari', 
 command! -nargs=? -complete=file SafariDev  silent call OpenInBrowser('Safari Technology Preview', <f-args>)
 
 nnoremap <silent> <leader>< :Canary<cr>
+nnoremap <silent> <leader>> :Canary :9001<cr>
 
 function! OpenInBrowser(browser, ...)
   if a:0 == 0
     let l:route = 'http://localhost:3000'
+  elseif match(a:1, '^:\d\+') != -1
+    " :9001 should point to http://localhost:9001
+    let l:route = 'http://localhost' . a:1
   else
     let l:route = a:1
   endif
