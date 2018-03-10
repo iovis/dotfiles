@@ -15,4 +15,5 @@
 --exclude=bower_components
 --exclude=dist
 --exclude=migrate
+--exclude=node_modules
 --exclude=tmp
