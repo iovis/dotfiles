@@ -492,16 +492,16 @@ let g:user_emmet_settings = {
 
 " fugitive
 nmap <silent> <leader>gb :Gblame<cr>
+nmap <silent> <leader>gc :Gread<cr>
 nmap <silent> <leader>gd :Gvdiff<cr>
+nmap <silent> <leader>gg :Gbrowse<cr>
 nmap <silent> <leader>gh :Glog<cr>
 nmap <silent> <leader>gl :Gpull<cr>
 nmap <silent> <leader>gm :Gmerge<cr>
-nmap <silent> <leader>go :Gread<cr>
 nmap <silent> <leader>gp :Gpush<cr>
-nmap <silent> <leader>gr :Gbrowse<cr>
 nmap <silent> <leader>gs :Gstatus<cr><c-n>
 nmap <silent> <leader>gw :Gwrite<cr>
-xmap <silent> <leader>gr :Gbrowse<cr>
+xmap <silent> <leader>gg :Gbrowse<cr>
 
 " fzf
 set rtp+=/usr/local/opt/fzf
