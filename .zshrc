@@ -101,6 +101,7 @@ alias c="pygmentize -O style=native -f console256 -g"
 alias canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias d="du -sh"
+alias dump="pg_dump -Fc --clean --no-owner -h localhost"
 alias files="ag --no-color -g ''"
 alias fixtrash="rm -rf ~/.Trash; mkdir ~/.Trash; killall Finder"
 alias flushcache="dscacheutil -flushcache"
@@ -111,12 +112,14 @@ alias git=hub
 alias gitconfig="$EDITOR ~/.gitconfig"
 alias hosts="sudo $EDITOR /etc/hosts"
 alias https="http --default-scheme=https"
+alias l="exa -lag --git --group-directories-first"
 alias libupdate="brew update; brew upgrade; npm -g outdated; gem update --system; echo '\nOutdated gems'; gemo; pip list --outdated --format=columns; softwareupdate -l"
 alias listdbs="psql -h localhost -c '\l'"
 alias ni="nvim"
 alias nin="nvim -u ~/.dotfiles/.vimrc_min"
 alias notes="nvim -c 'Goyo | set filetype=markdown'"
 alias npms="npm ls -g --depth=0"
+alias npmgo="npm -g outdated"
 alias npmgu="npm -g update"
 alias pf="peerflixrb"
 alias pipdump="pip freeze > requirements.txt"
@@ -125,6 +128,7 @@ alias pipo="pip list --outdated --format=columns"
 alias pipu="pip install -U"
 alias prs="git browse -- pulls"
 alias rebuildlaunchservices="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user"
+alias rsb="rails server -b 0.0.0.0"
 alias rtg="rake -T | grep"
 alias so="source ~/.zshrc"
 alias tailf="tail -f"
@@ -172,9 +176,7 @@ EOF
 
 # tree
 function t() {
-  # Defaults to 3 levels deep, do more with `t 5` or `t 1`
-  # pass additional args after (like -h for size)
-  tree -I '.git|node_modules|bower_components|.DS_Store' --dirsfirst --filelimit 50 -L ${1:-3} -aC $2
+  exa --git --group-directories-first -TL${1:-3}
 }
 
 function renamedb() {
