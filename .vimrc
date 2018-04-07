@@ -621,8 +621,18 @@ nnoremap <silent> <leader>k :NERDTreeToggle<cr>
 let g:peekaboo_delay = 750
 
 " rails
-nnoremap <silent> <leader>E :Server!<cr>
 nnoremap <silent> <leader>C :Console<cr>
+nnoremap <silent> <leader>D :Start pgcli -h localhost rubicon_development<cr>
+nnoremap <silent> <leader>E :Server!<cr>
+
+augroup rails_commands
+  autocmd!
+  autocmd FileType ruby nnoremap <buffer> m<cr>    :Rails<cr>
+  autocmd FileType ruby nnoremap <buffer> m<space> :Rails<space>
+
+  " Execute line in rails runner
+  autocmd FileType ruby nnoremap <silent> <buffer> <leader>sr :silent execute '!tmux send-keys -t \! rails Space runner Space "' . shellescape(getline('.')) . '" Enter'<cr>
+augroup END
 
 " rspec
 let g:rspec_command = 'Dispatch bin/rspec {spec}'
@@ -632,9 +642,6 @@ augroup ruby_commands
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>ss :call RunNearestSpec()<cr>
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>sl :call RunLastSpec()<cr>
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>sa :call RunAllSpecs()<cr>
-
-  " Execute line in rails runner
-  autocmd FileType ruby nnoremap <silent> <buffer> <leader>sr :silent execute '!tmux send-keys -t \! rails Space runner Space "' . shellescape(getline('.')) . '" Enter'<cr>
 
   " Execute current spec in last pane
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>si :silent execute '!tmux send-keys -t \! rspec Space ' . shellescape(expand('%') . ':' . line(".")) . ' Enter'<cr>
