@@ -478,8 +478,6 @@ endfunction
 
 " dispatch
 nnoremap <leader>. :Start<space>
-nnoremap <silent> <leader>m :Dispatch<cr>
-xnoremap <silent> <leader>m :Dispatch<cr>
 
 " echodoc {{{ "
 set cmdheight=2

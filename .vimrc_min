@@ -270,8 +270,9 @@ nnoremap <c-s> :mksession! ~/.vim/sessions/
 nnoremap <c-p> :source ~/.vim/sessions/
 
 " Make
-nnoremap <silent> <leader>m :make<cr>
 nnoremap <leader>. :!
+nnoremap m<cr>     :make<cr>
+nnoremap m<space>  :make<space>
 
 " Commands
 augroup vimrc
