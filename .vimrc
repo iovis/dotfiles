@@ -608,7 +608,7 @@ augroup nerdtree_commands
   autocmd FileType nerdtree nmap <buffer> ! .!
   autocmd FileType nerdtree nnoremap <buffer> <silent> <c-j> :TmuxNavigateDown<cr>
   autocmd FileType nerdtree nnoremap <buffer> <silent> <c-k> :TmuxNavigateUp<cr>
-  autocmd FileType nerdtree nnoremap <buffer> <leader>- :QuickLook <c-r>=g:NERDTreeFileNode.GetSelected().path.str()<cr><cr>
+  autocmd FileType nerdtree nnoremap <buffer> <leader>¡ :QuickLook <c-r>=g:NERDTreeFileNode.GetSelected().path.str()<cr><cr>
 augroup end
 let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeIgnore = ['\.pyc$']
@@ -730,7 +730,7 @@ endfunction
 
 " MacOS Quick-Look
 command! -nargs=? -complete=file QuickLook silent call QuickLookFunction(<f-args>)
-nnoremap <leader>- :QuickLook<cr>
+nnoremap <leader>¡ :QuickLook<cr>
 
 function! QuickLookFunction(...)
   if a:0 == 0

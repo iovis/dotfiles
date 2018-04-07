@@ -429,7 +429,7 @@ endfunction
 
 " MacOS Quick-Look
 command! -nargs=? -complete=file QuickLook silent call QuickLookFunction(<f-args>)
-nnoremap <leader>- :QuickLook<cr>
+nnoremap <leader>¡ :QuickLook<cr>
 
 function! QuickLookFunction(...)
   if a:0 == 0
