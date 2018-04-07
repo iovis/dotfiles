@@ -747,8 +747,12 @@ endfunction
 " US ANSI layout {{{ "
 " nnoremap <silent> <leader>` :Bdelete<cr>
 " nnoremap <silent> <leader>~ :Bdelete!<cr>
+" nnoremap <silent> <leader>§ :Bdelete<cr>
+" nnoremap <silent> <leader>± :Bdelete!<cr>
 " nnoremap <silent> \  :cwindow<cr>
 " nnoremap <silent> \| :cclose<cr>
 " nnoremap <silent> `  :bdelete<cr>
 " nnoremap <silent> ~  :bdelete!<cr>
+" nnoremap <silent> §  :bdelete<cr>
+" nnoremap <silent> ±  :bdelete!<cr>
 " }}} US ANSI layout "
