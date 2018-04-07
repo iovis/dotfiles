@@ -28,7 +28,6 @@ Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'metakirby5/codi.vim'
 Plug 'mhartington/nvim-typescript'
-Plug 'mhinz/vim-startify'
 Plug 'mileszs/ack.vim'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'raimondi/delimitMate'
@@ -654,15 +653,6 @@ augroup end
 " sneak
 let g:sneak#s_next = 1
 let g:sneak#use_ic_scs = 1
-
-" startify
-let g:startify_change_to_vcs_root = 1
-let g:startify_custom_header = []
-let g:startify_session_persistence = 1
-let g:startify_session_sort = 1
-nnoremap <leader>P :Startify<cr>
-nnoremap <c-p> :SLoad<space>
-nnoremap <c-s> :SSave!<space>
 
 " tagbar
 let g:tagbar_compact = 1
