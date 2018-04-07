@@ -55,6 +55,7 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'                " Unix helpers (:Move, :Remove...)
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
+Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-rails'
@@ -673,6 +674,10 @@ augroup typescript_commands
   autocmd FileType typescript nnoremap <silent> <buffer> t  :TSDef<cr>
 augroup end
 let g:nvim_typescript#signature_complete = 1
+
+" obsession
+nnoremap <c-p> :source ~/.vim/sessions/
+nnoremap <c-s> :Obsess<cr>
 
 " ultisnips
 let g:UltiSnipsEditSplit = 'horizontal'
