@@ -62,6 +62,8 @@ endif
 " Vim specific
 inoremap jj <Esc>
 let mapleader = "\<Space>"
+nnoremap <space> <nop>
+xnoremap <space> <nop>
 
 " Some expansions
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
