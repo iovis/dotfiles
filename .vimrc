@@ -686,11 +686,13 @@ let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 " vader
 augroup vader_commands
   au!
-  autocmd FileType vim   nnoremap <buffer> <leader>ss :source % \| echo 'sourced ' . expand("%")<cr>
+  autocmd FileType vader nnoremap <buffer> <leader>sf :Vader test/*<cr>
+  autocmd FileType vader nnoremap <silent> <buffer> m<cr> :Vader %<cr>
+  autocmd FileType vader nnoremap <silent> <buffer> m<space> :Vader %<space>
+  autocmd FileType vim   nnoremap <buffer> <leader>so :source % \| echo 'sourced ' . expand("%")<cr>
   autocmd FileType vim   nnoremap <buffer> <leader>sr ggyG:@"<cr>
+  autocmd FileType vim   nnoremap <buffer> <leader>ss :Vader %<cr>
   autocmd FileType vim   xnoremap <buffer> <leader>sr y:@"<cr>
-  autocmd FileType vader nnoremap <silent> <buffer> <leader>m  :Vader %<cr>
-  autocmd FileType vader nnoremap <silent> <buffer> <leader>sf :Vader test/*<cr>
 augroup END
 
 " ysurround: Swap double quotes with single quotes
