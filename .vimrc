@@ -63,6 +63,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
+" Plug 'uplus/deoplete-solargraph'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'wellle/targets.vim'
@@ -461,7 +462,7 @@ let g:delimitMate_expand_space = 1
 " deoplete
 let g:deoplete#auto_complete_delay = 100
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#tag#cache_limit_size = 5000000
+" let g:deoplete#tag#cache_limit_size = 5000000
 call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
 call deoplete#custom#set('ultisnips', 'rank', 1000)
 call deoplete#custom#set('syntax', 'rank', 100)
