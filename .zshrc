@@ -117,6 +117,7 @@ alias libupdate="brew update; brew upgrade; npm -g outdated; gem update --system
 alias listdbs="psql -h localhost -c '\l'"
 alias ni="nvim"
 alias nin="nvim -u ~/.dotfiles/.vimrc_min"
+alias nis="nvim -S Session.vim"
 alias notes="nvim -c 'Goyo | set filetype=markdown'"
 alias npms="npm ls -g --depth=0"
 alias npmgo="npm -g outdated"
