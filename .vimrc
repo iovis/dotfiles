@@ -50,6 +50,7 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-characterize'          " Use ga to see additional representations of that character
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'                " Unix helpers (:Move, :Remove...)
@@ -448,6 +449,9 @@ nnoremap <silent> <leader>Q :BufOnly!<cr>
 " csv
 hi CSVColumnEven ctermbg=242 guibg=#6C6C6C
 hi CSVColumnOdd  term=NONE   ctermbg=NONE
+
+" db
+let g:db = 'postgres://localhost/rubicon_development'
 
 " delimitmate
 let g:delimitMate_expand_cr = 1
