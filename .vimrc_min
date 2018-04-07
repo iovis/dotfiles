@@ -196,10 +196,11 @@ xnoremap <silent> § :m'<-2<cr>`>my`<mzgv=gv`yo`z
 
 " Navigate buffers
 nnoremap <BS> <C-^>
-nnoremap <silent> <tab> :bnext<cr>
-nnoremap <silent> <s-tab> :bprevious<cr>
-nnoremap <silent> <leader>t :enew<cr>
 nnoremap <leader><leader> :ls<cr>:b!<space>
+nnoremap <leader>m :marks<cr>
+nnoremap <silent> <leader>t :enew<cr>
+nnoremap <silent> <s-tab> :bprevious<cr>
+nnoremap <silent> <tab> :bnext<cr>
 
 " Remapping <tab> makes <c-i> not work
 nnoremap <c-e> <c-i>
