@@ -530,6 +530,7 @@ nnoremap <silent> <leader>O :Files<cr>
 nnoremap <silent> <leader>R :Tags<cr>
 nnoremap <silent> <leader>j :GFiles?<cr>
 nnoremap <silent> <leader>m :Marks<cr>
+nnoremap <silent> <leader>p :Commands<cr>
 nnoremap <silent> <leader>r :BTags<cr>
 nnoremap <silent> <leader>ñ :BLines<cr>
 
