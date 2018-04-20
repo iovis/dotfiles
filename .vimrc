@@ -558,6 +558,10 @@ nmap <leader>a= mzglip='z
 " multiple_cursors
 let g:multi_cursor_exit_from_insert_mode = 0
 let g:multi_cursor_exit_from_visual_mode = 0
+nnoremap <m-->  :MultipleCursorsFind<space>
+nnoremap <silent> <m-ñ>  :MultipleCursorsFind <C-R>/<CR>
+xnoremap <silent> <m--> y:MultipleCursorsFind <C-R>"<CR>
+xnoremap <silent> <m-ñ>  :MultipleCursorsFind <C-R>/<CR>
 
 " neomake
 augroup neomake_commands
