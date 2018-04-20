@@ -463,9 +463,9 @@ let g:delimitMate_expand_space = 1
 let g:deoplete#auto_complete_delay = 100
 let g:deoplete#enable_at_startup = 1
 " let g:deoplete#tag#cache_limit_size = 5000000
-call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
-call deoplete#custom#set('ultisnips', 'rank', 1000)
-call deoplete#custom#set('syntax', 'rank', 100)
+call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
+call deoplete#custom#source('ultisnips', 'rank', 1000)
+call deoplete#custom#source('syntax', 'rank', 100)
 " Use tab to go through the results
 inoremap <expr><tab> pumvisible()? "\<c-n>" : "\<tab>"
 inoremap <expr><s-tab> pumvisible()? "\<c-p>" : "\<s-tab>"
