@@ -316,6 +316,7 @@ nnoremap <silent> <leader>ee :e! $MYVIMRC<cr>
 nnoremap <silent> <leader>ev :vs $MYVIMRC<cr>
 nnoremap <silent> <leader>eh :sp $MYVIMRC<cr>
 nnoremap <silent> <leader>es :so $MYVIMRC<cr>
+nnoremap <silent> <leader>em :e! ~/.dotfiles/.vimrc_min<cr>
 
 " Duplicate file
 nnoremap <leader>W :saveas <c-r>=fnameescape(expand('%:h')).'/'<cr>
