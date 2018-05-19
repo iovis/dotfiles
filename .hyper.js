@@ -6,13 +6,14 @@ module.exports = {
   config: {
     // Choose either "stable" for receiving highly polished,
     // or "canary" for less polished but more frequent updates
-    updateChannel: 'stable',
+    updateChannel: "stable",
 
     // default font size in pixels for all tabs
     fontSize: 16,
 
     // font family with optional fallbacks
-    fontFamily: '"Fira Code", Menlo, "DejaVu Sans Mono", "Lucida Console", monospace',
+    fontFamily:
+      '"Fira Code", Menlo, "DejaVu Sans Mono", "Lucida Console", monospace',
 
     // terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)
     // cursorColor: 'rgba(248,28,229,0.8)',
@@ -41,19 +42,19 @@ module.exports = {
     `,
 
     // custom css to embed in the terminal window
-    termCSS: `
-      x-screen a {
-        color: #71a6ba;
-      }
+    // termCSS: `
+    //   x-screen a {
+    //     color: #71a6ba;
+    //   }
 
-      x-screen a.hover {
-        text-decoration: underline;
-      }
+    //   x-screen a.hover {
+    //     text-decoration: underline;
+    //   }
 
-      x-row {
-        line-height: 1.2em;
-      }
-    `,
+    //   x-row {
+    //     line-height: 1.2em;
+    //   }
+    // `,
 
     // set to `true` (without backticks) if you're using a Linux setup that doesn't show native menus
     // default: `false` on Linux, `true` on Windows (ignored on macOS)
@@ -101,11 +102,11 @@ module.exports = {
     //
     // Powershell on Windows
     // - Example: `C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe`
-    shell: '',
+    shell: "",
 
     // for setting shell arguments (i.e. for using interactive shellArgs: ['-i'])
     // by default ['--login'] will be used
-    shellArgs: ['--login'],
+    shellArgs: ["--login"],
 
     // for environment variables
     env: {},
@@ -133,7 +134,7 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: [
-    "hyper-simple-highlight-active-session",
+    // "hyper-simple-highlight-active-session",
     "hyperlinks",
     "hypersixteen",
     // "hyperterm-1password",
