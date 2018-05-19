@@ -478,7 +478,6 @@ nmap <leader>gl :Gpull<cr>
 nmap <leader>gm :Gmerge<cr>
 nmap <leader>go :Gread<cr>
 nmap <leader>gp :Gpush<cr>
-nmap <leader>gr :Git pull-request -b<space>
 nmap <leader>gw :Gwrite<cr>
 
 nmap <silent> <leader>-  :Gstatus<cr><c-n>
@@ -510,7 +509,7 @@ nnoremap <silent> <leader><leader> :Buffers<cr>
 nnoremap <silent> <leader>B :BCommits<cr>
 nnoremap <silent> <leader>F :Filetypes<cr>
 nnoremap <silent> <leader>H :History<cr>
-nnoremap <silent> <leader>L :Commits<cr>
+nnoremap <silent> <leader>l :Commits<cr>
 nnoremap <silent> <leader>O :Files<cr>
 nnoremap <silent> <leader>R :Tags<cr>
 nnoremap <silent> <leader>j :GFiles?<cr>
@@ -663,7 +662,7 @@ let g:sneak#use_ic_scs = 1
 
 " tagbar {{{ "
 let g:tagbar_compact = 1
-nmap <silent> <leader>l :TagbarToggle<CR>
+nmap <silent> <leader>L :TagbarToggle<CR>
 " }}} tagbar "
 
 " targets {{{ "
