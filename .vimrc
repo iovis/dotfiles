@@ -676,9 +676,10 @@ let g:tmux_navigator_save_on_switch = 1
 " typescript {{{ "
 augroup typescript_commands
   autocmd!
+  autocmd FileType typescript nmap     <silent> <buffer> gT <leader>ht
+  autocmd FileType typescript nmap     <silent> <buffer> gt <leader>vt
   autocmd FileType typescript nnoremap <silent> <buffer> T  :TSRefs<cr>
-  autocmd FileType typescript nnoremap <silent> <buffer> gT :TSDoc<cr>
-  autocmd FileType typescript nnoremap <silent> <buffer> gt :TSDefPreview<cr>
+  autocmd FileType typescript nnoremap <silent> <buffer> gh :TSDoc<cr>
   autocmd FileType typescript nnoremap <silent> <buffer> t  :TSDef<cr>
 augroup end
 
