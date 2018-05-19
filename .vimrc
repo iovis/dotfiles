@@ -294,8 +294,8 @@ nmap <silent> gT :sp <cr><c-]>
 nnoremap <silent> <leader>T :Dispatch ctags<cr>
 
 " Work with splits
-nnoremap <leader>v <c-w>v<c-w>l
-nnoremap <leader>h <c-w>s<c-w>j
+nnoremap <leader>v <c-w>v
+nnoremap <leader>h <c-w>s
 
 " sort operator and mappings
 function! SortLinesOpFunc(...)
