@@ -93,10 +93,10 @@ nnoremap <m-O> mzO<esc>`z
 nnoremap <m-o> mzo<esc>`z
 nnoremap Ø     mzO<esc>`z
 nnoremap ø     mzo<esc>`z
-nnoremap <silent> <c-end>   :lnext<cr>
-nnoremap <silent> <c-home>  :lprevious<cr>
-nnoremap <silent> <end>     :cnext<cr>
-nnoremap <silent> <home>    :cprevious<cr>
+nnoremap <silent> <down>  :cnext<cr>
+nnoremap <silent> <up>    :cprevious<cr>
+nnoremap <silent> <right> :lnext<cr>
+nnoremap <silent> <left>  :lprevious<cr>
 nnoremap <silent> <leader>= <c-w>=
 nnoremap <silent> <leader>X :qa!<cr>
 nnoremap <silent> <leader>\| <c-w>\|
