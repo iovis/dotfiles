@@ -1,4 +1,4 @@
-set nocompatible
+scriptencoding utf-8
 filetype off
 
 call plug#begin()
@@ -154,7 +154,7 @@ endif
 " CUSTOM KEYBINDINGS
 " Vim specific
 inoremap jj <Esc>
-let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
 nnoremap <space> <nop>
 xnoremap <space> <nop>
 
@@ -344,50 +344,6 @@ augroup vimrc
         \ endif
 augroup end
 
-" Hex mode
-" ex command for toggling hex mode - define mapping if desired
-command! -bar Hexmode call ToggleHex()
-
-" helper function to toggle hex mode
-function! ToggleHex()
-  " hex mode should be considered a read-only operation
-  " save values for modified and read-only for restoration later,
-  " and clear the read-only flag for now
-  let l:modified=&mod
-  let l:oldreadonly=&readonly
-  let &readonly=0
-  let l:oldmodifiable=&modifiable
-  let &modifiable=1
-  if !exists('b:editHex') || !b:editHex
-    " save old options
-    let b:oldft=&ft
-    let b:oldbin=&bin
-    " set new options
-    setlocal binary " make sure it overrides any textwidth, etc.
-    silent :e " this will reload the file without trickeries
-              "(DOS line endings will be shown entirely )
-    let &ft="xxd"
-    " set status
-    let b:editHex=1
-    " switch to hex editor
-    %!xxd
-  else
-    " restore old options
-    let &ft=b:oldft
-    if !b:oldbin
-      setlocal nobinary
-    endif
-    " set status
-    let b:editHex=0
-    " return to normal editing
-    %!xxd -r
-  endif
-  " restore values for modified and read only state
-  let &mod=l:modified
-  let &readonly=l:oldreadonly
-  let &modifiable=l:oldmodifiable
-endfunction
-
 " Colors
 " hi IncSearch ctermbg=none ctermfg=110 term=bold,underline guibg=#8fafd7 guifg=#262626
 " hi Search ctermbg=none ctermfg=110 term=bold,underline guibg=#8fafd7 guifg=#262626
@@ -397,7 +353,7 @@ endfunction
 """""""""""""""""""
 " Plugin specific "
 """""""""""""""""""
-" Ack
+" Ack {{{ "
 let g:ackhighlight = 1
 let g:ack_use_dispatch = 1
 let g:ackprg = 'rg --vimgrep --smart-case'
@@ -411,8 +367,9 @@ if executable('rg')
   set grepprg=ag\ --vimgrep\ --smart-case
   set grepformat=%f:%l:%c:%m
 endif
+" }}} Ack "
 
-" airline
+" airline {{{ "
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -440,47 +397,65 @@ nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
+" }}} airline "
 
-" autoformat
+" autoformat {{{ "
 nnoremap <silent> <leader>b :Autoformat<cr>
 xnoremap <silent> <leader>b :Autoformat<cr>
+
+augroup prettier
+  autocmd!
+  autocmd FileType javascript,typescript nnoremap <silent> <buffer> <leader>b :Prettier %<cr>
+augroup end
+
 let g:formatdef_sqlformat_sql = '"sqlformat -k upper -r -"'
 let g:formatters_sql = ['sqlformat_sql']
+" }}} autoformat "
 
-" bufonly
+" bufonly {{{ "
 nnoremap <silent> <leader>Q :BufOnly!<cr>
+" }}} bufonly "
 
-" csv
+" csv {{{ "
 hi CSVColumnEven ctermbg=242 guibg=#6C6C6C
 hi CSVColumnOdd  term=NONE   ctermbg=NONE
+" }}} csv "
 
-" db
-let g:db = 'postgres://localhost/rubicon_development'
+" dadbod {{{ "
+" let g:db = 'postgres://localhost/rubicon_development'
+" }}} dadbod "
 
-" delimitmate
+" delimitmate {{{ "
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
+" }}} delimitmate "
 
-" deoplete
+" deoplete {{{ "
 let g:deoplete#auto_complete_delay = 100
 let g:deoplete#enable_at_startup = 1
+
 " let g:deoplete#tag#cache_limit_size = 5000000
 call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
 call deoplete#custom#source('ultisnips', 'rank', 1000)
 call deoplete#custom#source('syntax', 'rank', 100)
+
 " Use tab to go through the results
 inoremap <expr><tab> pumvisible()? "\<c-n>" : "\<tab>"
 inoremap <expr><s-tab> pumvisible()? "\<c-p>" : "\<s-tab>"
+
 " deoplete + multiple cursors fix
 function! Multiple_cursors_before()
   let b:deoplete_disable_auto_complete = 1
 endfunction
+
 function! Multiple_cursors_after()
   let b:deoplete_disable_auto_complete = 0
 endfunction
+" }}} deoplete "
 
-" dispatch
+" dispatch {{{ "
 nnoremap <leader>! :Start<space>
+" }}} dispatch "
 
 " echodoc {{{ "
 set cmdheight=2
@@ -488,28 +463,35 @@ set noshowmode
 let g:echodoc_enable_at_startup = 1
 " }}} echodoc "
 
-" emmet
+" emmet {{{ "
 let g:user_emmet_settings = {
 \  'javascript.jsx' : {
 \    'extends' : 'jsx',
 \  },
 \}
+" }}} emmet "
 
-" fugitive
+" fugitive {{{ "
+nmap <leader>gc :Gcommit<cr>
+nmap <leader>gl :Gpull<cr>
+nmap <leader>gm :Gmerge<cr>
+nmap <leader>go :Gread<cr>
+nmap <leader>gp :Gpush<cr>
+nmap <leader>gr :Git pull-request -b<space>
+nmap <leader>gw :Gwrite<cr>
+
 nmap <silent> <leader>-  :Gstatus<cr><c-n>
 nmap <silent> <leader>gb :Gblame<cr>
-nmap <silent> <leader>gc :Gread<cr>
 nmap <silent> <leader>gd :Gvdiff<cr>
 nmap <silent> <leader>gg :Gbrowse<cr>
 nmap <silent> <leader>gh :Glog<cr>
-nmap <silent> <leader>gl :Gpull<cr>
-nmap <silent> <leader>gm :Gmerge<cr>
-nmap <silent> <leader>gp :Gpush<cr>
-nmap <silent> <leader>gw :Gwrite<cr>
-xmap <silent> <leader>gg :Gbrowse<cr>
 
-" fzf
-set rtp+=/usr/local/opt/fzf
+xmap <silent> <leader>gg :Gbrowse<cr>
+xmap <silent> <leader>gh :Glog<cr>
+" }}} fugitive "
+
+" fzf {{{ "
+set runtimepath+=/usr/local/opt/fzf
 
 augroup fzf_commands
   autocmd!
@@ -535,37 +517,45 @@ nnoremap <silent> <leader>m :Marks<cr>
 nnoremap <silent> <leader>p :Commands<cr>
 nnoremap <silent> <leader>r :BTags<cr>
 nnoremap <silent> <leader>ñ :BLines<cr>
+" }}} fzf "
 
-" gitgutter
+" gitgutter {{{ "
 let g:gitgutter_map_keys = 0
 nmap [c <Plug>GitGutterPrevHunk
 nmap ]c <Plug>GitGutterNextHunk
+" }}} gitgutter "
 
-" goyo
+" goyo {{{ "
 nnoremap <silent> <leader>z :Goyo<cr>
+" }}} goyo "
 
-" gundo
+" gundo {{{ "
 nnoremap <silent> <leader>u :GundoToggle<cr>
+" }}} gundo "
 
-" highlightedyank
+" highlightedyank {{{ "
 hi HighlightedyankRegion ctermbg=110 ctermfg=235 guibg=#8fafd7 guifg=#262626 cterm=NONE gui=NONE
+" }}} highlightedyank "
 
-" jsx
+" jsx {{{ "
 let g:jsx_ext_required = 0
+" }}} jsx "
 
-" lion
+" lion {{{ "
 let b:lion_squeeze_spaces = 1
 nmap <leader>a= mzglip='z
+" }}} lion "
 
-" multiple_cursors
+" multiple cursors {{{ "
 let g:multi_cursor_exit_from_insert_mode = 0
 let g:multi_cursor_exit_from_visual_mode = 0
 nnoremap <m-->  :MultipleCursorsFind<space>
 nnoremap <silent> <m-ñ>  :MultipleCursorsFind <C-R>/<CR>
 xnoremap <silent> <m--> y:MultipleCursorsFind <C-R>"<CR>
 xnoremap <silent> <m-ñ>  :MultipleCursorsFind <C-R>/<CR>
+" }}} multiple cursors "
 
-" neomake
+" neomake {{{ "
 augroup neomake_commands
   autocmd!
   autocmd BufWritePost * Neomake
@@ -585,8 +575,9 @@ let g:neomake_yaml_yamllint_args = ['-f', 'parsable']
 if executable($PWD . '/node_modules/.bin/eslint')
   let g:neomake_javascript_eslint_exe = $PWD . '/node_modules/.bin/eslint'
 endif
+" }}} neomake "
 
-" Netrw
+" netrw {{{ "
 let g:netrw_altv = 1
 " let g:netrw_banner = 0
 let g:netrw_browse_split = 4
@@ -606,8 +597,9 @@ let g:netrw_winsize = 25
 "   autocmd FileType netrw nnoremap <buffer> <c-l> <c-w>l
 "   autocmd FileType netrw nmap <buffer> <c-r> <Plug>NetrwRefresh
 " augroup END
+" }}} netrw "
 
-" nerdtree
+" nerdtree {{{ "
 augroup nerdtree_commands
   autocmd!
   autocmd FileType nerdtree setlocal relativenumber
@@ -617,6 +609,7 @@ augroup nerdtree_commands
   autocmd FileType nerdtree nnoremap <buffer> <silent> <c-k> :TmuxNavigateUp<cr>
   autocmd FileType nerdtree nnoremap <buffer> <leader>¡ :QuickLook <c-r>=g:NERDTreeFileNode.GetSelected().path.str()<cr><cr>
 augroup end
+
 let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeIgnore = ['\.pyc$']
 let g:NERDTreeMinimalUI = 1
@@ -624,14 +617,16 @@ let g:NERDTreeMinimalUI = 1
 let g:NERDTreeShowLineNumbers = 1
 nnoremap <silent> - :NERDTreeFind<cr>
 nnoremap <silent> <leader>k :NERDTreeToggle<cr>
+" }}} nerdtree "
 
-" peekaboo
+" peekaboo {{{ "
 let g:peekaboo_delay = 750
+" }}} peekaboo "
 
-" rails
+" rails {{{ "
 nnoremap <silent> <leader>C :Console<cr>
 nnoremap <silent> <leader>D :Start pgcli -h localhost rubicon_development<cr>
-nnoremap <silent> <leader>E :Server!<cr>
+nnoremap <silent> <leader>E :Start!<cr>
 
 augroup rails_commands
   autocmd!
@@ -641,8 +636,9 @@ augroup rails_commands
   " Execute line in rails runner
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>sr :silent execute '!tmux send-keys -t \! rails Space runner Space "' . shellescape(getline('.')) . '" Enter'<cr>
 augroup END
+" }}} rails "
 
-" rspec
+" rspec {{{ "
 let g:rspec_command = 'Dispatch bin/rspec {spec}'
 augroup ruby_commands
   autocmd!
@@ -657,22 +653,27 @@ augroup ruby_commands
   " Execute current spec file in last pane
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>so :silent execute '!tmux send-keys -t \! rspec Space ' . shellescape(expand('%')) . ' Enter'<cr>
 augroup end
+" }}} rspec "
 
-" sneak
+" sneak {{{ "
 let g:sneak#s_next = 1
 let g:sneak#use_ic_scs = 1
+" }}} sneak "
 
-" tagbar
+" tagbar {{{ "
 let g:tagbar_compact = 1
 nmap <silent> <leader>l :TagbarToggle<CR>
+" }}} tagbar "
 
-" targets
+" targets {{{ "
 let g:targets_pairs = '()b {}B []r <>'
+" }}} targets "
 
-" tmux navigator
+" tmux navigator {{{ "
 let g:tmux_navigator_save_on_switch = 1
+" }}} tmux navigator "
 
-" typescript
+" typescript {{{ "
 augroup typescript_commands
   autocmd!
   autocmd FileType typescript nnoremap <silent> <buffer> T  :TSRefs<cr>
@@ -680,20 +681,24 @@ augroup typescript_commands
   autocmd FileType typescript nnoremap <silent> <buffer> gt :TSDefPreview<cr>
   autocmd FileType typescript nnoremap <silent> <buffer> t  :TSDef<cr>
 augroup end
-let g:nvim_typescript#signature_complete = 1
 
-" obsession
+let g:nvim_typescript#signature_complete = 1
+" }}} typescript "
+
+" obsession {{{ "
 nnoremap <c-p> :source ~/.vim/sessions/
 nnoremap <c-s> :Obsess<cr>
+" }}} obsession "
 
-" ultisnips
+" ultisnips {{{ "
 let g:UltiSnipsEditSplit = 'horizontal'
 let g:UltiSnipsExpandTrigger = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 " let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips/']
+" }}} ultisnips "
 
-" vader
+" vader {{{ "
 augroup vader_commands
   au!
   autocmd FileType vader nnoremap <buffer> <leader>sf :Vader test/*<cr>
@@ -704,18 +709,23 @@ augroup vader_commands
   autocmd FileType vim   nnoremap <buffer> <leader>ss :Vader %<cr>
   autocmd FileType vim   xnoremap <buffer> <leader>sr y:@"<cr>
 augroup END
+" }}} vader "
 
-" ysurround: Swap double quotes with single quotes
+" ysurround {{{ "
 nnoremap <silent> <leader>" :normal mzcs'"`z<cr>
 nnoremap <silent> <leader>' :normal mzcs"'`z<cr>
+" }}} ysurround "
 
-" Custom commands {{{ "
-" Docker management
-command! Dcup   !docker-compose up -d
-command! Dcps   !docker-compose ps
-command! Dcstop !docker-compose stop
+"""""""""""""""""""""
+"  Custom Commands  "
+"""""""""""""""""""""
+" Docker {{{ "
+command! Dcup   Dispatch docker-compose up -d --remove-orphans
+command! Dcps   Dispatch docker-compose ps
+command! Dcstop Dispatch docker-compose stop
+" }}} Docker "
 
-" Open in Browser
+" Open in Browser {{{ "
 command! -nargs=? -complete=file Canary     silent call OpenInBrowser('Google Chrome Canary', <f-args>)
 command! -nargs=? -complete=file Chrome     silent call OpenInBrowser('Google Chrome', <f-args>)
 command! -nargs=? -complete=file Firefox    silent call OpenInBrowser('Firefox', <f-args>)
@@ -738,8 +748,9 @@ function! OpenInBrowser(browser, ...)
 
   execute '!open "' . l:route . '" -a ' . shellescape(a:browser)
 endfunction
+" }}} Open in Browser "
 
-" MacOS Quick-Look
+" QuickLook macOS {{{ "
 command! -nargs=? -complete=file QuickLook silent call QuickLookFunction(<f-args>)
 nnoremap <leader>¡ :QuickLook<cr>
 
@@ -753,7 +764,63 @@ function! QuickLookFunction(...)
 
   execute '!qlmanage -p ' . shellescape(l:file) . ' &> /dev/null'
 endfunction
-" }}} Custom commands "
+" }}} QuickLook macOS "
+
+" Prettier {{{ "
+command! -nargs=+ -complete=file Prettier silent !prettier --write <q-args>
+" }}} Prettier "
+
+" Hex Mode {{{ "
+command! -bar Hexmode call ToggleHex()
+
+function! ToggleHex()
+  " hex mode should be considered a read-only operation
+  " save values for modified and read-only for restoration later,
+  " and clear the read-only flag for now
+  let l:modified=&modified
+  let l:oldreadonly=&readonly
+  let &readonly=0
+  let l:oldmodifiable=&modifiable
+  let &modifiable=1
+
+  if !exists('b:editHex') || !b:editHex
+    " save old options
+    let b:oldft=&filetype
+    let b:oldbin=&binary
+
+    " set new options
+    setlocal binary " make sure it overrides any textwidth, etc.
+    silent :e " this will reload the file without trickeries
+
+    "(DOS line endings will be shown entirely )
+    let &filetype='xxd'
+
+    " set status
+    let b:editHex=1
+
+    " switch to hex editor
+    %!xxd
+  else
+    " restore old options
+    let &filetype=b:oldft
+
+    if !b:oldbin
+      setlocal nobinary
+    endif
+
+    " set status
+    let b:editHex=0
+
+    " return to normal editing
+    %!xxd -r
+  endif
+  "
+  " restore values for modified and read only state
+  let &modified=l:modified
+  let &readonly=l:oldreadonly
+  let &modifiable=l:oldmodifiable
+endfunction
+" }}} Hex Mode "
 
 " US ANSI layout {{{ "
 " nnoremap <silent> <leader>` :Bdelete<cr>
