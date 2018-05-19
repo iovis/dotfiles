@@ -273,7 +273,7 @@ nnoremap <c-s> :mksession! ~/.vim/sessions/
 nnoremap <c-p> :source ~/.vim/sessions/
 
 " Make
-nnoremap <leader>. :!
+nnoremap <leader>! :!
 nnoremap m<cr>     :make<cr>
 nnoremap m<space>  :make<space>
 

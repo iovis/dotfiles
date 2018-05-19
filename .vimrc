@@ -480,7 +480,7 @@ function! Multiple_cursors_after()
 endfunction
 
 " dispatch
-nnoremap <leader>. :Start<space>
+nnoremap <leader>! :Start<space>
 
 " echodoc {{{ "
 set cmdheight=2
