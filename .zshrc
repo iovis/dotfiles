@@ -34,6 +34,7 @@ HIST_STAMPS="yyyy-mm-dd"
 
 # Environment variables
 export EDITOR="nvim"
+export FZF_DEFAULT_OPTS="--bind=ctrl-n:page-down,ctrl-p:page-up"
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export LESS="-iMSx4 -FXR"
