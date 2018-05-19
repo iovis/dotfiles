@@ -33,7 +33,7 @@ def get_pr_title(branch):
 
 endglobal
 
-snippet pr "Pull Request template for RubiconMD"
+snippet qa "Pull Request template to QA for RubiconMD"
 `!p
 
 branch = get_branch()
@@ -41,39 +41,54 @@ jira_card = get_jira_card(branch)
 title = get_pr_title(branch)
 
 # Title: (target_branch|JIRA Title Of The PR)
-`${1:sfdph-qa}|`!p
+`qa|`!p
 
 if jira_card:
     snip.rv = "{} ".format(jira_card)
 
-`${2:`!p snip.rv = title`}
+`${1:`!p snip.rv = title`}
 `!p
 
 # Show JIRA card URL
 if jira_card:
     snip += "[JIRA](https://rubiconmd.atlassian.net/browse/{})\n".format(jira_card)
 
-``!p
-
-# Show related PRs if merging to master
-if t[1] == "master":
-    snip += "**Related PRs:** #"
-
-`${3:`!p
-
-if t[1] == "master":
-    snip.rv = "1234"
-`}`!p
-
-if t[1] == "master":
-    snip.rv = "\n"
 `
 **Changes:**
-- $4
+- $2
 
 **Checklist:**
-- [${5:x}] \`rspec\` passes
+- [${3:x}] This PR includes \`schema.rb\` changes. *NOTE:* if so, remember to ping DataMan for his review, in case he needs to update Periscope as well.
+- [${4:x}] \`rspec\` passes
+- [${5:x}] Code adheres to scope of Jira Card
+- [${6:x}] QA passes in local machine
+- [${7:x}] New code has proper test coverage
+- [${8:x}] New code makes linters happy
 
 **How to test:**
-- $6
+- $10
+endsnippet
+
+snippet master "Pull Request template to master for RubiconMD"
+`!p
+
+branch = get_branch()
+jira_card = get_jira_card(branch)
+title = get_pr_title(branch)
+
+# Title: (target_branch|JIRA Title Of The PR)
+`master|`!p
+
+if jira_card:
+    snip.rv = "{} ".format(jira_card)
+
+`${1:`!p snip.rv = title`}
+`!p
+
+# Show JIRA card URL
+if jira_card:
+    snip += "[JIRA](https://rubiconmd.atlassian.net/browse/{})\n".format(jira_card)
+
+`
+**Related PRs:** #${2}
 endsnippet
