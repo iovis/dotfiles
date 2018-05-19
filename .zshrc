@@ -188,6 +188,10 @@ function switchdb() {
   renamedb rubicon_development $1 && renamedb $2 rubicon_development
 }
 
+function snippets() {
+  rg $1 ~/.vim/plugged/vim-snippets/**/*.snippets
+}
+
 # Codi
 # Usage: codi [filetype] [filename]
 function codi() {
