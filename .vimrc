@@ -192,7 +192,7 @@ nnoremap <silent> <leader>X :qa!<cr>
 nnoremap <silent> <leader>\| <c-w>\|
 nnoremap <silent> <leader>_ <c-w>_
 nnoremap <silent> <leader>c :close<cr>
-nnoremap <silent> <leader>P :set wrap!<cr>
+nnoremap <silent> <leader>p :set wrap!<cr>
 nnoremap <silent> <leader>q :%bdelete<cr>
 nnoremap <silent> <leader>w :w!<cr>
 nnoremap <silent> <leader>x :qa<cr>
@@ -514,7 +514,7 @@ nnoremap <silent> <leader>O :Files<cr>
 nnoremap <silent> <leader>R :Tags<cr>
 nnoremap <silent> <leader>j :GFiles?<cr>
 nnoremap <silent> <leader>m :Marks<cr>
-nnoremap <silent> <leader>p :Commands<cr>
+nnoremap <silent> <leader>P :Commands<cr>
 nnoremap <silent> <leader>r :BTags<cr>
 nnoremap <silent> <leader>ñ :BLines<cr>
 " }}} fzf "
