@@ -109,6 +109,7 @@ alias gcam="git commit -v -am"
 alias gemo="gem outdated | grep -f ~/.rbenv/default-gems"
 alias git=hub
 alias gitconfig="$EDITOR ~/.gitconfig"
+alias gpr="git pull-request -b"
 alias hosts="sudo $EDITOR /etc/hosts"
 alias https="http --default-scheme=https"
 alias l="exa -lag --git --group-directories-first"
