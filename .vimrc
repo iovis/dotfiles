@@ -317,6 +317,7 @@ nnoremap <silent> <leader>ev :vs $MYVIMRC<cr>
 nnoremap <silent> <leader>eh :sp $MYVIMRC<cr>
 nnoremap <silent> <leader>es :so $MYVIMRC<cr>
 nnoremap <silent> <leader>em :e! ~/.dotfiles/.vimrc_min<cr>
+nnoremap <silent> <leader>et :e! ~/.tmux.conf<cr>
 
 " Duplicate file
 nnoremap <leader>W :saveas <c-r>=fnameescape(expand('%:h')).'/'<cr>
