@@ -106,6 +106,7 @@ alias fixtrash="rm -rf ~/.Trash; mkdir ~/.Trash; killall Finder"
 alias flushcache="dscacheutil -flushcache"
 alias flushmemcached="echo 'flush_all' | nc localhost 11211"
 alias gcam="git commit -v -am"
+alias gcq="git checkout qa"
 alias gemo="gem outdated | grep -f ~/.rbenv/default-gems"
 alias git=hub
 alias gitconfig="$EDITOR ~/.gitconfig"
