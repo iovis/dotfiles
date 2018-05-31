@@ -178,6 +178,8 @@ nmap     <c-down> ]c
 nmap     <c-up>   [c
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
+xnoremap <expr> j v:count ? 'j' : 'gj'
+xnoremap <expr> k v:count ? 'k' : 'gk'
 nnoremap <leader>n :e <C-R>=fnameescape(expand('%:h')).'/'<cr>
 nnoremap <m-O> mzO<esc>`z
 nnoremap <m-o> mzo<esc>`z
