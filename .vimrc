@@ -181,6 +181,8 @@ nnoremap <expr> k v:count ? 'k' : 'gk'
 xnoremap <expr> j v:count ? 'j' : 'gj'
 xnoremap <expr> k v:count ? 'k' : 'gk'
 nnoremap <leader>n :e <C-R>=fnameescape(expand('%:h')).'/'<cr>
+nnoremap <leader>. @@
+nnoremap <leader>: @:
 nnoremap <m-O> mzO<esc>`z
 nnoremap <m-o> mzo<esc>`z
 nnoremap Ø     mzO<esc>`z
