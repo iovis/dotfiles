@@ -1,0 +1,11 @@
+autopep8
+flake8
+ipython
+jedi
+neovim
+pip
+setuptools
+solargraph-utils.py
+sqlparse
+vim-vint
+yamllint
