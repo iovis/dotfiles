@@ -508,17 +508,15 @@ nnoremap <expr> <leader>o system('git rev-parse --is-inside-work-tree') =~ 'true
   \ ? ':GFiles<cr>'
   \ : ':Files<cr>'
 
-nnoremap <silent> <leader>: :History:<cr>
+nnoremap <silent> <c-p> :Commands<cr>
 nnoremap <silent> <leader><leader> :Buffers<cr>
 nnoremap <silent> <leader>B :BCommits<cr>
 nnoremap <silent> <leader>F :Filetypes<cr>
 nnoremap <silent> <leader>H :History<cr>
-nnoremap <silent> <leader>l :Commits<cr>
 nnoremap <silent> <leader>O :Files<cr>
 nnoremap <silent> <leader>R :Tags<cr>
 nnoremap <silent> <leader>j :GFiles?<cr>
-nnoremap <silent> <leader>m :Marks<cr>
-nnoremap <silent> <leader>P :Commands<cr>
+nnoremap <silent> <leader>l :Commits<cr>
 nnoremap <silent> <leader>r :BTags<cr>
 nnoremap <silent> <leader>ñ :BLines<cr>
 " }}} fzf "
@@ -634,12 +632,13 @@ let g:peekaboo_delay = 750
 " rails {{{ "
 nnoremap <silent> <leader>C :Console<cr>
 nnoremap <silent> <leader>D :Start pgcli -h localhost rubicon_development<cr>
-nnoremap <silent> <leader>E :Start!<cr>
+nnoremap <silent> <leader>S :Start!<cr>
 
 augroup rails_commands
   autocmd!
-  autocmd FileType ruby nnoremap <buffer> m<cr>    :Rails<cr>
-  autocmd FileType ruby nnoremap <buffer> m<space> :Rails<space>
+  autocmd FileType ruby nnoremap <buffer> m<cr>     :Rails<cr>
+  autocmd FileType ruby nnoremap <buffer> m<space>  :Rails<space>
+  autocmd FileType ruby nnoremap <buffer> <leader>S :Server! -b 0.0.0.0<cr>
 
   " Execute line in rails runner
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>sr :silent execute '!tmux send-keys -t \! rails Space runner Space "' . shellescape(getline('.')) . '" Enter'<cr>
@@ -695,8 +694,7 @@ let g:nvim_typescript#signature_complete = 1
 " }}} typescript "
 
 " obsession {{{ "
-nnoremap <c-p> :source ~/.vim/sessions/
-nnoremap <c-s> :Obsess<cr>
+nnoremap <c-s> :Obsession<cr>
 " }}} obsession "
 
 " ultisnips {{{ "
