@@ -392,6 +392,8 @@ let g:netrw_winsize = 25
 " Ruby
 augroup ruby_commands
   autocmd!
+  autocmd FileType ruby setlocal commentstring=#\ %s
+
   autocmd FileType ruby nnoremap <buffer> <leader>sf :execute '!bin/rspec ' . shellescape(expand('%'))<cr>
   autocmd FileType ruby nnoremap <buffer> <leader>ss :execute '!bin/rspec ' . shellescape(expand('%') . ':' . line('.'))<cr>
   autocmd FileType ruby nnoremap <buffer> <leader>sa :execute '!bin/rspec'<cr>
@@ -404,6 +406,12 @@ augroup ruby_commands
 
   " Execute current spec file in last pane
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>so :silent execute '!tmux send-keys -t \! rspec Space ' . shellescape(expand('%')) . ' Enter'<cr>:redraw!<cr>
+augroup end
+
+" JavaScript
+augroup ruby_commands
+  autocmd!
+  autocmd FileType javascript setlocal commentstring=//\ %s
 augroup end
 
 " Custom commands {{{ "
