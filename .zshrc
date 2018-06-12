@@ -70,6 +70,7 @@ plugins=(
   rails
   rbenv
   rsync
+  tig
   tmux
   # tmuxinator
   # virtualenvwrapper
@@ -111,7 +112,9 @@ alias gcq="git checkout qa"
 alias gemo="gem outdated | grep -f ~/.rbenv/default-gems"
 alias git=hub
 alias gitconfig="$EDITOR ~/.gitconfig"
-alias gpr="git pull-request -b"
+alias gprb="git pull-request -b"
+alias gprc="git pr checkout"
+alias gprl="git pr list"
 alias hosts="sudo $EDITOR /etc/hosts"
 alias https="http --default-scheme=https"
 alias l="exa -lag --git --group-directories-first"
