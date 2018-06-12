@@ -59,6 +59,7 @@ plugins=(
   gem
   git
   httpie
+  jira
   # jsontools
   npm
   ng
