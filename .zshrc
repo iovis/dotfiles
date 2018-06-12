@@ -198,6 +198,16 @@ function snippets() {
   rg $1 ~/.vim/plugged/vim-snippets/**/*.snippets
 }
 
+function gbp() {
+  if [[ -n $1 ]]; then
+    local url="pull/$1"
+  else
+    local url="pulls"
+  fi
+
+  git browse -- $url
+}
+
 # Codi
 # Usage: codi [filetype] [filename]
 function codi() {
