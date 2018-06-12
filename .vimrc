@@ -182,9 +182,9 @@ nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
 xnoremap <expr> j v:count ? 'j' : 'gj'
 xnoremap <expr> k v:count ? 'k' : 'gk'
-nnoremap <leader>n :e <C-R>=fnameescape(expand('%:h')).'/'<cr>
 nnoremap <leader>. @@
 nnoremap <leader>: @:
+nnoremap <leader>n :e<space>
 nnoremap <m-O> mzO<esc>`z
 nnoremap <m-o> mzo<esc>`z
 nnoremap O mzO<esc>`z
@@ -204,14 +204,14 @@ nnoremap <silent> <leader>p :set wrap!<cr>
 nnoremap <silent> <leader>q :%bdelete<cr>
 nnoremap <silent> <leader>w :w!<cr>
 nnoremap <silent> <leader>x :qa<cr>
-nnoremap <silent> <leader>ª :bp!\|bd! #<cr>
-nnoremap <silent> <leader>º :bp\|bd #<cr>
+nnoremap <silent> <leader>ª :bdelete!<cr>
+nnoremap <silent> <leader>º :bdelete<cr>
 nnoremap <silent> <leader>Ç :lclose<cr>
 nnoremap <silent> <leader>ç :lwindow<cr>
 nnoremap <silent> g2 :set shiftwidth=2 softtabstop=2 expandtab \| retab<cr>gg=G
 nnoremap <silent> g4 :set shiftwidth=4 softtabstop=4 expandtab \| retab<cr>gg=G
-nnoremap <silent> ª :bdelete!<cr>
-nnoremap <silent> º :bdelete<cr>
+nnoremap <silent> ª :bp!\|bd! #<cr>
+nnoremap <silent> º :bp\|bd #<cr>
 nnoremap <silent> Ç :cclose<cr>
 nnoremap <silent> ç :cwindow<cr>
 nnoremap M <c-w>o
@@ -259,12 +259,6 @@ xnoremap # y?<c-r>"<cr>
 
 " Save with root permissions
 command! W w !sudo tee % > /dev/null
-
-" Quick replace word under cursor
-nnoremap <leader>s  :%s///g<left><left><left>
-nnoremap <leader>S  :%s/\<<c-r><c-w>\>//g<left><left>
-xnoremap <leader>s  :%s///g<left><left><left>
-xnoremap <leader>S y:%s/<c-r>"//g<left><left>
 
 " Copy to clipboard
 nnoremap <leader>y "+y
