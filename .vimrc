@@ -174,8 +174,6 @@ inoremap <c-a> <home>
 inoremap <c-e> <end>
 inoremap <m-O> <esc>O
 inoremap <m-o> <esc>o
-inoremap O <esc>O
-inoremap o <esc>o
 nmap     <c-down> ]c
 nmap     <c-up>   [c
 nnoremap <expr> j v:count ? 'j' : 'gj'
@@ -187,8 +185,6 @@ nnoremap <leader>: @:
 nnoremap <leader>n :e<space>
 nnoremap <m-O> mzO<esc>`z
 nnoremap <m-o> mzo<esc>`z
-nnoremap O mzO<esc>`z
-nnoremap o mzo<esc>`z
 nnoremap Ø   mzO<esc>`z
 nnoremap ø   mzo<esc>`z
 nnoremap <silent> <down>  :cnext<cr>
@@ -278,10 +274,6 @@ nnoremap <silent> ¶ :m+<cr>==
 nnoremap <silent> § :m-2<cr>==
 xnoremap <silent> ¶ :m'>+<cr>`<my`>mzgv=gv`yo`z
 xnoremap <silent> § :m'<-2<cr>`>my`<mzgv=gv`yo`z
-nnoremap <silent> j :m+<cr>==
-nnoremap <silent> k :m-2<cr>==
-xnoremap <silent> j :m'>+<cr>`<my`>mzgv=gv`yo`z
-xnoremap <silent> k :m'<-2<cr>`>my`<mzgv=gv`yo`z
 
 " Navigate buffers
 nnoremap <BS> <C-^>
@@ -551,12 +543,8 @@ nmap <leader>a= mzglip='z
 " multiple cursors {{{ "
 let g:multi_cursor_exit_from_insert_mode = 0
 let g:multi_cursor_exit_from_visual_mode = 0
-nnoremap -   :MultipleCursorsFind<space>
 nnoremap <m--> :MultipleCursorsFind<space>
-nnoremap <silent> ñ    :MultipleCursorsFind <C-R>/<CR>
 nnoremap <silent> <m-ñ>  :MultipleCursorsFind <C-R>/<CR>
-xnoremap <silent> -   y:MultipleCursorsFind <C-R>"<CR>
-xnoremap <silent> ñ    :MultipleCursorsFind <C-R>/<CR>
 xnoremap <silent> <m--> y:MultipleCursorsFind <C-R>"<CR>
 xnoremap <silent> <m-ñ>  :MultipleCursorsFind <C-R>/<CR>
 " }}} multiple cursors "
