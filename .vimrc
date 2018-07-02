@@ -309,13 +309,14 @@ xnoremap <silent> gs :sort<cr>
 nnoremap <silent> gr :<c-u>set operatorfunc=SortReverseLinesOpFunc<cr>g@
 xnoremap <silent> gr :sort!<cr>
 
-" Fast vimrc editing
+" Fast config editing
 nnoremap <silent> <leader>ee :e! $MYVIMRC<cr>
-nnoremap <silent> <leader>ev :vs $MYVIMRC<cr>
 nnoremap <silent> <leader>eh :sp $MYVIMRC<cr>
-nnoremap <silent> <leader>es :so $MYVIMRC<cr>
 nnoremap <silent> <leader>em :e! ~/.dotfiles/.vimrc_min<cr>
+nnoremap <silent> <leader>ep :e! .projections.json<cr>
+nnoremap <silent> <leader>es :so $MYVIMRC<cr>
 nnoremap <silent> <leader>et :e! ~/.tmux.conf<cr>
+nnoremap <silent> <leader>ev :vs $MYVIMRC<cr>
 
 " Duplicate file
 nnoremap <leader>W :saveas <c-r>=fnameescape(expand('%:h')).'/'<cr>
