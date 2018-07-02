@@ -1,9 +1,12 @@
 [alias]
+  branch-name = !git rev-parse --abbrev-ref HEAD
+  hidden = !git ls-files -v | grep \"^[a-z]\"
   hide = update-index --assume-unchanged
+  ignored = !git status -s --ignored | grep \"^!!\"
+  publish = !git push -u origin $(git branch-name)
   unhide = update-index --no-assume-unchanged
   unhide-all = update-index --really-refresh
-  hidden = !git ls-files -v | grep \"^[a-z]\"
-  ignored = !git status -s --ignored | grep \"^!!\"
+  unpublish = !git push origin :$(git branch-name)
 [filter "media"]
   clean = git media clean %f
   smudge = git media smudge %f
@@ -17,7 +20,7 @@
 [merge]
   tool = vimdiff
 [mergetool]
-  prompt = true
+  prompt = false
 [mergetool "vimdiff"]
   cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [difftool]
