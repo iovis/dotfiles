@@ -209,7 +209,7 @@ nnoremap t <C-]>
 nnoremap T g]
 nnoremap <silent> gt :vsp <cr><c-]>
 nnoremap <silent> gT :sp <cr><c-]>
-nnoremap <silent> <leader>T :VimProcBang ctags<cr>
+nnoremap <silent> <leader>T :!ctags<cr>
 
 " Work with splits
 nnoremap <leader>v <c-w>v
