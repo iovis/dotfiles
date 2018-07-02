@@ -153,6 +153,9 @@ alias vimupdate="nvim +PlugUpdate +PlugUpgrade +qa"
 alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
 alias zshrc="$EDITOR ~/.zshrc"
 
+# Oh-my-zsh plugin for rails has an alias that clashes with binary rg
+unalias rg
+
 # External aliases
 source ~/.aliases
 
