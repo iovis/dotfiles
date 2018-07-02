@@ -420,7 +420,17 @@ hi CSVColumnOdd  term=NONE   ctermbg=NONE
 " }}} csv "
 
 " dadbod {{{ "
-" let g:db = 'postgres://localhost/rubicon_development'
+let g:db = 'postgresql://localhost/rubicon_development'
+cabbrev rdb postgresql://localhost/rubicon_development
+cabbrev zdb postgresql://localhost/zsfg_development
+cabbrev edb postgresql://localhost/elab_development
+
+nnoremap +!       :DB w:db =<space>
+nnoremap +<cr>    :Start pgcli -h localhost rubicon_development<cr>
+nnoremap +<space> :DB<space>
+nnoremap +?       :let w:db<cr>
+xnoremap +<cr>    :DB<cr>
+xnoremap +<space> :DB<space>
 " }}} dadbod "
 
 " delimitmate {{{ "
