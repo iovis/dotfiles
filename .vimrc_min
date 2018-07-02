@@ -361,14 +361,11 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" Fuzzy search
+" FZF commands
 nnoremap <leader>o :e **/
-
-" History
 nnoremap <silent> <leader>H :browse old<cr>
-
-" Filetype
 nnoremap <leader>F :setf<space>
+nnoremap <leader>M :map<cr>
 
 " Netrw options
 let g:netrw_altv = 1
