@@ -271,10 +271,11 @@ nnoremap <silent> <leader>J :ScratchBuffer<cr>
 nnoremap <c-s> :mksession! ~/.vim/sessions/
 nnoremap <c-p> :source ~/.vim/sessions/
 
-" Make
-nnoremap <leader>! :!
-nnoremap m<cr>     :make<cr>
-nnoremap m<space>  :make<space>
+" Dispatch keybindings
+nnoremap g<space> :!
+nnoremap m<cr>    :make<cr>
+nnoremap m<space> :make<space>
+nnoremap m?       :set makeprg?<cr>
 
 " Commands
 augroup vimrc

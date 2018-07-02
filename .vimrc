@@ -462,7 +462,6 @@ endfunction
 " }}} deoplete "
 
 " dispatch {{{ "
-nnoremap <leader>! :Start<space>
 " }}} dispatch "
 
 " echodoc {{{ "
@@ -630,14 +629,10 @@ let g:peekaboo_delay = 750
 
 " rails {{{ "
 nnoremap <silent> <leader>C :Console<cr>
-nnoremap <silent> <leader>D :Start pgcli -h localhost rubicon_development<cr>
 nnoremap <silent> <leader>S :Start!<cr>
 
 augroup rails_commands
   autocmd!
-  autocmd FileType ruby nnoremap <buffer> m<cr>     :Rails<cr>
-  autocmd FileType ruby nnoremap <buffer> m<space>  :Rails<space>
-  autocmd FileType ruby nnoremap <buffer> <leader>S :Server! -b 0.0.0.0<cr>
 
   " Execute line in rails runner
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>sr :silent execute '!tmux send-keys -t \! rails Space runner Space "' . shellescape(getline('.')) . '" Enter'<cr>
@@ -708,8 +703,6 @@ let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 augroup vader_commands
   au!
   autocmd FileType vader nnoremap <buffer> <leader>sf :Vader test/*<cr>
-  autocmd FileType vader nnoremap <silent> <buffer> m<cr> :Vader %<cr>
-  autocmd FileType vader nnoremap <silent> <buffer> m<space> :Vader %<space>
   autocmd FileType vim   nnoremap <buffer> <leader>so :source % \| echo 'sourced ' . expand("%")<cr>
   autocmd FileType vim   nnoremap <buffer> <leader>sr ggyG:@"<cr>
   autocmd FileType vim   nnoremap <buffer> <leader>ss :Vader %<cr>
