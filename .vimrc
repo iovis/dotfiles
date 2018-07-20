@@ -642,6 +642,9 @@ augroup end
 " sneak {{{ "
 let g:sneak#s_next = 1
 let g:sneak#use_ic_scs = 1
+
+hi Sneak      ctermbg=110 ctermfg=235 guibg=#8fafd7 guifg=#262626 cterm=NONE gui=NONE
+hi SneakScope ctermbg=110 ctermfg=235 guibg=#8fafd7 guifg=#262626 cterm=NONE gui=NONE
 " }}} sneak "
 
 " tagbar {{{ "
