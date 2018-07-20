@@ -207,7 +207,7 @@ function snippets() {
   rg $1 ~/.vim/plugged/vim-snippets/**/*.snippets
 }
 
-function gbp() {
+function gprb() {
   if [[ -n $1 ]]; then
     local url="pull/$1"
   else
