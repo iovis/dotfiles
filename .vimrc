@@ -623,7 +623,8 @@ augroup END
 " }}} rails "
 
 " rspec {{{ "
-let g:rspec_command = 'Dispatch bin/rspec {spec}'
+let g:rspec_command = 'Dispatch rspec {spec}'
+
 augroup ruby_commands
   autocmd!
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>sf :call RunCurrentSpecFile()<cr>
