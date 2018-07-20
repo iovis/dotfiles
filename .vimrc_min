@@ -362,10 +362,10 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " FZF commands
+nnoremap <leader>F :setf<space>
+nnoremap <leader>m :map<cr>
 nnoremap <leader>o :e **/
 nnoremap <silent> <leader>H :browse old<cr>
-nnoremap <leader>F :setf<space>
-nnoremap <leader>M :map<cr>
 
 " Netrw options
 let g:netrw_altv = 1

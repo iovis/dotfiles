@@ -358,7 +358,7 @@ augroup end
 let g:ackhighlight = 1
 let g:ack_use_dispatch = 1
 let g:ackprg = 'rg --vimgrep --smart-case'
-nnoremap <leader>f  :Ack! -F ""<left>
+nnoremap <leader>f  :Ack! ""<left>
 xnoremap <leader>f y:Ack! -F "<c-r>""
 nnoremap K  :silent Ack! -F "<c-r><c-w>"<cr>
 xnoremap K y:silent Ack! -F "<c-r>""<cr>
@@ -428,7 +428,7 @@ cabbrev edb postgresql://localhost/elab_development
 nnoremap +!       :DB w:db =<space>
 nnoremap +<cr>    :Start pgcli -h localhost rubicon_development<cr>
 nnoremap +<space> :DB<space>
-nnoremap +?       :let w:db<cr>
+nnoremap +?       :echo exists("w:db") ? w:db : g:db<cr>
 xnoremap +<cr>    :DB<cr>
 xnoremap +<space> :DB<space>
 " }}} dadbod "
@@ -506,11 +506,11 @@ nnoremap <silent> <leader><leader> :Buffers<cr>
 nnoremap <silent> <leader>B :BCommits<cr>
 nnoremap <silent> <leader>F :Filetypes<cr>
 nnoremap <silent> <leader>H :History<cr>
-nnoremap <silent> <leader>M :Maps<cr>
 nnoremap <silent> <leader>O :Files<cr>
 nnoremap <silent> <leader>R :Tags<cr>
 nnoremap <silent> <leader>j :GFiles?<cr>
-nnoremap <silent> <leader>l :Commits<cr>
+nnoremap <silent> <leader>L :Commits<cr>
+nnoremap <silent> <leader>m :Maps<cr>
 nnoremap <silent> <leader>r :BTags<cr>
 nnoremap <silent> <leader>ñ :BLines<cr>
 " }}} fzf "
@@ -649,7 +649,7 @@ hi SneakScope ctermbg=110 ctermfg=235 guibg=#8fafd7 guifg=#262626 cterm=NONE gui
 
 " tagbar {{{ "
 let g:tagbar_compact = 1
-nmap <silent> <leader>L :TagbarToggle<CR>
+nmap <silent> <leader>l :TagbarToggle<CR>
 " }}} tagbar "
 
 " targets {{{ "
