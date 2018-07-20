@@ -29,6 +29,7 @@ Plug 'mattn/emmet-vim'
 Plug 'metakirby5/codi.vim'
 Plug 'mhartington/nvim-typescript'
 Plug 'mileszs/ack.vim'
+Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'raimondi/delimitMate'
 Plug 'schickling/vim-bufonly'
@@ -691,6 +692,14 @@ augroup vader_commands
   autocmd FileType vim   xnoremap <buffer> <leader>sr y:@"<cr>
 augroup END
 " }}} vader "
+
+" vim-textobj-rubyblock {{{ "
+let g:textobj_rubyblock_no_default_key_mappings = 1
+xmap ad <Plug>(textobj-rubyblock-a)
+omap ad <Plug>(textobj-rubyblock-a)
+xmap id <Plug>(textobj-rubyblock-i)
+omap id <Plug>(textobj-rubyblock-i)
+" }}} vim-textobj-rubyblock "
 
 " ysurround {{{ "
 nnoremap <silent> <leader>" :normal mzcs'"`z<cr>
