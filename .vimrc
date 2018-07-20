@@ -41,7 +41,6 @@ Plug 'shougo/neco-syntax'
 Plug 'shougo/neco-vim'
 Plug 'sirver/ultisnips'
 Plug 'sjl/gundo.vim'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'thoughtbot/vim-rspec'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tommcdo/vim-lion'
@@ -450,15 +449,6 @@ call deoplete#custom#source('syntax', 'rank', 100)
 " Use tab to go through the results
 inoremap <expr><tab> pumvisible()? "\<c-n>" : "\<tab>"
 inoremap <expr><s-tab> pumvisible()? "\<c-p>" : "\<s-tab>"
-
-" deoplete + multiple cursors fix
-function! Multiple_cursors_before()
-  let b:deoplete_disable_auto_complete = 1
-endfunction
-
-function! Multiple_cursors_after()
-  let b:deoplete_disable_auto_complete = 0
-endfunction
 " }}} deoplete "
 
 " dispatch {{{ "
@@ -550,15 +540,6 @@ let g:jsx_ext_required = 0
 let b:lion_squeeze_spaces = 1
 nmap <leader>a= mzglip='z
 " }}} lion "
-
-" multiple cursors {{{ "
-let g:multi_cursor_exit_from_insert_mode = 0
-let g:multi_cursor_exit_from_visual_mode = 0
-nnoremap <m--> :MultipleCursorsFind<space>
-nnoremap <silent> <m-ñ>  :MultipleCursorsFind <C-R>/<CR>
-xnoremap <silent> <m--> y:MultipleCursorsFind <C-R>"<CR>
-xnoremap <silent> <m-ñ>  :MultipleCursorsFind <C-R>/<CR>
-" }}} multiple cursors "
 
 " neomake {{{ "
 augroup neomake_commands
