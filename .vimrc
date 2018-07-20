@@ -187,10 +187,14 @@ nnoremap <m-O> mzO<esc>`z
 nnoremap <m-o> mzo<esc>`z
 nnoremap Ø   mzO<esc>`z
 nnoremap ø   mzo<esc>`z
-nnoremap <silent> <down>  :cnext<cr>
-nnoremap <silent> <up>    :cprevious<cr>
-nnoremap <silent> <right> :lnext<cr>
-nnoremap <silent> <left>  :lprevious<cr>
+nnoremap <silent> <down>   :cnext<cr>
+nnoremap <silent> <up>     :cprevious<cr>
+nnoremap <silent> <s-down> :cnfile<cr>
+nnoremap <silent> <s-up>   :cpfile<cr>
+nnoremap <silent> <left>    :lprevious<cr>
+nnoremap <silent> <right>   :lnext<cr>
+nnoremap <silent> <s-left>  :lpfile<cr>
+nnoremap <silent> <s-right> :lnfile<cr>
 nnoremap <silent> <leader>= <c-w>=
 nnoremap <silent> <leader>X :qa!<cr>
 nnoremap <silent> <leader>\| <c-w>\|
@@ -202,14 +206,10 @@ nnoremap <silent> <leader>w :w!<cr>
 nnoremap <silent> <leader>x :qa<cr>
 nnoremap <silent> <leader>ª :bdelete!<cr>
 nnoremap <silent> <leader>º :bdelete<cr>
-nnoremap <silent> <leader>Ç :lclose<cr>
-nnoremap <silent> <leader>ç :lwindow<cr>
 nnoremap <silent> g2 :set shiftwidth=2 softtabstop=2 expandtab \| retab<cr>gg=G
 nnoremap <silent> g4 :set shiftwidth=4 softtabstop=4 expandtab \| retab<cr>gg=G
 nnoremap <silent> ª :bp!\|bd! #<cr>
 nnoremap <silent> º :bp\|bd #<cr>
-nnoremap <silent> Ç :cclose<cr>
-nnoremap <silent> ç :cwindow<cr>
 nnoremap M <c-w>o
 nnoremap Q @q
 nnoremap Y y$
@@ -821,6 +821,42 @@ function! ToggleHex()
   let &modifiable=l:oldmodifiable
 endfunction
 " }}} Hex Mode "
+
+" QuickFix toggle {{{ "
+function! GetBufferList()
+  redir =>buflist
+  silent! ls!
+  redir END
+  return buflist
+endfunction
+
+function! ToggleList(bufname, pfx)
+  let buflist = GetBufferList()
+
+  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "' . a:bufname . '"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+    if bufwinnr(bufnum) != -1
+      exec(a:pfx . 'close')
+      return
+    endif
+  endfor
+
+  if a:pfx ==? 'l' && len(getloclist(0)) == 0
+    echohl ErrorMsg
+    echo 'Location List is empty'
+    return
+  endif
+
+  let winnr = winnr()
+  exec('botright ' . a:pfx . 'open')
+
+  if winnr() != winnr
+    wincmd p
+  endif
+endfunction
+
+nnoremap <silent> ç :call ToggleList("Quickfix List", 'c')<cr>
+nnoremap <silent> Ç :call ToggleList("Location List", 'l')<cr>
+" }}} QuickFix toggle "
 
 " US ANSI layout {{{ "
 " nnoremap <silent> <leader>` :Bdelete<cr>
