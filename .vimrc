@@ -667,8 +667,10 @@ augroup typescript_commands
   autocmd FileType typescript nmap     <silent> <buffer> gT <leader>ht
   autocmd FileType typescript nmap     <silent> <buffer> gt <leader>vt
   autocmd FileType typescript nnoremap <silent> <buffer> T  :TSRefs<cr>
-  autocmd FileType typescript nnoremap <silent> <buffer> gh :TSDoc<cr>
+  autocmd FileType typescript nnoremap <silent> <buffer> gd :TSType<cr>
   autocmd FileType typescript nnoremap <silent> <buffer> t  :TSDef<cr>
+  autocmd FileType typescript nnoremap <silent> <buffer> gi  :TSImport<cr>
+  autocmd FileType typescript nnoremap <silent> <buffer> gR  :TSRename<cr>
 augroup end
 
 let g:nvim_typescript#signature_complete = 1
