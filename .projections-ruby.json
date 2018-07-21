@@ -1,0 +1,55 @@
+{
+  "*": {
+    "make": "rake install",
+    "console": "bin/console",
+    "start": "bundle exec guard"
+  },
+  "exe/*": {
+    "type": "executable",
+    "dispatch": "bundle exec {file}"
+  },
+  "lib/*.rb": {
+    "type": "lib",
+    "alternate": "spec/{}_spec.rb",
+    "dispatch": "rspec spec/{}_spec.rb",
+    "template": [
+      "module {dirname|camelcase|capitalize|colons}",
+      "  class {basename|camelcase|capitalize}",
+      "  end",
+      "end"
+    ]
+  },
+  "spec/*_spec.rb": {
+    "type": "spec",
+    "alternate": "lib/{}.rb",
+    "dispatch": "rspec {file}",
+    "template": [
+      "describe {camelcase|capitalize|colons} do",
+      "end"
+    ]
+  },
+  "lib/*/version.rb": {
+    "type": "version",
+    "alternate": "{basename}.gemspec",
+    "dispatch": "rake release"
+  },
+  "README.md": {
+    "type": "readme",
+    "dispatch": "hub browse"
+  },
+  "Gemfile": {
+    "type": "gemfile",
+    "alternate": "Gemfile.lock",
+    "dispatch": "bundle install"
+  },
+  "Gemfile.lock": {
+    "type": "gemfile",
+    "alternate": "Gemfile",
+    "dispatch": "bundle install"
+  },
+  "*.gemspec": {
+    "type": "gemspec",
+    "alternate": "Gemfile.lock",
+    "dispatch": "bundle install"
+  }
+}
