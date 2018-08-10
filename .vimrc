@@ -404,8 +404,6 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 nnoremap <silent> <leader>b :Autoformat<cr>
 xnoremap <silent> <leader>b :Autoformat<cr>
 
-let g:formatdef_sqlformat_sql = '"sqlformat -k upper -r -"'
-let g:formatters_sql = ['sqlformat_sql']
 let g:formatters_javascript = ['prettier']
 let g:formatters_json = ['prettier']
 " }}} autoformat "
