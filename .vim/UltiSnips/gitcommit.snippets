@@ -69,6 +69,40 @@ if jira_card:
 - $10
 endsnippet
 
+snippet ngqa "Pull Request template to QA for rubicon-angular"
+`!p
+
+branch = get_branch()
+jira_card = get_jira_card(branch)
+title = get_pr_title(branch)
+
+# Title: (target_branch|JIRA Title Of The PR)
+`qa|`!p
+
+if jira_card:
+    snip.rv = "{} ".format(jira_card)
+
+`${1:`!p snip.rv = title`}
+`!p
+
+# Show JIRA card URL
+if jira_card:
+    snip += "[JIRA](https://rubiconmd.atlassian.net/browse/{})\n".format(jira_card)
+
+`
+**Changes:**
+- $2
+
+**Checklist:**
+- [${3:x}] \`npm run lint\` passes
+- [${4:x}] \`npm run e2e\` passes
+
+**Screenshots:**
+
+**How to test:**
+- $5
+endsnippet
+
 snippet master "Pull Request template to master for RubiconMD"
 `!p
 
