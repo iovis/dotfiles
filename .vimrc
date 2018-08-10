@@ -672,6 +672,7 @@ augroup typescript_commands
 augroup end
 
 let g:nvim_typescript#signature_complete = 1
+let g:nvim_typescript#diagnosticsEnable = 0
 " }}} typescript "
 
 " obsession {{{ "
