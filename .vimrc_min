@@ -231,7 +231,7 @@ xnoremap <silent> gr :sort!<cr>
 
 " Smooth Grepping
 command! -nargs=+ -complete=file Grep silent! grep! -R <args>|cwindow|redraw!
-nnoremap <leader>f  :Grep ""<left>
+nnoremap <leader>f  :Grep<space>
 xnoremap <leader>f y:Grep "<c-r>""
 nnoremap K  :silent Grep "\b<cword>\b"<cr>
 xnoremap K y:silent Grep "<c-r>""<cr>
