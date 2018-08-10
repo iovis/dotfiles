@@ -621,7 +621,7 @@ augroup END
 " }}} rails "
 
 " rspec {{{ "
-let g:rspec_command = 'Dispatch rspec {spec}'
+let g:rspec_command = 'Dispatch bin/rspec {spec}'
 
 augroup ruby_commands
   autocmd!
