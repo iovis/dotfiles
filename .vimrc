@@ -5,6 +5,7 @@ call plug#begin()
 
 " Add or remove your plugins here:
 Plug 'airblade/vim-gitgutter'
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'benekastah/neomake'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'chiel92/vim-autoformat'
@@ -64,7 +65,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
-" Plug 'uplus/deoplete-solargraph'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'wellle/targets.vim'
@@ -535,6 +535,17 @@ hi HighlightedyankRegion ctermbg=110 ctermfg=235 guibg=#8fafd7 guifg=#262626 cte
 " jsx {{{ "
 let g:jsx_ext_required = 0
 " }}} jsx "
+
+" LanguageClient {{{ "
+" let g:LanguageClient_serverCommands = { 'ruby': ['solargraph', 'stdio'] }
+
+" augroup solargraph_bindings
+"   autocmd!
+"   autocmd FileType ruby nnoremap <silent> <buffer> gh :call LanguageClient#textDocument_hover()<cr>
+"   autocmd FileType ruby nnoremap <silent> <buffer> gd :call LanguageClient#textDocument_definition()<cr>
+"   autocmd FileType ruby nnoremap <silent> <buffer> gR :call LanguageClient#textDocument_rename()<cr>
+" augroup end
+" }}} LanguageClient "
 
 " lion {{{ "
 let b:lion_squeeze_spaces = 1
