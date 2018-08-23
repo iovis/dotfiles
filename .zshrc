@@ -26,7 +26,6 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   # vi_mode
   background_jobs
   rbenv
-  nvm
   time
   # battery
 )
@@ -48,8 +47,6 @@ export PATH="$HOME/.rbenv/shims:$PATH"
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 export PROJECT_HOME="$HOME/Sites"
 export RBENV_ROOT="$HOME/.rbenv"
-export NVM_DIR="$HOME/.nvm"
-. "$(brew --prefix nvm)/nvm.sh"
 
 plugins=(
   brew
@@ -66,7 +63,6 @@ plugins=(
   # jsontools
   npm
   ng
-  nvm
   osx
   perms
   # pip
@@ -128,7 +124,6 @@ alias listdbs="psql -h localhost -c '\l'"
 alias ni="nvim"
 alias nin="nvim -u ~/.dotfiles/.vimrc_min"
 alias nis="nvim -S Session.vim"
-alias nodes="nvm ls"
 alias notes="nvim -c 'Goyo | set filetype=markdown'"
 alias npms="npm ls -g --depth=0"
 alias npmgo="npm -g outdated"
@@ -239,27 +234,6 @@ function vader() {
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# auto switch nvm version
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
 
 ## Keep at the end
 # Autosuggestions
