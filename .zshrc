@@ -14,7 +14,6 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
   # context
   # load
   dir
-  # virtualenv
   vcs
   # root_indicator
 )
@@ -25,6 +24,8 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   # docker_machine
   # vi_mode
   background_jobs
+  # virtualenv
+  pyenv
   rbenv
   time
   # battery
@@ -67,6 +68,7 @@ plugins=(
   perms
   # pip
   # postgres
+  pyenv
   rails
   rbenv
   rsync
@@ -132,7 +134,9 @@ alias oh-my-zsh_update="echo '\nUpdating Oh My ZSH'; cd ~/.oh-my-zsh; gl; cd -"
 alias pf="peerflixrb"
 alias pipdump="pip freeze > requirements.txt"
 alias pipi="pip install"
+alias pipinit="pipu pip setuptools && pipr ~/.dotfiles/default-pips"
 alias pipo="pip list --outdated --format=columns | grep -f ~/.dotfiles/default-pips"
+alias pipr="pip install -r"
 alias pipu="pip install -U"
 alias prorb="cp ~/.dotfiles/.projections-ruby.json .projections.json"
 alias rebuildlaunchservices="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user"
