@@ -456,6 +456,10 @@ inoremap <expr><s-tab> pumvisible()? "\<c-p>" : "\<s-tab>"
 " }}} deoplete "
 
 " dispatch {{{ "
+nnoremap g<cr>    :.Dispatch<cr>
+nnoremap g<space> :.Dispatch<space>
+nnoremap g!       :.Dispatch!<cr>
+nnoremap g?       :.FocusDispatch<cr>
 " }}} dispatch "
 
 " echodoc {{{ "
