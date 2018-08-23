@@ -425,11 +425,15 @@ cabbrev zdb postgresql://localhost/zsfg_development
 cabbrev edb postgresql://localhost/elab_development
 
 nnoremap +!       :DB w:db =<space>
-nnoremap +<cr>    :Start pgcli -h localhost rubicon_development<cr>
+nnoremap +<cr>    :execute 'Start pgcli ' . CurrentDB()<cr>
 nnoremap +<space> :DB<space>
-nnoremap +?       :echo exists("w:db") ? w:db : g:db<cr>
+nnoremap +?       :echo CurrentDB()<cr>
 xnoremap +<cr>    :DB<cr>
 xnoremap +<space> :DB<space>
+
+function! CurrentDB()
+  return exists('w:db') ? w:db : g:db
+endf
 " }}} dadbod "
 
 " delimitmate {{{ "
