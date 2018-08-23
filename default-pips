@@ -6,7 +6,6 @@ jedi
 neovim
 pip
 setuptools
-solargraph-utils.py
 sqlparse
 vim-vint
 yamllint
