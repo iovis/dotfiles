@@ -650,6 +650,8 @@ augroup ruby_commands
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>sl :call RunLastSpec()<cr>
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>sa :call RunAllSpecs()<cr>
 
+  autocmd FileType ruby nnoremap <buffer> <leader>sb :let g:rspec_command = 'Dispatch bundle exec rspec {spec}'<cr>
+
   " Execute current spec in last pane
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>si :silent execute '!tmux send-keys -t \! rspec Space ' . shellescape(expand('%') . ':' . line(".")) . ' Enter'<cr>
 
