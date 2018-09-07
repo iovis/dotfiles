@@ -1,6 +1,6 @@
 setlocal spell
 setlocal spelllang=en_us
-setlocal formatoptions=tcoqrn1j
+setlocal formatoptions=oqrn1j
 setlocal comments+=b:-,b:*
 
 " Better indention/hierarchy
