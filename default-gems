@@ -13,6 +13,7 @@ pry-doc
 rubocop
 scss_lint
 solargraph
+sqlint
 tmuxinator
 vimgolf
 yard
