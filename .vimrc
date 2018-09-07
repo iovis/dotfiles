@@ -561,10 +561,7 @@ nmap <leader>a= mzglip='z
 " }}} lion "
 
 " neomake {{{ "
-augroup neomake_commands
-  autocmd!
-  autocmd BufWritePost * Neomake
-augroup end
+call neomake#configure#automake('nwr', 1000)
 
 let g:neomake_error_sign   = { 'text': '●', 'texthl': 'NeomakeErrorSign' }
 let g:neomake_info_sign    = { 'text': '●', 'texthl': 'NeomakeInfoSign' }
