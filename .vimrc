@@ -739,51 +739,6 @@ command! Dcps   Dispatch docker-compose ps
 command! Dcstop Dispatch docker-compose stop
 " }}} Docker "
 
-" Open in Browser {{{ "
-command! -nargs=? -complete=file Canary     silent call OpenInBrowser('Google Chrome Canary', <f-args>)
-command! -nargs=? -complete=file Chrome     silent call OpenInBrowser('Google Chrome', <f-args>)
-command! -nargs=? -complete=file Firefox    silent call OpenInBrowser('Firefox', <f-args>)
-command! -nargs=? -complete=file FirefoxDev silent call OpenInBrowser('FirefoxDeveloperEdition', <f-args>)
-command! -nargs=? -complete=file Safari     silent call OpenInBrowser('Safari', <f-args>)
-command! -nargs=? -complete=file SafariDev  silent call OpenInBrowser('Safari Technology Preview', <f-args>)
-
-nnoremap <silent> <leader>< :Canary<cr>
-nnoremap <silent> <leader>> :Canary :9001<cr>
-
-function! OpenInBrowser(browser, ...)
-  if a:0 == 0
-    let l:route = 'http://localhost:3000'
-  elseif match(a:1, '^:\d\+') != -1
-    " :9001 should point to http://localhost:9001
-    let l:route = 'http://localhost' . a:1
-  else
-    let l:route = a:1
-  endif
-
-  execute '!open "' . l:route . '" -a ' . shellescape(a:browser)
-endfunction
-" }}} Open in Browser "
-
-" QuickLook macOS {{{ "
-command! -nargs=? -complete=file QuickLook silent call QuickLookFunction(<f-args>)
-nnoremap <leader>¡ :QuickLook<cr>
-
-function! QuickLookFunction(...)
-  if a:0 == 0
-    " If no files given, open current file
-    let l:file = expand('%')
-  else
-    let l:file = a:1
-  endif
-
-  execute '!qlmanage -p ' . shellescape(l:file) . ' &> /dev/null'
-endfunction
-" }}} QuickLook macOS "
-
-" Prettier {{{ "
-command! -nargs=+ -complete=file Prettier silent !prettier --write <q-args>
-" }}} Prettier "
-
 " Hex Mode {{{ "
 command! -bar Hexmode call ToggleHex()
 
@@ -836,6 +791,35 @@ function! ToggleHex()
 endfunction
 " }}} Hex Mode "
 
+" Open in Browser {{{ "
+command! -nargs=? -complete=file Canary     silent call OpenInBrowser('Google Chrome Canary', <f-args>)
+command! -nargs=? -complete=file Chrome     silent call OpenInBrowser('Google Chrome', <f-args>)
+command! -nargs=? -complete=file Firefox    silent call OpenInBrowser('Firefox', <f-args>)
+command! -nargs=? -complete=file FirefoxDev silent call OpenInBrowser('FirefoxDeveloperEdition', <f-args>)
+command! -nargs=? -complete=file Safari     silent call OpenInBrowser('Safari', <f-args>)
+command! -nargs=? -complete=file SafariDev  silent call OpenInBrowser('Safari Technology Preview', <f-args>)
+
+nnoremap <silent> <leader>< :Canary<cr>
+nnoremap <silent> <leader>> :Canary :9001<cr>
+
+function! OpenInBrowser(browser, ...)
+  if a:0 == 0
+    let l:route = 'http://localhost:3000'
+  elseif match(a:1, '^:\d\+') != -1
+    " :9001 should point to http://localhost:9001
+    let l:route = 'http://localhost' . a:1
+  else
+    let l:route = a:1
+  endif
+
+  execute '!open "' . l:route . '" -a ' . shellescape(a:browser)
+endfunction
+" }}} Open in Browser "
+
+" Prettier {{{ "
+command! -nargs=+ -complete=file Prettier silent !prettier --write <q-args>
+" }}} Prettier "
+
 " QuickFix toggle {{{ "
 function! GetBufferList()
   redir =>buflist
@@ -871,6 +855,22 @@ endfunction
 nnoremap <silent> ç :call ToggleList("Quickfix List", 'c')<cr>
 nnoremap <silent> Ç :call ToggleList("Location List", 'l')<cr>
 " }}} QuickFix toggle "
+
+" QuickLook macOS {{{ "
+command! -nargs=? -complete=file QuickLook silent call QuickLookFunction(<f-args>)
+nnoremap <leader>¡ :QuickLook<cr>
+
+function! QuickLookFunction(...)
+  if a:0 == 0
+    " If no files given, open current file
+    let l:file = expand('%')
+  else
+    let l:file = a:1
+  endif
+
+  execute '!qlmanage -p ' . shellescape(l:file) . ' &> /dev/null'
+endfunction
+" }}} QuickLook macOS "
 
 " US ANSI layout {{{ "
 " nnoremap <silent> <leader>` :Bdelete<cr>

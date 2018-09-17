@@ -298,50 +298,6 @@ augroup vimrc
         \ endif
 augroup end
 
-" Hex mode
-" ex command for toggling hex mode - define mapping if desired
-command! -bar Hexmode call ToggleHex()
-
-" helper function to toggle hex mode
-function! ToggleHex()
-  " hex mode should be considered a read-only operation
-  " save values for modified and read-only for restoration later,
-  " and clear the read-only flag for now
-  let l:modified=&mod
-  let l:oldreadonly=&readonly
-  let &readonly=0
-  let l:oldmodifiable=&modifiable
-  let &modifiable=1
-  if !exists("b:editHex") || !b:editHex
-    " save old options
-    let b:oldft=&ft
-    let b:oldbin=&bin
-    " set new options
-    setlocal binary " make sure it overrides any textwidth, etc.
-    silent :e " this will reload the file without trickeries
-              "(DOS line endings will be shown entirely )
-    let &ft="xxd"
-    " set status
-    let b:editHex=1
-    " switch to hex editor
-    %!xxd
-  else
-    " restore old options
-    let &ft=b:oldft
-    if !b:oldbin
-      setlocal nobinary
-    endif
-    " set status
-    let b:editHex=0
-    " return to normal editing
-    %!xxd -r
-  endif
-  " restore values for modified and read only state
-  let &mod=l:modified
-  let &readonly=l:oldreadonly
-  let &modifiable=l:oldmodifiable
-endfunction
-
 " Status line
 set statusline=
 set statusline+=%#LineNr#
@@ -406,13 +362,60 @@ augroup ruby_commands
   autocmd FileType javascript setlocal commentstring=//\ %s
 augroup end
 
-" Custom commands {{{ "
-" Docker management
-command! Dcup   !docker-compose up -d
+"""""""""""""""""""""
+"  Custom Commands  "
+"""""""""""""""""""""
+" Docker {{{ "
+command! Dcup   !docker-compose up -d --remove-orphans
 command! Dcps   !docker-compose ps
 command! Dcstop !docker-compose stop
+" }}} Docker "
 
-" Open in Browser
+" Hex Mode {{{ "
+command! -bar Hexmode call ToggleHex()
+
+" helper function to toggle hex mode
+function! ToggleHex()
+  " hex mode should be considered a read-only operation
+  " save values for modified and read-only for restoration later,
+  " and clear the read-only flag for now
+  let l:modified=&mod
+  let l:oldreadonly=&readonly
+  let &readonly=0
+  let l:oldmodifiable=&modifiable
+  let &modifiable=1
+  if !exists("b:editHex") || !b:editHex
+    " save old options
+    let b:oldft=&ft
+    let b:oldbin=&bin
+    " set new options
+    setlocal binary " make sure it overrides any textwidth, etc.
+    silent :e " this will reload the file without trickeries
+    "(DOS line endings will be shown entirely )
+    let &ft="xxd"
+    " set status
+    let b:editHex=1
+    " switch to hex editor
+    %!xxd
+  else
+    " restore old options
+    let &ft=b:oldft
+    if !b:oldbin
+      setlocal nobinary
+    endif
+    " set status
+    let b:editHex=0
+    " return to normal editing
+    %!xxd -r
+  endif
+  " restore values for modified and read only state
+  let &mod=l:modified
+  let &readonly=l:oldreadonly
+  let &modifiable=l:oldmodifiable
+endfunction
+" }}} Hex Mode "
+
+" Open in Browser {{{ "
 command! -nargs=? -complete=file Canary     silent call OpenInBrowser('Google Chrome Canary', <f-args>)
 command! -nargs=? -complete=file Chrome     silent call OpenInBrowser('Google Chrome', <f-args>)
 command! -nargs=? -complete=file Firefox    silent call OpenInBrowser('Firefox', <f-args>)
@@ -435,21 +438,7 @@ function! OpenInBrowser(browser, ...)
 
   execute '!open "' . l:route . '" -a ' . shellescape(a:browser)
 endfunction
-
-" MacOS Quick-Look
-command! -nargs=? -complete=file QuickLook silent call QuickLookFunction(<f-args>)
-nnoremap <leader>¡ :QuickLook<cr>
-
-function! QuickLookFunction(...)
-  if a:0 == 0
-    " If no files given, open current file
-    let l:file = expand('%')
-  else
-    let l:file = a:1
-  endif
-
-  execute '!qlmanage -p ' . shellescape(l:file) . ' &> /dev/null'
-endfunction
+" }}} Open in Browser "
 
 " QuickFix toggle {{{ "
 function! GetBufferList()
@@ -486,6 +475,23 @@ endfunction
 nnoremap <silent> ç :call ToggleList("Quickfix List", 'c')<cr>
 nnoremap <silent> Ç :call ToggleList("Location List", 'l')<cr>
 " }}} QuickFix toggle "
+
+" QuickLook macOS {{{ "
+command! -nargs=? -complete=file QuickLook silent call QuickLookFunction(<f-args>)
+nnoremap <leader>¡ :QuickLook<cr>
+
+function! QuickLookFunction(...)
+  if a:0 == 0
+    " If no files given, open current file
+    let l:file = expand('%')
+  else
+    let l:file = a:1
+  endif
+
+  execute '!qlmanage -p ' . shellescape(l:file) . ' &> /dev/null'
+endfunction
+" }}} QuickLook macOS "
+
 " }}} Custom commands "
 
 " External Plugins {{{ "
