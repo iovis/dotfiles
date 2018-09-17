@@ -477,12 +477,12 @@ let g:user_emmet_settings = {
 " }}} emmet "
 
 " fugitive {{{ "
-nmap <leader>gc :Gcommit<cr>
-nmap <leader>gl :Gpull<cr>
-nmap <leader>gm :Gmerge<cr>
-nmap <leader>go :Gread<cr>
-nmap <leader>gp :Gpush<cr>
-nmap <leader>gw :Gwrite<cr>
+nmap <leader>gcc :Gcommit<cr>
+nmap <leader>gl  :Gpull<cr>
+nmap <leader>gm  :Gmerge<cr>
+nmap <leader>go  :Gread<cr>
+nmap <leader>gp  :Gpush<cr>
+nmap <leader>gw  :Gwrite<cr>
 
 nmap <silent> <leader>-  :Gstatus<cr><c-n>
 nmap <silent> <leader>gb :Gblame<cr>
@@ -738,6 +738,26 @@ command! Dcup   Dispatch docker-compose up -d --remove-orphans
 command! Dcps   Dispatch docker-compose ps
 command! Dcstop Dispatch docker-compose stop
 " }}} Docker "
+
+" Git {{{ "
+nnoremap <leader>gcm :Gcm<cr>
+nnoremap <leader>gco :Gco<space>
+nnoremap <leader>gcp :Gprs<cr>:Gprc<space>
+nnoremap <leader>gcq :Gcq<cr>
+
+command! -nargs=0 Gcm  !git checkout master
+command! -nargs=0 Gcq  !git checkout qa
+command! -nargs=0 Gprs !hub pr list
+command! -nargs=0 Grhh !git reset --hard
+command! -nargs=1 -complete=customlist,s:GitBranchComplete Gco  !git checkout <args>
+command! -nargs=1 Gprc !hub pr checkout <args>
+
+function! s:GitBranchComplete(ArgLead, CmdLine, CursorPos)
+  " git branch --list '*david*'
+  let branch_command = 'git branch --format="%(refname:short)" --list ' . shellescape('*' . a:ArgLead . '*')
+  return systemlist(branch_command)
+endf
+" }}} Git "
 
 " Hex Mode {{{ "
 command! -bar Hexmode call ToggleHex()
