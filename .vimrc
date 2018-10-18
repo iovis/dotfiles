@@ -28,7 +28,7 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'metakirby5/codi.vim'
-Plug 'mhartington/nvim-typescript'
+Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 Plug 'mileszs/ack.vim'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'pbrisbin/vim-mkdir'
@@ -690,7 +690,6 @@ augroup typescript_commands
   autocmd FileType typescript nnoremap <silent> <buffer> gR  :TSRename<cr>
 augroup end
 
-let g:nvim_typescript#signature_complete = 1
 let g:nvim_typescript#diagnosticsEnable = 0
 " }}} typescript "
 
