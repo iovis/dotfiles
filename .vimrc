@@ -481,7 +481,6 @@ nmap <leader>gcc :Gcommit<cr>
 nmap <leader>gl  :Gpull<cr>
 nmap <leader>gm  :Gmerge<cr>
 nmap <leader>go  :Gread<cr>
-nmap <leader>gp  :Gpush<cr>
 nmap <leader>gw  :Gwrite<cr>
 
 nmap <silent> <leader>-  :Gstatus<cr><c-n>
@@ -741,8 +740,8 @@ command! Dcstop Dispatch docker-compose stop
 " Git {{{ "
 nnoremap <leader>gcm :Gcm<cr>
 nnoremap <leader>gco :Gco<space>
-nnoremap <leader>gcp :Gprs<cr>:Gprc<space>
 nnoremap <leader>gcq :Gcq<cr>
+nnoremap <leader>gp :Gprs<cr>:Gprc<space>
 
 command! -nargs=0 Gcm  !git checkout master
 command! -nargs=0 Gcq  !git checkout qa
