@@ -56,7 +56,6 @@ export RBENV_ROOT="$HOME/.rbenv"
 plugins=(
   brew
   bundler
-  # colorize
   docker
   docker-compose
   encode64
@@ -65,13 +64,10 @@ plugins=(
   git
   httpie
   jira
-  # jsontools
   npm
   ng
   osx
   perms
-  # pip
-  # postgres
   pyenv
   rails
   rbenv
@@ -79,7 +75,6 @@ plugins=(
   tig
   tmux
   # tmuxinator
-  # virtualenvwrapper
 )
 
 source $ZSH/oh-my-zsh.sh
