@@ -2,33 +2,37 @@ ZSH=$HOME/.oh-my-zsh
 
 # https://github.com/bhilburn/powerlevel9k
 ZSH_THEME="powerlevel9k/powerlevel9k"
+POWERLEVEL9K_MODE='nerdfont-complete'
 
-POWERLEVEL9K_STATUS_VERBOSE=false
-POWERLEVEL9K_CUSTOM_SHOW_APPLE="echo "
+POWERLEVEL9K_CUSTOM_SHOW_APPLE="echo $'\ue711'"
 POWERLEVEL9K_CUSTOM_SHOW_APPLE_BACKGROUND="black"
 POWERLEVEL9K_CUSTOM_SHOW_APPLE_FOREGROUND="white"
+POWERLEVEL9K_ETC_ICON=''
+POWERLEVEL9K_FOLDER_ICON=''
+POWERLEVEL9K_HOME_ICON=''
+POWERLEVEL9K_HOME_SUB_ICON=''
+POWERLEVEL9K_STATUS_VERBOSE=false
+POWERLEVEL9K_VCS_GIT_BITBUCKET_ICON=''
+POWERLEVEL9K_VCS_GIT_GITHUB_ICON=''
+POWERLEVEL9K_VCS_GIT_GITLAB_ICON=''
+POWERLEVEL9K_VCS_GIT_ICON=''
+POWERLEVEL9K_VI_COMMAND_MODE_STRING="echo $'\ue62b'"
+POWERLEVEL9K_VI_INSERT_MODE_STRING=''
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
   status
   custom_show_apple
-  # context
-  # load
   dir
   vcs
-  # root_indicator
 )
 
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-  # ip
-  # ram
-  # docker_machine
-  # vi_mode
   background_jobs
-  # virtualenv
-  pyenv
+  virtualenv
+  # pyenv
   rbenv
-  time
-  # battery
+  # time
+  command_execution_time
 )
 
 HIST_STAMPS="yyyy-mm-dd"
