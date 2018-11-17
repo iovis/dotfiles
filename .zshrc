@@ -101,7 +101,7 @@ bindkey "^P" forward-word
 alias agrep="alias | grep"
 alias aliases="$EDITOR ~/.aliases"
 alias bcu="brew cask install --force $(brew cask list) && brew cask cleanup"
-alias c="pygmentize -O style=native -f console256 -g"
+alias c="bat"
 alias canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias d="du -sh"
