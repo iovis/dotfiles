@@ -52,6 +52,7 @@ export PATH="$HOME/.rbenv/shims:$PATH"
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 export PROJECT_HOME="$HOME/Sites"
 export RBENV_ROOT="$HOME/.rbenv"
+# eval "$(pipenv --completion)"
 
 plugins=(
   brew
@@ -60,6 +61,7 @@ plugins=(
   docker-compose
   encode64
   eslint
+  extract
   gem
   git
   httpie
@@ -68,13 +70,13 @@ plugins=(
   ng
   osx
   perms
-  pyenv
+  # pyenv  # slow
   rails
-  rbenv
+  rbenv  # slow
   rsync
   tig
   tmux
-  # tmuxinator
+  tmuxinator
 )
 
 source $ZSH/oh-my-zsh.sh
