@@ -164,8 +164,9 @@ xnoremap <space> <nop>
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 inoremap ,, <c-o>A,
 inoremap ;; <c-o>A;
-inoremap ,M ->
-inoremap ,m <c-o>A-><c-f>
+inoremap ,M <c-o>A-><c-f>
+inoremap ,N <c-o>A=><c-f>
+inoremap ,m ->
 inoremap ,n =>
 
 " QOL remappings
@@ -291,7 +292,7 @@ nmap t <c-]>
 nmap T g]
 nmap <silent> gt :vsp <cr><c-]>
 nmap <silent> gT :sp <cr><c-]>
-nnoremap <silent> <leader>T :Dispatch ctags<cr>
+nnoremap <silent> <leader>E :Dispatch ctags<cr>
 
 " Work with splits
 nnoremap <leader>v <c-w>v
@@ -328,7 +329,7 @@ nnoremap <leader>A :setlocal spell! spelllang=en_us<cr>
 
 " Scratch buffer
 command! ScratchBuffer enew | setlocal buftype=nofile bufhidden=hide noswapfile
-nnoremap <silent> <leader>J :ScratchBuffer<cr>
+nnoremap <silent> <leader>T :ScratchBuffer<cr>
 
 " Autocmds
 augroup vimrc
@@ -360,7 +361,7 @@ augroup end
 let g:ackhighlight = 1
 let g:ack_use_dispatch = 1
 let g:ackprg = 'rg --vimgrep --smart-case'
-nnoremap <leader>f  :Ack! ""<left>
+nnoremap <leader>f  :Ack! -F ""<left>
 xnoremap <leader>f y:Ack! -F "<c-r>""
 nnoremap K  :silent Ack! -F "<c-r><c-w>"<cr>
 xnoremap K y:silent Ack! -F "<c-r>""<cr>
