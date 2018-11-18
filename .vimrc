@@ -405,8 +405,10 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 nnoremap <silent> <leader>b :Autoformat<cr>
 xnoremap <silent> <leader>b :Autoformat<cr>
 
+let g:autoformat_verbosemode = 0
 let g:formatters_javascript = ['prettier']
 let g:formatters_json = ['prettier']
+let g:formatters_ruby = ['rubocop']
 " }}} autoformat "
 
 " bufonly {{{ "
