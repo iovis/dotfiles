@@ -11,6 +11,7 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'chiel92/vim-autoformat'
 Plug 'chrisbra/csv.vim'
 Plug 'chriskempson/base16-vim'
+Plug 'christoomey/vim-sort-motion'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'fishbullet/deoplete-ruby'
 Plug 'honza/vim-snippets'
@@ -305,8 +306,8 @@ function! SortReverseLinesOpFunc(...)
   '[,']sort!
 endfunction
 
-nnoremap <silent> gs :<c-u>set operatorfunc=SortLinesOpFunc<cr>g@
-xnoremap <silent> gs :sort<cr>
+" nnoremap <silent> gs :<c-u>set operatorfunc=SortLinesOpFunc<cr>g@
+" xnoremap <silent> gs :sort<cr>
 nnoremap <silent> gr :<c-u>set operatorfunc=SortReverseLinesOpFunc<cr>g@
 xnoremap <silent> gr :sort!<cr>
 
