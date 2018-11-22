@@ -69,8 +69,9 @@ xnoremap <space> <nop>
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 inoremap ,, <c-o>A,
 inoremap ;; <c-o>A;
-inoremap ,M ->
-inoremap ,m <c-o>A-><c-f>
+inoremap ,M <c-o>A-><c-f>
+inoremap ,N <c-o>A=><c-f>
+inoremap ,m ->
 inoremap ,n =>
 inoremap (<cr> (<cr>)<esc>O
 inoremap [<cr> [<cr>]<esc>O
@@ -209,7 +210,7 @@ nnoremap t <C-]>
 nnoremap T g]
 nnoremap <silent> gt :vsp <cr><c-]>
 nnoremap <silent> gT :sp <cr><c-]>
-nnoremap <silent> <leader>T :!ctags<cr>
+nnoremap <silent> <leader>E :!ctags<cr>
 
 " Work with splits
 nnoremap <leader>v <c-w>v
@@ -231,7 +232,7 @@ xnoremap <silent> gr :sort!<cr>
 
 " Smooth Grepping
 command! -nargs=+ -complete=file Grep silent! grep! -R <args>|cwindow|redraw!
-nnoremap <leader>f  :Grep<space>
+nnoremap <leader>f  :Grep ""<left>
 xnoremap <leader>f y:Grep "<c-r>""
 nnoremap K  :silent Grep "\b<cword>\b"<cr>
 xnoremap K y:silent Grep "<c-r>""<cr>
@@ -245,7 +246,7 @@ endif
 
 " Use rg over Grep
 if executable('rg')
-  set grepprg=ag\ --vimgrep\ --smart-case
+  set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
   set grepformat=%f:%l:%c:%m
 endif
 
@@ -265,7 +266,7 @@ nnoremap <leader>A :setlocal spell! spelllang=en_us<cr>
 
 " Scratch buffer
 command! ScratchBuffer enew | setlocal buftype=nofile bufhidden=hide noswapfile
-nnoremap <silent> <leader>J :ScratchBuffer<cr>
+nnoremap <silent> <leader>T :ScratchBuffer<cr>
 
 " Sessions
 nnoremap <c-s> :mksession! ~/.vim/sessions/
