@@ -52,6 +52,7 @@ export PATH="$HOME/.rbenv/shims:$PATH"
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 export PROJECT_HOME="$HOME/Sites"
 export RBENV_ROOT="$HOME/.rbenv"
+export TERM="screen-256color"
 # eval "$(pipenv --completion)"
 
 plugins=(
