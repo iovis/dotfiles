@@ -120,7 +120,7 @@ alias gprs="git pr list"
 alias hosts="sudo $EDITOR /etc/hosts"
 alias https="http --default-scheme=https"
 alias l="exa -lag --git --group-directories-first"
-alias libupdate="brew update; brew upgrade; upgrade_oh_my_zsh; powerlevel9k_update; npm -g outdated; echo '\nOutdated gems'; gemo; echo '\nOutdated pips'; pipo"
+alias libupdate="brew update; brew upgrade; upgrade_oh_my_zsh; upgrade_powerlevel9k; npm -g outdated; echo '\nOutdated gems'; gemo; echo '\nOutdated pips'; pipo"
 alias ldbs="listdbs"
 alias listdbs="psql -h localhost -c '\l'"
 alias ni="nvim"
@@ -130,7 +130,6 @@ alias notes="nvim -c 'Goyo | set filetype=markdown'"
 alias npms="npm ls -g --depth=0"
 alias npmgo="npm -g outdated"
 alias npmgu="npm -g update"
-alias powerlevel9k_update="echo '\nUpdating powerlevel9k'; cd ~/.oh-my-zsh/custom/themes/powerlevel9k; gl; cd -"
 alias pf="peerflixrb"
 alias pipdump="pip freeze > requirements.txt"
 alias pipi="pip install"
@@ -139,6 +138,7 @@ alias pipo="pip list --outdated --format=columns | grep -f ~/.dotfiles/default-p
 alias pipr="pip install -r"
 alias pipu="pip install -U"
 alias pycache="find . -name '*.pyc' -exec rm {} \;"
+alias pythons="pyenv versions"
 alias rebuildlaunchservices="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user"
 alias rsb="rails server -b 0.0.0.0"
 alias rtg="rake -T"
@@ -162,6 +162,40 @@ source ~/.aliases
 # Disable fucking <C-s> flow control
 stty -ixon
 
+function upgrade_powerlevel9k() {
+  # Use colors, but only if connected to a terminal, and that terminal
+  # supports them.
+  if which tput >/dev/null 2>&1; then
+    ncolors=$(tput colors)
+  fi
+
+  if [ -t 1 ] && [ -n "$ncolors" ] && [ "$ncolors" -ge 8 ]; then
+    RED="$(tput setaf 1)"
+    GREEN="$(tput setaf 2)"
+    YELLOW="$(tput setaf 3)"
+    BLUE="$(tput setaf 4)"
+    BOLD="$(tput bold)"
+    NORMAL="$(tput sgr0)"
+  else
+    RED=""
+    GREEN=""
+    YELLOW=""
+    BLUE=""
+    BOLD=""
+    NORMAL=""
+  fi
+
+  printf "${BLUE}%s${NORMAL}\n" "Updating Powerlevel9k"
+  cd ~/.oh-my-zsh/custom/themes/powerlevel9k
+
+  if git pull --rebase --stat origin master; then
+    printf "${BLUE}%s\n" "Hooray! Powerlevel9k has been updated and/or is at the current version."
+  else
+    printf "${RED}%s${NORMAL}\n" 'There was an error updating. Try again later?'
+  fi
+
+  cd -
+}
 # Find macOS junk files
 function findjunk() {
   find $1 -name ".DS_Store"
