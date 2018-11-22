@@ -9,7 +9,7 @@ set autoindent
 set autoread
 set autowriteall
 set backspace=indent,eol,start
-set breakindent
+" set breakindent
 set conceallevel=0
 set cursorline
 set expandtab
