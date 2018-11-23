@@ -77,7 +77,6 @@ plugins=(
   rsync
   tig
   tmux
-  tmuxinator
 )
 
 source $ZSH/oh-my-zsh.sh
