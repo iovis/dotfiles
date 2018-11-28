@@ -430,12 +430,10 @@ cabbrev rdb postgresql://localhost/rubicon_development
 cabbrev zdb postgresql://localhost/zsfg_development
 cabbrev edb postgresql://localhost/elab_development
 
-nnoremap +!       :DB w:db =<space>
-nnoremap +<cr>    :execute 'Start pgcli ' . CurrentDB()<cr>
-nnoremap +<space> :DB<space>
-nnoremap +?       :echo CurrentDB()<cr>
-xnoremap +<cr>    :DB<cr>
-xnoremap +<space> :DB<space>
+nnoremap d!       :DB w:db =<space>
+nnoremap d<cr>    :execute 'Start pgcli ' . CurrentDB()<cr>
+nnoremap d<space> :DB<space>
+nnoremap d?       :echo CurrentDB()<cr>
 
 function! CurrentDB()
   return exists('w:db') ? w:db : g:db
