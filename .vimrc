@@ -128,6 +128,7 @@ let &showbreak = '└ '
 if has('nvim')
   set inccommand=split
 
+  autocmd TermOpen * startinsert
   tnoremap <c-h> <c-\><c-n><C-w>h
   tnoremap <c-j> <c-\><c-n><C-w>j
   tnoremap <c-k> <c-\><c-n><C-w>k
