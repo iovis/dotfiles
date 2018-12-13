@@ -15,7 +15,7 @@
   name = David Marchante
   email = davidmarchan@gmail.com
 [core]
-  excludesfile = /Users/david/.gitignore_global
+  excludesfile = ~/.gitignore_global
   autocrlf = input
 [merge]
   tool = vimdiff
