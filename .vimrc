@@ -737,9 +737,9 @@ nnoremap <silent> <leader>' :normal mzcs"'`z<cr>
 "  Custom Commands  "
 """""""""""""""""""""
 " Docker {{{ "
-command! Dcup   Dispatch docker-compose up -d --remove-orphans
-command! Dcps   Dispatch docker-compose ps
-command! Dcstop Dispatch docker-compose stop
+command! Dcup   Dispatch! docker-compose up -d --remove-orphans
+command! Dcps   Dispatch  docker-compose ps
+command! Dcstop Dispatch! docker-compose stop
 " }}} Docker "
 
 " Git {{{ "
