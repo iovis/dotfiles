@@ -322,6 +322,7 @@ nnoremap <silent> <leader>ep :e! .projections.json<cr>
 nnoremap <silent> <leader>es :so $MYVIMRC<cr>
 nnoremap <silent> <leader>et :e! ~/.tmux.conf<cr>
 nnoremap <silent> <leader>ev :vs $MYVIMRC<cr>
+nnoremap <silent> <leader>ez :e! ~/.zshrc<cr>
 
 " Duplicate file
 nnoremap <leader>W :saveas <c-r>=fnameescape(expand('%:h')).'/'<cr>
