@@ -266,6 +266,11 @@ function codi() {
      Codi ${1:-ruby}"
 }
 
+function myip() {
+  echo "local: $(ifconfig en0|awk '/inet/{print $2}')"
+  echo "external: $(http -b https://api.ipify.org/)"
+}
+
 function vader() {
   nvim -c "Vader $1"
 }
