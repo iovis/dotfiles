@@ -1,8 +1,0 @@
-{
-    "php_cs_fixer_executable_path": "/usr/local/bin/php-cs-fixer",
-    "phpcbf_executable_path": "/usr/local/bin/phpcbf",
-    "phpcs_show_errors_on_save": false,
-    "phpmd_executable_path": "/usr/local/bin/phpmd",
-    "phpmd_executable_path": "/usr/local/bin/phpmd",
-    "phpmd_run": true
-}

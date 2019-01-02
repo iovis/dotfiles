@@ -7,8 +7,7 @@
 ########## Variables
 dir=~/.dotfiles
 olddir=~/dotfiles_old
-sublime_dir="$HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/User"
-files=".agignore .atom .bashrc .ctags .ctags.d .eslintrc.json .gemrc .gitconfig .gitignore_global .hyper.js .pryrc .psqlrc .tern-config .tmux.conf .vim .vimrc .zshrc"
+files=".agignore .bashrc .ctags .ctags.d .eslintrc.json .gemrc .gitconfig .gitignore_global .hyper.js .pryrc .psqlrc .tern-config .tmux.conf .vim .vimrc .zshrc"
 config_files="mpv nvim"
 
 
@@ -33,8 +32,3 @@ for file in $config_files; do
     echo "Creating symlink to $file in the config directory."
     ln -snf "$dir/$file" "$HOME/.config/$file"
 done
-
-# Sublime Text 3
-echo "\nIf you want to sync Sublime Text, fire these"
-echo "mv ${sublime_dir} ${olddir}"
-echo "ln -snf ~/.dotfiles/sublime/User ${sublime_dir}"
