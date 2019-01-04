@@ -54,6 +54,7 @@ Plug 'tpope/vim-characterize'          " Use ga to see additional representation
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-dotenv'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'                " Unix helpers (:Move, :Remove...)
 Plug 'tpope/vim-fugitive'
@@ -426,18 +427,13 @@ hi CSVColumnOdd  term=NONE   ctermbg=NONE
 " }}} csv "
 
 " dadbod {{{ "
-let g:db = 'postgresql://localhost/rubicon_development'
-cabbrev rdb postgresql://localhost/rubicon_development
-cabbrev zdb postgresql://localhost/zsfg_development
-cabbrev edb postgresql://localhost/elab_development
-
 nnoremap d!       :DB w:db =<space>
 nnoremap d<cr>    :execute 'Start pgcli ' . CurrentDB()<cr>
 nnoremap d<space> :DB<space>
 nnoremap d?       :echo CurrentDB()<cr>
 
 function! CurrentDB()
-  return exists('w:db') ? w:db : g:db
+  return exists('w:db') ? w:db : DotenvGet('DATABASE_URL')
 endf
 " }}} dadbod "
 
