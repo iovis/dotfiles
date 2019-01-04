@@ -295,7 +295,7 @@ nmap t <c-]>
 nmap T g]
 nmap <silent> gt :vsp <cr><c-]>
 nmap <silent> gT :sp <cr><c-]>
-nnoremap <silent> <leader>E :Dispatch ctags<cr>
+nnoremap <silent> <leader>E :Dispatch! ctags<cr>
 
 " Work with splits
 nnoremap <leader>v <c-w>v
@@ -351,12 +351,6 @@ augroup vimrc
         \   exe "normal! g`\"" |
         \ endif
 augroup end
-
-" Colors
-" hi IncSearch ctermbg=none ctermfg=110 term=bold,underline guibg=#8fafd7 guifg=#262626
-" hi Search ctermbg=none ctermfg=110 term=bold,underline guibg=#8fafd7 guifg=#262626
-" hi IncSearch ctermbg=none ctermfg=110 term=bold,underline guibg=none guifg=#8fafd7 gui=underline,bold
-" hi Search ctermbg=none ctermfg=110 term=bold,underline guibg=none guifg=#8fafd7 gui=underline,bold
 
 """""""""""""""""""
 " Plugin specific "
