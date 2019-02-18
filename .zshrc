@@ -79,6 +79,7 @@ plugins=(
   rbenv  # slow
   rsync
   tmux
+  web-search
 )
 
 source $ZSH/oh-my-zsh.sh
