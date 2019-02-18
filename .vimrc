@@ -498,6 +498,9 @@ augroup fzf_commands
   autocmd FileType fzf tnoremap <silent> <buffer> <c-k> <up>
 augroup end
 
+" Make Rg not list the actual filenames
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
 " Use git files if inside a git repo, otherwise look for everything
 " nnoremap <expr> <leader>o system('git rev-parse --is-inside-work-tree') =~ 'true'
 "   \ ? ':GFiles<cr>'
@@ -508,6 +511,7 @@ nnoremap <silent> <leader><leader> :Buffers<cr>
 nnoremap <silent> <leader>B :BCommits<cr>
 nnoremap <silent> <leader>F :Filetypes<cr>
 nnoremap <silent> <leader>H :History<cr>
+nnoremap <silent> <leader>G :Rg<cr>
 " nnoremap <silent> <leader>O :Files<cr>
 nnoremap <silent> <leader>R :Tags<cr>
 nnoremap <silent> <leader>j :GFiles?<cr>
