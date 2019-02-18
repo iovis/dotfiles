@@ -78,7 +78,6 @@ plugins=(
   rails
   rbenv  # slow
   rsync
-  tig
   tmux
 )
 
