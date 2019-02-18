@@ -483,7 +483,7 @@ nmap <silent> <leader>-  :Gstatus<cr><c-n>
 nmap <silent> <leader>gb :Gblame<cr>
 nmap <silent> <leader>gd :Gvdiff<cr>
 nmap <silent> <leader>gg :Gbrowse<cr>
-nmap <silent> <leader>gh :Glog<cr>
+nmap <silent> <leader>gh :0Glog<cr>
 
 xmap <silent> <leader>gg :Gbrowse<cr>
 xmap <silent> <leader>gh :Glog<cr>
