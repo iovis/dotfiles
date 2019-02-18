@@ -231,7 +231,7 @@ EOF
 
 # tree
 function t() {
-  exa --git --group-directories-first -TL${1:-3}
+  exa --group-directories-first -TL${1:-3}
 }
 
 function renamedb() {
