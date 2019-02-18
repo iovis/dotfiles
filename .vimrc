@@ -229,6 +229,12 @@ noremap H g^
 noremap L g$
 xnoremap <silent> Q :norm @q<cr>
 
+" Resize panes
+nnoremap <silent> <end>      :vertical resize +5<cr>
+nnoremap <silent> <home>     :vertical resize -5<cr>
+nnoremap <silent> <pagedown> :resize -5<cr>
+nnoremap <silent> <pageup>   :resize +5<cr>
+
 " Properly indent text when pasting
 nnoremap p p`[v`]=
 nnoremap P P`[v`]=
