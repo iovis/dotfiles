@@ -437,7 +437,7 @@ let g:delimitMate_expand_space = 1
 " }}} delimitmate "
 
 " deoplete {{{ "
-let g:deoplete#auto_complete_delay = 100
+let g:deoplete#auto_complete_delay = 300
 let g:deoplete#enable_at_startup = 1
 
 " let g:deoplete#tag#cache_limit_size = 5000000
