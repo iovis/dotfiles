@@ -499,20 +499,21 @@ augroup fzf_commands
 augroup end
 
 " Use git files if inside a git repo, otherwise look for everything
-nnoremap <expr> <leader>o system('git rev-parse --is-inside-work-tree') =~ 'true'
-  \ ? ':GFiles<cr>'
-  \ : ':Files<cr>'
+" nnoremap <expr> <leader>o system('git rev-parse --is-inside-work-tree') =~ 'true'
+"   \ ? ':GFiles<cr>'
+"   \ : ':Files<cr>'
 
 nnoremap <silent> <c-p> :Commands<cr>
 nnoremap <silent> <leader><leader> :Buffers<cr>
 nnoremap <silent> <leader>B :BCommits<cr>
 nnoremap <silent> <leader>F :Filetypes<cr>
 nnoremap <silent> <leader>H :History<cr>
-nnoremap <silent> <leader>O :Files<cr>
+" nnoremap <silent> <leader>O :Files<cr>
 nnoremap <silent> <leader>R :Tags<cr>
 nnoremap <silent> <leader>j :GFiles?<cr>
 nnoremap <silent> <leader>L :Commits<cr>
 nnoremap <silent> <leader>m :Maps<cr>
+nnoremap <silent> <leader>o :Files<cr>
 nnoremap <silent> <leader>r :BTags<cr>
 nnoremap <silent> <leader>ñ :BLines<cr>
 " }}} fzf "
