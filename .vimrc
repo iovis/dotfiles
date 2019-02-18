@@ -540,7 +540,7 @@ let g:jsx_ext_required = 0
 " }}} jsx "
 
 " LanguageClient {{{ "
-" let g:LanguageClient_serverCommands = { 'ruby': ['solargraph', 'stdio'] }
+" let g:LanguageClient_serverCommands = { 'ruby': ['bundle', 'exec', 'solargraph', 'stdio'] }
 
 " augroup solargraph_bindings
 "   autocmd!
