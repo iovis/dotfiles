@@ -55,6 +55,7 @@ export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PROJECT_HOME="$HOME/Sites"
 export RBENV_ROOT="$HOME/.rbenv"
 export TERM="screen-256color"
+eval "$(thefuck --alias)"
 # eval "$(pipenv --completion)"
 
 plugins=(
