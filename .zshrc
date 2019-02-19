@@ -158,6 +158,15 @@ alias vimupdate="nvim +PlugUpgrade +PlugUpdate"
 alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
 alias zshrc="$EDITOR ~/.zshrc"
 
+##
+# airport
+#
+# To capture on a particular channel: airport --channel=4
+# For info of the current tap: airport --getinfo
+# To sniff: airportd en0 sniff
+alias airport="sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport"
+alias airportd="sudo /usr/libexec/airportd"
+
 # Oh-my-zsh plugin for rails has an alias that clashes with binary rg
 unalias rg
 
