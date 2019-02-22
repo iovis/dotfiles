@@ -824,8 +824,8 @@ command! -nargs=? -complete=file FirefoxDev silent call OpenInBrowser('FirefoxDe
 command! -nargs=? -complete=file Safari     silent call OpenInBrowser('Safari', <f-args>)
 command! -nargs=? -complete=file SafariDev  silent call OpenInBrowser('Safari Technology Preview', <f-args>)
 
-nnoremap <silent> <leader>< :Canary<cr>
-nnoremap <silent> <leader>> :Canary :9001<cr>
+nnoremap <silent> <leader>< :Chrome<cr>
+nnoremap <silent> <leader>> :Chrome :9001<cr>
 
 function! OpenInBrowser(browser, ...)
   if a:0 == 0
