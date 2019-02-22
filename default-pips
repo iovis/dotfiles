@@ -3,9 +3,10 @@ autopep8
 flake8
 ipython
 jedi
-pynvim
 pip
+pynvim
 setuptools
+shodan
 sqlparse
 vim-vint
 yamllint
