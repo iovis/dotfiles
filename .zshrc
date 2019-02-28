@@ -103,7 +103,7 @@ alias canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Ch
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias d="du -sh"
 alias dumpdb="pg_dump -Fc --clean --no-owner -h localhost"
-alias files="rg --files -u"
+alias files="fd -H -E '.git' -E '.keep' --type file --follow --color=always"
 alias fixtrash="rm -rf ~/.Trash; mkdir ~/.Trash; killall Finder"
 alias flushcache="dscacheutil -flushcache"
 alias flushmemcached="echo 'flush_all' | nc localhost 11211"
