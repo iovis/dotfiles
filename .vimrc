@@ -180,8 +180,8 @@ inoremap <c-a> <home>
 inoremap <c-e> <end>
 inoremap <m-O> <esc>O
 inoremap <m-o> <esc>o
-nmap     <c-down> ]c
-nmap     <c-up>   [c
+nmap     <s-down> ]c
+nmap     <s-up>   [c
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
 xnoremap <expr> j v:count ? 'j' : 'gj'
@@ -193,14 +193,14 @@ nnoremap <m-O> mzO<esc>`z
 nnoremap <m-o> mzo<esc>`z
 nnoremap Ø   mzO<esc>`z
 nnoremap ø   mzo<esc>`z
-nnoremap <silent> <down>   :cnext<cr>
-nnoremap <silent> <up>     :cprevious<cr>
-nnoremap <silent> <s-down> :cnfile<cr>
-nnoremap <silent> <s-up>   :cpfile<cr>
-nnoremap <silent> <left>    :lprevious<cr>
-nnoremap <silent> <right>   :lnext<cr>
-nnoremap <silent> <s-left>  :lpfile<cr>
-nnoremap <silent> <s-right> :lnfile<cr>
+nnoremap <silent> <down>  :cnext<cr>
+nnoremap <silent> <left>  :lprevious<cr>
+nnoremap <silent> <right> :lnext<cr>
+nnoremap <silent> <up>    :cprevious<cr>
+nnoremap <silent> <leader><down>  :cnfile<cr>
+nnoremap <silent> <leader><left>  :lpfile<cr>
+nnoremap <silent> <leader><right> :lnfile<cr>
+nnoremap <silent> <leader><up>    :cpfile<cr>
 nnoremap <silent> <leader>= <c-w>=
 nnoremap <silent> <leader>X :qa!<cr>
 nnoremap <silent> <leader>\| <c-w>\|
