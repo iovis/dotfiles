@@ -259,19 +259,6 @@ function gprb() {
   git browse -- $url
 }
 
-# Codi
-# Usage: codi [filetype] [filename]
-function codi() {
-  nvim $2 -c \
-    "set bt=nofile ls=0 noru nonu nornu |\
-     hi ColorColumn ctermbg=NONE |\
-     hi VertSplit ctermbg=NONE
-     hi NonText ctermfg=0 |\
-     AirlineToggle |\
-     startinsert |\
-     Codi ${1:-ruby}"
-}
-
 function myip() {
   echo "local: $(ifconfig en0|awk '/inet/{print $2}')"
   echo "external: $(http -b https://api.ipify.org/)"
