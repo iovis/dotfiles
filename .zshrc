@@ -31,7 +31,6 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   vi_mode
   background_jobs
   virtualenv
-  # pyenv
   rbenv
   # time
   command_execution_time
@@ -50,13 +49,10 @@ export MANPAGER="$EDITOR -c 'set ft=man' -"
 export PAGER="less"
 export PATH="$HOME/.rbenv/shims:$PATH"
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
-export PATH="/usr/local/opt/python@2/bin:$PATH"
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PROJECT_HOME="$HOME/Sites"
 export RBENV_ROOT="$HOME/.rbenv"
 export TERM="screen-256color"
 eval "$(thefuck --alias)"
-# eval "$(pipenv --completion)"
 
 plugins=(
   brew
@@ -74,7 +70,6 @@ plugins=(
   ng
   osx
   perms
-  # pyenv  # slow
   rails
   rbenv  # slow
   rsync
@@ -142,7 +137,6 @@ alias pipo="pip list --outdated --format=columns | grep -f ~/.dotfiles/default-p
 alias pipr="pip install -r"
 alias pipu="pip install -U"
 alias pycache="find . -name '*.pyc' -exec rm {} \;"
-alias pythons="pyenv versions"
 alias rebuildlaunchservices="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user"
 alias rsb="rails server -b 0.0.0.0"
 alias rtg="rake -T"
