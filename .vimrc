@@ -904,6 +904,10 @@ function! QuickLookFunction(...)
 endfunction
 " }}} QuickLook macOS "
 
+" REMember {{{ "
+command! -nargs=0 REMember %s/\(\s\)\([-+]\?\d*\.\?\d*px\)/\1REMember(\2)/g
+" }}} REMember "
+
 " US ANSI layout {{{ "
 " nnoremap <silent> <leader>` :Bdelete<cr>
 " nnoremap <silent> <leader>~ :Bdelete!<cr>
