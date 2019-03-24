@@ -241,12 +241,6 @@ nnoremap P P`[v`]=
 nnoremap gp p
 nnoremap gP P
 
-" Repeat command in last tmux split. "-t !" refers to last pane
-nnoremap <silent> <leader>i :silent !tmux send-keys -t \! Up Enter<cr>
-
-" Execute current line in last tmux split
-nnoremap <silent> <leader>I :silent exec '!tmux send-keys -t \! ' . shellescape(getline('.')) . ' Enter'<cr>
-
 " Select last inserted text
 nnoremap gV `[v`]
 
@@ -911,6 +905,12 @@ command! -nargs=0 REMember %s/\(\s\)\([-+]\?\d*\.\?\d*px\)/\1REMember(\2)/g
 " Tmux {{{ "
 nnoremap c<space> :Tmux<space>
 nnoremap y<space> :Tmux!<space>
+
+" Repeat command in last tmux split
+nnoremap <silent> <leader>i :Tmux Up<cr>
+
+" Execute current line
+nnoremap <silent> <leader>I :silent execute 'Tmux ' . getline('.')<cr>
 
 command! -nargs=+ -bang Tmux call TmuxCommand(<q-args>, <bang>0)
 
