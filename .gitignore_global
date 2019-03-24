@@ -63,6 +63,3 @@ __pycache__/
 
 ### Visual Studio Code ###
 .vscode/
-
-### Solargraph ###
-.solargraph.yml
