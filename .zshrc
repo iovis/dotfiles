@@ -259,9 +259,10 @@ function gprb() {
   git browse -- $url
 }
 
-function myip() {
-  echo "local: $(ifconfig en0|awk '/inet/{print $2}')"
-  echo "external: $(http -b https://api.ipify.org/)"
+function ip() {
+  # (command &) executes in parallel without the 'Done' messages
+  (echo "local: $(ifconfig en0|awk '/inet/{print $2}')" &)
+  (echo "external: $(http -b https://api.ipify.org/)" &)
 }
 
 function vader() {
