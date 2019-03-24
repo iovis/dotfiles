@@ -908,6 +908,15 @@ endfunction
 command! -nargs=0 REMember %s/\(\s\)\([-+]\?\d*\.\?\d*px\)/\1REMember(\2)/g
 " }}} REMember "
 
+" Tmux {{{ "
+nnoremap c<space> :Tmux<space>
+command! -nargs=+ Tmux call TmuxCommand(<q-args>)
+
+function! TmuxCommand(command)
+  silent execute '!tmux send-keys -t \! ' . shellescape(a:command) . ' Enter'
+endfunction
+" }}} Tmux "
+
 " US ANSI layout {{{ "
 " nnoremap <silent> <leader>` :Bdelete<cr>
 " nnoremap <silent> <leader>~ :Bdelete!<cr>
