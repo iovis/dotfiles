@@ -910,10 +910,32 @@ command! -nargs=0 REMember %s/\(\s\)\([-+]\?\d*\.\?\d*px\)/\1REMember(\2)/g
 
 " Tmux {{{ "
 nnoremap c<space> :Tmux<space>
-command! -nargs=+ Tmux call TmuxCommand(<q-args>)
+nnoremap y<space> :Tmux!<space>
 
-function! TmuxCommand(command)
-  silent execute '!tmux send-keys -t \! ' . shellescape(a:command) . ' Enter'
+command! -nargs=+ -bang Tmux call TmuxCommand(<q-args>, <bang>0)
+
+function! TmuxCommand(command, new_window)
+  let l:new_pane = 0
+
+  " Open a window or pane if necessary
+  if a:new_window
+    silent execute '!tmux new-window'
+  elseif trim(system('tmux list-panes | wc -l')) ==# '1'
+    let l:new_pane = 1
+    silent execute '!tmux split-window -p30'
+  endif
+
+  let l:tmux_command = '!tmux send-keys '
+
+  " Execute in last pane if there's one
+  if !a:new_window && !l:new_pane
+    let l:tmux_command .= '-t \! '
+  endif
+
+  let l:tmux_command .= shellescape(a:command)
+  let l:tmux_command .= ' Enter'
+
+  silent execute l:tmux_command
 endfunction
 " }}} Tmux "
 
