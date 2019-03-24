@@ -504,6 +504,9 @@ augroup fzf_commands
   autocmd FileType fzf tnoremap <silent> <buffer> <c-k> <up>
 augroup end
 
+" Don't use gitignore
+command! -bang AllFiles call fzf#run(fzf#wrap({'source': "fd -H -I -E '.git' -E '.keep' --type file --follow --color=always"}, <bang>0))
+
 " Make Rg not list the actual filenames
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
@@ -518,7 +521,7 @@ nnoremap <silent> <leader>B :BCommits<cr>
 nnoremap <silent> <leader>F :Filetypes<cr>
 nnoremap <silent> <leader>H :History<cr>
 nnoremap <silent> <leader>G :Rg<cr>
-" nnoremap <silent> <leader>O :Files<cr>
+nnoremap <silent> <leader>O :AllFiles<cr>
 nnoremap <silent> <leader>R :Tags<cr>
 nnoremap <silent> <leader>j :GFiles?<cr>
 nnoremap <silent> <leader>L :Commits<cr>
