@@ -18,6 +18,7 @@ Plug 'honza/vim-snippets'
 Plug 'iovis9/browsers_castle'
 Plug 'iovis9/substitute.vim'
 Plug 'iovis9/vim-searchindex'
+Plug 'iovis9/vimlook'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vader.vim', { 'on': 'Vader', 'for': 'vader' }
@@ -738,6 +739,11 @@ xmap id <Plug>(textobj-rubyblock-i)
 omap id <Plug>(textobj-rubyblock-i)
 " }}} vim-textobj-rubyblock "
 
+" vimlook {{{ "
+nnoremap <silent> q<cr> :QuickLook<cr>
+nnoremap q<space> :QuickLook<space>
+" }}} vimlook "
+
 " ysurround {{{ "
 nnoremap <silent> <leader>" :normal mzcs'"`z<cr>
 nnoremap <silent> <leader>' :normal mzcs"'`z<cr>
@@ -863,21 +869,6 @@ endfunction
 nnoremap <silent> ç :call ToggleList("Quickfix List", 'c')<cr>
 nnoremap <silent> Ç :call ToggleList("Location List", 'l')<cr>
 " }}} QuickFix toggle "
-
-" QuickLook macOS {{{ "
-command! -nargs=? -complete=file QuickLook silent call QuickLookFunction(<f-args>)
-
-function! QuickLookFunction(...)
-  if a:0 == 0
-    " If no files given, open current file
-    let l:file = expand('%')
-  else
-    let l:file = a:1
-  endif
-
-  execute '!qlmanage -p ' . shellescape(l:file) . ' &> /dev/null'
-endfunction
-" }}} QuickLook macOS "
 
 " REMember {{{ "
 command! -nargs=0 REMember %s/\(\s\)\([-+]\?\d*\.\?\d*px\)/\1REMember(\2)/g
