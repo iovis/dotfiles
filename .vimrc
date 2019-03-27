@@ -631,6 +631,10 @@ nnoremap <silent> - :NERDTreeFind<cr>
 nnoremap <silent> <leader>k :NERDTreeToggle<cr>
 " }}} nerdtree "
 
+" obsession {{{ "
+nnoremap <c-s> :Obsession<cr>
+" }}} obsession "
+
 " peekaboo {{{ "
 let g:peekaboo_delay = 750
 " }}} peekaboo "
@@ -702,10 +706,6 @@ augroup end
 
 let g:nvim_typescript#diagnosticsEnable = 0
 " }}} typescript "
-
-" obsession {{{ "
-nnoremap <c-s> :Obsession<cr>
-" }}} obsession "
 
 " tmux-navigator {{{ "
 let g:tmux_navigator_save_on_switch = 2
