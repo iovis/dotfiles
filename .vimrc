@@ -708,10 +708,6 @@ augroup end
 let g:nvim_typescript#diagnosticsEnable = 0
 " }}} typescript "
 
-" tmux-navigator {{{ "
-let g:tmux_navigator_save_on_switch = 2
-" }}} tmux-navigator "
-
 " ultisnips {{{ "
 let g:UltiSnipsEditSplit = 'horizontal'
 let g:UltiSnipsExpandTrigger = '<c-j>'
