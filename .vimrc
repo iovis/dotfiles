@@ -15,6 +15,7 @@ Plug 'christoomey/vim-sort-motion'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'fishbullet/deoplete-ruby'
 Plug 'honza/vim-snippets'
+Plug 'iovis9/browsers_castle'
 Plug 'iovis9/substitute.vim'
 Plug 'iovis9/vim-searchindex'
 Plug 'junegunn/fzf.vim'
@@ -410,6 +411,12 @@ let g:formatters_javascript = ['prettier']
 let g:formatters_json = ['prettier']
 let g:formatters_ruby = ['rubocop']
 " }}} autoformat "
+
+" browsers_castle {{{ "
+nnoremap <leader>¡ :Google<space>
+nnoremap <silent> <leader>< :Canary<cr>
+nnoremap <silent> <leader>> :Canary :9001<cr>
+" }}} browsers_castle "
 
 " bufonly {{{ "
 nnoremap <silent> <leader>Q :BufOnly!<cr>
@@ -817,31 +824,6 @@ function! ToggleHex()
 endfunction
 " }}} Hex Mode "
 
-" Open in Browser {{{ "
-command! -nargs=? -complete=file Canary     silent call OpenInBrowser('Google Chrome Canary', <f-args>)
-command! -nargs=? -complete=file Chrome     silent call OpenInBrowser('Google Chrome', <f-args>)
-command! -nargs=? -complete=file Firefox    silent call OpenInBrowser('Firefox', <f-args>)
-command! -nargs=? -complete=file FirefoxDev silent call OpenInBrowser('FirefoxDeveloperEdition', <f-args>)
-command! -nargs=? -complete=file Safari     silent call OpenInBrowser('Safari', <f-args>)
-command! -nargs=? -complete=file SafariDev  silent call OpenInBrowser('Safari Technology Preview', <f-args>)
-
-nnoremap <silent> <leader>< :Chrome<cr>
-nnoremap <silent> <leader>> :Chrome :9001<cr>
-
-function! OpenInBrowser(browser, ...)
-  if a:0 == 0
-    let l:route = 'http://localhost:3000'
-  elseif match(a:1, '^:\d\+') != -1
-    " :9001 should point to http://localhost:9001
-    let l:route = 'http://localhost' . a:1
-  else
-    let l:route = a:1
-  endif
-
-  execute '!open "' . l:route . '" -a ' . shellescape(a:browser)
-endfunction
-" }}} Open in Browser "
-
 " Prettier {{{ "
 command! -nargs=+ -complete=file Prettier silent !prettier --write <q-args>
 " }}} Prettier "
@@ -884,7 +866,6 @@ nnoremap <silent> Ç :call ToggleList("Location List", 'l')<cr>
 
 " QuickLook macOS {{{ "
 command! -nargs=? -complete=file QuickLook silent call QuickLookFunction(<f-args>)
-nnoremap <leader>¡ :QuickLook<cr>
 
 function! QuickLookFunction(...)
   if a:0 == 0
