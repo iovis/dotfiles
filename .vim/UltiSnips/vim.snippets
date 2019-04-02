@@ -1,0 +1,11 @@
+snippet f "function" b
+function! ${1:function_name}($2)
+  ${0:" code}
+endfunction
+endsnippet
+
+snippet fs "private function" b
+function! s:${1:function_name}($2) abort
+  ${0:" code}
+endfunction
+endsnippet
