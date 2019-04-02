@@ -621,23 +621,24 @@ let g:netrw_winsize = 25
 " }}} netrw "
 
 " nerdtree {{{ "
-augroup nerdtree_commands
-  autocmd!
-  autocmd FileType nerdtree setlocal relativenumber
-  autocmd FileType nerdtree nnoremap <buffer> . :<c-u> <c-r>=g:NERDTreeFileNode.GetSelected().path.str()<cr><home>
-  autocmd FileType nerdtree nmap <buffer> ! .!
-  autocmd FileType nerdtree nnoremap <buffer> <silent> <c-j> :TmuxNavigateDown<cr>
-  autocmd FileType nerdtree nnoremap <buffer> <silent> <c-k> :TmuxNavigateUp<cr>
-  autocmd FileType nerdtree nnoremap <buffer> <leader>¡ :QuickLook <c-r>=g:NERDTreeFileNode.GetSelected().path.str()<cr><cr>
-augroup end
-
 let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeIgnore = ['\.pyc$']
 let g:NERDTreeMinimalUI = 1
 " let g:NERDTreeShowBookmarks = 1
 let g:NERDTreeShowLineNumbers = 1
+
 nnoremap <silent> - :NERDTreeFind<cr>
 nnoremap <silent> <leader>k :NERDTreeToggle<cr>
+
+augroup nerdtree_commands
+  autocmd!
+  autocmd FileType nerdtree setlocal relativenumber
+  autocmd FileType nerdtree nnoremap <buffer> . :<c-u> <c-r>=g:NERDTreeFileNode.GetSelected().path.str()<cr><home>
+  autocmd FileType nerdtree nmap     <buffer> ! .!
+  autocmd FileType nerdtree nnoremap <buffer> <silent> <c-j> :TmuxNavigateDown<cr>
+  autocmd FileType nerdtree nnoremap <buffer> <silent> <c-k> :TmuxNavigateUp<cr>
+augroup end
+
 " }}} nerdtree "
 
 " obsession {{{ "
