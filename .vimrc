@@ -17,6 +17,7 @@ Plug 'honza/vim-snippets'
 Plug 'iovis9/browsers_castle'
 Plug 'iovis9/jirafa.vim'
 Plug 'iovis9/substitute.vim'
+Plug 'iovis9/tux.vim'
 Plug 'iovis9/vim-searchindex'
 Plug 'iovis9/vimlook'
 Plug 'junegunn/fzf.vim'
@@ -653,27 +654,28 @@ augroup rails_commands
   autocmd!
 
   " Execute line in rails runner
-  autocmd FileType ruby nnoremap <silent> <buffer> <leader>sr :silent execute '!tmux send-keys -t \! rails Space runner Space "' . shellescape(getline('.')) . '" Enter'<cr>
+  autocmd FileType ruby nnoremap <buffer> <leader>sr :execute 'Rpp ' . getline('.')<cr>
 augroup END
 " }}} rails "
 
 " rspec {{{ "
 let g:rspec_command = 'Dispatch bin/rspec {spec}'
 
-augroup ruby_commands
+augroup rspec_commands
   autocmd!
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>sf :call RunCurrentSpecFile()<cr>
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>ss :call RunNearestSpec()<cr>
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>sl :call RunLastSpec()<cr>
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>sa :call RunAllSpecs()<cr>
 
+  " Change rspec command to bundle exec rspec
   autocmd FileType ruby nnoremap <buffer> <leader>sb :let g:rspec_command = 'Dispatch bundle exec rspec {spec}'<cr>
 
-  " Execute current spec in last pane
-  autocmd FileType ruby nnoremap <silent> <buffer> <leader>si :silent execute '!tmux send-keys -t \! rspec Space ' . shellescape(expand('%') . ':' . line(".")) . ' Enter'<cr>
+  " Execute current line as a spec in last pane
+  autocmd FileType ruby nnoremap <silent> <buffer> <leader>si :execute 'Tux rspec ' . expand('%') . ':' . line('.')<cr>
 
   " Execute current spec file in last pane
-  autocmd FileType ruby nnoremap <silent> <buffer> <leader>so :silent execute '!tmux send-keys -t \! rspec Space ' . shellescape(expand('%')) . ' Enter'<cr>
+  autocmd FileType ruby nnoremap <silent> <buffer> <leader>so :Tux rspec %<cr>
 augroup end
 " }}} rspec "
 
@@ -697,6 +699,17 @@ let g:targets_pairs = '()b {}B []r <>'
 " tmux navigator {{{ "
 let g:tmux_navigator_save_on_switch = 2
 " }}} tmux navigator "
+
+" tux.vim {{{ "
+nnoremap c<space> :Tux<space>
+nnoremap y<space> :Tux!<space>
+
+" Repeat command in last tmux split
+nnoremap <silent> <leader>i :Tux Up<cr>
+
+" Execute current line
+nnoremap <silent> <leader>I :silent execute 'Tux ' . getline('.')<cr>
+" }}} tux.vim "
 
 " typescript {{{ "
 augroup typescript_commands
@@ -874,43 +887,6 @@ nnoremap <silent> Ç :call ToggleList("Location List", 'l')<cr>
 " REMember {{{ "
 command! -nargs=0 REMember %s/\(\s\)\([-+]\?\d*\.\?\d*px\)/\1REMember(\2)/g
 " }}} REMember "
-
-" Tmux {{{ "
-nnoremap c<space> :Tmux<space>
-nnoremap y<space> :Tmux!<space>
-
-" Repeat command in last tmux split
-nnoremap <silent> <leader>i :Tmux Up<cr>
-
-" Execute current line
-nnoremap <silent> <leader>I :silent execute 'Tmux ' . getline('.')<cr>
-
-command! -nargs=+ -bang Tmux call TmuxCommand(<q-args>, <bang>0)
-
-function! TmuxCommand(command, new_window)
-  let l:new_pane = 0
-
-  " Open a window or pane if necessary
-  if a:new_window
-    silent execute '!tmux new-window'
-  elseif trim(system('tmux list-panes | wc -l')) ==# '1'
-    let l:new_pane = 1
-    silent execute '!tmux split-window -p30'
-  endif
-
-  let l:tmux_command = '!tmux send-keys '
-
-  " Execute in last pane if there's one
-  if !a:new_window && !l:new_pane
-    let l:tmux_command .= '-t \! '
-  endif
-
-  let l:tmux_command .= shellescape(a:command)
-  let l:tmux_command .= ' Enter'
-
-  silent execute l:tmux_command
-endfunction
-" }}} Tmux "
 
 " US ANSI layout {{{ "
 " nnoremap <silent> <leader>` :Bdelete<cr>
