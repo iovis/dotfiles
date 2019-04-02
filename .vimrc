@@ -757,8 +757,8 @@ omap id <Plug>(textobj-rubyblock-i)
 " }}} vim-textobj-rubyblock "
 
 " vimlook {{{ "
-nnoremap <silent> q<cr> :QuickLook<cr>
-nnoremap q<space> :QuickLook<space>
+nnoremap <silent> ¡<cr> :QuickLook<cr>
+nnoremap ¡<space> :QuickLook<space>
 " }}} vimlook "
 
 " ysurround {{{ "
