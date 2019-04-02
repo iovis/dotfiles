@@ -374,16 +374,20 @@ command! Dcstop !docker-compose stop
 " }}} Docker "
 
 " Git {{{ "
-nnoremap <leader>gcm :Gcm<cr>
-nnoremap <leader>gco :Gco<space>
-nnoremap <leader>gcp :Gprs<cr>:Gprc<space>
-nnoremap <leader>gcq :Gcq<cr>
+nnoremap <leader>gcb  :Gcb<space>
+nnoremap <leader>gcm  :Gcm<cr>
+nnoremap <leader>gco  :Gco<space>
+nnoremap <leader>gcq  :Gcq<cr>
+nnoremap <leader>gprc :Gprc<space>
+nnoremap <leader>gprs :Gprs<cr>:Gprc<space>
+nnoremap <leader>grhh :Grhh<cr>
 
 command! -nargs=0 Gcm  !git checkout master
 command! -nargs=0 Gcq  !git checkout qa
 command! -nargs=0 Gprs !hub pr list
 command! -nargs=0 Grhh !git reset --hard
 command! -nargs=1 -complete=customlist,s:GitBranchComplete Gco  !git checkout <args>
+command! -nargs=1 Gcb  !git checkout -b <args>
 command! -nargs=1 Gprc !hub pr checkout <args>
 
 function! s:GitBranchComplete(ArgLead, CmdLine, CursorPos)

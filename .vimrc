@@ -778,11 +778,13 @@ command! Dcstop Dispatch! docker-compose stop
 " }}} Docker "
 
 " Git {{{ "
-nnoremap <leader>gcb :Gcb<space>
-nnoremap <leader>gcm :Gcm<cr>
-nnoremap <leader>gco :Gco<space>
-nnoremap <leader>gcq :Gcq<cr>
-nnoremap <leader>gpc :Gprs<cr>:Gprc<space>
+nnoremap <leader>gcb  :Gcb<space>
+nnoremap <leader>gcm  :Gcm<cr>
+nnoremap <leader>gco  :Gco<space>
+nnoremap <leader>gcq  :Gcq<cr>
+nnoremap <leader>gprc :Gprc<space>
+nnoremap <leader>gprs :Gprs<cr>:Gprc<space>
+nnoremap <leader>grhh :Grhh<cr>
 
 command! -nargs=0 Gcm  !git checkout master
 command! -nargs=0 Gcq  !git checkout qa
