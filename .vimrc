@@ -3,7 +3,6 @@ filetype off
 
 call plug#begin()
 
-" Add or remove your plugins here:
 Plug 'airblade/vim-gitgutter'
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'benekastah/neomake'
@@ -16,6 +15,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'fishbullet/deoplete-ruby'
 Plug 'honza/vim-snippets'
 Plug 'iovis9/browsers_castle'
+Plug 'iovis9/jirafa.vim'
 Plug 'iovis9/substitute.vim'
 Plug 'iovis9/vim-searchindex'
 Plug 'iovis9/vimlook'
@@ -550,6 +550,11 @@ nnoremap <silent> <leader>u :GundoToggle<cr>
 " highlightedyank {{{ "
 hi HighlightedyankRegion ctermbg=110 ctermfg=235 guibg=#8fafd7 guifg=#262626 cterm=NONE gui=NONE
 " }}} highlightedyank "
+
+" jirafa {{{ "
+let g:jira_url = $JIRA_URL
+nnoremap <silent> <leader>J :Jira<cr>
+" }}} jirafa "
 
 " jsx {{{ "
 let g:jsx_ext_required = 0
