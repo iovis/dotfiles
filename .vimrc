@@ -637,8 +637,28 @@ augroup nerdtree_commands
   autocmd FileType nerdtree nmap     <buffer> ! .!
   autocmd FileType nerdtree nnoremap <buffer> <silent> <c-j> :TmuxNavigateDown<cr>
   autocmd FileType nerdtree nnoremap <buffer> <silent> <c-k> :TmuxNavigateUp<cr>
+  autocmd FileType nerdtree xnoremap <buffer> <silent> o     :call <SID>OpenMultiple()<CR>
+  autocmd FileType nerdtree xnoremap <buffer> <silent> <cr>  :call <SID>OpenMultiple()<CR>
 augroup end
 
+function! s:OpenMultiple() range
+  let curLine = a:firstline
+
+  while curLine <= a:lastline
+    call cursor(curLine, 1)
+    let node = g:NERDTreeFileNode.GetSelected()
+
+    if !empty(node) && !node.path.isDirectory
+      call node.open({ 'where': 'p', 'stay': 1, 'keepopen': 1 })
+    endif
+
+    let curLine += 1
+  endwhile
+
+  if g:NERDTreeQuitOnOpen
+    NERDTreeClose
+  endif
+endfunction
 " }}} nerdtree "
 
 " obsession {{{ "
