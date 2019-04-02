@@ -368,6 +368,10 @@ augroup end
 "  Custom Commands  "
 """""""""""""""""""""
 " Docker {{{ "
+nnoremap <leader>dcu :Dcup<cr>
+nnoremap <leader>dcp :Dcps<cr>
+nnoremap <leader>dcs :Dcstop<cr>
+
 command! Dcup   !docker-compose up -d --remove-orphans
 command! Dcps   !docker-compose ps
 command! Dcstop !docker-compose stop
