@@ -738,9 +738,10 @@ let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips/', 'UltiSnips']
 augroup vader_commands
   au!
   autocmd FileType vader nnoremap <buffer> <leader>sf :Vader test/*<cr>
+  autocmd FileType vader nnoremap <buffer> <leader>ss :Vader %<cr>
+
   autocmd FileType vim   nnoremap <buffer> <leader>so :source % \| echo 'sourced ' . expand("%")<cr>
   autocmd FileType vim   nnoremap <buffer> <leader>sr ggyG:@"<cr>
-  autocmd FileType vim   nnoremap <buffer> <leader>ss :Vader %<cr>
   autocmd FileType vim   xnoremap <buffer> <leader>sr y:@"<cr>
 augroup END
 " }}} vader "
