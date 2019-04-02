@@ -206,10 +206,12 @@ nnoremap <silent> <tab> :bnext<cr>
 nnoremap <c-e> <c-i>
 
 " Tags
-nnoremap t <C-]>
 nnoremap T g]
-nnoremap <silent> gt :vsp <cr><c-]>
-nnoremap <silent> gT :sp <cr><c-]>
+nnoremap t <c-]>
+
+nmap <silent> gT <leader>ht
+nmap <silent> gt <leader>vt
+
 nnoremap <silent> <leader>E :!ctags<cr>
 
 " Work with splits

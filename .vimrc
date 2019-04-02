@@ -294,10 +294,12 @@ nnoremap <silent> <leader>t :enew<cr>
 nnoremap <c-e> <c-i>
 
 " Tags
-nmap t <c-]>
-nmap T g]
-nmap <silent> gt :vsp <cr><c-]>
-nmap <silent> gT :sp <cr><c-]>
+nnoremap T g]
+nnoremap t <c-]>
+
+nmap <silent> gT <leader>ht
+nmap <silent> gt <leader>vt
+
 nnoremap <silent> <leader>E :Dispatch! ctags<cr>
 
 " Work with splits
