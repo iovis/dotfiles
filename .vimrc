@@ -362,7 +362,7 @@ augroup end
 let g:ackhighlight = 1
 let g:ack_use_dispatch = 1
 let g:ackprg = 'rg --vimgrep --smart-case'
-nnoremap <leader>f  :Ack! -F ""<left>
+nnoremap <leader>f  :Ack! ""<left>
 xnoremap <leader>f y:Ack! -F "<c-r>""
 nnoremap K  :silent Ack! -F "<c-r><c-w>"<cr>
 xnoremap K y:silent Ack! -F "<c-r>""<cr>
