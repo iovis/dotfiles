@@ -294,8 +294,8 @@ nnoremap <silent> <leader>t :enew<cr>
 nnoremap <c-e> <c-i>
 
 " Tags
-nnoremap T g]
-nnoremap t <c-]>
+nmap T g]
+nmap t <c-]>
 
 nmap <silent> gT <leader>ht
 nmap <silent> gt <leader>vt
