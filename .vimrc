@@ -34,6 +34,7 @@ Plug 'mattn/emmet-vim'
 Plug 'metakirby5/codi.vim'
 Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 Plug 'mileszs/ack.vim'
+Plug 'moll/vim-bbye'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'raimondi/delimitMate'
@@ -214,11 +215,11 @@ nnoremap <silent> <leader>q :%bdelete<cr>
 nnoremap <silent> <leader>w :w!<cr>
 nnoremap <silent> <leader>x :qa<cr>
 nnoremap <silent> <leader>ª :bdelete!<cr>
-nnoremap <silent> <leader>º :bp!\|bd! #<cr>
+nnoremap <silent> <leader>º :Bdelete!<cr>
 nnoremap <silent> g2 :set shiftwidth=2 softtabstop=2 expandtab \| retab<cr>gg=G
 nnoremap <silent> g4 :set shiftwidth=4 softtabstop=4 expandtab \| retab<cr>gg=G
 nnoremap <silent> ª :bdelete<cr>
-nnoremap <silent> º :bp\|bd #<cr>
+nnoremap <silent> º :Bdelete<cr>
 nnoremap M <c-w>o
 nnoremap Q @q
 nnoremap Y y$
