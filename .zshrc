@@ -112,6 +112,7 @@ alias gcq="git checkout qa"
 alias gemo="gem outdated | grep -f ~/.rbenv/default-gems"
 alias git=hub
 alias gitconfig="$EDITOR ~/.gitconfig"
+alias gls="git log -S"
 alias gpr="git pull-request --push --browse -m '' --edit -a iovis9 -b"
 alias gprc="git pr checkout"
 alias gprs="git pr list"
