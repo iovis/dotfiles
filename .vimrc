@@ -4,6 +4,7 @@ filetype off
 call plug#begin()
 
 Plug 'airblade/vim-gitgutter'
+Plug 'andrewradev/splitjoin.vim'
 Plug 'benekastah/neomake'
 Plug 'chiel92/vim-autoformat'
 Plug 'chrisbra/csv.vim'
