@@ -488,10 +488,10 @@ let g:delimitMate_expand_space = 1
 " }}} delimitmate "
 
 " dispatch {{{ "
-nnoremap g<cr>    :.Dispatch<cr>
-nnoremap g<space> :.Dispatch<space>
-nnoremap g!       :.Dispatch!<cr>
-nnoremap g?       :.FocusDispatch<cr>
+nnoremap g<cr>    :Dispatch<cr>
+nnoremap g<space> :Dispatch<space>
+nnoremap g!       :Dispatch!<cr>
+nnoremap g?       :FocusDispatch<cr>
 " }}} dispatch "
 
 " echodoc {{{ "
