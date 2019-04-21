@@ -413,7 +413,9 @@ let g:formatters_ruby = ['rubocop']
 " }}} autoformat "
 
 " browsers_castle {{{ "
-nnoremap <leader>¡ :Google<space>
+nnoremap ¡<space> :Google<space>
+nnoremap ¡<cr>    :execute 'Google ' . expand('<cword>')<cr>
+xnoremap ¡        y:Google <c-r>"<cr>
 nnoremap <silent> <leader>< :Canary<cr>
 nnoremap <silent> <leader>> :Canary :9001<cr>
 " }}} browsers_castle "
@@ -798,8 +800,7 @@ omap id <Plug>(textobj-rubyblock-i)
 " }}} vim-textobj-rubyblock "
 
 " vimlook {{{ "
-nnoremap <silent> ¡<cr> :QuickLook<cr>
-nnoremap ¡<space> :QuickLook<space>
+nnoremap <leader>¡ :QuickLook<space>
 " }}} vimlook "
 
 " ysurround {{{ "
