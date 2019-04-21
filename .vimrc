@@ -4,15 +4,12 @@ filetype off
 call plug#begin()
 
 Plug 'airblade/vim-gitgutter'
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'benekastah/neomake'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'chiel92/vim-autoformat'
 Plug 'chrisbra/csv.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'christoomey/vim-sort-motion'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'fishbullet/deoplete-ruby'
 Plug 'honza/vim-snippets'
 Plug 'iovis9/browsers_castle'
 Plug 'iovis9/jirafa.vim'
@@ -32,21 +29,18 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'metakirby5/codi.vim'
-Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 Plug 'mileszs/ack.vim'
 Plug 'moll/vim-bbye'
 Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'neoclide/coc-neco'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'pbrisbin/vim-mkdir'
 Plug 'raimondi/delimitMate'
 Plug 'ryanoasis/vim-devicons'
 Plug 'schickling/vim-bufonly'
 Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
-Plug 'shougo/context_filetype.vim'
-Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'shougo/echodoc.vim'
-Plug 'shougo/neco-syntax'
-Plug 'shougo/neco-vim'
 Plug 'sirver/ultisnips'
 Plug 'sjl/gundo.vim'
 Plug 'thoughtbot/vim-rspec'
@@ -75,7 +69,6 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'wellle/targets.vim'
-Plug 'zchee/deoplete-jedi'
 
 call plug#end()
 
@@ -117,12 +110,13 @@ set relativenumber
 set scrolloff=7
 set shiftwidth=2
 set showmatch
+set signcolumn=yes
 set smartcase
 set softtabstop=2
 set splitbelow
 set splitright
 set termguicolors
-set updatetime=750
+set updatetime=300
 set virtualedit=block
 set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn
 set wildignorecase
@@ -427,6 +421,48 @@ nnoremap <silent> <leader>> :Canary :9001<cr>
 nnoremap <silent> <leader>Q :BufOnly!<cr>
 " }}} bufonly "
 
+" coc {{{ "
+" tab completion
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <c-b> coc#refresh()
+
+" nmap <silent> gR <Plug>(coc-rename)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> t  <Plug>(coc-definition)
+nmap <silent> <c-t> <Plug>(coc-definition)
+nnoremap <silent> <leader>ec  :CocConfig<CR>
+nnoremap <silent> <leader>lR  :CocList -I symbols<cr>
+nnoremap <silent> <leader>lc  :CocList commands<cr>
+nnoremap <silent> <leader>le  :CocList extensions<cr>
+nnoremap <silent> <leader>lr  :CocList outline<cr>
+nnoremap <silent> gd :call <SID>show_documentation()<CR>
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+function! s:show_documentation()
+  if &filetype ==? 'vim'
+    execute 'h ' . expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+hi default CocHighlightText guibg=#444444 ctermbg=238
+augroup coc
+  autocmd!
+  autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup END
+" }}} coc "
+
 " csv {{{ "
 hi CSVColumnEven ctermbg=242 guibg=#6C6C6C
 hi CSVColumnOdd  term=NONE   ctermbg=NONE
@@ -447,20 +483,6 @@ endf
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
 " }}} delimitmate "
-
-" deoplete {{{ "
-let g:deoplete#auto_complete_delay = 300
-let g:deoplete#enable_at_startup = 1
-
-" let g:deoplete#tag#cache_limit_size = 5000000
-call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
-call deoplete#custom#source('ultisnips', 'rank', 1000)
-call deoplete#custom#source('syntax', 'rank', 100)
-
-" Use tab to go through the results
-inoremap <expr><tab> pumvisible()? "\<c-n>" : "\<tab>"
-inoremap <expr><s-tab> pumvisible()? "\<c-p>" : "\<s-tab>"
-" }}} deoplete "
 
 " dispatch {{{ "
 nnoremap g<cr>    :.Dispatch<cr>
@@ -713,7 +735,7 @@ hi SneakScope ctermbg=110 ctermfg=235 guibg=#8fafd7 guifg=#262626 cterm=NONE gui
 
 " tagbar {{{ "
 let g:tagbar_compact = 1
-nmap <silent> <leader>l :TagbarToggle<CR>
+nmap <silent> <leader>ll :TagbarToggle<CR>
 " }}} tagbar "
 
 " targets {{{ "
@@ -738,16 +760,10 @@ nnoremap <silent> <leader>I :silent execute 'Tux ' . getline('.')<cr>
 " typescript {{{ "
 augroup typescript_commands
   autocmd!
-  autocmd FileType typescript nmap     <silent> <buffer> gT <leader>ht
-  autocmd FileType typescript nmap     <silent> <buffer> gt <leader>vt
-  autocmd FileType typescript nnoremap <silent> <buffer> T  :TSRefs<cr>
-  autocmd FileType typescript nnoremap <silent> <buffer> gd :TSType<cr>
-  autocmd FileType typescript nnoremap <silent> <buffer> t  :TSDef<cr>
-  autocmd FileType typescript nnoremap <silent> <buffer> gi  :TSImport<cr>
-  autocmd FileType typescript nnoremap <silent> <buffer> gR  :TSRename<cr>
+  autocmd FileType typescript nmap <silent> <buffer> t  <Plug>(coc-definition)
+  autocmd FileType typescript nmap <silent> <buffer> T  <Plug>(coc-references)
+  autocmd FileType typescript nmap <silent> <buffer> gR <Plug>(coc-rename)
 augroup end
-
-let g:nvim_typescript#diagnosticsEnable = 0
 " }}} typescript "
 
 " ultisnips {{{ "
