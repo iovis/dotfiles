@@ -502,10 +502,10 @@ let g:echodoc_enable_at_startup = 1
 
 " emmet {{{ "
 let g:user_emmet_settings = {
-\  'javascript.jsx' : {
-\    'extends' : 'jsx',
-\  },
-\}
+      \  'javascript.jsx' : {
+      \    'extends' : 'jsx',
+      \  },
+      \}
 " }}} emmet "
 
 " fugitive {{{ "
@@ -536,15 +536,24 @@ augroup fzf_commands
 augroup end
 
 " Don't use gitignore
-command! -bang AllFiles call fzf#run(fzf#wrap({'source': "fd -H -I -E '.git' -E '.keep' --type file --follow --color=always"}, <bang>0))
+command! -bang AllFiles
+      \ call fzf#run(
+      \   fzf#wrap(
+      \     {
+      \       'source': "fd -H -I -E '.git' -E '.keep' --type file --follow --color=always"
+      \     },
+      \     <bang>0
+      \   )
+      \ )
 
 " Make Rg not list the actual filenames
-command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
-
-" Use git files if inside a git repo, otherwise look for everything
-" nnoremap <expr> <leader>o system('git rev-parse --is-inside-work-tree') =~ 'true'
-"   \ ? ':GFiles<cr>'
-"   \ : ':Files<cr>'
+command! -bang -nargs=* Rg
+      \ call fzf#vim#grep(
+      \   "rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>),
+      \   1,
+      \   { 'options': '--delimiter : --nth 4..' },
+      \   <bang>0
+      \ )
 
 nnoremap <silent> <c-p> :Commands<cr>
 nnoremap <silent> <leader><leader> :Buffers<cr>
