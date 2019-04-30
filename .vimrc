@@ -540,9 +540,7 @@ augroup end
 command! -bang AllFiles
       \ call fzf#run(
       \   fzf#wrap(
-      \     {
-      \       'source': "fd -H -I -E '.git' -E '.keep' --type file --follow --color=always"
-      \     },
+      \     { 'source': "fd -H -I -E '.git' -E '.keep' --type file --follow --color=always" },
       \     <bang>0
       \   )
       \ )
@@ -552,7 +550,7 @@ command! -bang -nargs=* Rg
       \ call fzf#vim#grep(
       \   "rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>),
       \   1,
-      \   fzf#vim#with_preview({ 'options': '--delimiter : --nth 4.. --bind º:toggle-preview' }),
+      \   fzf#vim#with_preview({ 'options': '--delimiter : --nth 4..' }, 'right:50%:hidden', 'º'),
       \   <bang>0
       \ )
 
