@@ -166,9 +166,6 @@ alias zshrc="$EDITOR ~/.zshrc"
 alias airport="sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport"
 alias airportd="sudo /usr/libexec/airportd"
 
-# Oh-my-zsh plugin for rails has an alias that clashes with binary rg
-unalias rg
-
 # External aliases
 source ~/.aliases
 
