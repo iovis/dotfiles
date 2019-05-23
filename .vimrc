@@ -424,8 +424,7 @@ let g:formatters_ruby = ['rubocop']
 nnoremap ¡<space> :Google<space>
 nnoremap ¡<cr>    :execute 'Google ' . expand('<cword>')<cr>
 xnoremap ¡        y:Google <c-r>"<cr>
-nnoremap <silent> <leader>< :Canary<cr>
-nnoremap <silent> <leader>> :Canary :9001<cr>
+nnoremap <silent> <leader>< :execute 'Canary ' . DotenvGet('PROJECT_URL')<cr>
 " }}} browsers_castle "
 
 " bufonly {{{ "
