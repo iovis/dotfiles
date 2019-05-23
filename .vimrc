@@ -765,6 +765,14 @@ nmap <silent> <leader>ll :TagbarToggle<CR>
 let g:targets_pairs = '()b {}B []r <>'
 " }}} targets "
 
+" textobj-rubyblock {{{ "
+let g:textobj_rubyblock_no_default_key_mappings = 1
+xmap ad <Plug>(textobj-rubyblock-a)
+omap ad <Plug>(textobj-rubyblock-a)
+xmap id <Plug>(textobj-rubyblock-i)
+omap id <Plug>(textobj-rubyblock-i)
+" }}} textobj-rubyblock "
+
 " tmux navigator {{{ "
 let g:tmux_navigator_save_on_switch = 2
 " }}} tmux navigator "
@@ -813,14 +821,6 @@ augroup vader_commands
   autocmd FileType vim   xnoremap <buffer> <leader>sr y:@"<cr>
 augroup END
 " }}} vader "
-
-" vim-textobj-rubyblock {{{ "
-let g:textobj_rubyblock_no_default_key_mappings = 1
-xmap ad <Plug>(textobj-rubyblock-a)
-omap ad <Plug>(textobj-rubyblock-a)
-xmap id <Plug>(textobj-rubyblock-i)
-omap id <Plug>(textobj-rubyblock-i)
-" }}} vim-textobj-rubyblock "
 
 " vimlook {{{ "
 nnoremap <leader>¡ :QuickLook<space>
