@@ -607,17 +607,6 @@ nnoremap <silent> <leader>J :Jira<cr>
 let g:jsx_ext_required = 0
 " }}} jsx "
 
-" LanguageClient {{{ "
-" let g:LanguageClient_serverCommands = { 'ruby': ['bundle', 'exec', 'solargraph', 'stdio'] }
-
-" augroup solargraph_bindings
-"   autocmd!
-"   autocmd FileType ruby nnoremap <silent> <buffer> gh :call LanguageClient#textDocument_hover()<cr>
-"   autocmd FileType ruby nnoremap <silent> <buffer> gd :call LanguageClient#textDocument_definition()<cr>
-"   autocmd FileType ruby nnoremap <silent> <buffer> gR :call LanguageClient#textDocument_rename()<cr>
-" augroup end
-" }}} LanguageClient "
-
 " lion {{{ "
 let b:lion_squeeze_spaces = 1
 nmap <leader>a= mzglip='z
