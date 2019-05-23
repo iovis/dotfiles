@@ -5,4 +5,5 @@
 .vim/session/*
 .vim/sessions/*
 .vim/spell/*
+.vim/undo/*
 mpv/watch_later/*

@@ -120,6 +120,8 @@ set splitbelow
 set splitright
 set termguicolors
 set updatetime=300
+set undofile
+set undodir=~/.vim/undo
 set virtualedit=block
 set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn
 set wildignorecase
