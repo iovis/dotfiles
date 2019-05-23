@@ -224,6 +224,7 @@ nnoremap <silent> ª :bdelete<cr>
 nnoremap <silent> º :Bdelete<cr>
 nnoremap M <c-w>o
 nnoremap Q @q
+nnoremap U :undolist<cr>:undo<space>
 nnoremap Y y$
 nnoremap Ñ ?
 nnoremap ñ /
@@ -581,7 +582,7 @@ nnoremap <silent> <leader>z :Goyo<cr>
 " }}} goyo "
 
 " gundo {{{ "
-nnoremap <silent> <leader>u :GundoToggle<cr>
+nnoremap <silent> U :GundoToggle<cr>
 " }}} gundo "
 
 " highlightedyank {{{ "

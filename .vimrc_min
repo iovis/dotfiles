@@ -126,6 +126,7 @@ nnoremap <silent> ª :bp!\|bd! #<cr>
 nnoremap <silent> º :bp\|bd #<cr>
 nnoremap M <c-w>o
 nnoremap Q @q
+nnoremap U :undolist<cr>:undo<space>
 nnoremap Y y$
 nnoremap Ñ ?
 nnoremap ñ /
