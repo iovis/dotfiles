@@ -3,7 +3,6 @@ filetype off
 
 call plug#begin()
 
-Plug 'airblade/vim-gitgutter'
 Plug 'andrewradev/splitjoin.vim'
 Plug 'benekastah/neomake'
 Plug 'chiel92/vim-autoformat'
@@ -30,6 +29,7 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'metakirby5/codi.vim'
+Plug 'mhinz/vim-signify'
 Plug 'mileszs/ack.vim'
 Plug 'moll/vim-bbye'
 Plug 'nelstrom/vim-textobj-rubyblock'
@@ -575,12 +575,6 @@ nnoremap <silent> <leader>r :BTags<cr>
 nnoremap <silent> <leader>ñ :BLines<cr>
 " }}} fzf "
 
-" gitgutter {{{ "
-let g:gitgutter_map_keys = 0
-nmap [c <Plug>GitGutterPrevHunk
-nmap ]c <Plug>GitGutterNextHunk
-" }}} gitgutter "
-
 " goyo {{{ "
 nnoremap <silent> <leader>z :Goyo<cr>
 " }}} goyo "
@@ -740,6 +734,18 @@ augroup rspec_commands
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>so :Tux rspec %<cr>
 augroup end
 " }}} rspec "
+
+" signify {{{ "
+let g:signify_realtime = 0
+let g:signify_vcs_list = ['git']
+let g:signify_sign_change = '~'
+
+" Chunk text object
+omap ic <plug>(signify-motion-inner-pending)
+xmap ic <plug>(signify-motion-inner-visual)
+omap ac <plug>(signify-motion-outer-pending)
+xmap ac <plug>(signify-motion-outer-visual)
+" }}} signify "
 
 " sneak {{{ "
 let g:sneak#s_next = 1
