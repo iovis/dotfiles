@@ -541,6 +541,7 @@ augroup fzf_commands
   autocmd!
   autocmd FileType fzf tnoremap <silent> <buffer> <c-j> <down>
   autocmd FileType fzf tnoremap <silent> <buffer> <c-k> <up>
+  autocmd FileType fzf setlocal nornu nonu signcolumn=no
 augroup end
 
 " Don't use gitignore
@@ -561,20 +562,28 @@ command! -bang -nargs=* Rg
       \   <bang>0
       \ )
 
+" Peek Snippets
+command! -bang RgSnippets
+      \ call fzf#vim#grep(
+      \   "rg --column --line-number --no-heading --smart-case --color=always -g'*.snippets' -g'!*undo*' . ~/.vim/",
+      \   1,
+      \   fzf#vim#with_preview('right:33%', 'º'),
+      \   <bang>0
+      \ )
+
 nnoremap <silent> <c-p> :Commands<cr>
 nnoremap <silent> <leader><leader> :Buffers<cr>
-nnoremap <silent> <leader>B :BCommits<cr>
-nnoremap <silent> <leader>F :Filetypes<cr>
-nnoremap <silent> <leader>H :History<cr>
-nnoremap <silent> <leader>G :Rg<cr>
-nnoremap <silent> <leader>O :AllFiles<cr>
-nnoremap <silent> <leader>R :Tags<cr>
-nnoremap <silent> <leader>j :GFiles?<cr>
-nnoremap <silent> <leader>L :Commits<cr>
-nnoremap <silent> <leader>m :Maps<cr>
-nnoremap <silent> <leader>o :Files<cr>
-nnoremap <silent> <leader>r :BTags<cr>
-nnoremap <silent> <leader>ñ :BLines<cr>
+nnoremap <silent> <leader>F  :Filetypes<cr>
+nnoremap <silent> <leader>G  :Rg<cr>
+nnoremap <silent> <leader>H  :BCommits<cr>
+nnoremap <silent> <leader>L  :Commits<cr>
+nnoremap <silent> <leader>O  :AllFiles<cr>
+nnoremap <silent> <leader>R  :Tags<cr>
+nnoremap <silent> <leader>j  :GFiles?<cr>
+nnoremap <silent> <leader>o  :Files<cr>
+nnoremap <silent> <leader>r  :BTags<cr>
+nnoremap <silent> <leader>sg :RgSnippets<cr>
+nnoremap <silent> <leader>ñ  :BLines!<cr>
 " }}} fzf "
 
 " goyo {{{ "
