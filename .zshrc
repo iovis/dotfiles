@@ -39,6 +39,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
 HIST_STAMPS="yyyy-mm-dd"
 
 # Environment variables
+export BAT_THEME="base16"
 export EDITOR="nvim"
 export FZF_DEFAULT_COMMAND="fd -H -E '.git' -E '.keep' --type file --follow --color=always"
 export FZF_DEFAULT_OPTS="--ansi --bind=ctrl-p:page-down,ctrl-n:page-up"
