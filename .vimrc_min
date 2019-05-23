@@ -12,7 +12,7 @@ set backspace=indent,eol,start
 " set breakindent
 set conceallevel=0
 set cursorline
-set diffopt+=hiddenoff
+" set diffopt+=hiddenoff
 set expandtab
 set hidden
 set hlsearch
