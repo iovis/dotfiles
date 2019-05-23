@@ -135,7 +135,8 @@ if has('nvim')
   tnoremap <c-j> <c-\><c-n><C-w>j
   tnoremap <c-k> <c-\><c-n><C-w>k
   tnoremap <c-l> <c-\><c-n><C-w>l
-  tnoremap jj    <c-\><c-n>
+  tnoremap jk    <c-\><c-n>
+  tnoremap kj    <c-\><c-n>
 else
   set ttymouse=xterm2
   set notermguicolors
@@ -159,7 +160,8 @@ endif
 
 " CUSTOM KEYBINDINGS
 " Vim specific
-inoremap jj <Esc>
+inoremap jk <Esc>
+inoremap kj <Esc>
 let g:mapleader = "\<Space>"
 nnoremap <space> <nop>
 xnoremap <space> <nop>
