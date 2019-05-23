@@ -447,7 +447,7 @@ inoremap <silent><expr> <c-b> coc#refresh()
 nmap <silent> <c-t> <Plug>(coc-definition)
 nnoremap <silent> <leader>ec  :CocConfig<CR>
 nnoremap <silent> <leader>lR  :CocList -I symbols<cr>
-nnoremap <silent> <leader>lc  :CocList commands<cr>
+nnoremap <silent> <leader>lp  :CocList commands<cr>
 nnoremap <silent> <leader>le  :CocList extensions<cr>
 nnoremap <silent> <leader>lr  :CocList outline<cr>
 nnoremap <silent> gd :call <SID>show_documentation()<CR>
@@ -466,11 +466,11 @@ function! s:show_documentation()
 endfunction
 
 " Highlight symbol under cursor on CursorHold
-hi default CocHighlightText guibg=#444444 ctermbg=238
-augroup coc
-  autocmd!
-  autocmd CursorHold * silent call CocActionAsync('highlight')
-augroup END
+hi default CocHighlightText gui=underline
+" augroup coc
+"   autocmd!
+"   autocmd CursorHold * silent call CocActionAsync('highlight')
+" augroup END
 " }}} coc "
 
 " csv {{{ "
@@ -783,6 +783,9 @@ nnoremap <silent> <leader>I :silent execute 'Tux ' . getline('.')<cr>
 " typescript {{{ "
 augroup typescript_commands
   autocmd!
+  autocmd FileType typescript.jsx nmap <silent> <buffer> t  <Plug>(coc-definition)
+  autocmd FileType typescript.jsx nmap <silent> <buffer> T  <Plug>(coc-references)
+  autocmd FileType typescript.jsx nmap <silent> <buffer> gR <Plug>(coc-rename)
   autocmd FileType typescript nmap <silent> <buffer> t  <Plug>(coc-definition)
   autocmd FileType typescript nmap <silent> <buffer> T  <Plug>(coc-references)
   autocmd FileType typescript nmap <silent> <buffer> gR <Plug>(coc-rename)
