@@ -433,24 +433,19 @@ nnoremap <silent> <leader>Q :BufOnly!<cr>
 " }}} bufonly "
 
 " coc {{{ "
-" tab completion
+inoremap <silent><expr> <c-b> coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <silent><expr> <c-b> coc#refresh()
 
-" nmap <silent> gR <Plug>(coc-rename)
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> t  <Plug>(coc-definition)
-nmap <silent> <c-t> <Plug>(coc-definition)
-nnoremap <silent> <leader>ec  :CocConfig<CR>
-nnoremap <silent> <leader>lR  :CocList -I symbols<cr>
-nnoremap <silent> <leader>lp  :CocList commands<cr>
-nnoremap <silent> <leader>le  :CocList extensions<cr>
-nnoremap <silent> <leader>lr  :CocList outline<cr>
+nmap     <silent> <c-t> <Plug>(coc-definition)
+nnoremap <silent> <leader>ec :CocConfig<CR>
+nnoremap <silent> <leader>lR :CocList -I symbols<cr>
+nnoremap <silent> <leader>lp :CocList commands<cr>
+nnoremap <silent> <leader>le :CocList extensions<cr>
+nnoremap <silent> <leader>lr :CocList outline<cr>
 nnoremap <silent> gd :call <SID>show_documentation()<CR>
 
 function! s:check_back_space() abort
@@ -800,9 +795,9 @@ augroup typescript_commands
   autocmd FileType typescript.jsx nmap <silent> <buffer> t  <Plug>(coc-definition)
   autocmd FileType typescript.jsx nmap <silent> <buffer> T  <Plug>(coc-references)
   autocmd FileType typescript.jsx nmap <silent> <buffer> gR <Plug>(coc-rename)
-  autocmd FileType typescript nmap <silent> <buffer> t  <Plug>(coc-definition)
-  autocmd FileType typescript nmap <silent> <buffer> T  <Plug>(coc-references)
-  autocmd FileType typescript nmap <silent> <buffer> gR <Plug>(coc-rename)
+  autocmd FileType typescript     nmap <silent> <buffer> t  <Plug>(coc-definition)
+  autocmd FileType typescript     nmap <silent> <buffer> T  <Plug>(coc-references)
+  autocmd FileType typescript     nmap <silent> <buffer> gR <Plug>(coc-rename)
 augroup end
 " }}} typescript "
 
