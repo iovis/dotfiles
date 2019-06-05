@@ -27,3 +27,13 @@ endsnippet
 snippet inf "Inline arrow function" i
 (${1}) => ${0}
 endsnippet
+
+snippet rs "Service"
+const ${1} = {
+  call: ($2) => {
+    $0
+  }
+};
+
+export default $1;
+endsnippet
