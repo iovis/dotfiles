@@ -91,7 +91,7 @@ bindkey "^P" down-line-or-beginning-search
 bindkey "^[." insert-last-word
 bindkey "^[OA" up-line-or-beginning-search
 bindkey "^[OB" down-line-or-beginning-search
-bindkey "jj" vi-cmd-mode
+bindkey "kj" vi-cmd-mode
 bindkey -M vicmd H vi-first-non-blank
 bindkey -M vicmd L vi-end-of-line
 bindkey "^N" autosuggest-accept
