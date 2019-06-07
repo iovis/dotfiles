@@ -138,12 +138,6 @@ onoremap ar a]
 onoremap ir i]
 xnoremap <silent> Q :norm @q<cr>
 
-" Resize panes
-nnoremap <silent> <end>      :vertical resize +5<cr>
-nnoremap <silent> <home>     :vertical resize -5<cr>
-nnoremap <silent> <pagedown> :resize -5<cr>
-nnoremap <silent> <pageup>   :resize +5<cr>
-
 " Properly indent text when pasting
 nnoremap p p`[v`]=
 nnoremap P P`[v`]=
@@ -1306,4 +1300,53 @@ if v:version < 703
   delfunction s:transpile
 endif
 " }}} vim-buftabline "
+
+" resize.vim {{{ "
+nmap <m-up>    <Plug>ResizeUp
+nmap <m-down>  <Plug>ResizeDown
+nmap <m-left>  <Plug>ResizeLeft
+nmap <m-right> <Plug>ResizeRight
+
+if exists('g:resize_vim_loaded') || &compatible || v:version < 700
+  finish
+endif
+let g:resize_vim_loaded = 1
+let g:resize_vim_vertical = 3
+let g:resize_vim_horizontal = 6
+
+noremap <silent> <unique> <Plug>ResizeUp    :call Resize_up()<cr>
+noremap <silent> <unique> <Plug>ResizeDown  :call Resize_down()<cr>
+noremap <silent> <unique> <Plug>ResizeLeft  :call Resize_left()<cr>
+noremap <silent> <unique> <Plug>ResizeRight :call Resize_right()<cr>
+
+function! Resize_up() abort
+  let l:sign = Resize_is_edge('j') ? '+' : '-'
+  silent! execute 'resize ' . l:sign . g:resize_vim_vertical
+endfunction
+
+function! Resize_down() abort
+  let l:sign = Resize_is_edge('j') ? '-' : '+'
+  silent! execute 'resize ' . l:sign . g:resize_vim_vertical
+endfunction
+
+function! Resize_left() abort
+  let l:sign = Resize_is_edge('l') ? '+' : '-'
+  silent! execute 'vertical resize ' . l:sign . g:resize_vim_horizontal
+endfunction
+
+function! Resize_right() abort
+  let l:sign = Resize_is_edge('l') ? '-' : '+'
+  silent! execute 'vertical resize ' . l:sign . g:resize_vim_horizontal
+endfunction
+
+function! Resize_is_edge(direction) abort
+  let l:current_window = winnr()
+  silent! execute 'wincmd ' . a:direction
+
+  let l:edge_window = winnr()
+  silent! execute l:current_window . 'wincmd w'
+
+  return l:current_window == l:edge_window
+endfunction
+" }}} resize.vim "
 " }}} External Plugins "

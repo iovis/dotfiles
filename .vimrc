@@ -235,12 +235,6 @@ noremap H g^
 noremap L g$
 xnoremap <silent> Q :norm @q<cr>
 
-" Resize panes
-nnoremap <silent> <end>      :vertical resize +5<cr>
-nnoremap <silent> <home>     :vertical resize -5<cr>
-nnoremap <silent> <pagedown> :resize -5<cr>
-nnoremap <silent> <pageup>   :resize +5<cr>
-
 " Properly indent text when pasting
 nnoremap p p`[v`]=
 nnoremap P P`[v`]=
@@ -708,6 +702,13 @@ augroup rails_commands
   autocmd FileType ruby nnoremap <buffer> <leader>sr :execute 'Rpp ' . getline('.')<cr>
 augroup END
 " }}} rails "
+
+" resize.vim {{{ "
+nmap <m-up>    <Plug>ResizeUp
+nmap <m-down>  <Plug>ResizeDown
+nmap <m-left>  <Plug>ResizeLeft
+nmap <m-right> <Plug>ResizeRight
+" }}} resize.vim "
 
 " rspec {{{ "
 let g:rspec_command = 'Dispatch bin/rspec {spec}'
