@@ -577,6 +577,13 @@ nnoremap <silent> <leader>ñ  :BLines!<cr>
 
 " goyo {{{ "
 nnoremap <silent> <leader>z :Goyo<cr>
+
+" Prevent Airline from refreshing on focus gained
+augroup goyo
+  au!
+  autocmd! User GoyoEnter nested set eventignore=FocusGained
+  autocmd! User GoyoLeave nested set eventignore=
+augroup end
 " }}} goyo "
 
 " gundo {{{ "
