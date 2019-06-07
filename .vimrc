@@ -507,13 +507,14 @@ let g:user_emmet_settings = {
 " }}} emmet "
 
 " fugitive {{{ "
+nmap <silent> <leader>-  :Gstatus<cr><c-n>
+
 nnoremap <leader>gcc :Gcommit -m<space>
 nnoremap <leader>gl  :Gpull<cr>
 nnoremap <leader>gm  :Gmerge<cr>
 nnoremap <leader>go  :Gread<cr>
 nnoremap <leader>gpp :Gpush<cr>
 
-nnoremap <silent> <leader>-  :Gstatus<cr><c-n>
 nnoremap <silent> <leader>gb :Gblame<cr>
 nnoremap <silent> <leader>gd :Gvdiff<cr>
 nnoremap <silent> <leader>gg :Gbrowse<cr>
