@@ -753,12 +753,14 @@ xmap ac <plug>(signify-motion-outer-visual)
 " sneak {{{ "
 let g:sneak#s_next = 1
 let g:sneak#use_ic_scs = 1
-let g:sneak#label = 1
 
 map f <Plug>Sneak_f
 map F <Plug>Sneak_F
-map t <Plug>Sneak_t
-map T <Plug>Sneak_T
+
+xmap t <Plug>Sneak_t
+xmap T <Plug>Sneak_T
+omap t <Plug>Sneak_t
+omap T <Plug>Sneak_T
 
 hi Sneak      ctermbg=110 ctermfg=235 guibg=#8fafd7 guifg=#262626 cterm=NONE gui=NONE
 hi SneakScope ctermbg=110 ctermfg=235 guibg=#8fafd7 guifg=#262626 cterm=NONE gui=NONE
