@@ -498,7 +498,7 @@ let g:echodoc_enable_at_startup = 1
 " }}} echodoc "
 
 " emmet {{{ "
-let g:user_emmet_leader_key = '<c-x>'
+let g:user_emmet_leader_key = '<c-e>'
 let g:user_emmet_settings = {
       \  'javascript.jsx' : {
       \    'extends' : 'jsx',
