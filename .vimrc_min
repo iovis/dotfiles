@@ -358,7 +358,7 @@ augroup ruby_commands
 augroup end
 
 " JavaScript
-augroup ruby_commands
+augroup javascript_commands
   autocmd!
   autocmd FileType javascript setlocal commentstring=//\ %s
 augroup end

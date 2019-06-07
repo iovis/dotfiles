@@ -362,8 +362,8 @@ augroup end
 let g:ackhighlight = 1
 let g:ack_use_dispatch = 1
 let g:ackprg = 'rg --vimgrep --smart-case'
-nnoremap <leader>f  :Ack! ""<left>
-xnoremap <leader>f y:Ack! -F "<c-r>""
+nnoremap <leader>G  :Ack! ""<left>
+xnoremap <leader>G y:Ack! -F "<c-r>""
 nnoremap K  :silent Ack! -F "<c-r><c-w>"<cr>
 xnoremap K y:silent Ack! -F "<c-r>""<cr>
 
@@ -415,9 +415,10 @@ let g:formatters_ruby = ['rubocop']
 " }}} autoformat "
 
 " browsers_castle {{{ "
-nnoremap ¡<space> :Google<space>
-nnoremap ¡<cr>    :execute 'Google ' . expand('<cword>')<cr>
-xnoremap ¡        y:Google <c-r>"<cr>
+nnoremap g<space>  :Google<space>
+nnoremap g<cr>     :execute 'Google ' . expand('<cword>')<cr>
+xnoremap g<space> y:Google <c-r>"
+xnoremap g<cr>    y:Google <c-r>"<cr>
 nnoremap <silent> <leader>< :execute 'Canary ' . DotenvGet('PROJECT_URL')<cr>
 " }}} browsers_castle "
 
@@ -484,10 +485,10 @@ let g:delimitMate_expand_space = 1
 " }}} delimitmate "
 
 " dispatch {{{ "
-nnoremap g<cr>    :Dispatch<cr>
-nnoremap g<space> :Dispatch<space>
-nnoremap g!       :Dispatch!<cr>
-nnoremap g?       :FocusDispatch<cr>
+nnoremap z<cr>    :Dispatch<cr>
+nnoremap z<space> :Dispatch<space>
+nnoremap z!       :Dispatch!<cr>
+nnoremap z?       :FocusDispatch<cr>
 " }}} dispatch "
 
 " echodoc {{{ "
@@ -506,21 +507,20 @@ let g:user_emmet_settings = {
 " }}} emmet "
 
 " fugitive {{{ "
-nmap <leader>gcc :Gcommit<cr>
-nmap <leader>gl  :Gpull<cr>
-nmap <leader>gm  :Gmerge<cr>
-nmap <leader>go  :Gread<cr>
-nmap <leader>gp  :Gpush<cr>
-nmap <leader>gw  :Gwrite<cr>
+nnoremap <leader>gcc :Gcommit -m<space>
+nnoremap <leader>gl  :Gpull<cr>
+nnoremap <leader>gm  :Gmerge<cr>
+nnoremap <leader>go  :Gread<cr>
+nnoremap <leader>gpp :Gpush<cr>
 
-nmap <silent> <leader>-  :Gstatus<cr><c-n>
-nmap <silent> <leader>gb :Gblame<cr>
-nmap <silent> <leader>gd :Gvdiff<cr>
-nmap <silent> <leader>gg :Gbrowse<cr>
-nmap <silent> <leader>gh :0Glog<cr>
+nnoremap <silent> <leader>-  :Gstatus<cr><c-n>
+nnoremap <silent> <leader>gb :Gblame<cr>
+nnoremap <silent> <leader>gd :Gvdiff<cr>
+nnoremap <silent> <leader>gg :Gbrowse<cr>
+nnoremap <silent> <leader>gh :silent 0Glog<cr>
 
-xmap <silent> <leader>gg :Gbrowse<cr>
-xmap <silent> <leader>gh :Glog<cr>
+xnoremap <silent> <leader>gg :Gbrowse<cr>
+xnoremap <silent> <leader>gh :<c-u>silent '<,'>Glog<cr>
 " }}} fugitive "
 
 " fzf {{{ "
@@ -563,11 +563,11 @@ command! -bang RgSnippets
 nnoremap <silent> <c-p> :Commands<cr>
 nnoremap <silent> <leader><leader> :Buffers<cr>
 nnoremap <silent> <leader>F  :Filetypes<cr>
-nnoremap <silent> <leader>G  :Rg<cr>
 nnoremap <silent> <leader>H  :BCommits<cr>
-nnoremap <silent> <leader>L  :Commits<cr>
+nnoremap <silent> <leader>gL :Commits<cr>
 nnoremap <silent> <leader>O  :AllFiles<cr>
 nnoremap <silent> <leader>R  :Tags<cr>
+nnoremap <silent> <leader>f  :Rg<cr>
 nnoremap <silent> <leader>j  :GFiles?<cr>
 nnoremap <silent> <leader>o  :Files<cr>
 nnoremap <silent> <leader>r  :BTags<cr>
@@ -598,7 +598,7 @@ let g:jsx_ext_required = 0
 
 " lion {{{ "
 let b:lion_squeeze_spaces = 1
-nmap <leader>a= mzglip='z
+nnoremap <leader>a= mzglip='z
 " }}} lion "
 
 " neomake {{{ "
@@ -759,7 +759,7 @@ hi SneakScope ctermbg=110 ctermfg=235 guibg=#8fafd7 guifg=#262626 cterm=NONE gui
 
 " tagbar {{{ "
 let g:tagbar_compact = 1
-nmap <silent> <leader>ll :TagbarToggle<CR>
+nnoremap <silent> <leader>ll :TagbarToggle<CR>
 " }}} tagbar "
 
 " targets {{{ "
@@ -816,10 +816,6 @@ augroup vader_commands
   au!
   autocmd FileType vader nnoremap <buffer> <leader>sf :Vader test/*<cr>
   autocmd FileType vader nnoremap <buffer> <leader>ss :Vader %<cr>
-
-  autocmd FileType vim   nnoremap <buffer> <leader>so :source % \| echo 'sourced ' . expand("%")<cr>
-  autocmd FileType vim   nnoremap <buffer> <leader>sr ggyG:@"<cr>
-  autocmd FileType vim   xnoremap <buffer> <leader>sr y:@"<cr>
 augroup END
 " }}} vader "
 
