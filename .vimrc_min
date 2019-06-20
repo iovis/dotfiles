@@ -268,14 +268,10 @@ command! ScratchBuffer enew | setlocal buftype=nofile bufhidden=hide noswapfile
 nnoremap <silent> <leader>T :ScratchBuffer<cr>
 
 " Sessions
-nnoremap <c-s> :mksession! ~/.vim/sessions/
-nnoremap <c-p> :source ~/.vim/sessions/
+nnoremap <c-s> :mksession!<cr>
 
-" Dispatch keybindings
-nnoremap g<space> :!
-nnoremap m<cr>    :make<cr>
-nnoremap m<space> :make<space>
-nnoremap m?       :set makeprg?<cr>
+" Tux
+nnoremap c<space> :!
 
 " Commands
 augroup vimrc
@@ -320,7 +316,6 @@ nnoremap <C-H> <C-W><C-H>
 
 " FZF commands
 nnoremap <leader>F :setf<space>
-nnoremap <leader>m :map<cr>
 nnoremap <leader>o :e **/
 nnoremap <silent> <leader>H :browse old<cr>
 
@@ -342,19 +337,6 @@ let g:netrw_winsize = 25
 augroup ruby_commands
   autocmd!
   autocmd FileType ruby setlocal commentstring=#\ %s
-
-  autocmd FileType ruby nnoremap <buffer> <leader>sf :execute '!bin/rspec ' . shellescape(expand('%'))<cr>
-  autocmd FileType ruby nnoremap <buffer> <leader>ss :execute '!bin/rspec ' . shellescape(expand('%') . ':' . line('.'))<cr>
-  autocmd FileType ruby nnoremap <buffer> <leader>sa :execute '!bin/rspec'<cr>
-
-  " Execute line in rails runner
-  autocmd FileType ruby nnoremap <silent> <buffer> <leader>sr :silent execute '!tmux send-keys -t \! rails Space runner Space "' . shellescape(getline('.')) . '" Enter'<cr>:redraw!<cr>
-
-  " Execute current spec in last pane
-  autocmd FileType ruby nnoremap <silent> <buffer> <leader>si :silent execute '!tmux send-keys -t \! rspec Space ' . shellescape(expand('%') . ':' . line(".")) . ' Enter'<cr>:redraw!<cr>
-
-  " Execute current spec file in last pane
-  autocmd FileType ruby nnoremap <silent> <buffer> <leader>so :silent execute '!tmux send-keys -t \! rspec Space ' . shellescape(expand('%')) . ' Enter'<cr>:redraw!<cr>
 augroup end
 
 " JavaScript
