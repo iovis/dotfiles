@@ -794,6 +794,21 @@ nmap g< <Plug>(swap-prev)
 nmap g> <Plug>(swap-next)
 " }}} swap "
 
+" scriptease.vim {{{ "
+nnoremap <leader>sp :PP<space>
+
+augroup scriptease_vim
+  autocmd!
+
+  autocmd FileType vim nnoremap <buffer> <leader>sb :Breakadd here<cr>
+  autocmd FileType vim nnoremap <buffer> <leader>sd :Breakdel here<cr>
+  autocmd FileType vim nnoremap <buffer> <leader>sl :breaklist<cr>
+
+  autocmd FileType vim nnoremap <buffer> <leader>sc :Disarm<cr>
+  autocmd FileType vim nnoremap <buffer> <leader>so :Runtime<cr>
+augroup end
+" }}} scriptease.vim "
+
 " tagbar {{{ "
 let g:tagbar_compact = 1
 nnoremap <silent> <leader>ll :TagbarToggle<CR>
