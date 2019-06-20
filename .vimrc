@@ -421,6 +421,7 @@ nnoremap g<space>  :Google<space>
 nnoremap g<cr>     :execute 'Google ' . expand('<cword>')<cr>
 xnoremap g<space> y:Google <c-r>"
 xnoremap g<cr>    y:Google <c-r>"<cr>
+
 nnoremap <silent> <leader>< :execute 'Canary ' . DotenvGet('PROJECT_URL')<cr>
 " }}} browsers_castle "
 
@@ -494,9 +495,10 @@ nnoremap z?       :FocusDispatch<cr>
 " }}} dispatch "
 
 " echodoc {{{ "
+let g:echodoc_enable_at_startup = 1
+
 set cmdheight=2
 set noshowmode
-let g:echodoc_enable_at_startup = 1
 " }}} echodoc "
 
 " emmet {{{ "
@@ -794,6 +796,7 @@ let g:targets_pairs = '()b {}B []r <>'
 
 " textobj-rubyblock {{{ "
 let g:textobj_rubyblock_no_default_key_mappings = 1
+
 xmap ad <Plug>(textobj-rubyblock-a)
 omap ad <Plug>(textobj-rubyblock-a)
 xmap id <Plug>(textobj-rubyblock-i)
@@ -818,12 +821,9 @@ nnoremap <silent> <leader>I :silent execute 'Tux ' . getline('.')<cr>
 " typescript {{{ "
 augroup typescript_commands
   autocmd!
-  autocmd FileType typescript.jsx nmap <silent> <buffer> t  <Plug>(coc-definition)
-  autocmd FileType typescript.jsx nmap <silent> <buffer> T  <Plug>(coc-references)
-  autocmd FileType typescript.jsx nmap <silent> <buffer> gR <Plug>(coc-rename)
-  autocmd FileType typescript     nmap <silent> <buffer> t  <Plug>(coc-definition)
-  autocmd FileType typescript     nmap <silent> <buffer> T  <Plug>(coc-references)
-  autocmd FileType typescript     nmap <silent> <buffer> gR <Plug>(coc-rename)
+  autocmd FileType typescript,typescript.tsx nmap <silent> <buffer> t  <Plug>(coc-definition)
+  autocmd FileType typescript,typescript.tsx nmap <silent> <buffer> T  <Plug>(coc-references)
+  autocmd FileType typescript,typescript.tsx nmap <silent> <buffer> gR <Plug>(coc-rename)
 augroup end
 " }}} typescript "
 
@@ -850,8 +850,8 @@ nnoremap <leader>¡ :QuickLook<space>
 " }}} vimlook "
 
 " ysurround {{{ "
-nnoremap <silent> <leader>" :normal mzcs'"`z<cr>
-nnoremap <silent> <leader>' :normal mzcs"'`z<cr>
+nmap <leader>" mzcs'"`z
+nmap <leader>' mzcs"'`z
 " }}} ysurround "
 
 """""""""""""""""""""
@@ -932,10 +932,6 @@ function! ToggleHex()
   let &modifiable=l:oldmodifiable
 endfunction
 " }}} Hex Mode "
-
-" Prettier {{{ "
-command! -nargs=+ -complete=file Prettier silent !prettier --write <q-args>
-" }}} Prettier "
 
 " QuickFix toggle {{{ "
 function! GetBufferList()
