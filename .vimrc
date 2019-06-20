@@ -13,6 +13,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'honza/vim-snippets'
 Plug 'iovis/browsers_castle'
 Plug 'iovis/jirafa.vim'
+Plug 'iovis/hubcap.vim'
 Plug 'iovis/resize.vim'
 Plug 'iovis/substitute.vim'
 Plug 'iovis/tux.vim'
@@ -595,6 +596,13 @@ nnoremap <silent> U :GundoToggle<cr>
 hi HighlightedyankRegion ctermbg=110 ctermfg=235 guibg=#8fafd7 guifg=#262626 cterm=NONE gui=NONE
 " }}} highlightedyank "
 
+" hubcap.vim {{{ "
+nnoremap <leader>gco  :Gco<space>
+nnoremap <leader>gprb :Gprb<cr>
+nnoremap <leader>gprc :Gprc<space>
+nnoremap <leader>gprs :Gprs<cr>:Gprc<space>
+" }}} hubcap.vim "
+
 " jirafa {{{ "
 let g:jira_url = $JIRA_URL
 nnoremap <silent> <leader>J :Jira<cr>
@@ -852,53 +860,17 @@ command! Dcstop Dispatch! docker-compose stop
 " }}} Docker "
 
 " Git {{{ "
-nnoremap <leader>gcb  :Gcb<space>
-nnoremap <leader>gcm  :Gcm<cr>
-nnoremap <leader>gco  :Gco<space>
-nnoremap <leader>gcq  :Gcq<cr>
-nnoremap <leader>gprb :Gprb<cr>
-nnoremap <leader>gprc :Gprc<space>
-nnoremap <leader>gprs :Gprs<cr>:Gprc<space>
-nnoremap <leader>grhh :Grhh<cr>
+nnoremap <leader>gcb   :Gcb<space>
+nnoremap <leader>gcm   :Gcm<cr>
+nnoremap <leader>gcq   :Gcq<cr>
+nnoremap <leader>gpsup :Gpsup<cr>
+nnoremap <leader>grhh  :Grhh<cr>
 
-command! -nargs=0 Gcm  !git checkout master
-command! -nargs=0 Gcq  !git checkout qa
-command! -nargs=* -complete=customlist,<SID>GitPullRequestComplete Gprb call <SID>GitPullRequestBrowse(<f-args>)
-command! -nargs=0 Gprs !hub pr list
-command! -nargs=0 Grhh !git reset --hard
-command! -nargs=1 -complete=customlist,<SID>GitBranchComplete Gco !git checkout <args>
-command! -nargs=1 Gcb  !git checkout -b <args>
-command! -nargs=1 Gprc !hub pr checkout <args>
-
-function! s:GitPullRequestBrowse(...)
-  if a:0 == 0
-    " With no parameters, try to navigate to PR for current branch
-    let url = system('hub pr list -f %U -h $(git rev-parse --abbrev-ref HEAD)')
-
-    if !empty(url)
-      silent execute '!open ' . shellescape(url)
-    else
-      echo 'No PRs for the current branch'
-    endif
-  else
-    " With parameter, go to PR
-    let pr = trim(a:1, '#')
-    silent execute '!hub browse -- pull/' . l:pr
-  endif
-endfunction
-
-function! s:GitPullRequestComplete(ArgLead, CmdLine, CursorPos)
-  let prs = systemlist('hub pr list')
-  let prs = map(prs, 'split(v:val, "  ")')
-  let prs = map(prs, 'join(v:val[:1])')
-  return prs
-endf
-
-function! s:GitBranchComplete(ArgLead, CmdLine, CursorPos)
-  " git branch --list '*david*'
-  let branch_command = 'git branch --format="%(refname:short)" --list ' . shellescape('*' . a:ArgLead . '*')
-  return systemlist(branch_command)
-endf
+command! -nargs=0 Gcm   !git checkout master
+command! -nargs=0 Gcq   !git checkout qa
+command! -nargs=0 Gpsup !git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
+command! -nargs=0 Grhh  !git reset --hard
+command! -nargs=1 Gcb   !git checkout -b <args>
 " }}} Git "
 
 " Hex Mode {{{ "
