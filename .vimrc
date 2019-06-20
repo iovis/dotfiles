@@ -709,14 +709,20 @@ endfunction
 nnoremap <c-s> :Obsession<cr>
 " }}} obsession "
 
+" projectionist {{{ "
+nnoremap <silent> <leader>aa :A<cr>
+nnoremap <silent> <leader>as :AS<cr>
+nnoremap <silent> <leader>av :AV<cr>
+
+nnoremap <silent> <leader>C :Console<cr>
+nnoremap <silent> <leader>S :Start!<cr>
+" }}} projectionist "
+
 " peekaboo {{{ "
 let g:peekaboo_delay = 750
 " }}} peekaboo "
 
 " rails {{{ "
-nnoremap <silent> <leader>C :Console<cr>
-nnoremap <silent> <leader>S :Start!<cr>
-
 augroup rails_commands
   autocmd!
 
