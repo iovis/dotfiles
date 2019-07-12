@@ -195,7 +195,7 @@ xnoremap <expr> j v:count ? 'j' : 'gj'
 xnoremap <expr> k v:count ? 'k' : 'gk'
 nnoremap <leader>. @@
 nnoremap <leader>: @:
-nnoremap <leader>n :e<space>
+nnoremap <leader>e :e<space>
 nnoremap <m-O> mzO<esc>`z
 nnoremap <m-o> mzo<esc>`z
 nnoremap Ø   mzO<esc>`z
@@ -320,14 +320,14 @@ nnoremap <silent> gr :<c-u>set operatorfunc=SortReverseLinesOpFunc<cr>g@
 xnoremap <silent> gr :sort!<cr>
 
 " Fast config editing
-nnoremap <silent> <leader>ee :e! $MYVIMRC<cr>
-nnoremap <silent> <leader>eh :sp $MYVIMRC<cr>
-nnoremap <silent> <leader>em :e! ~/.dotfiles/.vimrc_min<cr>
-nnoremap <silent> <leader>ep :e! .projections.json<cr>
-nnoremap <silent> <leader>es :so $MYVIMRC<cr>
-nnoremap <silent> <leader>et :e! ~/.tmux.conf<cr>
-nnoremap <silent> <leader>ev :vs $MYVIMRC<cr>
-nnoremap <silent> <leader>ez :e! ~/.zshrc<cr>
+nnoremap <leader>us :so $MYVIMRC<cr>:echo 'vimrc sourced'<cr>
+nnoremap <silent> <leader>uh :sp $MYVIMRC<cr>
+nnoremap <silent> <leader>um :e! ~/.dotfiles/.vimrc_min<cr>
+nnoremap <silent> <leader>up :e! .projections.json<cr>
+nnoremap <silent> <leader>ut :e! ~/.tmux.conf<cr>
+nnoremap <silent> <leader>uu :e! $MYVIMRC<cr>
+nnoremap <silent> <leader>uv :vs $MYVIMRC<cr>
+nnoremap <silent> <leader>uz :e! ~/.zshrc<cr>
 
 " Duplicate file
 nnoremap <leader>W :saveas <c-r>=fnameescape(expand('%:h')).'/'<cr>
@@ -438,7 +438,7 @@ inoremap <silent><expr> <TAB>
       \ coc#refresh()
 
 nmap     <silent> <c-t> <Plug>(coc-definition)
-nnoremap <silent> <leader>ec :CocConfig<CR>
+nnoremap <silent> <leader>lc :CocConfig<CR>
 nnoremap <silent> <leader>lR :CocList -I symbols<cr>
 nnoremap <silent> <leader>lp :CocList commands<cr>
 nnoremap <silent> <leader>le :CocList extensions<cr>
