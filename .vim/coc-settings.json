@@ -1,6 +1,7 @@
 {
   "diagnostic.enable": false,
   "list.source.outline.ctagsFilestypes": ["rb"],
+  "solargraph.checkGemVersion": false,
   "solargraph.useBundler": true,
   "suggest.echodocSupport": true
 }
