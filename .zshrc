@@ -49,14 +49,16 @@ export LC_ALL="en_US.UTF-8"
 export LESS="-iMSx4 -FXR"
 export MANPAGER="$EDITOR -c 'set ft=man' -"
 export PAGER="less"
-export PATH="$HOME/.rbenv/shims:$PATH"
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="/usr/local/opt/python/libexec/bin/:$PATH"
 export PROJECT_HOME="$HOME/Sites"
-export RBENV_ROOT="$HOME/.rbenv"
+export REVIEW_BASE="master"
 export TERM="screen-256color"
 eval "$(thefuck --alias)"
 
 plugins=(
+  aws
   brew
   bundler
   docker
