@@ -1,9 +1,12 @@
 [alias]
   branch-name = !git rev-parse --abbrev-ref HEAD
+  files = !git diff --name-only $(git merge-base HEAD \"$REVIEW_BASE\")
   hidden = !git ls-files -v | grep \"^[a-z]\"
   hide = update-index --assume-unchanged
   ignored = !git status -s --ignored | grep \"^!!\"
   publish = !git push -u origin $(git branch-name)
+  review = "!f() { nvim -p ${@:-$(git files)} +\"tabdo Gdiff $REVIEW_BASE\"; }; f"
+  stat = !git diff --stat $(git merge-base HEAD \"$REVIEW_BASE\")
   unhide = update-index --no-assume-unchanged
   unhide-all = update-index --really-refresh
   unpublish = !git push origin :$(git branch-name)
