@@ -110,7 +110,6 @@ alias dumpdb="pg_dump -Fc --clean --no-owner -h localhost"
 alias files="fd -H -E '.git' -E '.keep' --type file --follow --color=always"
 alias fixtrash="rm -rf ~/.Trash; mkdir ~/.Trash; killall Finder"
 alias flushcache="dscacheutil -flushcache"
-alias flushmemcached="echo 'flush_all' | nc localhost 11211"
 alias gcam="git commit -v -am"
 alias gcq="git checkout qa"
 alias gemo="gem outdated | grep -f ~/.rbenv/default-gems"
@@ -124,7 +123,6 @@ alias hosts="sudo $EDITOR /etc/hosts"
 alias https="http --default-scheme=https"
 alias l="exa -lag --git --group-directories-first"
 alias libupdate="brew update; brew upgrade; upgrade_oh_my_zsh; upgrade_powerlevel9k; npm -g outdated; echo '\nOutdated gems'; gemo; echo '\nOutdated pips'; pipo"
-alias ldbs="listdbs"
 alias listdbs="psql -h localhost -c '\l'"
 alias ni="nvim"
 alias nin="nvim -u ~/.dotfiles/.vimrc_min"
@@ -153,8 +151,7 @@ alias tailf="tail -f"
 alias tm="tmux"
 alias tmrc="$EDITOR ~/.tmux.conf"
 alias updatedb="sudo /usr/libexec/locate.updatedb"
-alias vimin="vim -u ~/.dotfiles/.vimrc_min"
-alias vimrin="vimr --nvim -u ~/.dotfiles/.vimrc_min"
+alias vin="vim -u ~/.dotfiles/.vimrc_min"
 alias vimupdate="nvim +PlugUpgrade +PlugUpdate"
 alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
 alias zshrc="$EDITOR ~/.zshrc"
@@ -217,23 +214,6 @@ function findjunk() {
 function rmjunk() {
   find $1 -name ".DS_Store" -exec rm {} \;
   find $1 -name "._*" -exec rm {} \;
-}
-
-# OmniFocus
-# Do something! @home ::misc #5pm #tomorrow //This is a note
-# The ! makes Do something a flagged task. @home sets the context to "home". :: is used for matching a project. Both @ and :: will fuzzy match existing contexts and projects. The first # is used for a defer date, while the second # is for a due date. Both support natural language parsing like the inspector in OmniFocus. Word of caution though, if only one # is present, OmniFocus assumes it's a due date. Lastly, // starts the note for a task.
-function of() {
-  if [[ $# -eq 0 ]]; then
-    open -a "OmniFocus"
-    return 0
-  else
-    osascript 2>/dev/null <<EOF
-      tell application "OmniFocus"
-        parse tasks into default document with transport text "$@"
-      end tell
-      return "Your task was successfully added to OmniFocus."
-EOF
-  fi
 }
 
 # tree
