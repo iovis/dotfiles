@@ -372,8 +372,8 @@ nnoremap yos :setlocal spell! spelllang=en_us<cr>
 let g:ackhighlight = 1
 let g:ack_use_dispatch = 1
 let g:ackprg = 'rg --vimgrep --smart-case'
-nnoremap <leader>K  :Ack! ""<left>
-xnoremap <leader>K y:Ack! -F "<c-r>""
+nnoremap <leader>F  :Ack! ""<left>
+xnoremap <leader>F y:Ack! -F "<c-r>""
 nnoremap K  :silent Ack! -F "<c-r><c-w>"<cr>
 xnoremap K y:silent Ack! -F "<c-r>""<cr>
 
@@ -575,7 +575,7 @@ command! -bang RgSnippets
 
 nnoremap <silent> <c-p> :Commands<cr>
 nnoremap <silent> <leader><leader> :Buffers<cr>
-nnoremap <silent> <leader>F  :Filetypes<cr>
+nnoremap <silent> <leader>A  :Filetypes<cr>
 nnoremap <silent> <leader>H  :BCommits<cr>
 nnoremap <silent> <leader>gL :Commits<cr>
 nnoremap <silent> <leader>O  :AllFiles<cr>

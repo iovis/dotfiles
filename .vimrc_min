@@ -231,6 +231,8 @@ xnoremap <silent> gr :sort!<cr>
 command! -nargs=+ -complete=file Grep silent! grep! -R <args>|cwindow|redraw!
 nnoremap <leader>f  :Grep ""<left>
 xnoremap <leader>f y:Grep "<c-r>""
+nnoremap <leader>F  :Grep ""<left>
+xnoremap <leader>F y:Grep "<c-r>""
 nnoremap K  :silent Grep "\b<cword>\b"<cr>
 xnoremap K y:silent Grep "<c-r>""<cr>
 
@@ -321,7 +323,7 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " FZF commands
-nnoremap <leader>F :setf<space>
+nnoremap <leader>A :setf<space>
 nnoremap <leader>o :e **/
 nnoremap <silent> <leader>H :browse old<cr>
 
