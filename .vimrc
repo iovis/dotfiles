@@ -216,7 +216,6 @@ nnoremap <silent> <leader>X :qa!<cr>
 nnoremap <silent> <leader>\| <c-w>\|
 nnoremap <silent> <leader>_ <c-w>_
 nnoremap <silent> <leader>c :close<cr>
-nnoremap <silent> <leader>p :set wrap!<cr>
 nnoremap <silent> <leader>q :%bdelete<cr>
 nnoremap <silent> <leader>w :w!<cr>
 nnoremap <silent> <leader>x :qa<cr>
@@ -233,8 +232,6 @@ nnoremap Y y$
 nnoremap Ñ ?
 nnoremap ñ /
 noremap ' `
-noremap <silent> <leader>, :set relativenumber! cursorline!<cr>
-noremap <silent> <leader>; :set number! relativenumber! cursorline!<cr>
 noremap <silent> <leader><cr> :noh<cr>
 noremap H g^
 noremap L g$
@@ -334,9 +331,6 @@ nnoremap <silent> <leader>uz :e! ~/.zshrc<cr>
 
 " Duplicate file
 nnoremap <leader>W :saveas <c-r>=fnameescape(expand('%:h')).'/'<cr>
-
-" Toggle spell check
-nnoremap <leader>A :setlocal spell! spelllang=en_us<cr>
 
 " Scratch buffer
 command! ScratchBuffer enew | setlocal buftype=nofile bufhidden=hide noswapfile
@@ -721,7 +715,7 @@ endfunction
 " }}} nerdtree "
 
 " obsession {{{ "
-nnoremap <c-s> :Obsession<cr>
+nnoremap yoo :Obsession<cr>
 " }}} obsession "
 
 " projectionist {{{ "
