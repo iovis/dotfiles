@@ -867,7 +867,7 @@ let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips/', 'UltiSnips']
 
-nnoremap <leader>se :UltiSnipsEdit!<cr>
+nnoremap <leader>ue :UltiSnipsEdit!<cr>
 " }}} ultisnips "
 
 " vader {{{ "
