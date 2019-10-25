@@ -528,12 +528,15 @@ nnoremap <leader>go  :Gread<cr>
 nnoremap <leader>gpp :Gpush<cr>
 
 nnoremap <silent> <leader>gb :Gblame<cr>
-nnoremap <silent> <leader>gd :Gvdiff<cr>
 nnoremap <silent> <leader>gg :Gbrowse<cr>
 nnoremap <silent> <leader>gh :silent 0Glog<cr>
 
 xnoremap <silent> <leader>gg :Gbrowse<cr>
 xnoremap <silent> <leader>gh :<c-u>silent '<,'>Glog<cr>
+
+nnoremap <silent> <leader>gdv :Gvdiffsplit<cr>
+nnoremap <silent> <leader>gdh :Ghdiffsplit<cr>
+nnoremap <silent> <leader>gdm :Gdiffsplit master<cr>
 " }}} fugitive "
 
 " fzf {{{ "
