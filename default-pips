@@ -1,5 +1,6 @@
 Pygments
 autopep8
+awscli
 flake8
 ipython
 jedi
@@ -7,6 +8,7 @@ pip
 pynvim
 setuptools
 shodan
+sqlformat
 sqlmap
 sqlparse
 subliminal
