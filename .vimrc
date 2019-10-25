@@ -360,6 +360,17 @@ augroup vimrc
         \ endif
 augroup end
 
+" Inspired by vim-unimpaired
+nnoremap yo, :set relativenumber! cursorline!<cr>
+nnoremap yo; :set number! relativenumber! cursorline!<cr>
+nnoremap yoc :setlocal cursorline!<cr>
+nnoremap yod :<c-r>=&diff ? "diffoff" : "diffthis"<cr><cr>
+nnoremap yol :setlocal list!<cr>
+nnoremap yon :setlocal number!<cr>
+nnoremap yop :setlocal wrap!<cr>
+nnoremap yor :setlocal relativenumber!<cr>
+nnoremap yos :setlocal spell! spelllang=en_us<cr>
+
 """""""""""""""""""
 " Plugin specific "
 """""""""""""""""""
