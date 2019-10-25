@@ -804,7 +804,7 @@ nmap g> <Plug>(swap-next)
 " }}} swap "
 
 " scriptease.vim {{{ "
-nnoremap <leader>sp :PP<space>
+nnoremap <leader>P :PP<space>
 
 augroup scriptease_vim
   autocmd!

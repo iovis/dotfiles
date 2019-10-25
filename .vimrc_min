@@ -281,6 +281,9 @@ nnoremap yoo :mksession!<cr>
 " Tux
 nnoremap c<space> :!
 
+" Scriptease
+nnoremap <leader>P :echo<space>
+
 " Commands
 augroup vimrc
   autocmd!
