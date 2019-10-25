@@ -97,6 +97,7 @@ set completeopt-=preview
 set conceallevel=0
 set cursorline  " Highlight current line (slow as fuck)
 set diffopt+=hiddenoff
+set diffopt+=vertical
 set expandtab
 set hidden    " remember undo after quitting
 set hlsearch
