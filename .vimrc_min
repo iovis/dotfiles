@@ -15,6 +15,7 @@ set cursorline
 " set diffopt+=hiddenoff
 set diffopt+=vertical
 set expandtab
+set foldmethod=indent
 set hidden
 set hlsearch
 set ignorecase
