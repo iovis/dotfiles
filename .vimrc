@@ -760,6 +760,8 @@ augroup rspec_commands
 
   " Execute current spec file in last pane
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>so :Tux rspec %<cr>
+  autocmd FileType ruby nnoremap <silent> <buffer> <leader>sp :execute 'Tux FPROF=1 FDOC=1 rspec ' . expand('%') . ':' . line('.')<cr>
+  autocmd FileType ruby nnoremap <silent> <buffer> <leader>sr :Tux spring stop && rspec %<cr>
 augroup end
 " }}} rspec "
 
