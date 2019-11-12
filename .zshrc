@@ -1,41 +1,5 @@
 ZSH=$HOME/.oh-my-zsh
 
-# https://github.com/bhilburn/powerlevel9k
-ZSH_THEME="powerlevel9k/powerlevel9k"
-POWERLEVEL9K_MODE='nerdfont-complete'
-
-POWERLEVEL9K_CUSTOM_SHOW_APPLE="echo $'\ue711'"
-POWERLEVEL9K_CUSTOM_SHOW_APPLE_BACKGROUND="black"
-POWERLEVEL9K_CUSTOM_SHOW_APPLE_FOREGROUND="white"
-POWERLEVEL9K_ETC_ICON=''
-POWERLEVEL9K_FOLDER_ICON=''
-POWERLEVEL9K_HOME_ICON=''
-POWERLEVEL9K_HOME_SUB_ICON=''
-POWERLEVEL9K_STATUS_VERBOSE=false
-POWERLEVEL9K_VCS_GIT_BITBUCKET_ICON=''
-POWERLEVEL9K_VCS_GIT_GITHUB_ICON=''
-POWERLEVEL9K_VCS_GIT_GITLAB_ICON=''
-POWERLEVEL9K_VCS_GIT_ICON=''
-POWERLEVEL9K_VI_COMMAND_MODE_STRING="\ue62b"
-POWERLEVEL9K_VI_INSERT_MODE_STRING=''
-POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND="red"
-
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-  status
-  custom_show_apple
-  dir
-  vcs
-)
-
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-  vi_mode
-  background_jobs
-  virtualenv
-  rbenv
-  # time
-  command_execution_time
-)
-
 HIST_STAMPS="yyyy-mm-dd"
 
 # Environment variables
@@ -55,7 +19,6 @@ export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PROJECT_HOME="$HOME/Sites"
 export REVIEW_BASE="master"
 export TERM="screen-256color"
-eval "$(thefuck --alias)"
 
 plugins=(
   aws
@@ -64,7 +27,6 @@ plugins=(
   docker
   docker-compose
   encode64
-  eslint
   extract
   gem
   git
@@ -84,20 +46,20 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # Set vi mode for readline
-set -o vi
-bindkey "^?" backward-delete-char
-bindkey "^A" vi-digit-or-beginning-of-line
-bindkey "^E" vi-end-of-line
-bindkey "^N" up-line-or-beginning-search
-bindkey "^P" down-line-or-beginning-search
-bindkey "^[." insert-last-word
-bindkey "^[OA" up-line-or-beginning-search
-bindkey "^[OB" down-line-or-beginning-search
-bindkey "kj" vi-cmd-mode
-bindkey -M vicmd H vi-first-non-blank
-bindkey -M vicmd L vi-end-of-line
-bindkey "^N" autosuggest-accept
-bindkey "^P" forward-word
+# set -o vi
+# bindkey "^?" backward-delete-char
+# bindkey "^A" vi-digit-or-beginning-of-line
+# bindkey "^E" vi-end-of-line
+# bindkey "^N" up-line-or-beginning-search
+# bindkey "^P" down-line-or-beginning-search
+# bindkey "^[." insert-last-word
+# bindkey "^[OA" up-line-or-beginning-search
+# bindkey "^[OB" down-line-or-beginning-search
+# bindkey "kj" vi-cmd-mode
+# bindkey -M vicmd H vi-first-non-blank
+# bindkey -M vicmd L vi-end-of-line
+# bindkey "^N" autosuggest-accept
+# bindkey "^P" forward-word
 
 # Custom aliases
 alias agrep="alias | grep"
@@ -112,7 +74,7 @@ alias fixtrash="rm -rf ~/.Trash; mkdir ~/.Trash; killall Finder"
 alias flushcache="dscacheutil -flushcache"
 alias gcam="git commit -v -am"
 alias gcq="git checkout qa"
-alias gemo="gem outdated | grep -f ~/.rbenv/default-gems"
+alias gemo="gem outdated | grep -f ~/.dotfiles/default-gems"
 alias git=hub
 alias gitconfig="$EDITOR ~/.gitconfig"
 alias gls="git log -S"
@@ -122,7 +84,7 @@ alias gprs="git pr list"
 alias hosts="sudo $EDITOR /etc/hosts"
 alias https="http --default-scheme=https"
 alias l="exa -lag --git --group-directories-first"
-alias libupdate="brew update; brew upgrade; upgrade_oh_my_zsh; upgrade_powerlevel9k; npm -g outdated; echo '\nOutdated gems'; gemo; echo '\nOutdated pips'; pipo"
+alias libupdate="brew update; brew upgrade; upgrade_oh_my_zsh; npm -g outdated; echo '\nOutdated gems'; gemo; echo '\nOutdated pips'; pipo"
 alias listdbs="psql -h localhost -c '\l'"
 alias ni="nvim"
 alias nin="nvim -u ~/.dotfiles/.vimrc_min"
@@ -172,40 +134,6 @@ source ~/.aliases
 # Disable fucking <C-s> flow control
 stty -ixon
 
-function upgrade_powerlevel9k() {
-  # Use colors, but only if connected to a terminal, and that terminal
-  # supports them.
-  if which tput >/dev/null 2>&1; then
-    ncolors=$(tput colors)
-  fi
-
-  if [ -t 1 ] && [ -n "$ncolors" ] && [ "$ncolors" -ge 8 ]; then
-    RED="$(tput setaf 1)"
-    GREEN="$(tput setaf 2)"
-    YELLOW="$(tput setaf 3)"
-    BLUE="$(tput setaf 4)"
-    BOLD="$(tput bold)"
-    NORMAL="$(tput sgr0)"
-  else
-    RED=""
-    GREEN=""
-    YELLOW=""
-    BLUE=""
-    BOLD=""
-    NORMAL=""
-  fi
-
-  printf "${BLUE}%s${NORMAL}\n" "Updating Powerlevel9k"
-  cd ~/.oh-my-zsh/custom/themes/powerlevel9k
-
-  if git pull --rebase --stat origin master; then
-    printf "${BLUE}%s\n" "Hooray! Powerlevel9k has been updated and/or is at the current version."
-  else
-    printf "${RED}%s${NORMAL}\n" 'There was an error updating. Try again later?'
-  fi
-
-  cd -
-}
 # Find macOS junk files
 function findjunk() {
   find $1 -name ".DS_Store"
@@ -265,6 +193,45 @@ function awsls() {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 ## Keep at the end
+# Powerlevel9k
+source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
+
+# https://github.com/bhilburn/powerlevel9k
+ZSH_THEME="powerlevel9k/powerlevel9k"
+POWERLEVEL9K_MODE='nerdfont-complete'
+
+POWERLEVEL9K_CUSTOM_SHOW_APPLE="echo $'\ue711'"
+POWERLEVEL9K_CUSTOM_SHOW_APPLE_BACKGROUND="black"
+POWERLEVEL9K_CUSTOM_SHOW_APPLE_FOREGROUND="white"
+POWERLEVEL9K_ETC_ICON=''
+POWERLEVEL9K_FOLDER_ICON=''
+POWERLEVEL9K_HOME_ICON=''
+POWERLEVEL9K_HOME_SUB_ICON=''
+POWERLEVEL9K_STATUS_VERBOSE=false
+POWERLEVEL9K_VCS_GIT_BITBUCKET_ICON=''
+POWERLEVEL9K_VCS_GIT_GITHUB_ICON=''
+POWERLEVEL9K_VCS_GIT_GITLAB_ICON=''
+POWERLEVEL9K_VCS_GIT_ICON=''
+POWERLEVEL9K_VI_COMMAND_MODE_STRING="\ue62b"
+POWERLEVEL9K_VI_INSERT_MODE_STRING=''
+POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND="red"
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+  status
+  custom_show_apple
+  dir
+  vcs
+)
+
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+  # vi_mode
+  background_jobs
+  # virtualenv
+  rbenv
+  # time
+  command_execution_time
+)
+
 # Autosuggestions
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
