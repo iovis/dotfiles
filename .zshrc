@@ -58,8 +58,8 @@ source $ZSH/oh-my-zsh.sh
 # bindkey "kj" vi-cmd-mode
 # bindkey -M vicmd H vi-first-non-blank
 # bindkey -M vicmd L vi-end-of-line
-# bindkey "^N" autosuggest-accept
-# bindkey "^P" forward-word
+bindkey "^N" autosuggest-accept
+bindkey "^P" forward-word
 
 # Custom aliases
 alias agrep="alias | grep"
