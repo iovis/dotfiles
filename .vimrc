@@ -116,7 +116,6 @@ set nostartofline
 set noswapfile
 set nowritebackup
 set number
-set pastetoggle=<F2>
 set relativenumber
 set scrolloff=7
 set shiftwidth=2
@@ -362,9 +361,10 @@ nnoremap yoc :setlocal cursorline!<cr>
 nnoremap yod :<c-r>=&diff ? "diffoff" : "diffthis"<cr><cr>
 nnoremap yol :setlocal list!<cr>
 nnoremap yon :setlocal number!<cr>
-nnoremap yop :setlocal wrap!<cr>
+nnoremap yop :setlocal paste!<cr>
 nnoremap yor :setlocal relativenumber!<cr>
 nnoremap yos :setlocal spell! spelllang=en_us<cr>
+nnoremap yow :setlocal wrap!<cr>
 
 """""""""""""""""""
 " Plugin specific "
