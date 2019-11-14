@@ -31,6 +31,7 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'machakann/vim-swap'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
+Plug 'mbbill/undotree'
 Plug 'metakirby5/codi.vim'
 Plug 'mhinz/vim-signify'
 Plug 'mileszs/ack.vim'
@@ -47,7 +48,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'shougo/echodoc.vim'
 Plug 'shougo/neco-vim'
 Plug 'sirver/ultisnips'
-Plug 'sjl/gundo.vim'
 Plug 'thoughtbot/vim-rspec'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tommcdo/vim-lion'
@@ -595,10 +595,6 @@ nnoremap <silent> <leader>ñ  :BLines!<cr>
 " goyo {{{ "
 nnoremap <silent> <leader>z :Goyo<cr>
 
-" gundo {{{ "
-nnoremap <silent> U :GundoToggle<cr>
-" }}} gundo "
-
 " highlightedyank {{{ "
 hi HighlightedyankRegion ctermbg=110 ctermfg=235 guibg=#8fafd7 guifg=#262626 cterm=NONE gui=NONE
 " }}} highlightedyank "
@@ -867,6 +863,10 @@ let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips/', 'UltiSnips']
 
 nnoremap <leader>ue :UltiSnipsEdit!<cr>
 " }}} ultisnips "
+
+" undotree {{{ "
+nnoremap <silent> U :UndotreeToggle<cr>
+" }}} undotree "
 
 " vader {{{ "
 augroup vader_commands
