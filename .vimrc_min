@@ -23,6 +23,7 @@ set incsearch
 set laststatus=2
 set lazyredraw
 set linespace=2
+set listchars=tab:>-,trail:-,nbsp:+,eol:$
 set magic
 set mouse=a
 set nobackup

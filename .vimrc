@@ -104,9 +104,10 @@ set hidden    " remember undo after quitting
 set hlsearch
 set ignorecase
 set incsearch
-set lazyredraw  " Try to not draw while doing macros (helps with scrolling performance)
 set laststatus=2
+set lazyredraw  " Try to not draw while doing macros (helps with scrolling performance)
 set linespace=2
+set listchars=tab:>-,trail:-,nbsp:+,eol:$
 set magic
 set mouse=a
 set nobackup
