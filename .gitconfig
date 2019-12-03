@@ -20,7 +20,6 @@
 [core]
   excludesfile = ~/.gitignore_global
   autocrlf = input
-  pager = bat -p
 [merge]
   tool = vimdiff
 [mergetool]
