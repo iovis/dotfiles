@@ -871,8 +871,11 @@ nnoremap <silent> U :UndotreeToggle<cr>
 " vader {{{ "
 augroup vader_commands
   au!
-  autocmd FileType vader nnoremap <buffer> <leader>sf :Vader test/*<cr>
+  autocmd FileType vader nnoremap <buffer> <leader>sa :Vader test/*<cr>
+  autocmd FileType vader nnoremap <buffer> <leader>sf :Vader %<cr>
   autocmd FileType vader nnoremap <buffer> <leader>ss :Vader %<cr>
+
+  autocmd FileType vim nnoremap <buffer> <leader>sa :Vader test/*<cr>
 augroup END
 " }}} vader "
 
