@@ -131,7 +131,7 @@ alias airportd="sudo /usr/libexec/airportd"
 # External aliases
 source ~/.aliases
 
-# Disable fucking <C-s> flow control
+# Disable <C-s> flow control
 stty -ixon
 
 # Find macOS junk files
@@ -150,16 +150,43 @@ function t() {
   exa --group-directories-first -TL${1:-3}
 }
 
-function renamedb() {
-  psql -h localhost -c "alter database $1 rename to $2"
+function ip() {
+  # (command &) executes in parallel without the 'Done' messages
+  (echo "local: $(ifconfig en0|awk '/inet/{print $2}')" &)
+  (echo "external: $(http -b https://api.ipify.org/)" &)
 }
 
-function switchdb() {
-  renamedb rubicon_development $1 && renamedb $2 rubicon_development
+function vader() {
+  nvim -c "Vader $1"
 }
 
-function snippets() {
-  rg $1 ~/.vim/plugged/vim-snippets/**/*.snippets
+##########
+#  Work  #
+##########
+export DUMPS_DIR="$HOME/Documents/RubiconMD/dumps"
+
+function mvdmp() {
+  mv ~/Downloads/*_prod.dmp.gz $DUMPS_DIR &&
+    gzip -d $DUMPS_DIR/*_prod.dmp.gz &&
+    ls -t $DUMPS_DIR/*_prod.dmp | head -1 | xargs -I{} ln -sf {} $DUMPS_DIR/latest.dmp
+}
+
+function restoredb() {
+  rails db:drop &&
+    rails db:create &&
+    psql -h localhost rubicon_development < "${1:-$DUMPS_DIR/latest.dmp}" &&
+    rails db:migrate &&
+    rails db:test:prepare
+}
+
+function rtp() {
+  rails parallel:drop &&
+    rails parallel:create &&
+    rails parallel:prepare
+}
+
+function grl() {
+  git release create -t master -m $(date +%Y-%m-%d) $(date +%Y-%m-%d)
 }
 
 function gprb() {
@@ -172,19 +199,13 @@ function gprb() {
   git browse -- $url
 }
 
-function ip() {
-  # (command &) executes in parallel without the 'Done' messages
-  (echo "local: $(ifconfig en0|awk '/inet/{print $2}')" &)
-  (echo "external: $(http -b https://api.ipify.org/)" &)
-}
-
-function vader() {
-  nvim -c "Vader $1"
-}
-
 function awsls() {
   aws ec2 describe-instances --query 'Reservations[*].Instances[*].[InstanceId,State.Name,InstanceType,PrivateIpAddress,PublicIpAddress,Tags[?Key==`Name`].Value[]]' --output json | tr -d '\n[] "' | perl -pe 's/i-/\ni-/g' | tr ',' '\t' | sed -e 's/null/None/g' | grep '^i-' | column -t
 }
+
+##########################
+#  Plugin configuration  #
+##########################
 
 # Z
 . /usr/local/etc/profile.d/z.sh
