@@ -17,7 +17,6 @@ Plug 'iovis/hubcap.vim'
 Plug 'iovis/resize.vim'
 Plug 'iovis/substitute.vim'
 Plug 'iovis/tux.vim'
-Plug 'iovis/vim-searchindex'
 Plug 'iovis/vimlook'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
@@ -119,6 +118,7 @@ set number
 set relativenumber
 set scrolloff=7
 set shiftwidth=2
+set shortmess-=S
 set showmatch
 set signcolumn=yes
 set smartcase
@@ -225,6 +225,8 @@ nnoremap <silent> g2 :set shiftwidth=2 softtabstop=2 expandtab \| retab<cr>gg=G
 nnoremap <silent> g4 :set shiftwidth=4 softtabstop=4 expandtab \| retab<cr>gg=G
 nnoremap <silent> ª :bdelete<cr>
 nnoremap <silent> º :Bdelete<cr>
+nnoremap # #N
+nnoremap * *N
 nnoremap M <c-w>o
 nnoremap Q @q
 nnoremap U :undolist<cr>:undo<space>
