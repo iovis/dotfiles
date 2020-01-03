@@ -237,6 +237,31 @@ noremap H g^
 noremap L g$
 xnoremap <silent> Q :norm @q<cr>
 
+" substitutions
+nnoremap s <Nop>
+xnoremap s <Nop>
+
+nnoremap ss :%s///g<left><left><left>
+
+nnoremap <silent> s :set operatorfunc=SubstituteOperator<cr>g@
+xnoremap s :<c-u>call SubstituteOperator(visualmode())<cr>
+
+function! SubstituteOperator(type)
+  if a:type ==? 'v'
+    call feedkeys(":'<,'>s///g\<left>\<left>\<left>")
+  elseif a:type ==# 'char'
+    let saved_unnamed_register = @@
+    execute 'normal! `[v`]y'
+    call feedkeys(':%s/' . escape(@@, '/\') . "//g\<left>\<left>", 't')
+    let @@ = saved_unnamed_register
+  elseif a:type ==# 'line'
+    call feedkeys(":'[,']s///g\<left>\<left>\<left>")
+  else
+    echo 'TODO: ' . a:type . ' substitute mode'
+    return
+  endif
+endfunction
+
 " Properly indent text when pasting
 nnoremap p p`[v`]=
 nnoremap P P`[v`]=
@@ -501,10 +526,10 @@ let g:delimitMate_expand_space = 1
 " }}} delimitmate "
 
 " dispatch {{{ "
-nnoremap z<cr>    :Dispatch<cr>
-nnoremap z<space> :Dispatch<space>
-nnoremap z!       :Dispatch!<cr>
-nnoremap z?       :FocusDispatch<cr>
+nnoremap s<cr>    :Dispatch<cr>
+nnoremap s<space> :Dispatch<space>
+nnoremap s!       :Dispatch!<cr>
+nnoremap s?       :FocusDispatch<cr>
 " }}} dispatch "
 
 " echodoc {{{ "
@@ -779,11 +804,11 @@ xmap ac <plug>(signify-motion-outer-visual)
 " }}} signify "
 
 " sneak {{{ "
-let g:sneak#s_next = 1
 let g:sneak#use_ic_scs = 1
+let g:sneak#label = 1
 
-map f <Plug>Sneak_f
-map F <Plug>Sneak_F
+map f <Plug>Sneak_s
+map F <Plug>Sneak_S
 
 xmap t <Plug>Sneak_t
 xmap T <Plug>Sneak_T
