@@ -225,8 +225,6 @@ nnoremap <silent> g2 :set shiftwidth=2 softtabstop=2 expandtab \| retab<cr>gg=G
 nnoremap <silent> g4 :set shiftwidth=4 softtabstop=4 expandtab \| retab<cr>gg=G
 nnoremap <silent> ª :bdelete<cr>
 nnoremap <silent> º :Bdelete<cr>
-nnoremap # #N
-nnoremap * *N
 nnoremap M <c-w>o
 nnoremap Q @q
 nnoremap U :undolist<cr>:undo<space>
@@ -259,9 +257,13 @@ xnoremap <silent> . :normal .<cr>
 xnoremap < <gv
 xnoremap > >gv
 
+" Don't jump to the next ocurrence with * and #
+nnoremap * *N
+nnoremap # #N
+
 " If I have a visual selection and press * I want it to show ocurrences
-xnoremap * ymi/<c-r>"<cr>`i
-xnoremap # y?<c-r>"<cr>
+xnoremap * y:let @/=escape(@@, '/\') <bar> normal! /<cr>
+xnoremap # y:let @/=escape(@@, '/\') <bar> normal! ?<cr>
 
 " Save with root permissions
 command! W w !sudo tee % > /dev/null
