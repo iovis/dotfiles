@@ -33,6 +33,7 @@ ripgrep
 rsync
 ruby-build
 shellcheck
+speedtest-cli
 ssh-copy-id
 tmux
 tree
