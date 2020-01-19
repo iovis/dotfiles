@@ -889,9 +889,9 @@ nnoremap <silent> <leader>I :silent execute 'Tux ' . getline('.')<cr>
 " typescript {{{ "
 augroup typescript_commands
   autocmd!
-  autocmd FileType typescript,typescript.tsx nmap <silent> <buffer> t  <Plug>(coc-definition)
-  autocmd FileType typescript,typescript.tsx nmap <silent> <buffer> T  <Plug>(coc-references)
-  autocmd FileType typescript,typescript.tsx nmap <silent> <buffer> gR <Plug>(coc-rename)
+  autocmd FileType typescript,typescriptreact nmap <silent> <buffer> t  <Plug>(coc-definition)
+  autocmd FileType typescript,typescriptreact nmap <silent> <buffer> T  <Plug>(coc-references)
+  autocmd FileType typescript,typescriptreact nmap <silent> <buffer> gR <Plug>(coc-rename)
 augroup end
 " }}} typescript "
 
