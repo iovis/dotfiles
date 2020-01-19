@@ -370,7 +370,7 @@ nnoremap <silent> <leader>uu :e! $MYVIMRC<cr>
 nnoremap <silent> <leader>uv :vs $MYVIMRC<cr>
 nnoremap <silent> <leader>uz :e! ~/.zshrc<cr>
 
-command -nargs=? -complete=filetype EditFtplugin
+command! -nargs=? -complete=filetype EditFtplugin
       \ exe 'keepjumps e! $VIMCONFIG/after/ftplugin/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
 
 " Duplicate file
