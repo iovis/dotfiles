@@ -98,7 +98,6 @@ set cursorline  " Highlight current line (slow as fuck)
 set diffopt+=hiddenoff
 set diffopt+=vertical
 set expandtab
-set foldmethod=indent
 set hidden    " remember undo after quitting
 set hlsearch
 set ignorecase
@@ -110,7 +109,6 @@ set listchars=tab:>-,trail:-,nbsp:+,eol:$
 set magic
 set mouse=a
 set nobackup
-set nofoldenable
 set nostartofline
 set noswapfile
 set nowritebackup
@@ -261,6 +259,18 @@ function! SubstituteOperator(type)
     return
   endif
 endfunction
+
+" Folds
+set foldcolumn=2
+set foldmethod=indent
+set nofoldenable
+
+augroup folds
+  au!
+  " Pre-set the folds to indent but allow for manual folds
+  autocmd BufReadPre  * setlocal foldmethod=indent
+  autocmd BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+augroup end
 
 " Properly indent text when pasting
 nnoremap p p`[v`]=
