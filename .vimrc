@@ -390,12 +390,6 @@ augroup vimrc
 
   " Remove whitespace on save
   autocmd BufWritePre * :%s/\s\+$//e
-
-  " Return to last edit position when opening files (You want this!)
-  autocmd BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \   exe "normal! g`\"" |
-        \ endif
 augroup end
 
 " Inspired by vim-unimpaired
