@@ -629,6 +629,8 @@ nnoremap <silent> <leader>o  :Files<cr>
 nnoremap <silent> <leader>r  :BTags<cr>
 nnoremap <silent> <leader>sg :RgSnippets<cr>
 nnoremap <silent> <leader>ñ  :BLines!<cr>
+
+xnoremap <silent> <leader>f  y:Rg <c-r>"<cr>
 " }}} fzf "
 
 " goyo {{{ "
