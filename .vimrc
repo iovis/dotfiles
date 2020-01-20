@@ -182,8 +182,10 @@ inoremap ,n =>
 
 " QOL remappings
 cnoremap <c-a> <c-b>
-cnoremap <c-k> <up>
 cnoremap <c-j> <down>
+cnoremap <c-k> <up>
+cnoremap <m-left> <s-left>
+cnoremap <m-right> <s-right>
 inoremap <c-a> <home>
 inoremap <c-e> <end>
 inoremap <m-O> <esc>O
