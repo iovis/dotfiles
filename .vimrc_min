@@ -385,17 +385,22 @@ let g:netrw_sort_sequence = '[\/]$'
 let g:netrw_special_syntax = 1
 let g:netrw_winsize = 25
 
-" Ruby
+" Filetypes {{{ "
 augroup ruby_commands
   autocmd!
   autocmd FileType ruby setlocal commentstring=#\ %s
 augroup end
 
-" JavaScript
 augroup javascript_commands
   autocmd!
   autocmd FileType javascript setlocal commentstring=//\ %s
 augroup end
+
+augroup vim_commands
+  autocmd!
+  autocmd FileType vim setlocal commentstring=\"%s
+augroup end
+" }}} Filetypes "
 
 " QuickFix toggle {{{ "
 function! GetBufferList()
