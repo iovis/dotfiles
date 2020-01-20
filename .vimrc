@@ -483,7 +483,7 @@ let g:formatters_ruby = ['rubocop']
 
 " browsers_castle {{{ "
 nnoremap g<space>  :Google<space>
-nnoremap g<cr>     :execute 'Google ' . expand('<cword>')<cr>
+nnoremap g<cr>     :Google <c-r><c-w><cr>
 xnoremap g<space> y:Google <c-r>"
 xnoremap g<cr>    y:Google <c-r>"<cr>
 
