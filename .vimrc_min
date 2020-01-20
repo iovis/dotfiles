@@ -164,12 +164,13 @@ function! SubstituteOperator(type)
 endfunction
 
 " Folds
-set foldcolumn=2
+" set foldcolumn=2
 set foldmethod=indent
 set nofoldenable
 
 augroup folds
-  au!
+  autocmd!
+
   " Pre-set the folds to indent but allow for manual folds
   autocmd BufReadPre  * setlocal foldmethod=indent
   autocmd BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
