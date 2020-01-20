@@ -877,7 +877,12 @@ nnoremap <silent> <leader>ll :TagbarToggle<CR>
 " }}} tagbar "
 
 " targets {{{ "
-let g:targets_pairs = '()b {}B []r <>'
+augroup targets_conf
+  autocmd!
+  autocmd User targets#mappings#user call targets#mappings#extend({
+        \ 'r': { 'pair': [{ 'o': '[', 'c': ']' }]}
+        \ })
+augroup end
 " }}} targets "
 
 " textobj-rubyblock {{{ "
