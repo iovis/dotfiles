@@ -149,7 +149,16 @@ xnoremap s :<c-u>call SubstituteOperator(visualmode())<cr>
 
 function! SubstituteOperator(type)
   if a:type ==? 'v'
-    call feedkeys(":'<,'>s///g\<left>\<left>\<left>")
+    let isSameLine = getpos("'<")[1] - getpos("'>")[1] == 0
+
+    if isSameLine
+      let saved_unnamed_register = @@
+      execute 'normal! `<v`>y'
+      call feedkeys(':%s/' . escape(@@, '/\') . "//g\<left>\<left>", 't')
+      let @@ = saved_unnamed_register
+    else
+      call feedkeys(":'<,'>s///g\<left>\<left>\<left>")
+    endif
   elseif a:type ==# 'char'
     let saved_unnamed_register = @@
     execute 'normal! `[v`]y'
