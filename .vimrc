@@ -201,8 +201,8 @@ nnoremap <leader>, @@
 nnoremap <leader>e :e<space>
 nnoremap <m-O> mzO<esc>`z
 nnoremap <m-o> mzo<esc>`z
-nnoremap Ø   mzO<esc>`z
-nnoremap ø   mzo<esc>`z
+nnoremap Ø     mzO<esc>`z
+nnoremap ø     mzo<esc>`z
 nnoremap <silent> <down>  :cnext<cr>
 nnoremap <silent> <left>  :lprevious<cr>
 nnoremap <silent> <right> :lnext<cr>
