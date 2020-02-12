@@ -196,8 +196,8 @@ nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
 xnoremap <expr> j v:count ? 'j' : 'gj'
 xnoremap <expr> k v:count ? 'k' : 'gk'
-nnoremap <leader>. @@
-nnoremap <leader>: @:
+nnoremap <leader>. @:
+nnoremap <leader>, @@
 nnoremap <leader>e :e<space>
 nnoremap <m-O> mzO<esc>`z
 nnoremap <m-o> mzo<esc>`z
