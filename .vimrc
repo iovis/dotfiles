@@ -585,11 +585,12 @@ let g:user_emmet_settings = {
 " fugitive {{{ "
 nmap <silent> <leader>-  :Gstatus<cr><c-n>
 
-nnoremap <leader>gcc :Gcommit -m<space>
-nnoremap <leader>gl  :Gpull<cr>
-nnoremap <leader>gm  :Gmerge<cr>
+nnoremap <leader>gcc :Git commit<cr>
+nnoremap <leader>gl  :Git pull<cr>
+nnoremap <leader>gm  :Git mergetool<cr>
 nnoremap <leader>go  :Gread<cr>
-nnoremap <leader>gpp :Gpush<cr>
+nnoremap <leader>gpp :Git push<cr>
+nnoremap <leader>gw :Gwrite<cr>
 
 nnoremap <silent> <leader>gb :Gblame<cr>
 nnoremap <silent> <leader>gg :Gbrowse<cr>
