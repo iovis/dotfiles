@@ -169,7 +169,11 @@ export DUMPS_DIR="$HOME/Documents/RubiconMD/dumps"
 function mvdmp() {
   mv ~/Downloads/*_prod.dmp.gz $DUMPS_DIR &&
     gzip -d $DUMPS_DIR/*_prod.dmp.gz &&
-    ls -t $DUMPS_DIR/*_prod.dmp | head -1 | xargs -I{} ln -sf {} $DUMPS_DIR/latest.dmp
+    lndump
+}
+
+function lndump() {
+  ls -t $DUMPS_DIR/*_prod.dmp | head -1 | xargs -I{} ln -sf {} $DUMPS_DIR/latest.dmp
 }
 
 function restoredb() {
