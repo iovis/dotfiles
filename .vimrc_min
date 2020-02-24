@@ -286,16 +286,9 @@ xnoremap <leader>F y:Grep "<c-r>""
 nnoremap K  :silent Grep "\b<cword>\b"<cr>
 xnoremap K y:silent Grep "<c-r>""<cr>
 
-" The Silver Searcher
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --vimgrep\ --smart-case
-  set grepformat=%f:%l:%c:%m
-endif
-
 " Use rg over Grep
 if executable('rg')
-  set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+  set grepprg=rg\ --vimgrep\ --smart-case
   set grepformat=%f:%l:%c:%m
 endif
 

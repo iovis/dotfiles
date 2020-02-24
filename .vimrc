@@ -442,7 +442,7 @@ xnoremap K y:silent Ack! -F "<c-r>""<cr>
 
 " Use rg over Grep
 if executable('rg')
-  set grepprg=ag\ --vimgrep\ --smart-case
+  set grepprg=rg\ --vimgrep\ --smart-case
   set grepformat=%f:%l:%c:%m
 endif
 " }}} Ack "
