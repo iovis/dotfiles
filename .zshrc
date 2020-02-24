@@ -168,9 +168,9 @@ function vader() {
 export DUMPS_DIR="$HOME/Documents/RubiconMD/dumps"
 
 function mvdmp() {
-  mv ~/Downloads/*_prod.dmp.gz $DUMPS_DIR &&
-    gzip -d $DUMPS_DIR/*_prod.dmp.gz &&
-    lndump
+  mv ~/Downloads/*_prod.dmp.gz $DUMPS_DIR
+  gzip -d $DUMPS_DIR/*_prod.dmp.gz
+  lndump
 }
 
 function lndump() {
