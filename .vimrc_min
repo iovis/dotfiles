@@ -32,6 +32,7 @@ set nostartofline
 set noswapfile
 set nowritebackup
 set number
+set path=.,,**  " world's worst fuzzy finder
 set relativenumber
 set scrolloff=7
 set shiftwidth=2
@@ -378,7 +379,8 @@ nnoremap <C-H> <C-W><C-H>
 
 " FZF commands
 nnoremap <leader>A :setf<space>
-nnoremap <leader>o :e **/
+nnoremap <leader>o :find *
+nnoremap <leader>O :e **/
 nnoremap <silent> <leader>H :browse old<cr>
 
 " Netrw options
