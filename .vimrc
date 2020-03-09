@@ -218,7 +218,7 @@ nnoremap <silent> <leader>_ <c-w>_
 nnoremap <silent> <leader>c :close<cr>
 nnoremap <silent> <leader>q :%bdelete<cr>
 nnoremap <silent> <leader>w :w!<cr>
-nnoremap <silent> <leader>x :qa<cr>
+nnoremap <silent> <leader>x :wqa<cr>
 nnoremap <silent> <leader>ª :bdelete!<cr>
 nnoremap <silent> <leader>º :Bdelete!<cr>
 nnoremap <silent> g2 :set shiftwidth=2 softtabstop=2 expandtab \| retab<cr>gg=G
