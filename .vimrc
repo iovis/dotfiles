@@ -423,10 +423,10 @@ nnoremap yos :setlocal spell! spelllang=en_us<cr>
 nnoremap yow :setlocal wrap!<cr>
 
 " Open resource
-nnoremap <silent> <<cr>  :!open <c-r><c-a><cr>
-xnoremap <silent> <<cr> y:!open <c-r>"<cr>
+nnoremap <silent> ¡¡  :!open <c-r><c-a><cr>
+xnoremap <silent> ¡  y:!open <c-r>"<cr>
 
-nnoremap <<space> :!open<space>
+nnoremap ¡<space> :!open<space>
 
 """""""""""""""""""
 " Plugin specific "
