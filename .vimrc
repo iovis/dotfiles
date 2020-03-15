@@ -411,8 +411,8 @@ augroup vimrc
 augroup end
 
 " Inspired by vim-unimpaired
-nnoremap yo, :set relativenumber! cursorline!<cr>
-nnoremap yo; :set number! relativenumber! cursorline!<cr>
+nnoremap yo, :set number! relativenumber! cursorline!<cr>
+nnoremap yo; :set relativenumber! cursorline!<cr>
 nnoremap yoc :setlocal cursorline!<cr>
 nnoremap yod :<c-r>=&diff ? "diffoff" : "diffthis"<cr><cr>
 nnoremap yol :setlocal list!<cr>
