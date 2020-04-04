@@ -1,3 +1,5 @@
+# Uncomment to profile ZSH startup
+# zmodload zsh/zprof
 
 DISABLE_AUTO_UPDATE="true"
 HIST_STAMPS="yyyy-mm-dd"
@@ -281,3 +283,6 @@ pastefinish() {
 
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
+
+# Uncomment to profile ZSH startup
+# zprof
