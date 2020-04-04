@@ -509,9 +509,8 @@ inoremap <silent><expr> <TAB>
       \ coc#refresh()
 
 nmap     <silent> <c-t> <Plug>(coc-definition)
-nnoremap <silent> <leader>lc :CocConfig<CR>
 nnoremap <silent> <leader>lR :CocList -I symbols<cr>
-nnoremap <silent> <leader>lp :CocList commands<cr>
+nnoremap <silent> <leader>lc :CocList commands<cr>
 nnoremap <silent> <leader>le :CocList extensions<cr>
 nnoremap <silent> <leader>lr :CocList outline<cr>
 nnoremap <silent> <leader>uc :CocConfig<cr>
@@ -781,7 +780,7 @@ nnoremap yoo :Obsession<cr>
 
 " projectionist {{{ "
 nnoremap <silent> <leader>aa :A<cr>
-nnoremap <silent> <leader>as :AS<cr>
+nnoremap <silent> <leader>ah :AS<cr>
 nnoremap <silent> <leader>av :AV<cr>
 
 nnoremap <silent> <leader>C :Console<cr>
