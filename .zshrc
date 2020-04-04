@@ -1,6 +1,7 @@
-ZSH=$HOME/.oh-my-zsh
 
+DISABLE_AUTO_UPDATE="true"
 HIST_STAMPS="yyyy-mm-dd"
+ZSH=$HOME/.oh-my-zsh
 
 # Environment variables
 export BAT_THEME="base16"
