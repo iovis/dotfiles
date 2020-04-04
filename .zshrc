@@ -131,7 +131,9 @@ alias airport="sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versi
 alias airportd="sudo /usr/libexec/airportd"
 
 # External aliases
-source ~/.aliases
+for filename in ~/.zsh/*.zsh; do
+  source "$filename"
+done
 
 # Disable <C-s> flow control
 stty -ixon
