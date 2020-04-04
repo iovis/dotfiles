@@ -4,6 +4,7 @@
 DISABLE_AUTO_UPDATE="true"
 HIST_STAMPS="yyyy-mm-dd"
 ZSH=$HOME/.oh-my-zsh
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Environment variables
 export BAT_THEME="base16"
@@ -47,6 +48,13 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # Set vi mode for readline
 # set -o vi
@@ -217,59 +225,6 @@ function awsls() {
 ##########################
 #  Plugin configuration  #
 ##########################
-
-# Z
-. /usr/local/etc/profile.d/z.sh
-
-# FZF
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-## Keep at the end
-# Powerlevel9k
-source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
-
-# https://github.com/bhilburn/powerlevel9k
-ZSH_THEME="powerlevel9k/powerlevel9k"
-POWERLEVEL9K_MODE='nerdfont-complete'
-
-POWERLEVEL9K_CUSTOM_SHOW_APPLE="echo $'\ue711'"
-POWERLEVEL9K_CUSTOM_SHOW_APPLE_BACKGROUND="black"
-POWERLEVEL9K_CUSTOM_SHOW_APPLE_FOREGROUND="white"
-POWERLEVEL9K_ETC_ICON=''
-POWERLEVEL9K_FOLDER_ICON=''
-POWERLEVEL9K_HOME_ICON=''
-POWERLEVEL9K_HOME_SUB_ICON=''
-POWERLEVEL9K_STATUS_VERBOSE=false
-POWERLEVEL9K_VCS_GIT_BITBUCKET_ICON=''
-POWERLEVEL9K_VCS_GIT_GITHUB_ICON=''
-POWERLEVEL9K_VCS_GIT_GITLAB_ICON=''
-POWERLEVEL9K_VCS_GIT_ICON=''
-POWERLEVEL9K_VI_COMMAND_MODE_STRING="\ue62b"
-POWERLEVEL9K_VI_INSERT_MODE_STRING=''
-POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND="red"
-
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-  status
-  custom_show_apple
-  dir
-  vcs
-)
-
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-  # vi_mode
-  background_jobs
-  # virtualenv
-  rbenv
-  # time
-  command_execution_time
-)
-
-# Autosuggestions
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# ZSH syntax highlightning
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # This speeds up pasting w/ autosuggest
 # https://github.com/zsh-users/zsh-autosuggestions/issues/238
 pasteinit() {
@@ -280,9 +235,58 @@ pasteinit() {
 pastefinish() {
   zle -N self-insert $OLD_SELF_INSERT
 }
-
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
+
+[[ ! -f /usr/local/etc/profile.d/z.sh ]] || source /usr/local/etc/profile.d/z.sh
+[[ ! -f ~/.fzf.zsh ]] || source ~/.fzf.zsh
+
+# Powerlevel10k
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+local anchor_files=(
+  .git
+  .node-version
+  .python-version
+  .ruby-version
+  package.json
+)
+
+POWERLEVEL9K_DIR_ANCHOR_BOLD=false
+POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=4
+POWERLEVEL9K_DIR_HYPERLINK=false
+POWERLEVEL9K_DIR_MAX_LENGTH=80
+POWERLEVEL9K_DIR_MIN_COMMAND_COLUMNS=40
+POWERLEVEL9K_DIR_MIN_COMMAND_COLUMNS_PCT=50
+POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=4
+POWERLEVEL9K_DIR_SHOW_WRITABLE=true
+POWERLEVEL9K_DIR_TRUNCATE_BEFORE_MARKER=false
+POWERLEVEL9K_SHORTEN_DELIMITER=
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+POWERLEVEL9K_SHORTEN_FOLDER_MARKER="(${(j:|:)anchor_files})"
+POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
+
+POWERLEVEL9K_RBENV_FOREGROUND='1'
+POWERLEVEL9K_RBENV_PROMPT_ALWAYS_SHOW=false
+POWERLEVEL9K_RBENV_SHOW_SYSTEM=true
+POWERLEVEL9K_RBENV_SOURCES=(shell local global)
+POWERLEVEL9K_RBENV_VISUAL_IDENTIFIER_EXPANSION=$'\uF219'
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+  dir
+  vcs
+  newline
+  background_jobs
+  prompt_char
+)
+
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+  command_execution_time
+  virtualenv
+  rbenv
+  context
+  newline
+)
 
 # Uncomment to profile ZSH startup
 # zprof
