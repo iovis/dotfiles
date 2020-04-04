@@ -32,6 +32,7 @@ plugins=(
   docker-compose
   encode64
   extract
+  fast-syntax-highlighting
   gem
   git
   httpie
@@ -45,6 +46,8 @@ plugins=(
   rsync
   tmux
   web-search
+  zsh-autosuggestions
+  zsh-completions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -97,7 +100,7 @@ alias gprs="git pr list"
 alias hosts="sudo $EDITOR /etc/hosts"
 alias https="http --default-scheme=https"
 alias l="exa -lag --git --group-directories-first"
-alias libupdate="brew update; brew upgrade; upgrade_oh_my_zsh; npm -g outdated; echo '\nOutdated gems'; gemo; echo '\nOutdated pips'; pipo"
+alias libupdate="brew update; brew upgrade; upgrade_oh_my_zsh; upgrade_plugins; npm -g outdated; echo '\nOutdated gems'; gemo; echo '\nOutdated pips'; pipo"
 alias listdbs="psql -h localhost -c '\l'"
 alias ni="nvim"
 alias nin="nvim -u ~/.dotfiles/.vimrc_min"
@@ -173,6 +176,14 @@ function ip() {
 
 function vader() {
   nvim -c "Vader $1"
+}
+
+function upgrade_plugins() {
+  (echo "Upgrading fast-syntax-highlighting" && git -C $ZSH_CUSTOM/plugins/fast-syntax-highlighting pull -q &)
+  (echo "Upgrading zsh-autosuggestions" && git -C $ZSH_CUSTOM/plugins/zsh-autosuggestions pull -q &)
+  (echo "Upgrading zsh-completions" && git -C $ZSH_CUSTOM/plugins/zsh-completions pull -q &)
+  (echo "Upgrading powerlevel10k" && git -C $ZSH_CUSTOM/themes/powerlevel10k pull -q &)
+  echo "Plugins updated"
 }
 
 ##########
