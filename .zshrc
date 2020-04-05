@@ -78,7 +78,7 @@ bindkey "^P" forward-word
 
 # Custom aliases
 alias agrep="alias | grep"
-alias aliases="$EDITOR ~/.aliases"
+alias aliases="$EDITOR ~/.zsh/aliases.zsh"
 alias c="bat"
 alias canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
@@ -131,8 +131,6 @@ alias tailf="tail -f"
 alias tm="tmux"
 alias tmrc="$EDITOR ~/.tmux.conf"
 alias updatedb="sudo /usr/libexec/locate.updatedb"
-alias vin="vim -u ~/.dotfiles/.vimrc_min"
-alias vimupdate="nvim +PlugUpgrade +PlugUpdate"
 alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
 alias zshrc="$EDITOR ~/.zshrc"
 
