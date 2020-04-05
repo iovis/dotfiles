@@ -46,6 +46,7 @@ plugins=(
   rsync
   tmux
   web-search
+  you-should-use
   zsh-autosuggestions
   zsh-completions
 )
@@ -179,10 +180,21 @@ function vader() {
 }
 
 function upgrade_plugins() {
+  # git clone https://github.com/zdharma/fast-syntax-highlighting.git $ZSH_CUSTOM/plugins/fast-syntax-highlighting
   (echo "Upgrading fast-syntax-highlighting" && git -C $ZSH_CUSTOM/plugins/fast-syntax-highlighting pull -q &)
+
+  # git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
   (echo "Upgrading zsh-autosuggestions" && git -C $ZSH_CUSTOM/plugins/zsh-autosuggestions pull -q &)
+
+  # git clone https://github.com/zsh-users/zsh-completions $ZSH_CUSTOM/plugins/zsh-completions
   (echo "Upgrading zsh-completions" && git -C $ZSH_CUSTOM/plugins/zsh-completions pull -q &)
+
+  # git clone https://github.com/MichaelAquilina/zsh-you-should-use $ZSH_CUSTOM/plugins/you-should-use
+  (echo "Upgrading you-should-use" && git -C $ZSH_CUSTOM/plugins/you-should-use pull -q &)
+
+  # git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
   (echo "Upgrading powerlevel10k" && git -C $ZSH_CUSTOM/themes/powerlevel10k pull -q &)
+
   echo "Plugins updated"
 }
 
