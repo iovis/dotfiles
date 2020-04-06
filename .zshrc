@@ -60,19 +60,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Set vi mode for readline
-# set -o vi
-# bindkey "^?" backward-delete-char
-# bindkey "^A" vi-digit-or-beginning-of-line
-# bindkey "^E" vi-end-of-line
-# bindkey "^N" up-line-or-beginning-search
-# bindkey "^P" down-line-or-beginning-search
-# bindkey "^[." insert-last-word
-# bindkey "^[OA" up-line-or-beginning-search
-# bindkey "^[OB" down-line-or-beginning-search
-# bindkey "kj" vi-cmd-mode
-# bindkey -M vicmd H vi-first-non-blank
-# bindkey -M vicmd L vi-end-of-line
+# Bindkeys
+bindkey '^[^[[D' backward-word
+bindkey '^[^[[C' forward-word
 bindkey "^N" autosuggest-accept
 bindkey "^P" forward-word
 
