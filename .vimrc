@@ -383,7 +383,7 @@ nnoremap <silent> <leader>uv :vs $MYVIMRC<cr>
 nnoremap <silent> <leader>uz :e! ~/.zshrc<cr>
 
 command! -nargs=? -complete=filetype EditFtplugin
-      \ exe 'keepjumps e! $VIMCONFIG/after/ftplugin/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
+      \ exe 'keepjumps e! $HOME/.vim/after/ftplugin/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
 
 " Duplicate file
 nnoremap <leader>W :saveas <c-r>=fnameescape(expand('%:h')).'/'<cr>
