@@ -203,17 +203,13 @@ function lndump() {
 }
 
 function restoredb() {
-  rails db:drop &&
-    rails db:create &&
+  rails db:drop db:create &&
     psql -h localhost rubicon_development < "${1:-$DUMPS_DIR/latest.dmp}" &&
-    rails db:migrate &&
-    rails db:test:prepare
+    rails db:migrate db:test:prepare
 }
 
 function rtp() {
-  rails parallel:drop &&
-    rails parallel:create &&
-    rails parallel:prepare
+  rails parallel:drop parallel:create parallel:prepare
 }
 
 function grl() {
