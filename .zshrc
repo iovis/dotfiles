@@ -79,6 +79,7 @@ alias dumpdb="pg_dump -Fc --clean --no-owner -h localhost"
 alias files="fd -H -E '.git' -E '.keep' --type file --follow --color=always"
 alias fixtrash="rm -rf ~/.Trash; mkdir ~/.Trash; killall Finder"
 alias flushcache="dscacheutil -flushcache"
+alias flushredis="redis-cli flushall"
 alias gcam="git commit -v -am"
 alias gcq="git checkout qa"
 alias gemo="gem outdated | grep -f $DOTFILES/default-gems"
@@ -203,7 +204,8 @@ function lndump() {
 }
 
 function restoredb() {
-  rails db:drop db:create &&
+  flushredis &&
+    rails db:drop db:create &&
     psql -h localhost rubicon_development < "${1:-$DUMPS_DIR/latest.dmp}" &&
     rails db:migrate db:test:prepare
 }
