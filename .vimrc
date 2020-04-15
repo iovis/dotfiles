@@ -501,6 +501,16 @@ nnoremap <silent> <leader>Q :BufOnly!<cr>
 " }}} bufonly "
 
 " coc {{{ "
+let g:coc_global_extensions = [
+\ 'coc-css',
+\ 'coc-highlight',
+\ 'coc-json',
+\ 'coc-python',
+\ 'coc-solargraph',
+\ 'coc-tsserver',
+\ 'coc-yaml'
+\ ]
+
 inoremap <silent><expr> <c-b> coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <TAB>
