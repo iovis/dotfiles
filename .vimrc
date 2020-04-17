@@ -1026,6 +1026,8 @@ nnoremap <leader>gcq   :Gcq<cr>
 nnoremap <leader>gpsup :Gpsup<cr>
 nnoremap <leader>grhh  :Grhh<cr>
 
+nnoremap <silent> <leader>grr :%bdelete <bar> next! `git files` <bar> bd #<cr>
+
 command! -nargs=0 Gcm   !git checkout master
 command! -nargs=0 Gcq   !git checkout qa
 command! -nargs=0 Gpsup !git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
