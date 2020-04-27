@@ -604,10 +604,10 @@ nnoremap <leader>gw  :Gwrite<cr>
 
 nnoremap <silent> <leader>gb :Gblame<cr>
 nnoremap <silent> <leader>gg :Gbrowse<cr>
-nnoremap <silent> <leader>gh :silent 0Glog<cr>
+nnoremap <silent> <leader>gh :silent 0Gclog<cr>
 
 xnoremap <silent> <leader>gg :Gbrowse<cr>
-xnoremap <silent> <leader>gh :<c-u>silent '<,'>Glog<cr>
+xnoremap <silent> <leader>gh :<c-u>silent '<,'>Gclog<cr>
 
 nnoremap <silent> <leader>gdv :Gvdiffsplit<cr>
 nnoremap <silent> <leader>gdh :Ghdiffsplit<cr>
