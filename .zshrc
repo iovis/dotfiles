@@ -124,6 +124,7 @@ alias tailf="tail -f"
 alias tm="tmux"
 alias tmrc="$EDITOR ~/.tmux.conf"
 alias updatedb="sudo /usr/libexec/locate.updatedb"
+alias vin="vim -u $DOTFILES/.vimrc_min"
 alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
 alias zshrc="$EDITOR ~/.zshrc"
 
