@@ -16,7 +16,8 @@ export FZF_CTRL_T_OPTS="--select-1 --exit-0 --preview 'bat --style=numbers --col
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export LESS="-iMSx4 -FXR"
-export MANPAGER="$EDITOR -c 'set ft=man' -"
+export MANPAGER="$EDITOR +Man!"
+export MANWIDTH=999
 export PAGER="less"
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
