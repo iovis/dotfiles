@@ -109,6 +109,7 @@ set listchars=tab:>-,trail:-,nbsp:+,eol:$
 set magic
 set mouse=a
 set nobackup
+set noruler
 set nostartofline
 set noswapfile
 set nowritebackup
