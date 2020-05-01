@@ -424,8 +424,8 @@ nnoremap yos :setlocal spell! spelllang=en_us<cr>
 nnoremap yow :setlocal wrap!<cr>
 
 " Open resource
-nnoremap <silent> ¡¡  :!open <c-r><c-a><cr>
-xnoremap <silent> ¡  y:!open <c-r>"<cr>
+nnoremap <silent> ¡¡  :execute '!open ' . escape(expand('<cWORD>'), '#')<cr>
+xnoremap <silent> ¡  y:execute '!open ' . escape(getreg('0'), '#')<cr>
 
 nnoremap ¡<space> :!open<space>
 
