@@ -359,18 +359,68 @@ augroup vimrc
         \ endif
 augroup end
 
-" Status line
-set statusline=
-set statusline+=%#LineNr#
-set statusline+=\ %f
-set statusline+=%m%r%h%w
-set statusline+=%=
-set statusline+=%#CursorColumn#
-set statusline+=\ %y
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\[%{&fileformat}\]
-set statusline+=\ %p%%
-set statusline+=\ %l:%c
+" Statusline {{{ "
+" nnoremap ++ :execute "hi " . synIDattr(synID(line("."),col("."),1),"name")<CR>
+" nnoremap +<cr> :so $VIMRUNTIME/syntax/hitest.vim<cr>
+" nnoremap +<space> :hi<space>
+
+hi SLDirectory  ctermfg=blue
+hi SLFileType   ctermfg=2
+hi SLGitBranch  ctermfg=2
+hi SLModified   ctermfg=red
+hi StatusLine   ctermfg=white ctermbg=black
+hi StatusLineNC ctermfg=8     ctermbg=black
+hi VertSplit    ctermfg=black ctermbg=blue
+
+function! StatuslineGit()
+  if &filetype == 'help'
+    return ''
+  endif
+
+  let l:branch = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+
+  return !empty(l:branch) ? '['.l:branch.']' : ''
+endfunction
+
+function! s:RefreshStatusline()
+  for nr in range(1, winnr('$'))
+    call setwinvar(nr, '&statusline', '%!RenderStatuslineFor(' . nr . ')')
+  endfor
+endfunction
+
+augroup statusline
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter,TextChanged,InsertEnter,InsertLeave * call <SID>RefreshStatusline()
+augroup END
+
+function! RenderStatuslineFor(winnum)
+  let l:isActive = a:winnum == winnr()
+  let statusline = ''
+
+  function! CSL(color_group, body) closure
+    if isActive
+      return '%#' . a:color_group . '#' . a:body . '%*'
+    else
+      return a:body
+    end
+  endfunction
+
+  let statusline .= CSL('SLDirectory', " %{expand('%:p:h:t')}") " current folder
+  let statusline .= CSL('SLGitBranch', '%{StatuslineGit()}')    " branch
+  let statusline .= ' :: '
+  let statusline .= CSL(&modified ? 'SLModified' : 'StatusLine', '%n|%f')  " buffer name
+
+  let statusline .= '%='  " right side
+
+  let statusline .= '%r '  " read-only flag
+  let statusline .= CSL('SLFileType', '%{&filetype}') " filetype
+  let statusline .= '%<'
+  let statusline .= ' %3p%%'  " percentage in file
+  let statusline .= CSL('StatusLineNC', ' %{&fileencoding?&fileencoding:&encoding}[%{&fileformat}] ') " file encoding[file format]
+
+  return statusline
+endfunction
+" }}} Statusline "
 
 " tmux navigator
 nnoremap <C-J> <C-W><C-J>
