@@ -1,7 +1,7 @@
 set nocompatible
 filetype indent on
 
-colorscheme delek
+colorscheme zellner
 
 if !has('g:syntax_on')
   syntax enable
@@ -39,6 +39,7 @@ set scrolloff=7
 set shiftwidth=2
 set shortmess-=S
 set showmatch
+set signcolumn=yes
 set smartcase
 set softtabstop=2
 set splitbelow
@@ -355,19 +356,31 @@ augroup vimrc
         \ endif
 augroup end
 
-" Statusline {{{ "
+" Highlights {{{ "
 " nnoremap ++ :execute "hi " . synIDattr(synID(line("."),col("."),1),"name")<CR>
 " nnoremap +<cr> :so $VIMRUNTIME/syntax/hitest.vim<cr>
 " nnoremap +<space> :hi<space>
+" nnoremap <leader>us :so %<cr>
+
+hi Comment      ctermfg=8
+hi CursorLineNr ctermfg=blue
+hi LineNr       ctermfg=8
+hi Pmenu        ctermbg=darkgray
+hi PmenuSel     ctermbg=8
+hi Search       ctermbg=11
+hi SignColumn   ctermbg=black
+hi VertSplit    ctermfg=black ctermbg=blue
+hi Visual       ctermfg=white ctermbg=8
 
 hi SLDirectory  ctermfg=blue
 hi SLFileType   ctermfg=2
 hi SLGitBranch  ctermfg=2
 hi SLModified   ctermfg=red
 hi StatusLine   ctermfg=white ctermbg=black
-hi StatusLineNC ctermfg=8     ctermbg=black
-hi VertSplit    ctermfg=black ctermbg=blue
+hi StatusLineNC ctermfg=8     ctermbg=black cterm=none
+" }}} Highlights "
 
+" Statusline {{{ "
 function! StatuslineGit()
   if &filetype == 'help'
     return ''
