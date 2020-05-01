@@ -1,7 +1,7 @@
 set nocompatible
 filetype indent on
 
-colorscheme zellner
+colorscheme delek
 
 if !has('g:syntax_on')
   syntax enable
@@ -388,7 +388,7 @@ function! StatuslineGit()
 
   let l:branch = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 
-  return !empty(l:branch) ? '['.l:branch.']' : ''
+  return !empty(l:branch) ? '<'.l:branch.'>' : ''
 endfunction
 
 function! s:RefreshStatusline()
@@ -423,7 +423,6 @@ function! RenderStatuslineFor(winnum)
 
   let statusline .= '%r '  " read-only flag
   let statusline .= CSL('SLFileType', '%{&filetype}') " filetype
-  let statusline .= '%<'
   let statusline .= ' %3p%%'  " percentage in file
   let statusline .= CSL('StatusLineNC', ' %{&fileencoding?&fileencoding:&encoding}[%{&fileformat}] ') " file encoding[file format]
 
