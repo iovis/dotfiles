@@ -213,6 +213,8 @@ nnoremap <silent> <leader><left>  :lpfile<cr>
 nnoremap <silent> <leader><right> :lnfile<cr>
 nnoremap <silent> <leader><up>    :cpfile<cr>
 nnoremap <silent> <leader>= <c-w>=
+nnoremap <silent> <leader>C :tabclose<cr>
+nnoremap <silent> <leader>T :tabnew<cr>
 nnoremap <silent> <leader>X :qa!<cr>
 nnoremap <silent> <leader>\| <c-w>\|
 nnoremap <silent> <leader>_ <c-w>_
@@ -348,9 +350,6 @@ nnoremap <c-e> <c-i>
 nmap T g]
 nmap t <c-]>
 
-nmap <silent> gT <leader>ht
-nmap <silent> gt <leader>vt
-
 nnoremap <silent> <leader>E :Dispatch! ctags<cr>
 
 " Work with splits
@@ -388,10 +387,6 @@ command! -nargs=? -complete=filetype EditFtplugin
 
 " Duplicate file
 nnoremap <leader>W :saveas <c-r>=fnameescape(expand('%:h')).'/'<cr>
-
-" Scratch buffer
-command! ScratchBuffer enew | setlocal buftype=nofile bufhidden=hide noswapfile
-nnoremap <silent> <leader>T :ScratchBuffer<cr>
 
 " Autocmds
 augroup vimrc
