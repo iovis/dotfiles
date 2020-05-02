@@ -370,6 +370,10 @@ hi SignColumn   ctermbg=black
 hi VertSplit    ctermfg=black ctermbg=blue
 hi Visual       ctermfg=7     ctermbg=8     cterm=none
 
+hi TabLine      ctermfg=white ctermbg=black cterm=none
+hi TabLineSel   ctermfg=green ctermbg=black cterm=none
+hi TabLineFill  cterm=none
+
 hi SLDirectory  ctermfg=blue
 hi SLFileType   ctermfg=2
 hi SLGitBranch  ctermfg=2
@@ -427,6 +431,65 @@ function! RenderStatuslineFor(winnum)
   return statusline
 endfunction
 " }}} statusline "
+
+" tabline {{{ "
+function! s:tabLineFile(bufnr)
+  let file  = bufname(a:bufnr)
+  let buftype = getbufvar(a:bufnr, '&buftype')
+
+  if buftype == 'help'
+    let file = 'help:' . fnamemodify(file, ':t:r')
+  elseif buftype == 'quickfix'
+    let file = 'quickfix'
+  elseif buftype == 'nofile'
+    if file =~ '\/.'
+      let file = substitute(file, '.*\/\ze.', '', '')
+    endif
+  else
+    let file = pathshorten(fnamemodify(file, ':p:~:.'))
+
+    if file == ''
+      let file = '[No Name]'
+    endif
+
+    if getbufvar(a:bufnr, '&modified')
+      let file = '%#SLModified#' . file . '%*'
+    endif
+  endif
+
+  return file
+endfunction
+
+function! TabLine()
+  let tabline = ''
+  let tab_number = tabpagenr()
+
+  for index in range(1, tabpagenr('$'))
+    let buflist = tabpagebuflist(index)
+    let winnr   = tabpagewinnr(index)
+
+    let tabline .= '%' . index . 'T'
+    let tabline .= (index == tab_number ? '%#TabLineSel#' : '%#TabLine#')
+    let tabline .= ' ' . index  " print tab number
+
+    let bufnr = buflist[winnr - 1]
+    let tabline .= ' ' . s:tabLineFile(bufnr)
+
+    let window_count = tabpagewinnr(index, '$')
+    if window_count > 1
+      let tabline .= ' [' . window_count . ']'
+    endif
+
+    let tabline .= ' %#TabLine#|'
+  endfor
+
+  let tabline .= '%T%#TabLineFill#%='
+
+  return tabline
+endfunction
+
+set tabline=%!TabLine()
+" }}} tabline "
 
 " tmux navigator
 nnoremap <C-J> <C-W><C-J>
