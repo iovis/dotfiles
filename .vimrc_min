@@ -363,23 +363,30 @@ augroup end
 hi Comment      ctermfg=8
 hi CursorLineNr ctermfg=blue
 hi LineNr       ctermfg=8
-hi Pmenu        ctermfg=white ctermbg=black
+hi Pmenu        ctermfg=white ctermbg=none
 hi PmenuSel     ctermfg=black ctermbg=white
 hi Search       ctermbg=11
 hi SignColumn   ctermbg=black
 hi VertSplit    ctermfg=black ctermbg=blue
 hi Visual       ctermfg=7     ctermbg=8     cterm=none
+hi Folded       ctermfg=8     ctermbg=none
+hi FoldColumn   ctermfg=blue  ctermbg=none
 
-hi TabLine      ctermfg=white ctermbg=black cterm=none
-hi TabLineSel   ctermfg=green ctermbg=black cterm=none
+hi DiffAdd      ctermfg=none  ctermbg=22    cterm=bold
+hi DiffDelete   ctermfg=none  ctermbg=52    cterm=bold
+hi DiffChange   ctermfg=none  ctermbg=23    cterm=bold
+hi DiffText     ctermfg=none  ctermbg=23    cterm=bold
+
+hi TabLine      ctermfg=white ctermbg=none  cterm=none
+hi TabLineSel   ctermfg=green ctermbg=none  cterm=none
 hi TabLineFill  cterm=none
 
 hi SLDirectory  ctermfg=blue
 hi SLFileType   ctermfg=2
 hi SLGitBranch  ctermfg=2
 hi SLModified   ctermfg=red
-hi StatusLine   ctermfg=white ctermbg=black cterm=none
-hi StatusLineNC ctermfg=8     ctermbg=black cterm=none
+hi StatusLine   ctermfg=white ctermbg=none  cterm=none
+hi StatusLineNC ctermfg=8     ctermbg=none  cterm=none
 " }}} Highlights "
 
 " statusline {{{ "
