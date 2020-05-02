@@ -1,3 +1,4 @@
+" config {{{ "
 set nocompatible
 filetype indent on
 
@@ -67,9 +68,9 @@ else
   " Mouse support
   set ttymouse=xterm2
 endif
+" }}} config "
 
-" CUSTOM KEYBINDINGS
-" Vim specific
+" bindings {{{ "
 inoremap kj <Esc>
 let mapleader = "\<Space>"
 nnoremap <space> <nop>
@@ -147,8 +148,9 @@ noremap L g$
 onoremap ar a]
 onoremap ir i]
 xnoremap <silent> Q :norm @q<cr>
+" }}} bindings "
 
-" substitutions
+" substitute {{{ "
 nnoremap s <Nop>
 xnoremap s <Nop>
 
@@ -181,10 +183,9 @@ function! SubstituteOperator(type)
     return
   endif
 endfunction
+" }}} substitute "
 
-" Folds
-" set foldcolumn=2
-set foldmethod=indent
+" folds {{{ "
 set nofoldenable
 
 augroup folds
@@ -194,47 +195,56 @@ augroup folds
   autocmd BufReadPre  * setlocal foldmethod=indent
   autocmd BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
 augroup end
+" }}} folds "
 
-" Properly indent text when pasting
+" pasting with indent {{{ "
 nnoremap p p`[v`]=
 nnoremap P P`[v`]=
 nnoremap gp p
 nnoremap gP P
+" }}} pasting with indent "
 
-" Select last inserted text
+" select last inserted text {{{ "
 nnoremap gV `[v`]
+" }}} select last inserted text "
 
-" Change word under cursor or selection with yanked
+" replace {{{ "
 nnoremap R ciw<c-r>0<esc>
 xnoremap R "0p
+" }}} replace "
 
-" Repeat command on each line of visual selection
+" repeat on visual {{{ "
 xnoremap <silent> . :normal .<cr>
+" }}} repeat on visual "
 
-" Maintain Visual Mode after shifting > and <
+" indent {{{ "
 xnoremap < <gv
 xnoremap > >gv
+" }}} indent "
 
-" Don't jump to the next ocurrence with * and #
+" star search {{{ "
 nnoremap * *N
 nnoremap # #N
 
 " If I have a visual selection and press * I want it to show ocurrences
 xnoremap * y:let @/=escape(@@, '/\') <bar> normal! /<cr>
 xnoremap # y:let @/=escape(@@, '/\') <bar> normal! ?<cr>
+" }}} star search "
 
-" Save with root permissions
+" root {{{ "
 command! W w !sudo tee % > /dev/null
+" }}} root "
 
-" Copy to clipboard
+" clipboard {{{ "
 nnoremap <leader>y "+y
 nnoremap <leader>Y "+y$
 xnoremap <leader>y "+y
 nnoremap <leader>d "+d
 nnoremap <leader>D "+D
 xnoremap <leader>d "+d
+" }}} clipboard "
 
-" Move a line of text using alt+[jk]
+" move line {{{ "
 nnoremap <silent> <M-j> :m+<cr>==
 nnoremap <silent> <M-k> :m-2<cr>==
 xnoremap <silent> <M-j> :m'>+<cr>`<my`>mzgv=gv`yo`z
@@ -243,28 +253,38 @@ nnoremap <silent> ¶ :m+<cr>==
 nnoremap <silent> § :m-2<cr>==
 xnoremap <silent> ¶ :m'>+<cr>`<my`>mzgv=gv`yo`z
 xnoremap <silent> § :m'<-2<cr>`>my`<mzgv=gv`yo`z
+" }}} move line "
 
-" Navigate buffers
+" buffers {{{ "
 nnoremap <BS> <C-^>
 nnoremap <leader><leader> :ls<cr>:b!<space>
 nnoremap <silent> <leader>t :enew<cr>
 nnoremap <silent> <s-tab> :bprevious<cr>
 nnoremap <silent> <tab> :bnext<cr>
+" }}} buffers "
 
-" Remapping <tab> makes <c-i> not work
+" fix c-i after mapping tab {{{ "
 nnoremap <c-e> <c-i>
+" }}} fix c-i after mapping tab "
 
-" Tags
+" tags {{{ "
 nmap T g]
 nmap t <c-]>
 
 nnoremap <silent> <leader>E :!ctags<cr>
+" }}} tags "
 
-" Work with splits
+" splits {{{ "
 nnoremap <leader>v <c-w>v
 nnoremap <leader>h <c-w>s
 
-" sort operator and mappings
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+" }}} splits "
+
+" sorting {{{ "
 function! SortLinesOpFunc(...)
   '[,']sort
 endfunction
@@ -277,8 +297,9 @@ nnoremap <silent> gs :<C-U>set operatorfunc=SortLinesOpFunc<CR>g@
 xnoremap <silent> gs :sort<cr>
 nnoremap <silent> gr :<C-U>set operatorfunc=SortReverseLinesOpFunc<CR>g@
 xnoremap <silent> gr :sort!<cr>
+" }}} sorting "
 
-" Smooth Grepping
+" grep {{{ "
 command! -nargs=+ -complete=file Grep silent! grep! -R <args>|cwindow|redraw!
 nnoremap <leader>f  :Grep ""<left>
 xnoremap <leader>f y:Grep "<c-r>""
@@ -286,14 +307,16 @@ nnoremap <leader>F  :Grep ""<left>
 xnoremap <leader>F y:Grep "<c-r>""
 nnoremap K  :silent Grep "\b<cword>\b"<cr>
 xnoremap K y:silent Grep "<c-r>""<cr>
+" }}} grep "
 
-" Use rg over Grep
+" ripgrep {{{ "
 if executable('rg')
   set grepprg=rg\ --vimgrep\ --smart-case
   set grepformat=%f:%l:%c:%m
 endif
+" }}} ripgrep "
 
-" Fast config editing
+" config editing {{{ "
 nnoremap <leader>u <nop>
 nnoremap <leader>us :so $MYVIMRC<cr>:echo 'vimrc sourced'<cr>
 nnoremap <silent> <leader>uf :execute empty(&filetype) ? 'echo "no filetype specified"' : 'EditFtplugin'<cr>
@@ -305,11 +328,13 @@ nnoremap <silent> <leader>uz :e! ~/.zshrc<cr>
 
 command! -nargs=? -complete=filetype EditFtplugin
       \ exe 'keepjumps e! $HOME/.vim/after/ftplugin/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
+" }}} config editing "
 
-" Duplicate file
+" duplicate file {{{ "
 nnoremap <leader>W :saveas <C-R>=fnameescape(expand('%:h')).'/'<cr>
+" }}} duplicate file "
 
-" Inspired by vim-unimpaired
+" vim-unimpaired {{{ "
 nnoremap yo, :set number! relativenumber! cursorline!<cr>
 nnoremap yo; :set relativenumber! cursorline!<cr>
 nnoremap yoc :setlocal cursorline!<cr>
@@ -320,23 +345,28 @@ nnoremap yop :setlocal paste!<cr>
 nnoremap yor :setlocal relativenumber!<cr>
 nnoremap yos :setlocal spell! spelllang=en_us<cr>
 nnoremap yow :setlocal wrap!<cr>
+" }}} vim-unimpaired "
 
-" Open resource
+" open resource {{{ "
 nnoremap <silent> ¡¡  :execute '!open ' . escape(expand('<cWORD>'), '#')<cr>
 xnoremap <silent> ¡  y:execute '!open ' . escape(getreg('0'), '#')<cr>
 
 nnoremap ¡<space> :!open<space>
+" }}} open resource "
 
-" Sessions
+" sessions {{{ "
 nnoremap yoo :mksession!<cr>
+" }}} sessions "
 
-" Tux
+" tux {{{ "
 nnoremap c<space> :!
+" }}} tux "
 
-" Scriptease
+" scriptease {{{ "
 nnoremap <leader>P :echo<space>
+" }}} scriptease "
 
-" Commands
+" buffer autocommands {{{ "
 augroup vimrc
   autocmd!
 
@@ -353,12 +383,13 @@ augroup vimrc
         \   exe "normal! g`\"" |
         \ endif
 augroup end
+" }}} buffer autocommands "
 
 " Highlights {{{ "
-" nnoremap ++ :execute "hi " . synIDattr(synID(line("."),col("."),1),"name")<CR>
-" nnoremap +<cr> :so $VIMRUNTIME/syntax/hitest.vim<cr>
-" nnoremap +<space> :hi<space>
-" nnoremap <leader>us :so %<cr>
+nnoremap ++ :execute "hi " . synIDattr(synID(line("."),col("."),1),"name")<CR>
+nnoremap +<cr> :so $VIMRUNTIME/syntax/hitest.vim<cr>
+nnoremap +<space> :hi<space>
+nnoremap <leader>us :so %<cr>
 
 hi Comment      ctermfg=8
 hi CursorLineNr ctermfg=blue
@@ -498,19 +529,14 @@ endfunction
 set tabline=%!TabLine()
 " }}} tabline "
 
-" tmux navigator
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-" FZF commands
+" fzf commands {{{ "
 nnoremap <leader>A :setf<space>
 nnoremap <leader>o :find *
 nnoremap <leader>O :e **/
 nnoremap <silent> <leader>H :browse old<cr>
+" }}} fzf commands "
 
-" Netrw options
+" netrw {{{ "
 let g:netrw_altv = 1
 let g:netrw_banner = 0
 let g:netrw_browse_split = 4
@@ -530,6 +556,7 @@ augroup netrw_commands
   autocmd FileType netrw nnoremap <buffer> <c-l> <c-w>l
   autocmd FileType netrw nmap     <buffer> <c-r> <Plug>NetrwRefresh
 augroup END
+" }}} netrw "
 
 " Filetypes {{{ "
 augroup ruby_commands
@@ -545,6 +572,7 @@ augroup end
 augroup vim_commands
   autocmd!
   autocmd FileType vim setlocal commentstring=\"%s
+  autocmd FileType vim setlocal foldmethod=marker
 augroup end
 
 augroup zsh_commands

@@ -275,8 +275,6 @@ function! SubstituteOperator(type)
 endfunction
 
 " Folds
-" set foldcolumn=2
-set foldmethod=indent
 set nofoldenable
 
 augroup folds
@@ -423,6 +421,11 @@ nnoremap <silent> ¡¡  :execute '!open ' . escape(expand('<cWORD>'), '#')<cr>
 xnoremap <silent> ¡  y:execute '!open ' . escape(getreg('0'), '#')<cr>
 
 nnoremap ¡<space> :!open<space>
+
+augroup vim_filetype
+  autocmd!
+  autocmd Filetype vim setlocal foldmethod=marker
+augroup END
 
 """""""""""""""""""
 " Plugin specific "
