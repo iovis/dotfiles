@@ -404,7 +404,7 @@ function! RenderStatuslineFor(winnum)
   let l:isActive = a:winnum == winnr()
   let statusline = ''
 
-  function! CSL(color_group, body) closure
+  function! s:CSL(color_group, body) closure
     if isActive
       return '%#' . a:color_group . '#' . a:body . '%*'
     else
@@ -412,21 +412,21 @@ function! RenderStatuslineFor(winnum)
     end
   endfunction
 
-  let statusline .= CSL('SLDirectory', " %{expand('%:p:h:t')}") " current folder
-  let statusline .= CSL('SLGitBranch', '%{StatuslineGit()}')    " branch
+  let statusline .= s:CSL('SLDirectory', " %{expand('%:p:h:t')}") " current folder
+  " let statusline .= s:CSL('SLGitBranch', '%{StatuslineGit()}')    " branch
   let statusline .= ' :: '
-  let statusline .= CSL(&modified ? 'SLModified' : 'StatusLine', '%n|%f')  " buffer name
+  let statusline .= s:CSL(&modified ? 'SLModified' : 'StatusLine', '%n|%f')  " buffer name
 
   let statusline .= '%='  " right side
 
   let statusline .= '%r '  " read-only flag
-  let statusline .= CSL('SLFileType', '%{&filetype}') " filetype
+  let statusline .= s:CSL('SLFileType', '%{&filetype}') " filetype
   let statusline .= ' %3p%%'  " percentage in file
-  let statusline .= CSL('StatusLineNC', ' %{&fileencoding?&fileencoding:&encoding}[%{&fileformat}] ') " file encoding[file format]
+  let statusline .= s:CSL('StatusLineNC', ' %{&fileencoding?&fileencoding:&encoding}[%{&fileformat}] ') " file encoding[file format]
 
   return statusline
 endfunction
-" }}} Statusline "
+" }}} statusline "
 
 " tmux navigator
 nnoremap <C-J> <C-W><C-J>
