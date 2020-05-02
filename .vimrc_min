@@ -527,17 +527,22 @@ augroup END
 " Filetypes {{{ "
 augroup ruby_commands
   autocmd!
-  autocmd FileType ruby setlocal commentstring=#\ %s
+  autocmd FileType ruby setlocal commentstring=#%s
 augroup end
 
 augroup javascript_commands
   autocmd!
-  autocmd FileType javascript setlocal commentstring=//\ %s
+  autocmd FileType javascript setlocal commentstring=//%s
 augroup end
 
 augroup vim_commands
   autocmd!
   autocmd FileType vim setlocal commentstring=\"%s
+augroup end
+
+augroup zsh_commands
+  autocmd!
+  autocmd FileType zsh setlocal commentstring=#%s
 augroup end
 " }}} Filetypes "
 
