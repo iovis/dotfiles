@@ -11,10 +11,9 @@ set autoindent
 set autoread
 set autowriteall
 set backspace=indent,eol,start
-" set breakindent
 set conceallevel=0
 set cursorline
-" set diffopt+=hiddenoff
+set diffopt+=hiddenoff
 set diffopt+=vertical
 set expandtab
 set hidden
@@ -51,6 +50,10 @@ set wildignorecase
 set wildmenu
 set wildmode=full
 let &showbreak = '└ '
+
+if exists('&breakindent')
+  set breakindent
+endif
 
 if has('nvim')
   set inccommand=split
