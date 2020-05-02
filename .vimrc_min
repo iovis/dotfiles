@@ -363,22 +363,22 @@ augroup end
 hi Comment      ctermfg=8
 hi CursorLineNr ctermfg=blue
 hi LineNr       ctermfg=8
-hi Pmenu        ctermbg=darkgray
-hi PmenuSel     ctermbg=8
+hi Pmenu        ctermfg=white ctermbg=black
+hi PmenuSel     ctermfg=black ctermbg=white
 hi Search       ctermbg=11
 hi SignColumn   ctermbg=black
 hi VertSplit    ctermfg=black ctermbg=blue
-hi Visual       ctermfg=white ctermbg=8
+hi Visual       ctermfg=7     ctermbg=8     cterm=none
 
 hi SLDirectory  ctermfg=blue
 hi SLFileType   ctermfg=2
 hi SLGitBranch  ctermfg=2
 hi SLModified   ctermfg=red
-hi StatusLine   ctermfg=white ctermbg=black
+hi StatusLine   ctermfg=white ctermbg=black cterm=none
 hi StatusLineNC ctermfg=8     ctermbg=black cterm=none
 " }}} Highlights "
 
-" Statusline {{{ "
+" statusline {{{ "
 function! StatuslineGit()
   if &filetype == 'help'
     return ''
@@ -395,7 +395,7 @@ function! s:RefreshStatusline()
   endfor
 endfunction
 
-augroup statusline
+augroup status_line
   autocmd!
   autocmd VimEnter,WinEnter,BufWinEnter,TextChanged,InsertEnter,InsertLeave * call <SID>RefreshStatusline()
 augroup END
