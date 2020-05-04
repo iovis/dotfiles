@@ -358,6 +358,14 @@ nnoremap ¡<space> :!open<space>
 nnoremap yoo :mksession!<cr>
 " }}} sessions "
 
+" dispatch {{{ "
+command! -nargs=* -complete=file Make silent! make! <args>|cwindow|redraw!
+
+nnoremap m<cr>    :Make<cr>
+nnoremap m<space> :Make<space>
+nnoremap m?       :set makeprg?<cr>
+" }}} dispatch "
+
 " tux {{{ "
 nnoremap c<space> :!
 " }}} tux "
