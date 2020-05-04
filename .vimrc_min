@@ -561,7 +561,12 @@ augroup END
 " Filetypes {{{ "
 augroup ruby_commands
   autocmd!
-  autocmd FileType ruby setlocal commentstring=#%s
+  autocmd FileType ruby setlocal commentstring=#%s makeprg=ruby\ %
+augroup end
+
+augroup python_commands
+  autocmd!
+  autocmd FileType python setlocal commentstring=#%s shiftwidth=4 softtabstop=4 makeprg=python\ %
 augroup end
 
 augroup javascript_commands
@@ -571,8 +576,7 @@ augroup end
 
 augroup vim_commands
   autocmd!
-  autocmd FileType vim setlocal commentstring=\"%s
-  autocmd FileType vim setlocal foldmethod=marker
+  autocmd FileType vim setlocal commentstring=\"%s foldmethod=marker
 augroup end
 
 augroup zsh_commands
