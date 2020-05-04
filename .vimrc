@@ -803,6 +803,7 @@ nnoremap yoo :Obsession<cr>
 nnoremap <silent> <leader>aa :A<cr>
 nnoremap <silent> <leader>ah :AS<cr>
 nnoremap <silent> <leader>av :AV<cr>
+nnoremap <silent> <leader>ar :R<cr>
 
 nnoremap <silent> <leader>C :Console<cr>
 nnoremap <silent> <leader>S :Start!<cr>
@@ -818,6 +819,7 @@ augroup rails_commands
 
   " Execute line in rails runner
   autocmd FileType ruby nnoremap <buffer> <leader>sr :execute 'Rpp ' . getline('.')<cr>
+  autocmd FileType ruby nnoremap <buffer> <leader>P  :Rpp<space>
 augroup END
 " }}} rails "
 
