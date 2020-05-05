@@ -77,7 +77,6 @@ nnoremap <space> <nop>
 xnoremap <space> <nop>
 
 " Some expansions
-cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 inoremap ,, <c-o>A,
 inoremap ;; <c-o>A;
 inoremap ,M <c-o>A-><c-f>
