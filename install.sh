@@ -1,7 +1,7 @@
 # defaults -currentHost write -globalDomain AppleFontSmoothing -int 3
 
 # Homebrew
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 brew install $(cat ~/.dotfiles/default-brews)
 
 # Fonts
