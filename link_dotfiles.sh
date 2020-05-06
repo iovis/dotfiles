@@ -7,7 +7,7 @@
 ########## Variables
 dir=~/.dotfiles
 olddir=~/dotfiles_old
-files=".agignore .bashrc .ctags .ctags.d .eslintrc.json .gemrc .gitconfig .gitignore_global .hyper.js .pryrc .psqlrc .tern-config .tmux.conf .vim .vimrc .zshrc"
+files=".ctags .ctags.d .eslintrc.json .gemrc .gitconfig .gitignore_global .pryrc .psqlrc .tmux.conf .vim .vimrc .zshrc"
 config_files="mpv nvim"
 
 
