@@ -161,10 +161,48 @@ noremap ' `
 noremap <silent> <leader><cr> :noh<cr>
 noremap H g^
 noremap L g$
-onoremap ar a]
-onoremap ir i]
 xnoremap <silent> Q :norm @q<cr>
 " }}} bindings "
+
+" text objects {{{ "
+" https://gist.github.com/romainl/c0a8b57a36aec71a986f1120e1931f20#file-text-objects-vim
+
+" square brackets (ir)
+onoremap ar a]
+onoremap ir i]
+xnoremap ar a[
+xnoremap ir i[
+
+" i_ i. i: i, i; i| i/ i\ i* i+ i- i#
+" a_ a. a: a, a; a| a/ a\ a* a+ a- a#
+for char in ['_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '-', '#']
+  execute 'xnoremap i' . char . ' :<C-u>normal! T' . char . 'vt' . char . '<CR>'
+  execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
+  execute 'xnoremap a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
+  execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
+endfor
+
+" number text object (in)
+function! VisualNumber()
+  call search('\d\([^0-9\.]\|$\)', 'cW')
+  normal v
+  call search('\(^\|[^0-9\.]\d\)', 'becW')
+endfunction
+
+xnoremap in :<C-u>call VisualNumber()<CR>
+onoremap in :<C-u>normal vin<CR>
+
+" buffer text objects (ie)
+xnoremap ie :<C-u>let z = @/\|1;/^./kz<CR>G??<CR>:let @/ = z<CR>V'z
+onoremap ie :<C-u>normal vi%<CR>
+xnoremap ae GoggV
+onoremap ae :<C-u>normal va%<CR>
+
+" last change text object (ik)
+xnoremap ik `]o`[
+onoremap ik :<C-u>normal vik<CR>
+onoremap ak :<C-u>normal vikV<CR>
+" }}} text objects "
 
 " substitute {{{ "
 nnoremap s <Nop>
@@ -219,10 +257,6 @@ nnoremap P P`[v`]=
 nnoremap gp p
 nnoremap gP P
 " }}} pasting with indent "
-
-" select last inserted text {{{ "
-nnoremap gV `[v`]
-" }}} select last inserted text "
 
 " replace {{{ "
 nnoremap R ciw<c-r>0<esc>
