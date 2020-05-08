@@ -1,3 +1,4 @@
+" plugins {{{ "
 scriptencoding utf-8
 filetype off
 
@@ -78,8 +79,9 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'wellle/targets.vim'
 
 call plug#end()
+" }}} plugins "
 
-" CUSTOM SETTINGS
+" config {{{ "
 filetype plugin indent on
 colorscheme base16-default-dark
 
@@ -166,8 +168,25 @@ if has('gui_running')
   set visualbell t_vb=
 endif
 
-" CUSTOM KEYBINDINGS
-" Vim specific
+augroup vimrc
+  autocmd!
+
+  " Autosave on focus lost
+  autocmd FocusLost * silent! wall
+  autocmd BufLeave  * silent! wall
+
+  " Remove whitespace on save
+  autocmd BufWritePre * :%s/\s\+$//e
+
+  " Return to last edit position when opening files (You want this!)
+  autocmd BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal! g`\"" |
+        \ endif
+augroup end
+" }}} config "
+
+" bindings {{{ "
 inoremap kj <Esc>
 let g:mapleader = "\<Space>"
 nnoremap <space> <nop>
@@ -239,8 +258,14 @@ noremap <silent> <leader><cr> :noh<cr>
 noremap H g^
 noremap L g$
 xnoremap <silent> Q :norm @q<cr>
+" }}} bindings "
 
-" substitutions
+" Map pending
+" nnoremap +
+" nnoremap _
+" nnoremap &
+
+" substitute {{{ "
 nnoremap s <Nop>
 xnoremap s <Nop>
 
@@ -273,8 +298,9 @@ function! SubstituteOperator(type)
     return
   endif
 endfunction
+" }}} substitute "
 
-" Folds
+" folds {{{ "
 set nofoldenable
 
 augroup folds
@@ -284,48 +310,55 @@ augroup folds
   autocmd BufReadPre  * setlocal foldmethod=indent
   autocmd BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
 augroup end
+" }}} folds "
 
-" Properly indent text when pasting
+" pasting with indent {{{ "
 nnoremap p p`[v`]=
 nnoremap P P`[v`]=
 nnoremap gp p
 nnoremap gP P
+" }}} pasting with indent "
 
-" Select last inserted text
+" select last inserted text {{{ "
 nnoremap gV `[v`]
+" }}} select last inserted text "
 
-" Change word under cursor or selection with yanked
+" replace {{{ "
 nnoremap R ciw<c-r>0<esc>
 xnoremap R "0p
+" }}} replace "
 
-" Repeat command on each line of visual selection
+" repeat on visual {{{ "
 xnoremap <silent> . :normal .<cr>
+" }}} repeat on visual "
 
-" Maintain Visual Mode after shifting > and <
+" indent {{{ "
 xnoremap < <gv
 xnoremap > >gv
+" }}} indent "
 
-" Don't jump to the next ocurrence with * and #
+" start search {{{ "
 nnoremap * *N
 nnoremap # #N
 
-" If I have a visual selection and press * I want it to show ocurrences
 xnoremap * y:let @/=escape(@@, '/\') <bar> normal! /<cr>
 xnoremap # y:let @/=escape(@@, '/\') <bar> normal! ?<cr>
+" }}} start search "
 
-" Save with root permissions
+" root {{{ "
 command! W w !sudo tee % > /dev/null
+" }}} root "
 
-" Copy to clipboard
+" clipboard {{{ "
 nnoremap <leader>y "+y
 nnoremap <leader>Y "+y$
 xnoremap <leader>y "+y
 nnoremap <leader>d "+d
 nnoremap <leader>D "+D
 xnoremap <leader>d "+d
+" }}} clipboard "
 
-" Move a line of text using alt+[jk]
-" Weird characters are when meta key is not recognized
+" move line {{{ "
 nnoremap <silent> <M-j> :m+<cr>==
 nnoremap <silent> <M-k> :m-2<cr>==
 xnoremap <silent> <M-j> :m'>+<cr>`<my`>mzgv=gv`yo`z
@@ -334,27 +367,32 @@ nnoremap <silent> ¶ :m+<cr>==
 nnoremap <silent> § :m-2<cr>==
 xnoremap <silent> ¶ :m'>+<cr>`<my`>mzgv=gv`yo`z
 xnoremap <silent> § :m'<-2<cr>`>my`<mzgv=gv`yo`z
+" }}} move line "
 
-" Navigate buffers
+" buffers {{{ "
 nnoremap <BS> <C-^>
 nnoremap <silent> <tab> :bnext<cr>
 nnoremap <silent> <s-tab> :bprevious<cr>
 nnoremap <silent> <leader>t :enew<cr>
+" }}} buffers "
 
-" Remapping <tab> makes <c-i> not work
+" fix c-i after mapping tab {{{ "
 nnoremap <c-e> <c-i>
+" }}} fix c-i after mapping tab "
 
-" Tags
+" tags {{{ "
 nmap T g]
 nmap t <c-]>
 
 nnoremap <silent> <leader>E :Dispatch! ctags<cr>
+" }}} tags "
 
-" Work with splits
+" splits {{{ "
 nnoremap <leader>v <c-w>v
 nnoremap <leader>h <c-w>s
+" }}} splits "
 
-" sort operator and mappings
+" sorting {{{ "
 function! SortLinesOpFunc(...)
   '[,']sort
 endfunction
@@ -367,8 +405,9 @@ endfunction
 " xnoremap <silent> gs :sort<cr>
 nnoremap <silent> gr :<c-u>set operatorfunc=SortReverseLinesOpFunc<cr>g@
 xnoremap <silent> gr :sort!<cr>
+" }}} sorting "
 
-" Fast config editing
+" config editing {{{ "
 nnoremap <leader>u <nop>
 nnoremap <leader>us :so $MYVIMRC<cr>:echo 'vimrc sourced'<cr>
 nnoremap <silent> <leader>uf :execute empty(&filetype) ? 'echo "no filetype specified"' : 'EditFtplugin'<cr>
@@ -382,29 +421,13 @@ nnoremap <silent> <leader>uz :e! ~/.zshrc<cr>
 
 command! -nargs=? -complete=filetype EditFtplugin
       \ exe 'keepjumps e! $HOME/.vim/after/ftplugin/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
+" }}} config editing "
 
-" Duplicate file
+" duplicate file {{{ "
 nnoremap <leader>W :saveas <c-r>=fnameescape(expand('%:h')).'/'<cr>
+" }}} duplicate file "
 
-" Autocmds
-augroup vimrc
-  autocmd!
-
-  " Autosave on focus lost
-  autocmd FocusLost * silent! wall
-  autocmd BufLeave  * silent! wall
-
-  " Remove whitespace on save
-  autocmd BufWritePre * :%s/\s\+$//e
-
-  " Return to last edit position when opening files (You want this!)
-  autocmd BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \   exe "normal! g`\"" |
-        \ endif
-augroup end
-
-" Inspired by vim-unimpaired
+" vim-unimpaired {{{ "
 nnoremap yo, :set number! relativenumber! cursorline!<cr>
 nnoremap yo; :set relativenumber! cursorline!<cr>
 nnoremap yoc :setlocal cursorline!<cr>
@@ -415,17 +438,55 @@ nnoremap yop :setlocal paste!<cr>
 nnoremap yor :setlocal relativenumber!<cr>
 nnoremap yos :setlocal spell! spelllang=en_us<cr>
 nnoremap yow :setlocal wrap!<cr>
+" }}} vim-unimpaired "
 
-" Open resource
+" open resource {{{ "
 nnoremap <silent> ¡¡  :execute '!open ' . escape(expand('<cWORD>'), '#')<cr>
 xnoremap <silent> ¡  y:execute '!open ' . escape(getreg('0'), '#')<cr>
 
 nnoremap ¡<space> :!open<space>
+" }}} open resource "
 
+" redir {{{ "
+" https://gist.github.com/romainl/eae0a260ab9c135390c30cd370c20cd7
+function! Redir(cmd, rng, start, end)
+  for win in range(1, winnr('$'))
+    if getwinvar(win, 'scratch')
+      execute win . 'windo close'
+    endif
+  endfor
 
-"""""""""""""""""""
-" Plugin specific "
-"""""""""""""""""""
+  if a:cmd =~? '^!'
+    let cmd = a:cmd =~? ' %'
+          \ ? matchstr(substitute(a:cmd, ' %', ' ' . expand('%:p'), ''), '^!\zs.*')
+          \ : matchstr(a:cmd, '^!\zs.*')
+
+    if a:rng == 0
+      let output = systemlist(cmd)
+    else
+      let joined_lines = join(getline(a:start, a:end), '\n')
+      let cleaned_lines = substitute(shellescape(joined_lines), "'\\\\''", "\\\\'", 'g')
+      let output = systemlist(cmd . ' <<< $' . cleaned_lines)
+    endif
+  else
+    redir => output
+    execute a:cmd
+    redir END
+    let output = split(output, "\n")
+  endif
+
+  vnew
+
+  let w:scratch = 1
+  setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
+
+  call setline(1, output)
+endfunction
+
+command! -nargs=1 -complete=command -bar -range Redir silent call Redir(<q-args>, <range>, <line1>, <line2>)
+" }}} redir "
+
+" plugin configuration {{{ "
 " Ack {{{ "
 let g:ackhighlight = 1
 let g:ack_use_dispatch = 1
@@ -678,6 +739,7 @@ xnoremap <silent> <leader>f  y:Rg <c-r>"<cr>
 
 " goyo {{{ "
 nnoremap <silent> <leader>z :Goyo<cr>
+" }}} goyo "
 
 " highlightedyank {{{ "
 hi HighlightedyankRegion ctermbg=110 ctermfg=235 guibg=#8fafd7 guifg=#262626 cterm=NONE gui=NONE
@@ -904,7 +966,7 @@ xnoremap S <Nop>
 nnoremap SS :S!///g<left><left><left>
 
 nnoremap <silent> S :set operatorfunc=GlobalSubstituteOperator<cr>g@
-xnoremap S :<c-u>call GlobalSubstituteOperator(visualmode())<cr>
+" xnoremap S :<c-u>call GlobalSubstituteOperator(visualmode())<cr>
 
 function! GlobalSubstituteOperator(type)
   if a:type ==? 'v'
@@ -1012,10 +1074,9 @@ nnoremap <leader>¡ :QuickLook<space>
 nmap <leader>" mzcs'"`z
 nmap <leader>' mzcs"'`z
 " }}} ysurround "
+" }}} plugin configuration "
 
-"""""""""""""""""""""
-"  Custom Commands  "
-"""""""""""""""""""""
+" commands {{{ "
 " Docker {{{ "
 nnoremap <leader>dcu :Dcup<cr>
 nnoremap <leader>dcp :Dcps<cr>
@@ -1133,16 +1194,4 @@ nnoremap <silent> Ç :call ToggleList("Location List", 'l')<cr>
 " REMember {{{ "
 command! -nargs=0 REMember %s/\(\s\)\([-+]\?\d*\.\?\d*px\)/\1REMember(\2)/g
 " }}} REMember "
-
-" US ANSI layout {{{ "
-" nnoremap <silent> <leader>` :Bdelete<cr>
-" nnoremap <silent> <leader>~ :Bdelete!<cr>
-" nnoremap <silent> <leader>§ :Bdelete<cr>
-" nnoremap <silent> <leader>± :Bdelete!<cr>
-" nnoremap <silent> \  :cwindow<cr>
-" nnoremap <silent> \| :cclose<cr>
-" nnoremap <silent> `  :bdelete<cr>
-" nnoremap <silent> ~  :bdelete!<cr>
-" nnoremap <silent> §  :bdelete<cr>
-" nnoremap <silent> ±  :bdelete!<cr>
-" }}} US ANSI layout "
+" }}} commands "
