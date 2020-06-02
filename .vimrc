@@ -206,6 +206,8 @@ cnoremap <c-j> <down>
 cnoremap <c-k> <up>
 cnoremap <m-left> <s-left>
 cnoremap <m-right> <s-right>
+inoremap <m-left> <s-left>
+inoremap <m-right> <s-right>
 inoremap <c-a> <home>
 inoremap <c-e> <end>
 inoremap <m-O> <esc>O
@@ -680,6 +682,8 @@ augroup fzf_commands
   autocmd!
   autocmd FileType fzf tnoremap <silent> <buffer> <c-j> <down>
   autocmd FileType fzf tnoremap <silent> <buffer> <c-k> <up>
+  autocmd FileType fzf tnoremap <silent> <buffer> <m-left>  <s-left>
+  autocmd FileType fzf tnoremap <silent> <buffer> <m-right> <s-right>
   autocmd FileType fzf setlocal nornu nonu signcolumn=no
 augroup end
 
