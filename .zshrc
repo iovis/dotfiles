@@ -212,7 +212,7 @@ function restoredb() {
     rails db:migrate db:test:prepare
 }
 
-function rtp() {
+function rptp() {
   rails parallel:drop parallel:create parallel:prepare
 }
 
