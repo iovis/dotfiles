@@ -260,6 +260,8 @@ noremap <silent> <leader><cr> :noh<cr>
 noremap H g^
 noremap L g$
 xnoremap <silent> Q :norm @q<cr>
+xnoremap Ñ ?
+xnoremap ñ /
 " }}} bindings "
 
 " Map pending
