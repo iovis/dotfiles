@@ -185,22 +185,24 @@ function vader() {
 }
 
 function upgrade_plugins() {
+  BLUE='\033[0;34m'
+  GREEN='\033[0;32m'
+  NOCOLOR='\033[0m' # No Color
+
   # git clone https://github.com/zdharma/fast-syntax-highlighting.git $ZSH_CUSTOM/plugins/fast-syntax-highlighting
-  (echo "Upgrading fast-syntax-highlighting" && git -C $ZSH_CUSTOM/plugins/fast-syntax-highlighting pull -q &)
+  echo -e "${BLUE}Upgrading ${GREEN}fast-syntax-highlighting${NOCOLOR}" && git -C $ZSH_CUSTOM/plugins/fast-syntax-highlighting pull
 
   # git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
-  (echo "Upgrading zsh-autosuggestions" && git -C $ZSH_CUSTOM/plugins/zsh-autosuggestions pull -q &)
+  echo -e "${BLUE}Upgrading ${GREEN}zsh-autosuggestions${NOCOLOR}" && git -C $ZSH_CUSTOM/plugins/zsh-autosuggestions pull
 
   # git clone https://github.com/zsh-users/zsh-completions $ZSH_CUSTOM/plugins/zsh-completions
-  (echo "Upgrading zsh-completions" && git -C $ZSH_CUSTOM/plugins/zsh-completions pull -q &)
+  echo -e "${BLUE}Upgrading ${GREEN}zsh-completions${NOCOLOR}" && git -C $ZSH_CUSTOM/plugins/zsh-completions pull
 
   # git clone https://github.com/MichaelAquilina/zsh-you-should-use $ZSH_CUSTOM/plugins/you-should-use
-  (echo "Upgrading you-should-use" && git -C $ZSH_CUSTOM/plugins/you-should-use pull -q &)
+  echo -e "${BLUE}Upgrading ${GREEN}you-should-use${NOCOLOR}" && git -C $ZSH_CUSTOM/plugins/you-should-use pull
 
   # git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
-  (echo "Upgrading powerlevel10k" && git -C $ZSH_CUSTOM/themes/powerlevel10k pull -q &)
-
-  echo "Plugins updated"
+  echo -e "${BLUE}Upgrading ${GREEN}powerlevel10k${NOCOLOR}" && git -C $ZSH_CUSTOM/themes/powerlevel10k pull
 }
 
 ##########
