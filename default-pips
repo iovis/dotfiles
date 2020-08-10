@@ -10,6 +10,5 @@ shodan
 sqlformat
 sqlmap
 sqlparse
-subliminal
 vim-vint
 yamllint
