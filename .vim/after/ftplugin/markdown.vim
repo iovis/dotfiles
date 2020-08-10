@@ -2,6 +2,8 @@
 setlocal conceallevel=2
 setlocal spelllang=en_us
 setlocal spell
+setlocal shiftwidth=4
+setlocal softtabstop=4
 " }}} Options "
 
 " Formatting {{{ "
