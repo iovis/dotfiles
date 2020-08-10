@@ -365,13 +365,6 @@ nnoremap <silent> <leader>t :enew<cr>
 nnoremap <c-e> <c-i>
 " }}} fix c-i after mapping tab "
 
-" tags {{{ "
-nmap T g]
-nmap t <c-]>
-
-nnoremap <silent> <leader>E :Dispatch! ctags<cr>
-" }}} tags "
-
 " splits {{{ "
 nnoremap <leader>v <c-w>v
 nnoremap <leader>h <c-w>s
@@ -560,7 +553,11 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 
-nmap     <silent> <c-t> <Plug>(coc-definition)
+nmap <silent> <c-t> <Plug>(coc-type-definition)
+nmap <silent> t     <Plug>(coc-definition)
+nmap <silent> T     <Plug>(coc-references)
+nmap <silent> gR    <Plug>(coc-rename)
+
 nnoremap <silent> <leader>lR :CocList -I symbols<cr>
 nnoremap <silent> <leader>lc :CocList commands<cr>
 nnoremap <silent> <leader>le :CocList extensions<cr>
@@ -1018,15 +1015,6 @@ nnoremap <silent> <leader>i :Tux Up<cr>
 " Execute current line
 nnoremap <silent> <leader>I :silent execute 'Tux ' . getline('.')<cr>
 " }}} tux.vim "
-
-" typescript {{{ "
-augroup typescript_commands
-  autocmd!
-  autocmd FileType typescript,typescriptreact nmap <silent> <buffer> t  <Plug>(coc-definition)
-  autocmd FileType typescript,typescriptreact nmap <silent> <buffer> T  <Plug>(coc-references)
-  autocmd FileType typescript,typescriptreact nmap <silent> <buffer> gR <Plug>(coc-rename)
-augroup end
-" }}} typescript "
 
 " ultisnips {{{ "
 let g:UltiSnipsEditSplit = 'horizontal'
