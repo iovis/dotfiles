@@ -191,6 +191,11 @@ function vader() {
   nvim -c "Vader $1"
 }
 
+function rust() {
+  name=$(basename $1 .rs)
+  rustc $@ && ./$name && rm $name
+}
+
 function upgrade_plugins() {
   BLUE='\033[0;34m'
   GREEN='\033[0;32m'
