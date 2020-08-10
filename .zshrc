@@ -68,6 +68,10 @@ bindkey '^[^[[C' forward-word
 bindkey "^N" autosuggest-accept
 bindkey "^P" forward-word
 
+bindkey -s "^[ñ" '~'
+bindkey -s "^[+" ']'
+bindkey -s "^[ç" '}'
+
 # Custom aliases
 alias agrep="alias | grep"
 alias aliases="$EDITOR ~/.zsh/aliases.zsh"
