@@ -905,8 +905,8 @@ xmap ac <plug>(signify-motion-outer-visual)
 let g:sneak#use_ic_scs = 1
 let g:sneak#label = 1
 
-map f <Plug>Sneak_s
-map F <Plug>Sneak_S
+map f <Plug>Sneak_f
+map F <Plug>Sneak_F
 
 xmap t <Plug>Sneak_t
 xmap T <Plug>Sneak_T
