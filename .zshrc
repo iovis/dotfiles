@@ -86,6 +86,7 @@ alias fixtrash="rm -rf ~/.Trash; mkdir ~/.Trash; killall Finder"
 alias flushcache="dscacheutil -flushcache"
 alias flushredis="redis-cli flushall"
 alias gcam="git commit -v -am"
+alias gcm="git checkout master"
 alias gcq="git checkout qa"
 alias gemo="gem outdated | grep -f $DOTFILES/default-gems"
 alias git=hub
