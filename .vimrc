@@ -770,6 +770,7 @@ let g:neomake_warning_sign = { 'text': '●', 'texthl': 'NeomakeWarningSign' }
 
 let g:neomake_html_enabled_makers = ['htmlhint']
 let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_python_enabled_markers = ['python3', 'flake8']
 let g:neomake_python_flake8_args = ['--ignore', 'E402,E501']
 let g:neomake_ruby_enabled_makers = ['rubocop']
 let g:neomake_yaml_yamllint_args = ['-f', 'parsable']
