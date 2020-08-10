@@ -21,3 +21,18 @@ setlocal formatlistpat+=]                       " End class
 setlocal formatlistpat+=\\s\\+                  " One or more spaces
 setlocal formatlistpat+=\\\|^\\s*[-–+o*]\\s\\+  " Or ASCII style bullet points
 " }}} Formatting "
+
+" Bindings {{{ "
+
+" change bullet point style {{{ "
+nnoremap <buffer> <leader>* mz^r*`z
+nnoremap <buffer> <leader>? mz^r?`z
+nnoremap <buffer> <leader>+ mz^r+`z
+nnoremap <buffer> <leader>- mz^r-`z
+" }}} change bullet point style "
+
+" strike-through line {{{ "
+nmap     <buffer> <leader>ñ mzyss~`z
+xnoremap <buffer> <leader>ñ :norm yss~<cr>
+" }}} strike-through line "
+" }}} Bindings "
