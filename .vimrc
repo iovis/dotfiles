@@ -180,10 +180,6 @@ xnoremap <space> <nop>
 " Some expansions
 inoremap ,, <c-o>A,
 inoremap ;; <c-o>A;
-inoremap ,M <c-o>A-><c-f>
-inoremap ,N <c-o>A=><c-f>
-inoremap ,m ->
-inoremap ,n =>
 
 " QOL remappings
 cnoremap <c-a> <c-b>
