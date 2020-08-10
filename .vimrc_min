@@ -471,7 +471,6 @@ nnoremap <leader>P :echo<space>
 nnoremap ++ :execute "hi " . synIDattr(synID(line("."),col("."),1),"name")<CR>
 nnoremap +<cr> :so $VIMRUNTIME/syntax/hitest.vim<cr>
 nnoremap +<space> :hi<space>
-nnoremap <leader>us :so %<cr>
 
 hi Comment      ctermfg=8
 hi CursorLineNr ctermfg=blue

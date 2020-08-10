@@ -425,6 +425,12 @@ xnoremap <silent> ¡  y:execute '!open ' . escape(getreg('0'), '#')<cr>
 nnoremap ¡<space> :!open<space>
 " }}} open resource "
 
+" Highlights {{{ "
+nnoremap ++ :execute "hi " . synIDattr(synID(line("."),col("."),1),"name")<CR>
+nnoremap +<cr> :so $VIMRUNTIME/syntax/hitest.vim<cr>
+nnoremap +<space> :hi<space>
+" }}} Highlights "
+
 " redir {{{ "
 " https://gist.github.com/romainl/eae0a260ab9c135390c30cd370c20cd7
 function! Redir(cmd, rng, start, end)
