@@ -1,11 +1,12 @@
 begin
   require 'awesome_print'
-  AwesomePrint.pry! if AwesomePrint
+
+  AwesomePrint&.pry!
 rescue LoadError
-  p 'awesome_print not installed'
+  nil
 end
 
-# Use _pry_.config.pager = true to use 'less'
+# Use pry_instance.config.pager = true to use 'less'
 # Pry.config.pager = false
 
 # Debug shortcuts for binding.pry
@@ -17,6 +18,6 @@ if defined?(PryByebug)
 end
 
 # Hit Enter to repeat last command
-Pry::Commands.command /^$/, "repeat last command" do
-  _pry_.run_command Pry.history.to_a.last
+Pry::Commands.command(/^$/, 'repeat last command') do
+  pry_instance.run_command Pry.history.to_a.last
 end
