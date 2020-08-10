@@ -153,23 +153,7 @@ else
   set notermguicolors
 endif
 
-" GUI options
-if has('gui_running')
-  set guicursor+=a:blinkon0
-  set guifont=Fira\ Code:h16
-  " set guifont=Monospace\ 10
-  set guioptions-=L
-  set guioptions-=R
-  set guioptions-=T
-  set guioptions-=a
-  set guioptions-=l
-  set guioptions-=m
-  set guioptions-=r
-  set macligatures
-  set visualbell t_vb=
-endif
-
-augroup vimrc
+augroup buffer_config
   autocmd!
 
   " Autosave on focus lost
