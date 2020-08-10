@@ -1,9 +1,10 @@
-" Formatting
-setlocal formatoptions+=tcoqnl1j
+" Options {{{ "
 setlocal spelllang=en_us
 setlocal spell
+" }}} Options "
 
-" Better indention/hierarchy
+" Formatting {{{ "
+setlocal formatoptions+=tcoqnl1j
 setlocal formatlistpat=^\\s*                    " Optional leading whitespace
 setlocal formatlistpat+=[                       " Start class
 setlocal formatlistpat+=\\[({]\\?               " |  Optionally match opening punctuation
@@ -16,3 +17,4 @@ setlocal formatlistpat+=[\\]:.)}                " |  Closing punctuation
 setlocal formatlistpat+=]                       " End class
 setlocal formatlistpat+=\\s\\+                  " One or more spaces
 setlocal formatlistpat+=\\\|^\\s*[-–+o*]\\s\\+  " Or ASCII style bullet points
+" }}} Formatting "
