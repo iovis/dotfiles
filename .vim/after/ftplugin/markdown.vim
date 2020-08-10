@@ -1,4 +1,5 @@
 " Options {{{ "
+setlocal conceallevel=2
 setlocal spelllang=en_us
 setlocal spell
 " }}} Options "
