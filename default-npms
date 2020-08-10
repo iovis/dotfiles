@@ -1,16 +1,7 @@
-@angular/cli
 csslint
-dlnast
 eslint
-geoweather
 htmlhint
 jsonlint
-linkfollower
 neovim
 npm
-prettier
-serve
-tslint
-typescript
-webpack
 webtorrent-cli
