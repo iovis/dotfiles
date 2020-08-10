@@ -879,17 +879,6 @@ augroup rspec_commands
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>ss :call RunNearestSpec()<cr>
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>sl :call RunLastSpec()<cr>
   autocmd FileType ruby nnoremap <silent> <buffer> <leader>sa :call RunAllSpecs()<cr>
-
-  " Change rspec command to bundle exec rspec
-  autocmd FileType ruby nnoremap <buffer> <leader>sb :let g:rspec_command = 'Dispatch bundle exec rspec {spec}'<cr>
-
-  " Execute current line as a spec in last pane
-  autocmd FileType ruby nnoremap <silent> <buffer> <leader>si :execute 'Tux rspec ' . expand('%') . ':' . line('.')<cr>
-
-  " Execute current spec file in last pane
-  autocmd FileType ruby nnoremap <silent> <buffer> <leader>so :Tux rspec %<cr>
-  autocmd FileType ruby nnoremap <silent> <buffer> <leader>sp :execute 'Tux FPROF=1 FDOC=1 rspec ' . expand('%') . ':' . line('.')<cr>
-  autocmd FileType ruby nnoremap <silent> <buffer> <leader>sr :Tux spring stop && rspec %<cr>
 augroup end
 " }}} rspec "
 
