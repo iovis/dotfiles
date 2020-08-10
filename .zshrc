@@ -133,6 +133,8 @@ alias vin="vim -u $DOTFILES/.vimrc_min"
 alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
 alias zshrc="$EDITOR ~/.zshrc"
 
+unalias sd
+
 ##
 # airport
 #
