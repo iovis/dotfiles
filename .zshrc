@@ -22,6 +22,7 @@ export PAGER="less"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PROJECT_HOME="$HOME/Sites"
+export PYENV_ROOT="$HOME/.pyenv"
 export REVIEW_BASE="master"
 export TERM="screen-256color"
 
@@ -42,6 +43,7 @@ plugins=(
   ng
   osx
   perms
+  pyenv
   rails
   rbenv  # slow
   rsync
