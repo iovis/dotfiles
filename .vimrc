@@ -804,7 +804,7 @@ augroup END
 
 " nerdtree {{{ "
 let g:NERDTreeAutoDeleteBuffer = 1
-let g:NERDTreeIgnore = ['\.pyc$']
+let g:NERDTreeIgnore = ['\~$', '\.pyc$', '^Session\.vim$']
 let g:NERDTreeMinimalUI = 1
 " let g:NERDTreeShowBookmarks = 1
 let g:NERDTreeShowLineNumbers = 1
