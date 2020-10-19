@@ -38,7 +38,7 @@ Plug 'mileszs/ack.vim'
 Plug 'moll/vim-bbye'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'neoclide/coc-neco'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'pbrisbin/vim-mkdir'
 Plug 'raimondi/delimitMate'
 Plug 'ryanoasis/vim-devicons'
