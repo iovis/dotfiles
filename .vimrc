@@ -28,7 +28,6 @@ Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-user'
 Plug 'machakann/vim-highlightedyank'
-Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
 Plug 'metakirby5/codi.vim'
@@ -965,11 +964,6 @@ function! GlobalSubstituteOperator(type)
   endif
 endfunction
 " }}} substitute.vim "
-
-" tagbar {{{ "
-let g:tagbar_compact = 1
-nnoremap <silent> <leader>ll :TagbarToggle<CR>
-" }}} tagbar "
 
 " targets {{{ "
 augroup targets_conf
