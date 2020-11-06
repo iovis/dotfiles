@@ -45,7 +45,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'shougo/echodoc.vim'
 Plug 'shougo/neco-vim'
 Plug 'sirver/ultisnips'
-Plug 'thoughtbot/vim-rspec'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tommcdo/vim-lion'
 Plug 'tpope/vim-abolish'
@@ -873,18 +872,6 @@ nmap <m-down>  <Plug>ResizeDown
 nmap <m-left>  <Plug>ResizeLeft
 nmap <m-right> <Plug>ResizeRight
 " }}} resize.vim "
-
-" rspec {{{ "
-let g:rspec_command = 'Dispatch bin/rspec {spec}'
-
-augroup rspec_commands
-  autocmd!
-  autocmd FileType ruby nnoremap <silent> <buffer> <leader>sf :call RunCurrentSpecFile()<cr>
-  autocmd FileType ruby nnoremap <silent> <buffer> <leader>ss :call RunNearestSpec()<cr>
-  autocmd FileType ruby nnoremap <silent> <buffer> <leader>sl :call RunLastSpec()<cr>
-  autocmd FileType ruby nnoremap <silent> <buffer> <leader>sa :call RunAllSpecs()<cr>
-augroup end
-" }}} rspec "
 
 " signify {{{ "
 let g:signify_realtime = 0
