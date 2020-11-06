@@ -28,7 +28,6 @@ Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-user'
 Plug 'machakann/vim-highlightedyank'
-Plug 'machakann/vim-swap'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
@@ -916,13 +915,6 @@ omap T <Plug>Sneak_T
 hi Sneak      ctermbg=110 ctermfg=235 guibg=#8fafd7 guifg=#262626 cterm=NONE gui=NONE
 hi SneakScope ctermbg=110 ctermfg=235 guibg=#8fafd7 guifg=#262626 cterm=NONE gui=NONE
 " }}} sneak "
-
-" swap {{{ "
-let g:swap_no_default_key_mappings = 1
-
-nmap g< <Plug>(swap-prev)
-nmap g> <Plug>(swap-next)
-" }}} swap "
 
 " scriptease.vim {{{ "
 nnoremap <leader>P :PP<space>
