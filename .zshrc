@@ -74,18 +74,15 @@ bindkey -s "^[+" ']'
 bindkey -s "^[ç" '}'
 
 # Custom aliases
-alias agrep="alias | grep"
+alias af="alias | fzf"
+alias ag="alias | rg"
 alias aliases="$EDITOR ~/.zsh/aliases.zsh"
 alias c="bat"
-alias canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
-alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias d="dust -r"
 alias dcup="docker-compose up -d --remove-orphans"
-alias dumpdb="pg_dump -Fc --clean --no-owner -h localhost"
 alias files="fd -H -E '.git' -E '.keep' --type file --follow --color=always"
 alias fixtrash="rm -rf ~/.Trash; mkdir ~/.Trash; killall Finder"
 alias flushcache="dscacheutil -flushcache"
-alias flushredis="redis-cli flushall"
 alias gcam="git commit -v -am"
 alias gcm="git checkout master"
 alias gcq="git checkout qa"
@@ -101,7 +98,6 @@ alias hosts="sudo $EDITOR /etc/hosts"
 alias https="http --default-scheme=https"
 alias l="exa -lag --git --group-directories-first"
 alias libupdate="brew update; brew upgrade; omz update; upgrade_plugins; npm -g outdated; echo '\nOutdated gems'; gemo; echo '\nOutdated pips'; pipo"
-alias listdbs="psql -h localhost -c '\l'"
 alias ni="nvim"
 alias nin="nvim -u $DOTFILES/.vimrc_min"
 alias nis="nvim -S Session.vim"
@@ -122,8 +118,6 @@ alias psf="ps aux|fzf"
 alias pycache="find . -name '*.pyc' -exec rm {} \;"
 alias rebuildlaunchservices="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user"
 alias repair_permissions="diskutil resetUserPermissions / $(id -u)"
-alias rsb="rails server -b 0.0.0.0"
-alias rtg="rake -T"
 alias simulator="open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app"
 alias so="exec zsh"
 alias tailf="tail -f"
@@ -131,10 +125,7 @@ alias tm="tmux"
 alias tmrc="$EDITOR ~/.tmux.conf"
 alias updatedb="sudo /usr/libexec/locate.updatedb"
 alias vin="vim -u $DOTFILES/.vimrc_min"
-alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
 alias zshrc="$EDITOR ~/.zshrc"
-
-unalias sd
 
 ##
 # airport
@@ -153,17 +144,6 @@ done
 # Disable <C-s> flow control
 stty -ixon
 
-# Find macOS junk files
-function findjunk() {
-  find $1 -name ".DS_Store"
-  find $1 -name "._*"
-}
-
-function rmjunk() {
-  find $1 -name ".DS_Store" -exec rm {} \;
-  find $1 -name "._*" -exec rm {} \;
-}
-
 function fix_mosh_server() {
   local fw='/usr/libexec/ApplicationFirewall/socketfilterfw'
   local mosh_sym="$(which mosh-server)"
@@ -180,16 +160,6 @@ function fix_mosh_server() {
 # tree
 function t() {
   exa --group-directories-first -TL${1:-3}
-}
-
-function ip() {
-  # (command &) executes in parallel without the 'Done' messages
-  (echo "local: $(ifconfig en0|awk '/inet/{print $2}')" &)
-  (echo "external: $(http -b https://api.ipify.org/)" &)
-}
-
-function vader() {
-  nvim -c "Vader $1"
 }
 
 function rust() {
@@ -222,6 +192,12 @@ function upgrade_plugins() {
 #  Work  #
 ##########
 export DUMPS_DIR="$HOME/Documents/RubiconMD/dumps"
+
+alias dumpdb="pg_dump -Fc --clean --no-owner -h localhost"
+alias flushredis="redis-cli flushall"
+alias listdbs="psql -h localhost -c '\l'"
+alias rsb="rails server -b 0.0.0.0"
+alias rtg="rake -T"
 
 function mvdmp() {
   mv ~/Downloads/*_prod.dmp.gz $DUMPS_DIR
