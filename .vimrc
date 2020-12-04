@@ -31,7 +31,6 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
 Plug 'mhinz/vim-signify'
-Plug 'mileszs/ack.vim'
 Plug 'moll/vim-bbye'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'neoclide/coc-neco'
@@ -387,6 +386,25 @@ nnoremap <silent> gr :<c-u>set operatorfunc=SortReverseLinesOpFunc<cr>g@
 xnoremap <silent> gr :sort!<cr>
 " }}} sorting "
 
+" grep {{{ "
+command! -nargs=+ -complete=file Grep silent! grep! -R <args>|botright cwindow|redraw!
+
+nnoremap <leader>F  :Grep ""<left>
+xmap     <leader>F *:<c-u>Grep "<c-r>/"
+
+nmap <silent> K *:Grep "\b<cword>\b"<cr>
+xmap <silent> K *:<c-u>Grep -F "<c-r>/"<cr>
+" }}} grep "
+
+" ripgrep {{{ "
+if executable('rg')
+  command! -nargs=+ -complete=file Grep silent! grep! <args>|botright cwindow|redraw!
+
+  set grepprg=rg\ --vimgrep\ --smart-case
+  set grepformat=%f:%l:%c:%m
+endif
+" }}} ripgrep "
+
 " config editing {{{ "
 nnoremap <leader>u <nop>
 nnoremap <leader>us :so $MYVIMRC<cr>:echo 'vimrc sourced'<cr>
@@ -473,22 +491,6 @@ command! -nargs=1 -complete=command -bar -range Redir silent call Redir(<q-args>
 " }}} redir "
 
 " plugin configuration {{{ "
-" Ack {{{ "
-let g:ackhighlight = 1
-let g:ack_use_dispatch = 1
-let g:ackprg = 'rg --vimgrep --smart-case'
-nnoremap <leader>F  :Ack! ""<left>
-xnoremap <leader>F y:Ack! -F "<c-r>""
-nnoremap K  :silent Ack! -F "<c-r><c-w>"<cr>
-xnoremap K y:silent Ack! -F "<c-r>""<cr>
-
-" Use rg over Grep
-if executable('rg')
-  set grepprg=rg\ --vimgrep\ --smart-case
-  set grepformat=%f:%l:%c:%m
-endif
-" }}} Ack "
-
 " airline {{{ "
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#enabled = 1
