@@ -510,6 +510,8 @@ hi SLGitBranch  ctermfg=2
 hi SLModified   ctermfg=red
 hi StatusLine   ctermfg=white ctermbg=none  cterm=none
 hi StatusLineNC ctermfg=8     ctermbg=none  cterm=none
+
+hi QuickFixLine ctermfg=none  ctermbg=none  cterm=bold
 " }}} Highlights "
 
 " statusline {{{ "
