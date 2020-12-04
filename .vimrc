@@ -183,12 +183,18 @@ cnoremap <c-j> <down>
 cnoremap <c-k> <up>
 cnoremap <m-left> <s-left>
 cnoremap <m-right> <s-right>
+cnoremap <m-+> ]
+cnoremap <m-ç> }
+cnoremap <m-ñ> ~
 inoremap <m-left> <s-left>
 inoremap <m-right> <s-right>
 inoremap <c-a> <home>
 inoremap <c-e> <end>
 inoremap <m-O> <esc>O
 inoremap <m-o> <esc>o
+inoremap <m-+> ]
+inoremap <m-ç> }
+inoremap <m-ñ> ~
 nmap     <s-down> ]c
 nmap     <s-up>   [c
 nnoremap <expr> j v:count ? 'j' : 'gj'
