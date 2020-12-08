@@ -357,16 +357,16 @@ xnoremap <silent> gr :sort!<cr>
 " }}} sorting "
 
 " grep {{{ "
-command! -nargs=+ -complete=file Grep silent! grep! -R <args>|botright cwindow|redraw!
+command! -nargs=+ -complete=file Grep silent! grep! -r <args>|botright cwindow|redraw!
 
 nnoremap <leader>f :Grep ""<left>
 nnoremap <leader>F :Grep ""<left>
 
 xmap <leader>f  *:<c-u>Grep "<c-r>/"
-xmap <leader>F  *:<c-u>Grep "<c-r>/"
+xmap <leader>F  *:<c-u>Grep "<c-r>""
 
 nmap <silent> K *:Grep "\b<cword>\b"<cr>
-xmap <silent> K *:<c-u>Grep "<c-r>/"<cr>
+xmap <silent> K *:<c-u>Grep "<c-r>""<cr>
 " }}} grep "
 
 " ripgrep {{{ "

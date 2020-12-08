@@ -390,10 +390,10 @@ xnoremap <silent> gr :sort!<cr>
 command! -nargs=+ -complete=file Grep silent! grep! -R <args>|botright cwindow|redraw!
 
 nnoremap <leader>F  :Grep ""<left>
-xmap     <leader>F *:<c-u>Grep "<c-r>/"
+xmap     <leader>F *:<c-u>Grep "<c-r>""
 
 nmap <silent> K *:Grep "\b<cword>\b"<cr>
-xmap <silent> K *:<c-u>Grep -F "<c-r>/"<cr>
+xmap <silent> K *:Grep -F "<c-r>""<cr>
 " }}} grep "
 
 " ripgrep {{{ "
