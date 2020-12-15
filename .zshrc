@@ -200,7 +200,7 @@ alias rsb="rails server -b 0.0.0.0"
 alias rtg="rake -T"
 
 function mvdmp() {
-  mv ~/Downloads/*_prod.dmp.gz $DUMPS_DIR
+  mv ~/Downloads/*_prod.dmp* $DUMPS_DIR
   gzip -d $DUMPS_DIR/*_prod.dmp.gz
   lndump
 }
