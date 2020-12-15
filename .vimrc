@@ -176,6 +176,11 @@ xnoremap <space> <nop>
 inoremap ,, <c-o>A,
 inoremap ;; <c-o>A;
 
+" Jump to next match with TAB during a search
+set wildcharm=<c-z>
+cnoremap <expr> <tab>   getcmdtype() =~ '[?/]' ? "<c-g>" : "<c-z>"
+cnoremap <expr> <s-tab> getcmdtype() =~ '[?/]' ? "<c-t>" : "<s-tab>"
+
 " QOL remappings
 cnoremap <c-a> <c-b>
 cnoremap <c-j> <down>
