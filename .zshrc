@@ -74,6 +74,8 @@ bindkey -s "^[+" ']'
 bindkey -s "^[ç" '}'
 
 # Custom aliases
+unalias g
+
 alias af="alias | fzf"
 alias ag="alias | rg"
 alias aliases="$EDITOR ~/.zsh/aliases.zsh"
@@ -83,6 +85,7 @@ alias dcup="docker-compose up -d --remove-orphans"
 alias files="fd -H -E '.git' -E '.keep' --type file --follow --color=always"
 alias fixtrash="rm -rf ~/.Trash; mkdir ~/.Trash; killall Finder"
 alias flushcache="dscacheutil -flushcache"
+alias g="rg"
 alias gcam="git commit -v -am"
 alias gcm="git checkout master"
 alias gcq="git checkout qa"
