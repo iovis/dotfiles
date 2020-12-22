@@ -28,32 +28,21 @@ export REVIEW_BASE="master"
 export TERM="screen-256color"
 
 plugins=(
-  aws
-  brew
-  bundler
-  docker
-  docker-compose
   encode64
   extract
   fast-syntax-highlighting
   gem
   git
-  httpie
-  jira
   npm
-  ng
-  osx
   perms
-  pyenv
-  rails
-  rbenv  # slow
   rsync
   tmux
-  web-search
   you-should-use
   zsh-autosuggestions
   zsh-completions
 )
+
+[[ ! -f ~/.zsh/custom_plugins.zsh ]] || source ~/.zsh/custom_plugins.zsh
 
 source $ZSH/oh-my-zsh.sh
 
