@@ -994,7 +994,8 @@ nnoremap y<space> :Tux!<space>
 nnoremap <silent> <leader>i :Tux Up<cr>
 
 " Execute current line
-nnoremap <silent> <leader>I :silent execute 'Tux ' . getline('.')<cr>
+nnoremap <silent> <leader>I  :silent execute 'Tux ' . getline('.')<cr>
+xnoremap <silent> <leader>i y:silent execute 'Tux ' . escape(getreg('0'), '#')<cr>
 " }}} tux.vim "
 
 " ultisnips {{{ "
