@@ -19,11 +19,11 @@ export LC_ALL="en_US.UTF-8"
 export LESS="-iMSx4 -FXR"
 export MANPAGER="$EDITOR +Man!"
 export MANWIDTH=999
+export NODEJS_CHECK_SIGNATURES="no"
 export PAGER="less"
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PROJECT_HOME="$HOME/Sites"
-export PYENV_ROOT="$HOME/.pyenv"
 export REVIEW_BASE="master"
 export TERM="screen-256color"
 
@@ -90,7 +90,7 @@ alias gprs="git pr list"
 alias hosts="sudo $EDITOR /etc/hosts"
 alias https="http --default-scheme=https"
 alias l="exa -lag --git --group-directories-first"
-alias libupdate="brew update; brew upgrade; omz update --unattended; upgrade_plugins; npm -g outdated; echo '\nOutdated gems'; gemo; echo '\nOutdated pips'; pipo"
+alias libupdate="brew update; brew upgrade; omz update --unattended; upgrade_plugins; asdf plugin update --all; npm -g outdated; echo '\nOutdated gems'; gemo; echo '\nOutdated pips'; pipo"
 alias ni="nvim"
 alias nin="nvim -u $DOTFILES/.vimrc_min"
 alias nis="nvim -S Session.vim"
@@ -275,11 +275,19 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_FOLDER_MARKER="(${(j:|:)anchor_files})"
 POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
 
-POWERLEVEL9K_RBENV_FOREGROUND='1'
-POWERLEVEL9K_RBENV_PROMPT_ALWAYS_SHOW=false
-POWERLEVEL9K_RBENV_SHOW_SYSTEM=true
-POWERLEVEL9K_RBENV_SOURCES=(shell local global)
-POWERLEVEL9K_RBENV_VISUAL_IDENTIFIER_EXPANSION=$'\uF219'
+POWERLEVEL9K_ASDF_PROMPT_ALWAYS_SHOW=false
+POWERLEVEL9K_ASDF_SHOW_SYSTEM=true
+POWERLEVEL9K_ASDF_SOURCES=(shell local global)
+POWERLEVEL9K_ASDF_SHOW_ON_UPGLOB=
+
+POWERLEVEL9K_ASDF_RUBY_FOREGROUND=168
+POWERLEVEL9K_ASDF_RUBY_VISUAL_IDENTIFIER_EXPANSION=$'\ue739'
+
+POWERLEVEL9K_ASDF_PYTHON_FOREGROUND=37
+POWERLEVEL9K_ASDF_PYTHON_VISUAL_IDENTIFIER_EXPANSION=$'\ue73c'
+
+POWERLEVEL9K_ASDF_NODEJS_FOREGROUND=70
+POWERLEVEL9K_ASDF_NODEJS_VISUAL_IDENTIFIER_EXPANSION=$'\ue718'
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
   dir
@@ -291,8 +299,7 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
 
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   command_execution_time
-  virtualenv
-  rbenv
+  asdf
   context
   newline
 )
