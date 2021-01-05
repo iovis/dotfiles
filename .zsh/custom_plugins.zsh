@@ -1,5 +1,4 @@
 plugins+=(
-  asdf
   aws
   brew
   bundler
