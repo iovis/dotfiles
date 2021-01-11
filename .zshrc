@@ -63,7 +63,7 @@ unalias g
 
 alias ag="alias | g --"
 alias aliases="$EDITOR ~/.zsh/aliases.zsh"
-alias d="du -had1"
+alias d="du -sh * .*"
 alias ds="d | sort -rh"
 alias gcam="git commit -v -am"
 alias gcm="git checkout master"
