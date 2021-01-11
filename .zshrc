@@ -63,7 +63,8 @@ unalias g
 
 alias ag="alias | g --"
 alias aliases="$EDITOR ~/.zsh/aliases.zsh"
-alias dcup="docker-compose up -d --remove-orphans"
+alias d="du -had1"
+alias ds="d | sort -rh"
 alias gcam="git commit -v -am"
 alias gcm="git checkout master"
 alias gcq="git checkout qa"
@@ -141,12 +142,6 @@ if type bat > /dev/null; then
   alias c="bat"
 else
   alias c="cat"
-fi
-
-if type dust > /dev/null; then
-  alias d="dust -r"
-else
-  alias d="du -had1"
 fi
 
 if type exa > /dev/null; then
@@ -249,6 +244,7 @@ function upgrade_plugins() {
 ##########
 export DUMPS_DIR="$HOME/Documents/RubiconMD/dumps"
 
+alias dcup="docker-compose up -d --remove-orphans"
 alias dumpdb="pg_dump -Fc --clean --no-owner -h localhost"
 alias flushredis="redis-cli flushall"
 alias listdbs="psql -h localhost -c '\l'"
