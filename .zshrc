@@ -11,7 +11,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # ZSH_THEME="refined"
 
 export DOTFILES="$HOME/.dotfiles"
-export EDITOR="vim"
+export EDITOR="nvim"
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export LESS="-iMSx4 -FXR"
@@ -227,7 +227,6 @@ if type hub > /dev/null; then
 fi
 
 if type nvim > /dev/null; then
-  export EDITOR="nvim"
   export MANPAGER="$EDITOR +Man!"
   export MANWIDTH=999
 
