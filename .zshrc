@@ -166,7 +166,7 @@ if type nvim > /dev/null; then
 fi
 
 if type rg > /dev/null; then
-  alias g="rg -uu"
+  alias g="rg -Suu"
 else
   alias g="grep -sinr"
 fi
