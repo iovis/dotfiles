@@ -19,6 +19,7 @@ Plug 'iovis/resize.vim'
 Plug 'iovis/substitute.vim'
 Plug 'iovis/tux.vim'
 Plug 'iovis/vimlook'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vader.vim', { 'on': 'Vader', 'for': 'vader' }
@@ -671,8 +672,6 @@ nnoremap <leader>gprm :Git pull-request --push --browse -m '' --edit -a iovis -b
 " }}} fugitive "
 
 " fzf {{{ "
-set runtimepath+=/usr/local/opt/fzf
-
 augroup fzf_commands
   autocmd!
   autocmd FileType fzf tnoremap <silent> <buffer> <c-j> <down>
