@@ -10,7 +10,6 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="powerlevel10k/powerlevel10k"
 # ZSH_THEME="refined"
 
-export ASDF_PATH="/usr/local/opt/asdf/asdf.sh"
 export DOTFILES="$HOME/.dotfiles"
 export EDITOR="vim"
 export LANG="en_US.UTF-8"
@@ -18,8 +17,6 @@ export LC_ALL="en_US.UTF-8"
 export LESS="-iMSx4 -FXR"
 export NODEJS_CHECK_SIGNATURES="no"
 export PAGER="less"
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
-export PATH="$HOME/.cargo/bin:$PATH"
 export PROJECT_HOME="$HOME/Sites"
 export REVIEW_BASE="master"
 export TERM="screen-256color"
@@ -94,14 +91,89 @@ else
   alias nt="sudo ss -antp"
 fi
 
-# External aliases
+#############
+#  Aliases  #
+#############
+alias ag="alias | g --"
+alias aliases="$EDITOR ~/.zsh/aliases.zsh"
+alias d="du -sh * .*"
+alias ds="d | sort -rh"
+alias gcam="git commit -v -am"
+alias gcm="git checkout master"
+alias gcq="git checkout qa"
+alias gemo="gem outdated | grep -f $DOTFILES/default-gems"
+alias gitconfig="$EDITOR ~/.gitconfig"
+alias gls="git log -S"
+alias grbi="git rebase -i --rebase-merges"
+alias hosts="sudo $EDITOR /etc/hosts"
+alias npmci="rm -rf node_modules && npm ci"
+alias npmgo="npm -g outdated"
+alias npmgu="npm -g update"
+alias npms="npm ls -g --depth=0"
+alias pf="peerflixrb"
+alias pipdump="pip freeze > requirements.txt"
+alias pipi="pip install"
+alias pipinit="pipu pip setuptools wheel && pipr $DOTFILES/default-pips"
+alias pipo="pip list --outdated --format=columns | grep -f $DOTFILES/default-pips"
+alias pipr="pip install -r"
+alias pipu="pip install -U"
+alias pycache="find . -name '*.pyc' -exec rm {} \;"
+alias so="exec zsh"
+alias tailf="tail -f"
+alias tm="tmux"
+alias tmrc="$EDITOR ~/.tmux.conf"
+alias vin="vim -u $DOTFILES/.vimrc_min"
+alias zshrc="$EDITOR ~/.zshrc"
+
+function libupdate() {
+  brew update
+  brew upgrade
+
+  omz update --unattended
+  upgrade_plugins
+
+  asdf plugin update --all
+
+  npm -g outdated
+
+  echo '\nOutdated gems'
+  gemo
+
+  echo '\nOutdated pips'
+  pipo
+}
+
+function upgrade_plugins() {
+  BLUE='\033[0;34m'
+  GREEN='\033[0;32m'
+  NOCOLOR='\033[0m' # No Color
+
+  # git clone https://github.com/zdharma/fast-syntax-highlighting.git $ZSH_CUSTOM/plugins/fast-syntax-highlighting
+  echo -e "${BLUE}Upgrading ${GREEN}fast-syntax-highlighting${NOCOLOR}" && git -C $ZSH_CUSTOM/plugins/fast-syntax-highlighting pull
+
+  # git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+  echo -e "${BLUE}Upgrading ${GREEN}zsh-autosuggestions${NOCOLOR}" && git -C $ZSH_CUSTOM/plugins/zsh-autosuggestions pull
+
+  # git clone https://github.com/zsh-users/zsh-completions $ZSH_CUSTOM/plugins/zsh-completions
+  echo -e "${BLUE}Upgrading ${GREEN}zsh-completions${NOCOLOR}" && git -C $ZSH_CUSTOM/plugins/zsh-completions pull
+
+  # git clone https://github.com/MichaelAquilina/zsh-you-should-use $ZSH_CUSTOM/plugins/you-should-use
+  echo -e "${BLUE}Upgrading ${GREEN}you-should-use${NOCOLOR}" && git -C $ZSH_CUSTOM/plugins/you-should-use pull
+
+  # git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+  echo -e "${BLUE}Upgrading ${GREEN}powerlevel10k${NOCOLOR}" && git -C $ZSH_CUSTOM/themes/powerlevel10k pull
+}
+
+#######################
+#  Local environment  #
+#######################
 for filename in ~/.zsh/*.zsh; do
   source "$filename"
 done
 
-# Commands
-[ -f $ASDF_PATH ] && source $ASDF_PATH
-
+###########################
+#  Command configuration  #
+###########################
 if type bat > /dev/null; then
   export BAT_THEME="base16"
 
@@ -171,74 +243,20 @@ else
   alias g="grep -sinr"
 fi
 
-[[ ! -f /usr/local/etc/profile.d/z.sh ]] || source /usr/local/etc/profile.d/z.sh
+if type rustc > /dev/null; then
+  function rust() {
+    name=$(basename $1 .rs)
+    rustc $@ && ./$name && rm $name
+  }
+fi
 
-#############
-#  Aliases  #
-#############
-alias ag="alias | g --"
-alias aliases="$EDITOR ~/.zsh/aliases.zsh"
-alias d="du -sh * .*"
-alias ds="d | sort -rh"
-alias gcam="git commit -v -am"
-alias gcm="git checkout master"
-alias gcq="git checkout qa"
-alias gemo="gem outdated | grep -f $DOTFILES/default-gems"
-alias gitconfig="$EDITOR ~/.gitconfig"
-alias gls="git log -S"
-alias grbi="git rebase -i --rebase-merges"
-alias hosts="sudo $EDITOR /etc/hosts"
-alias libupdate="brew update; brew upgrade; omz update --unattended; upgrade_plugins; asdf plugin update --all; npm -g outdated; echo '\nOutdated gems'; gemo; echo '\nOutdated pips'; pipo"
-alias npmci="rm -rf node_modules && npm ci"
-alias npmgo="npm -g outdated"
-alias npmgu="npm -g update"
-alias npms="npm ls -g --depth=0"
-alias pf="peerflixrb"
-alias pipdump="pip freeze > requirements.txt"
-alias pipi="pip install"
-alias pipinit="pipu pip setuptools wheel && pipr $DOTFILES/default-pips"
-alias pipo="pip list --outdated --format=columns | grep -f $DOTFILES/default-pips"
-alias pipr="pip install -r"
-alias pipu="pip install -U"
-alias pycache="find . -name '*.pyc' -exec rm {} \;"
-alias so="exec zsh"
-alias tailf="tail -f"
-alias tm="tmux"
-alias tmrc="$EDITOR ~/.tmux.conf"
-alias vin="vim -u $DOTFILES/.vimrc_min"
-alias zshrc="$EDITOR ~/.zshrc"
+[[ ! -f /usr/local/etc/profile.d/z.sh ]] || source /usr/local/etc/profile.d/z.sh
 
 ###########
 #  Other  #
 ###########
 # Disable <C-s> flow control
 stty -ixon
-
-function rust() {
-  name=$(basename $1 .rs)
-  rustc $@ && ./$name && rm $name
-}
-
-function upgrade_plugins() {
-  BLUE='\033[0;34m'
-  GREEN='\033[0;32m'
-  NOCOLOR='\033[0m' # No Color
-
-  # git clone https://github.com/zdharma/fast-syntax-highlighting.git $ZSH_CUSTOM/plugins/fast-syntax-highlighting
-  echo -e "${BLUE}Upgrading ${GREEN}fast-syntax-highlighting${NOCOLOR}" && git -C $ZSH_CUSTOM/plugins/fast-syntax-highlighting pull
-
-  # git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
-  echo -e "${BLUE}Upgrading ${GREEN}zsh-autosuggestions${NOCOLOR}" && git -C $ZSH_CUSTOM/plugins/zsh-autosuggestions pull
-
-  # git clone https://github.com/zsh-users/zsh-completions $ZSH_CUSTOM/plugins/zsh-completions
-  echo -e "${BLUE}Upgrading ${GREEN}zsh-completions${NOCOLOR}" && git -C $ZSH_CUSTOM/plugins/zsh-completions pull
-
-  # git clone https://github.com/MichaelAquilina/zsh-you-should-use $ZSH_CUSTOM/plugins/you-should-use
-  echo -e "${BLUE}Upgrading ${GREEN}you-should-use${NOCOLOR}" && git -C $ZSH_CUSTOM/plugins/you-should-use pull
-
-  # git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
-  echo -e "${BLUE}Upgrading ${GREEN}powerlevel10k${NOCOLOR}" && git -C $ZSH_CUSTOM/themes/powerlevel10k pull
-}
 
 ##########
 #  Work  #
