@@ -174,6 +174,12 @@ done
 ###########################
 #  Command configuration  #
 ###########################
+if [[ -f "$HOME/.asdf/asdf.sh" ]]; then
+  source "$HOME/.asdf/asdf.sh"
+elif [[ -f "/usr/local/opt/asdf/asdf.sh" ]]; then
+  source "/usr/local/opt/asdf/asdf.sh"
+fi
+
 if type bat > /dev/null; then
   export BAT_THEME="base16"
 
