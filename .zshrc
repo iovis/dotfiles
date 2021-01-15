@@ -11,7 +11,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # ZSH_THEME="refined"
 
 export DOTFILES="$HOME/.dotfiles"
-export EDITOR="nvim"
+export EDITOR="vim"
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export LESS="-iMSx4 -FXR"
@@ -62,7 +62,7 @@ if [[ $OSTYPE == darwin* ]]; then
   alias flushcache="dscacheutil -flushcache"
   alias nt="lsof -Pni"
   alias rebuildlaunchservices="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user"
-  alias repair_permissions="diskutil resetUserPermissions / $(id -u)"
+  alias repair_permissions="diskutil resetUserPermissions / \$(id -u)"
   alias simulator="open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app"
   alias updatedb="sudo /usr/libexec/locate.updatedb"
 
@@ -95,36 +95,36 @@ fi
 #  Aliases  #
 #############
 alias ag="alias | g --"
-alias aliases="$EDITOR ~/.zsh/aliases.zsh"
+alias aliases="\$EDITOR ~/.zsh/aliases.zsh"
 alias d="du -sh * .*"
 alias ds="d | sort -rh"
 alias gcam="git commit -v -am"
 alias gcm="git checkout master"
 alias gcq="git checkout qa"
-alias gemo="gem outdated | grep -f $DOTFILES/default-gems"
-alias gitconfig="$EDITOR ~/.gitconfig"
+alias gemo="gem outdated | grep -f \$DOTFILES/default-gems"
+alias gitconfig="\$EDITOR ~/.gitconfig"
 alias gls="git log -S"
 alias grbi="git rebase -i --rebase-merges"
-alias hosts="sudo $EDITOR /etc/hosts"
+alias hosts="sudo \$EDITOR /etc/hosts"
 alias npmci="rm -rf node_modules && npm ci"
 alias npmgo="npm -g outdated"
 alias npmgu="npm -g update"
 alias npms="npm ls -g --depth=0"
-alias path="echo $PATH | tr ':' '\n'"
+alias path="echo \$PATH | tr ':' '\n'"
 alias pf="peerflixrb"
 alias pipdump="pip freeze > requirements.txt"
 alias pipi="pip install"
-alias pipinit="pipu pip setuptools wheel && pipr $DOTFILES/default-pips"
-alias pipo="pip list --outdated --format=columns | grep -f $DOTFILES/default-pips"
+alias pipinit="pipu pip setuptools wheel && pipr \$DOTFILES/default-pips"
+alias pipo="pip list --outdated --format=columns | grep -f \$DOTFILES/default-pips"
 alias pipr="pip install -r"
 alias pipu="pip install -U"
 alias pycache="find . -name '*.pyc' -exec rm {} \;"
 alias so="exec zsh"
 alias tailf="tail -f"
 alias tm="tmux"
-alias tmrc="$EDITOR ~/.tmux.conf"
-alias vin="vim -u $DOTFILES/.vimrc_min"
-alias zshrc="$EDITOR ~/.zshrc"
+alias tmrc="\$EDITOR ~/.tmux.conf"
+alias vin="vim -u \$DOTFILES/.vimrc_min"
+alias zshrc="\$EDITOR ~/.zshrc"
 
 function libupdate() {
   brew update
@@ -234,11 +234,12 @@ if type hub > /dev/null; then
 fi
 
 if type nvim > /dev/null; then
+  export EDITOR="nvim"
   export MANPAGER="$EDITOR +Man!"
   export MANWIDTH=999
 
   alias ni="nvim"
-  alias nin="nvim -u $DOTFILES/.vimrc_min"
+  alias nin="nvim -u \$DOTFILES/.vimrc_min"
   alias nis="nvim -S Session.vim"
   alias notes="nvim -c \"let g:airline_exclude_filetypes = ['markdown'] | setf markdown | Goyo\""
 fi
