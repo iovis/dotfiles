@@ -216,8 +216,8 @@ if type fzf > /dev/null; then
   export FZF_CTRL_T_OPTS="--select-1 --exit-0 --preview '$preview_command' --bind º:toggle-preview"
   export FZF_DEFAULT_OPTS="--ansi --bind=ctrl-p:page-down,ctrl-n:page-up"
 
-  alias af="eval \$(alias | fzf-tmux | awk -F= '{gsub(/'\''/, \"\", \$1); print \$1}')"
-  alias psf="ps aux | fzf-tmux"
+  alias af="eval \$(alias | fzf | tr -d \"'\" | cut -d= -f1)"
+  alias psf="ps aux | fzf"
 fi
 
 if type http > /dev/null; then
