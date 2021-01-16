@@ -207,7 +207,13 @@ fi
 
 [[ ! -f ~/.fzf.zsh ]] || source ~/.fzf.zsh
 if type fzf > /dev/null; then
-  export FZF_CTRL_T_OPTS="--select-1 --exit-0 --preview 'bat --style=numbers --color=always {} 2> /dev/null' --bind º:toggle-preview"
+  if type bat > /dev/null; then
+    preview_command='bat --style=numbers --color=always {} 2> /dev/null'
+  else
+    preview_command='cat {} 2> /dev/null'
+  fi
+
+  export FZF_CTRL_T_OPTS="--select-1 --exit-0 --preview '$preview_command' --bind º:toggle-preview"
   export FZF_DEFAULT_OPTS="--ansi --bind=ctrl-p:page-down,ctrl-n:page-up"
 
   alias af="eval \$(alias | fzf-tmux | awk -F= '{gsub(/'\''/, \"\", \$1); print \$1}')"
