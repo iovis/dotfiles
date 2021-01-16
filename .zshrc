@@ -198,7 +198,9 @@ else
 fi
 
 if type fd > /dev/null; then
-  export FZF_DEFAULT_COMMAND="fd -H -E '.git' -E '.keep' --type file --follow --color=always"
+  if type fzf > /dev/null; then
+    export FZF_DEFAULT_COMMAND="fd -H -E '.git' -E '.keep' --type file --follow --color=always"
+  fi
 
   alias files="fd -H -E '.git' -E '.keep' --type file --follow --color=always"
 fi
