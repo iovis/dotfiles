@@ -218,6 +218,11 @@ if type fzf > /dev/null; then
 
   alias af="eval \$(alias | fzf | tr -d \"'\" | cut -d= -f1)"
   alias psf="ps aux | fzf"
+
+  e() {
+    IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
+    [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+  }
 fi
 
 if type http > /dev/null; then
