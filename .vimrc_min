@@ -206,9 +206,9 @@ onoremap in :<C-u>normal vin<CR>
 
 " buffer text objects (ie)
 xnoremap ie :<C-u>let z = @/\|1;/^./kz<CR>G??<CR>:let @/ = z<CR>V'z
-onoremap ie :<C-u>normal vi%<CR>
+onoremap ie :<C-u>normal vie<CR>
 xnoremap ae GoggV
-onoremap ae :<C-u>normal va%<CR>
+onoremap ae :<C-u>normal vae<CR>
 
 " last change text object (ik)
 xnoremap ik `]o`[
