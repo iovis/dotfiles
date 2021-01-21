@@ -512,8 +512,8 @@ hi DiffDelete   ctermfg=none  ctermbg=52    cterm=bold
 hi DiffChange   ctermfg=none  ctermbg=23    cterm=bold
 hi DiffText     ctermfg=none  ctermbg=23    cterm=bold
 
-hi TabLine      ctermfg=white ctermbg=none  cterm=none
-hi TabLineSel   ctermfg=green ctermbg=none  cterm=none
+hi TabLine      ctermfg=8     ctermbg=none  cterm=none
+hi TabLineSel   ctermfg=blue  ctermbg=none  cterm=none
 hi TabLineFill  cterm=none
 
 hi SLDirectory  ctermfg=blue
