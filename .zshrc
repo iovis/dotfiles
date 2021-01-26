@@ -165,6 +165,10 @@ function upgrade_plugins() {
   echo -e "${BLUE}Upgrading ${GREEN}powerlevel10k${NOCOLOR}" && git -C $ZSH_CUSTOM/themes/powerlevel10k pull
 }
 
+inode_count() {
+  sudo find ${1:-.} -maxdepth 1 -type d | grep -v "^${1:-\.}$" | xargs -n1 -I{} sudo find {} -xdev -type f | sed -n "s:^${1:-\.}::p" | cut -d"/" -f2 | uniq -c | sort -rn
+}
+
 #######################
 #  Local environment  #
 #######################
