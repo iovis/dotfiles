@@ -305,9 +305,12 @@ function lndump() {
 }
 
 function restoredb() {
+  db_dump=${1:-$DUMPS_DIR/latest.dmp}
+  echo "Importing $(basename $(realpath $db_dump))"
+
   flushredis &&
     rails db:drop db:create &&
-    psql -h localhost rubicon_development < "${1:-$DUMPS_DIR/latest.dmp}" &&
+    psql -h localhost rubicon_development < "$db_dump" &&
     rails db:migrate db:test:prepare
 }
 
