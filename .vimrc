@@ -231,12 +231,8 @@ nnoremap <silent> <leader>c :close<cr>
 nnoremap <silent> <leader>q :%bdelete<cr>
 nnoremap <silent> <leader>w :w!<cr>
 nnoremap <silent> <leader>x :wqa<cr>
-nnoremap <silent> <leader>ª :bdelete!<cr>
-nnoremap <silent> <leader>º :Bdelete!<cr>
 nnoremap <silent> g2 :set shiftwidth=2 softtabstop=2 expandtab \| retab<cr>gg=G
 nnoremap <silent> g4 :set shiftwidth=4 softtabstop=4 expandtab \| retab<cr>gg=G
-nnoremap <silent> ª :bdelete<cr>
-nnoremap <silent> º :Bdelete<cr>
 nnoremap M <c-w>o
 nnoremap Q @q
 nnoremap U :undolist<cr>:undo<space>
@@ -250,6 +246,16 @@ noremap L g$
 xnoremap <silent> Q :norm @q<cr>
 xnoremap Ñ ?
 xnoremap ñ /
+
+" buffer closing {{{ "
+" Don't close if there are changes (toggle removing split or not)
+nnoremap <silent> º :Bdelete<cr>
+nnoremap <silent> <leader>º :bdelete<cr>
+
+" Close even if there are changes (toggle removing the split)
+nnoremap <silent> ª :Bdelete!<cr>
+nnoremap <silent> <leader>ª :bdelete!<cr>
+" }}} buffer closing "
 " }}} bindings "
 
 " Map pending
