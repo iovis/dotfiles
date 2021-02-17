@@ -3,6 +3,7 @@
   files = !git diff --name-only $(git merge-base HEAD \"$REVIEW_BASE\")
   hidden = !git ls-files -v | grep \"^[a-z]\"
   hide = update-index --assume-unchanged
+  hub = !hub
   ignored = !git status -s --ignored | grep \"^!!\"
   publish = !git push -u origin $(git branch-name)
   review = "!f() { $EDITOR ${@:-$(git files)}; }; f"

@@ -683,8 +683,8 @@ nnoremap <silent> <leader>gdv :Gvdiffsplit<cr>
 nnoremap <silent> <leader>gdh :Ghdiffsplit<cr>
 nnoremap <silent> <leader>gdm :Gdiffsplit master<cr>
 
-nnoremap <leader>gprq :Git pull-request --push --browse -m '' --edit -a iovis -b qa -l 'Needs Review'
-nnoremap <leader>gprm :Git pull-request --push --browse -m '' --edit -a iovis -b master -l 'Waiting for QA'
+nnoremap <leader>gprq :Git hub pull-request --push --browse -m '' --edit -a iovis -b qa -l 'Needs Review'
+nnoremap <leader>gprm :Git hub pull-request --push --browse -m '' --edit -a iovis -b master -l 'Waiting for QA'
 " }}} fugitive "
 
 " fzf {{{ "

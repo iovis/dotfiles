@@ -234,10 +234,9 @@ if type http > /dev/null; then
 fi
 
 if type hub > /dev/null; then
-  alias git=hub
-  alias gpr="git pull-request --push --browse -m '' --edit -a iovis -b"
-  alias gprc="git pr checkout"
-  alias gprs="git pr list"
+  alias gpr="git hub pull-request --push --browse -m '' --edit -a iovis -b"
+  alias gprc="git hub pr checkout"
+  alias gprs="git hub pr list"
 
   function gprb() {
     if [[ -n $1 ]]; then
@@ -246,7 +245,7 @@ if type hub > /dev/null; then
       local url="pulls"
     fi
 
-    git browse -- $url
+    git hub browse -- $url
   }
 fi
 
