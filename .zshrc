@@ -52,6 +52,7 @@ bindkey '^[^[[D' backward-word
 bindkey '^[^[[C' forward-word
 bindkey "^N" autosuggest-accept
 bindkey "^P" forward-word
+bindkey "^U" backward-kill-line
 
 bindkey -s "^[ñ" '~'
 bindkey -s "^[+" ']'
