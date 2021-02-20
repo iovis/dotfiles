@@ -278,46 +278,6 @@ fi
 
 [[ ! -f /usr/local/etc/profile.d/z.sh ]] || source /usr/local/etc/profile.d/z.sh
 
-##########
-#  Work  #
-##########
-export DUMPS_DIR="$HOME/Documents/RubiconMD/dumps"
-
-alias dcup="docker-compose up -d --remove-orphans"
-alias dumpdb="pg_dump -Fc --clean --no-owner -h localhost"
-alias flushredis="redis-cli flushall"
-alias listdbs="psql -h localhost -c '\l'"
-alias rsb="rails server -b 0.0.0.0"
-alias rtg="rake -T"
-
-function mvdmp() {
-  mv ~/Downloads/*_prod.dmp* $DUMPS_DIR
-  gzip -d $DUMPS_DIR/*_prod.dmp.gz
-  lndump
-}
-
-function lndump() {
-  ls -t $DUMPS_DIR/*_prod.dmp | head -1 | xargs -I{} ln -sf {} $DUMPS_DIR/latest.dmp
-}
-
-function restoredb() {
-  db_dump=${1:-$DUMPS_DIR/latest.dmp}
-  echo "Importing $(basename $(realpath $db_dump))"
-
-  flushredis &&
-    rails db:drop db:create &&
-    psql -h localhost rubicon_development < "$db_dump" &&
-    rails db:migrate db:test:prepare
-}
-
-function rptp() {
-  rails parallel:drop parallel:create parallel:prepare
-}
-
-function awsls() {
-  aws ec2 describe-instances --query 'Reservations[*].Instances[*].[InstanceId,State.Name,InstanceType,PrivateIpAddress,PublicIpAddress,Tags[?Key==`Name`].Value[]]' --output json | tr -d '\n[] "' | perl -pe 's/i-/\ni-/g' | tr ',' '\t' | sed -e 's/null/None/g' | grep '^i-' | column -t
-}
-
 ##########################
 #  Plugin configuration  #
 ##########################
