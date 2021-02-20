@@ -45,6 +45,9 @@ source $ZSH/oh-my-zsh.sh
 ##############
 #  Bindkeys  #
 ##############
+# Disable <C-s> flow control
+stty -ixon
+
 bindkey '^[^[[D' backward-word
 bindkey '^[^[[C' forward-word
 bindkey "^N" autosuggest-accept
@@ -274,12 +277,6 @@ if type rustc > /dev/null; then
 fi
 
 [[ ! -f /usr/local/etc/profile.d/z.sh ]] || source /usr/local/etc/profile.d/z.sh
-
-###########
-#  Other  #
-###########
-# Disable <C-s> flow control
-stty -ixon
 
 ##########
 #  Work  #
