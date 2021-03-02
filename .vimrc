@@ -663,21 +663,19 @@ let g:user_emmet_settings = {
 " }}} emmet "
 
 " fugitive {{{ "
-nmap <silent> <leader>- :G<cr><c-n>
+nmap <silent> <leader>- :Gedit:<cr><c-n>
 
-nnoremap <leader>gcc :Git commit<cr>
-nnoremap <leader>gl  :Git pull<cr>
-nnoremap <leader>gm  :Git mergetool<cr>
-nnoremap <leader>go  :Gread<cr>
-nnoremap <leader>gpp :Git push<cr>
-nnoremap <leader>gw  :Gwrite<cr>
+nnoremap <leader>gm :Git mergetool<cr>
+nnoremap <leader>go :Gread<cr>
 
-nnoremap <silent> <leader>gb :Gblame<cr>
+nnoremap <silent> <leader>gb :Git blame<cr>
 nnoremap <silent> <leader>gg :Gbrowse<cr>
-nnoremap <silent> <leader>gh :silent 0Gclog<cr>
+
+nnoremap <silent> <leader>gh :Glol -100 %<cr>
+nnoremap <silent> <leader>gl :Glol -100<cr>
 
 xnoremap <silent> <leader>gg :Gbrowse<cr>
-xnoremap <silent> <leader>gh :<c-u>silent '<,'>Gclog<cr>
+xnoremap <silent> <leader>gh :GLogL -100<cr>
 
 nnoremap <silent> <leader>gdv :Gvdiffsplit<cr>
 nnoremap <silent> <leader>gdh :Ghdiffsplit<cr>
@@ -685,6 +683,9 @@ nnoremap <silent> <leader>gdm :Gdiffsplit master<cr>
 
 nnoremap <leader>gprq :Git hub pull-request --push --browse -m '' --edit -a iovis -b qa -l 'Needs Review'
 nnoremap <leader>gprm :Git hub pull-request --push --browse -m '' --edit -a iovis -b master -l 'Waiting for QA'
+
+command! -nargs=* Glol Git log --graph --pretty='\%h -\%d \%s (\%cr) <\%an>' <args>
+command! -range -nargs=* GLogL Git log -L <line1>,<line2>:% <args>
 " }}} fugitive "
 
 " fzf {{{ "
