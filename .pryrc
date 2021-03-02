@@ -1,9 +1,15 @@
 begin
+  require 'pry-doc'
+rescue LoadError
+  puts "couldn't load pry-doc"
+end
+
+begin
   require 'awesome_print'
 
   AwesomePrint&.pry!
 rescue LoadError
-  nil
+  puts "couldn't load awesome_print"
 end
 
 # Use pry_instance.config.pager = true to use 'less'
