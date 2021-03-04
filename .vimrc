@@ -569,10 +569,11 @@ nnoremap <silent> <leader>Q :BufOnly!<cr>
 " coc {{{ "
 let g:coc_global_extensions = [
 \ 'coc-css',
-\ 'coc-highlight',
+\ 'coc-html',
 \ 'coc-json',
 \ 'coc-python',
 \ 'coc-rls',
+\ 'coc-sh',
 \ 'coc-solargraph',
 \ 'coc-tsserver',
 \ 'coc-yaml'
