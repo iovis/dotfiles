@@ -1,4 +1,5 @@
 {
+  "coc.preferences.extensionUpdateCheck": "daily",
   "diagnostic.enable": false,
   "list.source.outline.ctagsFilestypes": ["rb"],
   "solargraph.checkGemVersion": false,
