@@ -6,3 +6,7 @@ if [[ -f "$HOME/.asdf/asdf.sh" ]]; then
 elif [[ -f "/usr/local/opt/asdf/asdf.sh" ]]; then
   source "/usr/local/opt/asdf/asdf.sh"
 fi
+
+if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
+  source "${VIRTUAL_ENV}/bin/activate"
+fi

@@ -1,15 +1,11 @@
-autopep8
 awscli
-flake8
 httpie
 ipython
-jedi
 pip
+pipenv
 pynvim
 setuptools
-shodan
 sqlformat
-sqlmap
 sqlparse
 vim-vint
 yamllint
