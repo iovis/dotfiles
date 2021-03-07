@@ -36,6 +36,9 @@ Plug 'moll/vim-bbye'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'neoclide/coc-neco'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+Plug 'nvim-treesitter/playground'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'raimondi/delimitMate'
 Plug 'ryanoasis/vim-devicons'
@@ -1059,6 +1062,82 @@ omap id <Plug>(textobj-rubyblock-i)
 " tmux navigator {{{ "
 let g:tmux_navigator_save_on_switch = 2
 " }}} tmux navigator "
+
+" treesitter {{{ "
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = {
+    'bash',
+    'css',
+    'graphql',
+    'html',
+    'javascript',
+    'json',
+    'jsonc',
+    'lua',
+    'python',
+    'query',
+    'regex',
+    'ruby',
+    'rust',
+    'toml',
+    'tsx',
+    'typescript',
+    'yaml'
+  },
+  highlight = {
+    enable = true
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "<c-n>",
+      node_incremental = "<c-n>",
+      scope_incremental = "<c-s>",
+      node_decremental = "<c-p>",
+    }
+  },
+  indent = {
+    enable = true,
+    disable = { "ruby" },
+  }
+}
+EOF
+" }}} treesitter "
+
+" treesitter playground {{{ "
+lua <<EOF
+require "nvim-treesitter.configs".setup {
+  playground = {
+    enable = true,
+  }
+}
+EOF
+
+nnoremap +p :TSPlaygroundToggle<cr>
+nnoremap +h :TSHighlightCapturesUnderCursor<cr>
+" }}} treesitter playground "
+
+" treesitter textobjects {{{ "
+lua <<EOF
+require "nvim-treesitter.configs".setup {
+  textobjects = {
+    select = {
+      enable = true,
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+        ["ad"] = "@block.outer",
+        ["id"] = "@block.inner",
+      },
+    },
+  },
+}
+EOF
+" }}} treesitter textobjects "
 
 " tux.vim {{{ "
 nnoremap c<space> :Tux<space>
