@@ -758,6 +758,9 @@ augroup fzf_commands
   autocmd FileType fzf tnoremap <silent> <buffer> <c-k> <up>
   autocmd FileType fzf tnoremap <silent> <buffer> <m-left>  <s-left>
   autocmd FileType fzf tnoremap <silent> <buffer> <m-right> <s-right>
+  autocmd FileType fzf tnoremap <silent> <buffer> <m-+> ]
+  autocmd FileType fzf tnoremap <silent> <buffer> <m-ç> }
+  autocmd FileType fzf tnoremap <silent> <buffer> <m-ñ> ~
   autocmd FileType fzf setlocal nornu nonu signcolumn=no
 augroup end
 
