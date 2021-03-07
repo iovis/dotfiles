@@ -653,7 +653,7 @@ nmap <silent> gR    <Plug>(coc-rename)
 
 nnoremap <silent> <leader>lR :CocList -I symbols<cr>
 nnoremap <silent> <leader>lc :CocList commands<cr>
-nnoremap <silent> <leader>le :CocList extensions<cr>
+nnoremap <silent> <leader>le :CocList --normal extensions<cr>
 nnoremap <silent> <leader>lr :CocList outline<cr>
 nnoremap <silent> <leader>uc :CocConfig<cr>
 nnoremap <silent> gd :call <SID>show_documentation()<CR>
@@ -664,10 +664,12 @@ function! s:check_back_space() abort
 endfunction
 
 function! s:show_documentation()
-  if &filetype ==? 'vim'
-    execute 'h ' . expand('<cword>')
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
   else
-    call CocAction('doHover')
+    execute '!' . &keywordprg . ' ' . expand('<cword>')
   endif
 endfunction
 
