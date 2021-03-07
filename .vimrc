@@ -775,7 +775,7 @@ command! -bang -nargs=* Rg
       \ call fzf#vim#grep(
       \   "rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>),
       \   1,
-      \   fzf#vim#with_preview({ 'options': '--delimiter : --nth 4..' }, 'right:50%:hidden', 'º'),
+      \   fzf#vim#with_preview({ 'options': '--delimiter : --nth 4..' }, 'right:50%', 'º'),
       \   <bang>0
       \ )
 
