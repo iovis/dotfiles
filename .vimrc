@@ -565,6 +565,10 @@ endfunction
 cnoremap <expr> <CR> CCR()
 " }}} CCR "
 
+" registers {{{ "
+nmap +r :registers<cr>
+" }}} registers "
+
 " plugin configuration {{{ "
 " airline {{{ "
 let g:airline#extensions#tabline#buffer_idx_mode = 1
