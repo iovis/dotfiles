@@ -180,6 +180,14 @@ rbg() {
   rg "$1" $(bundle list --paths)
 }
 
+encrypt() {
+  openssl enc -aes-256-cbc -salt -in "$1" -out "$1.enc"
+}
+
+decrypt() {
+  openssl enc -d -aes-256-cbc -salt -in "$1" -out "$2"
+}
+
 #######################
 #  Local environment  #
 #######################
