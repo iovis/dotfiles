@@ -48,6 +48,7 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
   vcs
   newline
   background_jobs
+  virtualenv
   prompt_char
 )
 
