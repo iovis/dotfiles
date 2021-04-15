@@ -176,6 +176,10 @@ inode_count() {
   sudo find ${1:-.} -maxdepth 1 -type d | grep -v "^${1:-\.}$" | xargs -n1 -I{} sudo find {} -xdev -type f | sed -n "s:^${1:-\.}::p" | cut -d"/" -f2 | uniq -c | sort -rn
 }
 
+rbg() {
+  rg "$1" $(bundle list --paths)
+}
+
 #######################
 #  Local environment  #
 #######################
