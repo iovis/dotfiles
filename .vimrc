@@ -422,6 +422,8 @@ endif
 " config editing {{{ "
 nnoremap <leader>u <nop>
 nnoremap <leader>us :so $MYVIMRC<cr>:echo 'vimrc sourced'<cr>
+
+nnoremap <silent> <leader>ua :e! ~/.zsh/aliases.zsh<cr>
 nnoremap <silent> <leader>uf :execute empty(&filetype) ? 'echo "no filetype specified"' : 'EditFtplugin'<cr>
 nnoremap <silent> <leader>uh :sp $MYVIMRC<cr>
 nnoremap <silent> <leader>um :e! ~/.dotfiles/.vimrc_min<cr>
@@ -429,6 +431,7 @@ nnoremap <silent> <leader>up :e! .projections.json<cr>
 nnoremap <silent> <leader>ut :e! ~/.tmux.conf<cr>
 nnoremap <silent> <leader>uu :e! $MYVIMRC<cr>
 nnoremap <silent> <leader>uv :vs $MYVIMRC<cr>
+nnoremap <silent> <leader>uw :e! ~/.zsh/work.zsh<cr>
 nnoremap <silent> <leader>uz :e! ~/.zshrc<cr>
 
 command! -nargs=? -complete=filetype EditFtplugin
