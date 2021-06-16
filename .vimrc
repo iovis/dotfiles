@@ -225,6 +225,7 @@ nnoremap <silent> <leader><right> :lnfile<cr>
 nnoremap <silent> <leader><up>    :cpfile<cr>
 nnoremap <silent> <leader>= <c-w>=
 nnoremap <silent> <leader>C :tabclose<cr>
+nnoremap <silent> <leader>Q :%bdelete\|e#\|bd#<cr>
 nnoremap <silent> <leader>T :tabnew<cr>
 nnoremap <silent> <leader>X :qa!<cr>
 nnoremap <silent> <leader>\| <c-w>\|
@@ -261,8 +262,6 @@ nnoremap <silent> <leader>ª :bdelete!<cr>
 " }}} bindings "
 
 " Map pending
-" nnoremap +
-" nnoremap _
 " nnoremap &
 
 " substitute {{{ "
