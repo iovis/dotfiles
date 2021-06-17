@@ -834,11 +834,11 @@ nnoremap <silent> <leader>sg :RgSnippets<cr>
 nnoremap <silent> <leader>sf :SnippetFiles<cr>
 nnoremap <silent> <leader>ñ  :BLines!<cr>
 
-xnoremap <silent> <leader>f  y:Rg <c-r>"<cr>
+xnoremap <silent> <leader>f  y:Rg <c-r>=escape(@",'[](){}\.*^?+\|^$')<cr><cr>
 
 " Make FZF use Rg (good for using regexes)
 nnoremap <silent> +f :RG<cr>
-xnoremap <silent> +f  y:RG <c-r>"<cr>
+xnoremap <silent> +f  y:RG <c-r>=escape(@",'[](){}\.*^?+\|^$')<cr><cr>
 " }}} fzf "
 
 " goyo {{{ "
