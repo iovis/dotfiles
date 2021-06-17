@@ -1221,9 +1221,9 @@ nnoremap <leader>dcu :Dcup<cr>
 nnoremap <leader>dcp :Dcps<cr>
 nnoremap <leader>dcs :Dcstop<cr>
 
-command! Dcup   Dispatch! docker-compose up -d --remove-orphans
-command! Dcps   Dispatch  docker-compose ps
-command! Dcstop Dispatch! docker-compose stop
+command! Dcup   Dispatch! docker compose up -d --remove-orphans
+command! Dcps   Dispatch  docker compose ps
+command! Dcstop Dispatch! docker compose stop
 " }}} Docker "
 
 " Git {{{ "
