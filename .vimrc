@@ -299,6 +299,14 @@ function! SubstituteOperator(type)
 endfunction
 " }}} substitute "
 
+" global command {{{ "
+nnoremap +g :g//<left>
+nnoremap +v :v//<left>
+
+xnoremap +g y:g/<c-r>=escape(@",'/\')<cr>/
+xnoremap +v y:v/<c-r>=escape(@",'/\')<cr>/
+" }}} global command "
+
 " folds {{{ "
 set nofoldenable
 
