@@ -19,4 +19,18 @@ nnoremap <silent> <buffer> <leader>so :Tux rspec %<cr>
 nnoremap <silent> <buffer> <leader>sd :Tux rspec --format documentation %<cr>
 nnoremap <silent> <buffer> <leader>sp :execute 'Tux FPROF=1 FDOC=1 rspec ' . expand('%') . ':' . line('.')<cr>
 nnoremap <silent> <buffer> <leader>sr :Tux spring stop && rspec %<cr>
+
+" Load failing tests in a scratch window
+nmap +R :Redir !cat tmp/rspec-failures.txt<cr>
+      \ :g/\(passed\\|pending\)/d<cr>
+      \ :v/spec/d<cr>
+      \ :%s/\[\d.*<cr>
+      \ :sort u<cr>
+      \ :%norm! Irspec <cr>
 " }}} quick testing "
+
+" rails {{{ "
+" Execute line in rails runner
+nnoremap <buffer> <leader>sr :execute 'Rpp ' . getline('.')<cr>
+nnoremap <buffer> <leader>P  :Rpp<space>
+" }}} rails "

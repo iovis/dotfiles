@@ -985,16 +985,6 @@ nnoremap <silent> <leader>S :Start!<cr>
 let g:peekaboo_delay = 750
 " }}} peekaboo "
 
-" rails {{{ "
-augroup rails_commands
-  autocmd!
-
-  " Execute line in rails runner
-  autocmd FileType ruby nnoremap <buffer> <leader>sr :execute 'Rpp ' . getline('.')<cr>
-  autocmd FileType ruby nnoremap <buffer> <leader>P  :Rpp<space>
-augroup END
-" }}} rails "
-
 " resize.vim {{{ "
 nmap <m-up>    <Plug>ResizeUp
 nmap <m-down>  <Plug>ResizeDown
