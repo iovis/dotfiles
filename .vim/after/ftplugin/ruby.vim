@@ -16,6 +16,7 @@ nnoremap <silent> <buffer> <leader>si :execute 'Tux rspec ' . expand('%') . ':' 
 
 " Execute current spec file in last pane
 nnoremap <silent> <buffer> <leader>so :Tux rspec %<cr>
+nnoremap <silent> <buffer> <leader>sd :Tux rspec --format documentation %<cr>
 nnoremap <silent> <buffer> <leader>sp :execute 'Tux FPROF=1 FDOC=1 rspec ' . expand('%') . ':' . line('.')<cr>
 nnoremap <silent> <buffer> <leader>sr :Tux spring stop && rspec %<cr>
 " }}} quick testing "
