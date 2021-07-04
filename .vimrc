@@ -4,6 +4,7 @@ filetype off
 
 call plug#begin()
 
+Plug 'akinsho/nvim-bufferline.lua'
 Plug 'andrewradev/splitjoin.vim'
 Plug 'benekastah/neomake'
 Plug 'chiel92/vim-autoformat'
@@ -581,33 +582,8 @@ nmap +r :registers<cr>
 
 " plugin configuration {{{ "
 " airline {{{ "
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'tomorrow'
-
-let g:airline#extensions#tabline#buffer_idx_format = {
-      \ '0': ' 0 ',
-      \ '1': ' 1 ',
-      \ '2': ' 2 ',
-      \ '3': ' 3 ',
-      \ '4': ' 4 ',
-      \ '5': ' 5 ',
-      \ '6': ' 6 ',
-      \ '7': ' 7 ',
-      \ '8': ' 8 ',
-      \ '9': ' 9 '
-      \}
-
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
 " }}} airline "
 
 " autoformat {{{ "
@@ -922,6 +898,35 @@ augroup netrw_commands
   autocmd FileType netrw nmap     <buffer> <c-r> <Plug>NetrwRefresh
 augroup END
 " }}} netrw "
+
+" nvim-bufferline {{{ "
+nnoremap <silent> <tab>   :BufferLineCycleNext<cr>
+nnoremap <silent> <s-tab> :BufferLineCyclePrev<cr>
+
+nnoremap <silent> +be :BufferLineSortByExtension<cr>
+nnoremap <silent> +bd :BufferLineSortByDirectory<cr>
+
+lua <<EOF
+require'bufferline'.setup {
+  highlights = {
+    indicator_selected = {
+      guifg = {
+        attribute = "bg",
+        highlight = "HighlightedyankRegion",
+      }
+    }
+  },
+  options = {
+    mappings = true,
+    number_style = "",
+    numbers = "ordinal",
+    show_buffer_close_icons = false,
+    show_close_icon = false,
+    separator_style = { "", "" },
+  }
+}
+EOF
+" }}} nvim-bufferline "
 
 " nvim-tree {{{ "
 let g:nvim_tree_disable_netrw = 0
