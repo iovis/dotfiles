@@ -41,6 +41,7 @@ Session.vim
 .netrwhist
 *~
 .projections.json
+NvimTree
 
 ### Npm ###
 node_modules/
