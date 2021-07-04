@@ -8,7 +8,6 @@ Plug 'andrewradev/splitjoin.vim'
 Plug 'benekastah/neomake'
 Plug 'chiel92/vim-autoformat'
 Plug 'chrisbra/csv.vim'
-Plug 'chriskempson/base16-vim'
 Plug 'christoomey/vim-sort-motion'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'honza/vim-snippets'
@@ -36,6 +35,7 @@ Plug 'moll/vim-bbye'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'neoclide/coc-neco'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'norcalli/nvim-base16.lua'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'pbrisbin/vim-mkdir'
@@ -79,7 +79,6 @@ call plug#end()
 
 " config {{{ "
 filetype plugin indent on
-colorscheme base16-default-dark
 
 if !has('g:syntax_on')
   syntax enable
@@ -621,6 +620,14 @@ let g:formatters_javascript = ['prettier']
 let g:formatters_json = ['prettier']
 let g:formatters_ruby = ['rubocop']
 " }}} autoformat "
+
+" base16 {{{ "
+lua << EOF
+local base16 = require 'base16'
+
+base16(base16.themes["default-dark"], true)
+EOF
+" }}} base16 "
 
 " browsers_castle {{{ "
 nnoremap g<space>  :Google<space>
