@@ -1125,7 +1125,8 @@ require'nvim-treesitter.configs'.setup {
     'yaml'
   },
   highlight = {
-    enable = true
+    enable = true,
+    additional_vim_regex_highlighting = true -- [workaround] Allow for matchit and vim-endwise to work
   },
   incremental_selection = {
     enable = true,
