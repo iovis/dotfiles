@@ -27,6 +27,8 @@ Plug 'justinmk/vim-sneak'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-user'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'machakann/vim-highlightedyank'
 Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
@@ -40,9 +42,7 @@ Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'raimondi/delimitMate'
-Plug 'ryanoasis/vim-devicons'
 Plug 'schickling/vim-bufonly'
-Plug 'scrooloose/nerdtree'
 Plug 'shougo/echodoc.vim'
 Plug 'shougo/neco-vim'
 Plug 'sirver/ultisnips'
@@ -69,7 +69,6 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-vinegar'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'wellle/targets.vim'
@@ -924,46 +923,45 @@ augroup netrw_commands
 augroup END
 " }}} netrw "
 
-" nerdtree {{{ "
-let g:NERDTreeAutoDeleteBuffer = 1
-let g:NERDTreeIgnore = ['\~$', '\.pyc$', '^Session\.vim$']
-let g:NERDTreeMinimalUI = 1
-" let g:NERDTreeShowBookmarks = 1
-let g:NERDTreeShowLineNumbers = 1
+" nvim-tree {{{ "
+let g:nvim_tree_disable_netrw = 0
+let g:nvim_tree_disable_window_picker = 1
+let g:nvim_tree_indent_markers = 1
+let g:nvim_tree_width = 35
+let g:nvim_tree_ignore = [
+  \ '*.pyc',
+  \ '.DS_Store',
+  \ '.bundle',
+  \ '.git',
+  \ '.github',
+  \ '.vscode',
+  \ '.yardoc',
+  \ 'Session.vim',
+  \ 'node_modules',
+  \ 'tags',
+\ ]
 
-nnoremap <silent> - :NERDTreeFind<cr>
-nnoremap <silent> <leader>k :NERDTreeToggle<cr>
+nnoremap <leader>k :NvimTreeToggle<cr>
+nnoremap - :NvimTreeFindFile<cr>
 
-augroup nerdtree_commands
+augroup nvim_tree
   autocmd!
-  autocmd FileType nerdtree setlocal relativenumber
-  autocmd FileType nerdtree nnoremap <buffer> . :<c-u> <c-r>=g:NERDTreeFileNode.GetSelected().path.str()<cr><home>
-  autocmd FileType nerdtree nmap     <buffer> ! .!
-  autocmd FileType nerdtree nnoremap <buffer> <silent> <c-j> :TmuxNavigateDown<cr>
-  autocmd FileType nerdtree nnoremap <buffer> <silent> <c-k> :TmuxNavigateUp<cr>
-  autocmd FileType nerdtree xnoremap <buffer> <silent> o     :call <SID>OpenMultiple()<CR>
-  autocmd FileType nerdtree xnoremap <buffer> <silent> <cr>  :call <SID>OpenMultiple()<CR>
-augroup end
 
-function! s:OpenMultiple() range
-  let curLine = a:firstline
+  autocmd BufWinEnter NvimTree setlocal rnu signcolumn=no
+augroup END
 
-  while curLine <= a:lastline
-    call cursor(curLine, 1)
-    let node = g:NERDTreeFileNode.GetSelected()
+lua <<EOF
+local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 
-    if !empty(node) && !node.path.isDirectory
-      call node.open({ 'where': 'p', 'stay': 1, 'keepopen': 1 })
-    endif
-
-    let curLine += 1
-  endwhile
-
-  if g:NERDTreeQuitOnOpen
-    NERDTreeClose
-  endif
-endfunction
-" }}} nerdtree "
+vim.g.nvim_tree_bindings = {
+  ["x"] = tree_cb("close_node"),
+  ["C"] = tree_cb("cd"),
+  ["D"] = tree_cb("cut"),
+  ["J"] = tree_cb("next_sibling"),
+  ["K"] = tree_cb("prev_sibling"),
+}
+EOF
+" }}} nvim-tree "
 
 " obsession {{{ "
 nnoremap yoo :Obsession<cr>
