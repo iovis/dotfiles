@@ -959,11 +959,11 @@ lua <<EOF
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 
 vim.g.nvim_tree_bindings = {
-  ["x"] = tree_cb("close_node"),
-  ["C"] = tree_cb("cd"),
-  ["D"] = tree_cb("cut"),
-  ["J"] = tree_cb("next_sibling"),
-  ["K"] = tree_cb("prev_sibling"),
+  { key = "x", cb = tree_cb("close_node") },
+  { key = "C", cb = tree_cb("cd") },
+  { key = "D", cb = tree_cb("cut") },
+  { key = "J", cb = tree_cb("next_sibling") },
+  { key = "K", cb = tree_cb("prev_sibling") },
 }
 EOF
 " }}} nvim-tree "
