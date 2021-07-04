@@ -13,8 +13,8 @@ Plug 'christoomey/vim-sort-motion'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'honza/vim-snippets'
 Plug 'iovis/browsers_castle'
-Plug 'iovis/jirafa.vim'
 Plug 'iovis/hubcap.vim'
+Plug 'iovis/jirafa.vim'
 Plug 'iovis/resize.vim'
 Plug 'iovis/substitute.vim'
 Plug 'iovis/tux.vim'
@@ -37,7 +37,6 @@ Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'neoclide/coc-neco'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-Plug 'nvim-treesitter/playground'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'raimondi/delimitMate'
@@ -47,7 +46,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'shougo/echodoc.vim'
 Plug 'shougo/neco-vim'
 Plug 'sirver/ultisnips'
-Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tommcdo/vim-lion'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-bundler'
@@ -377,6 +375,8 @@ xnoremap <silent> § :m'<-2<cr>`>my`<mzgv=gv`yo`z
 " }}} move line "
 
 " buffers {{{ "
+nmap <leader><leader> :ls<cr>
+
 nnoremap <BS> <C-^>
 nnoremap <silent> <tab> :bnext<cr>
 nnoremap <silent> <s-tab> :bprevious<cr>
@@ -538,7 +538,7 @@ function! CCR()
 
   if cmdline =~ '\v\C^(ls|files|buffers)'
     " like :ls but prompts for a buffer command
-    return "\<CR>:b"
+    return "\<CR>:b\<space>"
   elseif cmdline =~ '\v\C/(#|nu|num|numb|numbe|number)$'
     " like :g//# but prompts for a command
     return "\<CR>:"
@@ -1133,19 +1133,6 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 " }}} treesitter "
-
-" treesitter playground {{{ "
-lua <<EOF
-require "nvim-treesitter.configs".setup {
-  playground = {
-    enable = true,
-  }
-}
-EOF
-
-nnoremap +p :TSPlaygroundToggle<cr>
-nnoremap +h :TSHighlightCapturesUnderCursor<cr>
-" }}} treesitter playground "
 
 " treesitter textobjects {{{ "
 lua <<EOF
