@@ -11,6 +11,7 @@ Plug 'chiel92/vim-autoformat'
 Plug 'chrisbra/csv.vim'
 Plug 'christoomey/vim-sort-motion'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'folke/zen-mode.nvim'
 Plug 'honza/vim-snippets'
 Plug 'iovis/browsers_castle'
 Plug 'iovis/hubcap.vim'
@@ -21,7 +22,6 @@ Plug 'iovis/tux.vim'
 Plug 'iovis/vimlook'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vader.vim', { 'on': 'Vader', 'for': 'vader' }
 Plug 'junegunn/vim-peekaboo'
 Plug 'justinmk/vim-sneak'
@@ -823,10 +823,6 @@ nnoremap <silent> +f :RG<cr>
 xnoremap <silent> +f  y:RG <c-r>=escape(@",'[](){}\.*^?+\|^$')<cr><cr>
 " }}} fzf "
 
-" goyo {{{ "
-nnoremap <silent> <leader>z :Goyo<cr>
-" }}} goyo "
-
 " highlightedyank {{{ "
 hi HighlightedyankRegion ctermbg=110 ctermfg=235 guibg=#8fafd7 guifg=#262626 cterm=NONE gui=NONE
 " }}} highlightedyank "
@@ -1201,6 +1197,26 @@ nnoremap <leader>¡ :QuickLook<space>
 nmap <leader>" mzcs'"`z
 nmap <leader>' mzcs"'`z
 " }}} ysurround "
+
+" zen-mode {{{ "
+nnoremap <silent> <leader>z :ZenMode<cr>
+
+lua << EOF
+require("zen-mode").setup {
+  window = {
+    backdrop = 1,
+    height = .9,
+    width = .8,
+    options = {
+      -- Any vim.wo options
+      signcolumn = "no",
+      number = false,
+      relativenumber = false,
+    },
+  },
+}
+EOF
+" }}} zen-mode "
 " }}} plugin configuration "
 
 " commands {{{ "
