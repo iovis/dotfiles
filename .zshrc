@@ -276,7 +276,7 @@ if type nvim > /dev/null; then
   alias ni="nvim"
   alias nin="nvim -u \$DOTFILES/.vimrc_min"
   alias nis="nvim -S Session.vim"
-  alias notes="nvim -c \"let g:airline_exclude_filetypes = ['markdown'] | setf markdown | Goyo\""
+  alias notes="nvim +ZenMode"
 fi
 
 if type rg > /dev/null; then
