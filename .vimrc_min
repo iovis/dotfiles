@@ -40,7 +40,7 @@ set scrolloff=7
 set shiftwidth=2
 set shortmess-=S
 set showmatch
-set signcolumn=yes
+set signcolumn=auto
 set smartcase
 set softtabstop=2
 set splitbelow
