@@ -621,7 +621,7 @@ hi TabLineFill  cterm=none
 
 hi SLDirectory  ctermfg=blue
 hi SLFileType   ctermfg=2
-hi SLGitBranch  ctermfg=2
+hi SLGitBranch  ctermfg=5
 hi SLModified   ctermfg=red
 hi StatusLine   ctermfg=white ctermbg=none  cterm=none
 hi StatusLineNC ctermfg=8     ctermbg=none  cterm=none
@@ -630,15 +630,69 @@ hi QuickFixLine ctermfg=none  ctermbg=none  cterm=bold
 " }}} Highlights "
 
 " statusline {{{ "
-function! StatuslineGit()
-  if &filetype == 'help'
-    return ''
+function! GitBranchName() abort
+  if get(b:, 'gitbranch_pwd', '') !=# expand('%:p:h') || !has_key(b:, 'gitbranch_path')
+    call s:GitBranchDetect(expand('%:p:h'))
   endif
 
-  let l:branch = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+  if has_key(b:, 'gitbranch_path') && filereadable(b:gitbranch_path)
+    let branch = get(readfile(b:gitbranch_path), 0, '')
 
-  return !empty(l:branch) ? '<'.l:branch.'>' : ''
+    if branch =~# '^ref: '
+      return '[' . substitute(branch, '^ref: \%(refs/\%(heads/\|remotes/\|tags/\)\=\)\=', '', '') . ']'
+    elseif branch =~# '^\x\{20\}'
+      return '[' . branch[:6] . ']'
+    endif
+  endif
+
+  return ''
 endfunction
+
+function! s:GitBranchDir(path) abort
+  let path = a:path
+  let prev = ''
+
+  while path !=# prev
+    let dir = path . '/.git'
+    let type = getftype(dir)
+
+    if type ==# 'dir' && isdirectory(dir.'/objects') && isdirectory(dir.'/refs') && getfsize(dir.'/HEAD') > 10
+      return dir
+    elseif type ==# 'file'
+      let reldir = get(readfile(dir), 0, '')
+
+      if reldir =~# '^gitdir: '
+        return simplify(path . '/' . reldir[8:])
+      endif
+    endif
+
+    let prev = path
+    let path = fnamemodify(path, ':h')
+  endwhile
+
+  return ''
+endfunction
+
+function! s:GitBranchDetect(path) abort
+  unlet! b:gitbranch_path
+
+  let b:gitbranch_pwd = expand('%:p:h')
+  let dir = s:GitBranchDir(a:path)
+
+  if dir !=# ''
+    let path = dir . '/HEAD'
+
+    if filereadable(path)
+      let b:gitbranch_path = path
+    endif
+  endif
+endfunction
+
+augroup git_branch
+  autocmd!
+  autocmd BufNewFile,BufReadPost * call <SID>GitBranchDetect(expand('<amatch>:p:h'))
+  autocmd BufEnter * call <SID>GitBranchDetect(expand('%:p:h'))
+augroup END
 
 function! s:RefreshStatusline()
   for nr in range(1, winnr('$'))
@@ -664,13 +718,13 @@ function! RenderStatuslineFor(winnum)
   endfunction
 
   let statusline .= s:CSL('SLDirectory', " %{expand('%:p:h:t')}") " current folder
-  " let statusline .= s:CSL('SLGitBranch', '%{StatuslineGit()}')    " branch
   let statusline .= ' :: '
-  let statusline .= s:CSL(&modified ? 'SLModified' : 'StatusLine', '%n|%f')  " buffer name
+  let statusline .= s:CSL(&modified ? 'SLModified' : 'StatusLine', '%n|%f%m')  " buffer name
 
   let statusline .= '%='  " right side
 
   let statusline .= '%r '  " read-only flag
+  let statusline .= s:CSL('SLGitBranch', '%{GitBranchName()} ') " branch
   let statusline .= s:CSL('SLFileType', '%{&filetype}') " filetype
   let statusline .= ' %3p%%'  " percentage in file
   let statusline .= s:CSL('StatusLineNC', ' %{&fileencoding?&fileencoding:&encoding}[%{&fileformat}] ') " file encoding[file format]
@@ -723,6 +777,7 @@ function! TabLine()
     let tabline .= ' ' . s:tabLineFile(bufnr)
 
     let window_count = tabpagewinnr(index, '$')
+
     if window_count > 1
       let tabline .= ' [' . window_count . ']'
     endif
