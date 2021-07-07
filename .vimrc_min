@@ -604,7 +604,7 @@ hi LineNr       ctermfg=8
 hi Pmenu        ctermfg=white ctermbg=none
 hi PmenuSel     ctermfg=black ctermbg=white
 hi Search       ctermfg=0     ctermbg=11
-hi SignColumn   ctermbg=black
+hi SignColumn   ctermbg=none
 hi VertSplit    ctermfg=black ctermbg=blue
 hi Visual       ctermfg=7     ctermbg=8     cterm=none
 hi Folded       ctermfg=8     ctermbg=none
