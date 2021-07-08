@@ -306,8 +306,8 @@ augroup end
 " }}} folds "
 
 " pasting with indent {{{ "
-nnoremap p p`[v`]=
-nnoremap P P`[v`]=
+nnoremap <silent> p p:execute ":silent normal! `[v`]="<cr>
+nnoremap <silent> P P:execute ":silent normal! `[v`]="<cr>
 nnoremap gp p
 nnoremap gP P
 " }}} pasting with indent "
