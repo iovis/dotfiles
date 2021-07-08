@@ -580,6 +580,10 @@ cnoremap <expr> <CR> CCR()
 nmap +r :registers<cr>
 " }}} registers "
 
+" marks {{{ "
+nmap +m :marks<cr>
+" }}} marks "
+
 " plugin configuration {{{ "
 " airline {{{ "
 let g:airline_powerline_fonts = 1
