@@ -342,7 +342,7 @@ xnoremap > >gv
 " }}} indent "
 
 " start search {{{ "
-nnoremap * *N
+nnoremap <silent> * :let @/='\<<C-R>=expand("<cword>")<cr>\>'<bar>set hls<cr>
 nnoremap # #N
 
 xnoremap * y:let @/=escape(@@, '/\') <bar> normal! /<cr>

@@ -327,7 +327,7 @@ xnoremap > >gv
 " }}} indent "
 
 " star search {{{ "
-nnoremap * *N
+nnoremap <silent> * :let @/='\<<C-R>=expand("<cword>")<cr>\>'<bar>set hls<cr>
 nnoremap # #N
 
 " If I have a visual selection and press * I want it to show ocurrences
