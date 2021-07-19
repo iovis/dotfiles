@@ -126,7 +126,7 @@ set splitright
 set termguicolors
 set updatetime=300
 set undofile
-set undodir=~/.vim/undo
+set undodir=~/.config/nvim/undo
 set virtualedit=block
 set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn
 set wildignorecase
@@ -432,7 +432,7 @@ nnoremap <leader>us :so $MYVIMRC<cr>:echo 'vimrc sourced'<cr>
 nnoremap <silent> <leader>ua :e! ~/.zsh/aliases.zsh<cr>
 nnoremap <silent> <leader>uf :execute empty(&filetype) ? 'echo "no filetype specified"' : 'EditFtplugin'<cr>
 nnoremap <silent> <leader>uh :sp $MYVIMRC<cr>
-nnoremap <silent> <leader>um :e! ~/.dotfiles/.vimrc_min<cr>
+nnoremap <silent> <leader>um :e! ~/.dotfiles/.vimrc<cr>
 nnoremap <silent> <leader>up :e! .projections.json<cr>
 nnoremap <silent> <leader>ut :e! ~/.tmux.conf<cr>
 nnoremap <silent> <leader>uu :e! $MYVIMRC<cr>
@@ -441,7 +441,7 @@ nnoremap <silent> <leader>uw :e! ~/.zsh/work.zsh<cr>
 nnoremap <silent> <leader>uz :e! ~/.zshrc<cr>
 
 command! -nargs=? -complete=filetype EditFtplugin
-      \ exe 'keepjumps e! $HOME/.vim/after/ftplugin/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
+      \ exe 'keepjumps e! $HOME/.config/nvim/after/ftplugin/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
 " }}} config editing "
 
 " duplicate file {{{ "
@@ -790,7 +790,7 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 " Peek Snippets
 command! -bang RgSnippets
       \ call fzf#vim#grep(
-      \   "rg --column --line-number --no-heading --smart-case --color=always -g'*.snippets' -g'!*undo*' . ~/.vim/",
+      \   "rg --column --line-number --no-heading --smart-case --color=always -g'*.snippets' -g'!*undo*' . ~/.config/nvim/",
       \   1,
       \   fzf#vim#with_preview('right:33%', 'º'),
       \   <bang>0
@@ -800,7 +800,7 @@ command! -bang RgSnippets
 command! -bang SnippetFiles
       \ call fzf#run(
       \   fzf#wrap(
-      \     { 'source': "fd . -e snippets -E '.git' -E 'undo' --type file --follow --color=always ~/.vim" },
+      \     { 'source': "fd . -e snippets -E '.git' -E 'undo' --type file --follow --color=always ~/.config/nvim" },
       \     <bang>0
       \   )
       \ )
@@ -1173,7 +1173,7 @@ let g:UltiSnipsEditSplit = 'horizontal'
 let g:UltiSnipsExpandTrigger = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
-let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips/', 'UltiSnips']
+let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips/', 'UltiSnips']
 
 nnoremap <leader>ue :UltiSnipsEdit!<cr>
 " }}} ultisnips "
