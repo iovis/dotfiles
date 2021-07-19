@@ -7,7 +7,7 @@
 ########## Variables
 dir=~/.dotfiles
 olddir=~/dotfiles_old
-files="Brewfile .ctags .ctags.d .eslintrc.json .gemrc .gitconfig .gitignore_global .pryrc .psqlrc .tmux.conf .vim .vimrc .zshenv .zshrc"
+files="Brewfile .ctags .ctags.d .eslintrc.json .gemrc .gitconfig .gitignore_global .pryrc .psqlrc .tmux.conf .vimrc .zshenv .zshrc"
 config_files="mpv nvim"
 
 
