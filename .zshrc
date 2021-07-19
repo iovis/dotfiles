@@ -130,7 +130,6 @@ alias so="exec zsh"
 alias tailf="tail -f"
 alias tm="tmux"
 alias tmrc="\$EDITOR ~/.tmux.conf"
-alias vin="vim -u \$DOTFILES/.vimrc_min"
 alias zshrc="\$EDITOR ~/.zshrc"
 
 function libupdate() {
@@ -274,7 +273,7 @@ if type nvim > /dev/null; then
   export MANWIDTH=999
 
   alias ni="nvim"
-  alias nin="nvim -u \$DOTFILES/.vimrc_min"
+  alias nin="nvim -u \$DOTFILES/.vimrc"
   alias nis="nvim -S Session.vim"
   alias notes="nvim +ZenMode"
 fi
