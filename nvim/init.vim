@@ -135,6 +135,27 @@ set wildmenu
 set wildmode=full
 let &showbreak = '└ '
 
+let g:markdown_fenced_languages = [
+  \ 'bash',
+  \ 'css',
+  \ 'erb=eruby',
+  \ 'gql=graphql',
+  \ 'graphql',
+  \ 'html',
+  \ 'javascript',
+  \ 'js=javascript',
+  \ 'json=javascript',
+  \ 'py=python',
+  \ 'python',
+  \ 'rb=ruby',
+  \ 'ruby',
+  \ 'sass',
+  \ 'sh=bash',
+  \ 'ts=typescript',
+  \ 'typescript',
+  \ 'xml',
+\ ]
+
 if has('nvim')
   set inccommand=split
 
@@ -584,6 +605,10 @@ nmap +r :registers<cr>
 " marks {{{ "
 nmap +m :marks<cr>
 " }}} marks "
+
+" jq {{{ "
+nnoremap +j :%!jq ''<left>
+" }}} jq "
 
 " plugin configuration {{{ "
 " airline {{{ "
@@ -1094,6 +1119,9 @@ let g:tmux_navigator_save_on_switch = 2
 " }}} tmux navigator "
 
 " treesitter {{{ "
+" set foldexpr=nvim_treesitter#foldexpr()
+" nnoremap +z :setlocal foldmethod=expr<cr>
+
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {
