@@ -20,6 +20,7 @@ Plug 'iovis/resize.vim'
 Plug 'iovis/substitute.vim'
 Plug 'iovis/tux.vim'
 Plug 'iovis/vimlook'
+Plug 'jparise/vim-graphql'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vader.vim', { 'on': 'Vader', 'for': 'vader' }
