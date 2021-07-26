@@ -850,6 +850,7 @@ xnoremap <silent> +f  y:RG <c-r>=escape(@",'[](){}\.*^?+\|^$')<cr><cr>
 
 " gitsigns {{{ "
 nnoremap <silent> +q :Gitsigns toggle_current_line_blame<cr>
+nnoremap <silent> +c :Gitsigns blame_line true<cr>
 
 lua <<EOF
 require('gitsigns').setup {
