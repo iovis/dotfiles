@@ -32,10 +32,10 @@ Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-user'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
+Plug 'lewis6991/gitsigns.nvim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
-Plug 'mhinz/vim-signify'
 Plug 'moll/vim-bbye'
 Plug 'neoclide/coc-neco'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
@@ -848,6 +848,31 @@ nnoremap <silent> +f :RG<cr>
 xnoremap <silent> +f  y:RG <c-r>=escape(@",'[](){}\.*^?+\|^$')<cr><cr>
 " }}} fzf "
 
+" gitsigns {{{ "
+nnoremap <silent> +q :Gitsigns toggle_current_line_blame<cr>
+
+lua <<EOF
+require('gitsigns').setup {
+  keymaps = {},
+  current_line_blame_delay = 100,
+}
+
+vim.api.nvim_set_keymap(
+  'n',
+  ']c',
+  "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'",
+  { noremap = true, expr = true }
+)
+
+vim.api.nvim_set_keymap(
+  'n',
+  '[c',
+  "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'",
+  { noremap = true, expr = true }
+)
+EOF
+" }}} gitsigns "
+
 " highlightedyank {{{ "
 hi HighlightedyankRegion ctermbg=110 ctermfg=235 guibg=#8fafd7 guifg=#262626 cterm=NONE gui=NONE
 " }}} highlightedyank "
@@ -1024,18 +1049,6 @@ nmap <m-down>  <Plug>ResizeDown
 nmap <m-left>  <Plug>ResizeLeft
 nmap <m-right> <Plug>ResizeRight
 " }}} resize.vim "
-
-" signify {{{ "
-let g:signify_realtime = 0
-let g:signify_vcs_list = ['git']
-let g:signify_sign_change = '~'
-
-" Chunk text object
-omap ic <plug>(signify-motion-inner-pending)
-xmap ic <plug>(signify-motion-inner-visual)
-omap ac <plug>(signify-motion-outer-pending)
-xmap ac <plug>(signify-motion-outer-visual)
-" }}} signify "
 
 " sneak {{{ "
 let g:sneak#use_ic_scs = 1
