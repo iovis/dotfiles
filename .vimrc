@@ -606,6 +606,7 @@ nnoremap +<cr> :so $VIMRUNTIME/syntax/hitest.vim<cr>
 nnoremap +<space> :hi<space>
 
 hi Comment      ctermfg=8
+hi NonText      ctermfg=8
 hi CursorLineNr ctermfg=blue
 hi LineNr       ctermfg=8
 hi Pmenu        ctermfg=white ctermbg=none
