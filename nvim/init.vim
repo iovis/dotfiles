@@ -13,6 +13,7 @@ Plug 'christoomey/vim-sort-motion'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'folke/zen-mode.nvim'
 Plug 'honza/vim-snippets'
+Plug 'hoob3rt/lualine.nvim'
 Plug 'iovis/browsers_castle'
 Plug 'iovis/hubcap.vim'
 Plug 'iovis/jirafa.vim'
@@ -39,6 +40,7 @@ Plug 'moll/vim-bbye'
 Plug 'neoclide/coc-neco'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'norcalli/nvim-base16.lua'
+Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
@@ -71,8 +73,6 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'wellle/targets.vim'
 
 call plug#end()
@@ -611,11 +611,6 @@ nnoremap +j :%!jq ''<left>
 " }}} jq "
 
 " plugin configuration {{{ "
-" airline {{{ "
-let g:airline_powerline_fonts = 1
-let g:airline_theme = 'tomorrow'
-" }}} airline "
-
 " autoformat {{{ "
 nnoremap <silent> <leader>b :Autoformat<cr>
 xnoremap <silent> <leader>b :Autoformat<cr>
@@ -881,6 +876,18 @@ nmap <leader>a: mzgLip:'z
 nmap <leader>a= mzglip='z
 nmap <leader>aB mzglip{'z
 " }}} lion "
+
+" lualine {{{ "
+lua <<EOF
+require('plenary.reload').reload_module('lualine', true)
+require('lualine').setup {
+  options = {
+    theme = 'jellybeans'
+  },
+  extensions = { 'fugitive', 'nvim-tree', 'quickfix', 'fzf' }
+}
+EOF
+" }}} lualine "
 
 " neomake {{{ "
 call neomake#configure#automake('nwr', 1000)
