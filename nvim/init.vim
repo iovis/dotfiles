@@ -41,6 +41,7 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'norcalli/nvim-base16.lua'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'nvim-treesitter/playground'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'raimondi/delimitMate'
 Plug 'schickling/vim-bufonly'
@@ -1114,25 +1115,6 @@ let g:tmux_navigator_save_on_switch = 2
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = {
-    'bash',
-    'css',
-    'graphql',
-    'html',
-    'javascript',
-    'json',
-    'jsonc',
-    'lua',
-    'python',
-    'query',
-    'regex',
-    'ruby',
-    'rust',
-    'toml',
-    'tsx',
-    'typescript',
-    'yaml'
-  },
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = true -- [workaround] Allow for matchit and vim-endwise to work
@@ -1153,6 +1135,18 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 " }}} treesitter "
+
+" tresitter playground {{{ "
+nnoremap +t :TSPlaygroundToggle<cr>
+
+lua <<EOF
+require "nvim-treesitter.configs".setup {
+  playground = {
+    enable = true
+  }
+}
+EOF
+" }}} tresitter playground "
 
 " treesitter textobjects {{{ "
 lua <<EOF
