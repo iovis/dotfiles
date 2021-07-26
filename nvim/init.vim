@@ -180,11 +180,14 @@ augroup buffer_config
   " Remove whitespace on save
   autocmd BufWritePre * :%s/\s\+$//e
 
-  " Return to last edit position when opening files (You want this!)
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid, when inside an event handler
+  " (happens when dropping a file on gvim) and for a commit message (it's
+  " likely a different one than last time).
   autocmd BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \   exe "normal! g`\"" |
-        \ endif
+    \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+    \ |   exe "normal! g`\""
+    \ | endif
 augroup end
 " }}} config "
 
