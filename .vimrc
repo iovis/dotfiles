@@ -100,6 +100,9 @@ inoremap ;; <c-o>A;
 inoremap (<cr> (<cr>)<esc>O
 inoremap [<cr> [<cr>]<esc>O
 inoremap {<cr> {<cr>}<esc>O
+inoremap (<space> (<space><space>)<left><left>
+inoremap [<space> [<space><space>]<left><left>
+inoremap {<space> {<space><space>}<left><left>
 
 " Jump to next match with TAB during a search
 set wildcharm=<c-z>
