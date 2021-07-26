@@ -727,7 +727,7 @@ function! RenderStatuslineFor(winnum)
 
   let statusline .= s:CSL('SLDirectory', " %{expand('%:p:h:t')}") " current folder
   let statusline .= ' :: '
-  let statusline .= s:CSL(&modified ? 'SLModified' : 'StatusLine', '%n|%f%m')  " buffer name
+  let statusline .= s:CSL(&modified ? 'SLModified' : 'StatusLine', '%n|%f%m ')  " buffer name
 
   let statusline .= '%='  " right side
 
