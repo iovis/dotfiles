@@ -13,7 +13,7 @@ set autoread
 set autowriteall
 set backspace=indent,eol,start
 set conceallevel=0
-set cursorline
+" set cursorline
 set diffopt+=hiddenoff
 set diffopt+=vertical
 set expandtab
