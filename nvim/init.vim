@@ -36,7 +36,6 @@ Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
 Plug 'mhinz/vim-signify'
 Plug 'moll/vim-bbye'
-Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'neoclide/coc-neco'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'norcalli/nvim-base16.lua'
@@ -1104,15 +1103,6 @@ augroup targets_conf
         \ })
 augroup end
 " }}} targets "
-
-" textobj-rubyblock {{{ "
-let g:textobj_rubyblock_no_default_key_mappings = 1
-
-xmap ad <Plug>(textobj-rubyblock-a)
-omap ad <Plug>(textobj-rubyblock-a)
-xmap id <Plug>(textobj-rubyblock-i)
-omap id <Plug>(textobj-rubyblock-i)
-" }}} textobj-rubyblock "
 
 " tmux navigator {{{ "
 let g:tmux_navigator_save_on_switch = 2
