@@ -1161,6 +1161,7 @@ EOF
 " }}} treesitter "
 
 " tresitter playground {{{ "
+nnoremap +h :TSHighlightCapturesUnderCursor<cr>
 nnoremap +t :TSPlaygroundToggle<cr>
 
 lua <<EOF
