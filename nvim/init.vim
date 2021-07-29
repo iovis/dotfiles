@@ -753,11 +753,11 @@ nnoremap <leader>go :Gread<cr>
 nnoremap <silent> <leader>gb :Git blame<cr>
 nnoremap <silent> <leader>gg :GBrowse<cr>
 
-nnoremap <silent> <leader>gh :Glol -100 %<cr>
-nnoremap <silent> <leader>gl :Glol -100<cr>
+nnoremap <silent> <leader>gh :Glol %<cr>
+nnoremap <silent> <leader>gl :Glol -500<cr>
 
 xnoremap <silent> <leader>gg :GBrowse<cr>
-xnoremap <silent> <leader>gh :GLogL -100<cr>
+xnoremap <silent> <leader>gh :GLogL<cr>
 
 nnoremap <silent> <leader>gdv :Gvdiffsplit<cr>
 nnoremap <silent> <leader>gdh :Ghdiffsplit<cr>
