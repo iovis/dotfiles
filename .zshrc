@@ -30,7 +30,6 @@ plugins=(
   npm
   perms
   rsync
-  tmux
   you-should-use
   zsh-autosuggestions
   zsh-completions
@@ -127,9 +126,15 @@ alias pipr="pip install -r"
 alias pipu="pip install -U"
 alias pycache="find . -name '*.pyc' -exec rm {} \;"
 alias so="exec zsh"
+alias ta='tmux attach -t'
+alias tad='tmux attach -d -t'
 alias tailf="tail -f"
-alias tm="tmux"
+alias tkss='tmux kill-session -t'
+alias tksv='tmux kill-server'
+alias tl='tmux list-sessions'
+alias tm="tmux attach || tmux new-session"
 alias tmrc="\$EDITOR ~/.tmux.conf"
+alias ts='tmux new-session -s'
 alias zshrc="\$EDITOR ~/.zshrc"
 
 function libupdate() {
@@ -265,6 +270,15 @@ if type hub > /dev/null; then
 
     git hub browse -- $url
   }
+fi
+
+if type gh > /dev/null; then
+  # alias gpr="gh pr create --assignee iovis --base"
+  alias gprb="gh pr view --web"
+  alias gprc="gh pr checkout"
+  alias gprs="gh pr list"
+  alias gprss="gh pr status"
+  alias pulls="gh pr list --web"
 fi
 
 if type nvim > /dev/null; then
