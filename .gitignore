@@ -1,10 +1,6 @@
+mpv/watch_later/*
 nvim/.VimballRecord
 nvim/.netrwhist
-nvim/autoload/plug.vim.old
-nvim/bundle/*
-nvim/plugged/*
-nvim/session/*
-nvim/sessions/*
+nvim/plugin/packer_compiled.lua
 nvim/spell/*
 nvim/undo/*
-mpv/watch_later/*

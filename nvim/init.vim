@@ -2,80 +2,7 @@
 scriptencoding utf-8
 filetype off
 
-call plug#begin()
-
-Plug 'akinsho/nvim-bufferline.lua'
-Plug 'andrewradev/splitjoin.vim'
-Plug 'benekastah/neomake'
-Plug 'chiel92/vim-autoformat'
-Plug 'chrisbra/csv.vim'
-Plug 'christoomey/vim-sort-motion'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'folke/zen-mode.nvim'
-Plug 'honza/vim-snippets'
-Plug 'hoob3rt/lualine.nvim'
-Plug 'iovis/browsers_castle'
-Plug 'iovis/hubcap.vim'
-Plug 'iovis/jirafa.vim'
-Plug 'iovis/resize.vim'
-Plug 'iovis/substitute.vim'
-Plug 'iovis/tux.vim'
-Plug 'iovis/vimlook'
-Plug 'jparise/vim-graphql'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/vader.vim', { 'on': 'Vader', 'for': 'vader' }
-Plug 'junegunn/vim-peekaboo'
-Plug 'justinmk/vim-sneak'
-Plug 'kana/vim-textobj-entire'
-Plug 'kana/vim-textobj-indent'
-Plug 'kana/vim-textobj-user'
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'kyazdani42/nvim-tree.lua'
-Plug 'lewis6991/gitsigns.nvim'
-Plug 'machakann/vim-highlightedyank'
-Plug 'mattn/emmet-vim'
-Plug 'mbbill/undotree'
-Plug 'moll/vim-bbye'
-Plug 'neoclide/coc-neco'
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'norcalli/nvim-base16.lua'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-Plug 'nvim-treesitter/playground'
-Plug 'pbrisbin/vim-mkdir'
-Plug 'raimondi/delimitMate'
-Plug 'schickling/vim-bufonly'
-Plug 'shougo/echodoc.vim'
-Plug 'shougo/neco-vim'
-Plug 'sirver/ultisnips'
-Plug 'tommcdo/vim-lion'
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-characterize'          " Use ga to see additional representations of that character
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-dadbod'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-dotenv'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-eunuch'                " Unix helpers (:Move, :Remove...)
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-git'
-Plug 'tpope/vim-obsession'
-Plug 'tpope/vim-projectionist'
-Plug 'tpope/vim-ragtag'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-rake'
-Plug 'tpope/vim-rbenv'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-scriptease'
-Plug 'tpope/vim-speeddating'
-Plug 'tpope/vim-surround'
-Plug 'wellle/targets.vim'
-
-call plug#end()
+lua require('plugins')
 " }}} plugins "
 
 " config {{{ "
@@ -458,7 +385,8 @@ nnoremap <silent> <leader>ua :e! ~/.zsh/aliases.zsh<cr>
 nnoremap <silent> <leader>uf :execute empty(&filetype) ? 'echo "no filetype specified"' : 'EditFtplugin'<cr>
 nnoremap <silent> <leader>uh :sp $MYVIMRC<cr>
 nnoremap <silent> <leader>um :e! ~/.dotfiles/.vimrc<cr>
-nnoremap <silent> <leader>up :e! .projections.json<cr>
+nnoremap <silent> <leader>up :e! ~/.config/nvim/lua/plugins.lua<cr>
+nnoremap <silent> <leader>ur :e! .projections.json<cr>
 nnoremap <silent> <leader>ut :e! ~/.tmux.conf<cr>
 nnoremap <silent> <leader>uu :e! $MYVIMRC<cr>
 nnoremap <silent> <leader>uv :vs $MYVIMRC<cr>
