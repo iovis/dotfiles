@@ -37,6 +37,7 @@ require('packer').startup(function()
   use 'kana/vim-textobj-entire'
   use 'kana/vim-textobj-indent'
   use 'kana/vim-textobj-user'
+  use 'kevinhwang91/nvim-bqf'
   use 'machakann/vim-highlightedyank'
   use 'mattn/emmet-vim'
   use 'mbbill/undotree'
