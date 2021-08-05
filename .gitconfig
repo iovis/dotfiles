@@ -22,16 +22,18 @@
   excludesfile = ~/.gitignore_global
   autocrlf = input
 [merge]
-  tool = vimdiff
+  tool = nvimdiff
 [mergetool]
   prompt = false
-[mergetool "vimdiff"]
+[mergetool "nvimdiff"]
   cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [difftool]
   prompt = false
   keepBackup = false
 [diff]
-  tool = vimdiff
+  tool = nvimdiff
+[difftool "nvimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE
 [push]
   default = simple
 [color]
