@@ -573,7 +573,7 @@ nnoremap <silent> <leader>< :execute 'Canary ' . DotenvGet('PROJECT_URL')<cr>
 nnoremap <silent> <leader>Q :BufOnly!<cr>
 " }}} bufonly "
 
-" coc {{{ "
+" coc.nvim {{{ "
 let g:coc_global_extensions = [
 \ 'coc-css',
 \ 'coc-html',
@@ -581,6 +581,7 @@ let g:coc_global_extensions = [
 \ 'coc-pyright',
 \ 'coc-rls',
 \ 'coc-sh',
+\ 'coc-snippets',
 \ 'coc-solargraph',
 \ 'coc-tsserver',
 \ 'coc-yaml'
@@ -626,7 +627,14 @@ hi default CocHighlightText gui=underline
 "   autocmd!
 "   autocmd CursorHold * silent call CocActionAsync('highlight')
 " augroup END
-" }}} coc "
+
+" coc-snippets
+imap <c-j> <Plug>(coc-snippets-expand-jump)
+
+nnoremap <silent> <leader>ls :CocList snippets<cr>
+nnoremap <silent> <leader>ue :CocCommand snippets.editSnippets<cr>
+nnoremap <silent> <leader>ss :CocCommand snippets.openSnippetFiles<cr>
+" }}} coc.nvim "
 
 " csv {{{ "
 hi CSVColumnEven ctermbg=242 guibg=#6C6C6C
@@ -739,24 +747,6 @@ endfunction
 
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
-" Peek Snippets
-command! -bang RgSnippets
-      \ call fzf#vim#grep(
-      \   "rg --column --line-number --no-heading --smart-case --color=always -g'*.snippets' -g'!*undo*' . ~/.config/nvim/",
-      \   1,
-      \   fzf#vim#with_preview('right:33%', 'º'),
-      \   <bang>0
-      \ )
-
-" Go to snippets file
-command! -bang SnippetFiles
-      \ call fzf#run(
-      \   fzf#wrap(
-      \     { 'source': "fd . -e snippets -E '.git' -E 'undo' --type file --follow --color=always ~/.config/nvim" },
-      \     <bang>0
-      \   )
-      \ )
-
 nnoremap <silent> <c-p> :Commands<cr>
 nnoremap <silent> <leader><leader> :Buffers<cr>
 nnoremap <silent> <leader>A  :Filetypes<cr>
@@ -768,8 +758,6 @@ nnoremap <silent> <leader>f  :Rg<cr>
 nnoremap <silent> <leader>j  :GFiles?<cr>
 nnoremap <silent> <leader>o  :Files<cr>
 nnoremap <silent> <leader>r  :BTags<cr>
-nnoremap <silent> <leader>sg :RgSnippets<cr>
-nnoremap <silent> <leader>sf :SnippetFiles<cr>
 nnoremap <silent> <leader>ñ  :BLines!<cr>
 
 xnoremap <silent> <leader>f  y:Rg <c-r>=escape(@",'[](){}\.*^?+\|^$')<cr><cr>
@@ -1141,16 +1129,6 @@ nnoremap <silent> <leader>i :Tux Up<cr>
 nnoremap <silent> <leader>I  :silent execute 'Tux ' . getline('.')<cr>
 xnoremap <silent> <leader>i y:silent execute 'Tux ' . escape(getreg('0'), '#')<cr>
 " }}} tux.vim "
-
-" ultisnips {{{ "
-let g:UltiSnipsEditSplit = 'horizontal'
-let g:UltiSnipsExpandTrigger = '<c-j>'
-let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
-let g:UltiSnipsJumpForwardTrigger = '<c-j>'
-let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips/', 'UltiSnips']
-
-nnoremap <leader>ue :UltiSnipsEdit!<cr>
-" }}} ultisnips "
 
 " undotree {{{ "
 nnoremap <silent> U :UndotreeToggle<cr>
