@@ -1156,17 +1156,6 @@ nnoremap <leader>ue :UltiSnipsEdit!<cr>
 nnoremap <silent> U :UndotreeToggle<cr>
 " }}} undotree "
 
-" vader {{{ "
-augroup vader_commands
-  au!
-  autocmd FileType vader nnoremap <buffer> <leader>sa :Vader test/*<cr>
-  autocmd FileType vader nnoremap <buffer> <leader>sf :Vader %<cr>
-  autocmd FileType vader nnoremap <buffer> <leader>ss :Vader %<cr>
-
-  autocmd FileType vim nnoremap <buffer> <leader>sa :Vader test/*<cr>
-augroup END
-" }}} vader "
-
 " vimlook {{{ "
 nnoremap <leader>¡ :QuickLook<space>
 " }}} vimlook "

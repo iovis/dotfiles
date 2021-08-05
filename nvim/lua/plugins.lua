@@ -14,7 +14,6 @@ vim.cmd([[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]])
 
 -- plugins
 require('packer').startup(function()
-  -- use 'junegunn/vader.vim', { 'on': 'Vader', 'for': 'vader' }
   use 'andrewradev/splitjoin.vim'
   use 'benekastah/neomake'
   use 'chiel92/vim-autoformat'
