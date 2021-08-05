@@ -1,1 +1,10 @@
 setlocal foldmethod=marker
+
+nnoremap <leader>P :PP<space>
+
+nnoremap <buffer> <leader>sc :Disarm<cr>
+nnoremap <buffer> <leader>so :Runtime<cr>
+
+nnoremap <buffer> <leader>sb :Breakadd here<cr>
+nnoremap <buffer> <leader>sd :Breakdel here<cr>
+nnoremap <buffer> <leader>sl :breaklist<cr>

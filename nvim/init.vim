@@ -987,18 +987,7 @@ hi SneakScope ctermbg=110 ctermfg=235 guibg=#8fafd7 guifg=#262626 cterm=NONE gui
 " }}} sneak "
 
 " scriptease.vim {{{ "
-nnoremap <leader>P :PP<space>
-
-augroup scriptease_vim
-  autocmd!
-
-  autocmd FileType vim nnoremap <buffer> <leader>sb :Breakadd here<cr>
-  autocmd FileType vim nnoremap <buffer> <leader>sd :Breakdel here<cr>
-  autocmd FileType vim nnoremap <buffer> <leader>sl :breaklist<cr>
-
-  autocmd FileType vim nnoremap <buffer> <leader>sc :Disarm<cr>
-  autocmd FileType vim nnoremap <buffer> <leader>so :Runtime<cr>
-augroup end
+" In ftplugin/vim.vim
 " }}} scriptease.vim "
 
 " substitute.vim {{{ "
