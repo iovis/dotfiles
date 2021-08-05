@@ -32,6 +32,7 @@
   keepBackup = false
 [diff]
   tool = nvimdiff
+  colorMoved = default
 [difftool "nvimdiff"]
   cmd = nvim -d $LOCAL $REMOTE
 [push]
