@@ -83,3 +83,11 @@ require('packer').startup(function()
   use { 'neoclide/coc.nvim', branch = 'release'}
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 end)
+
+-- Pretty print object
+-- From: https://github.com/nanotee/nvim-lua-guide#tips-3
+function _G.pp(...)
+  local objects = vim.tbl_map(vim.inspect, {...})
+  print(unpack(objects))
+  return ...
+end
