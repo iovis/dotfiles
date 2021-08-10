@@ -910,34 +910,29 @@ EOF
 " }}} nvim-bufferline "
 
 " nvim-tree {{{ "
-let g:nvim_tree_disable_netrw = 0
-let g:nvim_tree_disable_window_picker = 1
-let g:nvim_tree_indent_markers = 1
-let g:nvim_tree_width = 35
-let g:nvim_tree_ignore = [
-  \ '*.pyc',
-  \ '.DS_Store',
-  \ '.bundle',
-  \ '.git',
-  \ '.github',
-  \ '.vscode',
-  \ '.yardoc',
-  \ 'Session.vim',
-  \ 'node_modules',
-  \ 'tags',
-\ ]
-
 nnoremap <leader>k :NvimTreeToggle<cr>
 nnoremap - :NvimTreeFindFile<cr>
 
-augroup nvim_tree
-  autocmd!
-
-  autocmd BufWinEnter NvimTree setlocal rnu signcolumn=no
-augroup END
-
 lua <<EOF
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
+local nvim_tree_view = require'nvim-tree.view'.View
+
+vim.g.nvim_tree_disable_netrw = 0
+vim.g.nvim_tree_disable_window_picker = 1
+vim.g.nvim_tree_indent_markers = 1
+vim.g.nvim_tree_width = 35
+vim.g.nvim_tree_ignore = {
+  '*.pyc',
+  '.DS_Store',
+  '.bundle',
+  '.git',
+  '.github',
+  '.vscode',
+  '.yardoc',
+  'Session.vim',
+  'node_modules',
+  'tags'
+}
 
 vim.g.nvim_tree_bindings = {
   { key = "x", cb = tree_cb("close_node") },
@@ -946,6 +941,9 @@ vim.g.nvim_tree_bindings = {
   { key = "J", cb = tree_cb("next_sibling") },
   { key = "K", cb = tree_cb("prev_sibling") },
 }
+
+nvim_tree_view.winopts.relativenumber = true
+nvim_tree_view.winopts.signcolumn = 'no'
 EOF
 " }}} nvim-tree "
 
