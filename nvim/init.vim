@@ -900,7 +900,6 @@ require'bufferline'.setup {
     }
   },
   options = {
-    mappings = true,
     number_style = "",
     numbers = "ordinal",
     show_buffer_close_icons = false,
@@ -908,6 +907,16 @@ require'bufferline'.setup {
     separator_style = { "", "" },
   }
 }
+
+-- nnoremap <silent> <leader>1 <cmd>BufferLineGoToBuffer 1<cr>
+for i = 1, 9 do
+  vim.api.nvim_set_keymap(
+    "n",
+    "<leader>" .. i,
+    ':lua require"bufferline".go_to_buffer(' .. i .. ")<CR>",
+    { silent = true, nowait = true, noremap = true }
+  )
+end
 EOF
 " }}} nvim-bufferline "
 
