@@ -781,7 +781,9 @@ nnoremap <silent> +c :Gitsigns blame_line true<cr>
 lua <<EOF
 require('gitsigns').setup {
   keymaps = {},
-  current_line_blame_delay = 100,
+  current_line_blame_opts = {
+    delay = 100,
+  }
 }
 
 vim.api.nvim_set_keymap(
