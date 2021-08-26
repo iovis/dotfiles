@@ -241,7 +241,7 @@ if type fzf > /dev/null; then
   fi
 
   export FZF_CTRL_T_OPTS="--select-1 --exit-0 --preview '$preview_command' --bind º:toggle-preview"
-  export FZF_DEFAULT_OPTS="--ansi --bind=ctrl-p:page-down,ctrl-n:page-up"
+  export FZF_DEFAULT_OPTS="--ansi --bind=ctrl-p:page-down,ctrl-n:page-up,alt-a:select-all,alt-d:deselect-all,alt-t:toggle-all"
 
   alias af="eval \$(alias | fzf | tr -d \"'\" | cut -d= -f1)"
   alias psf="ps aux | fzf"
