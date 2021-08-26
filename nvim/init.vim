@@ -905,6 +905,20 @@ require'bufferline'.setup {
     show_buffer_close_icons = false,
     show_close_icon = false,
     separator_style = { "", "" },
+    offsets = {
+      {
+          filetype = "NvimTree",
+          text = "File Explorer",
+          highlight = "Directory",
+          text_align = "center"
+      },
+      {
+          filetype = "undotree",
+          text = "Undo Tree",
+          highlight = "Directory",
+          text_align = "center"
+      }
+      }
   }
 }
 
