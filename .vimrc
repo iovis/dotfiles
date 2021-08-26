@@ -164,6 +164,7 @@ nnoremap <silent> <leader>w :w!<cr>
 nnoremap <silent> <leader>x :wqa<cr>
 nnoremap <silent> g2 :set shiftwidth=2 softtabstop=2 expandtab \| retab<cr>gg=G
 nnoremap <silent> g4 :set shiftwidth=4 softtabstop=4 expandtab \| retab<cr>gg=G
+nnoremap +c :cd %:p:h<cr>
 nnoremap M <c-w>o
 nnoremap Q @q
 nnoremap Y y$

@@ -185,6 +185,7 @@ nnoremap <silent> <leader>w :w!<cr>
 nnoremap <silent> <leader>x :wqa<cr>
 nnoremap <silent> g2 :set shiftwidth=2 softtabstop=2 expandtab \| retab<cr>gg=G
 nnoremap <silent> g4 :set shiftwidth=4 softtabstop=4 expandtab \| retab<cr>gg=G
+nnoremap +c :cd %:p:h<cr>
 nnoremap M <c-w>o
 nnoremap Q @q
 nnoremap U :undolist<cr>:undo<space>
@@ -776,7 +777,6 @@ xnoremap <silent> +f  y:RG <c-r>=escape(@",'[](){}\.*^?+\|^$')<cr><cr>
 
 " gitsigns {{{ "
 nnoremap <silent> +q :Gitsigns toggle_current_line_blame<cr>
-nnoremap <silent> +c :Gitsigns blame_line true<cr>
 
 lua <<EOF
 require('gitsigns').setup {
