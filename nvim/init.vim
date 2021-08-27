@@ -937,6 +937,18 @@ end
 EOF
 " }}} nvim-bufferline "
 
+" nvim-bqf {{{ "
+lua <<EOF
+require('bqf').setup({
+  filter = {
+    fzf = {
+      extra_opts = { '--bind', 'ctrl-p:page-down,ctrl-n:page-up,alt-a:select-all,alt-d:deselect-all,alt-t:toggle-all' }
+    }
+  }
+})
+EOF
+" }}} nvim-bqf "
+
 " nvim-tree {{{ "
 nnoremap <leader>k :NvimTreeToggle<cr>
 nnoremap - :NvimTreeFindFile<cr>
