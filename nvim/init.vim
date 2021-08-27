@@ -715,6 +715,8 @@ command! -range -nargs=* GLogL Git log -L <line1>,<line2>:% <args>
 " }}} fugitive "
 
 " fzf {{{ "
+let g:fzf_preview_window = ['right:50%', 'º']
+
 augroup fzf_commands
   autocmd!
   autocmd FileType fzf tnoremap <silent> <buffer> <c-j> <down>
@@ -741,7 +743,7 @@ command! -bang -nargs=* Rg
       \ call fzf#vim#grep(
       \   "rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>),
       \   1,
-      \   fzf#vim#with_preview({ 'options': '--delimiter : --nth 4..' }, 'right:50%', 'º'),
+      \   fzf#vim#with_preview({ 'options': '--delimiter : --nth 4..' }),
       \   <bang>0
       \ )
 
