@@ -562,7 +562,7 @@ let g:formatters_ruby = ['rubocop']
 
 " base16 {{{ "
 lua << EOF
-local base16 = require 'base16'
+local base16 = require('base16')
 
 base16(base16.themes["default-dark"], true)
 EOF
@@ -791,14 +791,14 @@ require('gitsigns').setup {
 vim.api.nvim_set_keymap(
   'n',
   ']c',
-  "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'",
+  "&diff ? ']c' : '<cmd>lua require(\"gitsigns.actions\").next_hunk()<CR>'",
   { noremap = true, expr = true }
 )
 
 vim.api.nvim_set_keymap(
   'n',
   '[c',
-  "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'",
+  "&diff ? '[c' : '<cmd>lua require(\"gitsigns.actions\").prev_hunk()<CR>'",
   { noremap = true, expr = true }
 )
 EOF
@@ -892,7 +892,7 @@ nnoremap <silent> +be :BufferLineSortByExtension<cr>
 nnoremap <silent> +bd :BufferLineSortByDirectory<cr>
 
 lua <<EOF
-require'bufferline'.setup {
+require('bufferline').setup {
   highlights = {
     indicator_selected = {
       guifg = {
@@ -930,7 +930,7 @@ for i = 1, 9 do
   vim.api.nvim_set_keymap(
     "n",
     "<leader>" .. i,
-    ':lua require"bufferline".go_to_buffer(' .. i .. ")<CR>",
+    ':lua require("bufferline").go_to_buffer(' .. i .. ")<CR>",
     { silent = true, nowait = true, noremap = true }
   )
 end
@@ -954,8 +954,8 @@ nnoremap <leader>k :NvimTreeToggle<cr>
 nnoremap - :NvimTreeFindFile<cr>
 
 lua <<EOF
-local tree_cb = require'nvim-tree.config'.nvim_tree_callback
-local nvim_tree_view = require'nvim-tree.view'.View
+local tree_cb = require('nvim-tree.config').nvim_tree_callback
+local nvim_tree_view = require('nvim-tree.view').View
 
 vim.g.nvim_tree_disable_netrw = 0
 vim.g.nvim_tree_disable_window_picker = 1
@@ -1084,7 +1084,7 @@ let g:tmux_navigator_save_on_switch = 2
 " nnoremap +z :setlocal foldmethod=expr<cr>
 
 lua <<EOF
-require'nvim-treesitter.configs'.setup {
+require('nvim-treesitter.configs').setup {
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = true -- [workaround] Allow for matchit and vim-endwise to work
@@ -1111,7 +1111,7 @@ nnoremap +h :TSHighlightCapturesUnderCursor<cr>
 nnoremap +t :TSPlaygroundToggle<cr>
 
 lua <<EOF
-require "nvim-treesitter.configs".setup {
+require("nvim-treesitter.configs").setup {
   playground = {
     enable = true
   }
@@ -1121,7 +1121,7 @@ EOF
 
 " treesitter textobjects {{{ "
 lua <<EOF
-require "nvim-treesitter.configs".setup {
+require("nvim-treesitter.configs").setup {
   textobjects = {
     select = {
       enable = true,
