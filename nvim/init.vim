@@ -8,10 +8,6 @@ lua require('plugins')
 " config {{{ "
 filetype plugin indent on
 
-if !has('g:syntax_on')
-  syntax enable
-endif
-
 set autoindent
 set autoread
 set autowriteall
