@@ -28,6 +28,7 @@ set formatoptions-=ro  " Don't insert comment leader on new line
 set hidden    " remember undo after quitting
 set hlsearch
 set ignorecase
+set inccommand=split
 set incsearch
 set laststatus=2
 set lazyredraw  " Try to not draw while doing macros (helps with scrolling performance)
@@ -83,20 +84,17 @@ let g:markdown_fenced_languages = [
   \ 'xml',
 \ ]
 
-if has('nvim')
-  set inccommand=split
+" Terminal config
+autocmd TermOpen * startinsert
+autocmd TermOpen * setlocal norelativenumber signcolumn=no nonumber
 
-  autocmd TermOpen * startinsert
-  tnoremap <c-h> <c-\><c-n><C-w>h
-  tnoremap <c-j> <c-\><c-n><C-w>j
-  tnoremap <c-k> <c-\><c-n><C-w>k
-  tnoremap <c-l> <c-\><c-n><C-w>l
-  tnoremap kj    <c-\><c-n>
-else
-  set ttymouse=xterm2
-  set notermguicolors
-endif
+tnoremap <c-h> <c-\><c-n><C-w>h
+tnoremap <c-j> <c-\><c-n><C-w>j
+tnoremap <c-k> <c-\><c-n><C-w>k
+tnoremap <c-l> <c-\><c-n><C-w>l
+tnoremap kj    <c-\><c-n>
 
+" Buffer config
 augroup buffer_config
   autocmd!
 
