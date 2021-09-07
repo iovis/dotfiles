@@ -581,7 +581,7 @@ let g:coc_global_extensions = [
 \ 'coc-html',
 \ 'coc-json',
 \ 'coc-pyright',
-\ 'coc-rls',
+\ 'coc-rust-analyzer',
 \ 'coc-sh',
 \ 'coc-snippets',
 \ 'coc-solargraph',
@@ -1068,6 +1068,39 @@ augroup targets_conf
         \ })
 augroup end
 " }}} targets "
+
+" telescope.nvim {{{ "
+" nnoremap <silent> <c-p> :Telescope commands<cr>
+" nnoremap <silent> <leader><leader> :Telescope buffers<cr>
+" nnoremap <silent> <leader>A  :Telescope filetypes<cr>
+" nnoremap <silent> <leader>H  :Telescope git_bcommits<cr>
+" nnoremap <silent> <leader>gL :Telescope git_commits<cr>
+" nnoremap <silent> <leader>R  :Telescope tags<cr>
+" nnoremap <silent> <leader>f  :Telescope live_grep<cr>
+" nnoremap <silent> <leader>j  :Telescope git_status<cr>
+" nnoremap <silent> <leader>o  :Telescope find_files<cr>
+" " nnoremap <silent> <leader>r  :Telescope current_buffer_tags<cr>
+" nnoremap <silent> <leader>r  :Telescope treesitter<cr>
+" nnoremap <silent> <leader>ñ  :BLines!<cr>
+
+" nnoremap <silent> +m :Telescope marks<cr>
+
+" lua <<EOF
+" local actions = require('telescope.actions')
+
+" require('telescope').setup {
+"   defaults = {
+"     mappings = {
+"       i = {
+"         ["<c-j>"] = actions.move_selection_next,
+"         ["<c-k>"] = actions.move_selection_previous,
+"         ["<esc>"] = actions.close,
+"       }
+"     }
+"   }
+" }
+" EOF
+" }}} telescope.nvim "
 
 " tmux navigator {{{ "
 let g:tmux_navigator_save_on_switch = 2
