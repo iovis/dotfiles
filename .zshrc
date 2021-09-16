@@ -289,7 +289,7 @@ if type nvim > /dev/null; then
   alias ni="nvim"
   alias nin="nvim -u \$DOTFILES/.vimrc"
   alias nis="nvim -S Session.vim"
-  alias notes="nvim +ZenMode"
+  alias notes="nvim +ZenMode '+set filetype=markdown'"
 fi
 
 if type rg > /dev/null; then
