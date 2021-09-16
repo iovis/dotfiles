@@ -20,6 +20,7 @@ require('packer').startup(function()
   use 'chrisbra/csv.vim'
   use 'christoomey/vim-sort-motion'
   use 'christoomey/vim-tmux-navigator'
+  use 'dstein64/vim-startuptime'
   use 'folke/zen-mode.nvim'
   use 'honza/vim-snippets'
   use 'iovis/browsers_castle'
