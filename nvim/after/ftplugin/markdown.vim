@@ -7,7 +7,9 @@ setlocal softtabstop=4
 " }}} Options "
 
 " Formatting {{{ "
-setlocal formatoptions+=tcoqnl1j
+setlocal formatoptions+=tcroqnl1j
+setlocal comments=b:*,b:-,b:+,b:?,n:>
+
 setlocal formatlistpat=^\\s*                    " Optional leading whitespace
 setlocal formatlistpat+=[                       " Start class
 setlocal formatlistpat+=\\[({]\\?               " |  Optionally match opening punctuation
