@@ -284,7 +284,7 @@ fi
 if type nvim > /dev/null; then
   export EDITOR="nvim"
   export MANPAGER="$EDITOR +Man!"
-  export MANWIDTH=999
+  export MANWIDTH=80
 
   alias ni="nvim"
   alias nin="nvim -u \$DOTFILES/.vimrc"
