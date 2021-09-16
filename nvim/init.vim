@@ -110,6 +110,10 @@ augroup buffer_config
     \ |   exe "normal! g`\""
     \ | endif
 augroup end
+
+" disable unused providers
+let g:loaded_python_provider = 0
+let g:loaded_perl_provider = 0
 " }}} config "
 
 " bindings {{{ "
