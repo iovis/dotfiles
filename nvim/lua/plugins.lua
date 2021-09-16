@@ -72,6 +72,7 @@ require('packer').startup(function()
   use 'tpope/vim-scriptease'
   use 'tpope/vim-speeddating'
   use 'tpope/vim-surround'
+  use 'vim-test/vim-test'
   use 'wbthomason/packer.nvim'
   use 'wellle/targets.vim'
 

@@ -1191,6 +1191,27 @@ xnoremap <silent> <leader>i y:silent execute 'Tux ' . escape(getreg('0'), '#')<c
 nnoremap <silent> U :UndotreeToggle<cr>
 " }}} undotree "
 
+" vim-test {{{ "
+nnoremap <silent> <leader>si :TestNearest<cr>
+nnoremap <silent> <leader>so :TestFile<cr>
+nnoremap <silent> <leader>sa :TestSuite<cr>
+nnoremap <silent> <leader>sl :TestLast<cr>
+nnoremap <silent> <leader>sv :TestVisit<cr>
+
+function! TuxStrategy(cmd)
+  execute 'Tux ' . a:cmd
+endfunction
+
+let g:test#custom_strategies = { 'tux': function('TuxStrategy') }
+let g:test#strategy = 'tux'
+let g:test#rust#cargotest#test_patterns = {
+      \ 'test': ['\v(#\[%(actix_rt::|tokio::|rs)?test)'],
+      \ 'namespace': ['\vmod (tests?)']
+      \ }
+
+" let test#ruby#use_spring_binstub = 1
+" }}} vim-test "
+
 " vimlook {{{ "
 nnoremap <leader>¡ :QuickLook<space>
 " }}} vimlook "
