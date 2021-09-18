@@ -10,12 +10,6 @@ sudo apt update
 sudo apt -y upgrade
 sudo apt install -y automake build-essential byacc cmake gdb gettext lcov libbz2-dev libevent-dev libffi-dev libgdbm-dev liblzma-dev libncurses5-dev libreadline6-dev libsqlite3-dev libssl-dev libtool libtool-bin lzma lzma-dev pkg-config protobuf-compiler tk-dev unzip uuid-dev zip zlib1g-dev zsh
 
-# dotfiles
-echo "[$(date '+%Y-%m-%d %H:%M')] Linking dotfiles"
-sh ~/.dotfiles/link_dotfiles.sh
-mkdir ~/.zsh
-touch ~/.zsh/aliases.zsh
-
 # Tmux
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing tmux"
 git clone https://github.com/tmux/tmux
@@ -25,7 +19,7 @@ sh autogen.sh
 ./configure && make
 sudo make install
 cd
-# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # mosh
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing mosh"
@@ -41,10 +35,17 @@ cd
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing Oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
+ZSH_CUSTOM=$HOME/.oh-my-zsh/custom
 git clone https://github.com/zdharma/fast-syntax-highlighting.git $ZSH_CUSTOM/plugins/fast-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-completions $ZSH_CUSTOM/plugins/zsh-completions
 git clone https://github.com/MichaelAquilina/zsh-you-should-use $ZSH_CUSTOM/plugins/you-should-use
+
+# dotfiles
+echo "[$(date '+%Y-%m-%d %H:%M')] Linking dotfiles"
+sh ~/.dotfiles/link_dotfiles.sh
+mkdir ~/.zsh
+touch ~/.zsh/aliases.zsh
 
 # asdf
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing asdf"
