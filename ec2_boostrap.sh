@@ -1,6 +1,6 @@
 # EC2 bootstrap script
 # git clone https://github.com/iovis/dotfiles ~/.dotfiles
-# sh ~/.dotfiles/ec2_boostrap.sh | tee install.log
+# . ~/.dotfiles/ec2_boostrap.sh 2>&1 | tee install.log
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing system"
 
@@ -14,6 +14,7 @@ sudo apt install -y automake build-essential byacc cmake gdb gettext lcov libbz2
 echo "[$(date '+%Y-%m-%d %H:%M')] Linking dotfiles"
 sh ~/.dotfiles/link_dotfiles.sh
 mkdir ~/.zsh
+touch ~/.zsh/aliases.zsh
 
 # Tmux
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing tmux"
@@ -39,6 +40,11 @@ cd
 # zsh
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing Oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+
+git clone https://github.com/zdharma/fast-syntax-highlighting.git $ZSH_CUSTOM/plugins/fast-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-completions $ZSH_CUSTOM/plugins/zsh-completions
+git clone https://github.com/MichaelAquilina/zsh-you-should-use $ZSH_CUSTOM/plugins/you-should-use
 
 # asdf
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing asdf"
@@ -78,7 +84,7 @@ cd
 # rust
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing rust"
 curl https://sh.rustup.rs -sSf | sh -s -- -y
-source $HOME/.cargo/env
+. $HOME/.cargo/env
 cargo install $(cat ~/.dotfiles/default-crates)
 
 # gh
