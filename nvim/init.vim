@@ -687,7 +687,7 @@ let g:user_emmet_settings = {
 " }}} emmet "
 
 " fugitive {{{ "
-nmap <silent> <leader>- :Gedit:<cr><c-n>
+nmap <silent> <leader>- :Gedit:<cr>)
 
 nnoremap <leader>gm :Git mergetool<cr>
 nnoremap <leader>go :Gread<cr>
