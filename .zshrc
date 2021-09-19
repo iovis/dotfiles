@@ -138,12 +138,15 @@ alias ts='tmux new-session -s'
 alias zshrc="\$EDITOR ~/.zshrc"
 
 function libupdate() {
-  brew update
-  brew upgrade
+  upgrade_libraries
 
   omz update --unattended
   upgrade_plugins
 
+  rustup update
+  cargo install $(cat ~/.dotfiles/default-crates)
+
+  asdf update
   asdf plugin update --all
 
   npm -g outdated
@@ -153,6 +156,11 @@ function libupdate() {
 
   echo '\nOutdated pips'
   pipo
+}
+
+function upgrade_libraries() {
+  brew update
+  brew upgrade
 }
 
 function upgrade_plugins() {
