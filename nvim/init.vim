@@ -955,7 +955,26 @@ lua <<EOF
 local tree_cb = require('nvim-tree.config').nvim_tree_callback
 local nvim_tree_view = require('nvim-tree.view').View
 
-vim.g.nvim_tree_disable_netrw = 0
+require('nvim-tree').setup {
+  disable_netrw = false,
+  view = {
+    -- These don't seem to work yet
+    -- winopts = {
+    --   relativenumber = true,
+    --   signcolumn = 'no',
+    -- },
+    mappings = {
+      list = {
+        { key = "x", cb = tree_cb("close_node") },
+        { key = "C", cb = tree_cb("cd") },
+        { key = "D", cb = tree_cb("cut") },
+        { key = "J", cb = tree_cb("next_sibling") },
+        { key = "K", cb = tree_cb("prev_sibling") },
+      }
+    }
+  }
+}
+
 vim.g.nvim_tree_disable_window_picker = 1
 vim.g.nvim_tree_indent_markers = 1
 vim.g.nvim_tree_width = 35
@@ -970,14 +989,6 @@ vim.g.nvim_tree_ignore = {
   'Session.vim',
   'node_modules',
   'tags'
-}
-
-vim.g.nvim_tree_bindings = {
-  { key = "x", cb = tree_cb("close_node") },
-  { key = "C", cb = tree_cb("cd") },
-  { key = "D", cb = tree_cb("cut") },
-  { key = "J", cb = tree_cb("next_sibling") },
-  { key = "K", cb = tree_cb("prev_sibling") },
 }
 
 nvim_tree_view.winopts.relativenumber = true
