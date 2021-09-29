@@ -708,7 +708,7 @@ nnoremap <silent> <leader>gdm :Gdiffsplit master<cr>
 nnoremap <leader>gprq :Git hub pull-request --push --browse -m '' --edit -a iovis -b qa -l 'Needs Review'
 nnoremap <leader>gprm :Git hub pull-request --push --browse -m '' --edit -a iovis -b master -l 'Waiting for QA'
 
-command! -nargs=* Glol Git log --graph --pretty='\%h -\%d \%s (\%cr) <\%an>' <args>
+command! -nargs=* Glol Git log --graph --pretty='%h -%d %s (%cr) <%an>' <args>
 command! -range -nargs=* GLogL Git log -L <line1>,<line2>:% <args>
 " }}} fugitive "
 
