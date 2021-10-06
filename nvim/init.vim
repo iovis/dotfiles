@@ -713,19 +713,23 @@ command! -range -nargs=* GLogL Git log -L <line1>,<line2>:% <args>
 " }}} fugitive "
 
 " fzf-lua {{{ "
-augroup fzf_commands
-  autocmd!
-  autocmd FileType fzf tnoremap <silent> <buffer> <c-j> <down>
-  autocmd FileType fzf tnoremap <silent> <buffer> <c-k> <up>
-  autocmd FileType fzf tnoremap <silent> <buffer> <m-left>  <s-left>
-  autocmd FileType fzf tnoremap <silent> <buffer> <m-right> <s-right>
-  autocmd FileType fzf tnoremap <silent> <buffer> <m-+> ]
-  autocmd FileType fzf tnoremap <silent> <buffer> <m-ç> }
-  autocmd FileType fzf tnoremap <silent> <buffer> <m-ñ> ~
-augroup end
-
 lua <<EOF
+local tnoremap = function(lhs, rhs)
+  vim.api.nvim_buf_set_keymap(0, "t", lhs, rhs, { silent = true, noremap = true })
+end
+
 require('fzf-lua').setup {
+  winopts = {
+    window_on_create = function()
+      tnoremap("<c-j>", "<down>")
+      tnoremap("<c-k>", "<up>")
+      tnoremap("<m-left>", "<s-left>")
+      tnoremap("<m-right>", "<s-right>")
+      tnoremap("<m-+>", "]")
+      tnoremap("<m-ç>", "}")
+      tnoremap("<m-ñ>", "~")
+    end
+  },
   keymap = {
     builtin = {
       ["º"] = "toggle-preview",
