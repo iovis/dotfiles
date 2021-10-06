@@ -732,10 +732,10 @@ require('fzf-lua').setup {
   },
   keymap = {
     builtin = {
-      ["º"] = "toggle-preview",
+      ["º"]      = "toggle-preview",
       ["<down>"] = "preview-page-down",
       ["<up>"]   = "preview-page-up",
-      ["<left>"] = "preview-page-reset",
+      ["<F1>"]   = "preview-page-reset",
       -- defaults (overridden otherwise)
       ["<F2>"] = "toggle-fullscreen",
       ["<F3>"] = "toggle-preview-wrap",
