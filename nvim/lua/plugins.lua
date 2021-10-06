@@ -31,7 +31,6 @@ require('packer').startup(function()
   use 'iovis/tux.vim'
   use 'iovis/vimlook'
   use 'jparise/vim-graphql'
-  use 'junegunn/fzf.vim'
   use 'junegunn/vim-peekaboo'
   use 'justinmk/vim-sneak'
   use 'kana/vim-textobj-entire'
@@ -79,6 +78,7 @@ require('packer').startup(function()
 
   use { 'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons' }
   use { 'hoob3rt/lualine.nvim', requires = 'kyazdani42/nvim-web-devicons' }
+  use { 'ibhagwan/fzf-lua', requires = { 'vijaymarupudi/nvim-fzf', 'kyazdani42/nvim-web-devicons' } }
   use { 'junegunn/fzf', run = function() vim.fn['fzf#install']() end }
   use { 'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons' }
   use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }

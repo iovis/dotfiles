@@ -712,9 +712,7 @@ command! -nargs=* Glol Git log --graph --pretty='%h -%d %s (%cr) <%an>' <args>
 command! -range -nargs=* GLogL Git log -L <line1>,<line2>:% <args>
 " }}} fugitive "
 
-" fzf {{{ "
-let g:fzf_preview_window = ['right:50%', 'º']
-
+" fzf-lua {{{ "
 augroup fzf_commands
   autocmd!
   autocmd FileType fzf tnoremap <silent> <buffer> <c-j> <down>
@@ -724,56 +722,55 @@ augroup fzf_commands
   autocmd FileType fzf tnoremap <silent> <buffer> <m-+> ]
   autocmd FileType fzf tnoremap <silent> <buffer> <m-ç> }
   autocmd FileType fzf tnoremap <silent> <buffer> <m-ñ> ~
-  autocmd FileType fzf setlocal nornu nonu signcolumn=no
 augroup end
 
-" Don't use gitignore
-command! -bang AllFiles
-      \ call fzf#run(
-      \   fzf#wrap(
-      \     { 'source': "fd -H -I -E '.git' -E '.keep' --type file --follow --color=always" },
-      \     <bang>0
-      \   )
-      \ )
+lua <<EOF
+require('fzf-lua').setup {
+  keymap = {
+    builtin = {
+      ["º"] = "toggle-preview",
+      ["<down>"] = "preview-page-down",
+      ["<up>"]   = "preview-page-up",
+      ["<left>"] = "preview-page-reset",
+      -- defaults (overridden otherwise)
+      ["<F2>"] = "toggle-fullscreen",
+      ["<F3>"] = "toggle-preview-wrap",
+      ["<F4>"] = "toggle-preview",
+      ["<F5>"] = "toggle-preview-ccw",
+      ["<F6>"] = "toggle-preview-cw",
+    }
+  },
+  git = {
+    icons = {
+      ["M"] = { icon = "★", color = "yellow" },
+      ["D"] = { icon = "✗", color = "red" },
+      ["A"] = { icon = "+", color = "green" },
+      ["?"] = { icon = "?", color = "magenta" },
+    },
+  }
+}
+EOF
 
-" Make Rg not list the actual filenames
-command! -bang -nargs=* Rg
-      \ call fzf#vim#grep(
-      \   "rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>),
-      \   1,
-      \   fzf#vim#with_preview({ 'options': '--delimiter : --nth 4..' }),
-      \   <bang>0
-      \ )
+nnoremap +s :FzfLua<space>
 
-function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-endfunction
-
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
-
-nnoremap <silent> <c-p> :Commands<cr>
-nnoremap <silent> <leader><leader> :Buffers<cr>
-nnoremap <silent> <leader>A  :Filetypes<cr>
-nnoremap <silent> <leader>H  :BCommits<cr>
-nnoremap <silent> <leader>gL :Commits<cr>
-nnoremap <silent> <leader>O  :AllFiles<cr>
-nnoremap <silent> <leader>R  :Tags<cr>
-nnoremap <silent> <leader>f  :Rg<cr>
-nnoremap <silent> <leader>j  :GFiles?<cr>
-nnoremap <silent> <leader>o  :Files<cr>
-nnoremap <silent> <leader>r  :BTags<cr>
-nnoremap <silent> <leader>ñ  :BLines!<cr>
-
-xnoremap <silent> <leader>f  y:Rg <c-r>=escape(@",'[](){}\.*^?+\|^$')<cr><cr>
-
-" Make FZF use Rg (good for using regexes)
-nnoremap <silent> +f :RG<cr>
-xnoremap <silent> +f  y:RG <c-r>=escape(@",'[](){}\.*^?+\|^$')<cr><cr>
-" }}} fzf "
+nnoremap <silent> +f :FzfLua live_grep<cr>
+nnoremap <silent> +m :FzfLua marks<cr>
+nnoremap <silent> +r :FzfLua registers<cr>
+nnoremap <silent> <c-p> :FzfLua commands<cr>
+nnoremap <silent> <leader><leader> :FzfLua buffers<cr>
+nnoremap <silent> <leader>A   :FzfLua filetypes<cr>
+nnoremap <silent> <leader>H   :FzfLua git_bcommits<cr>
+nnoremap <silent> <leader>O   :FzfLua files<cr>
+nnoremap <silent> <leader>R   :FzfLua tags<cr>
+nnoremap <silent> <leader>f   :FzfLua grep<cr><cr>
+nnoremap <silent> <leader>gL  :FzfLua git_commits<cr>
+nnoremap <silent> <leader>gco :FzfLua git_branches<cr>
+nnoremap <silent> <leader>j   :FzfLua git_status<cr>
+nnoremap <silent> <leader>o   :FzfLua git_files<cr>
+nnoremap <silent> <leader>r   :FzfLua btags<cr>
+nnoremap <silent> <leader>ñ   :FzfLua blines<cr>
+xnoremap <silent> <leader>f   :<c-u>FzfLua grep_visual<cr>
+" }}} fzf-lua "
 
 " gitsigns {{{ "
 nnoremap <silent> +q :Gitsigns toggle_current_line_blame<cr>
@@ -803,7 +800,7 @@ EOF
 " }}} gitsigns "
 
 " hubcap.vim {{{ "
-nnoremap <leader>gco  :Gco<space>
+" nnoremap <leader>gco  :Gco<space>
 nnoremap <leader>gprb :Gprb<cr>
 nnoremap <leader>gprc :Gprc<space>
 nnoremap <leader>gprs :Gprs<cr>:Gprc<space>
