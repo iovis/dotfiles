@@ -718,6 +718,8 @@ local tnoremap = function(lhs, rhs)
   vim.api.nvim_buf_set_keymap(0, "t", lhs, rhs, { silent = true, noremap = true })
 end
 
+local original_fd_opts = require('fzf-lua.config').globals.files.fd_opts
+
 require('fzf-lua').setup {
   winopts = {
     window_on_create = function()
@@ -743,6 +745,9 @@ require('fzf-lua').setup {
       ["<F5>"] = "toggle-preview-ccw",
       ["<F6>"] = "toggle-preview-cw",
     }
+  },
+  files = {
+    fd_opts = original_fd_opts .. [[ --no-ignore --exclude '.keep']]
   },
   git = {
     icons = {
