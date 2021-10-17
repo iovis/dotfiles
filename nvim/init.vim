@@ -751,6 +751,13 @@ require('fzf-lua').setup {
       ["A"] = { icon = "+", color = "green" },
       ["?"] = { icon = "?", color = "magenta" },
     },
+  },
+  grep = {
+    -- Don't search on the filename, just the content
+    fzf_opts = {
+      ['--delimiter'] = ':',
+      ['--nth'] = '4..',
+    }
   }
 }
 EOF
