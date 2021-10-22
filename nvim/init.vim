@@ -751,10 +751,11 @@ require('fzf-lua').setup {
   },
   git = {
     icons = {
-      ["M"] = { icon = "★", color = "yellow" },
-      ["D"] = { icon = "✗", color = "red" },
-      ["A"] = { icon = "+", color = "green" },
       ["?"] = { icon = "?", color = "magenta" },
+      ["A"] = { icon = "+", color = "green" },
+      ["D"] = { icon = "✗", color = "red" },
+      ["M"] = { icon = "★", color = "yellow" },
+      ["R"] = { icon = "➜", color = "yellow" },
     },
   },
   grep = {
