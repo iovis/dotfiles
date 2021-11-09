@@ -965,10 +965,23 @@ nnoremap - :NvimTreeFindFile<cr>
 
 lua <<EOF
 local tree_cb = require('nvim-tree.config').nvim_tree_callback
-local nvim_tree_view = require('nvim-tree.view').View
 
 require('nvim-tree').setup {
   disable_netrw = false,
+  filters = {
+    custom = {
+      '*.pyc',
+      '.DS_Store',
+      '.bundle',
+      '.git',
+      '.github',
+      '.vscode',
+      '.yardoc',
+      'Session.vim',
+      'node_modules',
+      'tags'
+    }
+  },
   view = {
     -- These don't seem to work yet
     -- winopts = {
@@ -990,19 +1003,8 @@ require('nvim-tree').setup {
 vim.g.nvim_tree_disable_window_picker = 1
 vim.g.nvim_tree_indent_markers = 1
 vim.g.nvim_tree_width = 35
-vim.g.nvim_tree_ignore = {
-  '*.pyc',
-  '.DS_Store',
-  '.bundle',
-  '.git',
-  '.github',
-  '.vscode',
-  '.yardoc',
-  'Session.vim',
-  'node_modules',
-  'tags'
-}
 
+local nvim_tree_view = require('nvim-tree.view').View
 nvim_tree_view.winopts.relativenumber = true
 nvim_tree_view.winopts.signcolumn = 'no'
 EOF
