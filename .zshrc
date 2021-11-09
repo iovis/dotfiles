@@ -97,6 +97,7 @@ fi
 #############
 #  Aliases  #
 #############
+alias activate="source .venv/bin/activate"
 alias ag="alias | g --"
 alias aliases="\$EDITOR ~/.zsh/aliases.zsh"
 alias d="du -sh * .*"
@@ -114,13 +115,14 @@ alias npmgo="npm -g outdated"
 alias npmgu="npm -g update"
 alias npms="npm ls -g --depth=0"
 alias path="echo \$PATH | tr ':' '\n'"
-alias pedev="pipenv install --dev jedi pylint ipython ipdb pynvim"
+alias pedev="pipenv install --dev pylint ipython ipdb pynvim"
 alias pesh="pipenv shell"
 alias pest="pipenv run start"
 alias pf="peerflixrb"
+alias pipdev="pipu ipdb ipython pylint pynvim pytest"
 alias pipdump="pip freeze > requirements.txt"
 alias pipi="pip install"
-alias pipinit="pipu pip setuptools wheel && pipr \$DOTFILES/default-pips"
+alias pipinit="pipu pip setuptools wheel && pipr requirements.txt"
 alias pipo="pip list --outdated --format=columns | grep -f \$DOTFILES/default-pips"
 alias pipr="pip install -r"
 alias pipu="pip install -U"
@@ -135,6 +137,7 @@ alias tl='tmux list-sessions'
 alias tm="tmux attach || tmux new-session"
 alias tmrc="\$EDITOR ~/.tmux.conf"
 alias ts='tmux new-session -s'
+alias venv="python3 -m venv .venv"
 alias zshrc="\$EDITOR ~/.zshrc"
 
 function libupdate() {
