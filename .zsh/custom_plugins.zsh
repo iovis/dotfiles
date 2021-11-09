@@ -6,7 +6,7 @@ plugins+=(
   docker-compose
   httpie
   jira
-  osx
+  macos
   rails
   web-search
 )
