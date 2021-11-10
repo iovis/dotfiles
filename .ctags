@@ -1,8 +1,6 @@
 --recurse=yes
 --tag-relative=yes
 
---python-kinds=-i
-
 --exclude=.git
 --exclude=.idea
 --exclude=.sass-cache
