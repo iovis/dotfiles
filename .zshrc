@@ -61,6 +61,16 @@ bindkey -s "^[ç" '}'
 #  macOS  #
 ###########
 if [[ $OSTYPE == darwin* ]]; then
+  if [ -f /etc/profile ]; then
+    PATH=""
+    source /etc/profile
+  fi
+
+  [[ ! -f /opt/homebrew/bin/brew ]] || eval "$(/opt/homebrew/bin/brew shellenv)"
+
+  export PATH="$HOME/.cargo/bin:$PATH"
+  . "$HOME/.cargo/env"
+
   alias fixtrash="rm -rf ~/.Trash; mkdir ~/.Trash; killall Finder"
   alias flushcache="dscacheutil -flushcache"
   alias nt="lsof -Pni"
@@ -171,7 +181,7 @@ function upgrade_plugins() {
   GREEN='\033[0;32m'
   NOCOLOR='\033[0m' # No Color
 
-  # git clone https://github.com/zdharma/fast-syntax-highlighting.git $ZSH_CUSTOM/plugins/fast-syntax-highlighting
+  # git clone https://github.com/zdharma-continuum/fast-syntax-highlighting $ZSH_CUSTOM/plugins/fast-syntax-highlighting
   echo -e "${BLUE}Upgrading ${GREEN}fast-syntax-highlighting${NOCOLOR}" && git -C $ZSH_CUSTOM/plugins/fast-syntax-highlighting pull
 
   # git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
@@ -217,6 +227,8 @@ if [[ -f "$HOME/.asdf/asdf.sh" ]]; then
   source "$HOME/.asdf/asdf.sh"
 elif [[ -f "/usr/local/opt/asdf/asdf.sh" ]]; then
   source "/usr/local/opt/asdf/asdf.sh"
+elif [[ -f "/opt/homebrew/opt/asdf/asdf.sh" ]]; then
+  source "/opt/homebrew/opt/asdf/asdf.sh"
 fi
 
 if type bat > /dev/null; then
@@ -316,7 +328,7 @@ if type rustc > /dev/null; then
   }
 fi
 
-[[ ! -f /usr/local/etc/profile.d/z.sh ]] || source /usr/local/etc/profile.d/z.sh
+[[ ! -f /opt/homebrew/etc/profile.d/z.sh ]] || source /opt/homebrew/etc/profile.d/z.sh
 
 ##########################
 #  Plugin configuration  #
