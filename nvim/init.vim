@@ -978,6 +978,7 @@ require('nvim-tree').setup {
       '.github',
       '.vscode',
       '.yardoc',
+      'BqfPreviewBorder',
       'Session.vim',
       'node_modules',
       'tags'
