@@ -1019,6 +1019,10 @@ EOF
 nnoremap yoo :Obsession<cr>
 " }}} obsession "
 
+" packer.nvim {{{ "
+nnoremap <leader>ps :PackerSync<cr>
+" }}} packer.nvim "
+
 " projectionist {{{ "
 nnoremap <silent> <leader>aa :A<cr>
 nnoremap <silent> <leader>ah :AS<cr>
