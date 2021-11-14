@@ -52,6 +52,7 @@ set wildignorecase
 set wildmenu
 set wildmode=full
 let &showbreak = '└ '
+let @/ = ""  " don't show search highlights when entering or resourcing vimrc
 
 if exists('&breakindent')
   set breakindent

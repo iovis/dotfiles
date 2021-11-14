@@ -58,6 +58,7 @@ set wildignorecase
 set wildmenu
 set wildmode=full
 let &showbreak = '└ '
+let @/ = ""  " don't show search highlights when entering or resourcing vimrc
 
 let g:markdown_fenced_languages = [
   \ 'bash',
