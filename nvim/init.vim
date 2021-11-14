@@ -217,7 +217,8 @@ nnoremap <silent> <leader>ª :bdelete!<cr>
 nnoremap s <Nop>
 xnoremap s <Nop>
 
-nnoremap ss :%s///g<left><left><left>
+nnoremap s<space> :s///g<left><left><left>
+nnoremap ss       :%s///g<left><left><left>
 
 nnoremap <silent> s :set operatorfunc=SubstituteOperator<cr>g@
 xnoremap s :<c-u>call SubstituteOperator(visualmode())<cr>
@@ -666,7 +667,6 @@ let g:delimitMate_expand_space = 1
 
 " dispatch {{{ "
 nnoremap s<cr>    :Dispatch<cr>
-nnoremap s<space> :Dispatch<space>
 nnoremap s!       :Dispatch!<cr>
 nnoremap s?       :FocusDispatch<cr>
 " }}} dispatch "

@@ -262,7 +262,8 @@ onoremap ak :<C-u>normal vikV<CR>
 nnoremap s <Nop>
 xnoremap s <Nop>
 
-nnoremap ss :%s///g<left><left><left>
+nnoremap s<space> :s///g<left><left><left>
+nnoremap ss       :%s///g<left><left><left>
 
 nnoremap <silent> s :set operatorfunc=SubstituteOperator<cr>g@
 xnoremap s :<c-u>call SubstituteOperator(visualmode())<cr>
