@@ -13,6 +13,9 @@ end
 vim.cmd([[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]])
 
 -- plugins
+require('packer').init({
+  max_jobs=50
+})
 require('packer').startup(function()
   use 'andrewradev/splitjoin.vim'
   use 'benekastah/neomake'
