@@ -71,6 +71,7 @@ if [[ $OSTYPE == darwin* ]]; then
   export PATH="$HOME/.cargo/bin:$PATH"
   . "$HOME/.cargo/env"
 
+  alias brewdump="cd; brew bundle dump -f; cd -"
   alias fixtrash="rm -rf ~/.Trash; mkdir ~/.Trash; killall Finder"
   alias flushcache="dscacheutil -flushcache"
   alias nt="lsof -Pni"
