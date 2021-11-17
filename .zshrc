@@ -162,6 +162,7 @@ function libupdate() {
 
   asdf update
   asdf plugin update --all
+  asdf reshim
 
   npm -g outdated
 
