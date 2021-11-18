@@ -25,6 +25,7 @@ setlocal formatlistpat+=\\\|^\\s*[-–+o*]\\s\\+  " Or ASCII style bullet points
 " }}} Formatting "
 
 " Bindings {{{ "
+nnoremap <buffer> m<space> :Move<space>
 
 " change bullet point style {{{ "
 nnoremap <buffer> <leader>* mz^r*`z
