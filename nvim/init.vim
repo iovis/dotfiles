@@ -720,6 +720,7 @@ local tnoremap = function(lhs, rhs)
 end
 
 local original_fd_opts = require('fzf-lua.config').globals.files.fd_opts
+local original_rg_opts = require('fzf-lua.config').globals.grep.rg_opts
 
 require('fzf-lua').setup {
   winopts = {
@@ -746,7 +747,7 @@ require('fzf-lua').setup {
     }
   },
   files = {
-    fd_opts = original_fd_opts .. [[ --no-ignore --exclude '.keep']]
+    fd_opts = original_fd_opts .. [[ --no-ignore --exclude '.keep' --exclude 'Session.vim']]
   },
   git = {
     icons = {
@@ -762,7 +763,8 @@ require('fzf-lua').setup {
     fzf_opts = {
       ['--delimiter'] = ':',
       ['--nth'] = '4..',
-    }
+    },
+    rg_opts = original_rg_opts .. [[ -g '!Session.vim']]
   }
 }
 EOF
