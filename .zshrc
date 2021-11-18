@@ -11,6 +11,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # ZSH_THEME="refined"
 
 export DOTFILES="$HOME/.dotfiles"
+export NOTES="$HOME/Library/Mobile Documents/com~apple~CloudDocs/notes/"
 export EDITOR="vim"
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
@@ -72,6 +73,7 @@ if [[ $OSTYPE == darwin* ]]; then
   . "$HOME/.cargo/env"
 
   alias brewdump="cd; brew bundle dump -f; cd -"
+  alias notes="cd $NOTES/notes && nvim -S"
   alias fixtrash="rm -rf ~/.Trash; mkdir ~/.Trash; killall Finder"
   alias flushcache="dscacheutil -flushcache"
   alias nt="lsof -Pni"
@@ -314,7 +316,7 @@ if type nvim > /dev/null; then
   alias ni="nvim"
   alias nin="nvim -u \$DOTFILES/.vimrc"
   alias nis="nvim -S Session.vim"
-  alias notes="nvim +ZenMode '+set filetype=markdown'"
+  alias note="nvim +ZenMode '+set filetype=markdown'"
 fi
 
 if type rg > /dev/null; then
