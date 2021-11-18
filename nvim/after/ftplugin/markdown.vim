@@ -38,3 +38,25 @@ nmap     <buffer> <leader>ñ mzyss~`z
 xnoremap <buffer> <leader>ñ :norm yss~<cr>
 " }}} strike-through line "
 " }}} Bindings "
+
+" functions {{{ "
+" Repeatable toggle checkbox
+nnoremap <buffer> <silent> <Plug>ToggleCheckbox
+      \ :call ToggleCheckbox()<bar>
+      \  call repeat#set("\<Plug>ToggleCheckbox")<cr>
+
+nmap <buffer> <silent> X <Plug>ToggleCheckbox
+xmap <buffer> <silent> X :call ToggleCheckbox()<cr>
+
+function! ToggleCheckbox()
+  let line = getline('.')
+
+  if line =~# '- \[ \]'
+    let line = substitute(line, '- \[ \]', '- \[x\]', '')
+  elseif line =~# '- \[x\]'
+    let line = substitute(line, '- \[x\]', '- \[ \]', '')
+  endif
+
+  call setline('.', line)
+endfunction
+" }}} functions "
