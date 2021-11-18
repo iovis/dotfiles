@@ -9,3 +9,9 @@ function! s:${1:function_name}($2) abort
   ${0:" code}
 endfunction
 endsnippet
+
+snippet luab "Lua block" b
+lua <<EOF
+$0
+EOF
+endsnippet
