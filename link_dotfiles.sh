@@ -8,7 +8,7 @@
 dir=~/.dotfiles
 olddir=~/dotfiles_old
 files="Brewfile .ctags .ctags.d .eslintrc.json .gemrc .gitconfig .gitignore_global .pryrc .psqlrc .tmux.conf .vimrc .zshenv .zshrc"
-config_files="mpv nvim"
+config_files="mpv nvim yabai skhd"
 
 
 # create dotfiles_old in homedir
