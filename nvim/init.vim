@@ -545,6 +545,10 @@ nmap +r :registers<cr>
 nmap +m :marks<cr>
 " }}} marks "
 
+" notes {{{ "
+nnoremap +n :execute "e $NOTES/" . strftime('%F') . ".md"<cr>
+" }}} notes "
+
 " jq {{{ "
 nnoremap +j :%!jq ''<left>
 " }}} jq "
