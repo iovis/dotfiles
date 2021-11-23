@@ -25,6 +25,10 @@ setlocal formatlistpat+=\\\|^\\s*[-–+o*]\\s\\+  " Or ASCII style bullet points
 " }}} Formatting "
 
 " Bindings {{{ "
+inoremap <buffer> [ []<left>
+inoremap <buffer> [<space> [ ]<space>
+inoremap <buffer> [<cr> [<cr>]<esc>O
+
 nnoremap <buffer> <silent> <leader>o :FzfLua files<cr>
 nnoremap <buffer> m<space> :Move<space>
 
@@ -47,8 +51,8 @@ nnoremap <buffer> <silent> <Plug>ToggleCheckbox
       \ :call ToggleCheckbox()<bar>
       \  call repeat#set("\<Plug>ToggleCheckbox")<cr>
 
-nmap <buffer> <silent> X <Plug>ToggleCheckbox
-xmap <buffer> <silent> X :call ToggleCheckbox()<cr>
+nmap <buffer> <silent> yox <Plug>ToggleCheckbox
+xmap <buffer> <silent> yox :call ToggleCheckbox()<cr>
 
 function! ToggleCheckbox()
   let line = getline('.')
