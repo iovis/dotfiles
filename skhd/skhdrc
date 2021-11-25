@@ -53,8 +53,8 @@ ctrl + alt + cmd - y : yabai -m window --toggle float
 
 # NOTE: <rows>:<cols>:<start-x>:<start-y>:<width>:<height>
 # Sidebar
-ctrl + alt - o : yabai -m window --grid 2:6:5:0:1:1
-ctrl + alt + cmd - o : yabai -m window --grid 2:4:3:0:1:2
+ctrl + alt - o : yabai -m window --grid 2:4:3:0:1:1
+ctrl + alt + cmd - o : yabai -m window --grid 1:4:3:0:1:1
 
 # Halves
 ctrl + alt - left  : yabai -m window --grid 1:2:0:0:1:1
@@ -80,8 +80,6 @@ ctrl + alt - up  : yabai -m window --grid 1:1:0:0:1:1
 ##############
 # fast focus display
 ctrl + alt + cmd - space : yabai -m display --focus prev || yabai -m display --focus last
-ctrl + alt + cmd - 2 : yabai -m display --focus 1
-ctrl + alt + cmd - 1 : yabai -m display --focus 2
 
 # send window to monitor and follow focus
 ctrl + alt + cmd - d : yabai -m window --display prev || yabai -m window --display last; yabai -m display --focus prev || yabai -m display --focus last
@@ -89,9 +87,10 @@ ctrl + alt + cmd - d : yabai -m window --display prev || yabai -m window --displ
 #############
 #  Layouts  #
 #############
-hyper - 1 : yabai -m space --layout bsp
-hyper - 2 : yabai -m space --layout float
-hyper - 0 : yabai -m space --balance
+ctrl + alt + cmd - 1 : yabai -m space --layout bsp
+ctrl + alt + cmd - 2 : yabai -m space --layout float
+ctrl + alt + cmd - 0 : yabai -m space --balance
+
 ctrl + alt + cmd - r : yabai -m space --rotate 90
 ctrl + alt + cmd - e : yabai -m window --toggle split
 
