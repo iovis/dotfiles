@@ -67,3 +67,4 @@ yabai -m rule --add app="^Perimeter" manage=off
 yabai -m rule --add app="^System Information$" sticky=on layer=above manage=off
 yabai -m rule --add app="^System Preferences$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Things" manage=off
+yabai -m rule --add app="^zoom.us$" manage=off
