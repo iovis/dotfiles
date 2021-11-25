@@ -546,7 +546,7 @@ nmap +m :marks<cr>
 " }}} marks "
 
 " notes {{{ "
-nnoremap +n :execute "e $NOTES/" . strftime('%F') . ".md"<cr>
+nnoremap <leader>n :execute "e $NOTES/" . strftime('%F') . ".md"<cr>
 " }}} notes "
 
 " jq {{{ "
