@@ -386,7 +386,7 @@ nnoremap <silent> <leader>ua :e! ~/.zsh/aliases.zsh<cr>
 nnoremap <silent> <leader>uf :execute empty(&filetype) ? 'echo "no filetype specified"' : 'EditFtplugin'<cr>
 nnoremap <silent> <leader>uh :sp $MYVIMRC<cr>
 nnoremap <silent> <leader>um :e! ~/.dotfiles/.vimrc<cr>
-nnoremap <silent> <leader>up :e! ~/.config/nvim/lua/plugins.lua<cr>
+nnoremap <silent> <leader>up :e! ~/.config/nvim/lua/plugins/init.lua<cr>
 nnoremap <silent> <leader>ur :e! .projections.json<cr>
 nnoremap <silent> <leader>ut :e! ~/.tmux.conf<cr>
 nnoremap <silent> <leader>uu :e! $MYVIMRC<cr>

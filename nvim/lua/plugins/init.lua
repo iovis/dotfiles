@@ -17,6 +17,7 @@ require('packer').init({
   max_jobs=50
 })
 require('packer').startup(function()
+  -- use 'JoosepAlviste/nvim-ts-context-commentstring'
   use 'andrewradev/splitjoin.vim'
   use 'benekastah/neomake'
   use 'chiel92/vim-autoformat'
@@ -45,6 +46,7 @@ require('packer').startup(function()
   use 'moll/vim-bbye'
   use 'neoclide/coc-neco' -- uses neco-vim
   use 'norcalli/nvim-base16.lua'
+  use 'numToStr/Comment.nvim'
   use 'nvim-lua/plenary.nvim'
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'nvim-treesitter/playground'
@@ -56,7 +58,7 @@ require('packer').startup(function()
   use 'tpope/vim-abolish'
   use 'tpope/vim-bundler'
   use 'tpope/vim-characterize'
-  use 'tpope/vim-commentary'
+  -- use 'tpope/vim-commentary'
   use 'tpope/vim-dadbod'
   use 'tpope/vim-dispatch'
   use 'tpope/vim-dotenv'
@@ -81,11 +83,15 @@ require('packer').startup(function()
 
   use { 'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons' }
   use { 'ibhagwan/fzf-lua', requires = { 'vijaymarupudi/nvim-fzf', 'kyazdani42/nvim-web-devicons' } }
+  use { 'folke/todo-comments.nvim', requires = 'nvim-lua/plenary.nvim' }
+  -- use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
   use { 'junegunn/fzf', run = function() vim.fn['fzf#install']() end }
   use { 'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons' }
   use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
   use { 'neoclide/coc.nvim', branch = 'release'}
   use { 'nvim-lualine/lualine.nvim', requires = 'kyazdani42/nvim-web-devicons' }
+  -- use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  -- use { 'nvim-telescope/telescope-github.nvim', requires = 'nvim-lua/plenary.nvim' }
   -- use { 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim' }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 end)
