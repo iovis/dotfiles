@@ -47,15 +47,10 @@ yabai -m config left_padding                 0
 yabai -m config right_padding                0
 yabai -m config window_gap                   0
 
-# make second display use float layout
-# FIXME: doesn't work?
-# yabai -m query --spaces --display 1 |
-#   jq '.[] | select(."native-fullscreen" == 0).index' |
-#   xargs -I{} yabai -m space {} --layout float
-
 # Ignored Apps
 yabai -m rule --add app="^Activity Monitor$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Disk Utility$" sticky=on layer=above manage=off
+yabai -m rule --add app="^Docker Desktop$" manage=off
 yabai -m rule --add app="^Finder$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Keka$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Logi Options$" manage=off
@@ -64,6 +59,7 @@ yabai -m rule --add app="^Music$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Numi$" manage=off
 yabai -m rule --add app="^Path Finder$" manage=off
 yabai -m rule --add app="^Perimeter" manage=off
+yabai -m rule --add app="^Spark$" sticky=on layer=above manage=off
 yabai -m rule --add app="^System Information$" sticky=on layer=above manage=off
 yabai -m rule --add app="^System Preferences$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Things" manage=off
