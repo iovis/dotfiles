@@ -25,7 +25,6 @@ require('packer').startup(function()
   use 'christoomey/vim-sort-motion'
   use 'christoomey/vim-tmux-navigator'
   use 'dstein64/vim-startuptime'
-  use 'folke/zen-mode.nvim'
   use 'honza/vim-snippets'
   use 'iovis/browsers_castle'
   use 'iovis/hubcap.vim'
@@ -40,13 +39,10 @@ require('packer').startup(function()
   use 'kana/vim-textobj-entire'
   use 'kana/vim-textobj-indent'
   use 'kana/vim-textobj-user'
-  use 'kevinhwang91/nvim-bqf'
   use 'mattn/emmet-vim'
   use 'mbbill/undotree'
   use 'moll/vim-bbye'
   use 'neoclide/coc-neco' -- uses neco-vim
-  use 'norcalli/nvim-base16.lua'
-  use 'numToStr/Comment.nvim'
   use 'nvim-lua/plenary.nvim'
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'nvim-treesitter/playground'
@@ -81,24 +77,88 @@ require('packer').startup(function()
   use 'wbthomason/packer.nvim'
   use 'wellle/targets.vim'
 
-  use { 'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons' }
-  use { 'ibhagwan/fzf-lua', requires = { 'vijaymarupudi/nvim-fzf', 'kyazdani42/nvim-web-devicons' } }
-  use { 'folke/todo-comments.nvim', requires = 'nvim-lua/plenary.nvim' }
-  -- use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
-  use { 'junegunn/fzf', run = function() vim.fn['fzf#install']() end }
-  use { 'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons' }
-  use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
-  use { 'neoclide/coc.nvim', branch = 'release'}
-  use { 'nvim-lualine/lualine.nvim', requires = 'kyazdani42/nvim-web-devicons' }
-  -- use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  -- use { 'nvim-telescope/telescope-github.nvim', requires = 'nvim-lua/plenary.nvim' }
-  -- use { 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim' }
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use {
+    'akinsho/nvim-bufferline.lua',
+    config = require('plugins.bufferline'),
+    requires = 'kyazdani42/nvim-web-devicons'
+  }
+  use {
+    'ibhagwan/fzf-lua',
+    config = require('plugins.fzf-lua'),
+    requires = { 'vijaymarupudi/nvim-fzf', 'kyazdani42/nvim-web-devicons' }
+  }
+  use {
+    'folke/todo-comments.nvim',
+    config = require('plugins.todo-comments'),
+    requires = 'nvim-lua/plenary.nvim'
+  }
+  use {
+    'folke/zen-mode.nvim',
+    config = require('plugins.zen-mode')
+  }
+  -- use {
+  -- 'folke/trouble.nvim',
+  -- config = require('plugins.trouble'),
+  -- requires = 'kyazdani42/nvim-web-devicons'
+  -- }
+  use {
+    'junegunn/fzf',
+    run = function() vim.fn['fzf#install']() end
+  }
+  use {
+    'kevinhwang91/nvim-bqf',
+    config = require('plugins.nvim-bqf')
+  }
+  use {
+    'kyazdani42/nvim-tree.lua',
+    config = require('plugins.nvim-tree'),
+    requires = 'kyazdani42/nvim-web-devicons'
+  }
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = require('plugins.gitsigns'),
+    requires = 'nvim-lua/plenary.nvim'
+  }
+  use {
+    'neoclide/coc.nvim',
+    branch = 'release'
+  }
+  use {
+    'norcalli/nvim-base16.lua',
+    config = require('plugins.nvim-base16')
+  }
+  use {
+    'numToStr/Comment.nvim',
+    config = require('plugins.comment')
+  }
+  use {
+    'nvim-lualine/lualine.nvim',
+    config = require('plugins.lualine'),
+    requires = 'kyazdani42/nvim-web-devicons'
+  }
+  -- use {
+  -- 'nvim-telescope/telescope-fzf-native.nvim',
+  -- run = 'make'
+  -- }
+  -- use {
+  -- 'nvim-telescope/telescope-github.nvim',
+  -- requires = 'nvim-lua/plenary.nvim'
+  -- }
+  -- use {
+  -- 'nvim-telescope/telescope.nvim',
+  -- config = require('plugins.telescope'),
+  -- requires = 'nvim-lua/plenary.nvim'
+  -- }
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    config = require('plugins.treesitter'),
+    run = ':TSUpdate'
+  }
 end)
 
 -- Pretty print object
 -- From: https://github.com/nanotee/nvim-lua-guide#tips-3
-function _G.pp(...)
+function _G.p(...)
   local objects = vim.tbl_map(vim.inspect, {...})
   print(unpack(objects))
   return ...

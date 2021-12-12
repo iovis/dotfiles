@@ -2,7 +2,18 @@
 scriptencoding utf-8
 filetype off
 
-lua require('plugins')
+let g:mapleader = "\<Space>"
+
+lua <<EOF
+-- reload plugin configuration
+for name,_ in pairs(package.loaded) do
+  if name:match('^plugins') then
+    package.loaded[name] = nil
+  end
+end
+
+require('plugins')
+EOF
 " }}} plugins "
 
 " config {{{ "
@@ -119,7 +130,6 @@ let g:loaded_perl_provider = 0
 
 " bindings {{{ "
 inoremap kj <Esc>
-let g:mapleader = "\<Space>"
 nnoremap <space> <nop>
 xnoremap <space> <nop>
 
@@ -564,14 +574,6 @@ let g:formatters_json = ['prettier']
 let g:formatters_ruby = ['rubocop']
 " }}} autoformat "
 
-" base16 {{{ "
-lua << EOF
-local base16 = require('base16')
-
-base16(base16.themes["default-dark"], true)
-EOF
-" }}} base16 "
-
 " browsers_castle {{{ "
 nnoremap g<space>  :Google<space>
 nnoremap g<cr>     :Google <c-r><c-w><cr>
@@ -717,110 +719,6 @@ command! -nargs=* Glol Git log --graph --pretty='%h -%d %s (%cr) <%an>' <args>
 command! -range -nargs=* GLogL Git log -L <line1>,<line2>:% <args>
 " }}} fugitive "
 
-" fzf-lua {{{ "
-lua <<EOF
-local tnoremap = function(lhs, rhs)
-  vim.api.nvim_buf_set_keymap(0, "t", lhs, rhs, { silent = true, noremap = true })
-end
-
-local original_fd_opts = require('fzf-lua.config').globals.files.fd_opts
-local original_rg_opts = require('fzf-lua.config').globals.grep.rg_opts
-
-require('fzf-lua').setup {
-  winopts = {
-    window_on_create = function()
-      tnoremap("<c-j>", "<down>")
-      tnoremap("<c-k>", "<up>")
-      tnoremap("<m-left>", "<s-left>")
-      tnoremap("<m-right>", "<s-right>")
-      tnoremap("<m-+>", "]")
-      tnoremap("<m-ç>", "}")
-      tnoremap("<m-ñ>", "~")
-    end
-  },
-  keymap = {
-    builtin = {
-      ["º"]    = "toggle-preview",
-      ["<F1>"] = "preview-page-reset",
-      -- defaults (overridden otherwise)
-      ["<F2>"] = "toggle-fullscreen",
-      ["<F3>"] = "toggle-preview-wrap",
-      ["<F4>"] = "toggle-preview",
-      ["<F5>"] = "toggle-preview-ccw",
-      ["<F6>"] = "toggle-preview-cw",
-    }
-  },
-  files = {
-    fd_opts = original_fd_opts .. [[ --no-ignore --exclude '.keep' --exclude 'Session.vim']]
-  },
-  git = {
-    icons = {
-      ["?"] = { icon = "?", color = "magenta" },
-      ["A"] = { icon = "+", color = "green" },
-      ["D"] = { icon = "✗", color = "red" },
-      ["M"] = { icon = "★", color = "yellow" },
-      ["R"] = { icon = "➜", color = "yellow" },
-    },
-  },
-  grep = {
-    -- Don't search on the filename, just the content
-    fzf_opts = {
-      ['--delimiter'] = ':',
-      ['--nth'] = '4..',
-    },
-    rg_opts = original_rg_opts .. [[ -g '!Session.vim']]
-  }
-}
-EOF
-
-nnoremap +s :FzfLua<space>
-
-nnoremap <silent> +f :FzfLua live_grep<cr>
-nnoremap <silent> +m :FzfLua marks<cr>
-nnoremap <silent> +r :FzfLua registers<cr>
-nnoremap <silent> <c-p> :FzfLua commands<cr>
-nnoremap <silent> <leader><leader> :FzfLua buffers<cr>
-nnoremap <silent> <leader>A   :FzfLua filetypes<cr>
-nnoremap <silent> <leader>H   :FzfLua git_bcommits<cr>
-nnoremap <silent> <leader>O   :FzfLua files<cr>
-nnoremap <silent> <leader>R   :FzfLua tags<cr>
-nnoremap <silent> <leader>f   :FzfLua grep<cr><cr>
-nnoremap <silent> <leader>gL  :FzfLua git_commits<cr>
-nnoremap <silent> <leader>gco :FzfLua git_branches<cr>
-nnoremap <silent> <leader>j   :FzfLua git_status<cr>
-nnoremap <silent> <leader>o   :FzfLua git_files<cr>
-nnoremap <silent> <leader>r   :FzfLua btags<cr>
-nnoremap <silent> <leader>ñ   :FzfLua blines<cr>
-xnoremap <silent> <leader>f   :<c-u>FzfLua grep_visual<cr>
-" }}} fzf-lua "
-
-" gitsigns {{{ "
-nnoremap <silent> +q :Gitsigns toggle_current_line_blame<cr>
-
-lua <<EOF
-require('gitsigns').setup {
-  keymaps = {},
-  current_line_blame_opts = {
-    delay = 100,
-  }
-}
-
-vim.api.nvim_set_keymap(
-  'n',
-  ']c',
-  "&diff ? ']c' : '<cmd>lua require(\"gitsigns.actions\").next_hunk()<CR>'",
-  { noremap = true, expr = true }
-)
-
-vim.api.nvim_set_keymap(
-  'n',
-  '[c',
-  "&diff ? '[c' : '<cmd>lua require(\"gitsigns.actions\").prev_hunk()<CR>'",
-  { noremap = true, expr = true }
-)
-EOF
-" }}} gitsigns "
-
 " hubcap.vim {{{ "
 " nnoremap <leader>gco  :Gco<space>
 nnoremap <leader>gprb :Gprb<cr>
@@ -845,18 +743,6 @@ nmap <leader>a: mzgLip:'z
 nmap <leader>a= mzglip='z
 nmap <leader>aB mzglip{'z
 " }}} lion "
-
-" lualine {{{ "
-lua <<EOF
-require('plenary.reload').reload_module('lualine', true)
-require('lualine').setup {
-  options = {
-    theme = 'jellybeans'
-  },
-  extensions = { 'fugitive', 'nvim-tree', 'quickfix', 'fzf' }
-}
-EOF
-" }}} lualine "
 
 " neomake {{{ "
 call neomake#configure#automake('nwr', 1000)
@@ -892,134 +778,12 @@ let g:netrw_sort_options = 'i'
 let g:netrw_special_syntax = 1
 let g:netrw_winsize = 25
 
-nnoremap <silent> <leader>k :Lexplore<cr>
-
 augroup netrw_commands
   autocmd!
   autocmd FileType netrw nnoremap <buffer> <c-l> <c-w>l
   autocmd FileType netrw nmap     <buffer> <c-r> <Plug>NetrwRefresh
 augroup END
 " }}} netrw "
-
-" nvim-bufferline {{{ "
-nnoremap <silent> <tab>   :BufferLineCycleNext<cr>
-nnoremap <silent> <s-tab> :BufferLineCyclePrev<cr>
-
-nnoremap <silent> +be :BufferLineSortByExtension<cr>
-nnoremap <silent> +bd :BufferLineSortByDirectory<cr>
-
-lua <<EOF
-require('bufferline').setup {
-  highlights = {
-    indicator_selected = {
-      guifg = {
-        attribute = "bg",
-        highlight = "HighlightedyankRegion",
-      }
-    }
-  },
-  options = {
-    numbers = function(opts)
-      return string.format('%s.', opts.ordinal)
-    end,
-    show_buffer_close_icons = false,
-    show_close_icon = false,
-    separator_style = { "", "" },
-    offsets = {
-      {
-          filetype = "NvimTree",
-          text = "File Explorer",
-          highlight = "Directory",
-          text_align = "center"
-      },
-      {
-          filetype = "undotree",
-          text = "Undo Tree",
-          highlight = "Directory",
-          text_align = "center"
-      }
-      }
-  }
-}
-
--- nnoremap <silent> <leader>1 <cmd>BufferLineGoToBuffer 1<cr>
-for i = 1, 9 do
-  vim.api.nvim_set_keymap(
-    "n",
-    "<leader>" .. i,
-    ':lua require("bufferline").go_to_buffer(' .. i .. ")<CR>",
-    { silent = true, nowait = true, noremap = true }
-  )
-end
-EOF
-" }}} nvim-bufferline "
-
-" nvim-bqf {{{ "
-lua <<EOF
-require('bqf').setup({
-  filter = {
-    fzf = {
-      extra_opts = { '--bind', 'ctrl-p:page-down,ctrl-n:page-up,alt-a:select-all,alt-d:deselect-all,alt-t:toggle-all' }
-    }
-  },
-  func_map = {
-    ptoggleauto = 'p'
-  }
-})
-EOF
-" }}} nvim-bqf "
-
-" nvim-tree {{{ "
-nnoremap <leader>k :NvimTreeToggle<cr>
-nnoremap - :NvimTreeFindFile<cr>
-
-lua <<EOF
-local tree_cb = require('nvim-tree.config').nvim_tree_callback
-
-require('nvim-tree').setup {
-  disable_netrw = false,
-  filters = {
-    custom = {
-      '*.pyc',
-      '.DS_Store',
-      '.bundle',
-      '.git',
-      '.github',
-      '.vscode',
-      '.yardoc',
-      'BqfPreviewBorder',
-      'Session.vim',
-      'node_modules',
-      'tags'
-    }
-  },
-  view = {
-    -- These don't seem to work yet
-    -- winopts = {
-    --   relativenumber = true,
-    --   signcolumn = 'no',
-    -- },
-    mappings = {
-      list = {
-        { key = "x", cb = tree_cb("close_node") },
-        { key = "C", cb = tree_cb("cd") },
-        { key = "D", cb = tree_cb("cut") },
-        { key = "J", cb = tree_cb("next_sibling") },
-        { key = "K", cb = tree_cb("prev_sibling") },
-      }
-    }
-  }
-}
-
-vim.g.nvim_tree_disable_window_picker = 1
-vim.g.nvim_tree_indent_markers = 1
-vim.g.nvim_tree_width = 35
-
-local nvim_tree_view = require('nvim-tree.view').View
-nvim_tree_view.winopts.relativenumber = true
-nvim_tree_view.winopts.signcolumn = 'no'
-EOF
-" }}} nvim-tree "
 
 " obsession {{{ "
 nnoremap yoo :Obsession<cr>
@@ -1053,8 +817,8 @@ nmap <m-right> <Plug>ResizeRight
 let g:sneak#use_ic_scs = 1
 let g:sneak#label = 1
 
-map f <Plug>Sneak_f
-map F <Plug>Sneak_F
+map f <Plug>Sneak_s
+map F <Plug>Sneak_S
 
 xmap t <Plug>Sneak_t
 xmap T <Plug>Sneak_T
@@ -1113,118 +877,9 @@ augroup targets_conf
 augroup end
 " }}} targets "
 
-" telescope.nvim {{{ "
-" nnoremap +s :Telescope<space>
-
-" nnoremap <silent> <c-p> :Telescope commands<cr>
-" nnoremap <silent> <leader><leader> :Telescope buffers<cr>
-" nnoremap <silent> <leader>A   :Telescope filetypes<cr>
-" nnoremap <silent> <leader>H   :Telescope git_bcommits<cr>
-" nnoremap <silent> <leader>gL  :Telescope git_commits<cr>
-" nnoremap <silent> <leader>R   :Telescope tags<cr>
-" nnoremap <silent> <leader>f   :Telescope live_grep<cr>
-" nnoremap <silent> <leader>gco :Telescope git_branches<cr>
-" nnoremap <silent> <leader>j   :Telescope git_status<cr>
-" nnoremap <silent> <leader>o   :Telescope find_files<cr>
-" nnoremap <silent> <leader>r   :Telescope treesitter<cr>
-" nnoremap <silent> <leader>ñ   :Telescope current_buffer_fuzzy_find<cr>
-
-" nnoremap <silent> +m :Telescope marks<cr>
-" nnoremap <silent> +r :Telescope registers<cr>
-
-" lua <<EOF
-" local actions = require('telescope.actions')
-
-" require('telescope').setup {
-"   defaults = {
-"     mappings = {
-"       i = {
-"         ["<c-u>"] = false,
-"         ["<c-j>"] = actions.move_selection_next,
-"         ["<c-k>"] = actions.move_selection_previous,
-"         ["<esc>"] = actions.close,
-"         ["<c-h>"] = "which_key"
-"         ["<down>"] = actions.preview_scrolling_down,
-"         ["<up>"] = actions.preview_scrolling_up,
-"       }
-"     }
-"   }
-" }
-" EOF
-" }}} telescope.nvim "
-
 " tmux navigator {{{ "
 let g:tmux_navigator_save_on_switch = 2
 " }}} tmux navigator "
-
-" treesitter {{{ "
-" set foldexpr=nvim_treesitter#foldexpr()
-" nnoremap +z :setlocal foldmethod=expr<cr>
-
-lua <<EOF
-require('nvim-treesitter.configs').setup {
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = true -- [workaround] Allow for matchit and vim-endwise to work
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "<c-n>",
-      node_incremental = "<c-n>",
-      scope_incremental = "<c-s>",
-      node_decremental = "<c-p>",
-    }
-  },
-  indent = {
-    enable = true,
-    disable = { "ruby" },
-  }
-}
-EOF
-" }}} treesitter "
-
-" tresitter playground {{{ "
-nnoremap +h :TSHighlightCapturesUnderCursor<cr>
-nnoremap +t :TSPlaygroundToggle<cr>
-
-lua <<EOF
-require("nvim-treesitter.configs").setup {
-  playground = {
-    enable = true
-  }
-}
-EOF
-" }}} tresitter playground "
-
-" treesitter textobjects {{{ "
-lua <<EOF
-require("nvim-treesitter.configs").setup {
-  textobjects = {
-    select = {
-      enable = true,
-      keymaps = {
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner",
-        ["ad"] = "@block.outer",
-        ["id"] = "@block.inner",
-      },
-    },
-    swap = {
-      enable = true,
-      swap_next = {
-        ["g>"] = "@parameter.inner",
-      },
-      swap_previous = {
-        ["g<"] = "@parameter.inner",
-      },
-    },
-  },
-}
-EOF
-" }}} treesitter textobjects "
 
 " tux.vim {{{ "
 nnoremap c<space> :Tux<space>
@@ -1234,8 +889,8 @@ nnoremap y<space> :Tux!<space>
 nnoremap <silent> <leader>i :Tux Up<cr>
 
 " Execute current line
-nnoremap <silent> <leader>I  :silent execute 'Tux ' . getline('.')<cr>
-xnoremap <silent> <leader>i y:silent execute 'Tux ' . escape(getreg('0'), '#')<cr>
+nnoremap <silent> <leader>I  :silent execute 'Tux ' . escape(getline('.'), '#')<cr>
+xnoremap <silent> <leader>I y:silent execute 'Tux ' . escape(getreg('0'), '#')<cr>
 " }}} tux.vim "
 
 " undotree {{{ "
@@ -1271,26 +926,6 @@ nnoremap <leader>¡ :QuickLook<space>
 nmap <leader>" mzcs'"`z
 nmap <leader>' mzcs"'`z
 " }}} ysurround "
-
-" zen-mode {{{ "
-nnoremap <silent> <leader>z :ZenMode<cr>
-
-lua << EOF
-require("zen-mode").setup {
-  window = {
-    backdrop = 1,
-    height = .9,
-    width = .8,
-    options = {
-      -- Any vim.wo options
-      signcolumn = "no",
-      number = false,
-      relativenumber = false,
-    },
-  },
-}
-EOF
-" }}} zen-mode "
 " }}} plugin configuration "
 
 " commands {{{ "
