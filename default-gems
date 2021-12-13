@@ -3,7 +3,6 @@ bundler
 gem-browse
 gem-ctags
 neovim
-peerflixrb
 pry
 pry-doc
 rubocop
