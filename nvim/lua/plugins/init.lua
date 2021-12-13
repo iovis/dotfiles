@@ -79,26 +79,26 @@ require('packer').startup(function()
 
   use {
     'akinsho/nvim-bufferline.lua',
-    config = require('plugins.bufferline'),
+    config = [[require('plugins.bufferline')]],
     requires = 'kyazdani42/nvim-web-devicons'
   }
   use {
     'ibhagwan/fzf-lua',
-    config = require('plugins.fzf-lua'),
+    config = [[require('plugins.fzf-lua')]],
     requires = { 'vijaymarupudi/nvim-fzf', 'kyazdani42/nvim-web-devicons' }
   }
   use {
     'folke/todo-comments.nvim',
-    config = require('plugins.todo-comments'),
+    config = [[require('plugins.todo-comments')]],
     requires = 'nvim-lua/plenary.nvim'
   }
   use {
     'folke/zen-mode.nvim',
-    config = require('plugins.zen-mode')
+    config = [[require('plugins.zen-mode')]]
   }
   -- use {
   -- 'folke/trouble.nvim',
-  -- config = require('plugins.trouble'),
+  -- config = [[require('plugins.trouble')]],
   -- requires = 'kyazdani42/nvim-web-devicons'
   -- }
   use {
@@ -107,16 +107,16 @@ require('packer').startup(function()
   }
   use {
     'kevinhwang91/nvim-bqf',
-    config = require('plugins.nvim-bqf')
+    config = [[require('plugins.nvim-bqf')]]
   }
   use {
     'kyazdani42/nvim-tree.lua',
-    config = require('plugins.nvim-tree'),
+    config = [[require('plugins.nvim-tree')]],
     requires = 'kyazdani42/nvim-web-devicons'
   }
   use {
     'lewis6991/gitsigns.nvim',
-    config = require('plugins.gitsigns'),
+    config = [[require('plugins.gitsigns')]],
     requires = 'nvim-lua/plenary.nvim'
   }
   use {
@@ -125,15 +125,15 @@ require('packer').startup(function()
   }
   use {
     'norcalli/nvim-base16.lua',
-    config = require('plugins.nvim-base16')
+    config = [[require('plugins.nvim-base16')]]
   }
   use {
     'numToStr/Comment.nvim',
-    config = require('plugins.comment')
+    config = [[require('plugins.comment')]]
   }
   use {
     'nvim-lualine/lualine.nvim',
-    config = require('plugins.lualine'),
+    config = [[require('plugins.lualine')]],
     requires = 'kyazdani42/nvim-web-devicons'
   }
   -- use {
@@ -146,12 +146,12 @@ require('packer').startup(function()
   -- }
   -- use {
   -- 'nvim-telescope/telescope.nvim',
-  -- config = require('plugins.telescope'),
+  -- config = [[require('plugins.telescope')]],
   -- requires = 'nvim-lua/plenary.nvim'
   -- }
   use {
     'nvim-treesitter/nvim-treesitter',
-    config = require('plugins.treesitter'),
+    config = [[require('plugins.treesitter')]],
     run = ':TSUpdate'
   }
 end)
