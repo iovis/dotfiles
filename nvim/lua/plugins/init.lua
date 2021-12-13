@@ -10,7 +10,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 -- Compile plugins when file is changed
-vim.cmd([[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]])
+vim.cmd([[autocmd BufWritePost init.lua source <afile> | PackerCompile]])
 
 -- plugins
 require('packer').init({
