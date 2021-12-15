@@ -21,7 +21,6 @@ hyper - z : open -a zoom.us
 #  Window  #
 ############
 # focus window
-# ctrl + alt + cmd - h : yabai -m window --focus west
 ctrl + alt + cmd - h : yabai -m window --focus west || (yabai -m display --focus prev || yabai -m display --focus last && yabai -m window --focus east)
 ctrl + alt + cmd - j : yabai -m window --focus south
 ctrl + alt + cmd - k : yabai -m window --focus north
