@@ -48,6 +48,7 @@ yabai -m config right_padding                0
 yabai -m config window_gap                   0
 
 # Ignored Apps
+yabai -m rule --add app="^1Password" manage=off
 yabai -m rule --add app="^Activity Monitor$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Disk Utility$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Docker Desktop$" manage=off
