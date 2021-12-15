@@ -53,27 +53,27 @@ ctrl + alt + cmd - y : yabai -m window --toggle float
 
 # NOTE: <rows>:<cols>:<start-x>:<start-y>:<width>:<height>
 # Sidebar
-ctrl + alt - o : yabai -m window --grid 2:4:3:0:1:1
-ctrl + alt + cmd - o : yabai -m window --grid 1:4:3:0:1:1
+ctrl + alt - o : set_float; yabai -m window --grid 2:4:3:0:1:1
+ctrl + alt + cmd - o : set_float; yabai -m window --grid 1:4:3:0:1:1
 
 # Halves
-ctrl + alt - left  : yabai -m window --grid 1:2:0:0:1:1
-ctrl + alt - right : yabai -m window --grid 1:2:1:0:1:1
+ctrl + alt - left  : set_float; yabai -m window --grid 1:2:0:0:1:1
+ctrl + alt - right : set_float; yabai -m window --grid 1:2:1:0:1:1
 
 # Thirds
-ctrl + alt - y : yabai -m window --grid 1:4:0:0:3:1
-ctrl + alt - p : yabai -m window --grid 1:4:1:0:3:1
+ctrl + alt - y : set_float; yabai -m window --grid 1:4:0:0:3:1
+ctrl + alt - p : set_float; yabai -m window --grid 1:4:1:0:3:1
 
 # Fourths
-ctrl + alt - u : yabai -m window --grid 2:2:0:0:1:1
-ctrl + alt - i : yabai -m window --grid 2:2:1:0:1:1
-ctrl + alt - j : yabai -m window --grid 2:2:0:1:1:1
-ctrl + alt - k : yabai -m window --grid 2:2:1:1:1:1
+ctrl + alt - u : set_float; yabai -m window --grid 2:2:0:0:1:1
+ctrl + alt - i : set_float; yabai -m window --grid 2:2:1:0:1:1
+ctrl + alt - j : set_float; yabai -m window --grid 2:2:0:1:1:1
+ctrl + alt - k : set_float; yabai -m window --grid 2:2:1:1:1:1
 
 # Centered
-alt + cmd - 0x2C : yabai -m window --toggle float; yabai -m window --grid 10:10:1:1:8:8
-ctrl + alt + cmd - 0x2C : yabai -m window --grid 10:10:1:0:8:10
-ctrl + alt - up  : yabai -m window --grid 1:1:0:0:1:1
+alt + cmd - 0x2C : set_float; yabai -m window --grid 10:10:1:1:8:8
+ctrl + alt + cmd - 0x2C : set_float; yabai -m window --grid 10:10:1:0:8:10
+ctrl + alt - up  : set_float; yabai -m window --grid 1:1:0:0:1:1
 
 ##############
 #  Displays  #
