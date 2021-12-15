@@ -45,7 +45,7 @@ require('fzf-lua').setup {
       ['--delimiter'] = ':',
       ['--nth'] = '4..',
     },
-    rg_opts = original_rg_opts .. [[ -g '!Session.vim']]
+    rg_opts = [[--column --line-number --no-heading --color=always --smart-case -g '!Session.vim']]
   }
 }
 
