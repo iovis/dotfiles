@@ -49,21 +49,22 @@ yabai -m config window_gap                   0
 
 # Ignored Apps
 yabai -m rule --add app="^1Password" manage=off
-yabai -m rule --add app="^Activity Monitor$" sticky=on layer=above manage=off
-yabai -m rule --add app="^Disk Utility$" sticky=on layer=above manage=off
+yabai -m rule --add app="^Activity Monitor$" manage=off
+yabai -m rule --add app="^App Store$" manage=off
+yabai -m rule --add app="^Disk Utility$" manage=off
 yabai -m rule --add app="^Docker Desktop$" manage=off
-yabai -m rule --add app="^Finder$" sticky=on layer=above manage=off
-yabai -m rule --add app="^Keka$" sticky=on layer=above manage=off
+yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^Keka$" manage=off
 yabai -m rule --add app="^Logi Options$" manage=off
-yabai -m rule --add app="^Messages$" sticky=on layer=above manage=off
-yabai -m rule --add app="^Music$" sticky=on layer=above manage=off
+yabai -m rule --add app="^Messages$" manage=off
+yabai -m rule --add app="^Music$" manage=off
 yabai -m rule --add app="^Numi$" manage=off
+yabai -m rule --add app="^Parallels" manage=off
 yabai -m rule --add app="^Path Finder$" manage=off
 yabai -m rule --add app="^Perimeter" manage=off
-yabai -m rule --add app="^Spark$" sticky=on layer=above manage=off
-yabai -m rule --add app="^System Information$" sticky=on layer=above manage=off
-yabai -m rule --add app="^System Preferences$" sticky=on layer=above manage=off
+yabai -m rule --add app="^Spark$" manage=off
+yabai -m rule --add app="^System Information$" manage=off
+yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^Things" manage=off
-yabai -m rule --add app="^Parallels" manage=off
 yabai -m rule --add app="^WhatsApp$" manage=off
 yabai -m rule --add app="^zoom.us$" manage=off
