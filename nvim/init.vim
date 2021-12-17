@@ -337,8 +337,6 @@ xnoremap <silent> § :m'<-2<cr>`>my`<mzgv=gv`yo`z
 " }}} move line "
 
 " buffers {{{ "
-nmap <leader><leader> :ls<cr>
-
 nnoremap <BS> <C-^>
 nnoremap <silent> <tab> :bnext<cr>
 nnoremap <silent> <s-tab> :bprevious<cr>
