@@ -178,6 +178,7 @@ function libupdate() {
 function upgrade_libraries() {
   brew update
   brew upgrade
+  brewdump
 }
 
 function upgrade_plugins() {
