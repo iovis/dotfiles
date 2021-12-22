@@ -467,8 +467,8 @@ nnoremap yow :setlocal wrap!<cr>
 " }}} vim-unimpaired "
 
 " open resource {{{ "
-nnoremap <silent> ¡¡  :execute '!open ' . escape(expand('<cWORD>'), '#')<cr>
-xnoremap <silent> ¡  y:execute '!open ' . escape(getreg('0'), '#')<cr>
+nnoremap <silent> ¡¡  :silent execute '!open ' . escape(expand('<cWORD>'), '#')<cr>
+xnoremap <silent> ¡  y:silent execute '!open ' . escape(getreg('0'), '#')<cr>
 
 nnoremap ¡<space> :!open<space>
 " }}} open resource "
