@@ -7,4 +7,5 @@ setuptools
 sqlformat
 sqlparse
 vim-vint
+wheel
 yamllint
