@@ -11,10 +11,10 @@ hyper - c : open -a Fantastical
 hyper - e : open -a Spark
 hyper - f : open -a Google\ Chrome
 hyper - g : open -a Tower
-hyper - i : open -a iTerm
 hyper - n : open -a Numi
+hyper - o : open -a Things3
 hyper - s : open -a Slack
-hyper - t : open -a Things3
+hyper - t : open -a iTerm
 hyper - z : open -a zoom.us
 
 ############
@@ -42,9 +42,6 @@ ctrl + alt + cmd - right : yabai -m window --resize right:50:0  || yabai -m wind
 # 0x29: ñ
 ctrl + alt + cmd - m    : yabai -m window --toggle zoom-fullscreen
 ctrl + alt + cmd - 0x29 : yabai -m window --toggle zoom-parent
-
-# move managed window
-# shift + cmd - l : yabai -m window --warp east
 
 ######################
 #  Floating Windows  #
