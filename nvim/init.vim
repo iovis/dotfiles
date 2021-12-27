@@ -13,6 +13,7 @@ for name,_ in pairs(package.loaded) do
 end
 
 require('plugins')
+require('diagnostics')
 EOF
 " }}} plugins "
 
@@ -25,7 +26,7 @@ set autowriteall
 set background=dark
 set backspace=indent,eol,start   " Fix backspace not deleting tabs, also make delimiteMate work
 set breakindent
-set completeopt-=preview
+set completeopt=menu,menuone
 set conceallevel=0
 set cursorline  " Highlight current line (slow as fuck)
 set diffopt+=hiddenoff
@@ -563,13 +564,13 @@ nnoremap +j :%!jq ''<left>
 
 " plugin configuration {{{ "
 " autoformat {{{ "
-nnoremap <silent> <leader>b :Autoformat<cr>
-xnoremap <silent> <leader>b :Autoformat<cr>
-
-let g:autoformat_verbosemode = 0
-let g:formatters_javascript = ['prettier']
-let g:formatters_json = ['prettier']
-let g:formatters_ruby = ['rubocop']
+" nnoremap <silent> <leader>b :Autoformat<cr>
+" xnoremap <silent> <leader>b :Autoformat<cr>
+"
+" let g:autoformat_verbosemode = 0
+" let g:formatters_javascript = ['prettier']
+" let g:formatters_json = ['prettier']
+" let g:formatters_ruby = ['rubocop']
 " }}} autoformat "
 
 " browsers_castle {{{ "
@@ -586,66 +587,66 @@ nnoremap <silent> <leader>Q :BufOnly!<cr>
 " }}} bufonly "
 
 " coc.nvim {{{ "
-let g:coc_global_extensions = [
-\ 'coc-css',
-\ 'coc-html',
-\ 'coc-json',
-\ 'coc-pyright',
-\ 'coc-rust-analyzer',
-\ 'coc-sh',
-\ 'coc-snippets',
-\ 'coc-solargraph',
-\ 'coc-tsserver',
-\ 'coc-yaml'
-\ ]
-
-inoremap <silent><expr> <c-b> coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-nmap <silent> <c-t> <Plug>(coc-type-definition)
-nmap <silent> t     <Plug>(coc-definition)
-nmap <silent> T     <Plug>(coc-references)
-nmap <silent> gR    <Plug>(coc-rename)
-
-nnoremap <silent> <leader>lR :CocList -I symbols<cr>
-nnoremap <silent> <leader>lc :CocList commands<cr>
-nnoremap <silent> <leader>le :CocList --normal extensions<cr>
-nnoremap <silent> <leader>lr :CocList outline<cr>
-nnoremap <silent> <leader>uc :CocConfig<cr>
-nnoremap <silent> gd :call <SID>show_documentation()<CR>
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . ' ' . expand('<cword>')
-  endif
-endfunction
-
-" Highlight symbol under cursor on CursorHold
-hi default CocHighlightText gui=underline
-" augroup coc
-"   autocmd!
-"   autocmd CursorHold * silent call CocActionAsync('highlight')
-" augroup END
-
-" coc-snippets
-imap <c-j> <Plug>(coc-snippets-expand-jump)
-
-nnoremap <silent> <leader>ls :CocList snippets<cr>
-nnoremap <silent> <leader>ue :CocCommand snippets.editSnippets<cr>
-nnoremap <silent> <leader>ss :CocCommand snippets.openSnippetFiles<cr>
+" let g:coc_global_extensions = [
+" \ 'coc-css',
+" \ 'coc-html',
+" \ 'coc-json',
+" \ 'coc-pyright',
+" \ 'coc-rust-analyzer',
+" \ 'coc-sh',
+" \ 'coc-snippets',
+" \ 'coc-solargraph',
+" \ 'coc-tsserver',
+" \ 'coc-yaml'
+" \ ]
+"
+" inoremap <silent><expr> <c-b> coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+"
+" nmap <silent> <c-t> <Plug>(coc-type-definition)
+" nmap <silent> t     <Plug>(coc-definition)
+" nmap <silent> T     <Plug>(coc-references)
+" nmap <silent> gR    <Plug>(coc-rename)
+"
+" nnoremap <silent> <leader>lR :CocList -I symbols<cr>
+" nnoremap <silent> <leader>lc :CocList commands<cr>
+" nnoremap <silent> <leader>le :CocList --normal extensions<cr>
+" nnoremap <silent> <leader>lr :CocList outline<cr>
+" nnoremap <silent> <leader>uc :CocConfig<cr>
+" nnoremap <silent> gd :call <SID>show_documentation()<CR>
+"
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
+"
+" function! s:show_documentation()
+"   if (index(['vim','help'], &filetype) >= 0)
+"     execute 'h '.expand('<cword>')
+"   elseif (coc#rpc#ready())
+"     call CocActionAsync('doHover')
+"   else
+"     execute '!' . &keywordprg . ' ' . expand('<cword>')
+"   endif
+" endfunction
+"
+" " Highlight symbol under cursor on CursorHold
+" hi default CocHighlightText gui=underline
+" " augroup coc
+" "   autocmd!
+" "   autocmd CursorHold * silent call CocActionAsync('highlight')
+" " augroup END
+"
+" " coc-snippets
+" imap <c-j> <Plug>(coc-snippets-expand-jump)
+"
+" nnoremap <silent> <leader>ls :CocList snippets<cr>
+" nnoremap <silent> <leader>ue :CocCommand snippets.editSnippets<cr>
+" nnoremap <silent> <leader>ss :CocCommand snippets.openSnippetFiles<cr>
 " }}} coc.nvim "
 
 " csv {{{ "
@@ -743,24 +744,24 @@ nmap <leader>aB mzglip{'z
 " }}} lion "
 
 " neomake {{{ "
-call neomake#configure#automake('nwr', 1000)
-
-let g:neomake_error_sign   = { 'text': '●', 'texthl': 'NeomakeErrorSign' }
-let g:neomake_info_sign    = { 'text': '●', 'texthl': 'NeomakeInfoSign' }
-let g:neomake_message_sign = { 'text': '●', 'texthl': 'NeomakeMessageSign' }
-let g:neomake_warning_sign = { 'text': '●', 'texthl': 'NeomakeWarningSign' }
-
-let g:neomake_html_enabled_makers = ['htmlhint']
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_python_enabled_markers = ['python3', 'pylint']
-let g:neomake_python_flake8_args = ['--ignore', 'E402,E501']
-let g:neomake_python_pylint_args = ['--disable', 'C0114,E501']
-let g:neomake_ruby_enabled_makers = ['rubocop']
-let g:neomake_yaml_yamllint_args = ['-f', 'parsable']
-
-if executable($PWD . '/node_modules/.bin/eslint')
-  let g:neomake_javascript_eslint_exe = $PWD . '/node_modules/.bin/eslint'
-endif
+" call neomake#configure#automake('nwr', 1000)
+"
+" let g:neomake_error_sign   = { 'text': '●', 'texthl': 'NeomakeErrorSign' }
+" let g:neomake_info_sign    = { 'text': '●', 'texthl': 'NeomakeInfoSign' }
+" let g:neomake_message_sign = { 'text': '●', 'texthl': 'NeomakeMessageSign' }
+" let g:neomake_warning_sign = { 'text': '●', 'texthl': 'NeomakeWarningSign' }
+"
+" let g:neomake_html_enabled_makers = ['htmlhint']
+" let g:neomake_javascript_enabled_makers = ['eslint']
+" let g:neomake_python_enabled_markers = ['python3', 'pylint']
+" let g:neomake_python_flake8_args = ['--ignore', 'E402,E501']
+" let g:neomake_python_pylint_args = ['--disable', 'C0114,E501']
+" let g:neomake_ruby_enabled_makers = ['rubocop']
+" let g:neomake_yaml_yamllint_args = ['-f', 'parsable']
+"
+" if executable($PWD . '/node_modules/.bin/eslint')
+"   let g:neomake_javascript_eslint_exe = $PWD . '/node_modules/.bin/eslint'
+" endif
 " }}} neomake "
 
 " netrw {{{ "
@@ -915,6 +916,19 @@ let g:test#rust#cargotest#test_patterns = {
 
 " let test#ruby#use_spring_binstub = 1
 " }}} vim-test "
+
+" vim-vsnip {{{ "
+let g:vsnip_snippet_dir = expand('~/.config/nvim/vsnip')
+
+nnoremap <leader>ss :VsnipOpen<cr>
+nnoremap <leader>ue :e <c-r>=stdpath('data')<cr>/site/pack/packer/start/friendly-snippets/snippets/
+
+imap <expr> <c-j> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<c-j>'
+smap <expr> <c-j> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<c-j>'
+
+imap <expr> <c-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<c-k>'
+smap <expr> <c-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<c-k>'
+" }}} vim-vsnip "
 
 " vimlook {{{ "
 nnoremap <leader>¡ :QuickLook<space>

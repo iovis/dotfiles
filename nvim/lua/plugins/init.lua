@@ -19,13 +19,13 @@ require('packer').init({
 require('packer').startup(function()
   -- use 'JoosepAlviste/nvim-ts-context-commentstring'
   use 'andrewradev/splitjoin.vim'
-  use 'benekastah/neomake'
-  use 'chiel92/vim-autoformat'
+  -- use 'benekastah/neomake'
+  -- use 'chiel92/vim-autoformat'
   use 'chrisbra/csv.vim'
   use 'christoomey/vim-sort-motion'
   use 'christoomey/vim-tmux-navigator'
   use 'dstein64/vim-startuptime'
-  use 'honza/vim-snippets'
+  -- use 'honza/vim-snippets'
   use 'iovis/browsers_castle'
   use 'iovis/hubcap.vim'
   use 'iovis/jirafa.vim'
@@ -42,14 +42,14 @@ require('packer').startup(function()
   use 'mattn/emmet-vim'
   use 'mbbill/undotree'
   use 'moll/vim-bbye'
-  use 'neoclide/coc-neco' -- uses neco-vim
+  -- use 'neoclide/coc-neco' -- uses neco-vim
   use 'nvim-lua/plenary.nvim'
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'nvim-treesitter/playground'
   use 'pbrisbin/vim-mkdir'
   use 'raimondi/delimitMate'
   use 'schickling/vim-bufonly'
-  use 'shougo/neco-vim'
+  -- use 'shougo/neco-vim'
   use 'tommcdo/vim-lion'
   use 'tpope/vim-abolish'
   use 'tpope/vim-bundler'
@@ -119,10 +119,10 @@ require('packer').startup(function()
     config = [[require('plugins.gitsigns')]],
     requires = 'nvim-lua/plenary.nvim'
   }
-  use {
-    'neoclide/coc.nvim',
-    branch = 'release'
-  }
+  -- use {
+  --   'neoclide/coc.nvim',
+  --   branch = 'release'
+  -- }
   use {
     'norcalli/nvim-base16.lua',
     config = [[require('plugins.nvim-base16')]]
@@ -154,6 +154,31 @@ require('packer').startup(function()
     config = [[require('plugins.treesitter')]],
     run = ':TSUpdate'
   }
+
+  -- LSP
+  use { 'neovim/nvim-lspconfig' }
+  use {
+    'williamboman/nvim-lsp-installer',
+    config = [[require('plugins.lsp.lsp_installer')]],
+  }
+
+  -- nvim-cmp
+  use {
+    'hrsh7th/nvim-cmp',
+    config = [[require('plugins.cmp')]]
+  }
+
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-nvim-lua'
+
+  -- null-ls
+  -- snippets
+  use 'hrsh7th/cmp-vsnip'
+  use 'hrsh7th/vim-vsnip'
+  use 'rafamadriz/friendly-snippets'
 end)
 
 -- Pretty print object
