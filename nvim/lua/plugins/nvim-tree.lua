@@ -45,6 +45,6 @@ nvim_tree_view.winopts.signcolumn = 'no'
 
 vim.cmd[[highlight NvimTreeRootFolder ctermfg=4 guifg=#7cafc2]]
 
-require('map_helpers')
-nnoremap('<leader>k', ':NvimTreeToggle<cr>')
-nnoremap('-', ':NvimTreeFindFile<cr>')
+local u = require('utils')
+u.nmap('<leader>k', ':NvimTreeToggle<cr>')
+u.nmap('-', ':NvimTreeFindFile<cr>')

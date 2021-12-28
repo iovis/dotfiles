@@ -26,7 +26,7 @@ set autowriteall
 set background=dark
 set backspace=indent,eol,start   " Fix backspace not deleting tabs, also make delimiteMate work
 set breakindent
-set completeopt=menu,menuone
+set completeopt=menu,menuone,noselect
 set conceallevel=0
 set cursorline  " Highlight current line (slow as fuck)
 set diffopt+=hiddenoff

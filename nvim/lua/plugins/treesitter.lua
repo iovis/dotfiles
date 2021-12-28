@@ -49,6 +49,6 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
-require('map_helpers')
-nnoremap('+h', ':TSHighlightCapturesUnderCursor<cr>')
-nnoremap('+t', ':TSPlaygroundToggle<cr>')
+local u = require('utils')
+u.nmap('+h', ':TSHighlightCapturesUnderCursor<cr>')
+u.nmap('+t', ':TSPlaygroundToggle<cr>')

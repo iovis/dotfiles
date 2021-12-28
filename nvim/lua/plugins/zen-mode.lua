@@ -12,5 +12,5 @@ require('zen-mode').setup {
   },
 }
 
-require('map_helpers')
-nnoremap_s('<leader>z', ':ZenMode<cr>')
+local u = require('utils')
+u.nmap('<leader>z', ':ZenMode<cr>')
