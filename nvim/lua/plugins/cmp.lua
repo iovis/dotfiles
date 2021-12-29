@@ -37,7 +37,7 @@ local kind_icons = {
 cmp.setup {
   snippet = {
     expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body)
+      vim.fn["UltiSnips#Anon"](args.body)
     end,
   },
   mapping = {
@@ -78,7 +78,7 @@ cmp.setup {
       vim_item.menu = ({
         nvim_lsp = "[LSP]",
         nvim_lua = "[LUA]",
-        vsnip = "[Snip]",
+        ultisnips = "[Snip]",
         buffer = "[Buf]",
         path = "[Path]",
       })[entry.source.name]
@@ -89,8 +89,8 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = "nvim_lua" },
-    { name = 'vsnip' },
-    { name = "buffer" },
-    { name = "path" },
+    { name = 'ultisnips' },
+    { name = 'buffer' },
+    { name = 'path' },
   },
 }

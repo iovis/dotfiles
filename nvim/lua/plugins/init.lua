@@ -25,7 +25,6 @@ require('packer').startup(function()
   use 'christoomey/vim-sort-motion'
   use 'christoomey/vim-tmux-navigator'
   use 'dstein64/vim-startuptime'
-  -- use 'honza/vim-snippets'
   use 'iovis/browsers_castle'
   use 'iovis/hubcap.vim'
   use 'iovis/jirafa.vim'
@@ -158,27 +157,32 @@ require('packer').startup(function()
   -- LSP
   use { 'neovim/nvim-lspconfig' }
   use {
-    'williamboman/nvim-lsp-installer',
-    config = [[require('plugins.lsp.lsp_installer')]],
+    'williamboman/nvim-lsp-installer',  -- TODO: Do I need this?
+    config = [[require('plugins.lsp')]],
   }
 
   -- nvim-cmp
   use {
     'hrsh7th/nvim-cmp',
-    config = [[require('plugins.cmp')]]
+    config = [[require('plugins.cmp')]],
+    requires = {
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-nvim-lua',
+    }
   }
 
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-nvim-lua'
+  -- snippets
+  use {
+    'sirver/ultisnips',
+    requires = {
+      'honza/vim-snippets',
+      'quangnguyen30192/cmp-nvim-ultisnips',
+    }
+  }
 
   -- null-ls
-  -- snippets
-  use 'hrsh7th/cmp-vsnip'
-  use 'hrsh7th/vim-vsnip'
-  use 'rafamadriz/friendly-snippets'
 end)
 
 -- Pretty print object

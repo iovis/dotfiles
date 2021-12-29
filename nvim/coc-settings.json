@@ -1,9 +1,0 @@
-{
-  "coc.preferences.extensionUpdateCheck": "daily",
-  "diagnostic.enable": false,
-  "list.source.outline.ctagsFilestypes": ["rb"],
-  "snippets.ultisnips.directories": ["~/.config/nvim/UltiSnips/", "UltiSnips"],
-  "snippets.userSnippetsDirectory": "~/.config/nvim/UltiSnips/",
-  "solargraph.checkGemVersion": false,
-  "solargraph.useBundler": true
-}

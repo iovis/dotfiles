@@ -892,6 +892,19 @@ nnoremap <silent> <leader>I  :silent execute 'Tux ' . escape(getline('.'), '#')<
 xnoremap <silent> <leader>I y:silent execute 'Tux ' . escape(getreg('0'), '#')<cr>
 " }}} tux.vim "
 
+" ultisnips {{{ "
+let g:UltiSnipsEditSplit = 'horizontal'
+let g:UltiSnipsExpandTrigger = '<c-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
+let g:UltiSnipsJumpForwardTrigger = '<c-j>'
+let g:UltiSnipsSnippetDirectories = [
+      \ stdpath('data') .. '/site/pack/packer/start/vim-snippets/UltiSnips/',
+      \ 'UltiSnips'
+      \ ]
+
+nnoremap <leader>ue :UltiSnipsEdit!<cr>
+" }}} ultisnips "
+
 " undotree {{{ "
 nnoremap <silent> U :UndotreeToggle<cr>
 " }}} undotree "
@@ -916,19 +929,6 @@ let g:test#rust#cargotest#test_patterns = {
 
 " let test#ruby#use_spring_binstub = 1
 " }}} vim-test "
-
-" vim-vsnip {{{ "
-let g:vsnip_snippet_dir = expand('~/.config/nvim/vsnip')
-
-nnoremap <leader>ss :VsnipOpen<cr>
-nnoremap <leader>ue :e <c-r>=stdpath('data')<cr>/site/pack/packer/start/friendly-snippets/snippets/
-
-imap <expr> <c-j> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<c-j>'
-smap <expr> <c-j> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<c-j>'
-
-imap <expr> <c-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<c-k>'
-smap <expr> <c-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<c-k>'
-" }}} vim-vsnip "
 
 " vimlook {{{ "
 nnoremap <leader>¡ :QuickLook<space>
