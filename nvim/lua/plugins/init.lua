@@ -86,11 +86,11 @@ require('packer').startup(function()
     config = [[require('plugins.fzf-lua')]],
     requires = { 'vijaymarupudi/nvim-fzf', 'kyazdani42/nvim-web-devicons' }
   }
-  use {
-    'folke/todo-comments.nvim',
-    config = [[require('plugins.todo-comments')]],
-    requires = 'nvim-lua/plenary.nvim'
-  }
+  -- use {
+  --   'folke/todo-comments.nvim',
+  --   config = [[require('plugins.todo-comments')]],
+  --   requires = 'nvim-lua/plenary.nvim'
+  -- }
   use {
     'folke/zen-mode.nvim',
     config = [[require('plugins.zen-mode')]]
@@ -183,6 +183,10 @@ require('packer').startup(function()
   }
 
   -- null-ls
+  use {
+    'jose-elias-alvarez/null-ls.nvim',
+    config = [[require('plugins.null_ls')]]
+  }
 end)
 
 -- Pretty print object
