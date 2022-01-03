@@ -1,11 +1,13 @@
-local u = require('utils')
+local u = require("utils")
 
-local original_fd_opts = require('fzf-lua.config').globals.files.fd_opts
-local original_rg_opts = require('fzf-lua.config').globals.grep.rg_opts
+local original_fd_opts = require("fzf-lua.config").globals.files.fd_opts
+local original_rg_opts = require("fzf-lua.config").globals.grep.rg_opts
 
-local function buf_tmap(...) u.buf_map(bufnr, 't', ...) end
+local function buf_tmap(...)
+  u.buf_map(bufnr, "t", ...)
+end
 
-require('fzf-lua').setup {
+require("fzf-lua").setup({
   winopts = {
     window_on_create = function()
       buf_tmap("<c-j>", "<down>")
@@ -15,11 +17,11 @@ require('fzf-lua').setup {
       buf_tmap("<m-+>", "]")
       buf_tmap("<m-ç>", "}")
       buf_tmap("<m-ñ>", "~")
-    end
+    end,
   },
   keymap = {
     builtin = {
-      ["º"]    = "toggle-preview",
+      ["º"] = "toggle-preview",
       ["<F1>"] = "preview-page-reset",
       -- defaults (overridden otherwise)
       ["<F2>"] = "toggle-fullscreen",
@@ -27,10 +29,10 @@ require('fzf-lua').setup {
       ["<F4>"] = "toggle-preview",
       ["<F5>"] = "toggle-preview-ccw",
       ["<F6>"] = "toggle-preview-cw",
-    }
+    },
   },
   files = {
-    fd_opts = original_fd_opts .. [[ --no-ignore --exclude '.keep' --exclude 'Session.vim']]
+    fd_opts = original_fd_opts .. [[ --no-ignore --exclude '.keep' --exclude 'Session.vim']],
   },
   git = {
     icons = {
@@ -44,30 +46,30 @@ require('fzf-lua').setup {
   grep = {
     -- Don't search on the filename, just the content
     fzf_opts = {
-      ['--delimiter'] = ':',
-      ['--nth'] = '4..',
+      ["--delimiter"] = ":",
+      ["--nth"] = "4..",
     },
-    rg_opts = [[--column --line-number --no-heading --color=always --smart-case -g '!Session.vim']]
-  }
-}
+    rg_opts = [[--column --line-number --no-heading --color=always --smart-case -g '!Session.vim']],
+  },
+})
 
-u.nmap('+s', ':FzfLua<space>', { silent = false })
+u.nmap("+s", ":FzfLua<space>", { silent = false })
 
-u.nmap('+f', '<cmd>FzfLua live_grep<cr>')
-u.nmap('+m', '<cmd>FzfLua marks<cr>')
-u.nmap('+r', '<cmd>FzfLua registers<cr>')
-u.nmap('<c-p>', '<cmd>FzfLua commands<cr>')
-u.nmap('<leader><leader>', '<cmd>FzfLua buffers<cr>')
-u.nmap('<leader>A', '<cmd>FzfLua filetypes<cr>')
-u.nmap('<leader>H', '<cmd>FzfLua git_bcommits<cr>')
-u.nmap('<leader>O', '<cmd>FzfLua files<cr>')
-u.nmap('<leader>R', '<cmd>FzfLua tags<cr>')
-u.nmap('<leader>f', '<cmd>FzfLua grep<cr>.<cr>')
-u.nmap('<leader>gL', '<cmd>FzfLua git_commits<cr>')
-u.nmap('<leader>gco', '<cmd>FzfLua git_branches<cr>')
-u.nmap('<leader>j', '<cmd>FzfLua git_status<cr>')
-u.nmap('<leader>o', '<cmd>FzfLua git_files<cr>')
-u.nmap('<leader>r', '<cmd>FzfLua btags<cr>')
-u.nmap('<leader>ñ', '<cmd>FzfLua blines<cr>')
+u.nmap("+f", "<cmd>FzfLua live_grep<cr>")
+u.nmap("+m", "<cmd>FzfLua marks<cr>")
+u.nmap("+r", "<cmd>FzfLua registers<cr>")
+u.nmap("<c-p>", "<cmd>FzfLua commands<cr>")
+u.nmap("<leader><leader>", "<cmd>FzfLua buffers<cr>")
+u.nmap("<leader>A", "<cmd>FzfLua filetypes<cr>")
+u.nmap("<leader>H", "<cmd>FzfLua git_bcommits<cr>")
+u.nmap("<leader>O", "<cmd>FzfLua files<cr>")
+u.nmap("<leader>R", "<cmd>FzfLua tags<cr>")
+u.nmap("<leader>f", "<cmd>FzfLua grep<cr>.<cr>")
+u.nmap("<leader>gL", "<cmd>FzfLua git_commits<cr>")
+u.nmap("<leader>gco", "<cmd>FzfLua git_branches<cr>")
+u.nmap("<leader>j", "<cmd>FzfLua git_status<cr>")
+u.nmap("<leader>o", "<cmd>FzfLua git_files<cr>")
+u.nmap("<leader>r", "<cmd>FzfLua btags<cr>")
+u.nmap("<leader>ñ", "<cmd>FzfLua blines<cr>")
 
-u.xmap('<leader>f', ':<c-u>FzfLua grep_visual<cr>')
+u.xmap("<leader>f", ":<c-u>FzfLua grep_visual<cr>")

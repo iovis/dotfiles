@@ -4,7 +4,7 @@ local get_map_options = function(custom_options)
   local options = { noremap = true, silent = true }
 
   if custom_options then
-    options = vim.tbl_extend('force', options, custom_options)
+    options = vim.tbl_extend("force", options, custom_options)
   end
 
   return options
@@ -15,8 +15,8 @@ M.map = function(mode, target, source, opts)
 end
 
 -- nmap, omap, imap, xmap, tmap
-for _, mode in ipairs({ 'n', 'o', 'i', 'x', 't' }) do
-  M[mode .. 'map'] = function(...)
+for _, mode in ipairs({ "n", "o", "i", "x", "t" }) do
+  M[mode .. "map"] = function(...)
     M.map(mode, ...)
   end
 end
@@ -26,11 +26,11 @@ M.buf_map = function(bufnr, mode, target, source, opts)
 end
 
 M.command = function(name, fn)
-  vim.cmd(string.format('command! %s %s', name, fn))
+  vim.cmd(string.format("command! %s %s", name, fn))
 end
 
 M.lua_command = function(name, fn)
-  M.command(name, 'lua ' .. fn)
+  M.command(name, "lua " .. fn)
 end
 
 M.t = function(str)
@@ -38,7 +38,7 @@ M.t = function(str)
 end
 
 M.input = function(keys, mode)
-  vim.api.nvim_feedkeys(M.t(keys), mode or 'm', true)
+  vim.api.nvim_feedkeys(M.t(keys), mode or "m", true)
 end
 
 M.warn = function(msg)

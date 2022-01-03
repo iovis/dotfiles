@@ -9,7 +9,7 @@
 --   autocmd FileType Trouble setlocal relativenumber
 -- augroup END
 
-require('trouble').setup {
+require("trouble").setup({
   mode = "quickfix",
   padding = false,
   action_keys = { -- key mappings for actions in the trouble list
@@ -17,4 +17,4 @@ require('trouble').setup {
     -- close = {},
     toggle_preview = "p",
   },
-}
+})

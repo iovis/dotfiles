@@ -1,10 +1,3 @@
-local signs = {
-  { name = "DiagnosticSignError", text = "" },
-  { name = "DiagnosticSignWarn",  text = "" },
-  { name = "DiagnosticSignHint",  text = "" },
-  { name = "DiagnosticSignInfo",  text = "" },
-}
-
 vim.cmd([[
   hi DiagnosticSignError ctermfg=1 ctermbg=18 guifg=#ab4642 guibg=#282828
   hi DiagnosticSignWarn  ctermfg=3 ctermbg=18 guifg=#f7ca88 guibg=#282828
@@ -22,33 +15,26 @@ vim.cmd([[
   augroup end
 ]])
 
+local signs = {
+  { name = "DiagnosticSignError", text = "" },
+  { name = "DiagnosticSignWarn", text = "" },
+  { name = "DiagnosticSignHint", text = "" },
+  { name = "DiagnosticSignInfo", text = "" },
+}
+
 for _, sign in ipairs(signs) do
-  vim.fn.sign_define(
-    sign.name,
-    {
-      texthl = sign.name,
-      text = sign.text,
-      numhl = ""
-    }
-  )
+  vim.fn.sign_define(sign.name, {
+    texthl = sign.name,
+    text = sign.text,
+    numhl = "",
+  })
 end
 
 local config = {
-  -- virtual_text = false,
+  virtual_text = false,
   signs = {
     active = signs,
   },
-  -- update_in_insert = true,
-  -- underline = true,
-  -- severity_sort = true,
-  -- float = {
-  --   focusable = false,
-  --   style = "minimal",
-  --   border = "rounded",
-  --   source = "always",
-  --   header = "",
-  --   prefix = "",
-  -- },
 }
 
 vim.diagnostic.config(config)

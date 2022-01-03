@@ -1,10 +1,10 @@
-require('nvim-treesitter.configs').setup {
+require("nvim-treesitter.configs").setup({
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = {
-      'python',
-      'ruby', -- [workaround] Allow for matchit and vim-endwise to work
-    }
+      "python",
+      "ruby", -- [workaround] Allow for matchit and vim-endwise to work
+    },
   },
   incremental_selection = {
     enable = true,
@@ -13,7 +13,7 @@ require('nvim-treesitter.configs').setup {
       node_incremental = "<c-n>",
       scope_incremental = "<c-s>",
       node_decremental = "<c-p>",
-    }
+    },
   },
   indent = {
     enable = true,
@@ -23,7 +23,7 @@ require('nvim-treesitter.configs').setup {
     },
   },
   playground = {
-    enable = true
+    enable = true,
   },
   textobjects = {
     select = {
@@ -48,8 +48,8 @@ require('nvim-treesitter.configs').setup {
       },
     },
   },
-}
+})
 
-local u = require('utils')
-u.nmap('+h', ':TSHighlightCapturesUnderCursor<cr>')
-u.nmap('+t', ':TSPlaygroundToggle<cr>')
+local u = require("utils")
+u.nmap("+h", ":TSHighlightCapturesUnderCursor<cr>")
+-- u.nmap('+t', ':TSPlaygroundToggle<cr>')

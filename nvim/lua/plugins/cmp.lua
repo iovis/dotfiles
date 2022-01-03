@@ -1,8 +1,8 @@
-local cmp = require('cmp')
+local cmp = require("cmp")
 
 local check_backspace = function()
-  local col = vim.fn.col "." - 1
-  return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+  local col = vim.fn.col(".") - 1
+  return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
 
 -- find more here: https://www.nerdfonts.com/cheat-sheet
@@ -34,24 +34,24 @@ local kind_icons = {
   Variable = "",
 }
 
-cmp.setup {
+cmp.setup({
   snippet = {
     expand = function(args)
       vim.fn["UltiSnips#Anon"](args.body)
     end,
   },
   mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ["<C-p>"] = cmp.mapping.select_prev_item(),
+    ["<C-n>"] = cmp.mapping.select_next_item(),
     -- ['<C-d>'] = cmp.mapping.scroll_docs(4),
     -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-b>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm {
+    ["<C-b>"] = cmp.mapping.complete(),
+    ["<C-e>"] = cmp.mapping.close(),
+    ["<CR>"] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
-    },
-    ['<Tab>'] = function(fallback)
+    }),
+    ["<Tab>"] = function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif check_backspace() then
@@ -60,7 +60,7 @@ cmp.setup {
         fallback()
       end
     end,
-    ['<S-Tab>'] = function(fallback)
+    ["<S-Tab>"] = function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       else
@@ -69,11 +69,11 @@ cmp.setup {
     end,
   },
   formatting = {
-    fields = { 'abbr', 'kind', 'menu' },
+    fields = { "abbr", "kind", "menu" },
     format = function(entry, vim_item)
       -- Kind icons
       -- vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-      vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
+      vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
 
       vim_item.menu = ({
         nvim_lsp = "[LSP]",
@@ -87,10 +87,10 @@ cmp.setup {
     end,
   },
   sources = {
-    { name = 'nvim_lsp' },
+    { name = "nvim_lsp" },
     { name = "nvim_lua" },
-    { name = 'ultisnips' },
-    { name = 'buffer' },
-    { name = 'path' },
+    { name = "ultisnips" },
+    { name = "buffer" },
+    { name = "path" },
   },
-}
+})

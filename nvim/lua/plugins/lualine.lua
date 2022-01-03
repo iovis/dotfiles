@@ -1,6 +1,6 @@
-require('lualine').setup {
+require("lualine").setup({
   options = {
-    theme = 'jellybeans'
+    theme = "jellybeans",
   },
-  extensions = { 'fugitive', 'nvim-tree', 'quickfix', 'fzf' }
-}
+  extensions = { "fugitive", "nvim-tree", "quickfix", "fzf" },
+})
