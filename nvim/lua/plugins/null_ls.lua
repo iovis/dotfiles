@@ -10,7 +10,7 @@ local formatting = null_ls.builtins.formatting
 null_ls.setup({
   debug = true,
   sources = {
-    diagnostics.eslint,
+    -- diagnostics.eslint,
     diagnostics.jsonlint,
     diagnostics.pylint.with({ extra_args = { "--disable", "C0301,C0114,C0115,C0116,E501" } }),
     diagnostics.rubocop,
@@ -18,7 +18,7 @@ null_ls.setup({
     diagnostics.vint,
     diagnostics.yamllint.with({ extra_args = { "-f", "parsable" } }),
 
-    formatting.eslint,
+    -- formatting.eslint,
     formatting.rubocop,
     formatting.sqlformat,
     formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "2" } }),

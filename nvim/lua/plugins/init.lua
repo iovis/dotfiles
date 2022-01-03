@@ -17,10 +17,7 @@ require('packer').init({
   max_jobs=50
 })
 require('packer').startup(function()
-  -- use 'JoosepAlviste/nvim-ts-context-commentstring'
   use 'andrewradev/splitjoin.vim'
-  -- use 'benekastah/neomake'
-  -- use 'chiel92/vim-autoformat'
   use 'chrisbra/csv.vim'
   use 'christoomey/vim-sort-motion'
   use 'christoomey/vim-tmux-navigator'
@@ -33,7 +30,6 @@ require('packer').startup(function()
   use 'iovis/tux.vim'
   use 'iovis/vimlook'
   use 'jparise/vim-graphql'
-  use 'junegunn/vim-peekaboo'
   use 'justinmk/vim-sneak'
   use 'kana/vim-textobj-entire'
   use 'kana/vim-textobj-indent'
@@ -41,23 +37,20 @@ require('packer').startup(function()
   use 'mattn/emmet-vim'
   use 'mbbill/undotree'
   use 'moll/vim-bbye'
-  -- use 'neoclide/coc-neco' -- uses neco-vim
   use 'nvim-lua/plenary.nvim'
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'nvim-treesitter/playground'
   use 'pbrisbin/vim-mkdir'
-  use 'raimondi/delimitMate'
+  -- use 'raimondi/delimitMate'
   use 'schickling/vim-bufonly'
-  -- use 'shougo/neco-vim'
   use 'tommcdo/vim-lion'
   use 'tpope/vim-abolish'
   use 'tpope/vim-bundler'
   use 'tpope/vim-characterize'
-  -- use 'tpope/vim-commentary'
   use 'tpope/vim-dadbod'
   use 'tpope/vim-dispatch'
   use 'tpope/vim-dotenv'
-  use 'tpope/vim-endwise'
+  -- use 'tpope/vim-endwise'
   use 'tpope/vim-eunuch'
   use 'tpope/vim-fugitive'
   use 'tpope/vim-git'
@@ -153,6 +146,10 @@ require('packer').startup(function()
     config = [[require('plugins.treesitter')]],
     run = ':TSUpdate'
   }
+  use {
+    'windwp/nvim-autopairs',
+    config = [[require('plugins.autopairs')]]
+  }
 
   -- LSP
   use { 'neovim/nvim-lspconfig' }
@@ -196,3 +193,6 @@ function _G.p(...)
   print(unpack(objects))
   return ...
 end
+
+local u = require('utils')
+u.nmap('<leader>ps', ':PackerSync<cr>')
