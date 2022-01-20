@@ -1,10 +1,10 @@
 local u = require("utils")
 
 local original_fd_opts = require("fzf-lua.config").globals.files.fd_opts
-local original_rg_opts = require("fzf-lua.config").globals.grep.rg_opts
+-- local original_rg_opts = require("fzf-lua.config").globals.grep.rg_opts
 
 local function buf_tmap(...)
-  u.buf_map(bufnr, "t", ...)
+  u.buf_map(0, "t", ...)
 end
 
 require("fzf-lua").setup({
@@ -51,6 +51,9 @@ require("fzf-lua").setup({
     },
     rg_opts = [[--column --line-number --no-heading --color=always --smart-case -g '!Session.vim']],
   },
+  -- lsp = {
+  --   async = false, -- Asynchronous calls don't work with null-ls
+  -- },
 })
 
 u.nmap("+s", ":FzfLua<space>", { silent = false })

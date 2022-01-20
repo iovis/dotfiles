@@ -86,11 +86,11 @@ require("packer").startup(function()
     "folke/zen-mode.nvim",
     config = [[require('plugins.zen-mode')]],
   })
-  -- use {
-  -- 'folke/trouble.nvim',
-  -- config = [[require('plugins.trouble')]],
-  -- requires = 'kyazdani42/nvim-web-devicons'
-  -- }
+  -- use({
+  --   "folke/trouble.nvim",
+  --   config = [[require('plugins.trouble')]],
+  --   requires = "kyazdani42/nvim-web-devicons",
+  -- })
   use({
     "junegunn/fzf",
     run = function()
@@ -150,7 +150,7 @@ require("packer").startup(function()
   -- LSP
   use({ "neovim/nvim-lspconfig" })
   use({
-    "williamboman/nvim-lsp-installer", -- TODO: Do I need this?
+    "williamboman/nvim-lsp-installer",
     config = [[require('plugins.lsp')]],
   })
 
@@ -184,7 +184,7 @@ end)
 
 -- Pretty print object
 -- From: https://github.com/nanotee/nvim-lua-guide#tips-3
-function _G.p(...)
+function _G.pp(...)
   local objects = vim.tbl_map(vim.inspect, { ... })
   print(unpack(objects))
   return ...

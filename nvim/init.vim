@@ -24,17 +24,17 @@ set autoindent
 set autoread
 set autowriteall
 set background=dark
-set backspace=indent,eol,start   " Fix backspace not deleting tabs, also make delimiteMate work
+set backspace=indent,eol,start
 set breakindent
 " set cmdheight=2
 set completeopt=menu,menuone,noselect
 set conceallevel=0
-set cursorline  " Highlight current line (slow as fuck)
+set cursorline  " Highlight current line (slow)
 set diffopt+=hiddenoff
 set diffopt+=vertical
 set expandtab
 set formatoptions-=ro  " Don't insert comment leader on new line
-set hidden    " remember undo after quitting
+set hidden
 set hlsearch
 set ignorecase
 set inccommand=split
@@ -47,7 +47,7 @@ set magic
 set mouse=a
 set nobackup
 set noruler
-set noshowmode  " Don't show which vim mode you're in
+set noshowmode
 set nostartofline
 set noswapfile
 set nowritebackup
@@ -72,7 +72,7 @@ set wildignorecase
 set wildmenu
 set wildmode=full
 let &showbreak = '└ '
-let @/ = ""  " don't show search highlights when entering or resourcing vimrc
+let @/ = ''  " don't show search highlights when entering or resourcing vimrc
 
 let g:markdown_fenced_languages = [
   \ 'bash',
@@ -744,7 +744,7 @@ function! GlobalSubstituteOperator(type)
     if isSameLine
       let saved_unnamed_register = @@
       execute 'normal! `<v`>y'
-      call feedkeys(":S!/" . escape(@@, '/\') . "//g\<left>\<left>", 't')
+      call feedkeys(':S!/' . escape(@@, '/\') . "//g\<left>\<left>", 't')
       let @@ = saved_unnamed_register
     else
       call feedkeys(":S!///g\<left>\<left>\<left>", 't')
