@@ -4,6 +4,10 @@ if not status_ok then
 end
 
 local config = require("plugins.lsp.config")
+local scan = require("plenary.scandir")
+
+local lsp_settings_path = vim.fn.stdpath("config") .. "/lua/plugins/lsp/settings/"
+local paths = scan.scan_dir(lsp_settings_path, { depth = 0 })
 
 lsp_installer.on_server_ready(function(server)
   local opts = {
@@ -11,16 +15,14 @@ lsp_installer.on_server_ready(function(server)
     capabilities = config.capabilities,
   }
 
-  -- Register extra settings for a <language> in plugins.lsp.<language>.lua
-  local settings_for = function(language)
+  -- Autoloading of plugins.lsp.settings.*
+  for _, file in ipairs(paths) do
+    local language = file:match("([^/]+).lua$")
+
     if server.name == language then
-      opts = vim.tbl_deep_extend("force", require("plugins.lsp." .. language), opts)
+      opts = vim.tbl_deep_extend("force", require("plugins.lsp.settings." .. language), opts)
     end
   end
-
-  settings_for("jsonls")
-  settings_for("sumneko_lua")
-  settings_for("solargraph")
 
   server:setup(opts)
 end)
