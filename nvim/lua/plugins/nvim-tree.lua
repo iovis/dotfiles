@@ -17,6 +17,9 @@ require("nvim-tree").setup({
       "tags",
     },
   },
+  git = {
+    ignore = false,
+  },
   view = {
     -- relativenumber = true,
     -- signcolumn = "no",
@@ -30,6 +33,7 @@ require("nvim-tree").setup({
       },
     },
   },
+  update_cwd = true,
 })
 
 vim.g.nvim_tree_disable_window_picker = 1
