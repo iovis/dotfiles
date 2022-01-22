@@ -8,6 +8,8 @@ if [[ $OSTYPE == darwin* ]]; then
   export PATH="$HOME/.cargo/bin:$PATH"
   . "$HOME/.cargo/env"
 
+  fpath=("$HOMEBREW_PREFIX/share/zsh/site-functions" "${fpath[@]}")
+
   alias brewdump="cd; brew bundle dump -f; cd -"
   alias notes="cd $NOTES/notes && nvim -S"
   alias fixtrash="rm -rf ~/.Trash; mkdir ~/.Trash; killall Finder"
