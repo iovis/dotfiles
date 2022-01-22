@@ -47,8 +47,8 @@ plugins=(
   zsh-users/zsh-autosuggestions
 )
 
-autoload -U plugins
-plugins source
+autoload -U plugins compile_zsh
+plugins load
 
 # Contains binding for zsh-autosuggestions, so must be kept at the end
 source "$ZDOTDIR/bindkey.zsh"

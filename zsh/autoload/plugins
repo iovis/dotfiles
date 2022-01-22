@@ -6,6 +6,7 @@ Usage: plugins [command]
 Commands:
   install    Install plugins
   list       List plugins
+  load       Load plugins
   update     Update plugins
 "
 }
@@ -15,42 +16,56 @@ plugins_empty() {
 }
 
 plugins_install() {
+  local plugin
+
   for plugin in $plugins; do
     if [ -d "$ZSH_PLUGINS/$plugin" ]; then
       echo "$plugin already installed"
     else
-      echo "Installing $plugin"
-      git clone --depth=1 https://github.com/$plugin.git "$ZSH_PLUGINS/$plugin"
+      echo "Cloning $plugin"
+      git clone -q --depth 1 --recursive --shallow-submodules https://github.com/$plugin "$ZSH_PLUGINS/$plugin"
     fi
   done
+
+  compile_zsh
 }
 
 plugins_list() {
   echo "$plugins" | tr ' ' '\n'
 }
 
+plugins_load() {
+  local plugin
+
+  for plugin in $plugins; do
+    local plugin_dir="$ZSH_PLUGINS/$plugin"
+
+    if [ ! -d "$ZSH_PLUGINS/$plugin" ]; then
+      echo "Cloning $plugin"
+      git clone -q --depth 1 --recursive --shallow-submodules https://github.com/$plugin $plugin_dir
+    fi
+
+    local plugin_name=${plugin:t}
+    local initfile=$plugin_dir/$plugin_name.plugin.zsh
+
+    require "$ZSH_PLUGINS/$plugin/$plugin_name.plugin.zsh"
+    require "$ZSH_PLUGINS/$plugin/$plugin_name.zsh-theme"
+  done
+}
+
 plugins_update() {
+  local plugin
+
   for plugin in $plugins; do
     if [ -d "$ZSH_PLUGINS/$plugin" ]; then
       echo "Updating $plugin"
-      git -C "$ZSH_PLUGINS/$plugin" pull
+      git -C "$ZSH_PLUGINS/$plugin" pull --ff --recurse-submodules --depth 1 --rebase --autostash
     else
       echo "Can't update $plugin."
     fi
   done
-}
 
-plugins_source() {
-  for plugin in $plugins; do
-    if [ -d "$ZSH_PLUGINS/$plugin" ]; then
-      filename=${plugin##*/}
-
-      require "$ZSH_PLUGINS/$plugin/$filename.plugin.zsh"
-      require "$ZSH_PLUGINS/$plugin/$filename.zsh-theme"
-    else
-      echo "$plugin not found."
-    fi
-  done
+  compile_zsh
 }
 
 if plugins_empty; then
@@ -60,7 +75,7 @@ fi
 case "$1" in
   install) plugins_install;;
   list)    plugins_list;;
-  source)  plugins_source;;
+  load)    plugins_load;;
   update)  plugins_update;;
   *)       usage;;
 esac
