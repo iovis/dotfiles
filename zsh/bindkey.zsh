@@ -1,9 +1,6 @@
 # Emacs keybindings
 bindkey -e
 
-# Disable <C-s> flow control
-stty -ixon
-
 autoload -U up-line-or-beginning-search
 zle -N up-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
@@ -20,7 +17,7 @@ bindkey '^[^[[D' backward-word # alt-left
 bindkey '^[^[[C' forward-word  # alt-right
 
 bindkey "^N" autosuggest-accept
-bindkey "^P" forward-word  # TODO autosuggest partial?
+bindkey "^P" forward-word
 bindkey "^U" backward-kill-line
 
 bindkey -s "^[ñ" '~' # alt-ñ
