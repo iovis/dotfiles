@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+
 # kali bootstrap script
 # git clone https://github.com/iovis/dotfiles ~/.dotfiles
 # . ~/.dotfiles/kali_boostrap.sh 2>&1 | tee install.log
@@ -14,23 +16,9 @@ sudo apt install -y automake build-essential byacc cmake gdb gettext lcov libbz2
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing tmux"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-# zsh
-echo "[$(date '+%Y-%m-%d %H:%M')] Installing Oh-my-zsh"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-
-ZSH_CUSTOM=$HOME/.oh-my-zsh/custom
-git clone https://github.com/zdharma-continuum/fast-syntax-highlighting $ZSH_CUSTOM/plugins/fast-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-completions $ZSH_CUSTOM/plugins/zsh-completions
-git clone https://github.com/MichaelAquilina/zsh-you-should-use $ZSH_CUSTOM/plugins/you-should-use
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
-
 # dotfiles
 echo "[$(date '+%Y-%m-%d %H:%M')] Linking dotfiles"
 sh ~/.dotfiles/link_dotfiles.sh
-mkdir ~/.zsh
-touch ~/.zsh/aliases.zsh
-ln -snf $HOME/.dotfiles/.zsh/custom_theme.zsh $HOME/.zsh/custom_theme.zsh
 
 # asdf
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing asdf"
