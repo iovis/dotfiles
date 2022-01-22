@@ -9,6 +9,7 @@ source $ZDOTDIR/theme.zsh
 ## Environment
 export DOTFILES="$HOME/.dotfiles"
 export EDITOR="vim"
+export HISTFILE="$ZDOTDIR/.zsh_history"
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export LESS="-iMSx4 -FXR"
