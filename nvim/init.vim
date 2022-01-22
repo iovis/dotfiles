@@ -578,18 +578,6 @@ nnoremap <silent> <leader>< :execute 'Canary ' . DotenvGet('PROJECT_URL')<cr>
 nnoremap <silent> <leader>Q :BufOnly!<cr>
 " }}} bufonly "
 
-" nmap <silent> <c-t> <Plug>(coc-type-definition)
-" nmap <silent> t     <Plug>(coc-definition)
-" nmap <silent> T     <Plug>(coc-references)
-" nmap <silent> gR    <Plug>(coc-rename)
-"
-" nnoremap <silent> <leader>lR :CocList -I symbols<cr>
-" nnoremap <silent> <leader>lc :CocList commands<cr>
-" nnoremap <silent> <leader>le :CocList --normal extensions<cr>
-" nnoremap <silent> <leader>lr :CocList outline<cr>
-" nnoremap <silent> <leader>uc :CocConfig<cr>
-" nnoremap <silent> gd :call <SID>show_documentation()<CR>
-
 " csv {{{ "
 hi CSVColumnEven ctermbg=242 guibg=#6C6C6C
 hi CSVColumnOdd  term=NONE   ctermbg=NONE
