@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+usage() {
+  echo "
+Usage: plugins [command]
+Commands:
+  install    Install plugins
+  list       List plugins
+  update     Update plugins
+"
+}
+
+plugins_empty() {
+  [ ${#plugins[@]} -eq 0 ]
+}
+
+plugins_install() {
+  for plugin in $plugins; do
+    if [ -d "$ZSH_PLUGINS/$plugin" ]; then
+      echo "$plugin already installed"
+    else
+      echo "Installing $plugin"
+      git clone --depth=1 https://github.com/$plugin.git "$ZSH_PLUGINS/$plugin"
+    fi
+  done
+}
+
+plugins_list() {
+  echo "$plugins" | tr ' ' '\n'
+}
+
+plugins_update() {
+  for plugin in $plugins; do
+    if [ -d "$ZSH_PLUGINS/$plugin" ]; then
+      echo "Updating $plugin"
+      git -C "$ZSH_PLUGINS/$plugin" pull
+    else
+      echo "Can't update $plugin."
+    fi
+  done
+}
+
+plugins_source() {
+  for plugin in $plugins; do
+    if [ -d "$ZSH_PLUGINS/$plugin" ]; then
+      filename=${plugin##*/}
+
+      require "$ZSH_PLUGINS/$plugin/$filename.plugin.zsh"
+      require "$ZSH_PLUGINS/$plugin/$filename.zsh-theme"
+    else
+      echo "$plugin not found."
+    fi
+  done
+}
+
+if plugins_empty; then
+  echo "No plugins defined."
+fi
+
+case "$1" in
+  install) plugins_install;;
+  list)    plugins_list;;
+  source)  plugins_source;;
+  update)  plugins_update;;
+  *)       usage;;
+esac

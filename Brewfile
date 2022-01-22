@@ -32,9 +32,9 @@ brew "mpv"
 brew "neovim"
 brew "nmap"
 brew "pgcli"
-brew "postgresql", restart_service: true
+brew "postgresql"
 brew "reattach-to-user-namespace"
-brew "redis", restart_service: true
+brew "redis"
 brew "rename"
 brew "rsync"
 brew "shellcheck"
