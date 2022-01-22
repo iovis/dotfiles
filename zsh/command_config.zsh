@@ -7,6 +7,8 @@ elif [[ -f "/opt/homebrew/opt/asdf/libexec/asdf.sh" ]]; then
   source /opt/homebrew/opt/asdf/libexec/asdf.sh
 fi
 
+fpath=("$ASDF_DIR/completions" "${fpath[@]}")
+
 # bat
 if type bat > /dev/null; then
   export BAT_THEME="base16"
