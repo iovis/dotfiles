@@ -12,6 +12,7 @@ require("nvim-tree").setup({
       ".vscode",
       ".yardoc",
       "BqfPreviewBorder",
+      "NvimTree",
       "Session.vim",
       "node_modules",
       "tags",
