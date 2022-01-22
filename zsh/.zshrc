@@ -38,10 +38,6 @@ for filename in $ZDOTDIR/local/*.zsh(N.); do
   source "$filename"
 done
 
-if [[ "$ZPROF" = true ]]; then
-  zprof
-fi
-
 ## Plugins
 export ZSH_PLUGINS="$ZDOTDIR/plugins"
 
@@ -56,3 +52,7 @@ plugins source
 
 # Contains binding for zsh-autosuggestions, so must be kept at the end
 source "$ZDOTDIR/bindkey.zsh"
+
+if [[ "$ZPROF" = true ]]; then
+  zprof
+fi
