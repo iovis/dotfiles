@@ -51,7 +51,7 @@ alias gstl="git stash list"
 alias gstp="git stash pop"
 
 ## quick editing
-alias aliases="\$EDITOR \$ZDOTDIR/custom/aliases.zsh"
+alias aliases="\$EDITOR \$ZDOTDIR/local/aliases.zsh"
 alias hosts="sudo \$EDITOR /etc/hosts"
 alias skhdrc="\$EDITOR ~/.config/skhd/skhdrc"
 alias so="exec zsh"
