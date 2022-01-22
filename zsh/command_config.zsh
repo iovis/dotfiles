@@ -51,11 +51,6 @@ if type fzf > /dev/null; then
   }
 fi
 
-# httpie
-if type http > /dev/null; then
-  alias https="http --default-scheme=https"
-fi
-
 # hub
 if type hub > /dev/null; then
   alias gpr="git hub pull-request --push --browse -m '' --edit -a iovis -b"
