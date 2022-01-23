@@ -11,10 +11,6 @@ Commands:
 "
 }
 
-plugins_empty() {
-  [ ${#plugins[@]} -eq 0 ]
-}
-
 plugins_install() {
   local plugin
 
@@ -46,7 +42,6 @@ plugins_load() {
     fi
 
     local plugin_name=${plugin:t}
-    local initfile=$plugin_dir/$plugin_name.plugin.zsh
 
     require "$ZSH_PLUGINS/$plugin/$plugin_name.plugin.zsh"
     require "$ZSH_PLUGINS/$plugin/$plugin_name.zsh-theme"
@@ -67,10 +62,6 @@ plugins_update() {
 
   compile_zsh
 }
-
-if plugins_empty; then
-  echo "No plugins defined."
-fi
 
 case "$1" in
   install) plugins_install;;

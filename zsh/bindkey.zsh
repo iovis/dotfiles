@@ -18,7 +18,6 @@ bindkey '^X^E' edit-command-line
 bindkey '^[^[[D' backward-word # alt-left
 bindkey '^[^[[C' forward-word  # alt-right
 
-bindkey "^N" autosuggest-accept
 bindkey "^P" forward-word
 bindkey "^U" backward-kill-line
 

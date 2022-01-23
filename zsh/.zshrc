@@ -39,6 +39,7 @@ source $ZDOTDIR/themes/$ZSH_THEME.zsh
 ## Source config files
 source "$ZDOTDIR/os_config.zsh"
 source "$ZDOTDIR/aliases.zsh"
+source "$ZDOTDIR/bindkey.zsh"
 source "$ZDOTDIR/command_config.zsh"
 source "$ZDOTDIR/functions.zsh"
 source "$ZDOTDIR/options.zsh"
@@ -54,9 +55,9 @@ done
 autoload -U plugins
 plugins load
 
-# Contains binding for zsh-autosuggestions, so must be kept at the end
-source "$ZDOTDIR/bindkey.zsh"
+bindkey "^N" autosuggest-accept
 
+## Profiling helper (keep at the end)
 if [[ "$ZPROF" = true ]]; then
   zprof
 fi
