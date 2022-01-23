@@ -4,8 +4,6 @@ if [[ "$ZPROF" = true ]]; then
   zmodload zsh/zprof
 fi
 
-source $ZDOTDIR/theme.zsh
-
 ## Environment
 export DOTFILES="$HOME/.dotfiles"
 export EDITOR="vim"
@@ -17,12 +15,16 @@ export PAGER="less"
 export PROJECT_HOME="$HOME/Sites"
 export REVIEW_BASE="master"
 export TERM="screen-256color"
+export ZSH_THEME="powerlevel10k"
 
 fpath=("$ZDOTDIR/autoload" "${fpath[@]}")
 
 require() {
   [[ ! -f "$1" ]] || source "$1"
 }
+
+## Theme
+source $ZDOTDIR/themes/$ZSH_THEME.zsh
 
 ## Source config files
 source "$ZDOTDIR/os_config.zsh"
