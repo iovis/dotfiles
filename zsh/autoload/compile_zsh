@@ -3,6 +3,8 @@
 # Generates .zwc files, which "source" looks for and
 # checks timestamps to know which one to source
 
+echo 'Compiling ZSH files'
+
 zcompare $ZDOTDIR/.zcompdump
 
 local file
