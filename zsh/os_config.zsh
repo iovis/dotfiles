@@ -3,11 +3,6 @@ if [[ $OSTYPE == darwin* ]]; then
 
   [[ ! -f /opt/homebrew/bin/brew ]] || eval "$(/opt/homebrew/bin/brew shellenv)"
 
-  # Amending the PATH because /etc/zprofile calls path_helper which breaks the PATH
-  # See: https://gist.github.com/Linerre/f11ad4a6a934dcf01ee8415c9457e7b2
-  export PATH="$HOME/.cargo/bin:$PATH"
-  . "$HOME/.cargo/env"
-
   fpath=("$HOMEBREW_PREFIX/share/zsh/site-functions" "${fpath[@]}")
 
   alias brewdump="cd; brew bundle dump -f; cd -"
@@ -45,3 +40,7 @@ else
   alias nt="sudo ss -antp"
 fi
 
+# Amending the PATH because /etc/zprofile calls path_helper which breaks the PATH
+# Seems to happen in macOS and Kali Linux (Debian)
+# See: https://gist.github.com/Linerre/f11ad4a6a934dcf01ee8415c9457e7b2
+export PATH="$HOME/.cargo/bin:$PATH"
