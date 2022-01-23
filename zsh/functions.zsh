@@ -35,6 +35,10 @@ rbg() {
   rg "$1" $(bundle list --paths)
 }
 
+take() {
+  mkdir -p $@ && cd ${@:$#}
+}
+
 encrypt() {
   openssl enc -aes-256-cbc -salt -in "$1" -out "$1.enc"
 }
