@@ -15,9 +15,19 @@ export PAGER="less"
 export PROJECT_HOME="$HOME/Sites"
 export REVIEW_BASE="master"
 export TERM="screen-256color"
+export ZSH_PLUGINS="$ZDOTDIR/plugins"
 export ZSH_THEME="powerlevel10k"
 
+plugins=(
+  romkatv/powerlevel10k
+  zdharma-continuum/fast-syntax-highlighting
+  zsh-users/zsh-autosuggestions
+)
+
+## Autoload
 fpath=("$ZDOTDIR/autoload" "${fpath[@]}")
+
+autoload -Uz compile_zsh
 
 require() {
   [[ ! -f "$1" ]] || source "$1"
@@ -41,15 +51,7 @@ for filename in $ZDOTDIR/local/*.zsh(N.); do
 done
 
 ## Plugins
-export ZSH_PLUGINS="$ZDOTDIR/plugins"
-
-plugins=(
-  romkatv/powerlevel10k
-  zdharma-continuum/fast-syntax-highlighting
-  zsh-users/zsh-autosuggestions
-)
-
-autoload -U plugins compile_zsh
+autoload -U plugins
 plugins load
 
 # Contains binding for zsh-autosuggestions, so must be kept at the end
