@@ -19,3 +19,4 @@ setopt noflowcontrol       # disable ^S/^Q flow control characters
 setopt notify              # Report the status of background jobs immediately
 setopt promptsubst         # Perform operations in prompts
 setopt pushdignoredups     # Don't push dups of directories in stack
+setopt sharehistory        # Share history between terminals
