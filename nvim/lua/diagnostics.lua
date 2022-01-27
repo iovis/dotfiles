@@ -31,9 +31,14 @@ for _, sign in ipairs(signs) do
 end
 
 local config = {
-  virtual_text = false,
   signs = {
     active = signs,
+  },
+  underline = {
+    severity = vim.diagnostic.severity.ERROR
+  },
+  virtual_text = {
+    severity = vim.diagnostic.severity.ERROR
   },
 }
 
