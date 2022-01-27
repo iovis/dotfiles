@@ -20,7 +20,7 @@ null_ls.setup({
 
     -- formatting.eslint,
     formatting.rubocop,
-    formatting.sqlformat,
+    formatting.sqlformat.with({ extra_args = { "-rs" }}),
     formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "2" } }),
   },
 })
