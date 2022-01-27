@@ -1,23 +1,27 @@
-require('map_helpers')
+local u = require("utils")
 
-local original_fd_opts = require('fzf-lua.config').globals.files.fd_opts
-local original_rg_opts = require('fzf-lua.config').globals.grep.rg_opts
+local original_fd_opts = require("fzf-lua.config").globals.files.fd_opts
+-- local original_rg_opts = require("fzf-lua.config").globals.grep.rg_opts
 
-require('fzf-lua').setup {
+local function buf_tmap(...)
+  u.buf_map(0, "t", ...)
+end
+
+require("fzf-lua").setup({
   winopts = {
     window_on_create = function()
-      tnoremap_bs("<c-j>", "<down>")
-      tnoremap_bs("<c-k>", "<up>")
-      tnoremap_bs("<m-left>", "<s-left>")
-      tnoremap_bs("<m-right>", "<s-right>")
-      tnoremap_bs("<m-+>", "]")
-      tnoremap_bs("<m-ç>", "}")
-      tnoremap_bs("<m-ñ>", "~")
-    end
+      buf_tmap("<c-j>", "<down>")
+      buf_tmap("<c-k>", "<up>")
+      buf_tmap("<m-left>", "<s-left>")
+      buf_tmap("<m-right>", "<s-right>")
+      buf_tmap("<m-+>", "]")
+      buf_tmap("<m-ç>", "}")
+      buf_tmap("<m-ñ>", "~")
+    end,
   },
   keymap = {
     builtin = {
-      ["º"]    = "toggle-preview",
+      ["º"] = "toggle-preview",
       ["<F1>"] = "preview-page-reset",
       -- defaults (overridden otherwise)
       ["<F2>"] = "toggle-fullscreen",
@@ -25,10 +29,10 @@ require('fzf-lua').setup {
       ["<F4>"] = "toggle-preview",
       ["<F5>"] = "toggle-preview-ccw",
       ["<F6>"] = "toggle-preview-cw",
-    }
+    },
   },
   files = {
-    fd_opts = original_fd_opts .. [[ --no-ignore --exclude '.keep' --exclude 'Session.vim']]
+    fd_opts = original_fd_opts .. [[ --no-ignore --exclude '.keep' --exclude 'Session.vim']],
   },
   git = {
     icons = {
@@ -42,30 +46,33 @@ require('fzf-lua').setup {
   grep = {
     -- Don't search on the filename, just the content
     fzf_opts = {
-      ['--delimiter'] = ':',
-      ['--nth'] = '4..',
+      ["--delimiter"] = ":",
+      ["--nth"] = "4..",
     },
-    rg_opts = [[--column --line-number --no-heading --color=always --smart-case -g '!Session.vim']]
-  }
-}
+    rg_opts = [[--column --line-number --no-heading --color=always --smart-case -g '!Session.vim']],
+  },
+  -- lsp = {
+  --   async = false, -- Asynchronous calls don't work with null-ls
+  -- },
+})
 
-nnoremap('+s', ':FzfLua<space>')
+u.nmap("+s", ":FzfLua<space>", { silent = false })
 
-nnoremap_s('+f', '<cmd>FzfLua live_grep<cr>')
-nnoremap_s('+m', '<cmd>FzfLua marks<cr>')
-nnoremap_s('+r', '<cmd>FzfLua registers<cr>')
-nnoremap_s('<c-p>', '<cmd>FzfLua commands<cr>')
-nnoremap_s('<leader><leader>', '<cmd>FzfLua buffers<cr>')
-nnoremap_s('<leader>A', '<cmd>FzfLua filetypes<cr>')
-nnoremap_s('<leader>H', '<cmd>FzfLua git_bcommits<cr>')
-nnoremap_s('<leader>O', '<cmd>FzfLua files<cr>')
-nnoremap_s('<leader>R', '<cmd>FzfLua tags<cr>')
-nnoremap_s('<leader>f', '<cmd>FzfLua grep<cr>.<cr>')
-nnoremap_s('<leader>gL', '<cmd>FzfLua git_commits<cr>')
-nnoremap_s('<leader>gco', '<cmd>FzfLua git_branches<cr>')
-nnoremap_s('<leader>j', '<cmd>FzfLua git_status<cr>')
-nnoremap_s('<leader>o', '<cmd>FzfLua git_files<cr>')
-nnoremap_s('<leader>r', '<cmd>FzfLua btags<cr>')
-nnoremap_s('<leader>ñ', '<cmd>FzfLua blines<cr>')
+u.nmap("+f", "<cmd>FzfLua live_grep<cr>")
+u.nmap("+m", "<cmd>FzfLua marks<cr>")
+u.nmap("+r", "<cmd>FzfLua registers<cr>")
+u.nmap("<c-p>", "<cmd>FzfLua commands<cr>")
+u.nmap("<leader><leader>", "<cmd>FzfLua buffers<cr>")
+u.nmap("<leader>A", "<cmd>FzfLua filetypes<cr>")
+u.nmap("<leader>H", "<cmd>FzfLua git_bcommits<cr>")
+u.nmap("<leader>O", "<cmd>FzfLua files<cr>")
+u.nmap("<leader>R", "<cmd>FzfLua tags<cr>")
+u.nmap("<leader>f", "<cmd>FzfLua grep<cr>.<cr>")
+u.nmap("<leader>gL", "<cmd>FzfLua git_commits<cr>")
+u.nmap("<leader>gco", "<cmd>FzfLua git_branches<cr>")
+u.nmap("<leader>j", "<cmd>FzfLua git_status<cr>")
+u.nmap("<leader>o", "<cmd>FzfLua git_files<cr>")
+u.nmap("<leader>r", "<cmd>FzfLua btags<cr>")
+u.nmap("<leader>ñ", "<cmd>FzfLua blines<cr>")
 
-xnoremap_s('<leader>f', '<cmd><c-u>FzfLua grep_visual<cr>')
+u.xmap("<leader>f", ":<c-u>FzfLua grep_visual<cr>")

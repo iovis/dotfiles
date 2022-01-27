@@ -13,6 +13,7 @@ for name,_ in pairs(package.loaded) do
 end
 
 require('plugins')
+require('diagnostics')
 EOF
 " }}} plugins "
 
@@ -23,16 +24,17 @@ set autoindent
 set autoread
 set autowriteall
 set background=dark
-set backspace=indent,eol,start   " Fix backspace not deleting tabs, also make delimiteMate work
+set backspace=indent,eol,start
 set breakindent
-set completeopt-=preview
+" set cmdheight=2
+set completeopt=menu,menuone,noselect
 set conceallevel=0
-set cursorline  " Highlight current line (slow as fuck)
+set cursorline  " Highlight current line (slow)
 set diffopt+=hiddenoff
 set diffopt+=vertical
 set expandtab
 set formatoptions-=ro  " Don't insert comment leader on new line
-set hidden    " remember undo after quitting
+set hidden
 set hlsearch
 set ignorecase
 set inccommand=split
@@ -45,6 +47,7 @@ set magic
 set mouse=a
 set nobackup
 set noruler
+set noshowmode
 set nostartofline
 set noswapfile
 set nowritebackup
@@ -69,7 +72,7 @@ set wildignorecase
 set wildmenu
 set wildmode=full
 let &showbreak = '└ '
-let @/ = ""  " don't show search highlights when entering or resourcing vimrc
+let @/ = ''  " don't show search highlights when entering or resourcing vimrc
 
 let g:markdown_fenced_languages = [
   \ 'bash',
@@ -393,14 +396,14 @@ nnoremap <leader>us :so $MYVIMRC<cr>:echo 'vimrc sourced'<cr>
 nnoremap <silent> <leader>ua :e! ~/.zsh/aliases.zsh<cr>
 nnoremap <silent> <leader>uf :execute empty(&filetype) ? 'echo "no filetype specified"' : 'EditFtplugin'<cr>
 nnoremap <silent> <leader>uh :sp $MYVIMRC<cr>
-nnoremap <silent> <leader>um :e! ~/.dotfiles/.vimrc<cr>
-nnoremap <silent> <leader>up :e! ~/.config/nvim/lua/plugins/init.lua<cr>
+nnoremap <silent> <leader>um :e! $DOTFILES/.vimrc<cr>
+nnoremap <silent> <leader>up :e! $DOTFILES/nvim/lua/plugins/init.lua<cr>
 nnoremap <silent> <leader>ur :e! .projections.json<cr>
 nnoremap <silent> <leader>ut :e! ~/.tmux.conf<cr>
 nnoremap <silent> <leader>uu :e! $MYVIMRC<cr>
 nnoremap <silent> <leader>uv :vs $MYVIMRC<cr>
-nnoremap <silent> <leader>uw :e! ~/.zsh/work.zsh<cr>
-nnoremap <silent> <leader>uz :e! ~/.zshrc<cr>
+nnoremap <silent> <leader>uw :e! $ZDOTDIR/local/work.zsh<cr>
+nnoremap <silent> <leader>uz :e! $ZDOTDIR/.zshrc<cr>
 
 command! -nargs=? -complete=filetype EditFtplugin
       \ exe 'keepjumps e! $HOME/.config/nvim/after/ftplugin/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
@@ -562,16 +565,6 @@ nnoremap +j :%!jq ''<left>
 " }}} jq "
 
 " plugin configuration {{{ "
-" autoformat {{{ "
-nnoremap <silent> <leader>b :Autoformat<cr>
-xnoremap <silent> <leader>b :Autoformat<cr>
-
-let g:autoformat_verbosemode = 0
-let g:formatters_javascript = ['prettier']
-let g:formatters_json = ['prettier']
-let g:formatters_ruby = ['rubocop']
-" }}} autoformat "
-
 " browsers_castle {{{ "
 nnoremap g<space>  :Google<space>
 nnoremap g<cr>     :Google <c-r><c-w><cr>
@@ -584,69 +577,6 @@ nnoremap <silent> <leader>< :execute 'Canary ' . DotenvGet('PROJECT_URL')<cr>
 " bufonly {{{ "
 nnoremap <silent> <leader>Q :BufOnly!<cr>
 " }}} bufonly "
-
-" coc.nvim {{{ "
-let g:coc_global_extensions = [
-\ 'coc-css',
-\ 'coc-html',
-\ 'coc-json',
-\ 'coc-pyright',
-\ 'coc-rust-analyzer',
-\ 'coc-sh',
-\ 'coc-snippets',
-\ 'coc-solargraph',
-\ 'coc-tsserver',
-\ 'coc-yaml'
-\ ]
-
-inoremap <silent><expr> <c-b> coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-nmap <silent> <c-t> <Plug>(coc-type-definition)
-nmap <silent> t     <Plug>(coc-definition)
-nmap <silent> T     <Plug>(coc-references)
-nmap <silent> gR    <Plug>(coc-rename)
-
-nnoremap <silent> <leader>lR :CocList -I symbols<cr>
-nnoremap <silent> <leader>lc :CocList commands<cr>
-nnoremap <silent> <leader>le :CocList --normal extensions<cr>
-nnoremap <silent> <leader>lr :CocList outline<cr>
-nnoremap <silent> <leader>uc :CocConfig<cr>
-nnoremap <silent> gd :call <SID>show_documentation()<CR>
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . ' ' . expand('<cword>')
-  endif
-endfunction
-
-" Highlight symbol under cursor on CursorHold
-hi default CocHighlightText gui=underline
-" augroup coc
-"   autocmd!
-"   autocmd CursorHold * silent call CocActionAsync('highlight')
-" augroup END
-
-" coc-snippets
-imap <c-j> <Plug>(coc-snippets-expand-jump)
-
-nnoremap <silent> <leader>ls :CocList snippets<cr>
-nnoremap <silent> <leader>ue :CocCommand snippets.editSnippets<cr>
-nnoremap <silent> <leader>ss :CocCommand snippets.openSnippetFiles<cr>
-" }}} coc.nvim "
 
 " csv {{{ "
 hi CSVColumnEven ctermbg=242 guibg=#6C6C6C
@@ -664,23 +594,11 @@ function! CurrentDB()
 endf
 " }}} dadbod "
 
-" delimitmate {{{ "
-let g:delimitMate_expand_cr = 1
-let g:delimitMate_expand_space = 1
-" }}} delimitmate "
-
 " dispatch {{{ "
 nnoremap s<cr>    :Dispatch<cr>
 nnoremap s!       :Dispatch!<cr>
 nnoremap s?       :FocusDispatch<cr>
 " }}} dispatch "
-
-" echodoc {{{ "
-let g:echodoc_enable_at_startup = 1
-
-set cmdheight=2
-set noshowmode
-" }}} echodoc "
 
 " emmet {{{ "
 let g:user_emmet_leader_key = '<c-s>'
@@ -742,27 +660,6 @@ nmap <leader>a= mzglip='z
 nmap <leader>aB mzglip{'z
 " }}} lion "
 
-" neomake {{{ "
-call neomake#configure#automake('nwr', 1000)
-
-let g:neomake_error_sign   = { 'text': '●', 'texthl': 'NeomakeErrorSign' }
-let g:neomake_info_sign    = { 'text': '●', 'texthl': 'NeomakeInfoSign' }
-let g:neomake_message_sign = { 'text': '●', 'texthl': 'NeomakeMessageSign' }
-let g:neomake_warning_sign = { 'text': '●', 'texthl': 'NeomakeWarningSign' }
-
-let g:neomake_html_enabled_makers = ['htmlhint']
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_python_enabled_markers = ['python3', 'pylint']
-let g:neomake_python_flake8_args = ['--ignore', 'E402,E501']
-let g:neomake_python_pylint_args = ['--disable', 'C0114,E501']
-let g:neomake_ruby_enabled_makers = ['rubocop']
-let g:neomake_yaml_yamllint_args = ['-f', 'parsable']
-
-if executable($PWD . '/node_modules/.bin/eslint')
-  let g:neomake_javascript_eslint_exe = $PWD . '/node_modules/.bin/eslint'
-endif
-" }}} neomake "
-
 " netrw {{{ "
 let g:netrw_altv = 1
 let g:netrw_banner = 0
@@ -787,10 +684,6 @@ augroup END
 nnoremap yoo :Obsession<cr>
 " }}} obsession "
 
-" packer.nvim {{{ "
-nnoremap <leader>ps :PackerSync<cr>
-" }}} packer.nvim "
-
 " projectionist {{{ "
 nnoremap <silent> <leader>aa :A<cr>
 nnoremap <silent> <leader>ah :AS<cr>
@@ -799,10 +692,6 @@ nnoremap <silent> <leader>ar :R<cr>
 
 nnoremap <silent> <leader>S :Start!<cr>
 " }}} projectionist "
-
-" peekaboo {{{ "
-let g:peekaboo_delay = 750
-" }}} peekaboo "
 
 " resize.vim {{{ "
 nmap <m-up>    <Plug>ResizeUp
@@ -827,10 +716,6 @@ hi Sneak      ctermbg=110 ctermfg=235 guibg=#8fafd7 guifg=#262626 cterm=NONE gui
 hi SneakScope ctermbg=110 ctermfg=235 guibg=#8fafd7 guifg=#262626 cterm=NONE gui=NONE
 " }}} sneak "
 
-" scriptease.vim {{{ "
-" In ftplugin/vim.vim
-" }}} scriptease.vim "
-
 " substitute.vim {{{ "
 nnoremap S <Nop>
 xnoremap S <Nop>
@@ -847,7 +732,7 @@ function! GlobalSubstituteOperator(type)
     if isSameLine
       let saved_unnamed_register = @@
       execute 'normal! `<v`>y'
-      call feedkeys(":S!/" . escape(@@, '/\') . "//g\<left>\<left>", 't')
+      call feedkeys(':S!/' . escape(@@, '/\') . "//g\<left>\<left>", 't')
       let @@ = saved_unnamed_register
     else
       call feedkeys(":S!///g\<left>\<left>\<left>", 't')
@@ -890,6 +775,19 @@ nnoremap <silent> <leader>i :Tux Up<cr>
 nnoremap <silent> <leader>I  :silent execute 'Tux ' . escape(getline('.'), '#')<cr>
 xnoremap <silent> <leader>I y:silent execute 'Tux ' . escape(getreg('0'), '#')<cr>
 " }}} tux.vim "
+
+" ultisnips {{{ "
+let g:UltiSnipsEditSplit = 'horizontal'
+let g:UltiSnipsExpandTrigger = '<c-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
+let g:UltiSnipsJumpForwardTrigger = '<c-j>'
+let g:UltiSnipsSnippetDirectories = [
+      \ stdpath('data') . '/site/pack/packer/start/vim-snippets/UltiSnips/',
+      \ 'UltiSnips'
+      \ ]
+
+nnoremap <leader>ue :UltiSnipsEdit!<cr>
+" }}} ultisnips "
 
 " undotree {{{ "
 nnoremap <silent> U :UndotreeToggle<cr>

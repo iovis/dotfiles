@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+
+usage() {
+  echo "
+Usage: plugins [command]
+Commands:
+  install    Install plugins
+  list       List plugins
+  load       Load plugins
+  update     Update plugins
+"
+}
+
+plugins_install() {
+  local plugin
+
+  for plugin in $plugins; do
+    if [ -d "$ZSH_PLUGINS/$plugin" ]; then
+      echo "$plugin already installed"
+    else
+      echo "Cloning $plugin"
+      git clone -q --depth 1 --recursive --shallow-submodules https://github.com/$plugin "$ZSH_PLUGINS/$plugin"
+    fi
+  done
+
+  compile_zsh
+}
+
+plugins_list() {
+  echo "$plugins" | tr ' ' '\n'
+}
+
+plugins_load() {
+  local plugin
+
+  for plugin in $plugins; do
+    local plugin_dir="$ZSH_PLUGINS/$plugin"
+
+    if [ ! -d "$ZSH_PLUGINS/$plugin" ]; then
+      echo "Cloning $plugin"
+      git clone -q --depth 1 --recursive --shallow-submodules https://github.com/$plugin $plugin_dir
+    fi
+
+    local plugin_name=${plugin:t}
+
+    require "$ZSH_PLUGINS/$plugin/$plugin_name.plugin.zsh"
+    require "$ZSH_PLUGINS/$plugin/$plugin_name.zsh-theme"
+  done
+}
+
+plugins_update() {
+  local plugin
+
+  for plugin in $plugins; do
+    if [ -d "$ZSH_PLUGINS/$plugin" ]; then
+      echo "Updating $plugin"
+      git -C "$ZSH_PLUGINS/$plugin" pull --ff --recurse-submodules --depth 1 --rebase --autostash
+    else
+      echo "Can't update $plugin."
+    fi
+  done
+
+  compile_zsh
+}
+
+case "$1" in
+  install) plugins_install;;
+  list)    plugins_list;;
+  load)    plugins_load;;
+  update)  plugins_update;;
+  *)       usage;;
+esac

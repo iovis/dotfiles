@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#
+# Generates .zwc files, which "source" looks for and
+# checks timestamps to know which one to source
+
+echo 'Compiling ZSH files'
+
+zcompare $ZDOTDIR/.zcompdump
+
+local file
+for file in $ZDOTDIR/**/*.zsh{,-theme}(N); do
+  zcompare "$file"
+done

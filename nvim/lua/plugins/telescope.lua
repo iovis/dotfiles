@@ -16,9 +16,9 @@
 -- nnoremap <silent> +m :Telescope marks<cr>
 -- nnoremap <silent> +r :Telescope registers<cr>
 
-local actions = require('telescope.actions')
+local actions = require("telescope.actions")
 
-require('telescope').setup {
+require("telescope").setup({
   defaults = {
     mappings = {
       i = {
@@ -27,10 +27,10 @@ require('telescope').setup {
         ["<c-k>"] = actions.move_selection_previous,
         ["<esc>"] = actions.close,
         ["<c-h>"] = "which_key",
-      }
-    }
-  }
-}
+      },
+    },
+  },
+})
 
-require('telescope').load_extension('fzf')
-require('telescope').load_extension('gh')
+require("telescope").load_extension("fzf")
+require("telescope").load_extension("gh")

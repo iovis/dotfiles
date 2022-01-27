@@ -1,13 +1,11 @@
-require('gitsigns').setup {
-  keymaps = {
-    noremap = true,
+local u = require("utils")
 
-    ['n ]c'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'"},
-    ['n [c'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"},
-
-    ['n +q'] = '<cmd>lua require("gitsigns").toggle_current_line_blame()<CR>',
-  },
+require("gitsigns").setup({
   current_line_blame_opts = {
     delay = 100,
-  }
-}
+  },
+})
+
+u.nmap("]c", "&diff ? ']c' : '<cmd>Gitsigns next_hunk<cr>'", { expr = true })
+u.nmap("[c", "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<cr>'", { expr = true })
+u.nmap("+q", "<cmd>Gitsigns toggle_current_line_blame<cr>")
