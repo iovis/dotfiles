@@ -1,7 +1,7 @@
 function libupdate() {
   upgrade_libraries
-
   plugins update
+  zshcache
 
   rustup update
   cargo install $(cat ~/.dotfiles/default-crates)
