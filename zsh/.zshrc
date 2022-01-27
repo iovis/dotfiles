@@ -55,6 +55,8 @@ done
 autoload -U plugins
 plugins load
 
+# TODO: why ^A can't be mapped before the plugins load?
+bindkey "^A" vi-beginning-of-line
 bindkey "^N" autosuggest-accept
 
 ## Profiling helper (keep at the end)
