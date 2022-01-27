@@ -3,8 +3,6 @@ setlocal makeprg=ruby\ %
 " tags {{{ "
 nmap <buffer> T g]
 nmap <buffer> t <c-]>
-
-nnoremap <silent> <buffer> <leader>E :Dispatch! ctags<cr>
 " }}} tags "
 
 " quick testing {{{ "

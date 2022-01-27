@@ -350,6 +350,13 @@ nnoremap <silent> <leader>t :enew<cr>
 nnoremap <c-e> <c-i>
 " }}} fix c-i after mapping tab "
 
+" tags {{{ "
+nmap T g]
+nmap t <c-]>
+
+nnoremap <silent> <leader>E :!ctags<cr>
+" }}} tags "
+
 " splits {{{ "
 nnoremap <leader>v <c-w>v
 nnoremap <leader>h <c-w>s
