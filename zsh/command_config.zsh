@@ -102,6 +102,3 @@ if type rustc > /dev/null; then
     rustc $@ && ./$name && rm $name
   }
 fi
-
-# z
-require /opt/homebrew/etc/profile.d/z.sh
