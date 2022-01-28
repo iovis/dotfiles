@@ -1,10 +1,9 @@
 require("nvim-treesitter.configs").setup({
+  endwise = {
+    enable = true,
+  },
   highlight = {
     enable = true,
-    additional_vim_regex_highlighting = {
-      "python",
-      "ruby", -- [workaround] Allow for matchit and vim-endwise to work
-    },
   },
   incremental_selection = {
     enable = true,
