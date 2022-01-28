@@ -59,6 +59,9 @@ plugins load
 bindkey "^A" vi-beginning-of-line
 bindkey "^N" autosuggest-accept
 
+## Avoid duplicates in PATH
+typeset -U PATH
+
 ## Profiling helper (keep at the end)
 if [[ "$ZPROF" = true ]]; then
   zprof
