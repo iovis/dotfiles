@@ -11,6 +11,7 @@ hyper - c : open -a Fantastical
 hyper - e : open -a Spark
 hyper - f : open -a Google\ Chrome
 hyper - g : open -a Tower
+hyper - m : open -a Music
 hyper - n : open -a Numi
 hyper - o : open -a Things3
 hyper - s : open -a Slack
