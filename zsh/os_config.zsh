@@ -12,6 +12,7 @@ if [[ $OSTYPE == darwin* ]]; then
   alias nt="lsof -Pni"
   alias rebuildlaunchservices="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user"
   alias repair_permissions="diskutil resetUserPermissions / \$(id -u)"
+  alias services="brew services"
   alias simulator="open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app"
   alias updatedb="sudo /usr/libexec/locate.updatedb"
 
