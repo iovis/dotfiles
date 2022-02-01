@@ -46,7 +46,6 @@ local lsp_keymaps = function(bufnr)
   buf_nmap("t", "<cmd>lua vim.lsp.buf.definition()<CR>")
   buf_nmap("gd", "<cmd>lua vim.lsp.buf.hover()<CR>")
   buf_nmap("gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
-  buf_nmap("+d", "<cmd>lua vim.diagnostic.open_float()<CR>")
   buf_nmap("+t", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
   buf_nmap("<space>lp", "<cmd>lua vim.lsp.buf.code_action()<CR>")
   buf_nmap("T", "<cmd>lua vim.lsp.buf.references()<CR>")
@@ -62,6 +61,7 @@ local function lsp_document_highlights(client)
         augroup lsp_document_highlight
           autocmd! * <buffer>
           autocmd CursorHold,CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
+          autocmd CursorHold,CursorHoldI <buffer> lua vim.diagnostic.open_float(nil, {focus=false})
           autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
         augroup END
       ]],
