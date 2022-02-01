@@ -3,13 +3,18 @@ if not status_ok then
   return
 end
 
-local completion = null_ls.builtins.completion
+-- local completion = null_ls.builtins.completion
 local diagnostics = null_ls.builtins.diagnostics
 local formatting = null_ls.builtins.formatting
 
 null_ls.setup({
   debug = true,
   sources = {
+    -- Doesn't seem to work
+    -- completion.tags.with({
+    --   filetypes = { "ruby" },
+    -- }),
+
     -- diagnostics.eslint,
     diagnostics.jsonlint,
     diagnostics.pylint.with({ extra_args = { "--disable", "C0301,C0114,C0115,C0116,E501" } }),
