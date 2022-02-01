@@ -1,5 +1,7 @@
 # Examples in: /opt/homebrew/opt/yabai/share/yabai/examples/skhdrc
 # skhd --observe : get code for key
+#
+# Scripts in ~/.zshenv, otherwise skhd can't see them
 
 ##########################
 #  Application Launcher  #
@@ -51,36 +53,36 @@ ctrl + alt + cmd - y : yabai -m window --toggle float
 
 # NOTE: <rows>:<cols>:<start-x>:<start-y>:<width>:<height>
 # Sidebar
-ctrl + alt - o : set_float; yabai -m window --grid 2:4:3:0:1:1
-ctrl + alt + cmd - o : set_float; yabai -m window --grid 1:4:3:0:1:1
+ctrl + alt - o : yabai_grid 2:4:3:0:1:1
+ctrl + alt + cmd - o : yabai_grid 1:4:3:0:1:1
 
 # Halves
-ctrl + alt - left  : set_float; yabai -m window --grid 1:2:0:0:1:1
-ctrl + alt - right : set_float; yabai -m window --grid 1:2:1:0:1:1
+ctrl + alt - left  : yabai_grid 1:2:0:0:1:1
+ctrl + alt - right : yabai_grid 1:2:1:0:1:1
 
 # Thirds
-ctrl + alt - y : set_float; yabai -m window --grid 1:4:0:0:3:1
-ctrl + alt - p : set_float; yabai -m window --grid 1:4:1:0:3:1
+ctrl + alt - y : yabai_grid 1:4:0:0:3:1
+ctrl + alt - p : yabai_grid 1:4:1:0:3:1
 
 # Fourths
-ctrl + alt - u : set_float; yabai -m window --grid 2:2:0:0:1:1
-ctrl + alt - i : set_float; yabai -m window --grid 2:2:1:0:1:1
-ctrl + alt - j : set_float; yabai -m window --grid 2:2:0:1:1:1
-ctrl + alt - k : set_float; yabai -m window --grid 2:2:1:1:1:1
+ctrl + alt - u : yabai_grid 2:2:0:0:1:1
+ctrl + alt - i : yabai_grid 2:2:1:0:1:1
+ctrl + alt - j : yabai_grid 2:2:0:1:1:1
+ctrl + alt - k : yabai_grid 2:2:1:1:1:1
 
 # Centered
-alt + cmd - 0x2C : set_float; yabai -m window --grid 10:10:1:1:8:8
-ctrl + alt + cmd - 0x2C : set_float; yabai -m window --grid 10:10:1:0:8:10
-ctrl + alt - up  : set_float; yabai -m window --grid 1:1:0:0:1:1
+alt + cmd - 0x2C : yabai_grid 10:10:1:1:8:8
+ctrl + alt + cmd - 0x2C : yabai_grid 10:10:1:0:8:10
+ctrl + alt - up  : yabai_grid 1:1:0:0:1:1
 
 ##############
 #  Displays  #
 ##############
 # fast focus display
-ctrl + alt + cmd - space : yabai -m display --focus prev || yabai -m display --focus last
+# ctrl + alt + cmd - space : yabai -m display --focus prev || yabai -m display --focus last
 
 # send window to monitor and follow focus
-ctrl + alt + cmd - d : yabai -m window --display prev || yabai -m window --display last; yabai -m display --focus prev || yabai -m display --focus last
+ctrl + alt + cmd - d : yabai_send_to_other_display
 
 #############
 #  Layouts  #
@@ -91,16 +93,3 @@ ctrl + alt + cmd - 0 : yabai -m space --balance
 
 ctrl + alt + cmd - r : yabai -m space --rotate 90
 ctrl + alt + cmd - e : yabai -m window --toggle split
-
-############
-#  Unused  #
-############
-## flip the tree vertically
-# hyper - 4 : yabai -m space --mirror y-axis
-# mirror tree y-axis
-# alt - y : yabai -m space --mirror y-axis
-# mirror tree x-axis
-# alt - x : yabai -m space --mirror x-axis
-
-## float / unfloat window and center on screen
-#alt - t : yabai -m window --toggle float; yabai -m window --grid 4:4:1:1:2:2
