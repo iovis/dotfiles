@@ -73,7 +73,7 @@ alias pipr="pip install -r"
 alias pipu="pip install -U"
 alias pycache="find . -name '*.pyc' -exec rm {} \;"
 alias pythons="asdf list python"
-alias venv="python3 -m venv .venv"
+alias venv="python3 -m venv .venv && activate && pipinit"
 
 ## ruby
 alias RED="RAILS_ENV=development"
