@@ -11,6 +11,7 @@ local get_map_options = function(custom_options)
 end
 
 M.map = function(mode, target, source, opts)
+  -- TODO: change to vim.keymap.set when 0.7 drops
   vim.api.nvim_set_keymap(mode, target, source, get_map_options(opts))
 end
 
@@ -22,9 +23,21 @@ for _, mode in ipairs({ "n", "o", "i", "x", "t" }) do
 end
 
 M.buf_map = function(bufnr, mode, target, source, opts)
+  -- TODO change to the following when 0.7 drops
+  -- opts = opts or {}
+  -- opts.buffer = bufnr
+  -- M.map(mode, target, source, get_map_options(opts))
+
   vim.api.nvim_buf_set_keymap(bufnr or 0, mode, target, source, get_map_options(opts))
 end
 
+-- TODO: change to the following when neovim 0.7 drops
+--       https://github.com/jose-elias-alvarez/dotfiles/blob/main/config/nvim/lua/config/utils.lua
+-- M.command = function(name, fn, opts)
+--   vim.api.nvim_add_user_command(name, fn, opts or {})
+-- end
+--
+-- And use like u.command("LspFormatting", vim.lsp.buf.formatting)
 M.command = function(name, fn)
   vim.cmd(string.format("command! %s %s", name, fn))
 end
