@@ -63,7 +63,7 @@ set softtabstop=2
 set splitbelow
 set splitright
 set termguicolors
-set updatetime=300
+set updatetime=200
 set undofile
 set undodir=~/.config/nvim/undo
 set virtualedit=block
