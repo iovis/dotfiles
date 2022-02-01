@@ -9,6 +9,13 @@ local M = {}
 -- Bring up docs for server configurations
 u.nmap("<leader>lh", ":help lspconfig-server-configurations<cr>")
 
+-- Highlights for vim.lsp.buf.document_highlight
+vim.cmd([[
+  hi LspReferenceText  ctermbg=19 guibg=#383838
+  hi LspReferenceRead  ctermbg=19 guibg=#383838
+  hi LspReferenceWrite ctermbg=19 guibg=#383838
+]])
+
 local lsp_commands = function()
   u.lua_command("LspDiagLine", "vim.diagnostic.open_float()")
   u.lua_command("LspDiagNext", "vim.diagnostic.goto_next()")
@@ -48,15 +55,13 @@ local lsp_keymaps = function(bufnr)
   buf_nmap("<space>b", ":LspFormat<cr>")
 end
 
-local function lsp_highlight_document(client)
-  -- Set autocommands conditional on server_capabilities
+local function lsp_document_highlights(client)
   if client.resolved_capabilities.document_highlight then
     vim.api.nvim_exec(
       [[
         augroup lsp_document_highlight
           autocmd! * <buffer>
-          autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
-          autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
+          autocmd CursorHold,CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
           autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
         augroup END
       ]],
@@ -68,7 +73,7 @@ end
 M.on_attach = function(client, bufnr)
   lsp_commands()
   lsp_keymaps(bufnr)
-  -- lsp_highlight_document(client)
+  lsp_document_highlights(client)
 end
 
 -- Add additional capabilities supported by nvim-cmp
