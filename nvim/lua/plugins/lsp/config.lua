@@ -6,17 +6,27 @@ end
 local u = require("utils")
 local M = {}
 
+-- Rounded borders
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+
+vim.cmd([[
+  hi NormalFloat ctermbg=0 guibg=#181818
+  hi FloatBorder ctermfg=19 ctermbg=0 guifg=#383838 guibg=#181818
+]])
+
 -- Bring up docs for server configurations
 u.nmap("<leader>lh", ":help lspconfig-server-configurations<cr>")
 
--- Highlights for vim.lsp.buf.document_highlight
-vim.cmd([[
-  hi LspReferenceText  ctermbg=19 guibg=#383838
-  hi LspReferenceRead  ctermbg=19 guibg=#383838
-  hi LspReferenceWrite ctermbg=19 guibg=#383838
-]])
+M.on_attach = function(client, bufnr)
+  local function buf_nmap(...)
+    u.buf_map(bufnr, "n", ...)
+  end
 
-local lsp_commands = function()
+  local function buf_set_option(...)
+    vim.api.nvim_buf_set_option(bufnr, ...)
+  end
+
+  ---- Commands
   u.lua_command("LspDiagLine", "vim.diagnostic.open_float()")
   u.lua_command("LspDiagNext", "vim.diagnostic.goto_next()")
   u.lua_command("LspDiagPrev", "vim.diagnostic.goto_prev()")
@@ -27,53 +37,50 @@ local lsp_commands = function()
   u.lua_command("LspRename", "vim.lsp.buf.rename()")
   u.lua_command("LspSignatureHelp", "vim.lsp.buf.signature_help()")
   u.lua_command("LspTypeDef", "vim.lsp.buf.type_definition()")
-end
-
-local lsp_keymaps = function(bufnr)
-  local function buf_nmap(...)
-    u.buf_map(bufnr, "n", ...)
-  end
-
-  local function buf_set_option(...)
-    vim.api.nvim_buf_set_option(bufnr, ...)
-  end
 
   -- Enable completion triggered by <c-x><c-o>
   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
+  ---- Bindings
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_nmap("gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
   buf_nmap("t", "<cmd>lua vim.lsp.buf.definition()<CR>")
   buf_nmap("gd", "<cmd>lua vim.lsp.buf.hover()<CR>")
-  buf_nmap("gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
   buf_nmap("+t", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
-  buf_nmap("<space>lp", "<cmd>lua vim.lsp.buf.code_action()<CR>")
   buf_nmap("T", "<cmd>lua vim.lsp.buf.references()<CR>")
+
+  -- List code actions
+  buf_nmap(
+    "<space>la",
+    "<cmd>lua print(vim.inspect(vim.lsp.buf_get_clients()[1].resolved_capabilities.code_action))<CR>"
+  )
+  buf_nmap("<space>lp", "<cmd>lua vim.lsp.buf.code_action()<CR>")
+
+  ---- Diagnostics
   buf_nmap("<left>", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
   buf_nmap("<right>", "<cmd>lua vim.diagnostic.goto_next()<CR>")
-  buf_nmap("<space>b", ":LspFormat<cr>")
-end
 
-local function lsp_document_highlights(client)
-  if client.resolved_capabilities.document_highlight then
-    vim.api.nvim_exec(
-      [[
-        augroup lsp_document_highlight
-          autocmd! * <buffer>
-          autocmd CursorHold,CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
-          autocmd CursorHold,CursorHoldI <buffer> lua vim.diagnostic.open_float(nil, {focus=false})
-          autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-        augroup END
-      ]],
-      false
-    )
-  end
-end
+  vim.cmd([[
+    autocmd CursorHold <buffer> lua vim.diagnostic.open_float()
+  ]])
 
-M.on_attach = function(client, bufnr)
-  lsp_commands()
-  lsp_keymaps(bufnr)
-  lsp_document_highlights(client)
+  ---- Formatting
+  buf_nmap("<space>b", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>")
+  u.buf_map(bufnr, "x", "<space>b", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>")
+
+  ---- Document Highlights
+  -- if client.resolved_capabilities.document_highlight then
+  --   vim.cmd([[
+  --     hi! link LspReferenceRead Visual
+  --     hi! link LspReferenceText Visual
+  --     hi! link LspReferenceWrite Visual
+  --
+  --     augroup lsp_document_highlight
+  --       autocmd! * <buffer>
+  --       autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
+  --       autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+  --     augroup END
+  --   ]])
+  -- end
 end
 
 -- Add additional capabilities supported by nvim-cmp

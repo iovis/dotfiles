@@ -31,14 +31,21 @@ for _, sign in ipairs(signs) do
 end
 
 local config = {
+  float = {
+    focusable = false,
+    close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+    border = "rounded",
+    source = "always", -- show source in diagnostic popup window
+    prefix = " ",
+  },
   signs = {
     active = signs,
   },
   underline = {
-    severity = vim.diagnostic.severity.ERROR
+    severity = vim.diagnostic.severity.ERROR,
   },
   virtual_text = {
-    severity = vim.diagnostic.severity.ERROR
+    severity = vim.diagnostic.severity.ERROR,
   },
 }
 
