@@ -4,55 +4,83 @@ usage() {
   echo "
 Usage: plugins [command]
 Commands:
-  install    Install plugins
   list       List plugins
   load       Load plugins
   update     Update plugins
 "
 }
 
-plugins_install() {
-  local plugin
-
-  for plugin in $plugins; do
-    if [ -d "$ZSH_PLUGINS/$plugin" ]; then
-      echo "$plugin already installed"
-    else
-      echo "Cloning $plugin"
-      git clone -q --depth 1 --recursive --shallow-submodules https://github.com/$plugin "$ZSH_PLUGINS/$plugin"
-    fi
-  done
-}
-
 plugins_list() {
   echo "$plugins" | tr ' ' '\n'
 }
 
+# Example:
+#
+# plugin=(
+#   ohmyzsh/ohmyzsh:plugins/bundler   # repo:path_to_plugin
+#   romkatv/powerlevel10k
+#   zdharma-continuum/fast-syntax-highlighting
+#   zsh-users/zsh-autosuggestions
+# )
 plugins_load() {
   local plugin
 
   for plugin in $plugins; do
-    local plugin_dir="$ZSH_PLUGINS/$plugin"
-
-    if [ ! -d "$ZSH_PLUGINS/$plugin" ]; then
-      echo "Cloning $plugin"
-      git clone -q --depth 1 --recursive --shallow-submodules https://github.com/$plugin $plugin_dir
-    fi
+    # read -r plugin_repo plugin_repo_path <<<${${(@s/:/)plugin}}  # Outputs to terminal
+    local plugin_info=("${(@s/:/)plugin}")  # Split by ':'
+    local plugin_repo=${plugin_info[1]}
+    local plugin_repo_path=${plugin_info[2]}
 
     local plugin_name=${plugin:t}
 
-    require "$ZSH_PLUGINS/$plugin/$plugin_name.plugin.zsh"
-    require "$ZSH_PLUGINS/$plugin/$plugin_name.zsh-theme"
+    local plugin_dir="$ZSH_PLUGINS/$plugin_repo"
+    local plugin_full_path=$plugin_dir
+
+    if [[ $plugin_repo_path ]]; then
+      local plugin_dir="$plugin_dir/${plugin_repo_path:t}"
+      local plugin_full_path="$plugin_dir/$plugin_repo_path"
+    fi
+
+    if [ ! -d "$plugin_dir" ]; then
+      echo "Cloning $plugin"
+
+      if [[ $plugin_repo_path ]]; then
+        # Sparse checkout (only load the requested plugin)
+        git clone -q --depth 1 --recursive --shallow-submodules --no-checkout "https://github.com/$plugin_repo" "$plugin_dir"
+
+        (
+          cd "$plugin_dir" || exit 4
+          git sparse-checkout set "$plugin_repo_path"
+          git checkout -q
+        )
+      else
+        # Normal checkout
+        git clone -q --depth 1 --recursive --shallow-submodules "https://github.com/$plugin_repo" "$plugin_dir"
+      fi
+    fi
+
+    # Source plugin
+    require "$plugin_full_path/$plugin_name.plugin.zsh"
+    require "$plugin_full_path/$plugin_name.zsh-theme"
+
+    # Add possible completions to fpath
+    fpath=("$plugin_full_path" "${fpath[@]}")
   done
 }
 
+# TODO: add support for subdirectories
 plugins_update() {
   local plugin
 
   for plugin in $plugins; do
-    if [ -d "$ZSH_PLUGINS/$plugin" ]; then
+    local plugin_info=("${(@s/:/)plugin}")  # Split by ':'
+    local plugin_repo=${plugin_info[1]}
+    local plugin_repo_path=${plugin_info[2]}
+    local plugin_dir="$ZSH_PLUGINS/$plugin_repo/${plugin_repo_path:t}"
+
+    if [ -d "$plugin_dir" ]; then
       echo "Updating $plugin"
-      git -C "$ZSH_PLUGINS/$plugin" pull --ff --recurse-submodules --depth 1 --rebase --autostash
+      git -C "$plugin_dir" pull --ff --recurse-submodules --depth 1 --rebase --autostash
     else
       echo "Can't update $plugin."
     fi
@@ -60,7 +88,6 @@ plugins_update() {
 }
 
 case "$1" in
-  install) plugins_install;;
   list)    plugins_list;;
   load)    plugins_load;;
   update)  plugins_update;;
