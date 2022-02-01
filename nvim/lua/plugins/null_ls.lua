@@ -17,7 +17,12 @@ null_ls.setup({
 
     -- diagnostics.eslint,
     diagnostics.jsonlint,
-    diagnostics.pylint.with({ extra_args = { "--disable", "C0301,C0114,C0115,C0116,E501" } }),
+    diagnostics.pylint.with({
+      extra_args = {
+        "--disable",
+        "C0301,C0114,C0115,C0116,E501,F0401",
+      },
+    }),
     diagnostics.rubocop,
     diagnostics.shellcheck,
     diagnostics.vint,
@@ -25,7 +30,7 @@ null_ls.setup({
 
     -- formatting.eslint,
     formatting.rubocop,
-    formatting.sqlformat.with({ extra_args = { "-rs" }}),
+    formatting.sqlformat.with({ extra_args = { "-rs" } }),
     formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "2" } }),
   },
 })
