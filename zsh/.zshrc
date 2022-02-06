@@ -16,10 +16,9 @@ export PROJECT_HOME="$HOME/Sites"
 export REVIEW_BASE="master"
 export TERM="screen-256color"
 export ZSH_PLUGINS="$ZDOTDIR/plugins"
-export ZSH_THEME="powerlevel10k"
+export ZSH_THEME="starship"
 
 plugins=(
-  romkatv/powerlevel10k
   zsh-users/zsh-autosuggestions
   zsh-users/zsh-syntax-highlighting
 )
