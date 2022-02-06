@@ -5,6 +5,7 @@ require("nvim-tree").setup({
   filters = {
     custom = {
       "*.pyc",
+      "*.zwc",
       ".DS_Store",
       ".bundle",
       ".git",
