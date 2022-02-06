@@ -5,6 +5,7 @@ export XDG_CACHE_HOME=$XDG_CONFIG_HOME/.cache
 
 ## zsh
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+skip_global_compinit=1  # Some OS's call it in /etc/zsh/zshrc
 
 ## yabai
 # Needs to be here otherwise it won't pick up this function
