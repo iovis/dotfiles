@@ -19,14 +19,6 @@ function libupdate() {
   pipo
 }
 
-function upgrade_libraries() {
-  brew update
-  brew upgrade
-
-  # brewdump
-  cd; brew bundle dump -f; cd -
-}
-
 inode_count() {
   sudo find ${1:-.} -maxdepth 1 -type d | grep -v "^${1:-\.}$" | xargs -n1 -I{} sudo find {} -xdev -type f | sed -n "s:^${1:-\.}::p" | cut -d"/" -f2 | uniq -c | sort -rn
 }

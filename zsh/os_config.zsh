@@ -33,6 +33,19 @@ if [[ $OSTYPE == darwin* ]]; then
     sudo "$fw" --unblockapp "$mosh_abs"
     sudo "$fw" --setglobalstate on
   }
+
+  function upgrade_libraries() {
+    brew update
+    brew upgrade
+
+    # brewdump
+    cd; brew bundle dump -f; cd -
+  }
 else
   alias nt="sudo ss -antp"
+
+  function upgrade_libraries() {
+    sudo apt update
+    sudo apt -y upgrade
+  }
 fi
