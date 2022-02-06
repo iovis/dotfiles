@@ -6,6 +6,8 @@
 echo 'Compiling ZSH files'
 
 zcompare $ZDOTDIR/.zcompdump
+zcompare $ZDOTDIR/.zshrc
+zcompare $ZDOTDIR/.zprofile
 
 local file
 for file in $ZDOTDIR/**/*.zsh{,-theme}(N); do
