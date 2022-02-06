@@ -30,7 +30,7 @@ yabai_grid() {
   local old_frame=$(yabai -m query --windows --window | jq '.frame')
 
   yabai -m window --grid $1
-
+  sleep 0.1  # seems like there's a race condition
   local current_frame=$(yabai -m query --windows --window | jq '.frame')
 
   # if not changed: Cycle display
