@@ -20,8 +20,8 @@ export ZSH_THEME="powerlevel10k"
 
 plugins=(
   romkatv/powerlevel10k
-  zdharma-continuum/fast-syntax-highlighting
   zsh-users/zsh-autosuggestions
+  zsh-users/zsh-syntax-highlighting
 )
 
 ## Autoload
