@@ -159,7 +159,7 @@ nnoremap <silent> <leader>T :tabnew<cr>
 nnoremap <silent> <leader>X :qa!<cr>
 nnoremap <silent> <leader>\| <c-w>\|
 nnoremap <silent> <leader>_ <c-w>_
-nnoremap <silent> <leader>b gg=G<c-o>
+nnoremap <silent> <leader>b gg=G
 nnoremap <silent> <leader>c :close<cr>
 nnoremap <silent> <leader>q :%bdelete<cr>
 nnoremap <silent> <leader>w :w!<cr>
