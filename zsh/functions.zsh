@@ -39,6 +39,12 @@ decrypt() {
   openssl enc -d -aes-256-cbc -salt -in "$1" -out "$2"
 }
 
+# We wrap in a local function instead of exporting the variable directly in
+# order to avoid interfering with manually-run git commands by the user.
+function __git_prompt_git() {
+  GIT_OPTIONAL_LOCKS=0 command git "$@"
+}
+
 git_current_branch() {
   local ref
   ref=$(__git_prompt_git symbolic-ref --quiet HEAD 2> /dev/null)
