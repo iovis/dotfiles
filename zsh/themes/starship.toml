@@ -6,6 +6,7 @@ $git_branch\
 $git_state\
 $git_status\
 $line_break\
+$jobs\
 $python\
 $character"""
 
