@@ -1,4 +1,4 @@
-# Ztyle pattern
+# Zstyle pattern
 # :completion:<function>:<completer>:<command>:<argument>:<tag>
 
 # Define completers

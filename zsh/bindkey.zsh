@@ -61,7 +61,7 @@ for m in visual viopp; do
 done
 
 ## Surround
-# This doesn't allow yss to operate on a line but VS will work
+# This doesn't allow yss to operate on a line but `VS` will work
 autoload -Uz surround
 zle -N delete-surround surround
 zle -N add-surround surround
