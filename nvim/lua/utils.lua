@@ -93,4 +93,14 @@ M.get_system_output = function(cmd)
   return vim.split(vim.fn.system(cmd), "\n")
 end
 
+M.has_value = function(value, table)
+  for _, val in ipairs(table) do
+    if value == val then
+      return true
+    end
+  end
+
+  return false
+end
+
 return M
