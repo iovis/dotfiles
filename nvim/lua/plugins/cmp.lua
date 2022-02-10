@@ -4,6 +4,17 @@ local cmp = require("cmp")
 local lspkind = require("lspkind")
 lspkind.init()
 
+-- Autoloading of plugins.cmp.*
+local scan = require("plenary.scandir")
+local cmp_sources_path = vim.fn.stdpath("config") .. "/lua/plugins/cmp"
+local paths = scan.scan_dir(cmp_sources_path, { depth = 0 })
+
+for _, file in ipairs(paths) do
+  local source = file:match("([^/]+).lua$")
+
+  require("plugins.cmp." .. source)
+end
+
 local check_backspace = function()
   local col = vim.fn.col(".") - 1
   return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
@@ -16,7 +27,7 @@ cmp.setup({
     ["<C-n>"] = cmp.mapping.select_next_item(),
     ["<C-p>"] = cmp.mapping.select_prev_item(),
     ["<C-y>"] = cmp.mapping.confirm(),
-    ["<CR>"]  = cmp.config.disable,
+    ["<CR>"] = cmp.config.disable,
     ["<Tab>"] = function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -47,6 +58,7 @@ cmp.setup({
     }),
   },
   sources = {
+    { name = "gh_source" },
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "ultisnips" },
