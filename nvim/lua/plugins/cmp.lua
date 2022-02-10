@@ -58,4 +58,8 @@ cmp.setup({
       vim.fn["UltiSnips#Anon"](args.body)
     end,
   },
+  experimental = {
+    native_menu = true,
+    ghost_text = true,
+  },
 })
