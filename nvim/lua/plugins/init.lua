@@ -184,10 +184,11 @@ require("packer").startup(function()
 
   -- snippets
   use({
-    "sirver/ultisnips",
+    "L3MON4D3/LuaSnip",
+    config = [[require('plugins.luasnip')]],
     requires = {
-      "honza/vim-snippets",
-      "quangnguyen30192/cmp-nvim-ultisnips",
+      "rafamadriz/friendly-snippets",
+      "saadparwaiz1/cmp_luasnip",
     },
   })
 

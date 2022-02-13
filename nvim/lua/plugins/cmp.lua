@@ -59,16 +59,16 @@ cmp.setup({
     }),
   },
   sources = {
+    { name = "luasnip" },
     { name = "gh_source" },
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
-    { name = "ultisnips" },
     { name = "buffer" },
     { name = "path" },
   },
   snippet = {
     expand = function(args)
-      vim.fn["UltiSnips#Anon"](args.body)
+      require("luasnip").lsp_expand(args.body)
     end,
   },
   experimental = {
