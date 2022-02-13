@@ -608,15 +608,6 @@ nnoremap s!       :Dispatch!<cr>
 nnoremap s?       :FocusDispatch<cr>
 " }}} dispatch "
 
-" emmet {{{ "
-let g:user_emmet_leader_key = '<c-s>'
-let g:user_emmet_settings = {
-      \  'javascript.jsx' : {
-      \    'extends' : 'jsx',
-      \  },
-      \}
-" }}} emmet "
-
 " fugitive {{{ "
 nmap <silent> <leader>- :Gedit:<cr>)
 
