@@ -23,7 +23,7 @@ end
 cmp.setup({
   mapping = {
     ["<C-b>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.close(),
+    -- ["<C-e>"] = cmp.mapping.close(),
     ["<C-n>"] = cmp.mapping.select_next_item(),
     ["<C-p>"] = cmp.mapping.select_prev_item(),
     ["<C-y>"] = cmp.mapping.confirm(),
