@@ -1,17 +1,12 @@
 snippet f "function" b
-function! ${1:function_name}($2)
-  ${0:" code}
-endfunction
-endsnippet
-
+	function! ${1:function_name}($2)
+	  ${0:" code}
+	endfunction
 snippet fs "private function" b
-function! s:${1:function_name}($2) abort
-  ${0:" code}
-endfunction
-endsnippet
-
+	function! s:${1:function_name}($2) abort
+	  ${0:" code}
+	endfunction
 snippet luab "Lua block" b
-lua <<EOF
-$0
-EOF
-endsnippet
+	lua <<EOF
+	$0
+	EOF

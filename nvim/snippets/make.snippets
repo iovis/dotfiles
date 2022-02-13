@@ -1,9 +1,8 @@
 snippet base
-CFLAGS=-Wall -g
+	CFLAGS=-Wall -g
 
-all: ${1:`basename $PWD`}
-	make $1
+	all: ${1:`basename $PWD`}
+		make $1
 
-clean:
-	rm -rf $1 $1.dSYM
-endsnippet
+	clean:
+		rm -rf $1 $1.dSYM
