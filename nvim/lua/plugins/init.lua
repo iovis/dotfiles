@@ -21,7 +21,6 @@ require("packer").startup(function()
   use("chrisbra/csv.vim")
   use("christoomey/vim-sort-motion")
   use("christoomey/vim-tmux-navigator")
-  use("dstein64/vim-startuptime")
   use("iovis/browsers_castle")
   use("iovis/hubcap.vim")
   use("iovis/jirafa.vim")
@@ -72,6 +71,10 @@ require("packer").startup(function()
     "akinsho/nvim-bufferline.lua",
     config = [[require('plugins.bufferline')]],
     requires = "kyazdani42/nvim-web-devicons",
+  })
+  use({
+    "dstein64/vim-startuptime",
+    cmd = "StartupTime",
   })
   use({
     "ibhagwan/fzf-lua",
