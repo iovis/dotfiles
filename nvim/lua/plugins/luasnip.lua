@@ -1,5 +1,6 @@
 local luasnip = require("luasnip")
 local types = require("luasnip.util.types")
+local u = require("utils")
 
 ---- Config
 luasnip.config.set_config({
@@ -15,20 +16,63 @@ luasnip.config.set_config({
   },
 })
 
----- Import VS Code snippets
-require("luasnip.loaders.from_vscode").lazy_load()
+---- Snippets editing
+_G.snippets_clear = function()
+  -- Clear snippets
+  for m, _ in pairs(luasnip.snippets) do
+    package.loaded["snippets." .. m] = nil
+  end
+
+  luasnip.snippets = setmetatable({}, {
+    __index = function(t, k)
+      local ok, m = pcall(require, "snippets." .. k)
+      if not ok and not string.match(m, "^module.*not found:") then
+        error(m)
+      end
+
+      t[k] = ok and m or {}
+
+      -- optionally load snippets from vscode- or snipmate-library:
+      require("luasnip.loaders.from_vscode").load()
+      require("luasnip.loaders.from_snipmate").load()
+
+      return t[k]
+    end,
+  })
+end
+
+_G.snippets_clear()
+
+-- Reload snippets after editing
+vim.cmd([[
+  augroup snippets_clear
+    au!
+    au BufWritePost ~/.config/nvim/lua/snippets/*.lua lua _G.snippets_clear()
+  augroup END
+]])
+
+_G.luasnip_edit_ft = function()
+  -- returns table like {"lua", "all"}
+  local fts = require("luasnip.util.util").get_snippet_filetypes()
+
+  vim.ui.select(fts, {
+    prompt = "Select which filetype to edit:",
+  }, function(item, idx)
+    -- selection aborted -> idx == nil
+    if idx then
+      vim.cmd("edit ~/.config/nvim/lua/snippets/" .. item .. ".lua")
+    end
+  end)
+end
+
+vim.cmd([[
+  command! LuaSnipEdit :lua _G.luasnip_edit_ft()
+]])
+
+---- Language config (TODO: should this be moved to filetype snippets?)
 luasnip.filetype_extend("ruby", { "rails" })
-
----- Import Snipmate snippets
--- TODO: migrate to lua
---       - Check how to run shell commands (seems like you can run from a lua function?)
--- require("luasnip.loaders.from_snipmate").load()
-
----- Commands
--- TODO: Make command to edit nvim/snippets/<filetype>.lua
---       - require("luasnips.extras.filetype_functions").from_pos_or_filetype() ?
---       - Make lua snippet with skeleton?
---       - https://github.com/tjdevries/config_manager/blob/bbf0c735cba0b600708969ffcab9e047efd88676/xdg_config/nvim/after/plugin/luasnip.lua
+luasnip.filetype_extend("gitcommit", { "markdown" })
+luasnip.filetype_extend("pullrequest", { "markdown", "gitcommit" })
 
 ---- Keymaps
 _G.luasnip_next = function()
@@ -49,17 +93,26 @@ _G.luasnip_next_choice = function()
   end
 end
 
-local u = require("utils")
+-- Expansion
 u.imap("<c-j>", "<cmd>lua luasnip_next()<cr>")
 u.smap("<c-j>", "<cmd>lua luasnip_next()<cr>")
 
 u.imap("<c-k>", "<cmd>lua luasnip_prev()<cr>")
 u.smap("<c-k>", "<cmd>lua luasnip_prev()<cr>")
 
-u.imap("<c-->", "<cmd>lua luasnip_next_choice()<cr>")
-u.smap("<c-->", "<cmd>lua luasnip_next_choice()<cr>")
+u.imap("<c-_>", "<cmd>lua luasnip_next_choice()<cr>")
+u.smap("<c-_>", "<cmd>lua luasnip_next_choice()<cr>")
 
-u.nmap("<leader>ue", ":LuaSnipListAvailable<cr>")
+-- Edit
+u.nmap("<leader>ss", ":LuaSnipListAvailable<cr>")
+u.nmap("<leader>ue", ":LuaSnipEdit<cr>")
+
+-- On the fly snippets (use snippet in register s). Use $word as placeholder.
+-- Example: Hello $World!
+u.xmap("<c-s>", '"sc<cmd>lua require("luasnip.extras.otf").on_the_fly()<cr>')
+u.imap("<c-s>", '<cmd>lua require("luasnip.extras.otf").on_the_fly("s")<cr>')
+
+-------------------------------------------------------------------------------
 -- vim.keymap.set({ "i", "s" }, "<c-j>", , { silent = true })
 
 -- <c-j> is my jump backwards key.
