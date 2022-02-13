@@ -794,19 +794,6 @@ nnoremap <silent> <leader>I  :silent execute 'Tux ' . escape(getline('.'), '#')<
 xnoremap <silent> <leader>I y:silent execute 'Tux ' . escape(getreg('0'), '#')<cr>
 " }}} tux.vim "
 
-" ultisnips {{{ "
-let g:UltiSnipsEditSplit = 'horizontal'
-let g:UltiSnipsExpandTrigger = '<c-j>'
-let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
-let g:UltiSnipsJumpForwardTrigger = '<c-j>'
-let g:UltiSnipsSnippetDirectories = [
-      \ stdpath('data') . '/site/pack/packer/start/vim-snippets/UltiSnips/',
-      \ 'UltiSnips'
-      \ ]
-
-nnoremap <leader>ue :UltiSnipsEdit!<cr>
-" }}} ultisnips "
-
 " undotree {{{ "
 nnoremap <silent> U :UndotreeToggle<cr>
 " }}} undotree "
