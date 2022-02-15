@@ -1,3 +1,4 @@
+# https://starship.rs/config/
 add_newline = false
 
 format = """
@@ -5,6 +6,7 @@ $directory\
 $git_branch\
 $git_state\
 $git_status\
+$git_commit\
 $line_break\
 $jobs\
 $python\
@@ -26,6 +28,10 @@ vicmd_symbol = "[❮](green)"
 [git_branch]
 format = "[$branch]($style)"
 style = "bright-black"
+
+[git_commit]
+format = "[$hash$tag]($style) "
+style = "green"
 
 [git_status]
 format = "[[($conflicted$modified$staged$renamed$deleted$untracked)]($style) ($ahead_behind$stashed)]($style)"
