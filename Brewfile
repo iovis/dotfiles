@@ -41,6 +41,7 @@ brew "tmux"
 brew "universal-ctags"
 brew "vim"
 brew "watch"
+brew "wget"
 brew "zsh"
 brew "koekeishiya/formulae/skhd"
 brew "koekeishiya/formulae/yabai", args: ["HEAD"]
