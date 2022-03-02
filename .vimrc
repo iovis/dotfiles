@@ -539,7 +539,7 @@ function! CCR()
   if cmdline =~ '\v\C^(ls|files|buffers)'
     " like :ls but prompts for a buffer command
     return "\<CR>:b\<space>"
-  elseif cmdline =~ '\v\C/(#|nu|num|numb|numbe|number)$'
+  elseif cmdline =~ '\v\C/(#|nu|num|numb|numbe|number|l|li|lis|list)$'
     " like :g//# but prompts for a command
     return "\<CR>:"
   elseif cmdline =~ '\v\C^(dli|il)'
@@ -566,6 +566,9 @@ function! CCR()
   elseif cmdline =~ '\C^undol'
     " like :undolist but prompts for a change to undo
     return "\<CR>:u "
+  elseif cmdline =~ '\C^tabs'
+    set nomore
+    return "\<CR>:Z| tabnext\<S-Left>"
   elseif cmdline =~ '\C^reg'
     " Added by me!
     return "\<CR>:norm \"p\<Left>"
