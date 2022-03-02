@@ -264,8 +264,8 @@ onoremap ak :<C-u>normal vikV<CR>
 nnoremap s <Nop>
 xnoremap s <Nop>
 
-nnoremap s<space> :s///g<left><left><left>
-nnoremap ss       :%s///g<left><left><left>
+nnoremap s<space> :s/\v//g<left><left><left>
+nnoremap ss       :%s/\v//g<left><left><left>
 
 nnoremap <silent> s :set operatorfunc=SubstituteOperator<cr>g@
 xnoremap s :<c-u>call SubstituteOperator(visualmode())<cr>
@@ -277,18 +277,18 @@ function! SubstituteOperator(type)
     if isSameLine
       let saved_unnamed_register = @@
       execute 'normal! `<v`>y'
-      call feedkeys(':%s/' . escape(@@, '/\') . "//g\<left>\<left>", 't')
+      call feedkeys(':%s/\v' . escape(@@, '/\') . "//g\<left>\<left>", 't')
       let @@ = saved_unnamed_register
     else
-      call feedkeys(":'<,'>s///g\<left>\<left>\<left>", 't')
+      call feedkeys(":'<,'>s/\v//g\<left>\<left>\<left>", 't')
     endif
   elseif a:type ==# 'char'
     let saved_unnamed_register = @@
     execute 'normal! `[v`]y'
-    call feedkeys(':%s/' . escape(@@, '/\') . "//g\<left>\<left>", 't')
+    call feedkeys(':%s/\v' . escape(@@, '/\') . "//g\<left>\<left>", 't')
     let @@ = saved_unnamed_register
   elseif a:type ==# 'line'
-    call feedkeys(":'[,']s///g\<left>\<left>\<left>", 't')
+    call feedkeys(":'[,']s/\v//g\<left>\<left>\<left>", 't')
   else
     echo 'TODO: ' . a:type . ' substitute mode'
     return
