@@ -36,6 +36,10 @@ bindkey "^E" vi-end-of-line
 bindkey "^[." insert-last-word
 bindkey "kj" vi-cmd-mode
 
+# Fix delete characters
+bindkey "^H" backward-delete-char
+bindkey "^?" backward-delete-char
+
 ## Normal mode
 bindkey -M vicmd H vi-first-non-blank
 bindkey -M vicmd L vi-end-of-line
