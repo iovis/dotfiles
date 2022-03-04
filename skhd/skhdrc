@@ -92,7 +92,7 @@ ctrl + alt + cmd - 2 : yabai -m space --layout float
 ctrl + alt + cmd - 0 : yabai -m space --balance
 
 # Set my second screen
-ctrl + alt + cmd - 9 : yabai_set_second_display
+ctrl + alt + cmd - 4 : yabai_set_second_display
 
 ctrl + alt + cmd - r : yabai -m space --rotate 90
 ctrl + alt + cmd - e : yabai -m window --toggle split
