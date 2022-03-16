@@ -45,7 +45,7 @@ brew "watch"
 brew "wget"
 brew "zsh"
 brew "koekeishiya/formulae/skhd"
-brew "koekeishiya/formulae/yabai", args: ["HEAD"]
+brew "koekeishiya/formulae/yabai"
 cask "1password"
 cask "appcleaner"
 cask "bartender"
