@@ -6,10 +6,15 @@ setlocal textwidth=80
 setlocal formatoptions+=tcoqnl1j
 setlocal linebreak
 setlocal breakindent
-setlocal spelllang=es
+setlocal spelllang=en_us
 " setlocal spell
 
-" Better indention/hierarchy
+" Better indention/hierarchy (:h fo-n)
+"
+" Example:
+" 1. the first item
+"    wraps
+" 2. the second item
 setlocal formatlistpat=^\\s*                    " Optional leading whitespace
 setlocal formatlistpat+=[                       " Start class
 setlocal formatlistpat+=\\[({]\\?               " |  Optionally match opening punctuation

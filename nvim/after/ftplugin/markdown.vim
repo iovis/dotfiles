@@ -7,9 +7,17 @@ setlocal softtabstop=4
 " }}} Options "
 
 " Formatting {{{ "
-setlocal formatoptions+=tcroqnl1j
+setlocal formatoptions+=tcroqnl1jp
+
+" Allow *, -, +, ?, > to auto create the character on line change
 setlocal comments=b:*,b:-,b:+,b:?,n:>
 
+" Better indention/hierarchy (:h fo-n)
+"
+" Example:
+" 1. the first item
+"    wraps
+" 2. the second item
 setlocal formatlistpat=^\\s*                    " Optional leading whitespace
 setlocal formatlistpat+=[                       " Start class
 setlocal formatlistpat+=\\[({]\\?               " |  Optionally match opening punctuation
