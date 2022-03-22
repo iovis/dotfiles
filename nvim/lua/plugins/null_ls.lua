@@ -3,7 +3,6 @@ if not status_ok then
   return
 end
 
-
 -- local completion = null_ls.builtins.completion
 local diagnostics = null_ls.builtins.diagnostics
 local formatting = null_ls.builtins.formatting
@@ -32,7 +31,6 @@ null_ls.setup({
 
     -- formatting.eslint,
     formatting.rubocop,
-    formatting.sqlformat.with({ extra_args = { "-rs" } }),
     formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "2" } }),
   },
 })
