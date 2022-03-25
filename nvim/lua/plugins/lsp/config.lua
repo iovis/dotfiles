@@ -75,6 +75,11 @@ M.on_attach = function(client, bufnr)
   -- formatting capabilities.
   -- See: https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts
   if u.has_value(client.name, { "solargraph" }) then
+    -- Disable go to definition mappings
+    vim.api.nvim_buf_del_keymap(0, 'n', 't')
+    vim.api.nvim_buf_del_keymap(0, 'n', 'T')
+
+    -- Disable formatting
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
   end

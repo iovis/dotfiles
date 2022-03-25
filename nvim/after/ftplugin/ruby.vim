@@ -1,10 +1,5 @@
 setlocal makeprg=ruby\ %
 
-" tags {{{ "
-nmap <buffer> T g]
-nmap <buffer> t <c-]>
-" }}} tags "
-
 " quick testing {{{ "
 nnoremap <silent> <buffer> <leader>sd :TestFile --format documentation<cr>
 nnoremap <silent> <buffer> <leader>sp :execute 'Tux FPROF=1 FDOC=1 rspec ' . expand('%') . ':' . line('.')<cr>
