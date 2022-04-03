@@ -155,6 +155,9 @@ require("packer").startup(function()
   use({
     "williamboman/nvim-lsp-installer",
     config = [[require('plugins.lsp')]],
+    requires = {
+      "b0o/schemastore.nvim",
+    },
   })
 
   -- nvim-cmp
