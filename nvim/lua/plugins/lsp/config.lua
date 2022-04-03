@@ -67,23 +67,6 @@ M.on_attach = function(client, bufnr)
   buf_nmap("<space>b", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>")
   u.buf_map(bufnr, "x", "<space>b", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>")
 
-  -- NOTE: Formatting conflicts
-  -----------------------------
-  -- If when formatting there are multiple possible candidates for
-  -- formatting, Neovim will ask you which one to use. If you want to use
-  -- null-ls formatting you can disable the conflicting language's
-  -- formatting capabilities.
-  -- See: https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts
-  if u.has_value(client.name, { "solargraph" }) then
-    -- Disable go to definition mappings
-    vim.api.nvim_buf_del_keymap(0, 'n', 't')
-    vim.api.nvim_buf_del_keymap(0, 'n', 'T')
-
-    -- Disable formatting
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
-  end
-
   ---- Document Highlights
   -- if client.resolved_capabilities.document_highlight then
   --   vim.cmd([[
@@ -98,6 +81,17 @@ M.on_attach = function(client, bufnr)
   --     augroup END
   --   ]])
   -- end
+
+  ---- Server Options
+  if u.has_value(client.name, { "solargraph" }) then
+    -- Disable go to definition mappings
+    vim.api.nvim_buf_del_keymap(0, "n", "t")
+    vim.api.nvim_buf_del_keymap(0, "n", "T")
+
+    -- Disable formatting
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+  end
 end
 
 -- Add additional capabilities supported by nvim-cmp

@@ -157,6 +157,8 @@ require("packer").startup(function()
     config = [[require('plugins.lsp')]],
     requires = {
       "b0o/schemastore.nvim",
+      "simrat39/rust-tools.nvim",
+      -- "mfussenegger/nvim-dap",
     },
   })
 
