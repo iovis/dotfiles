@@ -1,5 +1,11 @@
 -- Based on:
 -- https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/after/plugin/cmp_gh_source.lua
+
+local u = require('utils')
+if not u.is_executable('gh') then
+  return
+end
+
 local Job = require("plenary.job")
 
 local source = {}

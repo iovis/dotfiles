@@ -93,6 +93,14 @@ M.get_system_output = function(cmd)
   return vim.split(vim.fn.system(cmd), "\n")
 end
 
+M.is_executable = function(cmd)
+  if cmd and vim.fn.executable(cmd) == 1 then
+    return true
+  end
+
+  return false, string.format("command %s is not executable (make sure it's installed and on your $PATH)", cmd)
+end
+
 M.has_value = function(value, table)
   for _, val in ipairs(table) do
     if value == val then
