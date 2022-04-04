@@ -4,4 +4,4 @@ setlocal softtabstop=4
 nmap <silent> <buffer> m<cr> :Tux cargo check --all-targets<cr>
 nmap <silent> <buffer> s<cr> :Tux cargo run<cr>
 
-nnoremap <buffer> <leader>sr :CocCommand rust-analyzer.reloadWorkspace<cr>
+nnoremap <buffer> <leader>sr :RustStartStandaloneServerForBuffer<cr>
