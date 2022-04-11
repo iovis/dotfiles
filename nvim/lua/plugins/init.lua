@@ -67,7 +67,7 @@ require("packer").startup(function()
   use("wellle/targets.vim")
 
   use({
-    "akinsho/nvim-bufferline.lua",
+    "akinsho/bufferline.nvim",
     config = [[require('plugins.bufferline')]],
     requires = "kyazdani42/nvim-web-devicons",
   })
