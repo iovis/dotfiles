@@ -50,10 +50,10 @@ M.on_attach = function(client, bufnr)
 
   -- List code actions
   buf_nmap(
-    "<space>la",
+    "<leader>la",
     "<cmd>lua print(vim.inspect(vim.lsp.buf_get_clients()[1].resolved_capabilities.code_action))<CR>"
   )
-  buf_nmap("<space>lp", "<cmd>lua vim.lsp.buf.code_action()<CR>")
+  buf_nmap("<leader>lp", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 
   ---- Diagnostics
   buf_nmap("<left>", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
@@ -64,8 +64,8 @@ M.on_attach = function(client, bufnr)
   ]])
 
   ---- Formatting
-  buf_nmap("<space>b", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>")
-  u.buf_map(bufnr, "x", "<space>b", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>")
+  buf_nmap("<leader>b", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>")
+  u.buf_map(bufnr, "x", "<leader>b", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>")
 
   ---- Document Highlights
   -- if client.resolved_capabilities.document_highlight then
