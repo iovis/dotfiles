@@ -1,13 +1,12 @@
-local u = require("utils")
-
+local fzf_lua = require("fzf-lua")
 local original_fd_opts = require("fzf-lua.config").globals.files.fd_opts
 -- local original_rg_opts = require("fzf-lua.config").globals.grep.rg_opts
 
-local function buf_tmap(...)
-  u.buf_map(0, "t", ...)
+local function buf_tmap(lhs, rhs)
+  vim.keymap.set("t", lhs, rhs, { buffer = true })
 end
 
-require("fzf-lua").setup({
+fzf_lua.setup({
   winopts = {
     window_on_create = function()
       buf_tmap("<c-j>", "<down>")
@@ -56,23 +55,25 @@ require("fzf-lua").setup({
   -- },
 })
 
-u.nmap("+s", ":FzfLua<space>", { silent = false })
+vim.keymap.set("n", "+s", ":FzfLua<space>")
 
-u.nmap("+f", "<cmd>FzfLua live_grep<cr>")
-u.nmap("+m", "<cmd>FzfLua marks<cr>")
-u.nmap("+r", "<cmd>FzfLua registers<cr>")
-u.nmap("<c-p>", "<cmd>FzfLua commands<cr>")
-u.nmap("<leader><leader>", "<cmd>FzfLua buffers<cr>")
-u.nmap("<leader>A", "<cmd>FzfLua filetypes<cr>")
-u.nmap("<leader>H", "<cmd>FzfLua git_bcommits<cr>")
-u.nmap("<leader>O", "<cmd>FzfLua files<cr>")
-u.nmap("<leader>R", "<cmd>FzfLua tags<cr>")
-u.nmap("<leader>f", ":lua require('fzf-lua').grep({ no_esc=true, search='\\\\w' })<cr>")
-u.nmap("<leader>gL", "<cmd>FzfLua git_commits<cr>")
-u.nmap("<leader>gco", "<cmd>FzfLua git_branches<cr>")
-u.nmap("<leader>j", "<cmd>FzfLua git_status<cr>")
-u.nmap("<leader>o", "<cmd>FzfLua git_files<cr>")
-u.nmap("<leader>r", "<cmd>FzfLua btags<cr>")
-u.nmap("<leader>ñ", "<cmd>FzfLua blines<cr>")
+vim.keymap.set("n", "+f", fzf_lua.live_grep)
+vim.keymap.set("n", "+m", fzf_lua.marks)
+vim.keymap.set("n", "+r", fzf_lua.registers)
+vim.keymap.set("n", "<c-p>", fzf_lua.commands)
+vim.keymap.set("n", "<leader><leader>", fzf_lua.buffers)
+vim.keymap.set("n", "<leader>A", fzf_lua.filetypes)
+vim.keymap.set("n", "<leader>H", fzf_lua.git_bcommits)
+vim.keymap.set("n", "<leader>O", fzf_lua.files)
+vim.keymap.set("n", "<leader>R", fzf_lua.tags)
+vim.keymap.set("n", "<leader>gL", fzf_lua.git_commits)
+vim.keymap.set("n", "<leader>gco", fzf_lua.git_branches)
+vim.keymap.set("n", "<leader>j", fzf_lua.git_status)
+vim.keymap.set("n", "<leader>o", fzf_lua.git_files)
+vim.keymap.set("n", "<leader>r", fzf_lua.btags)
+vim.keymap.set("n", "<leader>ñ", fzf_lua.blines)
+vim.keymap.set("n", "<leader>f", function()
+  fzf_lua.grep({ no_esc = true, search = "\\w" })
+end)
 
-u.xmap("<leader>f", ":<c-u>FzfLua grep_visual<cr>")
+vim.keymap.set("x", "<leader>f", fzf_lua.grep_visual, { silent = true })

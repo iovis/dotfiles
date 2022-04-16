@@ -1,57 +1,11 @@
 local M = {}
 
-local get_map_options = function(custom_options)
-  local options = { noremap = true, silent = true }
-
-  if custom_options then
-    options = vim.tbl_extend("force", options, custom_options)
-  end
-
-  return options
+M.augroup = function(name, opts)
+  vim.api.nvim_create_augroup(name, opts or {})
 end
 
-M.map = function(mode, target, source, opts)
-  -- TODO: change to vim.keymap.set when 0.7 drops
-  vim.api.nvim_set_keymap(mode, target, source, get_map_options(opts))
-end
-
--- nmap, omap, imap, xmap, tmap
-for _, mode in ipairs({ "n", "o", "i", "x", "t" }) do
-  M[mode .. "map"] = function(...)
-    M.map(mode, ...)
-  end
-end
-
-M.buf_map = function(bufnr, mode, target, source, opts)
-  -- TODO change to the following when 0.7 drops
-  -- opts = opts or {}
-  -- opts.buffer = bufnr
-  -- M.map(mode, target, source, get_map_options(opts))
-
-  vim.api.nvim_buf_set_keymap(bufnr or 0, mode, target, source, get_map_options(opts))
-end
-
--- TODO: change to the following when neovim 0.7 drops
---       https://github.com/jose-elias-alvarez/dotfiles/blob/main/config/nvim/lua/config/utils.lua
--- M.command = function(name, fn, opts)
---   vim.api.nvim_add_user_command(name, fn, opts or {})
--- end
---
--- And use like u.command("LspFormatting", vim.lsp.buf.formatting)
-M.command = function(name, fn)
-  vim.cmd(string.format("command! %s %s", name, fn))
-end
-
-M.lua_command = function(name, fn)
-  M.command(name, "lua " .. fn)
-end
-
-M.t = function(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-M.input = function(keys, mode)
-  vim.api.nvim_feedkeys(M.t(keys), mode or "m", true)
+M.command = function(name, fn, opts)
+  vim.api.nvim_create_user_command(name, fn, opts or {})
 end
 
 M.warn = function(msg)
@@ -89,7 +43,7 @@ M.make_floating_window = function(custom_window_config, height_ratio, width_rati
   return winnr, bufnr
 end
 
-M.get_system_output = function(cmd)
+M.system = function(cmd)
   return vim.split(vim.fn.system(cmd), "\n")
 end
 

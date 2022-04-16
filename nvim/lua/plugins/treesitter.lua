@@ -45,6 +45,4 @@ require("nvim-treesitter.configs").setup({
   },
 })
 
-local u = require("utils")
-u.nmap("+h", ":TSHighlightCapturesUnderCursor<cr>")
--- u.nmap('+t', ':TSPlaygroundToggle<cr>')
+vim.keymap.set("n", "+h", "<cmd>TSHighlightCapturesUnderCursor<cr>")

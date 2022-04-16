@@ -1,6 +1,6 @@
-local u = require("utils")
+local bufferline = require("bufferline")
 
-require("bufferline").setup({
+bufferline.setup({
   highlights = {
     indicator_selected = {
       guifg = {
@@ -10,7 +10,7 @@ require("bufferline").setup({
     },
   },
   options = {
-    custom_filter = function(buf_number, buf_numbers)
+    custom_filter = function(buf_number, _buf_numbers)
       -- filter out filetypes you don't want to see
       if vim.bo[buf_number].filetype ~= "qf" then
         return true
@@ -39,10 +39,12 @@ require("bufferline").setup({
   },
 })
 
-u.nmap("<tab>", "<cmd>BufferLineCycleNext<cr>")
-u.nmap("<s-tab>", "<cmd>BufferLineCyclePrev<cr>")
+vim.keymap.set("n", "<tab>", "<cmd>BufferLineCycleNext<cr>")
+vim.keymap.set("n", "<s-tab>", "<cmd>BufferLineCyclePrev<cr>")
 
 -- nnoremap <silent> <leader>1 <cmd>BufferLineGoToBuffer 1<cr>
 for i = 1, 9 do
-  u.nmap("<leader>" .. i, ':lua require("bufferline").go_to_buffer(' .. i .. ")<CR>", { nowait = true })
+  vim.keymap.set("n", "<leader>" .. i, function()
+    bufferline.go_to_buffer(i)
+  end)
 end

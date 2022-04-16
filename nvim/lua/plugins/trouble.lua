@@ -5,8 +5,6 @@
 --   autocmd!
 --   autocmd FileType Trouble setlocal relativenumber
 -- augroup END
-local u = require("utils")
-
 require("trouble").setup({
   mode = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
   padding = false,
@@ -17,7 +15,7 @@ require("trouble").setup({
   },
 })
 
-u.nmap("<leader>ç", "<cmd>TroubleToggle<cr>")
+vim.keymap.set("n", "<leader>ç", "<cmd>TroubleToggle<cr>")
 
 vim.cmd([[
 " hi TroubleIndent   ctermfg=8  ctermbg=NONE guifg=#585858 guibg=NONE

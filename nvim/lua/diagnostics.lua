@@ -1,3 +1,12 @@
+local u = require("utils")
+
+vim.api.nvim_create_autocmd("DiagnosticChanged", {
+  pattern = "*",
+  callback = function()
+    vim.diagnostic.setloclist({ open = false })
+  end,
+})
+
 vim.cmd([[
   hi DiagnosticSignError ctermfg=1 ctermbg=18 guifg=#ab4642 guibg=#282828
   hi DiagnosticSignWarn  ctermfg=3 ctermbg=18 guifg=#f7ca88 guibg=#282828
@@ -8,11 +17,6 @@ vim.cmd([[
   hi DiagnosticVirtualTextWarn  ctermfg=3 guifg=#f7ca88
   hi DiagnosticVirtualTextInfo  ctermfg=4 guifg=#7cafc2
   hi DiagnosticVirtualTextHint  ctermfg=4 guifg=#7cafc2
-
-  augroup diagnostics
-    autocmd!
-    autocmd DiagnosticChanged * lua vim.diagnostic.setloclist({ open = false })
-  augroup end
 ]])
 
 local signs = {

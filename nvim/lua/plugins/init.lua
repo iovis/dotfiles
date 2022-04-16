@@ -199,5 +199,4 @@ function _G.pp(...)
   return ...
 end
 
-local u = require("utils")
-u.nmap("<leader>ps", ":PackerSync<cr>")
+vim.keymap.set("n", "<leader>ps", "<cmd>PackerSync<cr>")

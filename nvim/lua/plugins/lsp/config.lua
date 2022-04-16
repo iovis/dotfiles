@@ -15,58 +15,57 @@ vim.cmd([[
 ]])
 
 -- Bring up docs for server configurations
-u.nmap("<leader>lh", ":help lspconfig-server-configurations<cr>")
+vim.keymap.set("n", "<leader>lh", "<cmd>help lspconfig-server-configurations<cr>")
 
 M.on_attach = function(client, bufnr)
-  local function buf_nmap(...)
-    u.buf_map(bufnr, "n", ...)
+  local function buf_nmap(lhs, rhs)
+    vim.keymap.set("n", lhs, rhs, { buffer = true })
   end
-
-  local function buf_set_option(...)
-    vim.api.nvim_buf_set_option(bufnr, ...)
+  local function buf_xmap(lhs, rhs)
+    vim.keymap.set("x", lhs, rhs, { buffer = true })
   end
 
   ---- Commands
-  u.lua_command("LspDiagLine", "vim.diagnostic.open_float()")
-  u.lua_command("LspDiagNext", "vim.diagnostic.goto_next()")
-  u.lua_command("LspDiagPrev", "vim.diagnostic.goto_prev()")
-  u.lua_command("LspDiagQuickfix", "vim.diagnostic.setqflist()")
-  u.lua_command("LspFormat", "vim.lsp.buf.formatting()")
-  u.lua_command("LspHover", "vim.lsp.buf.hover()")
-  u.lua_command("LspRangeAct", "vim.lsp.buf.range_code_action()")
-  u.lua_command("LspRename", "vim.lsp.buf.rename()")
-  u.lua_command("LspSignatureHelp", "vim.lsp.buf.signature_help()")
-  u.lua_command("LspTypeDef", "vim.lsp.buf.type_definition()")
+  u.command("LspDiagLine", vim.diagnostic.open_float)
+  u.command("LspDiagNext", vim.diagnostic.goto_next)
+  u.command("LspDiagPrev", vim.diagnostic.goto_prev)
+  u.command("LspDiagQuickfix", vim.diagnostic.setqflist)
+  u.command("LspFormat", vim.lsp.buf.formatting)
+  u.command("LspHover", vim.lsp.buf.hover)
+  u.command("LspRangeAct", vim.lsp.buf.range_code_action)
+  u.command("LspRename", vim.lsp.buf.rename)
+  u.command("LspSignatureHelp", vim.lsp.buf.signature_help)
+  u.command("LspTypeDef", vim.lsp.buf.type_definition)
 
   -- Enable completion triggered by <c-x><c-o>
-  buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
   ---- Bindings
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_nmap("t", "<cmd>lua vim.lsp.buf.definition()<CR>")
-  buf_nmap("gd", "<cmd>lua vim.lsp.buf.hover()<CR>")
-  buf_nmap("+t", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
-  buf_nmap("T", "<cmd>lua vim.lsp.buf.references()<CR>")
-  buf_nmap("<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>")
+  buf_nmap("t", vim.lsp.buf.definition)
+  buf_nmap("gd", vim.lsp.buf.hover)
+  buf_nmap("+t", vim.lsp.buf.signature_help)
+  buf_nmap("T", vim.lsp.buf.references)
+  buf_nmap("<leader>lp", vim.lsp.buf.code_action)
+  buf_nmap("<leader>lr", vim.lsp.buf.rename)
+  buf_xmap("<leader>lr", vim.lsp.buf.rename)
 
   -- List code actions
-  buf_nmap(
-    "<leader>la",
-    "<cmd>lua print(vim.inspect(vim.lsp.buf_get_clients()[1].resolved_capabilities.code_action))<CR>"
-  )
-  buf_nmap("<leader>lp", "<cmd>lua vim.lsp.buf.code_action()<CR>")
+  buf_nmap("<leader>la", function()
+    print(vim.inspect(vim.lsp.buf_get_clients()[1].resolved_capabilities.code_action))
+  end)
 
   ---- Diagnostics
-  buf_nmap("<left>", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
-  buf_nmap("<right>", "<cmd>lua vim.diagnostic.goto_next()<CR>")
+  buf_nmap("<left>", vim.diagnostic.goto_prev)
+  buf_nmap("<right>", vim.diagnostic.goto_next)
 
   vim.cmd([[
     autocmd CursorHold <buffer> lua vim.diagnostic.open_float()
   ]])
 
   ---- Formatting
-  buf_nmap("<leader>b", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>")
-  u.buf_map(bufnr, "x", "<leader>b", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>")
+  buf_nmap("<leader>b", vim.lsp.buf.formatting_sync)
+  buf_xmap("<leader>b", vim.lsp.buf.formatting_sync)
 
   ---- Document Highlights
   -- if client.resolved_capabilities.document_highlight then
@@ -86,8 +85,8 @@ M.on_attach = function(client, bufnr)
   ---- Server Options
   if u.has_value(client.name, { "solargraph" }) then
     -- Disable go to definition mappings
-    vim.api.nvim_buf_del_keymap(0, "n", "t")
-    vim.api.nvim_buf_del_keymap(0, "n", "T")
+    vim.keymap.del("n", "t", { buffer = true })
+    vim.keymap.del("n", "T", { buffer = true })
 
     -- Disable formatting
     client.resolved_capabilities.document_formatting = false

@@ -49,6 +49,5 @@ vim.cmd([[
   highlight NvimTreeVertSplit ctermfg=18 ctermbg=18 guifg=#282828 guibg=#282828
 ]])
 
-local u = require("utils")
-u.nmap("<leader>k", ":NvimTreeToggle<cr>")
-u.nmap("-", ":NvimTreeFindFile<cr>")
+vim.keymap.set("n", "<leader>k", "<cmd>NvimTreeToggle<cr>")
+vim.keymap.set("n", "-", "<cmd>NvimTreeFindFile<cr>")

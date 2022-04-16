@@ -12,5 +12,4 @@ require("zen-mode").setup({
   },
 })
 
-local u = require("utils")
-u.nmap("<leader>z", ":ZenMode<cr>")
+vim.keymap.set("n", "<leader>z", "<cmd>ZenMode<cr>")

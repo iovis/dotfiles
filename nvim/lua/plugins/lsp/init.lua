@@ -35,5 +35,4 @@ lsp_installer.on_server_ready(function(server)
   end
 end)
 
-local u = require("utils")
-u.nmap("<leader>li", "<cmd>LspInstallInfo<cr>")
+vim.keymap.set("n", "<leader>li", "<cmd>LspInstallInfo<cr>")
