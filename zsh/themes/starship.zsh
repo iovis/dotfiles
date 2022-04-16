@@ -1,7 +1,7 @@
 # https://starship.rs/config/
 export STARSHIP_CONFIG=$ZDOTDIR/themes/starship.toml
 
-# starship completions zsh > $ZDOTDIR/themes/_starship
+# starship completions zsh > $ZDOTDIR/completions/_starship
 fpath=("$ZDOTDIR/themes/" $fpath)
 
 ## Initialization extracted from: eval "$(starship init zsh)"
