@@ -47,6 +47,7 @@ M.on_attach = function(client, bufnr)
   buf_nmap("gd", "<cmd>lua vim.lsp.buf.hover()<CR>")
   buf_nmap("+t", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
   buf_nmap("T", "<cmd>lua vim.lsp.buf.references()<CR>")
+  buf_nmap("<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>")
 
   -- List code actions
   buf_nmap(
