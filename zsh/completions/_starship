@@ -51,8 +51,8 @@ _arguments "${_arguments_options[@]}" \
 ;;
 (explain)
 _arguments "${_arguments_options[@]}" \
-'-s+[The status code of the previously run command]:STATUS_CODE: ' \
-'--status=[The status code of the previously run command]:STATUS_CODE: ' \
+'-s+[The status code of the previously run command as an unsigned or signed 32bit integer]:STATUS_CODE: ' \
+'--status=[The status code of the previously run command as an unsigned or signed 32bit integer]:STATUS_CODE: ' \
 '*--pipestatus=[Bash, Fish and Zsh support returning codes for each process in a pipeline]:PIPESTATUS: ' \
 '-w+[The width of the current interactive terminal]:TERMINAL_WIDTH: ' \
 '--terminal-width=[The width of the current interactive terminal]:TERMINAL_WIDTH: ' \
@@ -80,8 +80,8 @@ _arguments "${_arguments_options[@]}" \
 ;;
 (module)
 _arguments "${_arguments_options[@]}" \
-'-s+[The status code of the previously run command]:STATUS_CODE: ' \
-'--status=[The status code of the previously run command]:STATUS_CODE: ' \
+'-s+[The status code of the previously run command as an unsigned or signed 32bit integer]:STATUS_CODE: ' \
+'--status=[The status code of the previously run command as an unsigned or signed 32bit integer]:STATUS_CODE: ' \
 '*--pipestatus=[Bash, Fish and Zsh support returning codes for each process in a pipeline]:PIPESTATUS: ' \
 '-w+[The width of the current interactive terminal]:TERMINAL_WIDTH: ' \
 '--terminal-width=[The width of the current interactive terminal]:TERMINAL_WIDTH: ' \
@@ -113,8 +113,8 @@ _arguments "${_arguments_options[@]}" \
 ;;
 (prompt)
 _arguments "${_arguments_options[@]}" \
-'-s+[The status code of the previously run command]:STATUS_CODE: ' \
-'--status=[The status code of the previously run command]:STATUS_CODE: ' \
+'-s+[The status code of the previously run command as an unsigned or signed 32bit integer]:STATUS_CODE: ' \
+'--status=[The status code of the previously run command as an unsigned or signed 32bit integer]:STATUS_CODE: ' \
 '*--pipestatus=[Bash, Fish and Zsh support returning codes for each process in a pipeline]:PIPESTATUS: ' \
 '-w+[The width of the current interactive terminal]:TERMINAL_WIDTH: ' \
 '--terminal-width=[The width of the current interactive terminal]:TERMINAL_WIDTH: ' \
@@ -148,8 +148,8 @@ _arguments "${_arguments_options[@]}" \
 ;;
 (timings)
 _arguments "${_arguments_options[@]}" \
-'-s+[The status code of the previously run command]:STATUS_CODE: ' \
-'--status=[The status code of the previously run command]:STATUS_CODE: ' \
+'-s+[The status code of the previously run command as an unsigned or signed 32bit integer]:STATUS_CODE: ' \
+'--status=[The status code of the previously run command as an unsigned or signed 32bit integer]:STATUS_CODE: ' \
 '*--pipestatus=[Bash, Fish and Zsh support returning codes for each process in a pipeline]:PIPESTATUS: ' \
 '-w+[The width of the current interactive terminal]:TERMINAL_WIDTH: ' \
 '--terminal-width=[The width of the current interactive terminal]:TERMINAL_WIDTH: ' \
