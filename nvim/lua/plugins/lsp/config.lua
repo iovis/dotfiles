@@ -92,6 +92,9 @@ M.on_attach = function(client, bufnr)
     -- Disable formatting
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
+  elseif u.has_value(client.name, { "sumneko_lua" }) then
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
   end
 end
 
