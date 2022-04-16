@@ -10,6 +10,12 @@ require("bufferline").setup({
     },
   },
   options = {
+    custom_filter = function(buf_number, buf_numbers)
+      -- filter out filetypes you don't want to see
+      if vim.bo[buf_number].filetype ~= "qf" then
+        return true
+      end
+    end,
     numbers = function(opts)
       return string.format("%s.", opts.ordinal)
     end,
