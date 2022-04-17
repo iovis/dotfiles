@@ -49,7 +49,7 @@ local config = {
     severity = vim.diagnostic.severity.ERROR,
   },
   virtual_text = {
-    severity = vim.diagnostic.severity.ERROR,
+    severity = vim.diagnostic.severity.WARN,
   },
 }
 
