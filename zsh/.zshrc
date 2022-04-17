@@ -59,6 +59,7 @@ source "$ZDOTDIR/completions.zsh"
 # TODO: why ^A can't be mapped before the plugins load?
 bindkey "^A" vi-beginning-of-line
 bindkey "^N" autosuggest-accept
+bindkey "^Y" autosuggest-accept
 
 ## Profiling helper (keep at the end)
 if [[ "$ZPROF" = true ]]; then
