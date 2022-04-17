@@ -46,6 +46,7 @@ M.on_attach = function(client, bufnr)
   buf_nmap("gd", vim.lsp.buf.hover)
   buf_nmap("+t", vim.lsp.buf.signature_help)
   buf_nmap("T", vim.lsp.buf.references)
+  buf_nmap("+d", vim.diagnostic.open_float)
   buf_nmap("<leader>lp", vim.lsp.buf.code_action)
   buf_nmap("<leader>lr", vim.lsp.buf.rename)
   buf_xmap("<leader>lr", vim.lsp.buf.rename)
@@ -59,9 +60,11 @@ M.on_attach = function(client, bufnr)
   buf_nmap("<left>", vim.diagnostic.goto_prev)
   buf_nmap("<right>", vim.diagnostic.goto_next)
 
-  vim.cmd([[
-    autocmd CursorHold <buffer> lua vim.diagnostic.open_float()
-  ]])
+  -- show diagnostics of current line
+  -- vim.api.nvim_create_autocmd("CursorHold", {
+  --   buffer = bufnr,
+  --   callback = vim.diagnostic.open_float,
+  -- })
 
   ---- Formatting
   buf_nmap("<leader>b", vim.lsp.buf.formatting_sync)
