@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 starship completions zsh > $ZDOTDIR/completions/_starship
+curl https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker > _docker
+
 cp ~/.cargo/registry/src/github.com-*/exa-*/completions/completions.zsh $ZDOTDIR/completions/_exa
 cp /Users/david/.cargo/registry/src/github.com-*/fd-find-*/contrib/completion/_fd  $ZDOTDIR/completions/_fd
 cp /Users/david/.cargo/registry/src/github.com-*/ripgrep-*/complete/_rg $ZDOTDIR/completions/_rg
