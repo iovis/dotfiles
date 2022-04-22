@@ -1,5 +1,9 @@
 local M = {}
 
+M.highlight = function(name, opts)
+  vim.api.nvim_set_hl(0, name, opts)
+end
+
 M.command = function(name, fn, opts)
   vim.api.nvim_create_user_command(name, fn, opts or {})
 end

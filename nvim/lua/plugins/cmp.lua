@@ -76,21 +76,28 @@ cmp.setup({
 })
 
 -- Colors
-vim.cmd([[
-  " gray
-  highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
-  " blue
-  highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
-  highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
-  " light blue
-  highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE
-  highlight! CmpItemKindInterface guibg=NONE guifg=#9CDCFE
-  highlight! CmpItemKindText guibg=NONE guifg=#9CDCFE
-  " pink
-  highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0
-  highlight! CmpItemKindMethod guibg=NONE guifg=#C586C0
-  " front
-  highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
-  highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4
-  highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4
-]])
+local u = require("utils")
+
+-- gray
+u.highlight("CmpItemAbbrDeprecated", {
+  fg = "#808080",
+  strikethrough = true,
+})
+
+-- blue
+u.highlight("CmpItemAbbrMatch", { fg = "#569CD6" })
+u.highlight("CmpItemAbbrMatchFuzzy", { fg = "#569CD6" })
+
+-- light blue
+u.highlight("CmpItemKindVariable", { fg = "#9CDCFE" })
+u.highlight("CmpItemKindInterface", { fg = "#9CDCFE" })
+u.highlight("CmpItemKindText", { fg = "#9CDCFE" })
+
+-- pink
+u.highlight("CmpItemKindFunction", { fg = "#C586C0" })
+u.highlight("CmpItemKindMethod", { fg = "#C586C0" })
+
+-- front
+u.highlight("CmpItemKindKeyword", { fg = "#D4D4D4" })
+u.highlight("CmpItemKindProperty", { fg = "#D4D4D4" })
+u.highlight("CmpItemKindUnit", { fg = "#D4D4D4" })
