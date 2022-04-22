@@ -17,6 +17,8 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   group = group,
 })
 
+vim.keymap.set("n", "<leader>ps", "<cmd>PackerSync<cr>")
+
 -- plugins
 require("packer").init({
   max_jobs = 50,
@@ -195,13 +197,3 @@ require("packer").startup(function()
     config = [[require('plugins.null_ls')]],
   })
 end)
-
--- Pretty print object
--- From: https://github.com/nanotee/nvim-lua-guide#tips-3
-function _G.pp(...)
-  local objects = vim.tbl_map(vim.inspect, { ... })
-  print(unpack(objects))
-  return ...
-end
-
-vim.keymap.set("n", "<leader>ps", "<cmd>PackerSync<cr>")
