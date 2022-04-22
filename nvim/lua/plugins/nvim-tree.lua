@@ -1,4 +1,5 @@
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
+local u = require("utils")
 
 require("nvim-tree").setup({
   disable_netrw = false,
@@ -42,12 +43,10 @@ vim.g.nvim_tree_disable_window_picker = 1
 vim.g.nvim_tree_indent_markers = 1
 vim.g.nvim_tree_width = 35
 
-vim.cmd([[
-  highlight NvimTreeRootFolder ctermfg=4 guifg=#7cafc2
-  highlight NvimTreeStatusLine ctermbg=0 guibg=#181818
-  highlight NvimTreeEndOfBuffer ctermfg=0 guifg=#181818
-  highlight NvimTreeVertSplit ctermfg=18 ctermbg=18 guifg=#282828 guibg=#282828
-]])
+u.highlight("NvimTreeRootFolder", { fg = "#7cafc2" })
+u.highlight("NvimTreeStatusLine", { bg = "#181818" })
+u.highlight("NvimTreeEndOfBuffer", { fg = "#181818" })
+u.highlight("NvimTreeVertSplit", { fg = "#282828", bg = "#282828" })
 
 vim.keymap.set("n", "<leader>k", "<cmd>NvimTreeToggle<cr>")
 vim.keymap.set("n", "-", "<cmd>NvimTreeFindFile<cr>")

@@ -10,17 +10,15 @@ vim.api.nvim_create_autocmd("DiagnosticChanged", {
   desc = "Set diagnostics on location list",
 })
 
-vim.cmd([[
-  hi DiagnosticSignError ctermfg=1 ctermbg=18 guifg=#ab4642 guibg=#282828
-  hi DiagnosticSignWarn  ctermfg=3 ctermbg=18 guifg=#f7ca88 guibg=#282828
-  hi DiagnosticSignInfo  ctermfg=4 ctermbg=18 guifg=#7cafc2 guibg=#282828
-  hi DiagnosticSignHint  ctermfg=4 ctermbg=18 guifg=#7cafc2 guibg=#282828
+u.highlight("DiagnosticSignError", { fg = "#ab4642", bg = "#282828" })
+u.highlight("DiagnosticSignWarn",  { fg = "#f7ca88", bg = "#282828" })
+u.highlight("DiagnosticSignInfo",  { fg = "#7cafc2", bg = "#282828" })
+u.highlight("DiagnosticSignHint",  { fg = "#7cafc2", bg = "#282828" })
 
-  hi DiagnosticVirtualTextError ctermfg=1 guifg=#ab4642
-  hi DiagnosticVirtualTextWarn  ctermfg=3 guifg=#f7ca88
-  hi DiagnosticVirtualTextInfo  ctermfg=4 guifg=#7cafc2
-  hi DiagnosticVirtualTextHint  ctermfg=4 guifg=#7cafc2
-]])
+u.highlight("DiagnosticVirtualTextError", { fg = "#ab4642" })
+u.highlight("DiagnosticVirtualTextWarn",  { fg = "#f7ca88" })
+u.highlight("DiagnosticVirtualTextInfo",  { fg = "#7cafc2" })
+u.highlight("DiagnosticVirtualTextHint",  { fg = "#7cafc2" })
 
 local signs = {
   { name = "DiagnosticSignError", text = "" },

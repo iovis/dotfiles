@@ -1,18 +1,11 @@
-local status_ok, lspconfig = pcall(require, "lspconfig")
-if not status_ok then
-  return
-end
-
 local u = require("utils")
 local M = {}
 
--- Rounded borders
+-- FLoating window
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
-vim.cmd([[
-  hi NormalFloat ctermbg=0 guibg=#181818
-  hi FloatBorder ctermfg=19 ctermbg=0 guifg=#383838 guibg=#181818
-]])
+u.highlight("NormalFloat", { bg = "#181818" })
+u.highlight("FloatBorder", { bg = "#181818", fg = "#383838" })
 
 -- Bring up docs for server configurations
 vim.keymap.set("n", "<leader>lh", "<cmd>help lspconfig-server-configurations<cr>")
