@@ -51,9 +51,7 @@ local config = {
   underline = {
     severity = vim.diagnostic.severity.ERROR,
   },
-  virtual_text = {
-    severity = vim.diagnostic.severity.WARN,
-  },
+  virtual_text = true,
 }
 
 vim.diagnostic.config(config)
