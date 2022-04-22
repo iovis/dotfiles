@@ -1,10 +1,13 @@
 local u = require("utils")
 
+local augroup = vim.api.nvim_create_augroup("diagnostics", { clear = true })
 vim.api.nvim_create_autocmd("DiagnosticChanged", {
   pattern = "*",
   callback = function()
     vim.diagnostic.setloclist({ open = false })
   end,
+  group = augroup,
+  desc = "Set diagnostics on location list",
 })
 
 vim.cmd([[

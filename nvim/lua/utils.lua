@@ -1,9 +1,5 @@
 local M = {}
 
-M.augroup = function(name, opts)
-  vim.api.nvim_create_augroup(name, opts or {})
-end
-
 M.command = function(name, fn, opts)
   vim.api.nvim_create_user_command(name, fn, opts or {})
 end

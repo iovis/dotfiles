@@ -10,7 +10,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 -- Compile plugins when file is changed
-vim.cmd([[autocmd BufWritePost init.lua source <afile> | PackerCompile]])
+local group = vim.api.nvim_create_augroup("packer_user_config", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePost", {
+  command = "PackerCompile",
+  pattern = "*/plugins/init.lua",
+  group = group,
+})
 
 -- plugins
 require("packer").init({
