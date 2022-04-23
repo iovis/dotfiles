@@ -16,7 +16,6 @@ null_ls.setup({
     -- }),
 
     -- diagnostics.eslint,
-    diagnostics.jsonlint,
     diagnostics.pylint.with({
       extra_args = {
         "--disable",
