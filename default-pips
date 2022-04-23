@@ -4,6 +4,5 @@ pip
 pipenv
 pynvim
 setuptools
-sqlformat
 vim-vint
 yamllint
