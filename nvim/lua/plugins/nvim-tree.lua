@@ -2,6 +2,13 @@ local tree_cb = require("nvim-tree.config").nvim_tree_callback
 local u = require("utils")
 
 require("nvim-tree").setup({
+  actions = {
+    open_file = {
+      window_picker = {
+        enable = false,
+      },
+    },
+  },
   disable_netrw = false,
   filters = {
     custom = {
@@ -23,9 +30,13 @@ require("nvim-tree").setup({
   git = {
     ignore = false,
   },
+  renderer = {
+    indent_markers = {
+      enable = true,
+    },
+  },
   view = {
-    -- relativenumber = true,
-    -- signcolumn = "no",
+    width = 35,
     mappings = {
       list = {
         { key = "x", cb = tree_cb("close_node") },
@@ -38,10 +49,6 @@ require("nvim-tree").setup({
   },
   update_cwd = true,
 })
-
-vim.g.nvim_tree_disable_window_picker = 1
-vim.g.nvim_tree_indent_markers = 1
-vim.g.nvim_tree_width = 35
 
 u.highlight("NvimTreeRootFolder", { fg = "#7cafc2" })
 u.highlight("NvimTreeStatusLine", { bg = "#181818" })
