@@ -822,10 +822,6 @@ endfunction
 
 let g:test#custom_strategies = { 'tux': function('TuxStrategy') }
 let g:test#strategy = 'tux'
-let g:test#rust#cargotest#test_patterns = {
-      \ 'test': ['\v(#\[%(actix_rt::|tokio::|rs)?test)'],
-      \ 'namespace': ['\vmod (tests?)']
-      \ }
 
 " let test#ruby#use_spring_binstub = 1
 " }}} vim-test "
