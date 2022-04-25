@@ -621,6 +621,7 @@ endf
 
 " dispatch {{{ "
 nnoremap s<cr>    :Dispatch<cr>
+nnoremap s<space> :Dispatch<space>
 nnoremap s!       :Dispatch!<cr>
 nnoremap s?       :FocusDispatch<cr>
 " }}} dispatch "
@@ -707,6 +708,7 @@ nnoremap <silent> <leader>av :AV<cr>
 nnoremap <silent> <leader>ar :R<cr>
 
 nnoremap <silent> <leader>S :Start!<cr>
+nnoremap <silent> +C :Console!<cr>
 " }}} projectionist "
 
 " resize.vim {{{ "
