@@ -820,7 +820,20 @@ function! TuxStrategy(cmd)
   execute 'Tux ' . a:cmd
 endfunction
 
-let g:test#custom_strategies = { 'tux': function('TuxStrategy') }
+function! RustLogStrategy(cmd)
+  execute 'Tux TEST_LOG=enabled ' . a:cmd . ' | bunyan'
+endfunction
+
+function! TestProfStrategy(cmd)
+  execute 'Tux FPROF=1 FDOC=1 ' . a:cmd
+endfunction
+
+let g:test#custom_strategies = {
+\ 'tux': function('TuxStrategy'),
+\ 'rust_log': function('RustLogStrategy'),
+\ 'test_prof': function('TestProfStrategy'),
+\}
+
 let g:test#strategy = 'tux'
 
 " let test#ruby#use_spring_binstub = 1

@@ -2,7 +2,7 @@ setlocal makeprg=ruby\ %
 
 " quick testing {{{ "
 nnoremap <silent> <buffer> <leader>sd :TestFile --format documentation<cr>
-nnoremap <silent> <buffer> <leader>sp :execute 'Tux FPROF=1 FDOC=1 rspec ' . expand('%') . ':' . line('.')<cr>
+nnoremap <silent> <buffer> <leader>sp :TestNearest -strategy=test_prof<cr>
 
 " Load failing tests in a scratch window
 nmap +R :Redir !cat tmp/rspec-failures.txt<cr>
