@@ -7,8 +7,10 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { 
 u.highlight("NormalFloat", { bg = "#181818" })
 u.highlight("FloatBorder", { bg = "#181818", fg = "#383838" })
 
--- Bring up docs for server configurations
+-- Global LSP mappings
 vim.keymap.set("n", "<leader>lh", "<cmd>help lspconfig-server-configurations<cr>")
+vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
+vim.keymap.set("n", "<leader>lp", "<cmd>LspInstallInfo<cr>")
 
 M.on_attach = function(client, bufnr)
   local function buf_nmap(lhs, rhs)
@@ -25,7 +27,7 @@ M.on_attach = function(client, bufnr)
   u.command("LspDiagQuickfix", vim.diagnostic.setqflist)
   u.command("LspFormat", vim.lsp.buf.formatting)
   u.command("LspHover", vim.lsp.buf.hover)
-  u.command("LspRangeAct", vim.lsp.buf.range_code_action)
+  u.command("LspRangeAction", vim.lsp.buf.range_code_action)
   u.command("LspRename", vim.lsp.buf.rename)
   u.command("LspSignatureHelp", vim.lsp.buf.signature_help)
   u.command("LspTypeDef", vim.lsp.buf.type_definition)
@@ -40,14 +42,9 @@ M.on_attach = function(client, bufnr)
   buf_nmap("+t", vim.lsp.buf.signature_help)
   buf_nmap("T", vim.lsp.buf.references)
   buf_nmap("+d", vim.diagnostic.open_float)
-  buf_nmap("<leader>lp", vim.lsp.buf.code_action)
+  buf_nmap("<leader>la", vim.lsp.buf.code_action)
   buf_nmap("<leader>lr", vim.lsp.buf.rename)
   buf_xmap("<leader>lr", vim.lsp.buf.rename)
-
-  -- List code actions
-  buf_nmap("<leader>la", function()
-    print(vim.inspect(vim.lsp.buf_get_clients()[1].resolved_capabilities.code_action))
-  end)
 
   ---- Diagnostics
   buf_nmap("<left>", vim.diagnostic.goto_prev)
