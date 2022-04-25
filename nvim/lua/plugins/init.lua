@@ -12,8 +12,8 @@ end
 -- Compile plugins when file is changed
 local group = vim.api.nvim_create_augroup("packer_user_config", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePost", {
-  command = "PackerCompile",
-  pattern = "*/plugins/init.lua",
+  command = "source <afile> | PackerCompile",
+  pattern = "init.lua",
   group = group,
 })
 
