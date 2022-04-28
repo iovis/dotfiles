@@ -24,7 +24,8 @@ return {
           "m", -- match
           "n", -- nonempty
           "dl", -- dynamic lambda
-          "fmt", -- format
+          "fmt", -- format (uses {} as placeholder)
+          "fmta", -- format (uses <> as placeholder)
           "conds",
           "types",
           "events",
