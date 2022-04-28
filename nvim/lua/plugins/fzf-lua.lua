@@ -6,6 +6,7 @@ local function buf_tmap(lhs, rhs)
   vim.keymap.set("t", lhs, rhs, { buffer = true })
 end
 
+---- Config
 fzf_lua.setup({
   winopts = {
     window_on_create = function()
@@ -50,11 +51,12 @@ fzf_lua.setup({
     },
     rg_opts = [[--column --line-number --no-heading --color=always --smart-case -g '!Session.vim']],
   },
-  -- lsp = {
-  --   async_or_timeout = false,
-  -- },
 })
 
+---- TODO: LuaSnip require("luasnip").available()
+-- https://github.com/ibhagwan/fzf-lua/issues/57
+
+---- Keymaps
 vim.keymap.set("n", "+s", ":FzfLua<space>")
 
 vim.keymap.set("n", "+f", fzf_lua.live_grep)
