@@ -51,7 +51,7 @@ fzf_lua.setup({
     rg_opts = [[--column --line-number --no-heading --color=always --smart-case -g '!Session.vim']],
   },
   -- lsp = {
-  --   async = false, -- Asynchronous calls don't work with null-ls
+  --   async_or_timeout = false,
   -- },
 })
 
@@ -72,6 +72,7 @@ vim.keymap.set("n", "<leader>j", fzf_lua.git_status)
 vim.keymap.set("n", "<leader>o", fzf_lua.git_files)
 vim.keymap.set("n", "<leader>r", fzf_lua.btags)
 vim.keymap.set("n", "<leader>ñ", fzf_lua.blines)
+
 vim.keymap.set("n", "<leader>f", function()
   fzf_lua.grep({ no_esc = true, search = "\\w" })
 end)
