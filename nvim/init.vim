@@ -247,7 +247,7 @@ function! SubstituteOperator(type)
       call feedkeys(':%s/\v' . escape(@@, '/\') . "//g\<left>\<left>", 't')
       let @@ = saved_unnamed_register
     else
-      call feedkeys(":'<,'>s/\v//g\<left>\<left>\<left>", 't')
+      call feedkeys(":'<,'>s/\\v//g\<left>\<left>\<left>", 't')
     endif
   elseif a:type ==# 'char'
     let saved_unnamed_register = @@
@@ -255,7 +255,7 @@ function! SubstituteOperator(type)
     call feedkeys(':%s/\v' . escape(@@, '/\') . "//g\<left>\<left>", 't')
     let @@ = saved_unnamed_register
   elseif a:type ==# 'line'
-    call feedkeys(":'[,']s/\v//g\<left>\<left>\<left>", 't')
+    call feedkeys(":'[,']s/\\v//g\<left>\<left>\<left>", 't')
   else
     echo 'TODO: ' . a:type . ' substitute mode'
     return
@@ -753,7 +753,7 @@ function! GlobalSubstituteOperator(type)
       call feedkeys(':S!/\v' . escape(@@, '/\') . "//g\<left>\<left>", 't')
       let @@ = saved_unnamed_register
     else
-      call feedkeys(":S!/\v//g\<left>\<left>\<left>", 't')
+      call feedkeys(":S!/\\v//g\<left>\<left>\<left>", 't')
     endif
   elseif a:type ==# 'char'
     let saved_unnamed_register = @@
@@ -761,7 +761,7 @@ function! GlobalSubstituteOperator(type)
     call feedkeys(':S!/\v' . escape(@@, '/\') . "//g\<left>\<left>", 't')
     let @@ = saved_unnamed_register
   elseif a:type ==# 'line'
-    call feedkeys(":S!/\v//g\<left>\<left>\<left>", 't')
+    call feedkeys(":S!/\\v//g\<left>\<left>\<left>", 't')
   else
     echo 'TODO: ' . a:type . ' substitute mode'
     return
