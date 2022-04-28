@@ -134,19 +134,19 @@ require("packer").startup(function()
     config = [[require('plugins.lualine')]],
     requires = "kyazdani42/nvim-web-devicons",
   })
-  -- use {
-  -- 'nvim-telescope/telescope-fzf-native.nvim',
-  -- run = 'make'
-  -- }
+  -- use({
+  --   "nvim-telescope/telescope-fzf-native.nvim",
+  --   run = "make",
+  -- })
   -- use {
   -- 'nvim-telescope/telescope-github.nvim',
   -- requires = 'nvim-lua/plenary.nvim'
   -- }
-  -- use {
-  -- 'nvim-telescope/telescope.nvim',
-  -- config = [[require('plugins.telescope')]],
-  -- requires = 'nvim-lua/plenary.nvim'
-  -- }
+  -- use({
+  --   "nvim-telescope/telescope.nvim",
+  --   config = [[require('plugins.telescope')]],
+  --   requires = "nvim-lua/plenary.nvim",
+  -- })
   use({
     "nvim-treesitter/nvim-treesitter",
     config = [[require('plugins.treesitter')]],
