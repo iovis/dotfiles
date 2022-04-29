@@ -7,8 +7,10 @@ let g:mapleader = "\<Space>"
 lua <<EOF
 -- reload plugin configuration
 for name,_ in pairs(package.loaded) do
-  if name:match('^plugins') then
+  -- I hate lua pattern matching with a passion: no support for (a|b)
+  if name:match('^plugins') or name:match('^diagnostics') or name:match('^utils') then
     package.loaded[name] = nil
+    require(name)
   end
 end
 
