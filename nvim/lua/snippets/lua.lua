@@ -19,7 +19,6 @@ return {
     "fmt",
     fmta("fmt(<>, {<>})", {
       c(1, {
-        sn(nil, fmt([["{}"]], i(1))),
         sn(
           nil,
           fmt(
@@ -31,6 +30,7 @@ return {
             i(1)
           )
         ),
+        sn(nil, fmt([["{}"]], i(1))),
       }),
       i(0),
     })
