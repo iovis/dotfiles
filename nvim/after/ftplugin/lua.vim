@@ -1,1 +1,1 @@
-nnoremap <leader>so :luafile %<cr>
+nnoremap <leader>so :source %<cr>
