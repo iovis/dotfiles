@@ -58,7 +58,7 @@ M.make_floating_window = function(custom_window_config, height_ratio, width_rati
 end
 
 M.system = function(cmd)
-  return vim.split(vim.fn.system(cmd), "\n")
+  return io.popen(cmd):read("*a"):gsub("\n$", "")
 end
 
 M.is_executable = function(cmd)
@@ -77,6 +77,17 @@ M.has_value = function(value, table)
   end
 
   return false
+end
+
+M.is_empty = function(str)
+  return str == nil or str == ''
+end
+
+-- my title => My Title
+M.titleize = function(str)
+  return str:gsub("(%l)(%w*)", function(a, b)
+    return string.upper(a) .. b
+  end)
 end
 
 return M
