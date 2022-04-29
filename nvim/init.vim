@@ -104,6 +104,7 @@ tnoremap <c-j> <c-\><c-n><C-w>j
 tnoremap <c-k> <c-\><c-n><C-w>k
 tnoremap <c-l> <c-\><c-n><C-w>l
 tnoremap kj    <c-\><c-n>
+tnoremap KJ    <c-\><c-n>
 
 " Buffer config
 augroup buffer_config
@@ -132,6 +133,7 @@ let g:loaded_perl_provider = 0
 
 " bindings {{{ "
 inoremap kj <Esc>
+inoremap KJ <Esc>
 nnoremap <space> <nop>
 xnoremap <space> <nop>
 

@@ -66,6 +66,7 @@ if has('nvim')
   tnoremap <c-k> <c-\><c-n><C-w>k
   tnoremap <c-l> <c-\><c-n><C-w>l
   tnoremap kj    <c-\><c-n>
+  tnoremap KJ    <c-\><c-n>
 else
   " Mouse support
   set ttymouse=xterm2
@@ -94,6 +95,7 @@ augroup end
 
 " bindings {{{ "
 inoremap kj <Esc>
+inoremap KJ <Esc>
 let mapleader = "\<Space>"
 nnoremap <space> <nop>
 xnoremap <space> <nop>
