@@ -1,4 +1,5 @@
 return {
+  s("u", t('local u = require("utils")')),
   s(
     "snipinit",
     fmta(
