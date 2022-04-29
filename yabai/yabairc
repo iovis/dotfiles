@@ -71,5 +71,6 @@ yabai -m rule --add app="^System Information$" manage=off
 yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^TablePlus$" manage=off
 yabai -m rule --add app="^Things" manage=off
+yabai -m rule --add app="^Tower$" manage=off
 yabai -m rule --add app="^WhatsApp$" manage=off
 yabai -m rule --add app="^zoom.us$" manage=off
