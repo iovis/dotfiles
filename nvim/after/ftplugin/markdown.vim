@@ -60,7 +60,7 @@ nnoremap <buffer> <silent> <Plug>ToggleCheckbox
       \  call repeat#set("\<Plug>ToggleCheckbox")<cr>
 
 nmap <buffer> <silent> yox <Plug>ToggleCheckbox
-xmap <buffer> <silent> yox :call ToggleCheckbox()<cr>
+" xmap <buffer> <silent> yox :call ToggleCheckbox()<cr>  --> makes yank slow :(
 
 function! ToggleCheckbox()
   let line = getline('.')
