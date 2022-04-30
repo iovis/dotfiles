@@ -205,18 +205,25 @@ nnoremap <silent> g4 :set shiftwidth=4 softtabstop=4 expandtab \| retab<cr>gg=G
 nnoremap & g&
 nnoremap +c :cd %:p:h<cr>
 nnoremap M <c-w>o
-nnoremap Q @q
 nnoremap U :undolist<cr>:undo<space>
 nnoremap Y y$
-nnoremap Ñ ?
-nnoremap ñ /
-noremap ' `
-noremap <silent> <leader><cr> :noh<cr>
-noremap H g^
-noremap L g$
+
+nnoremap ' `
+xnoremap ' `
+nnoremap <silent> <leader><cr> :noh<cr>
+xnoremap <silent> <leader><cr> :noh<cr>
+nnoremap H g^
+onoremap H g^
+xnoremap H g^
+nnoremap L g$
+onoremap L g$
+xnoremap L g$
+nnoremap Q @q
 xnoremap <silent> Q :norm @q<cr>
-xnoremap Ñ ?
+nnoremap ñ /
 xnoremap ñ /
+nnoremap Ñ ?
+xnoremap Ñ ?
 
 " buffer closing {{{ "
 " Don't close if there are changes (toggle removing split or not)
@@ -727,12 +734,17 @@ nmap <m-right> <Plug>ResizeRight
 let g:sneak#use_ic_scs = 1
 let g:sneak#label = 1
 
-map f <Plug>Sneak_s
-map F <Plug>Sneak_S
+nmap f <Plug>Sneak_s
+omap f <Plug>Sneak_s
+xmap f <Plug>Sneak_s
+
+nmap F <Plug>Sneak_S
+omap F <Plug>Sneak_S
+xmap F <Plug>Sneak_S
 
 xmap t <Plug>Sneak_t
-xmap T <Plug>Sneak_T
 omap t <Plug>Sneak_t
+xmap T <Plug>Sneak_T
 omap T <Plug>Sneak_T
 
 hi Sneak      ctermbg=110 ctermfg=235 guibg=#8fafd7 guifg=#262626 cterm=NONE gui=NONE
