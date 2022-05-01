@@ -46,7 +46,12 @@ M.on_attach = function(client, bufnr)
   buf_nmap("<leader>lr", vim.lsp.buf.rename)
   buf_xmap("<leader>lr", vim.lsp.buf.rename)
 
+  ---- Symbols
+  buf_nmap("<leader>r", require("fzf-lua").lsp_document_symbols)
+  buf_nmap("<leader>R", require("fzf-lua").lsp_workspace_symbols)
+
   ---- Diagnostics
+  buf_nmap("<leader>ld", require("fzf-lua").lsp_workspace_diagnostics)
   buf_nmap("<left>", vim.diagnostic.goto_prev)
   buf_nmap("<right>", vim.diagnostic.goto_next)
 
