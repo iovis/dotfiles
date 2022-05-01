@@ -1,1 +1,1 @@
-nnoremap <leader>so :source %<cr>
+nnoremap <buffer> <leader>so :source %<cr>
