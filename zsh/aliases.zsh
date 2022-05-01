@@ -116,6 +116,10 @@ alias crr="cargo run --release --"
 alias ct="cargo test"
 alias cw="cargo watch -x check -x test"
 
+ctn() {
+  cargo test $1 -- --nocapture
+}
+
 ## tmux
 alias ta='tmux attach -t'
 alias tad='tmux attach -d -t'
