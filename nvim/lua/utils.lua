@@ -57,8 +57,20 @@ M.make_floating_window = function(custom_window_config, height_ratio, width_rati
   return winnr, bufnr
 end
 
-M.system = function(cmd)
-  return io.popen(cmd):read("*a"):gsub("\n$", "")
+M.system = function(cmd, raw)
+  local f = assert(io.popen(cmd, "r"))
+  local s = assert(f:read("*a"))
+  f:close()
+
+  if raw then
+    return s
+  end
+
+  s = string.gsub(s, "^%s+", "")
+  s = string.gsub(s, "%s+$", "")
+  s = string.gsub(s, "[\n\r]+", " ")
+
+  return s
 end
 
 M.is_executable = function(cmd)
@@ -80,7 +92,7 @@ M.has_value = function(value, table)
 end
 
 M.is_empty = function(str)
-  return str == nil or str == ''
+  return str == nil or str == ""
 end
 
 -- my title => My Title
