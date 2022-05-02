@@ -187,7 +187,6 @@ require("packer").startup(function()
     "L3MON4D3/LuaSnip",
     config = [[require('plugins.luasnip')]],
     requires = {
-      "rafamadriz/friendly-snippets",
       "saadparwaiz1/cmp_luasnip",
     },
   })

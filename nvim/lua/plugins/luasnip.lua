@@ -15,17 +15,20 @@ luasnip.config.set_config({
     },
   },
   ft_func = ft_functions.from_pos_or_filetype,
+  store_selection_keys = '<c-j>', -- Mapping to visually select text to be expanded with $TM_SELECTED_TEXT
   updateevents = "TextChanged,TextChangedI",
 })
 
 ---- Load Snippets
 require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip.loaders.from_snipmate").lazy_load()
 require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/lua/snippets" })
 
 ---- Language config
-luasnip.filetype_extend("ruby", { "rails" })
 luasnip.filetype_extend("gitcommit", { "markdown" })
 luasnip.filetype_extend("pullrequest", { "markdown", "gitcommit" })
+luasnip.filetype_extend("scss", { "css" })
+luasnip.filetype_extend("typescript", { "javascript" })
 
 ---- Keymaps
 -- Expansion
