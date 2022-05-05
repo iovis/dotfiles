@@ -63,9 +63,6 @@ fzf_lua.setup({
   },
 })
 
----- TODO: LuaSnip require("luasnip").available()
--- https://github.com/ibhagwan/fzf-lua/issues/57
-
 ---- Keymaps
 vim.keymap.set("n", "+s", ":FzfLua<space>")
 
@@ -87,6 +84,23 @@ vim.keymap.set("n", "<leader>ñ", fzf_lua.blines)
 -- Edit dotfiles
 vim.keymap.set("n", "<leader>ue", function()
   fzf_lua.files({ cwd = "~/.dotfiles/" })
+end)
+
+-- Edit snippets
+local original_fd_opts = require("fzf-lua.config").globals.files.fd_opts
+local fd_opts_no_ignore = original_fd_opts
+  .. [[ --no-ignore --exclude '.keep' --exclude 'Session.vim' --exclude 'undo' ]]
+
+vim.keymap.set("n", "<leader>se", function()
+  local filetype = require("luasnip.extras.filetype_functions").from_pos_or_filetype()[1]
+
+  -- fzf_query: 'snippets 'all | '<filetype>.
+  local query = [["'snippets 'all | ']] .. filetype .. '."'
+
+  fzf_lua.files({
+    cwd = "~/.dotfiles/nvim/",
+    fzf_opts = { ["--query"] = query },
+  })
 end)
 
 -- Files (no gitignore)

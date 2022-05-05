@@ -58,7 +58,6 @@ end)
 
 -- Edit
 vim.keymap.set("n", "<leader>ss", "<cmd>LuaSnipListAvailable<cr>")
-vim.keymap.set("n", "<leader>ue", require("luasnip.loaders.from_lua").edit_snippet_files)
 
 -- On the fly snippets (use snippet in register s). Use $word as placeholder.
 -- Example: Hello $World!
