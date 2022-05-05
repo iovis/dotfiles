@@ -1,6 +1,7 @@
 local fzf_lua = require("fzf-lua")
 local original_fd_opts = require("fzf-lua.config").globals.files.fd_opts
 -- local original_rg_opts = require("fzf-lua.config").globals.grep.rg_opts
+local fzf_actions = require("fzf-lua.actions")
 
 local function buf_tmap(lhs, rhs)
   vim.keymap.set("t", lhs, rhs, { buffer = true })
@@ -22,13 +23,17 @@ fzf_lua.setup({
   keymap = {
     builtin = {
       ["º"] = "toggle-preview",
-      ["<F1>"] = "preview-page-reset",
+      ["<c-h>"] = "toggle-help",
       -- defaults (overridden otherwise)
+      ["<F1>"] = "toggle-help",
       ["<F2>"] = "toggle-fullscreen",
       ["<F3>"] = "toggle-preview-wrap",
       ["<F4>"] = "toggle-preview",
       ["<F5>"] = "toggle-preview-ccw",
       ["<F6>"] = "toggle-preview-cw",
+      ["<S-down>"] = "preview-page-down",
+      ["<S-up>"] = "preview-page-up",
+      ["<S-left>"] = "preview-page-reset",
     },
   },
   files = {
@@ -50,6 +55,16 @@ fzf_lua.setup({
       ["--nth"] = "4..",
     },
     rg_opts = [[--column --line-number --no-heading --color=always --smart-case -g '!Session.vim']],
+  },
+  actions = {
+    files = {
+      ["default"] = fzf_actions.file_edit,
+      -- defaults (overriden otherwise)
+      ["ctrl-s"] = fzf_actions.file_split,
+      ["ctrl-v"] = fzf_actions.file_vsplit,
+      ["ctrl-t"] = fzf_actions.file_tabedit,
+      ["alt-q"] = fzf_actions.file_sel_to_qf,
+    },
   },
 })
 
