@@ -84,6 +84,11 @@ vim.keymap.set("n", "<leader>o", fzf_lua.files)
 vim.keymap.set("n", "<leader>r", fzf_lua.btags)
 vim.keymap.set("n", "<leader>ñ", fzf_lua.blines)
 
+-- Edit dotfiles
+vim.keymap.set("n", "<leader>ue", function()
+  fzf_lua.files({ cwd = "~/.dotfiles/" })
+end)
+
 -- Files (no gitignore)
 vim.keymap.set("n", "<leader>O", function()
   fzf_lua.files({ fd_opts = fd_opts_no_ignore })
