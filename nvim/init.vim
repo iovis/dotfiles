@@ -110,6 +110,7 @@ tnoremap <c-k> <c-\><c-n><C-w>k
 tnoremap <c-l> <c-\><c-n><C-w>l
 tnoremap kj    <c-\><c-n>
 tnoremap KJ    <c-\><c-n>
+tnoremap Kj    <c-\><c-n>
 
 " Buffer config
 augroup buffer_config
@@ -139,6 +140,7 @@ let g:loaded_perl_provider = 0
 " bindings {{{ "
 inoremap kj <Esc>
 inoremap KJ <Esc>
+inoremap Kj <Esc>
 nnoremap <space> <nop>
 xnoremap <space> <nop>
 
@@ -152,6 +154,8 @@ cnoremap <expr> <tab>   getcmdtype() =~ '[?/]' ? "<c-g>" : "<c-z>"
 cnoremap <expr> <s-tab> getcmdtype() =~ '[?/]' ? "<c-t>" : "<s-tab>"
 
 " QOL remappings
+cnoremap %h <c-r>=fnameescape(expand('%:h')).'/'<cr>
+cnoremap %t <c-r>=fnameescape(expand('%:t'))<cr>
 cnoremap <c-a> <c-b>
 cnoremap <c-j> <down>
 cnoremap <c-k> <up>
