@@ -46,6 +46,7 @@ require("packer").startup(function()
   use("nvim-treesitter/nvim-treesitter-textobjects")
   use("nvim-treesitter/playground")
   use("pbrisbin/vim-mkdir")
+  use("rrethy/nvim-base16")
   use("rrethy/nvim-treesitter-endwise")
   use("schickling/vim-bufonly")
   use("tommcdo/vim-lion")
@@ -120,10 +121,6 @@ require("packer").startup(function()
     "lewis6991/gitsigns.nvim",
     config = [[require('plugins.gitsigns')]],
     requires = "nvim-lua/plenary.nvim",
-  })
-  use({
-    "norcalli/nvim-base16.lua",
-    config = [[require('plugins.nvim-base16')]],
   })
   use({
     "numToStr/Comment.nvim",

@@ -23,6 +23,8 @@ EOF
 " config {{{ "
 filetype plugin indent on
 
+colorscheme base16-default-dark
+
 set autoindent
 set autoread
 set autowriteall
@@ -464,6 +466,15 @@ augroup highlighted_yank
   au!
   au TextYankPost * silent! lua vim.highlight.on_yank { higroup="HighlightedyankRegion", timeout=500 }
 augroup END
+
+hi LineNr     guifg=#585858 guibg=#282828
+hi SignColumn guibg=#282828
+hi VertSplit  guifg=#282828 guibg=#282828
+
+hi GitGutterAdd          guibg=#282828
+hi GitGutterChange       guibg=#282828
+hi GitGutterDelete       guibg=#282828
+hi GitGutterChangeDelete guibg=#282828
 " }}} Highlights "
 
 " redir {{{ "
