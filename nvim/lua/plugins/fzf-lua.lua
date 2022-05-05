@@ -1,6 +1,4 @@
 local fzf_lua = require("fzf-lua")
-local original_fd_opts = require("fzf-lua.config").globals.files.fd_opts
--- local original_rg_opts = require("fzf-lua.config").globals.grep.rg_opts
 local fzf_actions = require("fzf-lua.actions")
 
 local function buf_tmap(lhs, rhs)
@@ -35,9 +33,6 @@ fzf_lua.setup({
       ["<S-up>"] = "preview-page-up",
       ["<S-left>"] = "preview-page-reset",
     },
-  },
-  files = {
-    fd_opts = original_fd_opts .. [[ --no-ignore --exclude '.keep' --exclude 'Session.vim']],
   },
   git = {
     icons = {
@@ -80,16 +75,21 @@ vim.keymap.set("n", "+r", fzf_lua.registers)
 vim.keymap.set("n", "<c-p>", fzf_lua.commands)
 vim.keymap.set("n", "<leader><leader>", fzf_lua.buffers)
 vim.keymap.set("n", "<leader>A", fzf_lua.filetypes)
-vim.keymap.set("n", "<leader>O", fzf_lua.files)
 vim.keymap.set("n", "<leader>R", fzf_lua.tags)
 vim.keymap.set("n", "<leader>gL", fzf_lua.git_commits)
 vim.keymap.set("n", "<leader>gco", fzf_lua.git_branches)
 vim.keymap.set("n", "<leader>gh", fzf_lua.git_bcommits)
 vim.keymap.set("n", "<leader>j", fzf_lua.git_status)
-vim.keymap.set("n", "<leader>o", fzf_lua.git_files)
+vim.keymap.set("n", "<leader>o", fzf_lua.files)
 vim.keymap.set("n", "<leader>r", fzf_lua.btags)
 vim.keymap.set("n", "<leader>ñ", fzf_lua.blines)
 
+-- Files (no gitignore)
+vim.keymap.set("n", "<leader>O", function()
+  fzf_lua.files({ fd_opts = fd_opts_no_ignore })
+end)
+
+-- Ripgrep search
 vim.keymap.set("n", "<leader>f", function()
   fzf_lua.grep({ no_esc = true, search = "\\w" })
 end)
