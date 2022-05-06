@@ -44,7 +44,7 @@ set hlsearch
 set ignorecase
 set inccommand=split
 set incsearch
-set laststatus=2
+set laststatus=3 " statusline mode
 set lazyredraw  " Try to not draw while doing macros (helps with scrolling performance)
 set linespace=2
 set listchars=tab:>-,trail:-,nbsp:+,eol:$
