@@ -1,5 +1,6 @@
 local cmp = require("cmp")
 
+---- Plugins
 -- Pretty LSP menu
 local lspkind = require("lspkind")
 lspkind.init()
@@ -7,6 +8,7 @@ lspkind.init()
 -- git
 require("cmp_git").setup()
 
+---- Setup
 cmp.setup({
   mapping = {
     ["<C-b>"] = cmp.mapping.complete(),
@@ -35,7 +37,7 @@ cmp.setup({
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "luasnip" },
-    { name = "buffer" },
+    { name = "buffer", keyword_length = 5 },
     { name = "path" },
   },
   snippet = {
@@ -48,7 +50,7 @@ cmp.setup({
   },
 })
 
--- Colors
+---- Colors
 local u = require("utils")
 
 -- gray
