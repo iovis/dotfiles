@@ -84,6 +84,10 @@ require("packer").startup(function()
     cmd = "StartupTime",
   })
   use({
+    "feline-nvim/feline.nvim",
+    config = [[require('plugins.feline')]],
+  })
+  use({
     "ibhagwan/fzf-lua",
     config = [[require('plugins.fzf-lua')]],
     requires = { "vijaymarupudi/nvim-fzf", "kyazdani42/nvim-web-devicons" },
@@ -125,11 +129,6 @@ require("packer").startup(function()
   use({
     "numToStr/Comment.nvim",
     config = [[require('plugins.comment')]],
-  })
-  use({
-    "nvim-lualine/lualine.nvim",
-    config = [[require('plugins.lualine')]],
-    requires = "kyazdani42/nvim-web-devicons",
   })
   -- use({
   --   "nvim-telescope/telescope-fzf-native.nvim",
