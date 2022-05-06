@@ -40,6 +40,15 @@ local get_pr_title = function()
 end
 
 return {
+  -- Labels
+  s("brew", t("[brew] ")),
+  s("gem", t("[gem] ")),
+  s("pip", t("[pip] ")),
+  s("skhd", t("[skhd] ")),
+  s("vim", t("[vim] ")),
+  s("yabai", t("[yabai] ")),
+  s("zsh", t("[zsh] ")),
+  -- Templates
   s(
     "master",
     fmt(
