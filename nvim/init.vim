@@ -474,8 +474,8 @@ augroup END
 hi CursorLineNr guifg=#b8b8b8 guibg=none    cterm=none gui=bold
 hi LineNr       guifg=#585858
 
-hi StatusLine   guifg=#d8d8d8 guibg=#363a41 cterm=none
-hi StatusLineNC guifg=#b8b8b8 guibg=#363a41 cterm=none
+hi StatusLine   guifg=#d8d8d8 guibg=#212326 cterm=none
+hi StatusLineNC guifg=#b8b8b8 guibg=#212326 cterm=none
 
 hi VertSplit    guifg=#383838 guibg=none cterm=none
 " }}} Highlights "
