@@ -10,10 +10,10 @@ vim.api.nvim_create_autocmd("DiagnosticChanged", {
   desc = "Set diagnostics on location list",
 })
 
-u.highlight("DiagnosticSignError", { fg = "#ab4642", bg = "#282828" })
-u.highlight("DiagnosticSignWarn",  { fg = "#f7ca88", bg = "#282828" })
-u.highlight("DiagnosticSignInfo",  { fg = "#7cafc2", bg = "#282828" })
-u.highlight("DiagnosticSignHint",  { fg = "#7cafc2", bg = "#282828" })
+u.highlight("DiagnosticSignError", { fg = "#ab4642" })
+u.highlight("DiagnosticSignWarn",  { fg = "#f7ca88" })
+u.highlight("DiagnosticSignInfo",  { fg = "#7cafc2" })
+u.highlight("DiagnosticSignHint",  { fg = "#7cafc2" })
 
 u.highlight("DiagnosticVirtualTextError", { fg = "#ab4642" })
 u.highlight("DiagnosticVirtualTextWarn",  { fg = "#f7ca88" })
