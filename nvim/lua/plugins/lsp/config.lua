@@ -25,7 +25,7 @@ M.on_attach = function(client, bufnr)
   u.command("LspDiagNext", vim.diagnostic.goto_next)
   u.command("LspDiagPrev", vim.diagnostic.goto_prev)
   u.command("LspDiagQuickfix", vim.diagnostic.setqflist)
-  u.command("LspFormat", vim.lsp.buf.formatting)
+  u.command("LspFormat", vim.lsp.buf.formatting_sync)
   u.command("LspHover", vim.lsp.buf.hover)
   u.command("LspRangeAction", vim.lsp.buf.range_code_action)
   u.command("LspRename", vim.lsp.buf.rename)
@@ -62,8 +62,13 @@ M.on_attach = function(client, bufnr)
   -- })
 
   ---- Formatting
-  buf_nmap("<leader>b", vim.lsp.buf.formatting_sync, "vim.lsp.buf.formatting_sync")
-  buf_xmap("<leader>b", vim.lsp.buf.formatting_sync, "vim.lsp.buf.formatting_sync")
+  buf_nmap("<leader>b", function()
+    vim.lsp.buf.formatting_sync(nil, 2000)
+  end, "vim.lsp.buf.formatting_sync")
+
+  buf_xmap("<leader>b", function()
+    vim.lsp.buf.formatting_sync(nil, 2000)
+  end, "vim.lsp.buf.formatting_sync")
 
   ---- Document Highlights
   -- if client.resolved_capabilities.document_highlight then
