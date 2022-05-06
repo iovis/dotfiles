@@ -471,6 +471,7 @@ augroup highlighted_yank
   au TextYankPost * silent! lua vim.highlight.on_yank { higroup="HighlightedyankRegion", timeout=500 }
 augroup END
 
+hi FoldColumn guibg=#282828
 hi LineNr     guifg=#585858 guibg=#282828
 hi SignColumn guibg=#282828
 hi VertSplit  guifg=#282828 guibg=#282828
