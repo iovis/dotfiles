@@ -471,15 +471,13 @@ augroup highlighted_yank
   au TextYankPost * silent! lua vim.highlight.on_yank { higroup="HighlightedyankRegion", timeout=500 }
 augroup END
 
-hi FoldColumn guibg=#282828
-hi LineNr     guifg=#585858 guibg=#282828
-hi SignColumn guibg=#282828
-hi VertSplit  guifg=#282828 guibg=#282828
+hi CursorLineNr guifg=#b8b8b8 guibg=none    cterm=none gui=bold
+hi LineNr       guifg=#585858
 
-hi GitGutterAdd          guibg=#282828
-hi GitGutterChange       guibg=#282828
-hi GitGutterDelete       guibg=#282828
-hi GitGutterChangeDelete guibg=#282828
+hi StatusLine   guifg=#d8d8d8 guibg=#363a41 cterm=none
+hi StatusLineNC guifg=#b8b8b8 guibg=#363a41 cterm=none
+
+hi VertSplit    guifg=#383838 guibg=none cterm=none
 " }}} Highlights "
 
 " redir {{{ "
