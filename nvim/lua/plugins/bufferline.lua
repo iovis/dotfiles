@@ -8,9 +8,15 @@ bufferline.setup({
         highlight = "HighlightedyankRegion",
       },
     },
+    fill = {
+      guibg = {
+        attribute = "bg",
+        highlight = "Normal",
+      },
+    },
   },
   options = {
-    custom_filter = function(buf_number, _buf_numbers)
+    custom_filter = function(buf_number)
       -- filter out filetypes you don't want to see
       if vim.bo[buf_number].filetype ~= "qf" then
         return true
@@ -25,7 +31,7 @@ bufferline.setup({
     offsets = {
       {
         filetype = "NvimTree",
-        text = "File Explorer",
+        text = "",
         highlight = "Directory",
         text_align = "center",
       },
