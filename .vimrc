@@ -52,7 +52,7 @@ set wildignorecase
 set wildmenu
 set wildmode=full
 let &showbreak = '└ '
-let @/ = ""  " don't show search highlights when entering or resourcing vimrc
+let @/ = ''  " don't show search highlights when entering or resourcing vimrc
 
 if exists('&breakindent')
   set breakindent
@@ -542,29 +542,29 @@ function! CCR()
 
   command! -bar Z silent set more|delcommand Z
 
-  if getcmdtype() !~ ':'
+  if getcmdtype() !~? ':'
     return "\<CR>"
   endif
 
   if cmdline =~ filter_stub . '(ls|files|buffers)$'
     " like :ls but prompts for a buffer command
     return "\<CR>:b"
-  elseif cmdline =~ '\v\C/(#|nu|num|numb|numbe|number|l|li|lis|list)$'
+  elseif cmdline =~# '\v\C/(#|nu|num|numb|numbe|number|l|li|lis|list)$'
     " like :g//# but prompts for a command
     return "\<CR>:"
-  elseif cmdline =~ filter_stub . '(\%)*(#|nu|num|numb|numbe|number|l|li|lis|list)$'
+  elseif cmdline =~# filter_stub . '(\%)*(#|nu|num|numb|numbe|number|l|li|lis|list)$'
     " like :g//# but prompts for a command
     return "\<CR>:"
-  elseif cmdline =~ '\v\C^(dli|il)'
+  elseif cmdline =~# '\v\C^(dli|il)'
     " like :dlist or :ilist but prompts for a count for :djump or :ijump
-    return "\<CR>:" . cmdline[0] . "j  " . split(cmdline, " ")[1] . "\<S-Left>\<Left>"
-  elseif cmdline =~ filter_stub . '(cli)'
+    return "\<CR>:" . cmdline[0] . 'j  ' . split(cmdline, ' ')[1] . "\<S-Left>\<Left>"
+  elseif cmdline =~# filter_stub . '(cli)'
     " like :clist or :llist but prompts for an error/location number
     return "\<CR>:sil cc\<Space>"
-  elseif cmdline =~ filter_stub . '(lli)'
+  elseif cmdline =~# filter_stub . '(lli)'
     " like :clist or :llist but prompts for an error/location number
     return "\<CR>:sil ll\<Space>"
-  elseif cmdline =~ filter_stub . 'old'
+  elseif cmdline =~# filter_stub . 'old'
     " like :oldfiles but prompts for an old file to edit
     set nomore
     return "\<CR>:Z|e #<"
@@ -579,17 +579,17 @@ function! CCR()
   elseif cmdline =~ filter_stub . 'marks'
     " like :marks but prompts for a mark to jump to
     return "\<CR>:norm! `"
-  elseif cmdline =~ '\v\C^undol'
+  elseif cmdline =~# '\v\C^undol'
     " like :undolist but prompts for a change to undo
     return "\<CR>:u "
-  elseif cmdline =~ '\v\C^tabs'
+  elseif cmdline =~# '\v\C^tabs'
     set nomore
     return "\<CR>:Z| tabnext\<S-Left>"
-  elseif cmdline =~ '^\k\+$'
+  elseif cmdline =~# '^\k\+$'
     " handle cabbrevs gracefully
     " https://www.reddit.com/r/vim/comments/jgyqhl/nightly_hack_for_vimmers/
     return "\<C-]>\<CR>"
-  elseif cmdline =~ '\C^reg'
+  elseif cmdline =~# '\C^reg'
     " Added by me!
     return "\<CR>:norm \"p\<Left>"
   else
@@ -777,18 +777,18 @@ function! s:tabLineFile(bufnr)
   let file  = bufname(a:bufnr)
   let buftype = getbufvar(a:bufnr, '&buftype')
 
-  if buftype == 'help'
+  if buftype ==? 'help'
     let file = 'help:' . fnamemodify(file, ':t:r')
-  elseif buftype == 'quickfix'
+  elseif buftype ==? 'quickfix'
     let file = 'quickfix'
-  elseif buftype == 'nofile'
-    if file =~ '\/.'
+  elseif buftype ==? 'nofile'
+    if file =~? '\/.'
       let file = substitute(file, '.*\/\ze.', '', '')
     endif
   else
     let file = pathshorten(fnamemodify(file, ':p:~:.'))
 
-    if file == ''
+    if file ==? ''
       let file = '[No Name]'
     endif
 
@@ -933,7 +933,7 @@ nnoremap <silent> Ç :call ToggleList("Location List", 'l')<cr>
 " Version:      1.3
 " GetLatestVimScripts: 3695 1 :AutoInstall: commentary.vim
 
-if exists("g:loaded_commentary") || v:version < 700
+if exists('g:loaded_commentary') || v:version < 700
   finish
 endif
 let g:loaded_commentary = 1
@@ -1094,7 +1094,7 @@ endfunction
 " Version:      1.0
 " GetLatestVimScripts: 5671 1 :AutoInstall: vinegar.vim
 
-if exists("g:loaded_vinegar") || v:version < 700 || &cp
+if exists('g:loaded_vinegar') || v:version < 700 || &cp
   finish
 endif
 let g:loaded_vinegar = 1
@@ -1113,7 +1113,7 @@ let s:escape = 'substitute(escape(v:val, ".$~"), "*", ".*", "g")'
 let g:netrw_list_hide =
       \ join(map(split(&wildignore, ','), '"^".' . s:escape . '. "/\\=$"'), ',') . ',^\.\.\=/\=$' .
       \ (get(g:, 'netrw_list_hide', '')[-strlen(s:dotfiles)-1:-1] ==# s:dotfiles ? ','.s:dotfiles : '')
-if !exists("g:netrw_banner")
+if !exists('g:netrw_banner')
   let g:netrw_banner = 0
 endif
 unlet! s:netrw_up
@@ -1160,7 +1160,7 @@ augroup vinegar
 augroup END
 
 function! s:slash() abort
-  return !exists("+shellslash") || &shellslash ? '/' : '\'
+  return !exists('+shellslash') || &shellslash ? '/' : '\'
 endfunction
 
 function! s:absolutes(first, ...) abort
@@ -1225,7 +1225,7 @@ endfunction
 " no more windows in that direction, forwards the operation to tmux.
 " Additionally, <C-\> toggles between last active vim splits/tmux panes.
 
-if exists("g:loaded_tmux_navigator") || &cp || v:version < 700
+if exists('g:loaded_tmux_navigator') || &cp || v:version < 700
   finish
 endif
 let g:loaded_tmux_navigator = 1
@@ -1261,15 +1261,15 @@ command! TmuxNavigateUp call s:TmuxAwareNavigate('k')
 command! TmuxNavigateRight call s:TmuxAwareNavigate('l')
 command! TmuxNavigatePrevious call s:TmuxAwareNavigate('p')
 
-if !exists("g:tmux_navigator_save_on_switch")
+if !exists('g:tmux_navigator_save_on_switch')
   let g:tmux_navigator_save_on_switch = 0
 endif
 
-if !exists("g:tmux_navigator_disable_when_zoomed")
+if !exists('g:tmux_navigator_disable_when_zoomed')
   let g:tmux_navigator_disable_when_zoomed = 0
 endif
 
-if !exists("g:tmux_navigator_preserve_zoom")
+if !exists('g:tmux_navigator_preserve_zoom')
   let g:tmux_navigator_preserve_zoom = 0
 endif
 
@@ -1307,7 +1307,7 @@ augroup tmux_navigator
 augroup END
 
 function! s:NeedsVitalityRedraw()
-  return exists('g:loaded_vitality') && v:version < 704 && !has("patch481")
+  return exists('g:loaded_vitality') && v:version < 704 && !has('patch481')
 endfunction
 
 function! s:ShouldForwardNavigationBackToTmux(tmux_last_pane, at_tab_page_edge)
@@ -1319,7 +1319,7 @@ endfunction
 
 function! s:TmuxAwareNavigate(direction)
   let nr = winnr()
-  let tmux_last_pane = (a:direction == 'p' && s:tmux_is_last_pane)
+  let tmux_last_pane = (a:direction ==? 'p' && s:tmux_is_last_pane)
   if !tmux_last_pane
     call s:VimNavigate(a:direction)
   endif
