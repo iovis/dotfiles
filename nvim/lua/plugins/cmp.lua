@@ -4,6 +4,9 @@ local cmp = require("cmp")
 local lspkind = require("lspkind")
 lspkind.init()
 
+-- git
+require("cmp_git").setup()
+
 cmp.setup({
   mapping = {
     ["<C-b>"] = cmp.mapping.complete(),
@@ -18,6 +21,7 @@ cmp.setup({
     format = lspkind.cmp_format({
       with_text = true,
       menu = {
+        git = "[GIT]",
         nvim_lsp = "[LSP]",
         nvim_lua = "[LUA]",
         luasnip = "[Snip]",
