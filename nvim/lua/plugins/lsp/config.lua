@@ -13,11 +13,11 @@ vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
 vim.keymap.set("n", "<leader>lp", "<cmd>LspInstallInfo<cr>")
 
 M.on_attach = function(client, bufnr)
-  local function buf_nmap(lhs, rhs)
-    vim.keymap.set("n", lhs, rhs, { buffer = true })
+  local function buf_nmap(lhs, rhs, desc)
+    vim.keymap.set("n", lhs, rhs, { buffer = true, desc = desc })
   end
-  local function buf_xmap(lhs, rhs)
-    vim.keymap.set("x", lhs, rhs, { buffer = true })
+  local function buf_xmap(lhs, rhs, desc)
+    vim.keymap.set("x", lhs, rhs, { buffer = true, desc = desc })
   end
 
   ---- Commands
@@ -37,23 +37,23 @@ M.on_attach = function(client, bufnr)
 
   ---- Bindings
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_nmap("t", vim.lsp.buf.definition)
-  buf_nmap("gd", vim.lsp.buf.hover)
-  buf_nmap("+t", vim.lsp.buf.signature_help)
-  buf_nmap("T", vim.lsp.buf.references)
-  buf_nmap("+d", vim.diagnostic.open_float)
-  buf_nmap("<leader>la", vim.lsp.buf.code_action)
-  buf_nmap("<leader>lr", vim.lsp.buf.rename)
-  buf_xmap("<leader>lr", vim.lsp.buf.rename)
+  buf_nmap("t", vim.lsp.buf.definition, "vim.lsp.buf.definition")
+  buf_nmap("gd", vim.lsp.buf.hover, "vim.lsp.buf.hover")
+  buf_nmap("+t", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
+  buf_nmap("T", vim.lsp.buf.references, "vim.lsp.buf.references")
+  buf_nmap("+d", vim.diagnostic.open_float, "vim.diagnostic.open_float")
+  buf_nmap("<leader>la", vim.lsp.buf.code_action, "vim.lsp.buf.code_action")
+  buf_nmap("<leader>lr", vim.lsp.buf.rename, "vim.lsp.buf.rename")
+  buf_xmap("<leader>lr", vim.lsp.buf.rename, "vim.lsp.buf.rename")
 
   ---- Symbols
-  buf_nmap("<leader>r", require("fzf-lua").lsp_document_symbols)
-  buf_nmap("<leader>R", require("fzf-lua").lsp_workspace_symbols)
+  buf_nmap("<leader>r", require("fzf-lua").lsp_document_symbols, "fzf_lua.lsp_document_symbols")
+  buf_nmap("<leader>R", require("fzf-lua").lsp_workspace_symbols, "fzf_lua.lsp_workspace_symbols")
 
   ---- Diagnostics
-  buf_nmap("<leader>ld", require("fzf-lua").lsp_workspace_diagnostics)
-  buf_nmap("<left>", vim.diagnostic.goto_prev)
-  buf_nmap("<right>", vim.diagnostic.goto_next)
+  buf_nmap("<leader>ld", require("fzf-lua").lsp_workspace_diagnostics, "fzf_lua.lsp_workspace_diagnostics")
+  buf_nmap("<left>", vim.diagnostic.goto_prev, "vim.diagnostic.goto_prev")
+  buf_nmap("<right>", vim.diagnostic.goto_next, "vim.diagnostic.goto_next")
 
   -- show diagnostics of current line
   -- vim.api.nvim_create_autocmd("CursorHold", {
@@ -62,8 +62,8 @@ M.on_attach = function(client, bufnr)
   -- })
 
   ---- Formatting
-  buf_nmap("<leader>b", vim.lsp.buf.formatting_sync)
-  buf_xmap("<leader>b", vim.lsp.buf.formatting_sync)
+  buf_nmap("<leader>b", vim.lsp.buf.formatting_sync, "vim.lsp.buf.formatting_sync")
+  buf_xmap("<leader>b", vim.lsp.buf.formatting_sync, "vim.lsp.buf.formatting_sync")
 
   ---- Document Highlights
   -- if client.resolved_capabilities.document_highlight then

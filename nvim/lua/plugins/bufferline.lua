@@ -46,5 +46,5 @@ vim.keymap.set("n", "<s-tab>", "<cmd>BufferLineCyclePrev<cr>")
 for i = 1, 9 do
   vim.keymap.set("n", "<leader>" .. i, function()
     bufferline.go_to_buffer(i)
-  end)
+  end, { desc = "Go to buffer " .. i })
 end

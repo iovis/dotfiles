@@ -11,7 +11,7 @@ require("gitsigns").setup({
       vim.keymap.set("n", lhs, rhs, opts)
     end
 
-    nmap("+q", gs.toggle_current_line_blame)
+    nmap("+q", gs.toggle_current_line_blame, { desc = "toggle_current_line_blame" })
 
     nmap("]c", function()
       if vim.wo.diff then
@@ -23,7 +23,7 @@ require("gitsigns").setup({
       end)
 
       return "<Ignore>"
-    end, { expr = true })
+    end, { expr = true, desc = "next hunk" })
 
     nmap("[c", function()
       if vim.wo.diff then
@@ -35,6 +35,6 @@ require("gitsigns").setup({
       end)
 
       return "<Ignore>"
-    end, { expr = true })
+    end, { expr = true, desc = "previous hunk" })
   end,
 })

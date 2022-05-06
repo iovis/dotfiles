@@ -15,7 +15,7 @@ luasnip.config.set_config({
     },
   },
   ft_func = ft_functions.from_pos_or_filetype,
-  store_selection_keys = '<c-j>', -- Mapping to visually select text to be expanded with $TM_SELECTED_TEXT
+  store_selection_keys = "<c-j>", -- Mapping to visually select text to be expanded with $TM_SELECTED_TEXT
   updateevents = "TextChanged,TextChangedI",
 })
 
@@ -36,25 +36,25 @@ vim.keymap.set({ "i", "s" }, "<c-j>", function()
   if luasnip.expand_or_jumpable() then
     luasnip.expand_or_jump()
   end
-end)
+end, { desc = "expand or jump" })
 
 vim.keymap.set({ "i", "s" }, "<c-k>", function()
   if luasnip.jumpable(-1) then
     luasnip.jump(-1)
   end
-end)
+end, { desc = "jump back" })
 
 vim.keymap.set({ "i", "s" }, "<c-l>", function()
   if luasnip.choice_active() then
     luasnip.change_choice(1)
   end
-end)
+end, { desc = "next choice" })
 
 vim.keymap.set({ "i", "s" }, "<c-h>", function()
   if luasnip.choice_active() then
     luasnip.change_choice(-1)
   end
-end)
+end, { desc = "previous choice" })
 
 -- Edit
 vim.keymap.set("n", "<leader>ss", "<cmd>LuaSnipListAvailable<cr>")
@@ -64,4 +64,4 @@ vim.keymap.set("n", "<leader>ss", "<cmd>LuaSnipListAvailable<cr>")
 vim.keymap.set("x", "<c-s>", '"sc<cmd>lua require("luasnip.extras.otf").on_the_fly()<cr>')
 vim.keymap.set("i", "<c-s>", function()
   require("luasnip.extras.otf").on_the_fly("s")
-end)
+end, { desc = "expand on the fly snippet" })
