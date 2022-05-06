@@ -1,11 +1,16 @@
 --recurse=yes
 --tag-relative=yes
 
+--exclude=*.css
 --exclude=*.html
+--exclude=*.js
 --exclude=*.json
 --exclude=*.log
---exclude=*.min.css
---exclude=*.min.js
+--exclude=*.md
+--exclude=*.rake
+--exclude=*.scss
+--exclude=*.svg
+--exclude=*.yml
 --exclude=*_spec.rb
 --exclude=.git
 --exclude=.idea

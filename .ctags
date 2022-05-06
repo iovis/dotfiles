@@ -1,11 +1,24 @@
 --recurse=yes
 --tag-relative=yes
 
+--exclude=*.css
+--exclude=*.html
+--exclude=*.js
+--exclude=*.json
+--exclude=*.log
+--exclude=*.md
+--exclude=*.rake
+--exclude=*.scss
+--exclude=*.svg
+--exclude=*.yml
+--exclude=*_spec.rb
 --exclude=.git
 --exclude=.idea
 --exclude=.sass-cache
 --exclude=.tmp
 --exclude=.vscode
---exclude=dist
---exclude=tmp
 --exclude=bower_components
+--exclude=dist
+--exclude=migrate
+--exclude=node_modules
+--exclude=tmp
