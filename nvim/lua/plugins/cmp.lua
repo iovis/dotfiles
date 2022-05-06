@@ -23,12 +23,13 @@ cmp.setup({
     format = lspkind.cmp_format({
       with_text = true,
       menu = {
+        buffer = "[Buf]",
         git = "[GIT]",
+        luasnip = "[Snip]",
         nvim_lsp = "[LSP]",
         nvim_lua = "[LUA]",
-        luasnip = "[Snip]",
-        buffer = "[Buf]",
         path = "[Path]",
+        tags = "[TAG]",
       },
     }),
   },
@@ -48,6 +49,13 @@ cmp.setup({
   experimental = {
     ghost_text = true,
   },
+})
+
+---- Filetypes
+cmp.setup.filetype("ruby", {
+  sources = cmp.config.sources({
+    { name = "tags" },
+  }),
 })
 
 ---- Colors

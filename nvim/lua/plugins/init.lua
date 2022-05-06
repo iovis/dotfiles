@@ -177,6 +177,7 @@ require("packer").startup(function()
       "hrsh7th/cmp-path",
       "onsails/lspkind-nvim",
       "petertriho/cmp-git",
+      "quangnguyen30192/cmp-nvim-tags",
     },
   })
 
