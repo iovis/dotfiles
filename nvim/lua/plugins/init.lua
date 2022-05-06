@@ -172,11 +172,11 @@ require("packer").startup(function()
     config = [[require('plugins.cmp')]],
     requires = {
       "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lua",
-      "petertriho/cmp-git",
+      "hrsh7th/cmp-path",
       "onsails/lspkind-nvim",
+      "petertriho/cmp-git",
     },
   })
 
