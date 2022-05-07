@@ -8,12 +8,6 @@ bufferline.setup({
         highlight = "HighlightedyankRegion",
       },
     },
-    fill = {
-      guibg = {
-        attribute = "bg",
-        highlight = "Normal",
-      },
-    },
   },
   options = {
     custom_filter = function(buf_number)
