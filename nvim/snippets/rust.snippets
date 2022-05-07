@@ -146,7 +146,7 @@ snippet for "for ... in ... loop"
 	}
 # Struct
 snippet st "Struct definition"
-	struct ${1:`substitute(vim_snippets#Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`} {
+	struct ${1} {
 		${0}
 	}
 snippet impl "Struct/Trait implementation"
