@@ -129,6 +129,7 @@ alias tkss='tmux kill-session -t'
 alias tksv='tmux kill-server'
 alias tl='tmux list-sessions'
 alias tm="tmux attach || tmux new-session"
+alias tmsg="tmux display-message"
 alias ts='tmux new-session -s'
 
 ## rsync
