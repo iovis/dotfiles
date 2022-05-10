@@ -15,37 +15,46 @@
   clean = git media clean %f
   smudge = git media smudge %f
   required = true
-[user]
-  name = David Marchante
-  email = davidmarchan@gmail.com
-[core]
-  excludesfile = ~/.gitignore_global
-  autocrlf = input
-[merge]
-  tool = nvimdiff
-[mergetool]
-  prompt = false
-[mergetool "nvimdiff"]
-  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
-[difftool]
-  prompt = false
-  keepBackup = false
-[diff]
-  tool = nvimdiff
-  colorMoved = default
-[difftool "nvimdiff"]
-  cmd = nvim -d $LOCAL $REMOTE
-[push]
-  default = simple
-[color]
-  ui = auto
-[pull]
-  rebase = true
-[credential]
-  helper = osxkeychain
 [filter "lfs"]
   clean = git-lfs clean %f
   smudge = git-lfs smudge %f
   required = true
+[user]
+  name = David Marchante
+  email = davidmarchan@gmail.com
+[core]
+  autocrlf = input
+  excludesfile = ~/.gitignore_global
+  pager = delta
+[interactive]
+  diffFilter = delta --color-only
+[push]
+  default = simple
+[pull]
+  rebase = true
+[merge]
+  conflictstyle = diff3
 [rebase]
   autosquash = true
+[mergetool]
+  prompt = false
+[mergetool "nvimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[diff]
+  tool = nvimdiff
+  colorMoved = default
+[difftool]
+  prompt = false
+  keepBackup = false
+[difftool "nvimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE
+[color]
+  ui = auto
+[credential]
+  helper = osxkeychain
+[delta]
+  light = false
+  navigate = true  # use n and N to move between diff sections
+  side-by-side = true
+  line-numbers = true
+  syntax-theme = base16

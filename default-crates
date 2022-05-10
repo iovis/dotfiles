@@ -2,6 +2,7 @@ bat
 cargo-edit
 exa
 fd-find
+git-delta
 hexyl
 hyperfine
 ripgrep

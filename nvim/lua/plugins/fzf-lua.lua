@@ -61,6 +61,11 @@ fzf_lua.setup({
       ["alt-q"] = fzf_actions.file_sel_to_qf,
     },
   },
+  previewers = {
+    git_diff = {
+      pager = "delta",
+    },
+  },
 })
 
 ---- Keymaps
