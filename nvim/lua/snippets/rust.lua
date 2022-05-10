@@ -11,11 +11,11 @@ local rust_fn = function()
         fname = i(1, "fname"),
         args = i(2),
         ret_type = c(3, {
-          t(""),
           {
             t(" -> "),
             i(1),
           },
+          t(""),
         }),
         body = i(4, "unimplemented!()"),
       }
