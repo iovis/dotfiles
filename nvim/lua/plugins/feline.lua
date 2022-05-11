@@ -91,10 +91,6 @@ local icon_styles = {
 local separator_style = icon_styles["round"]
 
 ---- Components
-local components = {
-  active = {},
-}
-
 -- Main icon
 local main_icon = {
   provider = separator_style.main_icon,
@@ -114,19 +110,21 @@ local main_icon = {
 }
 
 -- File name
+local file_name_provider = function()
+  local filename = vim.fn.expand("%:t")
+  local extension = vim.fn.expand("%:e")
+  local icon = require("nvim-web-devicons").get_icon(filename, extension)
+
+  if icon == nil then
+    icon = " "
+    return icon
+  end
+
+  return " " .. icon .. " " .. filename .. " "
+end
+
 local file_name = {
-  provider = function()
-    local filename = vim.fn.expand("%:t")
-    local extension = vim.fn.expand("%:e")
-    local icon = require("nvim-web-devicons").get_icon(filename, extension)
-
-    if icon == nil then
-      icon = " "
-      return icon
-    end
-
-    return " " .. icon .. " " .. filename .. " "
-  end,
+  provider = file_name_provider,
 
   hl = {
     fg = colors.white,
@@ -136,6 +134,20 @@ local file_name = {
   right_sep = {
     str = separator_style.right,
     hl = { fg = colors.lightbg, bg = colors.lightbg2 },
+  },
+}
+
+local file_name_inactive = {
+  provider = file_name_provider,
+
+  hl = {
+    fg = colors.grey_fg2,
+    bg = colors.lightbg2,
+  },
+
+  right_sep = {
+    str = separator_style.right,
+    hl = { fg = colors.lightbg2, bg = colors.lightbg2 },
   },
 }
 
@@ -371,6 +383,14 @@ local separator_right2 = {
   },
 }
 
+local separator_right3 = {
+  provider = "   " .. separator_style.left,
+  hl = {
+    fg = colors.lightbg2,
+    bg = colors.statusline_bg,
+  },
+}
+
 -- Position
 local position_icon = {
   provider = separator_style.position_icon,
@@ -438,6 +458,12 @@ add_table(right, separator_right2)
 add_table(right, position_icon)
 add_table(right, current_line)
 
+--- Inactive
+local left_inactive = {}
+add_table(left_inactive, separator_right3)
+add_table(left_inactive, file_name_inactive)
+add_table(left_inactive, dir_name)
+
 ---- Setup
 feline.setup({
   theme = {
@@ -448,11 +474,11 @@ feline.setup({
     active = {
       left,
       middle,
-      right
+      right,
     },
     inactive = {
-      -- TODO: set components when using laststatus=2
-    }
+      left_inactive,
+    },
   },
-  force_inactive = {}, -- Still render the statusline in things like nvim-tree
+  -- force_inactive = {}, -- Still render the statusline in things like nvim-tree
 })

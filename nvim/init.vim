@@ -44,7 +44,7 @@ set hlsearch
 set ignorecase
 set inccommand=split
 set incsearch
-set laststatus=3 " statusline mode
+set laststatus=2 " statusline mode
 set lazyredraw  " Try to not draw while doing macros (helps with scrolling performance)
 set linespace=2
 set listchars=tab:>-,trail:-,nbsp:+,eol:$
@@ -477,7 +477,7 @@ hi LineNr       guifg=#585858
 hi StatusLine   guifg=#d8d8d8 guibg=#212326 cterm=none
 hi StatusLineNC guifg=#b8b8b8 guibg=#212326 cterm=none
 
-hi VertSplit    guifg=#383838 guibg=none cterm=none
+hi VertSplit    guifg=#212326 guibg=#212326 cterm=none
 " }}} Highlights "
 
 " redir {{{ "
