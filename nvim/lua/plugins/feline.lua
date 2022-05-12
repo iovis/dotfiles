@@ -155,7 +155,6 @@ local file_name_inactive = {
     bg = colors.lightbg2,
   },
 
-
   right_sep = {
     str = separator_style.right,
     hi = {
@@ -171,6 +170,8 @@ local dir_name = {
     local dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
     return "  " .. dir_name .. " "
   end,
+
+  short_provider = " ",
 
   hl = {
     fg = colors.grey_fg2,
@@ -219,6 +220,8 @@ local diff = {
 -- Git branch
 local git_branch = {
   provider = "git_branch",
+  short_provider = "",
+  priority = 5,
   hl = {
     fg = colors.grey_fg2,
     bg = colors.statusline_bg,
@@ -299,6 +302,7 @@ local lsp_progress = {
 
     return ""
   end,
+
   hl = { fg = colors.green },
 }
 
@@ -306,11 +310,14 @@ local lsp_progress = {
 local lsp_icon = {
   provider = function()
     if next(vim.lsp.buf_get_clients()) ~= nil then
-      return " LSP "
+      return "  LSP "
     else
       return ""
     end
   end,
+
+  short_provider = " ",
+
   hl = { fg = colors.grey_fg2, bg = colors.statusline_bg },
 }
 
@@ -378,6 +385,7 @@ local empty_space2 = {
   provider = function()
     return " " .. mode_colors[vim.fn.mode()][1] .. " "
   end,
+  short_provider = "",
   hl = chad_mode_hl,
 }
 
