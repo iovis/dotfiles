@@ -116,8 +116,18 @@ local file_name_provider = function()
   local icon = require("nvim-web-devicons").get_icon(filename, extension)
 
   if icon == nil then
-    icon = " "
-    return icon
+    local filetype = vim.bo.filetype
+
+    if filetype == "fugitive" or filetype == "git" then
+      return "  git "
+    elseif filetype == "qf" then
+      return "  quickfix "
+    elseif filetype == "NvimTree" then
+      local dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+      return "  " .. dir_name .. " "
+    end
+
+    return "  scratch "
   end
 
   return " " .. icon .. " " .. filename .. " "
@@ -145,9 +155,13 @@ local file_name_inactive = {
     bg = colors.lightbg2,
   },
 
+
   right_sep = {
     str = separator_style.right,
-    hl = { fg = colors.lightbg2, bg = colors.lightbg2 },
+    hi = {
+      fg = colors.lightbg2,
+      bg = colors.statusline_bg,
+    },
   },
 }
 
@@ -462,7 +476,7 @@ add_table(right, current_line)
 local left_inactive = {}
 add_table(left_inactive, separator_right3)
 add_table(left_inactive, file_name_inactive)
-add_table(left_inactive, dir_name)
+-- add_table(left_inactive, dir_name)
 
 ---- Setup
 feline.setup({
