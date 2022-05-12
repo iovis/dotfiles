@@ -376,6 +376,7 @@ local lsp_icon = {
   end,
 
   short_provider = " ",
+  priority = 1,
 
   hl = { fg = colors.grey_fg2, bg = colors.statusline_bg },
 }
@@ -445,6 +446,7 @@ local empty_space2 = {
     return " " .. mode_colors[vim.fn.mode()][1] .. " "
   end,
   short_provider = "",
+  priority = 2,
   hl = chad_mode_hl,
 }
 
