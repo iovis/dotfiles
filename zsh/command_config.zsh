@@ -67,6 +67,11 @@ if type gh > /dev/null; then
   alias pulls="gh pr list --web"
 fi
 
+# lazygit
+if type lazygit > /dev/null; then
+  alias gg="lazygit"
+fi
+
 # nvim
 if type nvim > /dev/null; then
   export EDITOR="nvim"

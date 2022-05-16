@@ -1,4 +1,5 @@
 *.zwc
+lazygit/state.yml
 mpv/watch_later/*
 nvim/.VimballRecord
 nvim/.netrwhist

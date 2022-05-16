@@ -1,0 +1,9 @@
+gui:
+  showBottomLine: false
+  showCommandLog: false
+  showFileTree: false
+  showIcons: true
+git:
+  paging:
+    colorArg: always
+    # pager: delta --dark --paging=never  # Delta seems to crash

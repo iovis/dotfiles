@@ -55,6 +55,6 @@
 [delta]
   light = false
   navigate = true  # use n and N to move between diff sections
-  side-by-side = true
+  side-by-side = false
   line-numbers = true
   syntax-theme = base16
