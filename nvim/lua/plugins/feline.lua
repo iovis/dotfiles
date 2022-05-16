@@ -168,28 +168,40 @@ local function get_unique_filename(filename, shorten)
 end
 
 local file_name_provider = function()
+  -- Get icon from file and extension
   local filename = vim.api.nvim_buf_get_name(0)
   filename = get_unique_filename(filename, true)
 
   local extension = vim.fn.expand("%:e")
   local icon = require("nvim-web-devicons").get_icon(filename, extension)
 
-  if icon == nil then
-    local filetype = vim.bo.filetype
-
-    if filetype == "fugitive" or filetype == "git" then
-      return "  git "
-    elseif filetype == "qf" then
-      return "  quickfix "
-    elseif filetype == "NvimTree" then
-      local dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-      return "  " .. dir_name .. " "
-    end
-
-    return "  scratch "
+  if icon then
+    return " " .. icon .. " " .. filename .. " "
   end
 
-  return " " .. icon .. " " .. filename .. " "
+  -- Get icon from filetype
+  local filetype = vim.bo.filetype
+  icon = require("nvim-web-devicons").get_icon_by_filetype(filetype)
+
+  if icon then
+    if filename == "" then
+      filename = "No Name"
+    end
+
+    return " " .. icon .. " " .. filename .. " "
+  end
+
+  -- Special cases
+  if filetype == "fugitive" or filetype == "git" then
+    return "  git "
+  elseif filetype == "qf" then
+    return "  quickfix "
+  elseif filetype == "NvimTree" then
+    local dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+    return "  " .. dir_name .. " "
+  end
+
+  return "  scratch "
 end
 
 local file_name = {
