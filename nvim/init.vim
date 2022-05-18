@@ -599,14 +599,6 @@ endfunction
 cnoremap <expr> <CR> CCR()
 " }}} CCR "
 
-" registers {{{ "
-nmap +r :registers<cr>
-" }}} registers "
-
-" marks {{{ "
-nmap +m :marks<cr>
-" }}} marks "
-
 " notes {{{ "
 nnoremap <leader>n :execute "e $NOTES/" . strftime('%F') . ".md"<cr>
 " }}} notes "
