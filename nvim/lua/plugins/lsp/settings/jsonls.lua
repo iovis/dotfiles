@@ -4,6 +4,7 @@ return {
       -- https://www.schemastore.org/json/
       -- https://github.com/b0o/schemastore.nvim
       schemas = require("schemastore").json.schemas(),
+      validate = { enable = true },
     },
   },
   setup = {
