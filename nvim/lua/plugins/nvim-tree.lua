@@ -50,10 +50,8 @@ require("nvim-tree").setup({
   update_cwd = true,
 })
 
-u.highlight("NvimTreeRootFolder", { fg = "#7cafc2" })
-u.highlight("NvimTreeStatusLine", { bg = "#212326" })
 u.highlight("NvimTreeEndOfBuffer", { fg = "#181818" })
-u.highlight("NvimTreeVertSplit", { fg = "#212326", bg = "#212326" })
+u.highlight("NvimTreeVertSplit", { fg = "#181818" })
 
 vim.keymap.set("n", "<leader>k", "<cmd>NvimTreeToggle<cr>")
 vim.keymap.set("n", "-", "<cmd>NvimTreeFindFile<cr>")
