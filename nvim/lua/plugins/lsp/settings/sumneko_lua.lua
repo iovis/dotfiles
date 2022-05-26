@@ -10,6 +10,7 @@ return {
           "use",
           "vim",
           -- luasnip globals (luasnip.config.snip_env)
+          -- https://github.com/L3MON4D3/LuaSnip/blob/master/lua/luasnip/config.lua
           "s", -- snippet
           "sn", -- snippet node
           "t", -- text node
@@ -29,7 +30,7 @@ return {
           "conds",
           "types",
           "events",
-          "parse",
+          "parse", -- parse snipmate format
           "ai",
         },
       },
