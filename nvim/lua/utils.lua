@@ -91,13 +91,20 @@ M.has_value = function(value, table)
   return false
 end
 
+---- Strings
 M.is_empty = function(str)
   return str == nil or str == ""
 end
 
--- my title => My Title
 M.titleize = function(str)
+  -- my title => My Title
   return str:gsub("(%l)(%w*)", function(a, b)
+    return string.upper(a) .. b
+  end)
+end
+
+M.pascal_case = function(str)
+  return str:gsub("_?(%l)(%w*)", function(a, b)
     return string.upper(a) .. b
   end)
 end

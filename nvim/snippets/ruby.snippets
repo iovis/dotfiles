@@ -79,47 +79,13 @@ snippet unless
 	unless ${1:condition}
 		${0:${VISUAL}}
 	end
-snippet unlesse
-	unless ${1:condition}
-		$2
-	else
-		$0
-	end
-snippet unlesee
-	unless ${1:condition}
-		$2
-	elsif ${3:condition}
-		$4
-	else
-		$0
-	end
 snippet wh
 	while ${1:condition}
 		${0:${VISUAL}}
 	end
-snippet for
-	for ${1:e} in ${2:c}
-		${0}
-	end
 snippet until
 	until ${1:condition}
 		${0:${VISUAL}}
-	end
-snippet cla class .. end
-	class ${1:Name}
-		${0}
-	end
-snippet clai class .. initialize .. end
-	class ${1:Name}
-		def initialize(${2:args})
-			${0}
-		end
-	end
-snippet cla< class .. < ParentClass .. initialize .. end
-	class ${1:Name} < ${2:ParentClass}
-		def initialize(${3:args})
-			${0}
-		end
 	end
 snippet blankslate class BlankSlate .. initialize .. end
 	class ${0:BlankSlate}
@@ -127,19 +93,6 @@ snippet blankslate class BlankSlate .. initialize .. end
 	end
 snippet claself class << self .. end
 	class << ${1:self}
-		${0}
-	end
-# class .. < DelegateClass .. initialize .. end
-snippet cla-
-	class ${1:Name} < DelegateClass(${2:ParentClass})
-		def initialize(${3:args})
-			super(${4:del_obj})
-
-			${0}
-		end
-	end
-snippet mod module .. end
-	module ${1:Name}
 		${0}
 	end
 # attr_reader
@@ -183,7 +136,7 @@ snippet defs
 		${0}
 	end
 # def initialize
-snippet definit
+snippet defi
 	def initialize(${1:args})
 		${0}
 	end
@@ -310,12 +263,6 @@ snippet reve
 	reverse_each { |${1:e}| ${0} }
 snippet reved
 	reverse_each do |${1:e}|
-		${0}
-	end
-snippet inj
-	inject(${1:init}) { |${2:mem}, ${3:var}| ${0} }
-snippet injd
-	inject(${1:init}) do |${2:mem}, ${3:var}|
 		${0}
 	end
 snippet red
