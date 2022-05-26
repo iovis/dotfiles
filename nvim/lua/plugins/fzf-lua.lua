@@ -63,7 +63,7 @@ fzf_lua.setup({
   },
   previewers = {
     git_diff = {
-      pager = "delta",
+      pager = "delta --width $FZF_PREVIEW_COLUMNS",
     },
   },
 })
