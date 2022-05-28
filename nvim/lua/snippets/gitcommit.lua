@@ -57,7 +57,8 @@ return {
       [[
         master|{jira}{space}{title}
         {jira_url}
-        **Related PRs:** #{}
+        **Related PRs:**
+        - {}
       ]],
       {
         jira = d(1, get_jira_card),
