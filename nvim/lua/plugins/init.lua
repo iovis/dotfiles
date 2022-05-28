@@ -154,14 +154,16 @@ require("packer").startup(function()
   })
 
   -- LSP
-  use({ "neovim/nvim-lspconfig" })
   use({
     "williamboman/nvim-lsp-installer",
-    config = [[require('plugins.lsp')]],
-    requires = {
-      "b0o/schemastore.nvim",
-      "simrat39/rust-tools.nvim",
-      -- "mfussenegger/nvim-dap",
+    {
+      "neovim/nvim-lspconfig",
+      config = [[require('plugins.lsp')]],
+      requires = {
+        "b0o/schemastore.nvim",
+        "simrat39/rust-tools.nvim",
+        -- "mfussenegger/nvim-dap",
+      },
     },
   })
 

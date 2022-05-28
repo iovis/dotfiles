@@ -1,5 +1,6 @@
-local u = require("utils")
 local M = {}
+
+local u = require("utils")
 
 -- FLoating window
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
@@ -16,6 +17,7 @@ M.on_attach = function(client, bufnr)
   local function buf_nmap(lhs, rhs, desc)
     vim.keymap.set("n", lhs, rhs, { buffer = true, desc = desc })
   end
+
   local function buf_xmap(lhs, rhs, desc)
     vim.keymap.set("x", lhs, rhs, { buffer = true, desc = desc })
   end
