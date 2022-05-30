@@ -135,6 +135,12 @@ augroup end
 
 " disable unused providers
 let g:loaded_perl_provider = 0
+
+" Understand Sorbet files
+augroup rbi
+  autocmd!
+  autocmd BufNewFile,BufRead *.rbi set filetype=ruby
+augroup end
 " }}} config "
 
 " bindings {{{ "
@@ -410,7 +416,7 @@ xmap <silent> K *:Grep -F "<c-r>""<cr>
 if executable('rg')
   command! -nargs=+ -complete=file Grep silent! grep! <args>|botright cwindow|redraw!
 
-  set grepprg=rg\ --vimgrep\ --smart-case
+  set grepprg=rg\ --vimgrep\ --smart-case\ -g\ '!sorbet'
   set grepformat=%f:%l:%c:%m
 endif
 " }}} ripgrep "

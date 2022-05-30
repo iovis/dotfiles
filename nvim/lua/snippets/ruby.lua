@@ -102,4 +102,19 @@ return {
     )
   ),
   parse("arg", "argument :${1:name}"),
+  s("esig", t("extend T::Sig")),
+  parse("sig", "sig { $1 }"),
+  parse("sigv", "sig { void }"),
+  parse("sigb", "sig { returns(T::Boolean) }"),
+  s(
+    "sigd",
+    fmt(
+      [[
+        sig do
+          {}
+        end
+      ]],
+      { i(1) }
+    )
+  ),
 }

@@ -49,7 +49,7 @@ fzf_lua.setup({
       ["--delimiter"] = ":",
       ["--nth"] = "4..",
     },
-    rg_opts = [[--column --line-number --no-heading --color=always --smart-case -g '!Session.vim']],
+    rg_opts = [[--column --line-number --no-heading --color=always --smart-case -g '!Session.vim' -g '!sorbet']],
   },
   actions = {
     files = {
@@ -69,7 +69,7 @@ fzf_lua.setup({
 })
 
 ---- Keymaps
-vim.keymap.set("n", "+s", ":FzfLua<space>")
+vim.keymap.set("n", "+F", ":FzfLua<space>")
 
 vim.keymap.set("n", "+f", fzf_lua.live_grep, { desc = "fzf_lua.live_grep" })
 vim.keymap.set("n", "+m", fzf_lua.marks, { desc = "fzf_lua.marks" })
@@ -81,7 +81,6 @@ vim.keymap.set("n", "<leader>gL", fzf_lua.git_commits, { desc = "fzf_lua.git_com
 vim.keymap.set("n", "<leader>gco", fzf_lua.git_branches, { desc = "fzf_lua.git_branches" })
 vim.keymap.set("n", "<leader>gh", fzf_lua.git_bcommits, { desc = "fzf_lua.git_bcommits" })
 vim.keymap.set("n", "<leader>j", fzf_lua.git_status, { desc = "fzf_lua.git_status" })
-vim.keymap.set("n", "<leader>o", fzf_lua.files, { desc = "fzf_lua.files" })
 vim.keymap.set("n", "<leader>r", fzf_lua.btags, { desc = "fzf_lua.btags" })
 vim.keymap.set("n", "<leader>ñ", fzf_lua.blines, { desc = "fzf_lua.blines" })
 
@@ -107,10 +106,18 @@ vim.keymap.set("n", "<leader>se", function()
   })
 end)
 
--- Files (no gitignore)
+-- Files
+vim.keymap.set("n", "<leader>o", function()
+  fzf_lua.files({ fd_opts = original_fd_opts .. [[ --exclude 'sorbet' ]] })
+end, { desc = "fzf_lua.files" })
+
 vim.keymap.set("n", "<leader>O", function()
   fzf_lua.files({ fd_opts = fd_opts_no_ignore })
 end, { desc = "fzf_lua.all_files" })
+
+vim.keymap.set("n", "+t", function()
+  fzf_lua.files({ fd_opts = original_fd_opts .. [[ -e 'rbi' ]] })
+end, { desc = "fzf_lua.sorbet_files" })
 
 -- Ripgrep search
 vim.keymap.set("n", "<leader>f", function()

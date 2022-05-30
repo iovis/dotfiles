@@ -41,7 +41,7 @@ M.on_attach = function(client, bufnr)
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_nmap("t", vim.lsp.buf.definition, "vim.lsp.buf.definition")
   buf_nmap("gd", vim.lsp.buf.hover, "vim.lsp.buf.hover")
-  buf_nmap("+t", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
+  buf_nmap("+s", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
   buf_nmap("T", vim.lsp.buf.references, "vim.lsp.buf.references")
   buf_nmap("+d", vim.diagnostic.open_float, "vim.diagnostic.open_float")
   buf_nmap("<leader>la", vim.lsp.buf.code_action, "vim.lsp.buf.code_action")
@@ -92,15 +92,7 @@ M.on_attach = function(client, bufnr)
   -- end
 
   ---- Server Options
-  if u.has_value(client.name, { "solargraph" }) then
-    -- Disable go to definition mappings
-    vim.keymap.del("n", "t", { buffer = true })
-    vim.keymap.del("n", "T", { buffer = true })
-
-    -- Disable formatting
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
-  elseif u.has_value(client.name, { "sumneko_lua" }) then
+  if u.has_value(client.name, { "sumneko_lua" }) then
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
   end
