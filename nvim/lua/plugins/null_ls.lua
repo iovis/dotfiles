@@ -22,8 +22,6 @@ null_ls.setup({
     diagnostics.yamllint.with({ extra_args = { "-f", "parsable" } }),
     diagnostics.zsh,
 
-    -- formatting.eslint,
     formatting.rubocop,
-    formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "2" } }),
   },
 })
