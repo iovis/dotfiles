@@ -2,8 +2,10 @@ setlocal makeprg=ruby\ %
 
 " sorbet {{{ "
 " nnoremap <silent> <leader>E :Tux RUBYOPT="-W0" bin/tapioca gems && RUBYOPT="-W0" bundle exec rails rails_rbi:all && RUBYOPT="-W0" bundle exec spoom bump<cr>
-nnoremap <silent> <leader>E :Tux RUBYOPT="-W0" bin/tapioca gems && RUBYOPT="-W0" bin/tapioca dsl && RUBYOPT="-W0" bin/tapioca todo && RUBYOPT="-W0" bundle exec spoom bump<cr>
-nnoremap <silent> <buffer> m<cr> :Tux bundle exec srb tc<cr>
+" nnoremap <silent> <buffer> <leader>E :Tux RUBYOPT="-W0" bin/tapioca gems && RUBYOPT="-W0" bin/tapioca dsl && RUBYOPT="-W0" bin/tapioca todo && RUBYOPT="-W0" bundle exec spoom bump<cr>
+" nnoremap <silent> <buffer> m<cr> :Tux bundle exec srb tc<cr>
+"
+" nnoremap <buffer> +T :e sorbet/rbi/<c-r>%<cr>
 " }}} sorbet "
 
 " quick testing {{{ "

@@ -24,7 +24,7 @@ local servers = {
   "html",
   "jsonls",
   "pyright",
-  "sorbet",
+  -- "sorbet",
   "sqls",
   "sumneko_lua",
   "taplo",

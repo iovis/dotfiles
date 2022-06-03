@@ -117,4 +117,6 @@ return {
       { i(1) }
     )
   ),
+  parse("ts", "# typed: strict"),
+  parse("tt", "# typed: true"),
 }
