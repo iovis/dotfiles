@@ -23,5 +23,6 @@ null_ls.setup({
     diagnostics.zsh,
 
     formatting.rubocop,
+    formatting.sql_formatter,
   },
 })

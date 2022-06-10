@@ -92,10 +92,10 @@ M.on_attach = function(client, bufnr)
   -- end
 
   ---- Server Options
-  -- if u.has_value(client.name, { "sumneko_lua" }) then
-  --   client.resolved_capabilities.document_formatting = false
-  --   client.resolved_capabilities.document_range_formatting = false
-  -- end
+  if u.has_value(client.name, { "sqls" }) then
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+  end
 end
 
 -- Add additional capabilities supported by nvim-cmp
