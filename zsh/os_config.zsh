@@ -39,6 +39,7 @@ if [[ $OSTYPE == darwin* ]]; then
   function upgrade_libraries() {
     brew update
     brew upgrade
+    brew autoremove
 
     # brewdump
     cd; brew bundle dump -f; cd -
