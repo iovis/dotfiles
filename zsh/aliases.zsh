@@ -115,7 +115,7 @@ alias npmst="npm start"
 
 ## rust
 alias cca="cargo check --all-targets"
-alias cr="cargo run"
+alias cr="cargo run --"
 alias crr="cargo run --release --"
 alias ct="cargo test"
 alias cw="cargo watch -x check -x test"
