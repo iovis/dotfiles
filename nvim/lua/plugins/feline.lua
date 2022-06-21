@@ -196,9 +196,6 @@ local file_name_provider = function()
     return "  git "
   elseif filetype == "qf" then
     return "  quickfix "
-  elseif filetype == "NvimTree" then
-    local dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-    return "  " .. dir_name .. " "
   end
 
   return "  scratch "
@@ -557,7 +554,6 @@ add_table(right, current_line)
 local left_inactive = {}
 add_table(left_inactive, separator_right3)
 add_table(left_inactive, file_name_inactive)
--- add_table(left_inactive, dir_name)
 
 ---- Setup
 feline.setup({
@@ -575,5 +571,9 @@ feline.setup({
       left_inactive,
     },
   },
-  -- force_inactive = {}, -- Still render the statusline in things like nvim-tree
+  disable = {
+    filetypes = {
+      "^NvimTree$",
+    }
+  }
 })
