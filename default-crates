@@ -1,5 +1,8 @@
 bat
+cargo-audit
 cargo-edit
+cargo-outdated
+cargo-watch
 exa
 fd-find
 git-delta
