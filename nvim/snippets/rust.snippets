@@ -30,10 +30,6 @@ snippet pri "print!"
 	print!("${1}");
 snippet pri, "print! with format param"
 	print!("${1}{${2}}", ${3});
-snippet pln "println!"
-	println!("${1}");
-snippet pln, "println! with format param"
-	println!("${1}{${2}}", ${3});
 snippet fmt "format!"
 	format!("${1}{${2}}", ${3});
 snippet d "dbg! debugging macro"
@@ -145,10 +141,6 @@ snippet for "for ... in ... loop"
 		${0}
 	}
 # Struct
-snippet st "Struct definition"
-	struct ${1} {
-		${0}
-	}
 snippet impl "Struct/Trait implementation"
 	impl ${1:Type/Trait}${2: for $3} {
 		${0}

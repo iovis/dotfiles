@@ -24,6 +24,7 @@ local rust_fn = function()
 end
 
 return {
+  -- Functions
   s({ trig = "fn", dscr = "function" }, d(1, rust_fn), { condition = conds.line_begin }),
   s({ trig = "pfn", dscr = "pub function" }, fmt("pub {}", { d(1, rust_fn) }), { condition = conds.line_begin }),
   s({ trig = "afn", dscr = "async function" }, fmt("async {}", { d(1, rust_fn) }), { condition = conds.line_begin }),
@@ -32,8 +33,7 @@ return {
     fmt("pub async {}", { d(1, rust_fn) }),
     { condition = conds.line_begin }
   ),
-  s("fd", fmt("{field}: {value},", { field = i(1, "field"), value = i(2, "value") }), { condition = conds.line_begin }),
-  s("r", fmt('r#"{}"#', { i(1) })),
+  -- Tests
   s(
     { trig = "tt", dscr = "Tokio test" },
     fmta(
@@ -50,4 +50,20 @@ return {
     ),
     { condition = conds.line_begin }
   ),
+  -- Structs
+  s("st", fmta([[
+    struct <> {
+        <>
+    }
+  ]], { i(1), i(0) })),
+  s("pst", fmta([[
+    pub struct <> {
+        <>
+    }
+  ]], { i(1), i(0) })),
+  -- Misc
+  s("pln", fmt('println!("{}"{});', { i(1), i(2) })),
+  parse("dbg", "dbg!($1);"),
+  s("fd", fmt("{field}: {value},", { field = i(1, "field"), value = i(2, "value") }), { condition = conds.line_begin }),
+  s("r", fmt('r#"{}"#', { i(1) })),
 }
