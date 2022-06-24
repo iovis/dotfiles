@@ -13,7 +13,7 @@ nnoremap <silent> <buffer> <leader>sd :TestFile --format documentation<cr>
 nnoremap <silent> <buffer> <leader>sp :TestNearest -strategy=test_prof<cr>
 
 " Load failing tests in a scratch window
-nmap +R :Redir !cat tmp/rspec-failures.txt<cr>
+nmap <silent> <buffer> +R :Redir !cat tmp/rspec-failures.txt<cr>
       \ :g/\(passed\\|pending\)/d<cr>
       \ :v/spec/d<cr>
       \ :%s/\[\d.*<cr>
