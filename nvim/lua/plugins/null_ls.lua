@@ -24,5 +24,6 @@ null_ls.setup({
 
     formatting.rubocop,
     formatting.sql_formatter,
+    formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "2" } }),
   },
 })
