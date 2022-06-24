@@ -1,7 +1,7 @@
 return {
   settings = {
     solargraph = {
-      useBundler = true
+      useBundler = false
     }
   },
 }

@@ -25,6 +25,7 @@ local servers = {
   "jsonls",
   "pyright",
   -- "sorbet",
+  "solargraph",
   "sqls",
   "sumneko_lua",
   "taplo",
