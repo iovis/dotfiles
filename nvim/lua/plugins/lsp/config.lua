@@ -92,13 +92,7 @@ M.on_attach = function(client, bufnr)
   -- end
 
   ---- Server Options
-  if u.has_value(client.name, { "solargraph" }) then
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
-  elseif u.has_value(client.name, { "sqls" }) then
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
-  elseif u.has_value(client.name, { "sumneko_lua" }) then
+  if u.has_value(client.name, { "sqls", "sumneko_lua" }) then
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
   end
