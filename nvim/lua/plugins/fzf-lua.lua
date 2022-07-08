@@ -69,9 +69,8 @@ fzf_lua.setup({
 })
 
 ---- Keymaps
-vim.keymap.set("n", "+F", ":FzfLua<space>")
+vim.keymap.set("n", "+f", ":FzfLua<space>")
 
-vim.keymap.set("n", "+f", fzf_lua.live_grep, { desc = "fzf_lua.live_grep" })
 vim.keymap.set("n", "+m", fzf_lua.marks, { desc = "fzf_lua.marks" })
 vim.keymap.set("n", "<c-p>", fzf_lua.commands, { desc = "fzf_lua.commands" })
 vim.keymap.set("n", "<leader><leader>", fzf_lua.buffers, { desc = "fzf_lua.buffers" })
