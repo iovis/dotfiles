@@ -9,6 +9,7 @@ return {
         globals = {
           "use",
           "vim",
+          "pp", -- pretty print
           -- luasnip globals (luasnip.config.snip_env)
           -- https://github.com/L3MON4D3/LuaSnip/blob/master/lua/luasnip/config.lua
           "s", -- snippet
