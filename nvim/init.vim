@@ -654,6 +654,10 @@ nnoremap s?       :FocusDispatch<cr>
 nnoremap <leader>lg :Start lazygit<cr>
 " }}} dispatch "
 
+" eunuch {{{ "
+nnoremap +d :Delete!<cr>
+" }}} eunuch "
+
 " fugitive {{{ "
 nmap <silent> <leader>- :Gedit:<cr>)
 
