@@ -43,7 +43,7 @@ M.on_attach = function(client, bufnr)
   buf_nmap("gd", vim.lsp.buf.hover, "vim.lsp.buf.hover")
   buf_nmap("+s", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
   buf_nmap("T", vim.lsp.buf.references, "vim.lsp.buf.references")
-  buf_nmap("+d", vim.diagnostic.open_float, "vim.diagnostic.open_float")
+  buf_nmap("∂", vim.diagnostic.open_float, "vim.diagnostic.open_float") -- alt+d
   buf_nmap("<leader>la", vim.lsp.buf.code_action, "vim.lsp.buf.code_action")
   buf_nmap("<leader>lr", vim.lsp.buf.rename, "vim.lsp.buf.rename")
   buf_xmap("<leader>lr", vim.lsp.buf.rename, "vim.lsp.buf.rename")
