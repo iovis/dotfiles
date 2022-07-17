@@ -75,7 +75,7 @@ require("packer").startup(function()
 
   use({
     "akinsho/bufferline.nvim",
-    config = [[require('plugins.bufferline')]],
+    config = [[require("plugins.bufferline")]],
     requires = "kyazdani42/nvim-web-devicons",
   })
   use({
@@ -84,25 +84,25 @@ require("packer").startup(function()
   })
   use({
     "feline-nvim/feline.nvim",
-    config = [[require('plugins.feline')]],
+    config = [[require("plugins.feline")]],
   })
   use({
     "ibhagwan/fzf-lua",
-    config = [[require('plugins.fzf-lua')]],
+    config = [[require("plugins.fzf-lua")]],
     requires = { "vijaymarupudi/nvim-fzf", "kyazdani42/nvim-web-devicons" },
   })
   -- use {
-  --   'folke/todo-comments.nvim',
-  --   config = [[require('plugins.todo-comments')]],
-  --   requires = 'nvim-lua/plenary.nvim'
+  --   "folke/todo-comments.nvim",
+  --   config = [[require("plugins.todo-comments")]],
+  --   requires = "nvim-lua/plenary.nvim"
   -- }
   use({
     "folke/zen-mode.nvim",
-    config = [[require('plugins.zen-mode')]],
+    config = [[require("plugins.zen-mode")]],
   })
   -- use({
   --   "folke/trouble.nvim",
-  --   config = [[require('plugins.trouble')]],
+  --   config = [[require("plugins.trouble")]],
   --   requires = "kyazdani42/nvim-web-devicons",
   -- })
   use({
@@ -113,11 +113,11 @@ require("packer").startup(function()
   })
   use({
     "kevinhwang91/nvim-bqf",
-    config = [[require('plugins.nvim-bqf')]],
+    config = [[require("plugins.nvim-bqf")]],
   })
   use({
     "kyazdani42/nvim-tree.lua",
-    config = [[require('plugins.nvim-tree')]],
+    config = [[require("plugins.nvim-tree")]],
     requires = "kyazdani42/nvim-web-devicons",
   })
   use({
@@ -126,34 +126,34 @@ require("packer").startup(function()
   })
   use({
     "lewis6991/gitsigns.nvim",
-    config = [[require('plugins.gitsigns')]],
+    config = [[require("plugins.gitsigns")]],
     requires = "nvim-lua/plenary.nvim",
   })
   use({
     "numToStr/Comment.nvim",
-    config = [[require('plugins.comment')]],
+    config = [[require("plugins.comment")]],
   })
   -- use({
   --   "nvim-telescope/telescope-fzf-native.nvim",
   --   run = "make",
   -- })
   -- use {
-  -- 'nvim-telescope/telescope-github.nvim',
-  -- requires = 'nvim-lua/plenary.nvim'
+  -- "nvim-telescope/telescope-github.nvim",
+  -- requires = "nvim-lua/plenary.nvim"
   -- }
   -- use({
   --   "nvim-telescope/telescope.nvim",
-  --   config = [[require('plugins.telescope')]],
+  --   config = [[require("plugins.telescope")]],
   --   requires = "nvim-lua/plenary.nvim",
   -- })
   use({
     "nvim-treesitter/nvim-treesitter",
-    config = [[require('plugins.treesitter')]],
+    config = [[require("plugins.treesitter")]],
     run = ":TSUpdate",
   })
   use({
     "windwp/nvim-autopairs",
-    config = [[require('plugins.autopairs')]],
+    config = [[require("plugins.autopairs")]],
   })
 
   -- LSP
@@ -161,7 +161,7 @@ require("packer").startup(function()
     "williamboman/nvim-lsp-installer",
     {
       "neovim/nvim-lspconfig",
-      config = [[require('plugins.lsp')]],
+      config = [[require("plugins.lsp")]],
       requires = {
         "b0o/schemastore.nvim",
         "simrat39/rust-tools.nvim",
@@ -173,7 +173,7 @@ require("packer").startup(function()
   -- nvim-cmp
   use({
     "hrsh7th/nvim-cmp",
-    config = [[require('plugins.cmp')]],
+    config = [[require("plugins.cmp")]],
     requires = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp",
@@ -188,7 +188,7 @@ require("packer").startup(function()
   -- snippets
   use({
     "L3MON4D3/LuaSnip",
-    config = [[require('plugins.luasnip')]],
+    config = [[require("plugins.luasnip")]],
     requires = {
       "saadparwaiz1/cmp_luasnip",
     },
@@ -197,6 +197,6 @@ require("packer").startup(function()
   -- null-ls
   use({
     "jose-elias-alvarez/null-ls.nvim",
-    config = [[require('plugins.null_ls')]],
+    config = [[require("plugins.null_ls")]],
   })
 end)
