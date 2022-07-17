@@ -873,11 +873,6 @@ let g:test#strategy = 'tux_badge'
 " vimlook {{{ "
 nnoremap <leader>¡ :QuickLook<space>
 " }}} vimlook "
-
-" ysurround {{{ "
-nmap <leader>" mzcs'"`z
-nmap <leader>' mzcs"'`z
-" }}} ysurround "
 " }}} plugin configuration "
 
 " commands {{{ "

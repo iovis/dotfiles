@@ -69,7 +69,6 @@ require("packer").startup(function()
   use("tpope/vim-rhubarb")
   use("tpope/vim-scriptease")
   use("tpope/vim-speeddating")
-  use("tpope/vim-surround")
   use("vim-test/vim-test")
   use("wbthomason/packer.nvim")
   use("wellle/targets.vim")
@@ -120,6 +119,10 @@ require("packer").startup(function()
     "kyazdani42/nvim-tree.lua",
     config = [[require('plugins.nvim-tree')]],
     requires = "kyazdani42/nvim-web-devicons",
+  })
+  use({
+    "kylechui/nvim-surround",
+    config = [[require("plugins.nvim-surround")]],
   })
   use({
     "lewis6991/gitsigns.nvim",
