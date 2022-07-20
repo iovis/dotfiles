@@ -20,7 +20,7 @@ fzf_lua.setup({
   },
   keymap = {
     builtin = {
-      ["º"] = "toggle-preview",
+      ["<m-p>"] = "toggle-preview",
       ["<c-h>"] = "toggle-help",
       -- defaults (overridden otherwise)
       ["<F1>"] = "toggle-help",
@@ -72,16 +72,16 @@ fzf_lua.setup({
 vim.keymap.set("n", "+f", ":FzfLua<space>")
 
 vim.keymap.set("n", "+m", fzf_lua.marks, { desc = "fzf_lua.marks" })
-vim.keymap.set("n", "<c-p>", fzf_lua.commands, { desc = "fzf_lua.commands" })
-vim.keymap.set("n", "<leader><leader>", fzf_lua.buffers, { desc = "fzf_lua.buffers" })
-vim.keymap.set("n", "<leader>A", fzf_lua.filetypes, { desc = "fzf_lua.filetypes" })
+-- vim.keymap.set("n", "<c-p>", fzf_lua.commands, { desc = "fzf_lua.commands" })
+-- vim.keymap.set("n", "<leader><leader>", fzf_lua.buffers, { desc = "fzf_lua.buffers" })
+-- vim.keymap.set("n", "<leader>A", fzf_lua.filetypes, { desc = "fzf_lua.filetypes" })
 vim.keymap.set("n", "<leader>R", fzf_lua.tags, { desc = "fzf_lua.tags" })
 vim.keymap.set("n", "<leader>gL", fzf_lua.git_commits, { desc = "fzf_lua.git_commits" })
 vim.keymap.set("n", "<leader>gco", fzf_lua.git_branches, { desc = "fzf_lua.git_branches" })
 vim.keymap.set("n", "<leader>gh", fzf_lua.git_bcommits, { desc = "fzf_lua.git_bcommits" })
 vim.keymap.set("n", "<leader>j", fzf_lua.git_status, { desc = "fzf_lua.git_status" })
 vim.keymap.set("n", "<leader>r", fzf_lua.btags, { desc = "fzf_lua.btags" })
-vim.keymap.set("n", "<leader>ñ", fzf_lua.blines, { desc = "fzf_lua.blines" })
+-- vim.keymap.set("n", "<leader>ñ", fzf_lua.blines, { desc = "fzf_lua.blines" })
 
 -- Edit dotfiles
 vim.keymap.set("n", "<leader>ue", function()
@@ -126,24 +126,24 @@ end, { desc = "fzf_lua.grep" })
 vim.keymap.set("x", "<leader>f", fzf_lua.grep_visual, { silent = true, desc = "fzf_lua.grep" })
 
 -- Registers (paste register or apply macro)
-local extract_register_from = function(result)
-  -- `selected[1]` is going to be "[2] contents of register 2"
-  return result:match("^%[(.)%]")
-end
-
-vim.keymap.set("n", "+r", function()
-  local opts = {}
-
-  opts.actions = {
-    ["default"] = function(selected)
-      local register = extract_register_from(selected[1])
-      vim.cmd('normal "' .. register .. "p")
-    end,
-    ["@"] = function(selected)
-      local register = extract_register_from(selected[1])
-      vim.cmd("normal @" .. register)
-    end,
-  }
-
-  fzf_lua.registers(opts)
-end, { desc = "fzf_lua.registers" })
+-- local extract_register_from = function(result)
+--   -- `selected[1]` is going to be "[2] contents of register 2"
+--   return result:match("^%[(.)%]")
+-- end
+--
+-- vim.keymap.set("n", "+r", function()
+--   local opts = {}
+--
+--   opts.actions = {
+--     ["default"] = function(selected)
+--       local register = extract_register_from(selected[1])
+--       vim.cmd('normal "' .. register .. "p")
+--     end,
+--     ["@"] = function(selected)
+--       local register = extract_register_from(selected[1])
+--       vim.cmd("normal @" .. register)
+--     end,
+--   }
+--
+--   fzf_lua.registers(opts)
+-- end, { desc = "fzf_lua.registers" })
