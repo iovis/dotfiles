@@ -12,3 +12,6 @@ keybinding:
   universal:
     nextTab: 'ñ'
     prevTab: 'Ñ'
+  commits:
+    moveDownCommit: 'J'
+    moveUpCommit: 'K'
