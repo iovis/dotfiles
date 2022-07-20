@@ -66,6 +66,7 @@ yabai -m rule --add app="^Numi$" manage=off
 yabai -m rule --add app="^Parallels" manage=off
 yabai -m rule --add app="^Path Finder$" manage=off
 yabai -m rule --add app="^Perimeter" manage=off
+yabai -m rule --add app="^Raycast$" manage=off
 yabai -m rule --add app="^Spark$" manage=off
 yabai -m rule --add app="^System Information$" manage=off
 yabai -m rule --add app="^System Preferences$" manage=off
