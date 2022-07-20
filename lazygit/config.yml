@@ -8,3 +8,7 @@ git:
     colorArg: always
     # pager: delta --dark --paging=never  # Delta seems to crash
 promptToReturnFromSubprocess: false
+keybinding:
+  universal:
+    nextTab: 'ñ'
+    prevTab: 'Ñ'
