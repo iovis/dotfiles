@@ -865,9 +865,9 @@ let g:test#custom_strategies = {
 \ 'test_prof': function('TestProfStrategy'),
 \}
 
-let g:test#strategy = 'tux_badge'
+let g:test#strategy = 'tux'
 
-" let test#ruby#use_spring_binstub = 1
+let test#ruby#use_spring_binstub = 1
 " }}} vim-test "
 
 " vimlook {{{ "
