@@ -206,9 +206,6 @@ require("packer").startup({
     })
   end,
   config = {
-    display = {
-      open_fn = require("packer.util").float,
-    },
     profile = {
       enable = false, -- Turn to true and run :PackerProfile
       threshold = 1,
