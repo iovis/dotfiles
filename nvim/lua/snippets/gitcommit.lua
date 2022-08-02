@@ -59,12 +59,15 @@ return {
         {jira_url}
         **Related PRs:**
         - {}
+
+        **Changelog:** {}
       ]],
       {
         jira = d(1, get_jira_card),
         space = n(1, " "),
         title = d(2, get_pr_title),
         jira_url = d(3, get_jira_url, { 1 }),
+        i(4),
         i(0),
       }
     )
