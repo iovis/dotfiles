@@ -27,7 +27,6 @@ cmp.setup({
         git = "[GIT]",
         luasnip = "[Snip]",
         nvim_lsp = "[LSP]",
-        nvim_lua = "[LUA]",
         path = "[Path]",
         tags = "[TAG]",
       },
@@ -36,7 +35,6 @@ cmp.setup({
   sources = {
     { name = "git" },
     { name = "nvim_lsp" },
-    { name = "nvim_lua" },
     { name = "luasnip" },
     { name = "buffer", keyword_length = 5 },
     { name = "path" },

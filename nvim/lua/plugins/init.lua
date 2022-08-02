@@ -188,11 +188,11 @@ require("packer").startup({
       requires = {
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-path",
         "onsails/lspkind-nvim",
         "petertriho/cmp-git",
         "quangnguyen30192/cmp-nvim-tags",
+        "saadparwaiz1/cmp_luasnip",
       },
     })
 
@@ -200,9 +200,6 @@ require("packer").startup({
     use({
       "L3MON4D3/LuaSnip",
       config = [[require("plugins.luasnip")]],
-      requires = {
-        "saadparwaiz1/cmp_luasnip",
-      },
     })
   end,
   config = {
