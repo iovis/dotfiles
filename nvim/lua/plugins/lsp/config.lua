@@ -92,7 +92,7 @@ M.on_attach = function(client, bufnr)
   -- end
 
   ---- Server Options
-  if u.has_value(client.name, { "sqls", "sumneko_lua" }) then
+  if vim.tbl_contains({ "sqls", "sumneko_lua" }, client.name) then
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
   end

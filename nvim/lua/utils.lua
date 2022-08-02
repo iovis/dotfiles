@@ -74,19 +74,9 @@ M.is_executable = function(cmd)
   return false, string.format("command %s is not executable (make sure it's installed and on your $PATH)", cmd)
 end
 
-M.has_value = function(value, table)
-  for _, val in ipairs(table) do
-    if value == val then
-      return true
-    end
-  end
-
-  return false
-end
-
 ---- Strings
 M.is_empty = function(str)
-  return str == nil or str == ""
+  return vim.fn.empty(str) == 1
 end
 
 M.titleize = function(str)
