@@ -11,7 +11,7 @@ u.highlight("FloatBorder", { bg = "#181818", fg = "#383838" })
 -- Global LSP mappings
 vim.keymap.set("n", "<leader>lh", "<cmd>help lspconfig-server-configurations<cr>")
 vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
-vim.keymap.set("n", "<leader>lp", "<cmd>LspInstallInfo<cr>")
+vim.keymap.set("n", "<leader>lp", "<cmd>Mason<cr>")
 
 M.on_attach = function(client, bufnr)
   local function buf_nmap(lhs, rhs, desc)

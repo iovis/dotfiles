@@ -163,14 +163,20 @@ require("packer").startup({
 
     -- LSP
     use({
-      "williamboman/nvim-lsp-installer",
-      {
-        "neovim/nvim-lspconfig",
-        config = [[require("plugins.lsp")]],
-        requires = {
-          "b0o/schemastore.nvim",
-          "simrat39/rust-tools.nvim",
-          -- "mfussenegger/nvim-dap",
+      "neovim/nvim-lspconfig",
+      config = [[require("plugins.lsp")]],
+      requires = {
+        "b0o/schemastore.nvim",
+        "simrat39/rust-tools.nvim",
+        {
+          "jose-elias-alvarez/null-ls.nvim",
+          config = [[require("plugins.null_ls")]],
+        },
+        {
+          "williamboman/mason.nvim",
+          requires = {
+            "williamboman/mason-lspconfig.nvim",
+          },
         },
       },
     })
@@ -197,12 +203,6 @@ require("packer").startup({
       requires = {
         "saadparwaiz1/cmp_luasnip",
       },
-    })
-
-    -- null-ls
-    use({
-      "jose-elias-alvarez/null-ls.nvim",
-      config = [[require("plugins.null_ls")]],
     })
   end,
   config = {

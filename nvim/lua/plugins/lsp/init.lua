@@ -14,9 +14,7 @@ for _, file in ipairs(lsp_settings_files) do
 end
 
 ---- Initialize servers
-require("nvim-lsp-installer").setup({})
-
-local servers = {
+local lsp_servers = {
   "angularls",
   "bashls",
   "dockerls",
@@ -33,7 +31,19 @@ local servers = {
   "vimls",
 }
 
-for _, server in ipairs(servers) do
+require("mason").setup({
+  ui = {
+    keymaps = {
+      apply_language_filter = "Ñ",
+    },
+  },
+})
+
+require("mason-lspconfig").setup({
+  ensure_installed = lsp_servers,
+})
+
+for _, server in ipairs(lsp_servers) do
   local opts = {
     on_attach = config.on_attach,
     capabilities = config.capabilities,
