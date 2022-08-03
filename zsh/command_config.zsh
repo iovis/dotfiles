@@ -5,6 +5,25 @@ if type bat > /dev/null; then
   alias c="bat"
 fi
 
+# dexios
+if type dexios > /dev/null; then
+  encrypt() {
+    dexios -e "$1" "${1}.enc"
+  }
+
+  decrypt() {
+    dexios -d "$1" "${1%.enc}"
+  }
+else
+  encrypt() {
+    openssl enc -aes-256-cbc -salt -in "$1" -out "${1}.enc"
+  }
+
+  decrypt() {
+    openssl enc -d -aes-256-cbc -salt -in "$1" -out "${1%.enc}"
+  }
+fi
+
 # exa
 if type exa > /dev/null; then
   alias l="exa -lag --git --group-directories-first"

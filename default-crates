@@ -1,8 +1,10 @@
-bat
 cargo-audit
 cargo-edit
 cargo-outdated
 cargo-watch
+dexios
+
+bat
 exa
 fd-find
 git-delta

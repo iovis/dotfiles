@@ -31,14 +31,6 @@ take() {
   mkdir -p $@ && cd ${@:$#}
 }
 
-encrypt() {
-  openssl enc -aes-256-cbc -salt -in "$1" -out "$1.enc"
-}
-
-decrypt() {
-  openssl enc -d -aes-256-cbc -salt -in "$1" -out "$2"
-}
-
 ##
 # Set a tmux badge based on the output of a command
 #
