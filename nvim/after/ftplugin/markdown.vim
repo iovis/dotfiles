@@ -37,7 +37,6 @@ inoremap <buffer> [ []<left>
 inoremap <buffer> [<space> [ ]<space>
 inoremap <buffer> [<cr> [<cr>]<esc>O
 
-nnoremap <buffer> <silent> <leader>o :FzfLua files<cr>
 nnoremap <buffer> m<space> :Move<space>
 
 " change bullet point style {{{ "
