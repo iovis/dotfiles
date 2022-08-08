@@ -67,7 +67,6 @@ require("packer").startup({
     use("tpope/vim-rhubarb")
     use("tpope/vim-scriptease")
     use("tpope/vim-speeddating")
-    use("tpope/vim-surround")
     use("vim-test/vim-test")
     use("wbthomason/packer.nvim")
     use("wellle/targets.vim")
@@ -122,11 +121,10 @@ require("packer").startup({
       config = [[require("plugins.nvim-tree")]],
       requires = "kyazdani42/nvim-web-devicons",
     })
-    -- TODO: seems to cause issues with Telescope's which_key
-    -- use({
-    --   "kylechui/nvim-surround",
-    --   config = [[require("plugins.nvim-surround")]],
-    -- })
+    use({
+      "kylechui/nvim-surround",
+      config = [[require("plugins.nvim-surround")]],
+    })
     use({
       "lewis6991/gitsigns.nvim",
       config = [[require("plugins.gitsigns")]],

@@ -873,11 +873,6 @@ let test#ruby#use_spring_binstub = 1
 " vimlook {{{ "
 nnoremap <leader>¡ :QuickLook<space>
 " }}} vimlook "
-
-" ysurround {{{ "
-nmap <leader>" mzcs'"`z
-nmap <leader>' mzcs"'`z
-" }}} ysurround "
 " }}} plugin configuration "
 
 " commands {{{ "
