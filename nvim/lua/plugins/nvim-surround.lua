@@ -6,35 +6,10 @@ require("nvim-surround").setup({
     duration = 5000,
   },
   surrounds = {
-    ["*"] = {
-      add = { "*", "*" },
-      find = function()
-        return config.get_selection({ textobject = "*" })
-      end,
-      delete = "^(. ?)().-( ?.)()$",
-      change = {
-        target = "^(. ?)().-( ?.)()$",
-      },
-    },
-    ["_"] = {
-      add = { "_", "_" },
-      find = function()
-        return config.get_selection({ textobject = "_" })
-      end,
-      delete = "^(. ?)().-( ?.)()$",
-      change = {
-        target = "^(. ?)().-( ?.)()$",
-      },
-    },
-    ["/"] = {
-      add = { "/", "/" },
-      find = function()
-        return config.get_selection({ textobject = "/" })
-      end,
-      delete = "^(. ?)().-( ?.)()$",
-      change = {
-        target = "^(. ?)().-( ?.)()$",
-      },
+    ["d"] = {
+      add = { "dbg!(", ")" },
+      find = "dbg!%b()",
+      delete = "^(dbg!%()().-(%))()$",
     },
     ["p"] = {
       add = { "pp(", ")" },
