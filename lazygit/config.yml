@@ -3,6 +3,11 @@ gui:
   showCommandLog: false
   showFileTree: false
   showIcons: true
+  theme:
+    selectedLineBgColor:
+      - '#383838'
+    # selectedRangeBgColor:
+    #   - '#383838'  # Seems like there's a bug
 git:
   paging:
     colorArg: always
