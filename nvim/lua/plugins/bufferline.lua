@@ -3,7 +3,7 @@ local bufferline = require("bufferline")
 bufferline.setup({
   highlights = {
     indicator_selected = {
-      guifg = {
+      fg = {
         attribute = "bg",
         highlight = "HighlightedyankRegion",
       },
