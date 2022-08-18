@@ -296,15 +296,15 @@ xnoremap +v y:v/<c-r>=escape(@",'/\')<cr>/
 " }}} global command "
 
 " folds {{{ "
-set nofoldenable
-
-augroup folds
-  autocmd!
-
-  " Pre-set the folds to indent but allow for manual folds
-  autocmd BufReadPre  * setlocal foldmethod=indent
-  autocmd BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
-augroup end
+" set nofoldenable
+"
+" augroup folds
+"   autocmd!
+"
+"   " Pre-set the folds to indent but allow for manual folds
+"   autocmd BufReadPre  * setlocal foldmethod=indent
+"   autocmd BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+" augroup end
 " }}} folds "
 
 " pasting with indent {{{ "
@@ -358,10 +358,6 @@ nnoremap <silent> <M-j> :m+<cr>==
 nnoremap <silent> <M-k> :m-2<cr>==
 xnoremap <silent> <M-j> :m'>+<cr>`<my`>mzgv=gv`yo`z
 xnoremap <silent> <M-k> :m'<-2<cr>`>my`<mzgv=gv`yo`z
-nnoremap <silent> ¶ :m+<cr>==
-nnoremap <silent> § :m-2<cr>==
-xnoremap <silent> ¶ :m'>+<cr>`<my`>mzgv=gv`yo`z
-xnoremap <silent> § :m'<-2<cr>`>my`<mzgv=gv`yo`z
 " }}} move line "
 
 " buffers {{{ "

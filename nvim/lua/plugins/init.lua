@@ -117,9 +117,15 @@ require("packer").startup({
       config = [[require("plugins.nvim-bqf")]],
     })
     use({
+      "kevinhwang91/nvim-ufo",
+      config = [[require("plugins.nvim-ufo")]],
+      requires = "kevinhwang91/promise-async",
+    })
+    use({
       "kyazdani42/nvim-tree.lua",
       config = [[require("plugins.nvim-tree")]],
       requires = "kyazdani42/nvim-web-devicons",
+      after = 'nvim-lspconfig'
     })
     use({
       "kylechui/nvim-surround",

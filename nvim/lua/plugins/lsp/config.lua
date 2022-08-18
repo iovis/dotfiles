@@ -98,8 +98,18 @@ M.on_attach = function(client, bufnr)
   end
 end
 
--- Add additional capabilities supported by nvim-cmp
+---- Additional capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-M.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+
+-- nvim-cmp
+capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+
+-- nvim-ufo
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
+}
+
+M.capabilities = capabilities
 
 return M
