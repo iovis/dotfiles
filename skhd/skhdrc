@@ -11,7 +11,7 @@ hyper - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 hyper - b : open -a Bear
 hyper - c : open -a Fantastical
 hyper - e : open -a Spark
-hyper - f : open -a Google\ Chrome
+hyper - f : open -a Firefox
 hyper - g : open -a Tower
 hyper - m : open -a Music
 hyper - n : open -a Numi
