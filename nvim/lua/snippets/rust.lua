@@ -65,5 +65,6 @@ return {
   s("pln", fmt('println!("{}"{});', { i(1), i(2) })),
   parse("dbg", "dbg!($1);"),
   s("fd", fmt("{field}: {value},", { field = i(1, "field"), value = i(2, "value") }), { condition = conds.line_begin }),
+  s("pfd", fmt("pub {field}: {value},", { field = i(1, "field"), value = i(2, "value") }), { condition = conds.line_begin }),
   s("r", fmt('r#"{}"#', { i(1) })),
 }
