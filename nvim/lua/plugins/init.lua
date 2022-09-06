@@ -116,11 +116,11 @@ require("packer").startup({
       "kevinhwang91/nvim-bqf",
       config = [[require("plugins.nvim-bqf")]],
     })
-    use({
-      "kevinhwang91/nvim-ufo",
-      config = [[require("plugins.nvim-ufo")]],
-      requires = "kevinhwang91/promise-async",
-    })
+    -- use({
+    --   "kevinhwang91/nvim-ufo",
+    --   config = [[require("plugins.nvim-ufo")]],
+    --   requires = "kevinhwang91/promise-async",
+    -- })
     use({
       "kyazdani42/nvim-tree.lua",
       config = [[require("plugins.nvim-tree")]],
