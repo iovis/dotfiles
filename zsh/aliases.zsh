@@ -115,7 +115,8 @@ alias npms="npm ls -g --depth=0"
 alias npmst="npm start"
 
 ## rust
-alias cca="cargo check --all-targets"
+alias cb="cargo build"
+alias ch="cargo check --all-targets"
 alias cr="cargo run --"
 alias crr="cargo run --release --"
 alias ct="cargo test"
