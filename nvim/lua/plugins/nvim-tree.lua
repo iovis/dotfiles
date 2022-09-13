@@ -37,6 +37,7 @@ require("nvim-tree").setup({
   },
   view = {
     width = 35,
+    -- relativenumber = true,
     mappings = {
       list = {
         { key = "x", cb = tree_cb("close_node") },
