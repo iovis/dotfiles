@@ -59,6 +59,8 @@ require("nvim-treesitter.configs").setup({
         ["ic"] = "@class.inner",
         ["ad"] = "@block.outer",
         ["id"] = "@block.inner",
+        ["aa"] = "@parameter.outer",
+        ["ia"] = "@parameter.inner",
       },
     },
     swap = {
