@@ -68,5 +68,10 @@ local opts = {
 opts = vim.tbl_deep_extend("force", lsp_settings["rust_analyzer"], opts)
 
 require("rust-tools").setup({
+  -- tools = {
+  --   on_initialized = function()
+  --     vim.lsp.codelens.refresh()
+  --   end,
+  -- },
   server = opts,
 })

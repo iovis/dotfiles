@@ -7,6 +7,8 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { 
 
 u.highlight("NormalFloat", { bg = "#181818" })
 u.highlight("FloatBorder", { bg = "#181818", fg = "#383838" })
+u.highlight("LspCodeLens", { link = "Comment" })
+u.highlight("LspCodeLensSeparator", { link = "Comment" })
 
 -- Global LSP mappings
 vim.keymap.set("n", "<leader>lh", "<cmd>help lspconfig-server-configurations<cr>")
@@ -71,6 +73,29 @@ M.on_attach = function(client, bufnr)
   buf_xmap("<leader>b", function()
     vim.lsp.buf.formatting_sync(nil, 2000)
   end, "vim.lsp.buf.formatting_sync")
+
+  ---- Codelens
+  -- local status_ok, codelens_supported = pcall(function()
+  --   return client.supports_method("textDocument/codeLens")
+  -- end)
+  --
+  -- if status_ok and codelens_supported then
+  --   local augroup_exist, _ = pcall(vim.api.nvim_get_autocmds, {
+  --     group = "lsp_codelens_refresh",
+  --   })
+  --
+  --   if not augroup_exist then
+  --     vim.api.nvim_create_augroup("lsp_codelens_refresh", {})
+  --   end
+  --
+  --   vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave" }, {
+  --     group = "lsp_codelens_refresh",
+  --     buffer = bufnr,
+  --     callback = vim.lsp.codelens.refresh,
+  --   })
+  --
+  --   buf_nmap("<leader>lR", vim.lsp.codelens.run, "vim.lsp.codelens.run")
+  -- end
 
   ---- Document Highlights
   -- if client.resolved_capabilities.document_highlight then
