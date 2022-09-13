@@ -79,6 +79,11 @@ set wildmode=full
 let &showbreak = '└ '
 let @/ = ''  " don't show search highlights when entering or resourcing vimrc
 
+if exists('g:neovide')
+  set guifont=FiraCode\ Nerd\ Font\ Mono:h18
+  inoremap <D-v> "+p<CR>
+endif
+
 let g:markdown_fenced_languages = [
   \ 'bash',
   \ 'css',
