@@ -1,16 +1,6 @@
 cargo-audit
 cargo-edit
+cargo-nextest
 cargo-outdated
 cargo-watch
 dexios
-
-bat
-exa
-fd-find
-git-delta
-hexyl
-hyperfine
-ripgrep
-sd
-starship
-stylua

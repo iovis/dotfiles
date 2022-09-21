@@ -4,7 +4,7 @@ function libupdate() {
   zshcache
 
   rustup update
-  # cargo install $(cat ~/.dotfiles/default-crates)
+  # cupdate
 
   asdf update
   asdf plugin update --all

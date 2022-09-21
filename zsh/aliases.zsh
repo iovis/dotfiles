@@ -120,7 +120,8 @@ alias ch="cargo check --all-targets"
 alias cr="cargo run --"
 alias crr="cargo run --release --"
 alias ct="cargo test"
-alias cw="cargo watch -x check -x test"
+alias cupdate="cargo install --locked \$(cat ~/.dotfiles/default-crates)"
+alias cw="cargo watch -x check -x 'nextest run'"
 
 ctn() {
   cargo test $1 -- --nocapture
