@@ -1226,6 +1226,8 @@ nnoremap <leader>Y v$:OSCYank<cr>
 nnoremap <leader>yy V:OSCYank<cr>
 xnoremap <leader>y :OSCYank<cr>
 
+let g:oscyank_term = 'default'
+
 " vim-oscyank
 " Author: Olivier Roques
 
