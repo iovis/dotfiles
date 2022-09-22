@@ -1221,8 +1221,10 @@ endfunction
 " }}} vim-vinegar "
 
 " vim-oscyank {{{ "
-xnoremap <leader>y :OSCYank<CR>
 nmap <leader>y <Plug>OSCYank
+nnoremap <leader>Y v$:OSCYank<cr>
+nnoremap <leader>yy V:OSCYank<cr>
+xnoremap <leader>y :OSCYank<cr>
 
 " vim-oscyank
 " Author: Olivier Roques
