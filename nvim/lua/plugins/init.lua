@@ -125,7 +125,7 @@ require("packer").startup({
       "kyazdani42/nvim-tree.lua",
       config = [[require("plugins.nvim-tree")]],
       requires = "kyazdani42/nvim-web-devicons",
-      after = 'nvim-lspconfig'
+      after = "nvim-lspconfig",
     })
     use({
       "kylechui/nvim-surround",
