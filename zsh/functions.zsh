@@ -3,12 +3,9 @@ function libupdate() {
   plugins update
   zshcache
 
-  rustup update
-  # cupdate
+  rust_update
 
-  asdf update
-  asdf plugin update --all
-  asdf reshim
+  asdf_update
 
   npm -g outdated
 

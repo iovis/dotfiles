@@ -1,3 +1,16 @@
+# asdf
+if type asdf > /dev/null; then
+  asdf_update() {
+    asdf update
+    asdf plugin update --all
+    asdf reshim
+  }
+else
+  asdf_update() {
+    echo 'asdf not installed'
+  }
+fi
+
 # bat
 if type bat > /dev/null; then
   export BAT_THEME="base16"
@@ -113,5 +126,14 @@ if type rustc > /dev/null; then
   function rust() {
     name=$(basename $1 .rs)
     rustc $@ && ./$name && rm $name
+  }
+
+  function rust_update() {
+    rustup update
+    cupdate
+  }
+else
+  function rust_update() {
+    echo 'No Rust installation detected'
   }
 fi

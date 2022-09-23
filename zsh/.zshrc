@@ -39,8 +39,8 @@ source $ZDOTDIR/themes/$ZSH_THEME.zsh
 source "$ZDOTDIR/os_config.zsh"
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/bindkey.zsh"
-source "$ZDOTDIR/command_config.zsh"
 source "$ZDOTDIR/functions.zsh"
+source "$ZDOTDIR/command_config.zsh"
 source "$ZDOTDIR/options.zsh"
 
 ## Local configuration
