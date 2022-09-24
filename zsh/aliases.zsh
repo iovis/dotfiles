@@ -119,12 +119,13 @@ alias cb="cargo build"
 alias ch="cargo check --all-targets"
 alias cr="cargo run --"
 alias crr="cargo run --release --"
-alias ct="cargo test"
+alias ct="cargo nextest run"
+alias ctr="cargo nextest run --release"
 alias cupdate="cargo install --locked \$(cat ~/.dotfiles/default-crates)"
 alias cw="cargo watch -x check -x 'nextest run'"
 
 ctn() {
-  cargo test $1 -- --nocapture
+  cargo nextest run --nocapture
 }
 
 ## tmux
