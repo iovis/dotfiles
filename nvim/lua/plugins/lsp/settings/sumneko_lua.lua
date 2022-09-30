@@ -43,6 +43,7 @@ return {
         enable = false,
       },
       workspace = {
+        ignoreDir = { ".vscode", "undo" },
         library = vim.api.nvim_get_runtime_file("", true),
       },
     },
