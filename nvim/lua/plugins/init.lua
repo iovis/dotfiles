@@ -155,6 +155,7 @@ require("packer").startup({
       config = [[require("plugins.treesitter")]],
       run = ":TSUpdate",
       requires = {
+        "nvim-treesitter/nvim-treesitter-context",
         "nvim-treesitter/nvim-treesitter-textobjects",
         "nvim-treesitter/playground",
         "rrethy/nvim-treesitter-endwise",

@@ -75,4 +75,13 @@ require("nvim-treesitter.configs").setup({
   },
 })
 
+require("treesitter-context").setup({
+  patterns = {
+    ruby = {
+      "do_block",
+      "module",
+    },
+  },
+})
+
 vim.keymap.set("n", "+h", "<cmd>TSHighlightCapturesUnderCursor<cr>")
