@@ -29,7 +29,7 @@ M.on_attach = function(client, bufnr)
   u.command("LspDiagNext", vim.diagnostic.goto_next)
   u.command("LspDiagPrev", vim.diagnostic.goto_prev)
   u.command("LspDiagQuickfix", vim.diagnostic.setqflist)
-  u.command("LspFormat", vim.lsp.buf.formatting_sync)
+  u.command("LspFormat", vim.lsp.buf.format)
   u.command("LspHover", vim.lsp.buf.hover)
   u.command("LspRangeAction", vim.lsp.buf.range_code_action)
   u.command("LspRename", vim.lsp.buf.rename)
@@ -67,12 +67,12 @@ M.on_attach = function(client, bufnr)
 
   ---- Formatting
   buf_nmap("<leader>b", function()
-    vim.lsp.buf.formatting_sync(nil, 2000)
-  end, "vim.lsp.buf.formatting_sync")
+    vim.lsp.buf.format(nil, 2000)
+  end, "vim.lsp.buf.format")
 
   buf_xmap("<leader>b", function()
-    vim.lsp.buf.formatting_sync(nil, 2000)
-  end, "vim.lsp.buf.formatting_sync")
+    vim.lsp.buf.format(nil, 2000)
+  end, "vim.lsp.buf.format")
 
   ---- Codelens
   -- local status_ok, codelens_supported = pcall(function()
@@ -98,7 +98,7 @@ M.on_attach = function(client, bufnr)
   -- end
 
   ---- Document Highlights
-  -- if client.resolved_capabilities.document_highlight then
+  -- if client.server_capabilities.document_highlight then
   --   vim.cmd([[
   --     hi! link LspReferenceRead Visual
   --     hi! link LspReferenceText Visual
@@ -118,8 +118,8 @@ M.on_attach = function(client, bufnr)
 
   ---- Server Options
   if vim.tbl_contains({ "sqls", "sumneko_lua" }, client.name) then
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    client.server_capabilities.document_formatting = false
+    client.server_capabilities.document_range_formatting = false
   end
 end
 
