@@ -1,5 +1,8 @@
+-- Annotations for lua-language-server:
+-- https://github.com/sumneko/lua-language-server/wiki/Annotations
+
 ---- Global
--- Pretty print object
+--- Pretty print object
 function pp(...)
   return vim.pretty_print(...)
 end
@@ -50,6 +53,10 @@ M.make_floating_window = function(custom_window_config, height_ratio, width_rati
   return winnr, bufnr
 end
 
+---Run system command
+---@param cmd string
+---@param raw boolean?
+---@return string
 M.system = function(cmd, raw)
   local f = assert(io.popen(cmd, "r"))
   local s = assert(f:read("*a"))
@@ -66,30 +73,50 @@ M.system = function(cmd, raw)
   return s
 end
 
+---Check if command is executable
+---@param cmd string
+---@return boolean
+---@return string
 M.is_executable = function(cmd)
   if cmd and vim.fn.executable(cmd) == 1 then
-    return true
+    return true, ""
   end
 
   return false, string.format("command %s is not executable (make sure it's installed and on your $PATH)", cmd)
 end
 
 ---- Strings
+---Check if string is empty
+---@param str string
+---@return boolean
 M.is_empty = function(str)
   return vim.fn.empty(str) == 1
 end
 
+---Titleizes string
+---
+---Ex: "my title" => "My Title"
+---@param str string
+---@return string
 M.titleize = function(str)
-  -- my title => My Title
-  return str:gsub("(%l)(%w*)", function(a, b)
+  local new_str, _ = str:gsub("(%l)(%w*)", function(a, b)
     return string.upper(a) .. b
   end)
+
+  return new_str
 end
 
+---PascalCase string
+---
+---Ex: "my string" => "MyString"
+---@param str string
+---@return string
 M.pascal_case = function(str)
-  return str:gsub("_?(%l)(%w*)", function(a, b)
+  local new_str, _ = str:gsub("_?(%l)(%w*)", function(a, b)
     return string.upper(a) .. b
   end)
+
+  return new_str
 end
 
 return M
