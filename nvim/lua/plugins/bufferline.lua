@@ -5,7 +5,7 @@ bufferline.setup({
     indicator_selected = {
       fg = {
         attribute = "bg",
-        highlight = "HighlightedyankRegion",
+        highlight = "HighlightedYankRegion",
       },
     },
   },

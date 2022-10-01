@@ -472,13 +472,6 @@ nnoremap ++ :execute "hi " . synIDattr(synID(line("."),col("."),1),"name")<CR>
 nnoremap +<cr> :so $VIMRUNTIME/syntax/hitest.vim<cr>
 nnoremap +<space> :hi<space>
 
-hi HighlightedyankRegion ctermbg=110 ctermfg=235 guibg=#8fafd7 guifg=#262626 cterm=NONE gui=NONE
-
-augroup highlighted_yank
-  au!
-  au TextYankPost * silent! lua vim.highlight.on_yank { higroup="HighlightedyankRegion", timeout=500 }
-augroup END
-
 hi CursorLineNr guifg=#b8b8b8 guibg=none    cterm=none gui=bold
 hi LineNr       guifg=#585858
 
