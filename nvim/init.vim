@@ -5,9 +5,10 @@ let g:mapleader = "\<Space>"
 
 lua <<EOF
 -- reload plugin configuration
+local re = vim.regex([[\v^(autocommands|plugins|diagnostics|utils)]])
+
 for name,_ in pairs(package.loaded) do
-  -- I hate lua pattern matching with a passion: no support for (a|b)
-  if name:match('^plugins') or name:match('^diagnostics') or name:match('^utils') then
+  if re:match_str(name) then
     package.loaded[name] = nil
     require(name)
   end
