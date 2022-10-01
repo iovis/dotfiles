@@ -1,6 +1,5 @@
 " plugins {{{ "
 scriptencoding utf-8
-filetype off
 
 let g:mapleader = "\<Space>"
 
@@ -17,13 +16,10 @@ end
 require('plugins')
 require('diagnostics')
 require('autocommands')
-require('utils')
 EOF
 " }}} plugins "
 
 " config {{{ "
-filetype plugin indent on
-
 colorscheme base16-default-dark
 
 set autoindent
@@ -32,7 +28,7 @@ set autowriteall
 set background=dark
 set backspace=indent,eol,start
 set breakindent
-" set cmdheight=2
+" set cmdheight=0
 set completeopt=menu,menuone,noselect
 set conceallevel=0
 set cursorline  " Highlight current line (slow)
