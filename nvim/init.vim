@@ -16,6 +16,7 @@ end
 
 require('plugins')
 require('diagnostics')
+require('autocommands')
 require('utils')
 EOF
 " }}} plugins "

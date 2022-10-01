@@ -44,7 +44,6 @@ require("packer").startup({
     use("mbbill/undotree")
     use("moll/vim-bbye")
     use("nvim-lua/plenary.nvim")
-    use("pbrisbin/vim-mkdir")
     use("rrethy/nvim-base16")
     use("schickling/vim-bufonly")
     use("tommcdo/vim-lion")
