@@ -1,6 +1,10 @@
-local npairs = require("nvim-autopairs")
+local ok, autopairs = pcall(require, "nvim-autopairs")
+if not ok then
+  print("nvim-autopairs not found!")
+  return
+end
 
-npairs.setup({
+autopairs.setup({
   check_ts = true,
   disable_filetype = { "TelescopePrompt", "fzf" },
   disable_in_macro = true,

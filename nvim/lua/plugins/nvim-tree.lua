@@ -1,7 +1,13 @@
+local ok, tree = pcall(require, "nvim-tree")
+if not ok then
+  print("nvim-tree not found!")
+  return
+end
+
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
 local u = require("utils")
 
-require("nvim-tree").setup({
+tree.setup({
   actions = {
     open_file = {
       window_picker = {

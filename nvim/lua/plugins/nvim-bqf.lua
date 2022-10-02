@@ -1,4 +1,10 @@
-require("bqf").setup({
+local ok, bqf = pcall(require, "bqf")
+if not ok then
+  print("bqf not found!")
+  return
+end
+
+bqf.setup({
   filter = {
     fzf = {
       extra_opts = {

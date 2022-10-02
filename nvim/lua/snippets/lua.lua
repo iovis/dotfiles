@@ -14,7 +14,7 @@ return {
       {
         i(1),
         dl(2, l._1, 1), -- pre-populate from node 1
-        rep(1),
+        rep(2),
       }
     )
   ),

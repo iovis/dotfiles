@@ -1,8 +1,8 @@
 -- Stolen from:
 -- https://github.com/NvChad/NvChad/blob/main/lua/plugins/configs/statusline.lua
 local ok, feline = pcall(require, "feline")
-
 if not ok then
+  print("feline not found!")
   return
 end
 
@@ -574,6 +574,6 @@ feline.setup({
   disable = {
     filetypes = {
       "^NvimTree$",
-    }
-  }
+    },
+  },
 })

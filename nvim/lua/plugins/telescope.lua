@@ -1,7 +1,13 @@
+local ok, telescope = pcall(require, "telescope")
+if not ok then
+  print("telescope not found!")
+  return
+end
+
 local actions = require("telescope.actions")
 local action_layout = require("telescope.actions.layout")
 
-require("telescope").setup({
+telescope.setup({
   defaults = {
     sorting_strategy = "ascending",
     layout_config = {
@@ -24,8 +30,8 @@ require("telescope").setup({
   },
 })
 
-require("telescope").load_extension("fzf")
-require("telescope").load_extension("ui-select")
+telescope.load_extension("fzf")
+telescope.load_extension("ui-select")
 
 -- vim.keymap.set("n", "+s", ":Telescope<space>")
 --

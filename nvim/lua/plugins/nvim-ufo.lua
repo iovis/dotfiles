@@ -1,4 +1,8 @@
-local ufo = require("ufo")
+local ok, ufo = pcall(require, "ufo")
+if not ok then
+  print("ufo not found!")
+  return
+end
 
 ---- Vim fold settings
 -- vim.o.foldcolumn = "1"

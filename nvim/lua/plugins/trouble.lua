@@ -1,3 +1,9 @@
+local ok, trouble = pcall(require, "trouble")
+if not ok then
+  print("trouble not found!")
+  return
+end
+
 -- nnoremap ç <cmd>TroubleToggle quickfix<cr>
 -- nnoremap Ç <cmd>TroubleToggle loclist<cr>
 --
@@ -5,7 +11,7 @@
 --   autocmd!
 --   autocmd FileType Trouble setlocal relativenumber
 -- augroup END
-require("trouble").setup({
+trouble.setup({
   mode = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
   padding = false,
   action_keys = { -- key mappings for actions in the trouble list

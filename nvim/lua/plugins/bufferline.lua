@@ -1,4 +1,8 @@
-local bufferline = require("bufferline")
+local ok, bufferline = pcall(require, "bufferline")
+if not ok then
+  print("bufferline not found!")
+  return
+end
 
 bufferline.setup({
   highlights = {

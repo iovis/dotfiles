@@ -1,4 +1,10 @@
-require("zen-mode").setup({
+local ok, zen = pcall(require, "zen-mode")
+if not ok then
+  print("zen-mode not found!")
+  return
+end
+
+zen.setup({
   window = {
     backdrop = 1,
     height = 0.9,

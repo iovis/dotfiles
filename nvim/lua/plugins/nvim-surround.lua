@@ -1,6 +1,12 @@
+local ok, surround = pcall(require, "nvim-surround")
+if not ok then
+  print("nvim-surround not found!")
+  return
+end
+
 -- local config = require("nvim-surround.config")
 
-require("nvim-surround").setup({
+surround.setup({
   move_cursor = false,
   highlight = {
     duration = 5000,

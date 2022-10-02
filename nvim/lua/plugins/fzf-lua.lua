@@ -1,4 +1,9 @@
-local fzf_lua = require("fzf-lua")
+local ok, fzf_lua = pcall(require, "fzf-lua")
+if not ok then
+  print("fzf-lua not found!")
+  return
+end
+
 local fzf_actions = require("fzf-lua.actions")
 
 local function buf_tmap(lhs, rhs)
