@@ -8,3 +8,8 @@ nnoremap <buffer> <leader>sr :RustReloadWorkspace<cr>
 nnoremap <buffer> <leader>sp :TestNearest -strategy=rust_log<cr>
 
 nnoremap <buffer> +R :RustDocs<space>
+
+augroup lsp_document_format
+  autocmd! * <buffer>
+  autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
+augroup end
