@@ -1,6 +1,25 @@
 return {
   s("u", t('local u = require("utils")')),
   s(
+    "guard",
+    fmt(
+      [[
+        local ok, {} = pcall(require, "{}")
+        if not ok then
+          print("{} not found!")
+          return
+        end
+
+      ]],
+      {
+        i(1),
+        dl(2, l._1, 1), -- pre-populate from node 1
+        rep(1),
+      }
+    )
+  ),
+  -- Snippets
+  s(
     "snipinit",
     fmta(
       [[
