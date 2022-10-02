@@ -1,0 +1,1 @@
+nnoremap +d :Delete!<cr>

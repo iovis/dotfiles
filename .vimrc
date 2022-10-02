@@ -145,6 +145,7 @@ xnoremap <expr> j v:count ? 'j' : 'gj'
 xnoremap <expr> k v:count ? 'k' : 'gk'
 nnoremap <leader>. @:
 nnoremap <leader>, @@
+nnoremap <leader>E :e<space><c-r>=fnameescape(expand('%:h')).'/'<cr>
 nnoremap <leader>e :e<space>
 nnoremap <m-O> mzO<esc>`z
 nnoremap <m-o> mzo<esc>`z
@@ -393,7 +394,7 @@ nnoremap <c-e> <c-i>
 nmap T g]
 nmap t <c-]>
 
-nnoremap <silent> <leader>E :!ctags<cr>
+nnoremap <silent> +e :!ctags<cr>
 " }}} tags "
 
 " splits {{{ "
