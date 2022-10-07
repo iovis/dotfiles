@@ -1,5 +1,5 @@
 nnoremap S <Nop>
-xnoremap S <Nop>
+" xnoremap S <Nop>
 
 nnoremap SS :S!/\v//g<left><left><left>
 
