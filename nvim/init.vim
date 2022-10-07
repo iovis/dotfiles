@@ -4,6 +4,9 @@ scriptencoding utf-8
 let g:mapleader = "\<Space>"
 
 lua <<EOF
+-- Lua cache
+require("impatient")
+
 -- reload plugin configuration
 local re = vim.regex([[\v^(autocommands|plugins|diagnostics|utils)]])
 
@@ -14,9 +17,9 @@ for name,_ in pairs(package.loaded) do
   end
 end
 
-require('plugins')
-require('diagnostics')
-require('autocommands')
+require("plugins")
+require("diagnostics")
+require("autocommands")
 EOF
 " }}} plugins "
 
