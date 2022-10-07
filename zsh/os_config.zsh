@@ -1,4 +1,7 @@
 if [[ $OSTYPE == darwin* ]]; then
+  # Increase upper limit of open files
+  ulimit -n 12288
+
   export ICLOUD_PATH="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
   export NOTES="$ICLOUD_PATH/notes"
 
