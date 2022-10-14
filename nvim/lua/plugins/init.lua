@@ -172,8 +172,11 @@ require("packer").startup({
       config = [[require("plugins.lsp")]],
       requires = {
         "b0o/schemastore.nvim",
-        -- "glepnir/lspsaga.nvim",
         "simrat39/rust-tools.nvim",
+        {
+          "glepnir/lspsaga.nvim",
+          config = [[require("plugins.lspsaga")]],
+        },
         {
           "jose-elias-alvarez/null-ls.nvim",
           config = [[require("plugins.null_ls")]],

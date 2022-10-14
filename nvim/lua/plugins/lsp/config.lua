@@ -16,6 +16,10 @@ vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
 vim.keymap.set("n", "<leader>lp", "<cmd>Mason<cr>")
 
 M.on_attach = function(client, bufnr)
+  local function buf_imap(lhs, rhs, desc)
+    vim.keymap.set("i", lhs, rhs, { buffer = true, desc = desc })
+  end
+
   local function buf_nmap(lhs, rhs, desc)
     vim.keymap.set("n", lhs, rhs, { buffer = true, desc = desc })
   end
@@ -40,22 +44,22 @@ M.on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
   ---- Bindings
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  buf_imap("<c-o>", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
+
   buf_nmap("t", vim.lsp.buf.definition, "vim.lsp.buf.definition")
   buf_nmap("gd", vim.lsp.buf.hover, "vim.lsp.buf.hover")
-  buf_nmap("+s", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
   buf_nmap("T", vim.lsp.buf.references, "vim.lsp.buf.references")
+  buf_nmap("<m-d>", vim.diagnostic.open_float, "vim.diagnostic.open_float")
   buf_nmap("∂", vim.diagnostic.open_float, "vim.diagnostic.open_float") -- alt+d
   buf_nmap("<leader>la", vim.lsp.buf.code_action, "vim.lsp.buf.code_action")
   buf_nmap("<leader>lr", vim.lsp.buf.rename, "vim.lsp.buf.rename")
   buf_xmap("<leader>lr", vim.lsp.buf.rename, "vim.lsp.buf.rename")
 
   ---- Symbols
-  buf_nmap("<leader>r", require("fzf-lua").lsp_document_symbols, "fzf_lua.lsp_document_symbols")
-  buf_nmap("<leader>R", require("fzf-lua").lsp_workspace_symbols, "fzf_lua.lsp_workspace_symbols")
+  buf_nmap("<leader>r", vim.lsp.buf.document_symbol, "vim.lsp.buf.document_symbol")
+  buf_nmap("<leader>R", vim.lsp.buf.workspace_symbol, "vim.lsp.buf.workspace_symbol")
 
   ---- Diagnostics
-  buf_nmap("<leader>ld", require("fzf-lua").lsp_workspace_diagnostics, "fzf_lua.lsp_workspace_diagnostics")
   buf_nmap("<left>", vim.diagnostic.goto_prev, "vim.diagnostic.goto_prev")
   buf_nmap("<right>", vim.diagnostic.goto_next, "vim.diagnostic.goto_next")
 
@@ -73,6 +77,41 @@ M.on_attach = function(client, bufnr)
   buf_xmap("<leader>b", function()
     vim.lsp.buf.format(nil, 2000)
   end, "vim.lsp.buf.format")
+
+  ---- fzf-lua
+  local ok_fzf, fzf_lua = pcall(require, "fzf-lua")
+  if ok_fzf then
+    buf_nmap("<leader>r", fzf_lua.lsp_document_symbols, "fzf_lua.lsp_document_symbols")
+    buf_nmap("<leader>R", fzf_lua.lsp_workspace_symbols, "fzf_lua.lsp_workspace_symbols")
+
+    buf_nmap("<leader>ld", fzf_lua.lsp_workspace_diagnostics, "fzf_lua.lsp_workspace_diagnostics")
+  end
+
+  ---- lspsaga
+  local ok_lspsaga, _ = pcall(require, "lspsaga")
+  if ok_lspsaga then
+    -- definition
+    buf_nmap("gd", "<cmd>Lspsaga hover_doc<cr>")
+    buf_nmap("T", "<cmd>Lspsaga lsp_finder<cr>")
+    buf_nmap("<leader>lf", "<cmd>Lspsaga peek_definition<cr>")
+
+    -- code actions
+    buf_nmap("<leader>la", "<cmd>Lspsaga code_action<cr>")
+    buf_xmap("<leader>la", "<cmd>Lspsaga code_action<cr>")
+
+    -- rename
+    buf_nmap("<leader>lr", "<cmd>Lspsaga rename<cr>")
+    buf_xmap("<leader>lr", "<cmd>Lspsaga rename<cr>")
+
+    -- diagnostics
+    buf_nmap("∂", "<cmd>Lspsaga show_line_diagnostics<cr>") -- alt+d
+    buf_nmap("<m-d>", "<cmd>Lspsaga show_line_diagnostics<cr>")
+    buf_nmap("<left>", "<cmd>Lspsaga diagnostic_jump_prev<cr>")
+    buf_nmap("<right>", "<cmd>Lspsaga diagnostic_jump_next<cr>")
+
+    -- outline
+    buf_nmap("<leader>lo", "<cmd>LSoutlineToggle<cr>")
+  end
 
   ---- Codelens
   -- local status_ok, codelens_supported = pcall(function()
