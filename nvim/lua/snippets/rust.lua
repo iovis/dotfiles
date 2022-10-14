@@ -17,7 +17,7 @@ local rust_fn = function()
           },
           t(""),
         }),
-        body = i(4, "unimplemented!()"),
+        body = i(4, "todo!()"),
       }
     )
   )
