@@ -37,6 +37,13 @@ tree.setup({
     ignore = false,
   },
   renderer = {
+    icons = {
+      glyphs = {
+        git = {
+          untracked = "?",
+        },
+      },
+    },
     indent_markers = {
       enable = true,
     },
