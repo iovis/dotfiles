@@ -50,7 +50,7 @@ if type fd > /dev/null; then
 
     # cd into git repos
     f() {
-      folder=($(fd -td --max-depth 2 . $HOME/Sites | fzf --reverse))
+      folder=($(fd -td --max-depth 2 . $HOME/Sites | fzf --query="$*" --select-1 --exit-0 --reverse))
       [[ -n "$folder" ]] && cd "$folder"
     }
   fi
@@ -75,6 +75,11 @@ if type fzf > /dev/null; then
   e() {
     IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
     [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+  }
+
+  gba() {
+    branch=($(git branch -a | fzf --query="$*" --select-1 --exit-0 --reverse | sd 'remotes/origin/' ''))
+    [[ -n "$branch" ]] && git checkout "$branch"
   }
 fi
 
