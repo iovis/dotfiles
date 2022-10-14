@@ -131,24 +131,20 @@ end, { desc = "fzf_lua.grep" })
 vim.keymap.set("x", "<leader>f", fzf_lua.grep_visual, { silent = true, desc = "fzf_lua.grep" })
 
 -- Registers (paste register or apply macro)
--- local extract_register_from = function(result)
---   -- `selected[1]` is going to be "[2] contents of register 2"
---   return result:match("^%[(.)%]")
--- end
---
--- vim.keymap.set("n", "+r", function()
---   local opts = {}
---
---   opts.actions = {
---     ["default"] = function(selected)
---       local register = extract_register_from(selected[1])
---       vim.cmd('normal "' .. register .. "p")
---     end,
---     ["@"] = function(selected)
---       local register = extract_register_from(selected[1])
---       vim.cmd("normal @" .. register)
---     end,
---   }
---
---   fzf_lua.registers(opts)
--- end, { desc = "fzf_lua.registers" })
+local extract_register_from = function(result)
+  -- `selected[1]` is going to be "[2] contents of register 2"
+  return result:match("%[(.-)%]")
+end
+
+vim.keymap.set("n", "+r", function()
+  local opts = {}
+
+  opts.actions = {
+    ["@"] = function(selected)
+      local register = extract_register_from(selected[1])
+      vim.cmd.normal("@" .. register)
+    end,
+  }
+
+  fzf_lua.registers(opts)
+end, { desc = "fzf_lua.registers" })
