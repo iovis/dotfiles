@@ -114,6 +114,7 @@ alias npmgo="npm -g outdated"
 alias npmgu="npm -g update"
 alias npms="npm ls -g --depth=0"
 alias npmst="npm start"
+alias tsinit="yarn add --dev ts-node typescript @types/node"
 
 ## rust
 alias cb="cargo build"
