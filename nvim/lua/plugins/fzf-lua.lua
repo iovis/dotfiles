@@ -44,7 +44,7 @@ fzf_lua.setup({
       ["?"] = { icon = "?", color = "magenta" },
       ["A"] = { icon = "+", color = "green" },
       ["D"] = { icon = "✗", color = "red" },
-      ["M"] = { icon = "★", color = "yellow" },
+      ["M"] = { icon = "*", color = "yellow" },
       ["R"] = { icon = "➜", color = "yellow" },
     },
   },
@@ -77,16 +77,17 @@ fzf_lua.setup({
 vim.keymap.set("n", "+f", ":FzfLua<space>")
 
 vim.keymap.set("n", "+m", fzf_lua.marks, { desc = "fzf_lua.marks" })
--- vim.keymap.set("n", "<c-p>", fzf_lua.commands, { desc = "fzf_lua.commands" })
--- vim.keymap.set("n", "<leader><leader>", fzf_lua.buffers, { desc = "fzf_lua.buffers" })
--- vim.keymap.set("n", "<leader>A", fzf_lua.filetypes, { desc = "fzf_lua.filetypes" })
+vim.keymap.set("n", "+h", fzf_lua.help_tags, { desc = "fzf_lua.help_tags" })
+vim.keymap.set("n", "<c-p>", fzf_lua.commands, { desc = "fzf_lua.commands" })
+vim.keymap.set("n", "<leader><leader>", fzf_lua.buffers, { desc = "fzf_lua.buffers" })
+vim.keymap.set("n", "<leader>A", fzf_lua.filetypes, { desc = "fzf_lua.filetypes" })
 vim.keymap.set("n", "<leader>R", fzf_lua.tags, { desc = "fzf_lua.tags" })
 vim.keymap.set("n", "<leader>gL", fzf_lua.git_commits, { desc = "fzf_lua.git_commits" })
 vim.keymap.set("n", "<leader>gco", fzf_lua.git_branches, { desc = "fzf_lua.git_branches" })
-vim.keymap.set("n", "<leader>gh", fzf_lua.git_bcommits, { desc = "fzf_lua.git_bcommits" })
+vim.keymap.set("n", "<leader>gH", fzf_lua.git_bcommits, { desc = "fzf_lua.git_bcommits" })
 vim.keymap.set("n", "<leader>j", fzf_lua.git_status, { desc = "fzf_lua.git_status" })
 vim.keymap.set("n", "<leader>r", fzf_lua.btags, { desc = "fzf_lua.btags" })
--- vim.keymap.set("n", "<leader>ñ", fzf_lua.blines, { desc = "fzf_lua.blines" })
+vim.keymap.set("n", "<leader>ñ", fzf_lua.blines, { desc = "fzf_lua.blines" })
 
 -- Edit dotfiles
 vim.keymap.set("n", "<leader>ue", function()
@@ -96,7 +97,7 @@ end)
 -- Edit snippets
 local original_fd_opts = require("fzf-lua.config").globals.files.fd_opts
 local fd_opts_no_ignore = original_fd_opts
-    .. [[ --no-ignore --exclude '.keep' --exclude 'Session.vim' --exclude 'undo' ]]
+  .. [[ --no-ignore --exclude '.keep' --exclude 'Session.vim' --exclude 'undo' ]]
 
 vim.keymap.set("n", "<leader>se", function()
   local filetype = require("luasnip.extras.filetype_functions").from_pos_or_filetype()[1]
@@ -119,9 +120,9 @@ vim.keymap.set("n", "<leader>O", function()
   fzf_lua.files({ fd_opts = fd_opts_no_ignore })
 end, { desc = "fzf_lua.all_files" })
 
-vim.keymap.set("n", "+t", function()
-  fzf_lua.files({ fd_opts = original_fd_opts .. [[ -e 'rbi' ]] })
-end, { desc = "fzf_lua.sorbet_files" })
+-- vim.keymap.set("n", "+t", function()
+--   fzf_lua.files({ fd_opts = original_fd_opts .. [[ -e 'rbi' ]] })
+-- end, { desc = "fzf_lua.sorbet_files" })
 
 -- Ripgrep search
 vim.keymap.set("n", "<leader>f", function()

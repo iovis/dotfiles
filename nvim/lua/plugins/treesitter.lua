@@ -85,4 +85,4 @@ require("treesitter-context").setup({
   },
 })
 
-vim.keymap.set("n", "+h", "<cmd>TSHighlightCapturesUnderCursor<cr>")
+vim.keymap.set("n", "+H", "<cmd>TSHighlightCapturesUnderCursor<cr>")

@@ -6,7 +6,7 @@ nnoremap <leader>go :Gread<cr>
 nnoremap <silent> <leader>gb :Git blame<cr>
 nnoremap <silent> <leader>gg :GBrowse<cr>
 
-" nnoremap <silent> <leader>gh :Glol %<cr>
+nnoremap <silent> <leader>gh :Glol %<cr>
 nnoremap <silent> <leader>gl :Glol -500<cr>
 
 xnoremap <silent> <leader>gg :GBrowse<cr>

@@ -140,16 +140,16 @@ require("packer").startup({
       "numToStr/Comment.nvim",
       config = [[require("plugins.comment")]],
     })
-    use({
-      "nvim-telescope/telescope.nvim",
-      branch = "0.1.x",
-      config = [[require("plugins.telescope")]],
-      requires = {
-        "nvim-lua/plenary.nvim",
-        "nvim-telescope/telescope-ui-select.nvim",
-        { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
-      },
-    })
+    -- use({
+    --   "nvim-telescope/telescope.nvim",
+    --   branch = "0.1.x",
+    --   config = [[require("plugins.telescope")]],
+    --   requires = {
+    --     "nvim-lua/plenary.nvim",
+    --     "nvim-telescope/telescope-ui-select.nvim",
+    --     { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+    --   },
+    -- })
     use({
       "nvim-treesitter/nvim-treesitter",
       config = [[require("plugins.treesitter")]],
