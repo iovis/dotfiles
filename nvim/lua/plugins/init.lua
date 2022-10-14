@@ -41,6 +41,7 @@ require("packer").startup({
     use("kana/vim-textobj-entire")
     use("kana/vim-textobj-indent")
     use("kana/vim-textobj-user")
+    use("lewis6991/impatient.nvim")
     use("mbbill/undotree")
     use("moll/vim-bbye")
     use("nvim-lua/plenary.nvim")
