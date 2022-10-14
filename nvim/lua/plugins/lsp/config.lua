@@ -43,14 +43,14 @@ M.on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-  ---- Bindings
+  ---- Signature/Definition
   buf_imap("<c-o>", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
 
   buf_nmap("t", vim.lsp.buf.definition, "vim.lsp.buf.definition")
   buf_nmap("gd", vim.lsp.buf.hover, "vim.lsp.buf.hover")
   buf_nmap("T", vim.lsp.buf.references, "vim.lsp.buf.references")
-  buf_nmap("<m-d>", vim.diagnostic.open_float, "vim.diagnostic.open_float")
-  buf_nmap("∂", vim.diagnostic.open_float, "vim.diagnostic.open_float") -- alt+d
+
+  ---- Actions
   buf_nmap("<leader>la", vim.lsp.buf.code_action, "vim.lsp.buf.code_action")
   buf_nmap("<leader>lr", vim.lsp.buf.rename, "vim.lsp.buf.rename")
   buf_xmap("<leader>lr", vim.lsp.buf.rename, "vim.lsp.buf.rename")
@@ -60,10 +60,12 @@ M.on_attach = function(client, bufnr)
   buf_nmap("<leader>R", vim.lsp.buf.workspace_symbol, "vim.lsp.buf.workspace_symbol")
 
   ---- Diagnostics
+  buf_nmap("<m-d>", vim.diagnostic.open_float, "vim.diagnostic.open_float")
+  buf_nmap("∂", vim.diagnostic.open_float, "vim.diagnostic.open_float") -- alt+d
   buf_nmap("<left>", vim.diagnostic.goto_prev, "vim.diagnostic.goto_prev")
   buf_nmap("<right>", vim.diagnostic.goto_next, "vim.diagnostic.goto_next")
 
-  -- show diagnostics of current line
+  -- -- show diagnostics of current line
   -- vim.api.nvim_create_autocmd("CursorHold", {
   --   buffer = bufnr,
   --   callback = vim.diagnostic.open_float,
@@ -90,26 +92,24 @@ M.on_attach = function(client, bufnr)
   ---- lspsaga
   local ok_lspsaga, _ = pcall(require, "lspsaga")
   if ok_lspsaga then
-    -- definition
+    ---- definition
     buf_nmap("gd", "<cmd>Lspsaga hover_doc<cr>")
     buf_nmap("T", "<cmd>Lspsaga lsp_finder<cr>")
     buf_nmap("<leader>lf", "<cmd>Lspsaga peek_definition<cr>")
 
-    -- code actions
+    ---- actions
     buf_nmap("<leader>la", "<cmd>Lspsaga code_action<cr>")
     buf_xmap("<leader>la", "<cmd>Lspsaga code_action<cr>")
-
-    -- rename
     buf_nmap("<leader>lr", "<cmd>Lspsaga rename<cr>")
     buf_xmap("<leader>lr", "<cmd>Lspsaga rename<cr>")
 
-    -- diagnostics
+    ---- diagnostics
     buf_nmap("∂", "<cmd>Lspsaga show_line_diagnostics<cr>") -- alt+d
     buf_nmap("<m-d>", "<cmd>Lspsaga show_line_diagnostics<cr>")
     buf_nmap("<left>", "<cmd>Lspsaga diagnostic_jump_prev<cr>")
     buf_nmap("<right>", "<cmd>Lspsaga diagnostic_jump_next<cr>")
 
-    -- outline
+    ---- outline
     buf_nmap("<leader>lo", "<cmd>LSoutlineToggle<cr>")
   end
 
@@ -169,10 +169,10 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 -- nvim-ufo
-capabilities.textDocument.foldingRange = {
-  dynamicRegistration = false,
-  lineFoldingOnly = true,
-}
+-- capabilities.textDocument.foldingRange = {
+--   dynamicRegistration = false,
+--   lineFoldingOnly = true,
+-- }
 
 M.capabilities = capabilities
 
