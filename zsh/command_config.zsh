@@ -47,6 +47,12 @@ fi
 if type fd > /dev/null; then
   if type fzf > /dev/null; then
     export FZF_DEFAULT_COMMAND="fd -H -E '.git' -E '.keep' --type file --follow --color=always"
+
+    # cd into git repos
+    f() {
+      folder=($(fd -td --max-depth 2 . $HOME/Sites | fzf --reverse))
+      [[ -n "$folder" ]] && cd "$folder"
+    }
   fi
 fi
 
