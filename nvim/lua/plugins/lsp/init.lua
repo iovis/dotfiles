@@ -19,6 +19,7 @@ local lsp_servers = {
   "bashls",
   "dockerls",
   "emmet_ls",
+  "gopls",
   "html",
   "jsonls",
   "pyright",
