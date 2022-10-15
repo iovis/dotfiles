@@ -405,6 +405,11 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
+
+nnoremap <leader>H <c-w>H
+nnoremap <leader>J <c-w>J
+nnoremap <leader>K <c-w>K
+nnoremap <leader>L <c-w>L
 " }}} splits "
 
 " sorting {{{ "

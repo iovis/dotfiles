@@ -388,6 +388,11 @@ nnoremap <silent> +e :!ctags<cr>
 " splits {{{ "
 nnoremap <leader>v <c-w>v
 nnoremap <leader>h <c-w>s
+
+nnoremap <leader>H <c-w>H
+nnoremap <leader>J <c-w>J
+nnoremap <leader>K <c-w>K
+nnoremap <leader>L <c-w>L
 " }}} splits "
 
 " sorting {{{ "
