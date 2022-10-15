@@ -8,17 +8,18 @@
 ##########################
 hyper - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 
-hyper - b : open -a Bear
-hyper - c : open -a Fantastical
+hyper - a : open -a Messages
+hyper - d : open -a zoom.us
 hyper - e : open -a Spark
 hyper - f : open -a Firefox
 hyper - g : open -a Tower
+
+hyper - j : open -a iTerm
+hyper - k : open -a Slack
+hyper - l : open -a Bear
 hyper - m : open -a Music
 hyper - n : open -a Numi
 hyper - o : open -a Things3
-hyper - s : open -a Slack
-hyper - t : open -a iTerm
-hyper - z : open -a zoom.us
 
 ############
 #  Window  #
