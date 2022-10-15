@@ -298,8 +298,8 @@ endfunction
 nnoremap +g :g//<left>
 nnoremap +v :v//<left>
 
-xnoremap +g y:g/<c-r>=escape(@",'/\')<cr>/
-xnoremap +v y:v/<c-r>=escape(@",'/\')<cr>/
+xnoremap +g :g//<left>
+xnoremap +v :v//<left>
 " }}} global command "
 
 " folds {{{ "
