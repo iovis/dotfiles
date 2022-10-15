@@ -14,7 +14,6 @@ export LESS="-iMSx4 -FXR"
 export PAGER="less"
 export PROJECT_HOME="$HOME/Sites"
 export REVIEW_BASE="master"
-export TERM="screen-256color"
 export ZSH_PLUGINS="$ZDOTDIR/plugins"
 export ZSH_THEME="starship"
 
