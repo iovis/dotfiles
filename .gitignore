@@ -5,7 +5,6 @@ nvim/.VimballRecord
 nvim/.netrwhist
 nvim/plugin/packer_compiled.lua
 nvim/spell/*
-nvim/undo/*
 zsh/.zcompdump
 zsh/.zsh_history
 zsh/local/*

@@ -74,7 +74,6 @@ set splitright
 set termguicolors
 set updatetime=200
 set undofile
-set undodir=~/.config/nvim/undo
 set virtualedit=block
 set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn
 set wildignorecase
