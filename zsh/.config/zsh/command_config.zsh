@@ -120,7 +120,7 @@ fi
 
 # lazygit
 if type lazygit > /dev/null; then
-  alias gg="lazygit"
+  alias lg="lazygit"
 fi
 
 # nvim
