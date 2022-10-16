@@ -24,7 +24,7 @@
   email = davidmarchan@gmail.com
 [core]
   autocrlf = input
-  excludesfile = ~/.gitignore_global
+  excludesfile = ~/.config/git/global_gitignore
   pager = delta
 [interactive]
   diffFilter = delta --color-only

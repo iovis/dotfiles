@@ -34,7 +34,7 @@ alias gd="git diff"
 alias gdm="git diff master..."
 alias gds="git diff --staged"
 alias gf="git fetch"
-alias gitconfig="\$EDITOR ~/.gitconfig"
+alias gitconfig="\$EDITOR ~/.config/git/config"
 alias gl="git pull"
 alias glol='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'\'
 alias glola='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'\'' --all'
