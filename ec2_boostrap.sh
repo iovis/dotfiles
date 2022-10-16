@@ -46,21 +46,21 @@ echo "[$(date '+%Y-%m-%d %H:%M')] Installing ruby"
 asdf plugin add ruby
 asdf install ruby 2.7.4
 asdf global ruby 2.7.4
-gem install $(cat ~/.dotfiles/default-gems)
+gem install $(cat ~/.dotfiles/default/gems)
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing python"
 asdf plugin add python
 asdf install python latest
 asdf global python latest
 pip install -U pip wheel setuptools
-pip install -r ~/.dotfiles/default-pips
+pip install -r ~/.dotfiles/default/pips
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing node"
 asdf plugin add nodejs
 asdf install nodejs lts
 asdf global nodejs lts
 npm -g install npm
-npm -g install $(cat ~/.dotfiles/default-npms)
+npm -g install $(cat ~/.dotfiles/default/npms)
 
 # neovim
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing neovim"
@@ -74,7 +74,7 @@ cd
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing rust"
 curl https://sh.rustup.rs -sSf | sh -s -- -y
 . $HOME/.cargo/env
-cargo install $(cat ~/.dotfiles/default-crates)
+cargo install $(cat ~/.dotfiles/default/crates)
 
 # gh
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing gh"
