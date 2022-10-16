@@ -6,10 +6,10 @@ nvim/spell/*
 
 # zsh
 *.zwc
-zsh/.zcompdump
-zsh/.zsh_history
-zsh/local/*
-zsh/plugins/*
+zsh/.config/zsh/.zcompdump
+zsh/.config/zsh/.zsh_history
+zsh/.config/zsh/local/*
+zsh/.config/zsh/plugins/*
 
 # lazygit
 lazygit/state.yml
