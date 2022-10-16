@@ -62,7 +62,7 @@ alias aliases="\$EDITOR \$ZDOTDIR/local/aliases.zsh"
 alias hosts="sudo \$EDITOR /etc/hosts"
 alias skhdrc="\$EDITOR ~/.config/skhd/skhdrc"
 alias so="exec zsh"
-alias tmrc="\$EDITOR ~/.tmux.conf"
+alias tmrc="\$EDITOR ~/.config/tmux/tmux.conf"
 alias yabairc="\$EDITOR ~/.config/yabai/yabairc"
 alias zshrc="\$EDITOR \$ZDOTDIR/.zshrc"
 
