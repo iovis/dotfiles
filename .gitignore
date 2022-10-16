@@ -15,4 +15,4 @@ zsh/.config/zsh/plugins/*
 lazygit/state.yml
 
 # mpv
-mpv/watch_later/*
+mpv/.config/mpv/watch_later/*
