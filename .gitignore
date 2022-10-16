@@ -12,7 +12,7 @@ zsh/.config/zsh/local/*
 zsh/.config/zsh/plugins/*
 
 # lazygit
-lazygit/state.yml
+lazygit/.config/lazygit/state.yml
 
 # mpv
 mpv/.config/mpv/watch_later/*
