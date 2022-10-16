@@ -5,7 +5,10 @@ let g:mapleader = "\<Space>"
 
 lua <<EOF
 -- Lua cache
-require("impatient")
+local ok, impatient = pcall(require, "impatient")
+if not ok then
+  print("impatient not found!")
+end
 
 -- reload plugin configuration
 local re = vim.regex([[\v^(autocommands|plugins|diagnostics|utils)]])
