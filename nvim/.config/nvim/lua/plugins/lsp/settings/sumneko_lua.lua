@@ -1,14 +1,9 @@
-local runtime_path = vim.split(package.path, ";")
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-
 return {
   settings = {
     Lua = {
       diagnostics = {
         globals = {
           "use",
-          "vim",
           "pp", -- pretty print
           -- luasnip globals (luasnip.config.snip_env)
           -- https://github.com/L3MON4D3/LuaSnip/blob/master/lua/luasnip/config.lua
@@ -35,16 +30,8 @@ return {
           "ai",
         },
       },
-      runtime = {
-        version = "LuaJIT",
-        path = runtime_path,
-      },
       telemetry = {
         enable = false,
-      },
-      workspace = {
-        ignoreDir = { ".vscode", "undo" },
-        library = vim.api.nvim_get_runtime_file("", true),
       },
     },
   },

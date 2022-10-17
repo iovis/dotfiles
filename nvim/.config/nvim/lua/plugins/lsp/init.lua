@@ -32,6 +32,8 @@ local lsp_servers = {
   "vimls",
 }
 
+require("neodev").setup({})
+
 require("mason").setup({
   ui = {
     keymaps = {
