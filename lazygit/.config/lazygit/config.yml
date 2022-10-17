@@ -11,7 +11,7 @@ gui:
 git:
   paging:
     colorArg: always
-    # pager: delta --dark --paging=never  # Delta seems to crash
+    pager: delta --dark --paging=never --true-color=auto --diff-so-fancy
 promptToReturnFromSubprocess: false
 keybinding:
   universal:
