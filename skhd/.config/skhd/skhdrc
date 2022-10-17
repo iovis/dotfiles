@@ -14,6 +14,7 @@ hyper - e : open -a Spark
 hyper - f : open -a Firefox
 hyper - g : open -a Tower
 
+hyper - h : open -a Fantastical
 hyper - j : open -a iTerm
 hyper - k : open -a Slack
 hyper - l : open -a Bear
