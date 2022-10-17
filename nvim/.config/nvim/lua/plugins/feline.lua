@@ -377,7 +377,7 @@ local lsp_progress = {
 -- LSP icon
 local lsp_icon = {
   provider = function()
-    if next(vim.lsp.buf_get_clients()) ~= nil then
+    if next(vim.lsp.get_active_clients()) ~= nil then
       return "  LSP "
     else
       return ""

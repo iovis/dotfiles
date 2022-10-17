@@ -73,11 +73,11 @@ M.on_attach = function(client, bufnr)
 
   ---- Formatting
   buf_nmap("<leader>b", function()
-    vim.lsp.buf.format(nil, 2000)
+    vim.lsp.buf.format({ timeout_ms = 2000 })
   end, "vim.lsp.buf.format")
 
   buf_xmap("<leader>b", function()
-    vim.lsp.buf.format(nil, 2000)
+    vim.lsp.buf.format({ timeout_ms = 2000 })
   end, "vim.lsp.buf.format")
 
   ---- fzf-lua

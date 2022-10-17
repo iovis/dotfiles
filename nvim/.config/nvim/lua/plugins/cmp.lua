@@ -15,7 +15,7 @@ require("cmp_git").setup()
 ---- Setup
 cmp.setup({
   mapping = {
-    ["<C-b>"] = cmp.mapping.complete(),
+    ["<C-b>"] = cmp.mapping.complete({}),
     ["<C-e>"] = cmp.config.disable,
     ["<C-n>"] = cmp.mapping.select_next_item(),
     ["<C-p>"] = cmp.mapping.select_prev_item(),
