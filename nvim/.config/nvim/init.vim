@@ -11,7 +11,9 @@ if not ok then
 end
 
 -- reload plugin configuration
-local re = vim.regex([[\v^(autocommands|plugins|diagnostics|utils)]])
+local re = vim.regex(
+  [[\v^(autocommands|plugins|diagnostics|utils|custom_commands)]]
+)
 
 for name,_ in pairs(package.loaded) do
   if re:match_str(name) then
@@ -23,6 +25,7 @@ end
 require("plugins")
 require("diagnostics")
 require("autocommands")
+require("custom_commands")
 EOF
 " }}} plugins "
 
