@@ -15,8 +15,10 @@ git:
 promptToReturnFromSubprocess: false
 keybinding:
   universal:
-    nextTab: 'ñ'
-    prevTab: 'Ñ'
-  commits:
-    moveDownCommit: 'J'
-    moveUpCommit: 'K'
+    return: 'q'
+    prevBlock-alt: 'K'
+    nextBlock-alt: 'J'
+    nextTab: 'l'
+    prevTab: 'h'
+    prevScreenMode: '-'
+    startSearch: 'ñ'
