@@ -1,8 +1,5 @@
 # nvim
-nvim/.config/nvim/.VimballRecord
-nvim/.config/nvim/.netrwhist
 nvim/.config/nvim/plugin/packer_compiled.lua
-nvim/.config/nvim/spell/*
 
 # zsh
 *.zwc
