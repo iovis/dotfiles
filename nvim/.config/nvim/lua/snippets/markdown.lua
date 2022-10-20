@@ -57,16 +57,54 @@ return {
         # [{date}] {title}
 
         ## requirements
-        * {}
+        - {}
 
         ## data model
-        *
+        -
 
         ## API
-        *
+        -
 
         ## Notes
-        *
+        -
+      ]],
+      {
+        date = p(os.date, "%F"),
+        title = d(1, meeting_title),
+        i(0),
+      },
+      {
+        condition = conds.line_begin,
+      }
+    )
+  ),
+  -- integrations
+  s(
+    { trig = "integrations", dscr = "BE Interview notes for RubiconMD" },
+    fmt(
+      [[
+        # [{date}] {title}
+
+        ## Ask about BE experience (tech, frameworks)
+        - {}
+
+        ## Ask about integrations experience (challenges)
+        -
+
+        ## internet question
+        -
+
+        ## MVC like I'm a junior
+        -
+
+        ## welcome email
+        -
+
+        ## You have a view that is going to list the consults made by their organization and the author name. You realize that it’s taking a minute and a half for the controller to give this information to the view: What do you think is going on? How could we solve this performance issue?
+        -
+
+        ## Notes
+        -
       ]],
       {
         date = p(os.date, "%F"),
@@ -86,19 +124,19 @@ return {
         # [{date}] {title}
 
         ## internet question
-        * {}
+        - {}
 
         ## welcome email
-        *
+        -
 
         ## user password
-        *
+        -
 
         ## performance
-        *
+        -
 
         ## Notes
-        *
+        -
       ]],
       {
         date = p(os.date, "%F"),
@@ -118,16 +156,16 @@ return {
         # [{date}] {title}
 
         ## internet question
-        * {}
+        - {}
 
         ## Scaling from 1 instance
-        *
+        -
 
         ## Automation/SDLC
-        *
+        -
 
         ## Notes
-        *
+        -
       ]],
       {
         date = p(os.date, "%F"),
