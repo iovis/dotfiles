@@ -1,3 +1,4 @@
+# notARepository: 'quit' # Not in v0.35
 gui:
   showBottomLine: false
   showCommandLog: false
