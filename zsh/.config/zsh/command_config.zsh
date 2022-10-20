@@ -29,11 +29,30 @@ fi
 # dexios
 if type dexios > /dev/null; then
   encrypt() {
-    dexios -e "$1" "${1}.enc"
+    dexios encrypt "$1" "${1}.enc"
   }
 
   decrypt() {
-    dexios -d "$1" "${1%.enc}"
+    dexios decrypt "$1" "${1%.enc}"
+  }
+
+  kencrypt() {
+    dexios encrypt -k "$DOTFILES/master.key" "$1" "${1}.enc"
+  }
+
+  kdecrypt() {
+    dexios decrypt -k "$DOTFILES/master.key" "$1" "${1%.enc}"
+  }
+
+  encrypt_all() {
+    # fd can't find custom commands unless you execute within `zsh -i`
+    # {}:  match
+    # {.}: match without extension
+    fd -H -e enc . $DOTFILES -x dexios encrypt -f -k "$DOTFILES/master.key" "{.}" "{}"
+  }
+
+  decrypt_all() {
+    fd -H -e enc . $DOTFILES -x dexios decrypt -f -k "$DOTFILES/master.key" "{}" "{.}"
   }
 else
   encrypt() {
@@ -155,4 +174,9 @@ else
   function rust_update() {
     echo 'No Rust installation detected'
   }
+fi
+
+# stow
+if type stow > /dev/null; then
+  alias stow='stow --ignore=".+\.enc"'
 fi

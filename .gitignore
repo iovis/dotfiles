@@ -20,3 +20,6 @@ lazygit/.config/lazygit/state.yml
 
 # mpv
 mpv/.config/mpv/watch_later/*
+
+# encryption
+master.key

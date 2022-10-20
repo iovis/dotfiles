@@ -8,4 +8,4 @@ local mods=(
   zsh
 )
 
-(cd "${0:A:h}" && stow -v2 $mods)
+(cd "${0:A:h}" && stow --ignore='.+\.enc' -v2 $mods)
