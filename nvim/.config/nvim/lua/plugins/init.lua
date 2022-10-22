@@ -37,7 +37,6 @@ require("packer").startup({
     use("iovis/tux.vim")
     use("iovis/vimlook")
     use("jparise/vim-graphql")
-    use("justinmk/vim-sneak")
     use("kana/vim-textobj-entire")
     use("kana/vim-textobj-indent")
     use("kana/vim-textobj-user")
@@ -83,6 +82,10 @@ require("packer").startup({
     use({
       "feline-nvim/feline.nvim",
       config = [[require("plugins.feline")]],
+    })
+    use({
+      "ggandor/leap.nvim",
+      config = [[require("plugins.leap")]],
     })
     use({
       "ibhagwan/fzf-lua",
