@@ -36,5 +36,8 @@ require("gitsigns").setup({
 
       return "<Ignore>"
     end, { expr = true, desc = "previous hunk" })
+
+    -- Text object
+    map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
   end,
 })
