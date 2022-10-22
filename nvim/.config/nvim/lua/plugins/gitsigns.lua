@@ -5,15 +5,15 @@ require("gitsigns").setup({
   on_attach = function(bufnr)
     local gs = package.loaded.gitsigns
 
-    local function nmap(lhs, rhs, opts)
+    local function map(mode, lhs, rhs, opts)
       opts = opts or {}
       opts.buffer = bufnr
-      vim.keymap.set("n", lhs, rhs, opts)
+      vim.keymap.set(mode, lhs, rhs, opts)
     end
 
-    nmap("+q", gs.toggle_current_line_blame, { desc = "toggle_current_line_blame" })
+    map("n", "+q", gs.toggle_current_line_blame, { desc = "toggle_current_line_blame" })
 
-    nmap("]c", function()
+    map("n", "]c", function()
       if vim.wo.diff then
         return "]c"
       end
@@ -25,7 +25,7 @@ require("gitsigns").setup({
       return "<Ignore>"
     end, { expr = true, desc = "next hunk" })
 
-    nmap("[c", function()
+    map("n", "[c", function()
       if vim.wo.diff then
         return "[c"
       end
