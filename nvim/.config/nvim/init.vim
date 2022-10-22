@@ -267,14 +267,13 @@ nnoremap <silent> <leader>ª :bdelete!<cr>
 nnoremap s <Nop>
 xnoremap s <Nop>
 
-nnoremap s<space> :s/\v//g<left><left><left>
-nnoremap ss       :%s/\v//g<left><left><left>
+nnoremap ss :%s/\v//g<left><left><left>
 
 nnoremap <silent> s :set operatorfunc=SubstituteOperator<cr>g@
 xnoremap s :<c-u>call SubstituteOperator(visualmode())<cr>
 
 function! SubstituteOperator(type)
-  if a:type ==? 'v'
+  if a:type ==# 'v'
     let isSameLine = getpos("'<")[1] - getpos("'>")[1] == 0
 
     if isSameLine
@@ -285,6 +284,8 @@ function! SubstituteOperator(type)
     else
       call feedkeys(":'<,'>s/\\v//g\<left>\<left>\<left>", 't')
     endif
+  elseif a:type ==# 'V'
+    call feedkeys(":'<,'>s/\\v//g\<left>\<left>\<left>", 't')
   elseif a:type ==# 'char'
     let saved_unnamed_register = @@
     execute 'normal! `[v`]y'
