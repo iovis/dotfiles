@@ -39,7 +39,7 @@ return {
     fmta(
       [[
         #[tokio::test]
-        async fn <test_name>() {
+        async fn test_<test_name>() {
             <>
         }
       ]],
