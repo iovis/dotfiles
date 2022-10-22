@@ -17,3 +17,6 @@ bqf.setup({
     ptoggleauto = "p",
   },
 })
+
+local u = require("utils")
+u.highlight("BqfSign", { link = "Directory" })
