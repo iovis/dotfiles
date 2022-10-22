@@ -70,4 +70,4 @@ local toggle_diagnostics = function()
   end
 end
 
-vim.keymap.set("n", "+z", toggle_diagnostics, { desc = "toggle diagnostics" })
+vim.keymap.set("n", "+d", toggle_diagnostics, { desc = "toggle diagnostics" })
