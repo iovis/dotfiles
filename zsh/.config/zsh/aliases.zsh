@@ -120,11 +120,11 @@ alias tsinit="yarn add --dev ts-node typescript @types/node"
 alias cb="cargo build"
 alias ch="cargo check --all-targets"
 alias cr="cargo run --"
-alias crr="cargo run --release --"
+alias crr="cargo run -q --release --"
 alias ct="cargo nextest run"
 alias ctr="cargo nextest run --release"
 alias cupdate="cargo install --locked \$(cat ~/.dotfiles/default/crates)"
-alias cw="cargo watch -x check -x 'nextest run'"
+alias cw="cargo watch -x 'nextest run'"
 
 ctn() {
   cargo nextest run --nocapture
