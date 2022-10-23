@@ -24,7 +24,7 @@ require("packer").init({
   max_jobs = 50,
 })
 require("packer").startup({
-  function()
+  function(use)
     use("andrewradev/splitjoin.vim")
     use("chrisbra/csv.vim")
     use("christoomey/vim-sort-motion")
