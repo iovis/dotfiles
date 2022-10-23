@@ -4,6 +4,9 @@ if not ok then
   return
 end
 
+-- register fzf-lua as the UI interface for vim.ui.select
+fzf_lua.register_ui_select()
+
 local fzf_actions = require("fzf-lua.actions")
 
 local function buf_tmap(lhs, rhs)
