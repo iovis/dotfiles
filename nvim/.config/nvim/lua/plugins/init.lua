@@ -1,13 +1,26 @@
--- Ensure packer.nvim is installed
-local execute = vim.api.nvim_command
-local fn = vim.fn
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({
+      "git",
+      "clone",
+      "--depth",
+      "1",
+      "https://github.com/wbthomason/packer.nvim",
+      install_path,
+    })
 
-if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", install_path })
-  execute("packadd packer.nvim")
+    vim.cmd([[packadd packer.nvim]])
+
+    return true
+  end
+
+  return false
 end
+
+local packer_bootstrap = ensure_packer()
 
 -- Compile plugins when file is changed
 local group = vim.api.nvim_create_augroup("packer_user_config", { clear = true })
@@ -214,6 +227,11 @@ require("packer").startup({
       "L3MON4D3/LuaSnip",
       config = [[require("plugins.luasnip")]],
     })
+
+    -- Sync Packer if it was bootstrapped
+    if packer_bootstrap then
+      require("packer").sync()
+    end
   end,
   config = {
     profile = {
