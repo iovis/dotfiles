@@ -41,7 +41,6 @@ require("packer").startup({
     use("andrewradev/splitjoin.vim")
     use("chrisbra/csv.vim")
     use("christoomey/vim-sort-motion")
-    use("christoomey/vim-tmux-navigator")
     use("iovis/browsers_castle")
     use("iovis/hubcap.vim")
     use("iovis/jirafa.vim")
@@ -87,6 +86,10 @@ require("packer").startup({
       "akinsho/bufferline.nvim",
       config = [[require("plugins.bufferline")]],
       requires = "kyazdani42/nvim-web-devicons",
+    })
+    use({
+      "christoomey/vim-tmux-navigator",
+      config = [[require("plugins.tmux_navigator")]],
     })
     use({
       "dstein64/vim-startuptime",
