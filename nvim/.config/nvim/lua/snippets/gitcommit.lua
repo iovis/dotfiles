@@ -48,6 +48,7 @@ return {
   s("skhd", t("[skhd] ")),
   s("tmux", t("[tmux] ")),
   s("vim", t("[vim] ")),
+  s("wip", t("[WIP] ")),
   s("yabai", t("[yabai] ")),
   s("zsh", t("[zsh] ")),
   -- Templates
