@@ -1,5 +1,5 @@
 nnoremap d!       :DB w:db =<space>
-nnoremap d<cr>    :execute 'Start pgcli ' . CurrentDB()<cr>
+nnoremap d<cr>    :execute 'TuxBg pgcli ' . CurrentDB()<cr>
 nnoremap d<space> :DB<space>
 nnoremap d?       :echo CurrentDB()<cr>
 

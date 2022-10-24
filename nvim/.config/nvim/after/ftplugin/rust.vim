@@ -6,6 +6,7 @@ nmap <silent> <buffer> s<cr> :Tux cargo run<cr>
 
 nnoremap <buffer> <leader>sr :RustReloadWorkspace<cr>
 nnoremap <buffer> <leader>sp :TestNearest -strategy=rust_log<cr>
+nnoremap <buffer> <leader>sw :TuxBg! cw<cr>
 
 nnoremap <buffer> +R :RustDocs<space>
 
