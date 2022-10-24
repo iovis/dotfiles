@@ -142,9 +142,10 @@ require("packer").startup({
     -- })
     use({
       "kyazdani42/nvim-tree.lua",
+      cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
       config = [[require("plugins.nvim-tree")]],
+      keys = { "<leader>k", "-" },
       requires = "kyazdani42/nvim-web-devicons",
-      after = "nvim-lspconfig",
     })
     use({
       "kylechui/nvim-surround",
