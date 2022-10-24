@@ -100,7 +100,9 @@ end)
 -- Edit snippets
 local original_fd_opts = require("fzf-lua.config").globals.files.fd_opts
 local fd_opts_no_ignore = original_fd_opts
-  .. [[ --no-ignore --exclude '.keep' --exclude 'Session.vim' --exclude 'undo' ]]
+    .. [[ --no-ignore ]]
+    .. [[ --exclude '.keep' ]]
+    .. [[ --exclude 'Session.vim' ]]
 
 vim.keymap.set("n", "<leader>se", function()
   local filetype = require("luasnip.extras.filetype_functions").from_pos_or_filetype()[1]
