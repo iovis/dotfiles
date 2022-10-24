@@ -61,7 +61,11 @@ for _, server in ipairs(lsp_servers) do
 end
 
 ---- Rust
--- rust-tools likes to be special
+-- DAP config
+-- local extension_path = require("mason-registry").get_package("codelldb"):get_install_path()
+-- local codelldb_path = extension_path .. "/extension/adapter/codelldb"
+-- local liblldb_path = extension_path .. "/extension/lldb/lib/liblldb.dylib"
+
 local opts = {
   on_attach = config.on_attach,
   capabilities = config.capabilities,
@@ -71,10 +75,8 @@ local opts = {
 opts = vim.tbl_deep_extend("force", lsp_settings["rust_analyzer"], opts)
 
 require("rust-tools").setup({
-  -- tools = {
-  --   on_initialized = function()
-  --     vim.lsp.codelens.refresh()
-  --   end,
-  -- },
   server = opts,
+  -- dap = {
+  --   adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
+  -- },
 })

@@ -574,6 +574,8 @@ feline.setup({
   disable = {
     filetypes = {
       "^NvimTree$",
+      "^dapui_.*",
+      "^dap-repl$",
     },
   },
 })

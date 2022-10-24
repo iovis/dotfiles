@@ -232,6 +232,16 @@ require("packer").startup({
       config = [[require("plugins.luasnip")]],
     })
 
+    -- Debugger
+    -- use({
+    --   "mfussenegger/nvim-dap",
+    --   config = [[require("plugins.dap")]],
+    --   requires = {
+    --     "rcarriga/nvim-dap-ui",
+    --     "theHamsta/nvim-dap-virtual-text",
+    --   },
+    -- })
+
     -- Sync Packer if it was bootstrapped
     if packer_bootstrap then
       require("packer").sync()
