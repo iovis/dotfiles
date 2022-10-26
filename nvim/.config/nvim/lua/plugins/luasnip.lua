@@ -9,9 +9,6 @@ local ft_functions = require("luasnip.extras.filetype_functions")
 
 ---- Config
 luasnip.config.set_config({
-  -- history = true,
-  -- enable_autosnippets = true,
-  delete_check_events = "TextChanged,InsertLeave",
   ext_opts = {
     [types.choiceNode] = {
       active = {
@@ -20,7 +17,9 @@ luasnip.config.set_config({
     },
   },
   ft_func = ft_functions.from_pos_or_filetype,
-  store_selection_keys = "<c-j>", -- Mapping to visually select text to be expanded with $TM_SELECTED_TEXT
+  history = false,
+  region_check_events = "InsertEnter,CursorMoved",
+  store_selection_keys = "<c-k>", -- Mapping to visually select text to be expanded with $TM_SELECTED_TEXT
   updateevents = "TextChanged,TextChangedI",
 })
 
