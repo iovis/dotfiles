@@ -13,15 +13,20 @@ lspkind.init()
 require("cmp_git").setup()
 
 ---- Setup
+local toggle_completion = function()
+  if cmp.visible() then
+    cmp.close()
+  else
+    cmp.complete({})
+  end
+end
+
 cmp.setup({
   mapping = {
-    ["<C-b>"] = cmp.mapping.complete({}),
-    ["<C-e>"] = cmp.config.disable,
-    ["<C-n>"] = cmp.mapping.select_next_item(),
-    ["<C-p>"] = cmp.mapping.select_prev_item(),
-    ["<C-y>"] = cmp.mapping.disable,
-    ["<CR>"] = cmp.config.disable,
-    ["<Tab>"] = cmp.mapping.confirm({ select = true }),
+    ["<C-b>"] = { i = toggle_completion },
+    ["<C-n>"] = { i = cmp.mapping.select_next_item() },
+    ["<C-p>"] = { i = cmp.mapping.select_prev_item() },
+    ["<Tab>"] = { i = cmp.mapping.confirm({ select = true }) },
   },
   formatting = {
     format = lspkind.cmp_format({
@@ -36,13 +41,13 @@ cmp.setup({
       },
     }),
   },
-  sources = {
+  sources = cmp.config.sources({
     { name = "git" },
     { name = "nvim_lsp" },
     { name = "luasnip" },
-    { name = "buffer", keyword_length = 5 },
+    { name = "buffer", keyword_length = 4 },
     { name = "path" },
-  },
+  }),
   snippet = {
     expand = function(args)
       require("luasnip").lsp_expand(args.body)
@@ -55,6 +60,31 @@ cmp.setup({
   experimental = {
     ghost_text = true,
   },
+})
+
+---- Modes
+-- Search
+cmp.setup.cmdline({ "/", "?" }, {
+  mapping = cmp.mapping.preset.cmdline({
+    ["<C-b>"] = { c = toggle_completion },
+    ["<C-e>"] = cmp.config.disable,
+  }),
+  sources = {
+    { name = "buffer" },
+  },
+})
+
+-- Command line
+cmp.setup.cmdline(":", {
+  mapping = cmp.mapping.preset.cmdline({
+    ["<C-b>"] = { c = toggle_completion },
+    ["<C-e>"] = cmp.config.disable,
+  }),
+  sources = cmp.config.sources({
+    { name = "path" },
+  }, {
+    { name = "cmdline" },
+  }),
 })
 
 ---- Filetypes

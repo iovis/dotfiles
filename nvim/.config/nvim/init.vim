@@ -174,6 +174,7 @@ cnoremap <expr> <s-tab> getcmdtype() =~ '[?/]' ? "<c-t>" : "<s-tab>"
 cnoremap %h <c-r>=fnameescape(expand('%:h')).'/'<cr>
 cnoremap %t <c-r>=fnameescape(expand('%:t'))<cr>
 cnoremap <c-a> <c-b>
+cnoremap <c-b> <Nop>
 cnoremap <c-j> <down>
 cnoremap <c-k> <up>
 cnoremap <m-left> <s-left>
