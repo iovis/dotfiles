@@ -48,6 +48,10 @@ cmp.setup({
       require("luasnip").lsp_expand(args.body)
     end,
   },
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
   experimental = {
     ghost_text = true,
   },
@@ -62,6 +66,8 @@ cmp.setup.filetype("ruby", {
 
 ---- Colors
 local u = require("utils")
+
+u.highlight("CmpItemAbbr", { fg = "#d8d8d8" })
 
 -- gray
 u.highlight("CmpItemAbbrDeprecated", {
