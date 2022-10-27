@@ -17,9 +17,12 @@ promptToReturnFromSubprocess: false
 keybinding:
   universal:
     return: 'q'
-    prevBlock-alt: 'K'
-    nextBlock-alt: 'J'
+    prevBlock-alt: '<c-k>'
+    nextBlock-alt: '<c-j>'
     nextTab: 'l'
     prevTab: 'h'
     prevScreenMode: '-'
     startSearch: 'ñ'
+  commits:
+    moveDownCommit: 'J'
+    moveUpCommit: 'K' # move commit up one
