@@ -628,9 +628,8 @@ nnoremap <leader>gcb   :Gcb<space>
 nnoremap <leader>gcm   :Gcm<cr>
 nnoremap <leader>gcq   :Gcq<cr>
 nnoremap <leader>gpsup :Gpsup<cr>
-nnoremap <leader>grhh  :Grhh<cr>
 
-nnoremap <silent> <leader>grr :%bdelete <bar> next! `git files` <bar> bd #<cr>
+command! -nargs=0 Grev  %bdelete <bar> next! `git files` <bar> bd #
 
 command! -nargs=0 Gcm   !git checkout master
 command! -nargs=0 Gcq   !git checkout qa
