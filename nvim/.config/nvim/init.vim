@@ -25,6 +25,7 @@ end
 require("plugins")
 require("diagnostics")
 require("autocommands")
+require("filetype")
 require("custom_commands")
 EOF
 " }}} plugins "

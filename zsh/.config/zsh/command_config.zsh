@@ -137,6 +137,11 @@ if type gh > /dev/null; then
   alias pulls="gh pr list --web"
 fi
 
+# just
+if type just > /dev/null; then
+  alias j="just"
+fi
+
 # lazygit
 if type lazygit > /dev/null; then
   alias lg="lazygit"
