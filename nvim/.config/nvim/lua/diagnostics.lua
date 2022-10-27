@@ -70,4 +70,11 @@ local toggle_diagnostics = function()
   end
 end
 
-vim.keymap.set("n", "+d", toggle_diagnostics, { desc = "toggle diagnostics" })
+vim.g.diagnostics_virtual = true
+local toggle_diagnostics_virtual = function()
+  vim.g.diagnostics_virtual = not vim.g.diagnostics_virtual
+  vim.diagnostic.config({ virtual_text = vim.g.diagnostics_virtual })
+end
+
+vim.keymap.set("n", "+D", toggle_diagnostics, { desc = "toggle diagnostics" })
+vim.keymap.set("n", "+d", toggle_diagnostics_virtual, { desc = "toggle virtual text diagnostics" })
