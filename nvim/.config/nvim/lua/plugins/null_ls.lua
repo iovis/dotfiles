@@ -8,7 +8,12 @@ local diagnostics = null_ls.builtins.diagnostics
 local formatting = null_ls.builtins.formatting
 
 null_ls.setup({
-  debug = true,
+  debug = false,
+  on_attach = function()
+    vim.keymap.set({ "n", "x" }, "<leader>b", function()
+      vim.lsp.buf.format({ timeout_ms = 2000 })
+    end, { buffer = true, desc = "vim.lsp.buf.format" })
+  end,
   sources = {
     diagnostics.pylint.with({
       extra_args = {
