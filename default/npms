@@ -1,4 +1,6 @@
 eslint
 neovim
 npm
+ts-node
+typescript
 yarn
