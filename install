@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
 local mods=(
+  asdf
   git
   nvim
   tmux
