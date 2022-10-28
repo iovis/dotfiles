@@ -8,6 +8,11 @@ export PATH="/usr/local/bin:$PATH"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 skip_global_compinit=1  # Some OS's call it in /etc/zsh/zshrc
 
+## rust
+if [[ -f $HOME/.cargo/env ]]; then
+  . $HOME/.cargo/env
+fi
+
 ## yabai
 # Needs to be here otherwise it won't pick up this function
 _yabai_set_float() {

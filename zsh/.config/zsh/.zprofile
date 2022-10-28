@@ -24,8 +24,5 @@ fi
 
 fpath=("$ASDF_DIR/completions" "${fpath[@]}")
 
-# rust
-export PATH="$HOME/.cargo/bin:$PATH"
-
 # dotfiles scripts
 export PATH="$HOME/.dotfiles/bin:$PATH"
