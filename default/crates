@@ -4,3 +4,4 @@ cargo-nextest
 cargo-outdated
 cargo-watch
 dexios
+inferno
