@@ -24,8 +24,8 @@ end
 cmp.setup({
   mapping = {
     ["<C-b>"] = { i = toggle_completion },
-    ["<C-n>"] = { i = cmp.mapping.select_next_item() },
-    ["<C-p>"] = { i = cmp.mapping.select_prev_item() },
+    ["<C-n>"] = { i = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }) },
+    ["<C-p>"] = { i = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }) },
     ["<Tab>"] = { i = cmp.mapping.confirm({ select = true }) },
   },
   formatting = {
