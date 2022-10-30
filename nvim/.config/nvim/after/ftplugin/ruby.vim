@@ -8,6 +8,13 @@ setlocal makeprg=ruby\ %
 " nnoremap <buffer> +T :e sorbet/rbi/<c-r>%<cr>
 " }}} sorbet "
 
+" solargraph {{{ "
+" Reset with: bundle exec solargraph clear && bundle exec yard gems --rebuild
+
+nnoremap <silent> <buffer> <leader>sy :TuxBg! ctags && bundle exec solargraph download-core && bundle exec solargraph bundle && bundle exec yard gems<cr>
+nnoremap <silent> <buffer> <leader>sr :TuxBg! ctags && bundle exec solargraph clear && bundle exec solargraph bundle && bundle exec yard gems --rebuild<cr>
+" }}} solargraph "
+
 " quick testing {{{ "
 nnoremap <silent> <buffer> <leader>sd :TestFile --format documentation<cr>
 nnoremap <silent> <buffer> <leader>sp :TestNearest -strategy=test_prof<cr>
@@ -20,9 +27,3 @@ nmap <silent> <buffer> +R :Redir !cat tmp/rspec-failures.txt<cr>
       \ :sort u<cr>
       \ :%norm! Irspec <cr>
 " }}} quick testing "
-
-" rails {{{ "
-" Execute line in rails runner
-nnoremap <buffer> <leader>sr :execute 'Rpp ' . getline('.')<cr>
-nnoremap <buffer> <leader>P  :Rpp<space>
-" }}} rails "

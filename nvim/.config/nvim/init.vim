@@ -389,8 +389,6 @@ nnoremap <c-e> <c-i>
 " tags {{{ "
 nmap T g]
 nmap t <c-]>
-
-nnoremap <silent> +e :!ctags<cr>
 " }}} tags "
 
 " splits {{{ "
