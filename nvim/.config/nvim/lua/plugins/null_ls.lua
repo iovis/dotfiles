@@ -23,7 +23,7 @@ null_ls.setup({
     }),
     diagnostics.shellcheck,
     diagnostics.vint,
-    diagnostics.yamllint.with({ extra_args = { "-f", "parsable" } }),
+    diagnostics.yamllint.with({ extra_args = { "-f", "parsable", "--no-warnings" } }),
     diagnostics.zsh,
 
     formatting.sql_formatter,
