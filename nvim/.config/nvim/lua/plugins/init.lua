@@ -189,6 +189,7 @@ require("packer").startup({
     -- LSP
     use({
       "neovim/nvim-lspconfig",
+      after = "vim-dotenv",
       config = [[require("plugins.lsp")]],
       requires = {
         "b0o/schemastore.nvim",

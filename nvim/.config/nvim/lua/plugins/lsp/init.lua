@@ -1,3 +1,6 @@
+-- NOTE: for debugging
+-- Redir lua =vim.lsp.get_active_clients()
+
 ---- LSP Setting files
 local config = require("plugins.lsp.config")
 local scan = require("plenary.scandir")
