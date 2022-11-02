@@ -633,6 +633,10 @@ function! RestoreSession()
 endfunction
 
 function! s:persist()
+  if exists('g:SessionLoad')
+    return ''
+  endif
+
   if !empty(v:this_session)
     mksession!
   endif
