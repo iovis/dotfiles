@@ -55,7 +55,11 @@ dap.configurations.rust = {
     type = "lldb",
     request = "launch",
     program = function()
-      return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
+      return vim.fn.input({
+        prompt = "Path to executable: ",
+        default = vim.fn.getcwd() .. "/target/debug/",
+        completion = "file",
+      })
     end,
     cwd = "${workspaceFolder}",
     stopOnEntry = false,

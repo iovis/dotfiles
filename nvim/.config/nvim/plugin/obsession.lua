@@ -1,7 +1,7 @@
 ---- Utils
 local u = require("user.utils")
 
---- @return boolean
+---@return boolean
 local within_session = function()
   return not u.is_empty(vim.v.this_session)
 end
@@ -17,6 +17,7 @@ local restore_session = function()
     return
   end
 
+  ---@diagnostic disable-next-line param-type-mismatch
   local ok, _ = pcall(vim.cmd, "source Session.vim")
 
   if not ok then
