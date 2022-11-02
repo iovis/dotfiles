@@ -1,7 +1,5 @@
 setlocal foldmethod=marker
 
-nnoremap <leader>P :PP<space>
-
 nnoremap <buffer> <leader>sc :Disarm<cr>
 nnoremap <buffer> <leader>so :Runtime<cr>
 
