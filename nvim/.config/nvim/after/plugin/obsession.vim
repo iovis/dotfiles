@@ -1,1 +1,0 @@
-nnoremap yoo :Obsession<cr>

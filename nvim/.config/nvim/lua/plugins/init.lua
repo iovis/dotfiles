@@ -68,7 +68,6 @@ require("packer").startup({
     use("tpope/vim-eunuch")
     use("tpope/vim-fugitive")
     use("tpope/vim-git")
-    use("tpope/vim-obsession")
     use("tpope/vim-projectionist")
     use("tpope/vim-ragtag")
     use("tpope/vim-rails")
