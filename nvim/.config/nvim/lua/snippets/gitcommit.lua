@@ -1,4 +1,4 @@
-local u = require("utils")
+local u = require("user.utils")
 
 local get_branch = function()
   return u.system("git rev-parse --abbrev-ref HEAD")

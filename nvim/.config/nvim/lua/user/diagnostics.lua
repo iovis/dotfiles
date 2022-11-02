@@ -1,4 +1,4 @@
-local u = require("utils")
+local u = require("user.utils")
 
 ---- UI
 u.highlight("DiagnosticSignError", { fg = "#ab4642" })

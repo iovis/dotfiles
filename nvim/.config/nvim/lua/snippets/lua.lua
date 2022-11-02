@@ -1,5 +1,5 @@
 return {
-  s("u", t('local u = require("utils")')),
+  s("u", t('local u = require("user.utils")')),
   s(
     "guard",
     fmt(

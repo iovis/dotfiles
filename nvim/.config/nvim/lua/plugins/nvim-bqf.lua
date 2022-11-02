@@ -18,5 +18,5 @@ bqf.setup({
   },
 })
 
-local u = require("utils")
+local u = require("user.utils")
 u.highlight("BqfSign", { link = "Directory" })

@@ -95,7 +95,7 @@ cmp.setup.filetype("ruby", {
 })
 
 ---- Colors
-local u = require("utils")
+local u = require("user.utils")
 
 u.highlight("CmpItemAbbr", { fg = "#d8d8d8" })
 

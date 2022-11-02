@@ -28,5 +28,5 @@ surround.setup({
 vim.keymap.set("n", [[<leader>"]], [[cs'"]], { remap = true })
 vim.keymap.set("n", [[<leader>']], [[cs"']], { remap = true })
 
-local u = require("utils")
+local u = require("user.utils")
 u.highlight("NvimSurroundHighlightTextObject", { bg = "#8fafd7", fg = "#262626" })

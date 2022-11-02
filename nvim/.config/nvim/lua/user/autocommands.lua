@@ -1,4 +1,4 @@
-local u = require("utils")
+local u = require("user.utils")
 
 ---- Highlight on yank
 u.highlight("HighlightedYankRegion", { fg = "#262626", bg = "#8fafd7" })

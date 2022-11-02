@@ -5,7 +5,7 @@ if not ok then
 end
 
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
-local u = require("utils")
+local u = require("user.utils")
 
 tree.setup({
   actions = {

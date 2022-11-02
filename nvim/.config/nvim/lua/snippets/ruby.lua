@@ -1,4 +1,4 @@
-local u = require("utils")
+local u = require("user.utils")
 
 local extract_name_from = function(path)
   path = vim.split(path, "/", { trimempty = true })

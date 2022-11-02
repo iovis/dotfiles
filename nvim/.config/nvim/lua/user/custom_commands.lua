@@ -1,4 +1,4 @@
-local u = require("utils")
+local u = require("user.utils")
 
 ---- Cht.sh integration
 ---- Usage: Cht <query>
