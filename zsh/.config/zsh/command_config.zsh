@@ -154,7 +154,7 @@ if type nvim > /dev/null; then
   export MANWIDTH=80
 
   alias ni="nvim"
-  alias nin="nvim -u \$HOME/.vimrc"
+  alias nin="nvim --clean -u \$HOME/.vimrc"
   alias nis="nvim -S Session.vim"
   alias note="nvim +ZenMode '+set filetype=markdown'"
 fi

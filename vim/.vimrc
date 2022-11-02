@@ -555,7 +555,7 @@ function! CCR()
 
   if cmdline =~ filter_stub . '(ls|files|buffers)$'
     " like :ls but prompts for a buffer command
-    return "\<CR>:b"
+    return "\<CR>:b "
   elseif cmdline =~# '\v\C/(#|nu|num|numb|numbe|number|l|li|lis|list)$'
     " like :g//# but prompts for a command
     return "\<CR>:"
@@ -681,7 +681,7 @@ hi Pmenu        ctermfg=white ctermbg=none
 hi PmenuSel     ctermfg=black ctermbg=white
 hi Search       ctermfg=0     ctermbg=11
 hi SignColumn   ctermbg=none
-hi VertSplit    ctermfg=black ctermbg=blue
+hi VertSplit    ctermfg=blue  ctermbg=none  cterm=none
 hi Visual       ctermfg=7     ctermbg=8     cterm=none
 hi Folded       ctermfg=8     ctermbg=none
 hi FoldColumn   ctermfg=blue  ctermbg=none
