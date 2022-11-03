@@ -50,6 +50,7 @@ yabai -m config window_gap                   0
 # Ignored Apps
 yabai -m rule --add app="^1Password" manage=off
 yabai -m rule --add app="^Activity Monitor$" manage=off
+yabai -m rule --add app="^AppCleaner$" manage=off
 yabai -m rule --add app="^App Store$" manage=off
 yabai -m rule --add app="^Bartender" manage=off
 yabai -m rule --add app="^Bazecor$" manage=off
