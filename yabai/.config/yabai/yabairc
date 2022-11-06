@@ -74,6 +74,7 @@ yabai -m rule --add app="^Raycast$" manage=off
 yabai -m rule --add app="^Spark$" manage=off
 yabai -m rule --add app="^System Information$" manage=off
 yabai -m rule --add app="^System Preferences$" manage=off
+yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^TablePlus$" manage=off
 yabai -m rule --add app="^Things" manage=off
 yabai -m rule --add app="^Tower$" manage=off
