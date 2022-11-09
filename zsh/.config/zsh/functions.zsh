@@ -1,9 +1,11 @@
 function libupdate() {
   upgrade_libraries
   plugins update
-  zshcache
 
   rust_update
+
+  generate_completions
+  zshcache
 
   asdf_update
 
@@ -14,6 +16,8 @@ function libupdate() {
 
   echo '\nOutdated pips'
   pipo
+
+  echo '\nDone!'
 }
 
 inode_count() {

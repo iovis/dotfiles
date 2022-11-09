@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-starship completions zsh > "$ZDOTDIR/completions/_starship"
+rustup completions zsh > "$ZDOTDIR/completions/_rustup"
+rustup completions zsh cargo > "$ZDOTDIR/completions/_cargo"
+# starship completions zsh > "$ZDOTDIR/completions/_starship"
