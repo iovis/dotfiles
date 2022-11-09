@@ -18,14 +18,6 @@ if type bat > /dev/null; then
   alias c="bat"
 fi
 
-# cht.sh
-if type cht.sh > /dev/null; then
-  cht.sh_update() {
-    curl https://cht.sh/:cht.sh > "$DOTFILES/bin/cht.sh"
-    curl https://cht.sh/:zsh > "$ZDOTDIR/completions/_cht.sh"
-  }
-fi
-
 # dexios
 if type dexios > /dev/null; then
   encrypt() {

@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
 
 starship completions zsh > "$ZDOTDIR/completions/_starship"
-curl https://cht.sh/:zsh > "$ZDOTDIR/completions/_cht.sh"
