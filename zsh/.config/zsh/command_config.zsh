@@ -18,6 +18,11 @@ if type bat > /dev/null; then
   alias c="bat"
 fi
 
+# brew
+if type brew > /dev/null; then
+  alias brewdump="cd; brew bundle dump -f; cd -"
+fi
+
 # dexios
 if type dexios > /dev/null; then
   encrypt() {
@@ -148,7 +153,7 @@ if type nvim > /dev/null; then
   alias ni="nvim"
   alias nin="nvim --clean -u \$HOME/.vimrc"
   alias nis="nvim -S Session.vim"
-  alias note="nvim +ZenMode '+set filetype=markdown'"
+  alias notes="cd '$NOTES' && nvim -S Session.vim +ZenMode"
 fi
 
 # ripgrep

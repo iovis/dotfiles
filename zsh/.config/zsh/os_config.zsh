@@ -5,15 +5,12 @@ if [[ $OSTYPE == darwin* ]]; then
   export ICLOUD_PATH="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
   export NOTES="$ICLOUD_PATH/notes"
 
-  alias brewdump="cd; brew bundle dump -f; cd -"
   alias fixtrash="rm -rf ~/.Trash; mkdir ~/.Trash; killall Finder"
   alias flushcache="dscacheutil -flushcache"
   alias icloud="cd '$ICLOUD_PATH'"
-  alias notes="cd '$NOTES' && nvim -S"
   alias nt="lsof -Pni"
   alias rebuildlaunchservices="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user"
   alias repair_permissions="diskutil resetUserPermissions / \$(id -u)"
-  alias services="brew services"
   alias simulator="open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app"
   alias updatedb="sudo /usr/libexec/locate.updatedb"
 
