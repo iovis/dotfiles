@@ -26,7 +26,7 @@ null_ls.setup({
     diagnostics.yamllint.with({ extra_args = { "-f", "parsable", "--no-warnings" } }),
     diagnostics.zsh,
 
-    formatting.sql_formatter,
+    formatting.sql_formatter.with({ extra_args = { "-l", "postgresql" } }),
     formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "2" } }),
   },
 })
