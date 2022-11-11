@@ -35,7 +35,7 @@ telescope.load_extension("ui-select")
 
 -- vim.keymap.set("n", "+s", ":Telescope<space>")
 --
-local t = require("telescope.builtin")
+-- local t = require("telescope.builtin")
 -- vim.keymap.set("n", "<c-p>", t.commands, { desc = "t.commands" })
 -- vim.keymap.set("n", "+f", t.live_grep, { desc = "t.live_grep" })
 -- vim.keymap.set("n", "+m", t.marks, { desc = "t.marks" })

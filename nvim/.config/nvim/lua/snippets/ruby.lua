@@ -19,13 +19,13 @@ end
 
 local contant_name_choices = function()
   local path = vim.api.nvim_buf_get_name(0)
-  path = extract_name_from(path)
+  local class_name = extract_name_from(path)
 
   return sn(
     nil,
     c(1, {
-      i(1, path[2]),
-      i(1, table.concat(path, "::")),
+      i(1, class_name[2]),
+      i(1, table.concat(class_name, "::")),
     })
   )
 end

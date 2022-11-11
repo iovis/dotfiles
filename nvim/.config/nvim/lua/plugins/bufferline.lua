@@ -14,11 +14,9 @@ bufferline.setup({
     },
   },
   options = {
-    custom_filter = function(buf_number)
+    custom_filter = function(buf_number, _)
       -- filter out filetypes you don't want to see
-      if vim.bo[buf_number].filetype ~= "qf" then
-        return true
-      end
+      return vim.bo[buf_number].filetype ~= "qf"
     end,
     numbers = function(opts)
       return string.format("%s.", opts.ordinal)
