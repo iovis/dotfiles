@@ -1,21 +1,3 @@
--- NOTE: for debugging
--- Redir lua =vim.lsp.get_active_clients()
-
----- LSP Setting files
-local config = require("plugins.lsp.config")
-local scan = require("plenary.scandir")
-
-local lsp_settings_path = vim.fn.stdpath("config") .. "/lua/plugins/lsp/settings"
-local lsp_settings_files = scan.scan_dir(lsp_settings_path, { depth = 0 })
-
-local lsp_settings = {}
-
-for _, file in ipairs(lsp_settings_files) do
-  local language = file:match("([^/]+).lua$")
-
-  lsp_settings[language] = require("plugins.lsp.settings." .. language)
-end
-
 ---- Initialize servers
 local lsp_servers = {
   "angularls",
@@ -49,6 +31,22 @@ require("mason-lspconfig").setup({
   ensure_installed = lsp_servers,
 })
 
+---- LSP Settings files loading
+local config = require("plugins.lsp.config")
+local scan = require("plenary.scandir")
+
+local lsp_settings_path = vim.fn.stdpath("config") .. "/lua/plugins/lsp/settings"
+local lsp_settings_files = scan.scan_dir(lsp_settings_path, { depth = 0 })
+
+local lsp_settings = {}
+
+for _, file in ipairs(lsp_settings_files) do
+  local language = file:match("([^/]+).lua$")
+
+  lsp_settings[language] = require("plugins.lsp.settings." .. language)
+end
+
+---- LSP Server init
 for _, server in ipairs(lsp_servers) do
   local opts = {
     on_attach = config.on_attach,

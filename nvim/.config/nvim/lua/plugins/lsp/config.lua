@@ -2,7 +2,15 @@ local M = {}
 
 local u = require("user.utils")
 
--- FLoating window
+---- Global LSP settings
+u.command("LspActiveClients", "Redir lua =vim.lsp.get_active_clients() | setf lua")
+u.command("LspConfigHelp", "help lspconfig-server-configurations")
+
+vim.keymap.set("n", "<leader>lh", "<cmd>LspConfigHelp<cr>")
+vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
+vim.keymap.set("n", "<leader>lp", "<cmd>Mason<cr>")
+
+---- Floating window
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
 u.highlight("NormalFloat", { bg = "#181818" })
@@ -10,11 +18,7 @@ u.highlight("FloatBorder", { bg = "#181818", fg = "#383838" })
 u.highlight("LspCodeLens", { link = "Comment" })
 u.highlight("LspCodeLensSeparator", { link = "Comment" })
 
--- Global LSP mappings
-vim.keymap.set("n", "<leader>lh", "<cmd>help lspconfig-server-configurations<cr>")
-vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
-vim.keymap.set("n", "<leader>lp", "<cmd>Mason<cr>")
-
+---- On LSP attached buffers
 M.on_attach = function(client, bufnr)
   local function buf_imap(lhs, rhs, desc)
     vim.keymap.set("i", lhs, rhs, { buffer = true, desc = desc })
