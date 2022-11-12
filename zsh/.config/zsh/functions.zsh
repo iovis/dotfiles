@@ -32,16 +32,6 @@ take() {
   mkdir -p $@ && cd ${@:$#}
 }
 
-##
-# Set a tmux badge based on the output of a command
-#
-# Ex: ls;tux [<message>]
-tux() {
-  tmux set -g @tux_code "$?"
-  tmux set -g @tux_show 1
-  tmux set -g @tux_message "$*"
-}
-
 # We wrap in a local function instead of exporting the variable directly in
 # order to avoid interfering with manually-run git commands by the user.
 function __git_prompt_git() {

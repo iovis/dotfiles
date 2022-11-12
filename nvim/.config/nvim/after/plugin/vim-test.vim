@@ -8,10 +8,6 @@ function! TuxStrategy(cmd)
   execute 'Tux ' . a:cmd
 endfunction
 
-function! TuxBadgeStrategy(cmd)
-  execute 'TuxRaw ' . a:cmd . ' ; tux ' . split(a:cmd)[0]
-endfunction
-
 function! RustLogStrategy(cmd)
   execute 'Tux TEST_LOG=enabled ' . a:cmd . ' | bunyan'
 endfunction
@@ -22,7 +18,6 @@ endfunction
 
 let g:test#custom_strategies = {
       \ 'tux': function('TuxStrategy'),
-      \ 'tux_badge': function('TuxBadgeStrategy'),
       \ 'rust_log': function('RustLogStrategy'),
       \ 'test_prof': function('TestProfStrategy'),
       \}
