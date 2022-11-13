@@ -45,6 +45,7 @@ set smartcase
 set softtabstop=2
 set splitbelow
 set splitright
+set tabstop=2
 set updatetime=750
 set virtualedit=block
 set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn

@@ -72,6 +72,7 @@ set smartcase
 set softtabstop=2
 set splitbelow
 set splitright
+set tabstop=2
 set termguicolors
 set updatetime=200
 set undofile
