@@ -3,7 +3,6 @@ bind g switch-client -T goto
 bind -T goto r new-session -A -s rubicon -c "~/Sites/rubicon/rubicon/"
 bind -T goto a new-session -A -s rubicon-angular -c "~/Sites/rubicon/rubicon-angular/"
 bind -T goto d new-session -A -s · -c "~/.dotfiles/"
-# TODO: open window and run `f` command
 
 ##################
 #  Quick Switch  #

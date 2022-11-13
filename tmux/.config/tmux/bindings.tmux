@@ -9,6 +9,9 @@ unbind C-b
 set -g prefix C-Space
 bind Space send-prefix
 
+# Quick find
+bind f new-window\; send 'f && clear' Enter
+
 # Quick settings
 bind b attach -c "#{pane_current_path}"\; display-message "changed path to #{pane_current_path}"
 bind s set-window-option synchronize-panes
