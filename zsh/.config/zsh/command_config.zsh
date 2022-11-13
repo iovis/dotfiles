@@ -144,6 +144,11 @@ if type lazygit > /dev/null; then
   alias lg="lazygit"
 fi
 
+# litecli
+if type litecli > /dev/null; then
+  alias sqli="litecli"
+fi
+
 # nvim
 if type nvim > /dev/null; then
   export EDITOR="nvim"
