@@ -10,7 +10,7 @@ set -g prefix C-Space
 bind Space send-prefix
 
 # Quick find
-bind f {
+bind C-f {
   new-window
   send 'f && clear' Enter
 }
@@ -165,44 +165,6 @@ bind -T copy-mode-vi C-down  resize-pane -D 5
 bind -T copy-mode-vi C-left  resize-pane -L 5
 bind -T copy-mode-vi C-right resize-pane -R 5
 bind -T copy-mode-vi C-up    resize-pane -U 5
-
-################
-# Quick search #
-################
-# URLs
-bind -T copy-mode-vi U {
-  send -X search-backward "(https?://|git@|git://|ssh://|ftp://|file:///)[[:alnum:]?=%/_.:,;~@!#$&()*+-]*"
-}
-
-# Float numbers
-bind -T copy-mode-vi F {
-  send -X search-backward "[[:digit:]]+(\\.[[:digit:]]+)?"
-}
-
-# Hashes
-bind -T copy-mode-vi O {
-  send -X search-backward "\b([0-9a-f]{7,40}|[[:alnum:]]{52}|[0-9a-f]{64})\b"
-}
-
-# IPs
-bind -T copy-mode-vi I {
-  send -X search-backward "[[:digit:]]{1,3}\\.[[:digit:]]{1,3}\\.[[:digit:]]{1,3}\\.[[:digit:]]{1,3}"
-}
-
-# Dates
-bind -T copy-mode-vi D {
-  send -X search-backward "[[:digit:]]{4}-[[:digit:]]{1,2}-[[:digit:]]{1,2}"
-}
-
-# Failed RSpec examples
-bind -T copy-mode-vi R {
-  send -X search-backward "(rspec|cucumber) [^:]+:[[:digit:]]+"
-}
-
-# Command Prompts
-bind -T copy-mode-vi < {
-  send -X search-backward "(❯|❮) .+"
-}
 
 ###########
 #  Mouse  #
