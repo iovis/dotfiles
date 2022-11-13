@@ -6,6 +6,7 @@ set -g set-titles-string '#S :: #W'
 set -g message-style 'bg=default,fg=yellow'
 
 ## Status line
+set -g status-interval 5
 set -g status-justify left
 set -g status-left " #[fg=blue]#S "
 set -g status-left-length 90

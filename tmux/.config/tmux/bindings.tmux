@@ -9,6 +9,12 @@ unbind C-b
 set -g prefix C-Space
 bind Space send-prefix
 
+# Reload tmux
+bind R {
+  source "$XDG_CONFIG_HOME/tmux/tmux.conf"
+  display "Tmux reloaded!"
+}
+
 # Quick find
 bind C-f {
   new-window
