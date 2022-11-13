@@ -32,6 +32,14 @@ take() {
   mkdir -p $@ && cd ${@:$#}
 }
 
+csv_to_sqlite() {
+  # NOTE:
+  #   - re-running will append to table
+  #   - ${1:r} removes extension
+  #   - .import <file> <table> --csv
+  sqlite3 csv.db ".import $1 csv --csv"
+}
+
 # We wrap in a local function instead of exporting the variable directly in
 # order to avoid interfering with manually-run git commands by the user.
 function __git_prompt_git() {
