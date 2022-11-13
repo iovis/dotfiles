@@ -8,14 +8,14 @@ bind -T goto d new-session -A -s · -c "~/.dotfiles/"
 #  Quick Switch  #
 ##################
 # scratch session popup
-bind -n M-Space if-shell -F '#{==:#{session_name},·}' {
+bind -n M-Space if -F '#{==:#{session_name},·}' {
   detach-client
 } {
   display-popup -w 75% -h 75% -d '#{pane_current_path}' -E "tmux new-session -A -s ·"
 }
 
 # notes
-bind -n M-n if-shell -F '#{==:#{session_name},notes}' {
+bind -n M-n if -F '#{==:#{session_name},notes}' {
   switch-client -l
 } {
   new-session -A -s notes -c "~/Library/Mobile Documents/com~apple~CloudDocs/notes"
