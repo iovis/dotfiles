@@ -443,7 +443,7 @@ nnoremap <silent> <leader>uh :sp $MYVIMRC<cr>
 nnoremap <silent> <leader>um :e! $DOTFILES/vim/.vimrc<cr>
 nnoremap <silent> <leader>up :e! $DOTFILES/nvim/.config/nvim/lua/plugins/init.lua<cr>
 nnoremap <silent> <leader>ur :e! .projections.json<cr>
-nnoremap <silent> <leader>ut :e! ~/.tmux.conf<cr>
+nnoremap <silent> <leader>ut :e! $DOTFILES/tmux/.config/tmux/tmux.conf<cr>
 nnoremap <silent> <leader>uu :e! $MYVIMRC<cr>
 nnoremap <silent> <leader>uv :vs $MYVIMRC<cr>
 nnoremap <silent> <leader>uw :e! $ZDOTDIR/local/work.zsh<cr>
