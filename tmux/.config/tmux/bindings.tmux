@@ -146,18 +146,8 @@ bind -T copy-mode-vi a send -X copy-pipe
 bind -T copy-mode-vi s send -X select-word
 bind -T copy-mode-vi v send -X begin-selection
 
-bind -T copy-mode-vi c send Escape 'V!'
-bind -T copy-mode-vi C send Escape 'v$!'
-
-bind -T copy-mode-vi p {
-  send -X select-word
-  send -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
-}
-
-bind -T copy-mode-vi P {
-  send -X select-word
-  send -X copy-pipe-and-cancel "tmux paste-buffer"
-}
+bind -T copy-mode-vi C send Escape 'V!'
+bind -T copy-mode-vi Y send Escape 'v$!'
 
 # Switch panes
 bind -T copy-mode-vi C-h  select-pane -L

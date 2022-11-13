@@ -14,6 +14,7 @@ set -g @sessionist-alternate 'C-Space'
 set -g @sessionist-goto 'G'
 
 set -g @plugin 'tmux-plugins/tmux-yank'
+set -g @copy_mode_put 'p'
 set -g @yank_selection_mouse 'clipboard'
 
 set -g @plugin 'tmux-plugins/tpm'
