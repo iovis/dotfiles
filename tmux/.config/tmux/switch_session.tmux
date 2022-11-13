@@ -1,5 +1,6 @@
 bind g switch-client -T goto
 
+# TODO: Plugin like harpoon?
 bind -T goto g new-session -A -s · -c "~/.dotfiles/"
 bind -T goto j new-session -A -s rubicon -c "~/Sites/rubicon/rubicon/"
 bind -T goto k new-session -A -s rubicon-angular -c "~/Sites/rubicon/rubicon-angular/"

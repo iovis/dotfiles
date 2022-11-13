@@ -27,6 +27,22 @@ bind w set -w automatic-rename
 bind ? list-keys
 bind L customize-mode -Z
 
+# Session management
+bind C-Space switch-client -l
+
+bind C command-prompt -p "new session name:" {
+  new-session -A -s "%1" -c "#{pane_current_path}"
+}
+
+bind X confirm-before -p "Kill session #{session_name}? (y/n)" {
+  switch-client -l
+    run 'tmux kill-session -t #{client_last_session}'
+}
+
+# TODO: Promote pane to session
+# bind '"'
+# https://github.com/tmux-plugins/tmux-sessionist/blob/master/scripts/promote_pane.sh
+
 # Window management
 bind c new-window -c "#{pane_current_path}"
 
@@ -51,6 +67,17 @@ bind -r down  swap-pane -dt "{down-of}"
 bind -r left  swap-pane -dt "{left-of}"
 bind -r right swap-pane -dt "{right-of}"
 bind -r up    swap-pane -dt "{up-of}"
+
+# Join panes
+bind t switch-client -T join_pane
+
+bind -T join_pane h {
+  join-pane -v
+}
+
+bind -T join_pane v {
+  join-pane -h
+}
 
 # Resize panes equally
 bind = select-layout tiled

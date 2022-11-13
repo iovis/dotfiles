@@ -9,10 +9,6 @@ set -g @resurrect-capture-pane-contents 'on'
 set -g @resurrect-dir '~/.config/tmux/resurrect'
 set -g @resurrect-strategy-nvim 'session'
 
-set -g @plugin 'tmux-plugins/tmux-sessionist'
-set -g @sessionist-alternate 'C-Space'
-set -g @sessionist-goto 'G'
-
 set -g @plugin 'tmux-plugins/tmux-yank'
 set -g @copy_mode_put 'p'
 set -g @yank_selection_mouse 'clipboard'
