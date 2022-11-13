@@ -168,6 +168,7 @@ nnoremap <silent> <leader>\| <c-w>\|
 nnoremap <silent> <leader>_ <c-w>_
 nnoremap <silent> <leader>b gg=G
 nnoremap <silent> <leader>c :close<cr>
+nnoremap <silent> <leader>m <c-w>_<c-w>\|
 nnoremap <silent> <leader>q :%bdelete<cr>
 nnoremap <silent> <leader>w :w!<cr>
 nnoremap <silent> <leader>x :wqa<cr>
