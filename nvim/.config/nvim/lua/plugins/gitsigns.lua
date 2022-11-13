@@ -11,7 +11,7 @@ require("gitsigns").setup({
       vim.keymap.set(mode, lhs, rhs, opts)
     end
 
-    map({ "n", "v" }, "<leader>gr", ":Gitsigns reset_hunk<cr>")
+    map({ "n", "v" }, "<leader>dh", ":Gitsigns reset_hunk<cr>")
     map("n", "+q", gs.toggle_current_line_blame, { desc = "toggle_current_line_blame" })
 
     map("n", "]c", function()
