@@ -60,6 +60,10 @@ bind = select-layout tiled
 bind C-l send 'C-l'
 bind C-k send 'C-k'
 
+# Buffers (clipboard)
+bind C-p choose-buffer
+bind p   paste-buffer
+
 #############
 # No Prefix #
 #############
