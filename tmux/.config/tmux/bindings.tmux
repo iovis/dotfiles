@@ -73,10 +73,11 @@ bind -n M-8  select-window -t :=8
 bind -n M-9  select-window -t :=9
 
 # Switch panes
-bind -n C-h if-shell "$is_vim" "send-keys C-h"  "select-pane -L"
-bind -n C-j if-shell "$is_vim" "send-keys C-j"  "select-pane -D"
-bind -n C-k if-shell "$is_vim" "send-keys C-k"  "select-pane -U"
-bind -n C-l if-shell "$is_vim" "send-keys C-l"  "select-pane -R"
+bind -n C-h  if-shell "$is_vim" "send-keys C-h"  "select-pane -L"
+bind -n C-j  if-shell "$is_vim" "send-keys C-j"  "select-pane -D"
+bind -n C-k  if-shell "$is_vim" "send-keys C-k"  "select-pane -U"
+bind -n C-l  if-shell "$is_vim" "send-keys C-l"  "select-pane -R"
+bind -n C-\\ if-shell "$is_vim" 'send-keys C-\\' "select-pane -l" # c-ç
 
 # Resize panes
 bind -n C-down  resize-pane -D 5
@@ -120,10 +121,11 @@ bind -T copy-mode-vi p send-keys -X select-word \; send-keys -X copy-pipe-and-ca
 bind -T copy-mode-vi P send-keys -X select-word \; send-keys -X copy-pipe-and-cancel "tmux paste-buffer"
 
 # Switch panes
-bind -T copy-mode-vi C-h select-pane -L
-bind -T copy-mode-vi C-j select-pane -D
-bind -T copy-mode-vi C-k select-pane -U
-bind -T copy-mode-vi C-l select-pane -R
+bind -T copy-mode-vi C-h  select-pane -L
+bind -T copy-mode-vi C-j  select-pane -D
+bind -T copy-mode-vi C-k  select-pane -U
+bind -T copy-mode-vi C-l  select-pane -R
+bind -T copy-mode-vi C-\\ select-pane -l # c-ç
 
 # Resize panes
 bind -T copy-mode-vi C-down  resize-pane -D 5
