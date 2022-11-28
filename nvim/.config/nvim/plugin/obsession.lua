@@ -33,7 +33,11 @@ vim.keymap.set("n", "yoo", restore_session, { desc = "Load or create session for
 ---- Autocommands
 local persist_session = function()
   if within_session() and not session_loading() then
-    vim.cmd("mksession!")
+    local ok, result = pcall(vim.cmd, "mksession!")
+
+    if not ok then
+      print(result)
+    end
   end
 end
 
