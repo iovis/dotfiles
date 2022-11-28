@@ -10,20 +10,18 @@ if not ok then
   print("impatient not found!")
 end
 
--- reload plugin configuration
-local re = vim.regex([[\v^(user|plugins)]])
+local mods = {
+  "plugins",
+  "user.autocommands",
+  "user.commands",
+  "user.diagnostics",
+  "user.filetype",
+}
 
-for name,_ in pairs(package.loaded) do
-  if re:match_str(name) then
-    package.loaded[name] = nil
-    require(name)
-  end
+for _, mod in ipairs(mods) do
+  package.loaded[mod] = nil
+  require(mod)
 end
-
-require("plugins")
-require("user.diagnostics")
-require("user.autocommands")
-require("user.filetype")
 EOF
 " }}} plugins "
 
