@@ -6,6 +6,7 @@
 function pp(...)
   return vim.pretty_print(...)
 end
+
 ----
 
 local M = {}
@@ -22,13 +23,11 @@ M.warn = function(msg)
   vim.api.nvim_echo({ { msg, "WarningMsg" } }, true, {})
 end
 
+---Check if file exists
+---@param path string
+---@return boolean
 M.is_file = function(path)
-  if path == "" then
-    return false
-  end
-
-  local stat = vim.loop.fs_stat(path)
-  return stat and stat.type == "file"
+  return vim.fn.filereadable(vim.fn.expand(path)) == 1 or false
 end
 
 M.make_floating_window = function(custom_window_config, height_ratio, width_ratio)
@@ -117,6 +116,19 @@ M.pascal_case = function(str)
   end)
 
   return new_str
+end
+
+M.lsp_autoformat = function()
+  local group = vim.api.nvim_create_augroup("lsp_document_format", { clear = true })
+
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    group = group,
+    buffer = 0,
+    callback = function()
+      vim.lsp.buf.format()
+    end,
+    desc = "Autoformat with LSP",
+  })
 end
 
 return M

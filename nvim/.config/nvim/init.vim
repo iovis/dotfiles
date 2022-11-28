@@ -437,7 +437,6 @@ nnoremap <leader>u <nop>
 nnoremap <leader>us :so $MYVIMRC<cr>:echo 'vimrc sourced'<cr>
 
 nnoremap <silent> <leader>ua :e! ~/.zsh/aliases.zsh<cr>
-nnoremap <silent> <leader>uf :execute empty(&filetype) ? 'echo "no filetype specified"' : 'EditFtplugin'<cr>
 nnoremap <silent> <leader>uh :sp $MYVIMRC<cr>
 nnoremap <silent> <leader>um :e! $DOTFILES/vim/.vimrc<cr>
 nnoremap <silent> <leader>up :e! $DOTFILES/nvim/.config/nvim/lua/plugins/init.lua<cr>
@@ -447,9 +446,6 @@ nnoremap <silent> <leader>uu :e! $MYVIMRC<cr>
 nnoremap <silent> <leader>uv :vs $MYVIMRC<cr>
 nnoremap <silent> <leader>uw :e! $ZDOTDIR/local/work.zsh<cr>
 nnoremap <silent> <leader>uz :e! $ZDOTDIR/.zshrc<cr>
-
-command! -nargs=? -complete=filetype EditFtplugin
-      \ exe 'keepjumps e! $HOME/.config/nvim/after/ftplugin/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
 " }}} config editing "
 
 " duplicate file {{{ "
