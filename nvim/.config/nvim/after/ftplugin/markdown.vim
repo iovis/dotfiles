@@ -1,3 +1,26 @@
+" Bindings {{{ "
+" Quick open
+nmap <silent> <buffer> s<cr> :silent !open %<cr>
+
+inoremap <buffer> [ []<left>
+inoremap <buffer> [<space> [ ]<space>
+inoremap <buffer> [<cr> [<cr>]<esc>O
+
+nnoremap <buffer> m<space> :Move<space>
+
+" change bullet point style {{{ "
+nnoremap <buffer> <leader>* mz^r*`z
+nnoremap <buffer> <leader>? mz^r?`z
+nnoremap <buffer> <leader>+ mz^r+`z
+nnoremap <buffer> <leader>- mz^r-`z
+" }}} change bullet point style "
+
+" strike-through line {{{ "
+nmap     <buffer> <leader>ñ mzyss~`z
+xnoremap <buffer> <leader>ñ :norm yss~<cr>
+" }}} strike-through line "
+" }}} Bindings "
+
 " Options {{{ "
 setlocal conceallevel=2
 setlocal spelllang=en_us
@@ -31,26 +54,6 @@ setlocal formatlistpat+=]                       " End class
 setlocal formatlistpat+=\\s\\+                  " One or more spaces
 setlocal formatlistpat+=\\\|^\\s*[-–+o*]\\s\\+  " Or ASCII style bullet points
 " }}} Formatting "
-
-" Bindings {{{ "
-inoremap <buffer> [ []<left>
-inoremap <buffer> [<space> [ ]<space>
-inoremap <buffer> [<cr> [<cr>]<esc>O
-
-nnoremap <buffer> m<space> :Move<space>
-
-" change bullet point style {{{ "
-nnoremap <buffer> <leader>* mz^r*`z
-nnoremap <buffer> <leader>? mz^r?`z
-nnoremap <buffer> <leader>+ mz^r+`z
-nnoremap <buffer> <leader>- mz^r-`z
-" }}} change bullet point style "
-
-" strike-through line {{{ "
-nmap     <buffer> <leader>ñ mzyss~`z
-xnoremap <buffer> <leader>ñ :norm yss~<cr>
-" }}} strike-through line "
-" }}} Bindings "
 
 " functions {{{ "
 " Repeatable toggle checkbox
