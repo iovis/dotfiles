@@ -1,3 +1,4 @@
+# https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
 gui:
   showBottomLine: false
   showCommandLog: false
@@ -7,7 +8,7 @@ gui:
     selectedLineBgColor:
       - '#383838'
     # selectedRangeBgColor:
-    #   - '#383838'  # Seems like there's a bug
+    #   - '#383838'  # Bug: https://github.com/jesseduffield/lazygit/issues/1749
 git:
   paging:
     colorArg: always
@@ -25,4 +26,4 @@ keybinding:
     startSearch: 'ñ'
   commits:
     moveDownCommit: 'J'
-    moveUpCommit: 'K' # move commit up one
+    moveUpCommit: 'K'
