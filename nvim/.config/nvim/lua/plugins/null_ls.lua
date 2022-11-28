@@ -21,11 +21,13 @@ null_ls.setup({
         "C0301,C0114,C0115,C0116,E501,F0401",
       },
     }),
+    diagnostics.rubocop,
     diagnostics.shellcheck,
     diagnostics.vint,
     diagnostics.yamllint.with({ extra_args = { "-f", "parsable", "--no-warnings" } }),
     diagnostics.zsh,
 
+    formatting.rubocop,
     formatting.sql_formatter.with({ extra_args = { "-l", "postgresql" } }),
     formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "2" } }),
   },

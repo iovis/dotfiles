@@ -8,7 +8,7 @@ local lsp_servers = {
   "jsonls",
   "pyright",
   "rust_analyzer",
-  -- "sorbet",
+  -- "sorbet", -- Seems to have issues on ARM
   "solargraph",
   "sqls",
   "sumneko_lua",
