@@ -79,7 +79,7 @@ if type fd > /dev/null; then
 
     # cd into git repos
     f() {
-      folder=($(fd -td --max-depth 2 . $HOME/Sites | fzf --query="$*" --select-1 --exit-0 --reverse))
+      folder=($(fd -td --max-depth 2 . $HOME/Sites | fzf-tmux -p80%,80% --query="$*" --select-1 --exit-0 --reverse))
       [[ -n "$folder" ]] && cd "$folder"
     }
   fi
