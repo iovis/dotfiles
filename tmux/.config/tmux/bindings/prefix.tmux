@@ -36,7 +36,7 @@ bind C command-prompt -p "new session name:" {
 
 bind X confirm-before -p "Kill session #{session_name}? (y/n)" {
   switch-client -l
-    run 'tmux kill-session -t #{client_last_session}'
+  run 'tmux kill-session -t #{client_last_session}'
 }
 
 # TODO: Promote pane to session
