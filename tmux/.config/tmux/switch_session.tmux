@@ -1,5 +1,10 @@
 bind g switch-client -T goto
 
+# Show available session switchers
+bind -T goto h run "
+  tmux list-keys -T goto | awk '!/ -T goto h / { print $4, \"=>\", $(NF) }'
+"
+
 # TODO: Plugin like harpoon?
 bind -T goto g new-session -A -s · -c "~/.dotfiles/"
 bind -T goto j new-session -A -s rubicon -c "~/Sites/rubicon/rubicon/"
