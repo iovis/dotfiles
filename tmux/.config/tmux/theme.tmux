@@ -8,11 +8,29 @@ set -g message-style 'bg=default,fg=yellow'
 ## Status line
 set -g status-interval 5
 set -g status-justify left
-set -g status-left " #[fg=blue]#S "
-set -g status-left-length 90
-set -g status-right '#{?pane_synchronized,#[fg=blue]sync,} #{cpu_fg_color}#{cpu_percentage}#{cpu_icon} '
-set -g status-right-length 60
 set -g status-style 'bg=default,fg=white'
+
+### Left
+set -g status-left-length 90
+
+set -g status-left ' '
+set -ag status-left '#[fg=blue]#S'
+set -ag status-left ' '
+
+### Right
+set -g status-right-length 60
+
+# Prefix indicator
+set -g status-right '#{?client_prefix,#[fg=cyan]<prefix>,}'
+
+# Synchronized panes indicator
+set -ag status-right ' '
+set -ag status-right '#{?pane_synchronized,#[fg=blue]sync,}'
+
+# CPU
+set -ag status-right ' '
+set -ag status-right '#{cpu_fg_color}#{cpu_percentage}#{cpu_icon}'
+set -ag status-right ' '
 
 ## Window
 set -g base-index 1
