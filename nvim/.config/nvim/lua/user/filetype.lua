@@ -4,6 +4,7 @@ vim.filetype.add({
   },
   filename = {
     ["justfile"] = "make",
+    ["skhdrc"] = "skhd",
   },
 })
 
