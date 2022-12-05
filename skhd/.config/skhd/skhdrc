@@ -3,25 +3,31 @@
 #
 # Scripts in ~/.zshenv, otherwise skhd can't see them
 
+# Restart Yabai
+hyper - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+
 ##########################
 #  Application Launcher  #
 ##########################
-hyper - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+# Left hand
+ctrl + alt + cmd - a : open -a zoom.us
+ctrl + alt + cmd - s : open -a Slack
+ctrl + alt + cmd - d : open -a iTerm
+ctrl + alt + cmd - f : open -a Firefox
+ctrl + alt + cmd - g : open -a Tower
 
-hyper - a : open -a Messages
-hyper - s : open -a Fantastical
-hyper - d : open -a zoom.us
-hyper - f : open -a Firefox
-hyper - e : open -a Spark
-hyper - g : open -a Tower
+ctrl + alt + cmd - w : open -a Messages
+ctrl + alt + cmd - e : open -a Spark
 
-hyper - u : open -a Slack
-hyper - i : open -a iTerm
-hyper - o : open -a Things3
-hyper - p : open -a Bear
+ctrl + alt + cmd - b : open -a Bear
+ctrl + alt + cmd - c : open -a Fantastical
 
+
+# Right hand (care with conflicts with movement)
 hyper - m : open -a Music
-hyper - n : open -a Numi
+ctrl + alt + cmd - n : open -a Numi
+
+hyper - o : open -a Things3
 
 ############
 #  Window  #
@@ -91,7 +97,7 @@ ctrl + alt - up  : yabai_grid 1:1:0:0:1:1
 # ctrl + alt + cmd - space : yabai -m display --focus prev || yabai -m display --focus last
 
 # send window to monitor and follow focus
-ctrl + alt + cmd - d : yabai_send_to_other_display
+hyper - d : yabai_send_to_other_display
 
 #############
 #  Layouts  #
@@ -103,5 +109,5 @@ ctrl + alt + cmd - 0 : yabai -m space --balance
 # Set my second screen
 ctrl + alt + cmd - 4 : yabai_set_second_display
 
-ctrl + alt + cmd - r : yabai -m space --rotate 90
-ctrl + alt + cmd - e : yabai -m window --toggle split
+hyper - t : yabai -m space --rotate 90
+hyper - e : yabai -m window --toggle split
