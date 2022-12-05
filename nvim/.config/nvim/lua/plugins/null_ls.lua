@@ -15,7 +15,9 @@ null_ls.setup({
     end, { buffer = true, desc = "vim.lsp.buf.format" })
   end,
   sources = {
-    diagnostics.codespell,
+    diagnostics.codespell.with({
+      filetypes = { "ruby" },
+    }),
     diagnostics.pylint.with({
       extra_args = {
         "--disable",
