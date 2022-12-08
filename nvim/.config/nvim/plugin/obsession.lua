@@ -35,7 +35,7 @@ local persist_session = function()
   if within_session() and not session_loading() then
     local ok, result = pcall(vim.cmd, "mksession!")
 
-    if not ok then
+    if not ok and not result:match("E11") then
       print(result)
     end
   end
