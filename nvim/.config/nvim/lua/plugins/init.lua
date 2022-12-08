@@ -30,7 +30,9 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   group = group,
 })
 
+-- Bindings and commands
 vim.keymap.set("n", "<leader>ps", "<cmd>PackerSync<cr>")
+vim.api.nvim_create_user_command("PackerLog", "execute 'e!' .. stdpath('cache') .. '/packer.nvim.log'", {})
 
 -- plugins
 require("packer").init({
