@@ -1,12 +1,8 @@
-bind g switch-client -T goto
-
-# Show available session switchers
-bind -T goto h run -b "~/.config/tmux/scripts/session_switcher"
-
-# TODO: Plugin like harpoon?
-bind -T goto d new-session -A -s dotfiles -c "~/.dotfiles/"
-bind -T goto j new-session -A -s rubicon -c "~/Sites/rubicon/rubicon/"
-bind -T goto k new-session -A -s rubicon-angular -c "~/Sites/rubicon/rubicon-angular/"
+# TODO: Should I just put the table on M-Space?
+#       - M-Space Space would go to the last session?
+if "type muxi" {
+  run -b "muxi init"
+}
 
 ##################
 #  Quick Switch  #
