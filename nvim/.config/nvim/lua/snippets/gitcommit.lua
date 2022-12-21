@@ -44,6 +44,7 @@ return {
   s("brew", t("[brew] ")),
   s("gem", t("[gem] ")),
   s("git", t("[git] ")),
+  s("muxi", t("[muxi] ")),
   s("pip", t("[pip] ")),
   s("skhd", t("[skhd] ")),
   s("tmux", t("[tmux] ")),
