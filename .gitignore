@@ -19,6 +19,9 @@ lazygit/.config/lazygit/state.yml
 # mpv
 mpv/.config/mpv/watch_later/*
 
+# muxi
+muxi/.config/muxi/sessions.toml
+
 # encryption
 master.key
 psql/.pgpass

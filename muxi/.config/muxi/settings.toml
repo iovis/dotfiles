@@ -1,0 +1,4 @@
+muxi_prefix = "g"
+
+[bindings]
+e = { popup = true, command = "muxi sessions edit" }
