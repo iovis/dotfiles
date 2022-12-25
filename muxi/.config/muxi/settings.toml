@@ -4,6 +4,7 @@ muxi_prefix = "g"
 [bindings]
 e = { popup = true, command = "muxi sessions edit" }
 c = { popup = true, command = "muxi config edit" }
+s = { popup = true, command = "muxi sessions | less" }
 
 # Quick bookmarks
 J = { command = "muxi sessions set j && tmux display 'bound current session to j'" }
