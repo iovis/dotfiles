@@ -454,13 +454,15 @@ nnoremap <leader>W :saveas <c-r>=fnameescape(expand('%:h')).'/'<cr>
 
 " vim-unimpaired {{{ "
 nnoremap yo, :set number! relativenumber! cursorline!<cr>
-nnoremap yo; :set relativenumber! cursorline!<cr>
-nnoremap yoc :setlocal cursorline!<cr>
+
+nnoremap yoc :set cursorline!<cr>
 nnoremap yod :<c-r>=&diff ? "diffoff" : "diffthis"<cr><cr>
-nnoremap yol :setlocal list!<cr>
-nnoremap yon :setlocal number!<cr>
-nnoremap yop :setlocal paste!<cr>
-nnoremap yor :setlocal relativenumber!<cr>
+nnoremap yoh :set hlsearch!<cr>
+nnoremap yol :set list!<cr>
+nnoremap yon :set number!<cr>
+nnoremap yop :set paste!<cr>
+nnoremap yor :set relativenumber!<cr>
+
 nnoremap yos :setlocal spell! spelllang=en_us<cr>
 nnoremap yow :setlocal wrap!<cr>
 " }}} vim-unimpaired "
