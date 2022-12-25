@@ -1,10 +1,11 @@
-muxi_prefix = "M-Space"
-tmux_prefix = false
+muxi_prefix = "g"
+# tmux_prefix = false
 
 [bindings]
 e = { popup = true, command = "muxi sessions edit" }
-M-Space = { command = "tmux switch-client -l" }
+c = { popup = true, command = "muxi config edit" }
 
+# Quick bookmarks
 J = { command = "muxi sessions set j && tmux display 'bound current session to j'" }
 K = { command = "muxi sessions set k && tmux display 'bound current session to k'" }
 L = { command = "muxi sessions set l && tmux display 'bound current session to l'" }
