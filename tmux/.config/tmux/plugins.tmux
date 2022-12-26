@@ -15,9 +15,9 @@ set -g @yank_selection_mouse 'clipboard'
 
 set -g @plugin 'tmux-plugins/tpm'
 if "test -d ~/.config/tmux/plugins/tpm" {
-  run '~/.config/tmux/plugins/tpm/tpm'
+  run "~/.config/tmux/plugins/tpm/tpm"
 } {
-  run 'git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm && ~/.config/tmux/plugins/tpm/bin/install_plugins'
+  run "git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm && ~/.config/tmux/plugins/tpm/bin/install_plugins"
 }
 
 if "type muxi" {

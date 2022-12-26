@@ -10,6 +10,7 @@ zsh/.config/zsh/local/*
 zsh/.config/zsh/plugins/*
 
 # tmux
+tmux/.config/tmux/local.tmux
 tmux/.config/tmux/plugins
 tmux/.config/tmux/resurrect
 
