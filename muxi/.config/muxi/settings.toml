@@ -2,9 +2,9 @@ muxi_prefix = "g"
 # tmux_prefix = false
 
 [bindings]
-e = { popup = { height = "66%" }, command = "muxi sessions edit" }
-c = { popup = { height = "66%" }, command = "muxi config edit" }
-s = { popup = { height = "66%" }, command = "muxi sessions | less" }
+e = { popup = { title = " sessions ", height = "66%" }, command = "muxi sessions edit" }
+c = { popup = { title = " config ",   height = "66%" }, command = "muxi config edit" }
+s = { popup = { title = " sessions ", height = "66%" }, command = "muxi sessions | less" }
 
 # Quick bookmarks
 J = { command = "muxi sessions set j && tmux display 'bound current session to j'" }
