@@ -66,6 +66,11 @@ else
   }
 fi
 
+# evcxr
+if type evcxr > /dev/null; then
+  alias irust="evcxr"
+fi
+
 # exa
 if type exa > /dev/null; then
   alias l="exa -lag --git --group-directories-first"
