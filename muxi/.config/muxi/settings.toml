@@ -4,9 +4,13 @@ muxi_prefix = "g"
 [bindings]
 e = { popup = { title = " sessions ", height = "66%" }, command = "muxi sessions edit" }
 c = { popup = { title = " config ",   height = "66%" }, command = "muxi config edit" }
-s = { popup = { title = " sessions ", height = "66%" }, command = "muxi sessions | less" }
+s = { popup = { title = " sessions ", height = "66%" }, command = "muxi sessions | less -R" }
 
 # Quick bookmarks
 J = { command = "muxi sessions set j && tmux display 'bound current session to j'" }
 K = { command = "muxi sessions set k && tmux display 'bound current session to k'" }
 L = { command = "muxi sessions set l && tmux display 'bound current session to l'" }
+
+[bindings.g]
+# FZF switcher
+command = "muxi sessions | fzf-tmux -p --reverse | awk '{ printf $2 }' | xargs tmux switch-client -t"
