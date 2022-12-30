@@ -82,7 +82,7 @@ function M.config()
   })
 
   u.highlight("NvimTreeEndOfBuffer", { fg = "#181818" })
-  u.highlight("NvimTreeVertSplit", { fg = "#181818" })
+  u.highlight("NvimTreeWinSeparator", { fg = "#181818" })
   u.highlight("NvimTreeStatusLine", {})
 end
 
