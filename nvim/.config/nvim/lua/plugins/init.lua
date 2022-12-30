@@ -10,10 +10,6 @@ return {
   "iovis/tux.vim",
   "iovis/vimlook",
   "jparise/vim-graphql",
-  "kana/vim-textobj-entire",
-  "kana/vim-textobj-indent",
-  "kana/vim-textobj-user",
-  "lewis6991/impatient.nvim",
   "mbbill/undotree",
   "moll/vim-bbye",
   "nvim-lua/plenary.nvim",
@@ -43,6 +39,14 @@ return {
   "wellle/targets.vim",
   "kyazdani42/nvim-web-devicons",
   "christoomey/vim-tmux-navigator",
+
+  {
+    "kana/vim-textobj-user",
+    dependencies = {
+      "kana/vim-textobj-entire",
+      "kana/vim-textobj-indent",
+    },
+  },
 
   {
     "dstein64/vim-startuptime",

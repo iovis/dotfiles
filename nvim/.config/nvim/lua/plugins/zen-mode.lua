@@ -1,6 +1,12 @@
 local M = {
   "folke/zen-mode.nvim",
   cmd = "ZenMode",
+  keys = {
+    {
+      "<leader>z",
+      "<cmd>ZenMode<cr>",
+    },
+  },
 }
 
 function M.config()
@@ -23,8 +29,6 @@ function M.config()
       },
     },
   })
-
-  vim.keymap.set("n", "<leader>z", "<cmd>ZenMode<cr>")
 end
 
 return M
