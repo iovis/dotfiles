@@ -2,7 +2,7 @@
 set nocompatible
 filetype indent on
 
-colorscheme delek
+colorscheme habamax
 
 if !has('g:syntax_on')
   syntax enable
@@ -675,18 +675,8 @@ nnoremap ++ :execute "hi " . synIDattr(synID(line("."),col("."),1),"name")<CR>
 nnoremap +<cr> :so $VIMRUNTIME/syntax/hitest.vim<cr>
 nnoremap +<space> :hi<space>
 
-hi Comment      ctermfg=8
-hi NonText      ctermfg=8
-hi CursorLineNr ctermfg=blue
-hi LineNr       ctermfg=8
-hi Pmenu        ctermfg=white ctermbg=none
-hi PmenuSel     ctermfg=black ctermbg=white
-hi Search       ctermfg=0     ctermbg=11
-hi SignColumn   ctermbg=none
-hi VertSplit    ctermfg=blue  ctermbg=none  cterm=none
-hi Visual       ctermfg=7     ctermbg=8     cterm=none
-hi Folded       ctermfg=8     ctermbg=none
-hi FoldColumn   ctermfg=blue  ctermbg=none
+hi! def link VertSplit Type
+hi! def link ModeMsg Comment
 
 hi DiffAdd      ctermfg=2     ctermbg=none  cterm=none
 hi DiffDelete   ctermfg=1     ctermbg=none  cterm=bold
@@ -695,7 +685,7 @@ hi DiffText     ctermfg=blue  ctermbg=none  cterm=bold
 
 hi TabLine      ctermfg=8     ctermbg=none  cterm=none
 hi TabLineSel   ctermfg=blue  ctermbg=none  cterm=none
-hi TabLineFill  cterm=none
+hi TabLineFill  ctermbg=none  cterm=none
 
 hi SLDirectory  ctermfg=blue
 hi SLFileType   ctermfg=2
