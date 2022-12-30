@@ -56,7 +56,8 @@ function M.config()
 
   local u = require("user.utils")
   u.highlight("NeoTreeEndOfBuffer", { fg = "#181818" })
-  u.highlight("NeoTreeStatusLine", {})
+  u.highlight("NeoTreeStatusLine", { fg = "#181818" })
+  u.highlight("NeoTreeStatusLineNC", {})
   u.highlight("NeoTreeWinSeparator", { fg = "#181818" })
 end
 
