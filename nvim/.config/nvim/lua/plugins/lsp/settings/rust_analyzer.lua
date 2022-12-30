@@ -6,6 +6,9 @@ return {
         importGranularity = "module",
         importPrefix = "self",
       },
+      inlayHints = {
+        locationLinks = false,
+      },
       procMacro = {
         enable = true,
       },

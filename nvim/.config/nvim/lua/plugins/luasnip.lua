@@ -1,71 +1,79 @@
-local ok, luasnip = pcall(require, "luasnip")
-if not ok then
-  print("luasnip not found!")
-  return
-end
+local M = {
+  "L3MON4D3/LuaSnip",
+}
 
-local types = require("luasnip.util.types")
-local ft_functions = require("luasnip.extras.filetype_functions")
+function M.config()
+  local ok, luasnip = pcall(require, "luasnip")
+  if not ok then
+    print("luasnip not found!")
+    return
+  end
 
----- Config
-luasnip.config.set_config({
-  ext_opts = {
-    [types.choiceNode] = {
-      active = {
-        virt_text = { { "●", "DiagnosticSignWarn" } },
+  local types = require("luasnip.util.types")
+  local ft_functions = require("luasnip.extras.filetype_functions")
+
+  ---- Config
+  luasnip.config.set_config({
+    ext_opts = {
+      [types.choiceNode] = {
+        active = {
+          virt_text = { { "●", "DiagnosticSignWarn" } },
+        },
       },
     },
-  },
-  ft_func = ft_functions.from_pos_or_filetype,
-  history = false,
-  region_check_events = "InsertEnter,CursorMoved",
-  store_selection_keys = "<c-k>", -- Mapping to visually select text to be expanded with $TM_SELECTED_TEXT
-  updateevents = "TextChanged,TextChangedI",
-})
+    ft_func = ft_functions.from_pos_or_filetype,
+    history = false,
+    region_check_events = "InsertEnter,CursorMoved",
+    store_selection_keys = "<c-k>", -- Mapping to visually select text to be expanded with $TM_SELECTED_TEXT
+    updateevents = "TextChanged,TextChangedI",
+  })
 
----- Load Snippets
-require("luasnip.loaders.from_vscode").lazy_load()
-require("luasnip.loaders.from_snipmate").lazy_load()
-require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/lua/snippets" })
+  ---- Load Snippets
+  require("luasnip.loaders.from_vscode").lazy_load()
+  require("luasnip.loaders.from_snipmate").lazy_load()
+  require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/lua/snippets" })
 
----- Language config
-luasnip.filetype_extend("gitcommit", { "markdown" })
-luasnip.filetype_extend("pullrequest", { "markdown", "gitcommit" })
-luasnip.filetype_extend("scss", { "css" })
-luasnip.filetype_extend("typescript", { "javascript" })
+  ---- Language config
+  luasnip.filetype_extend("gitcommit", { "markdown" })
+  luasnip.filetype_extend("pullrequest", { "markdown", "gitcommit" })
+  luasnip.filetype_extend("scss", { "css" })
+  luasnip.filetype_extend("typescript", { "javascript" })
 
----- Keymaps
--- Expansion
-vim.keymap.set({ "i", "s" }, "<c-j>", function()
-  if luasnip.expand_or_jumpable() then
-    luasnip.expand_or_jump()
-  end
-end, { desc = "expand or jump" })
+  ---- Keymaps
+  -- Expansion
+  vim.keymap.set({ "i", "s" }, "<c-j>", function()
+    if luasnip.expand_or_jumpable() then
+      luasnip.expand_or_jump()
+    end
+  end, { desc = "expand or jump" })
 
-vim.keymap.set({ "i", "s" }, "<c-k>", function()
-  if luasnip.jumpable(-1) then
-    luasnip.jump(-1)
-  end
-end, { desc = "jump back" })
+  vim.keymap.set({ "i", "s" }, "<c-k>", function()
+    if luasnip.jumpable(-1) then
+      luasnip.jump(-1)
+    end
+  end, { desc = "jump back" })
 
-vim.keymap.set({ "i", "s" }, "<c-l>", function()
-  if luasnip.choice_active() then
-    luasnip.change_choice(1)
-  end
-end, { desc = "next choice" })
+  vim.keymap.set({ "i", "s" }, "<c-l>", function()
+    if luasnip.choice_active() then
+      luasnip.change_choice(1)
+    end
+  end, { desc = "next choice" })
 
-vim.keymap.set({ "i", "s" }, "<c-h>", function()
-  if luasnip.choice_active() then
-    luasnip.change_choice(-1)
-  end
-end, { desc = "previous choice" })
+  vim.keymap.set({ "i", "s" }, "<c-h>", function()
+    if luasnip.choice_active() then
+      luasnip.change_choice(-1)
+    end
+  end, { desc = "previous choice" })
 
--- Edit
-vim.keymap.set("n", "<leader>ss", "<cmd>LuaSnipListAvailable<cr>")
+  -- Edit
+  vim.keymap.set("n", "<leader>ss", "<cmd>LuaSnipListAvailable<cr>")
 
--- On the fly snippets (use snippet in register s). Use $word as placeholder.
--- Example: Hello $World!
-vim.keymap.set("x", "<c-s>", '"sc<cmd>lua require("luasnip.extras.otf").on_the_fly()<cr>')
-vim.keymap.set("i", "<c-s>", function()
-  require("luasnip.extras.otf").on_the_fly("s")
-end, { desc = "expand on the fly snippet" })
+  -- On the fly snippets (use snippet in register s). Use $word as placeholder.
+  -- Example: Hello $World!
+  vim.keymap.set("x", "<c-s>", '"sc<cmd>lua require("luasnip.extras.otf").on_the_fly()<cr>')
+  vim.keymap.set("i", "<c-s>", function()
+    require("luasnip.extras.otf").on_the_fly("s")
+  end, { desc = "expand on the fly snippet" })
+end
+
+return M

@@ -29,6 +29,9 @@ return {
           "ai",
         },
       },
+      workspace = {
+        checkThirdParty = false,
+      },
       telemetry = {
         enable = false,
       },

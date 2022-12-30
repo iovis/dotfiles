@@ -1,88 +1,103 @@
-require("nvim-treesitter.configs").setup({
-  ensure_installed = {
-    "bash",
-    "c",
-    "comment",
-    "css",
-    "dockerfile",
-    "graphql",
-    "html",
-    "http",
-    "javascript",
-    "jsdoc",
-    "json",
-    "jsonc",
-    "lua",
-    "make",
-    "php",
-    "python",
-    "regex",
-    "ruby",
-    "rust",
-    "scss",
-    "sql",
-    "toml",
-    "tsx",
-    "typescript",
-    "vim",
-    "vue",
-    "yaml",
+local M = {
+  "nvim-treesitter/nvim-treesitter",
+  build = ":TSUpdate",
+  dependencies = {
+    "nvim-treesitter/nvim-treesitter-context",
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    "nvim-treesitter/playground",
+    "rrethy/nvim-treesitter-endwise",
   },
-  endwise = {
-    enable = true,
-  },
-  highlight = {
-    enable = true,
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "<c-n>",
-      node_incremental = "<c-n>",
-      -- scope_incremental = "<c-s>",
-      node_decremental = "<c-p>",
+}
+
+function M.config()
+  require("nvim-treesitter.configs").setup({
+    ensure_installed = {
+      "bash",
+      "c",
+      -- "comment",  -- TODO: apparently really slow
+      "css",
+      "dockerfile",
+      "graphql",
+      "html",
+      "http",
+      "javascript",
+      "jsdoc",
+      "json",
+      "jsonc",
+      "lua",
+      "make",
+      "php",
+      "python",
+      "regex",
+      "ruby",
+      "rust",
+      "scss",
+      "sql",
+      "toml",
+      "tsx",
+      "typescript",
+      "vim",
+      "vue",
+      "yaml",
     },
-  },
-  indent = {
-    enable = false, -- Experimental
-  },
-  playground = {
-    enable = true,
-  },
-  textobjects = {
-    select = {
+    endwise = {
       enable = true,
-      lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+    },
+    highlight = {
+      enable = true,
+    },
+    incremental_selection = {
+      enable = true,
       keymaps = {
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner",
-        ["ad"] = "@block.outer",
-        ["id"] = "@block.inner",
-        ["aa"] = "@parameter.outer",
-        ["ia"] = "@parameter.inner",
+        init_selection = "<c-n>",
+        node_incremental = "<c-n>",
+        -- scope_incremental = "<c-s>",
+        node_decremental = "<c-p>",
       },
     },
-    swap = {
+    indent = {
+      enable = false, -- Experimental
+    },
+    playground = {
       enable = true,
-      swap_next = {
-        ["g>"] = "@parameter.inner",
+    },
+    textobjects = {
+      select = {
+        enable = true,
+        lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+        keymaps = {
+          ["af"] = "@function.outer",
+          ["if"] = "@function.inner",
+          ["ac"] = "@class.outer",
+          ["ic"] = "@class.inner",
+          ["ad"] = "@block.outer",
+          ["id"] = "@block.inner",
+          ["aa"] = "@parameter.outer",
+          ["ia"] = "@parameter.inner",
+        },
       },
-      swap_previous = {
-        ["g<"] = "@parameter.inner",
+      swap = {
+        enable = true,
+        swap_next = {
+          ["g>"] = "@parameter.inner",
+        },
+        swap_previous = {
+          ["g<"] = "@parameter.inner",
+        },
       },
     },
-  },
-})
+  })
 
-require("treesitter-context").setup({
-  patterns = {
-    ruby = {
-      "do_block",
-      "module",
+  require("treesitter-context").setup({
+    patterns = {
+      ruby = {
+        "do_block",
+        "module",
+      },
     },
-  },
-})
+  })
 
-vim.keymap.set("n", "+H", "<cmd>TSHighlightCapturesUnderCursor<cr>")
+  vim.keymap.set("n", "+H", "<cmd>TSHighlightCapturesUnderCursor<cr>")
+end
+
+return M
