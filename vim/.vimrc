@@ -40,7 +40,7 @@ set scrolloff=7
 set shiftwidth=2
 set shortmess-=S
 set showmatch
-set signcolumn=auto
+set signcolumn=yes
 set smartcase
 set softtabstop=2
 set splitbelow
@@ -472,13 +472,15 @@ nnoremap <leader>W :saveas <C-R>=fnameescape(expand('%:h')).'/'<cr>
 
 " vim-unimpaired {{{ "
 nnoremap yo, :set number! relativenumber! cursorline!<cr>
-nnoremap yo; :set relativenumber! cursorline!<cr>
-nnoremap yoc :setlocal cursorline!<cr>
+
+nnoremap yoc :set cursorline!<cr>
 nnoremap yod :<c-r>=&diff ? "diffoff" : "diffthis"<cr><cr>
-nnoremap yol :setlocal list!<cr>
-nnoremap yon :setlocal number!<cr>
-nnoremap yop :setlocal paste!<cr>
-nnoremap yor :setlocal relativenumber!<cr>
+nnoremap yoh :set hlsearch!<cr>
+nnoremap yol :set list!<cr>
+nnoremap yon :set number!<cr>
+nnoremap yop :set paste!<cr>
+nnoremap yor :set relativenumber!<cr>
+
 nnoremap yos :setlocal spell! spelllang=en_us<cr>
 nnoremap yow :setlocal wrap!<cr>
 " }}} vim-unimpaired "
@@ -693,8 +695,6 @@ hi SLGitBranch  ctermfg=5
 hi SLModified   ctermfg=red
 hi StatusLine   ctermfg=white ctermbg=none  cterm=none
 hi StatusLineNC ctermfg=8     ctermbg=none  cterm=none
-
-hi QuickFixLine ctermfg=none  ctermbg=none  cterm=bold
 " }}} Highlights "
 
 " statusline {{{ "
