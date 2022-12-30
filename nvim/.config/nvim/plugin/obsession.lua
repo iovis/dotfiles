@@ -43,9 +43,24 @@ end
 
 local obsession_augroup = vim.api.nvim_create_augroup("obsession", { clear = true })
 
-vim.api.nvim_create_autocmd({ "VimLeavePre", "BufEnter" }, {
+vim.api.nvim_create_autocmd("BufEnter", {
   group = obsession_augroup,
   pattern = "*",
   callback = persist_session,
+  desc = "Autosave session",
+})
+
+vim.api.nvim_create_autocmd("VimLeavePre", {
+  group = obsession_augroup,
+  pattern = "*",
+  callback = function()
+    local ok, neotree = pcall(require, "neo-tree")
+
+    if ok then
+      neotree.close_all()
+    end
+
+    persist_session()
+  end,
   desc = "Autosave session",
 })

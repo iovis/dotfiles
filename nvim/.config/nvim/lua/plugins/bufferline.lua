@@ -7,10 +7,7 @@ function M.config()
   require("bufferline").setup({
     highlights = {
       indicator_selected = {
-        fg = {
-          attribute = "bg",
-          highlight = "HighlightedYankRegion",
-        },
+        fg = "#8fafd7",
       },
     },
     options = {
@@ -25,6 +22,12 @@ function M.config()
       show_close_icon = false,
       separator_style = { "", "" },
       offsets = {
+        {
+          filetype = "neo-tree",
+          text = "",
+          highlight = "Directory",
+          text_align = "center",
+        },
         {
           filetype = "NvimTree",
           text = "",

@@ -1,5 +1,6 @@
 local M = {
-  "kyazdani42/nvim-tree.lua",
+  "nvim-tree/nvim-tree.lua",
+  enabled = false,
   cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
   keys = {
     {
@@ -11,7 +12,7 @@ local M = {
       "<cmd>NvimTreeFindFile<cr>",
     },
   },
-  dependencies = "kyazdani42/nvim-web-devicons",
+  dependencies = "nvim-tree/nvim-web-devicons",
 }
 
 function M.config()

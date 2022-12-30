@@ -3,7 +3,7 @@ local M = {
   event = "VeryLazy",
   dependencies = {
     "vijaymarupudi/nvim-fzf",
-    "kyazdani42/nvim-web-devicons",
+    "nvim-tree/nvim-web-devicons",
     {
       "junegunn/fzf",
       build = function()

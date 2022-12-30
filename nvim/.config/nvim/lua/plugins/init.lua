@@ -37,7 +37,7 @@ return {
   "vim-test/vim-test",
   "wbthomason/packer.nvim",
   "wellle/targets.vim",
-  "kyazdani42/nvim-web-devicons",
+  "nvim-tree/nvim-web-devicons",
   "christoomey/vim-tmux-navigator",
 
   {

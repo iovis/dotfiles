@@ -580,6 +580,7 @@ function M.config()
     disable = {
       filetypes = {
         "^NvimTree$",
+        "^neo%-tree$",
         "^dapui_.*",
         "^dap-repl$",
       },
