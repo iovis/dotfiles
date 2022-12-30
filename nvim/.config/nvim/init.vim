@@ -479,6 +479,9 @@ hi StatusLine   guifg=#d8d8d8 guibg=#212326 cterm=none
 hi StatusLineNC guifg=#b8b8b8 guibg=#212326 cterm=none
 
 hi VertSplit    guifg=#212326 guibg=#212326 cterm=none
+hi FloatBorder  guifg=#585858
+
+hi GitGutterChange guifg=#7cafc2 guibg=none cterm=none
 " }}} Highlights "
 
 " redir {{{ "
