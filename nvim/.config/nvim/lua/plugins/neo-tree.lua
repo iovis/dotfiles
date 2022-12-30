@@ -27,7 +27,6 @@ function M.config()
       filtered_items = {
         hide_dotfiles = false,
       },
-      follow_current_file = true,
       window = {
         mappings = {
           ["<s-down>"] = "next_git_modified",
