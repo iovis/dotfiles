@@ -223,3 +223,21 @@ snippet unim "unimplemented!()"
 	unimplemented!()
 snippet use "use ...;" b
 	use ${1:std::$2};
+snippet aoc
+	use color_eyre::Result;
+	use itertools::Itertools;
+
+	pub fn main() -> Result<()> {
+		color_eyre::install()?;
+		let input = include_str!("input.txt");
+		let lines = input.lines().collect_vec();
+
+		${1:// Your code}
+
+		let answer = 42;
+
+		println!("Answer: {answer}");
+
+		Ok(())
+	}
+
