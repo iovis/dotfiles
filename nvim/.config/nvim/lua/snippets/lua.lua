@@ -1,6 +1,26 @@
 return {
   s("u", t('local u = require("user.utils")')),
   s(
+    "mod",
+    fmta(
+      [[
+        local <> = {
+          <>
+        }
+
+        <>
+
+        return <>
+      ]]   ,
+      {
+        i(1, "M"),
+        i(2),
+        i(3),
+        rep(1),
+      }
+    )
+  ),
+  s(
     "guard",
     fmt(
       [[
