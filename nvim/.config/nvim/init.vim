@@ -5,13 +5,13 @@ let g:mapleader = "\<Space>"
 
 lua <<EOF
 -- Lua cache
-local ok, impatient = pcall(require, "impatient")
-if not ok then
-  print("impatient not found!")
-end
+-- local ok, impatient = pcall(require, "impatient")
+-- if not ok then
+--   print("impatient not found!")
+-- end
 
 local mods = {
-  "plugins",
+  "user.lazy",
   "user.autocommands",
   "user.commands",
   "user.diagnostics",
@@ -19,7 +19,7 @@ local mods = {
 }
 
 for _, mod in ipairs(mods) do
-  package.loaded[mod] = nil
+  -- package.loaded[mod] = nil
   require(mod)
 end
 EOF

@@ -1,44 +1,53 @@
-require("gitsigns").setup({
-  current_line_blame_opts = {
-    delay = 100,
-  },
-  on_attach = function(bufnr)
-    local gs = package.loaded.gitsigns
+local M = {
+  "lewis6991/gitsigns.nvim",
+  dependencies = "nvim-lua/plenary.nvim",
+}
 
-    local function map(mode, lhs, rhs, opts)
-      opts = opts or {}
-      opts.buffer = bufnr
-      vim.keymap.set(mode, lhs, rhs, opts)
-    end
+function M.config()
+  require("gitsigns").setup({
+    current_line_blame_opts = {
+      delay = 100,
+    },
+    on_attach = function(bufnr)
+      local gs = package.loaded.gitsigns
 
-    map({ "n", "v" }, "<leader>dh", ":Gitsigns reset_hunk<cr>")
-    map("n", "+q", gs.toggle_current_line_blame, { desc = "toggle_current_line_blame" })
-
-    map("n", "]c", function()
-      if vim.wo.diff then
-        return "]c"
+      local function map(mode, lhs, rhs, opts)
+        opts = opts or {}
+        opts.buffer = bufnr
+        vim.keymap.set(mode, lhs, rhs, opts)
       end
 
-      vim.schedule(function()
-        gs.next_hunk()
-      end)
+      map({ "n", "v" }, "<leader>dh", ":Gitsigns reset_hunk<cr>")
+      map("n", "+q", gs.toggle_current_line_blame, { desc = "toggle_current_line_blame" })
 
-      return "<Ignore>"
-    end, { expr = true, desc = "next hunk" })
+      map("n", "]c", function()
+        if vim.wo.diff then
+          return "]c"
+        end
 
-    map("n", "[c", function()
-      if vim.wo.diff then
-        return "[c"
-      end
+        vim.schedule(function()
+          gs.next_hunk()
+        end)
 
-      vim.schedule(function()
-        gs.prev_hunk()
-      end)
+        return "<Ignore>"
+      end, { expr = true, desc = "next hunk" })
 
-      return "<Ignore>"
-    end, { expr = true, desc = "previous hunk" })
+      map("n", "[c", function()
+        if vim.wo.diff then
+          return "[c"
+        end
 
-    -- Text object
-    map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
-  end,
-})
+        vim.schedule(function()
+          gs.prev_hunk()
+        end)
+
+        return "<Ignore>"
+      end, { expr = true, desc = "previous hunk" })
+
+      -- Text object
+      map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
+    end,
+  })
+end
+
+return M
