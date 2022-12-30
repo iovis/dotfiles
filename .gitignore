@@ -1,7 +1,3 @@
-# nvim
-nvim/.config/nvim/plugin/packer_compiled.lua
-nvim/.config/nvim/.luarc.json
-
 # zsh
 *.zwc
 zsh/.config/zsh/.zcompdump
