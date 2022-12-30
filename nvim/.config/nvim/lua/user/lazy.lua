@@ -11,6 +11,13 @@ require("lazy").setup("plugins", {
   change_detection = {
     notify = false,
   },
+  dev = {
+    path = "~/Sites/vim/",
+  },
+  ui = {
+    border = "rounded",
+  },
 })
 
-vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>")
+vim.keymap.set("n", "<leader>ph", "<cmd>Lazy<cr>")
+vim.keymap.set("n", "<leader>ps", "<cmd>Lazy sync<cr>")

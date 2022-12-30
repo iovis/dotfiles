@@ -4,6 +4,7 @@ local M = {
     "tpope/vim-dotenv", -- sqls config
     "b0o/schemastore.nvim",
     "folke/neodev.nvim",
+    "jose-elias-alvarez/null-ls.nvim",
     "simrat39/rust-tools.nvim",
     "glepnir/lspsaga.nvim",
     {
