@@ -40,6 +40,7 @@ function M.config()
 
   require("mason").setup({
     ui = {
+      border = "rounded",
       keymaps = {
         apply_language_filter = "Ñ",
       },
