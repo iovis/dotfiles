@@ -21,3 +21,4 @@ require("lazy").setup("plugins", {
 
 vim.keymap.set("n", "<leader>ph", "<cmd>Lazy<cr>")
 vim.keymap.set("n", "<leader>ps", "<cmd>Lazy sync<cr>")
+vim.keymap.set("n", "<leader>pi", "<cmd>Lazy restore<cr>")
