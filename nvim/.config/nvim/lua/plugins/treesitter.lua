@@ -14,7 +14,7 @@ function M.config()
     ensure_installed = {
       "bash",
       "c",
-      -- "comment",  -- TODO: apparently really slow
+      "comment", -- TODO: apparently really slow
       "css",
       "dockerfile",
       "graphql",
