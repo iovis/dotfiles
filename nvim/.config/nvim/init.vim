@@ -480,6 +480,7 @@ hi VertSplit    guifg=#212326 guibg=#212326 cterm=none
 hi FloatBorder  guifg=#585858
 
 hi GitGutterChange guifg=#7cafc2 guibg=none cterm=none
+hi GitGutterDelete guifg=#ab4642 guibg=none cterm=none
 " }}} Highlights "
 
 " redir {{{ "
