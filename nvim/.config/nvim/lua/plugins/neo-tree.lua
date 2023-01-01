@@ -23,6 +23,7 @@ function M.config()
   vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
   require("neo-tree").setup({
+    enable_diagnostics = false,
     filesystem = {
       filtered_items = {
         hide_dotfiles = false,
@@ -31,6 +32,7 @@ function M.config()
         mappings = {
           ["<s-down>"] = "next_git_modified",
           ["<s-up>"] = "prev_git_modified",
+          ["ñ"] = "fuzzy_finder",
           ["h"] = function(state)
             local node = state.tree:get_node()
             if node.type == "directory" and node:is_expanded() then
