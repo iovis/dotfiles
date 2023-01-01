@@ -1,22 +1,10 @@
-local M = {
+return {
   "folke/zen-mode.nvim",
   cmd = "ZenMode",
   keys = {
-    {
-      "<leader>z",
-      "<cmd>ZenMode<cr>",
-    },
+    { "<leader>z", "<cmd>ZenMode<cr>" },
   },
-}
-
-function M.config()
-  local ok, zen = pcall(require, "zen-mode")
-  if not ok then
-    print("zen-mode not found!")
-    return
-  end
-
-  zen.setup({
+  config = {
     window = {
       backdrop = 1,
       height = 0.9,
@@ -28,7 +16,5 @@ function M.config()
         relativenumber = false,
       },
     },
-  })
-end
-
-return M
+  },
+}

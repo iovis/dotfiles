@@ -1,11 +1,8 @@
-local M = {
+return {
   "lewis6991/gitsigns.nvim",
   event = "VeryLazy",
   dependencies = "nvim-lua/plenary.nvim",
-}
-
-function M.config()
-  require("gitsigns").setup({
+  config = {
     current_line_blame_opts = {
       delay = 100,
     },
@@ -48,7 +45,5 @@ function M.config()
       -- Text object
       map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
     end,
-  })
-end
-
-return M
+  },
+}

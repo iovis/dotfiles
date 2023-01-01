@@ -1,16 +1,11 @@
-local M = {
+return {
   "kevinhwang91/nvim-bqf",
   event = "VeryLazy",
-}
-
-function M.config()
-  local ok, bqf = pcall(require, "bqf")
-  if not ok then
-    print("bqf not found!")
-    return
-  end
-
-  bqf.setup({
+  init = function()
+    local u = require("user.utils")
+    u.highlight("BqfSign", { link = "Directory" })
+  end,
+  config = {
     filter = {
       fzf = {
         extra_opts = {
@@ -22,10 +17,5 @@ function M.config()
     func_map = {
       ptoggleauto = "p",
     },
-  })
-
-  local u = require("user.utils")
-  u.highlight("BqfSign", { link = "Directory" })
-end
-
-return M
+  },
+}

@@ -19,8 +19,6 @@ EOF
 " }}} plugins "
 
 " config {{{ "
-colorscheme base16-default-dark
-
 set autoindent
 set autoread
 set autowriteall
