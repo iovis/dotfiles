@@ -225,55 +225,37 @@ snippet use "use ...;" b
 	use ${1:std::$2};
 snippet aoc
 	use color_eyre::Result;
+	#[allow(unused_imports)]
+	use itertools::Itertools;
 
 	pub fn main() -> Result<()> {
-			color_eyre::install()?;
-			let input = include_str!("input.txt");
+		color_eyre::install()?;
+		let input = include_str!("input.txt");
 
-			let a1 = p1(input);
-			println!("a1: {a1:?}");
+		let a1 = p1(input);
+		println!("a1: {a1:?}");
 
-			let a2 = p2(input);
-			println!("a2: {a2:?}");
-
-			Ok(())
+		Ok(())
 	}
 
-	fn p1(input: &str) -> usize {
-	    todo!();
-	}
-
-	fn p2(input: &str) -> usize {
-	    todo!();
+	fn p1(input: &str) -> i32 {
+		todo!();
 	}
 
 	#[cfg(test)]
 	mod tests {
-	    use super::*;
+		use super::*;
 
-			mod p1 {
-					use crate::p1;
+		mod p1 {
+			use crate::p1;
 
-					#[test]
-					fn test_example() {
-							let input = indoc::indoc! {"
-									$1
-							"};
+			#[test]
+			fn test_example() {
+				let input = indoc::indoc! {"
+					$1
+				"};
 
-							assert_eq!(p1(input), $2);
-					}
+				assert_eq!(p1(input), $2);
 			}
-
-			mod p2 {
-					use crate::p2;
-
-					#[test]
-					fn test_example() {
-							let input = indoc::indoc! {"
-									$1
-							"};
-
-							// assert_eq!(p2(input), $2);
-					}
-			}
+		}
 	}

@@ -1,6 +1,6 @@
 local u = require("user.utils")
 
-u.lsp_autoformat()
+-- u.lsp_autoformat()
 
 vim.keymap.set("n", "c<cr>", "<cmd>Tux irust<cr>", { buffer = true })
 vim.keymap.set("n", "m<cr>", "<cmd>Tux cargo check --all-targets<cr>", { buffer = true })
