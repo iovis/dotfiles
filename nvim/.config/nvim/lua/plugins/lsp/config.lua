@@ -115,7 +115,7 @@ M.on_attach = function(client, bufnr)
     buf_nmap("<right>", "<cmd>Lspsaga diagnostic_jump_next<cr>")
 
     ---- outline
-    buf_nmap("<leader>lo", "<cmd>LSoutlineToggle<cr>")
+    buf_nmap("<leader>lo", "<cmd>Lspsaga outline<cr>")
   end
 
   ---- Codelens
