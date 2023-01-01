@@ -4,6 +4,6 @@ cargo-nextest
 cargo-outdated
 cargo-watch
 dexios
-evcxr
+evcxr_repl
 inferno
 muxi
