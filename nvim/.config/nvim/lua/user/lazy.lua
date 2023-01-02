@@ -14,11 +14,15 @@ require("lazy").setup("plugins", {
   dev = {
     path = "~/Sites/vim/",
   },
+  -- diff = { cmd = "diffview.nvim" },
+  install = {
+    missing = false,
+  },
   ui = {
     border = "rounded",
   },
 })
 
-vim.keymap.set("n", "<leader>ph", "<cmd>Lazy<cr>")
+vim.keymap.set("n", "<leader>up", "<cmd>Lazy<cr>")
 vim.keymap.set("n", "<leader>ps", "<cmd>Lazy sync<cr>")
 vim.keymap.set("n", "<leader>pi", "<cmd>Lazy restore<cr>")
