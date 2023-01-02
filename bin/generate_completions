@@ -2,4 +2,6 @@
 
 rustup completions zsh > "$ZDOTDIR/completions/_rustup"
 rustup completions zsh cargo > "$ZDOTDIR/completions/_cargo"
+
+muxi completions zsh > "$ZDOTDIR/completions/_muxi"
 # starship completions zsh > "$ZDOTDIR/completions/_starship"
