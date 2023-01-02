@@ -125,9 +125,9 @@ M.lsp_autoformat = function()
     group = group,
     buffer = 0,
     callback = function()
-      vim.lsp.buf.format()
+      vim.lsp.buf.format({ async = false })
     end,
-    desc = "Autoformat with LSP",
+    desc = "Autoformat with LSP on save",
   })
 end
 
