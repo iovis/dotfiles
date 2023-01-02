@@ -1,10 +1,8 @@
 return {
   { "andrewradev/splitjoin.vim", event = "VeryLazy" },
-  { "chrisbra/csv.vim", event = "VeryLazy" },
   { "christoomey/vim-sort-motion", event = "VeryLazy" },
   { "iovis/browsers_castle", event = "VeryLazy" },
   { "iovis/substitute.vim", event = "VeryLazy" },
-  { "iovis/tux.vim", event = "VeryLazy" },
   { "jparise/vim-graphql", event = "VeryLazy" },
   { "moll/vim-bbye", event = "VeryLazy" },
   { "nvim-lua/plenary.nvim", lazy = true },
@@ -12,7 +10,6 @@ return {
   { "tpope/vim-abolish", event = "VeryLazy" },
   { "tpope/vim-bundler", event = "VeryLazy" },
   { "tpope/vim-characterize", event = "VeryLazy" },
-  { "tpope/vim-dadbod", event = "VeryLazy" },
   { "tpope/vim-dotenv", event = "VeryLazy" },
   { "tpope/vim-eunuch", event = "VeryLazy" },
   { "tpope/vim-fugitive", event = "VeryLazy" },
