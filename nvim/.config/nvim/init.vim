@@ -32,6 +32,7 @@ set cursorline  " Highlight current line (slow)
 set diffopt+=hiddenoff
 set diffopt+=vertical
 set expandtab
+set fillchars+=diff:╱
 set formatoptions-=ro  " Don't insert comment leader on new line
 set hidden
 set hlsearch
@@ -479,8 +480,17 @@ hi StatusLineNC guifg=#b8b8b8 guibg=#212326 cterm=none
 hi VertSplit    guifg=#212326 guibg=#212326 cterm=none
 hi FloatBorder  guifg=#585858
 
-hi GitGutterChange guifg=#7cafc2 guibg=none cterm=none
-hi GitGutterDelete guifg=#ab4642 guibg=none cterm=none
+hi GitGutterAdd          guifg=#a1b56c guibg=none cterm=none
+hi GitGutterChange       guifg=#7cafc2 guibg=none cterm=none
+hi GitGutterChangeDelete guifg=#ba8baf guibg=none cterm=none
+hi GitGutterDelete       guifg=#ab4642 guibg=none cterm=none
+
+hi DiffAdd     guifg=#a1b56c guibg=none
+hi DiffAdded   guifg=#a1b56c guibg=none
+hi DiffChange  guifg=#585858 guibg=none
+hi DiffDelete  guifg=#ab4642 guibg=none gui=bold
+hi DiffRemoved guifg=#ab4642 guibg=none gui=bold
+hi DiffText    guifg=#7cafc2 guibg=none gui=bold
 " }}} Highlights "
 
 " redir {{{ "

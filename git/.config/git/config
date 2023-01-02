@@ -5,6 +5,7 @@
   hide = update-index --assume-unchanged
   hub = !hub
   ignored = !git status -s --ignored | grep \"^!!\"
+  mergetool = "!nvim -c DiffviewOpen"
   publish = !git push -u origin $(git branch-name)
   review = "!f() { $EDITOR ${@:-$(git files)}; }; f"
   stat = !git diff --stat $(git merge-base HEAD \"$REVIEW_BASE\")
@@ -39,8 +40,6 @@
   autosquash = true
 [mergetool]
   prompt = false
-[mergetool "nvimdiff"]
-  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [diff]
   tool = nvimdiff
   colorMoved = default
