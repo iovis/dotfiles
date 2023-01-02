@@ -24,6 +24,9 @@ function M.config()
 
   require("neo-tree").setup({
     enable_diagnostics = false,
+    window = {
+      width = 33,
+    },
     filesystem = {
       filtered_items = {
         hide_dotfiles = false,
