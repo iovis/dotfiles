@@ -33,28 +33,52 @@ function M.config()
       },
       window = {
         mappings = {
+          ["!"] = "run_external_command",
+          ["."] = "run_command",
           ["<s-down>"] = "next_git_modified",
           ["<s-up>"] = "prev_git_modified",
+          ["h"] = "fold_left",
+          ["l"] = "fold_right",
           ["ñ"] = "fuzzy_finder",
-          ["h"] = function(state)
-            local node = state.tree:get_node()
-            if node.type == "directory" and node:is_expanded() then
-              require("neo-tree.sources.filesystem").toggle_directory(state, node)
-            else
-              require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
-            end
-          end,
-          ["l"] = function(state)
-            local node = state.tree:get_node()
-            if node.type == "directory" then
-              if not node:is_expanded() then
-                require("neo-tree.sources.filesystem").toggle_directory(state, node)
-              elseif node:has_children() then
-                require("neo-tree.ui.renderer").focus_node(state, node:get_child_ids()[1])
-              end
-            end
-          end,
         },
+      },
+      commands = {
+        -- TODO: Open multiple
+        -- open_visual = function(state, selected_nodes)
+        --   pp(selected_nodes)
+        -- end,
+        run_command = function(state)
+          local node = state.tree:get_node()
+          local path = node:get_id()
+
+          vim.api.nvim_input(": " .. path .. "<Home>")
+        end,
+        run_external_command = function(state)
+          local node = state.tree:get_node()
+          local path = node:get_id()
+
+          vim.api.nvim_input(":! " .. path .. "<Home><Right>")
+        end,
+        fold_left = function(state)
+          local node = state.tree:get_node()
+
+          if node.type == "directory" and node:is_expanded() then
+            require("neo-tree.sources.filesystem").toggle_directory(state, node)
+          else
+            require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
+          end
+        end,
+        fold_right = function(state)
+          local node = state.tree:get_node()
+
+          if node.type == "directory" then
+            if not node:is_expanded() then
+              require("neo-tree.sources.filesystem").toggle_directory(state, node)
+            elseif node:has_children() then
+              require("neo-tree.ui.renderer").focus_node(state, node:get_child_ids()[1])
+            end
+          end
+        end,
       },
     },
   })
