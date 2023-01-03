@@ -12,5 +12,6 @@ vim.keymap.set("n", "<leader>sr", function()
   local base_name = string.match(filename, "([^/\\]+)%.[^.]+$")
 
   -- Require the plugin and run its config function
+  print(string.format("Reloading %s", base_name))
   require("plugins." .. base_name).config()
 end, { buffer = true })
