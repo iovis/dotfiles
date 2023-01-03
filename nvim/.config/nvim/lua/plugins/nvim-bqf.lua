@@ -2,8 +2,8 @@ return {
   "kevinhwang91/nvim-bqf",
   event = "VeryLazy",
   init = function()
-    local u = require("user.utils")
-    u.highlight("BqfSign", { link = "Directory" })
+    local hi = require("user.utils").hi
+    hi.BqfSign = "Directory"
   end,
   config = function()
     require("bqf").setup({

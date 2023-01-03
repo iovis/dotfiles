@@ -1,5 +1,6 @@
 return {
   s("u", t('local u = require("user.utils")')),
+  s("hi", t('local hi = require("user.utils").hi')),
   s(
     "mod",
     fmta(
@@ -11,7 +12,7 @@ return {
         <>
 
         return <>
-      ]]   ,
+      ]],
       {
         i(1, "M"),
         i(2),

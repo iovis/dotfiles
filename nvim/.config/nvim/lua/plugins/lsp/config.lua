@@ -1,6 +1,7 @@
 local M = {}
 
 local u = require("user.utils")
+local hi = require("user.utils").hi
 
 ---- Global LSP settings
 u.command("LspActiveClients", "Redir lua =vim.lsp.get_active_clients() | setf lua")
@@ -13,10 +14,10 @@ vim.keymap.set("n", "<leader>lp", "<cmd>Mason<cr>")
 ---- Floating window
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
-u.highlight("NormalFloat", { bg = "#181818" })
-u.highlight("FloatBorder", { bg = "#181818", fg = "#383838" })
-u.highlight("LspCodeLens", { link = "Comment" })
-u.highlight("LspCodeLensSeparator", { link = "Comment" })
+hi.NormalFloat = { bg = "#181818" }
+hi.FloatBorder = { bg = "#181818", fg = "#383838" }
+hi.LspCodeLens = "Comment"
+hi.LspCodeLensSeparator = "Comment"
 
 ---- On LSP attached buffers
 M.on_attach = function(client, bufnr)

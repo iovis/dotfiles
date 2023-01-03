@@ -1,15 +1,15 @@
-local u = require("user.utils")
-
 ---- UI
-u.highlight("DiagnosticSignError", { fg = "#ab4642" })
-u.highlight("DiagnosticSignWarn", { fg = "#f7ca88" })
-u.highlight("DiagnosticSignInfo", { fg = "#7cafc2" })
-u.highlight("DiagnosticSignHint", { fg = "#7cafc2" })
+local hi = require("user.utils").hi
 
-u.highlight("DiagnosticVirtualTextError", { fg = "#ab4642" })
-u.highlight("DiagnosticVirtualTextWarn", { fg = "#f7ca88" })
-u.highlight("DiagnosticVirtualTextInfo", { fg = "#7cafc2" })
-u.highlight("DiagnosticVirtualTextHint", { fg = "#7cafc2" })
+hi.DiagnosticSignError = { fg = "#ab4642" }
+hi.DiagnosticSignWarn = { fg = "#f7ca88" }
+hi.DiagnosticSignInfo = { fg = "#7cafc2" }
+hi.DiagnosticSignHint = { fg = "#7cafc2" }
+
+hi.DiagnosticVirtualTextError = { fg = "#ab4642" }
+hi.DiagnosticVirtualTextWarn = { fg = "#f7ca88" }
+hi.DiagnosticVirtualTextInfo = { fg = "#7cafc2" }
+hi.DiagnosticVirtualTextHint = { fg = "#7cafc2" }
 
 local signs = {
   { name = "DiagnosticSignError", text = "" },

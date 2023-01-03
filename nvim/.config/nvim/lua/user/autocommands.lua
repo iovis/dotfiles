@@ -1,7 +1,6 @@
-local u = require("user.utils")
-
 ---- Highlight on yank
-u.highlight("HighlightedYankRegion", { fg = "#262626", bg = "#8fafd7" })
+local hi = require("user.utils").hi
+hi.HighlightedYankRegion = { fg = "#262626", bg = "#8fafd7" }
 
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   pattern = "*",

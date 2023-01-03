@@ -2,9 +2,9 @@ return {
   "chrisbra/csv.vim",
   ft = "csv",
   config = function()
-    local u = require("user.utils")
+    local hi = require("user.utils").hi
 
-    u.highlight("CSVColumnEven", { bg = "#6C6C6C" })
-    u.highlight("CSVColumnOdd", {})
+    hi.CSVColumnEven = { bg = "#6C6C6C" }
+    hi.CSVColumnOdd = {}
   end,
 }

@@ -23,7 +23,6 @@ function M.config()
   end
 
   local tree_cb = require("nvim-tree.config").nvim_tree_callback
-  local u = require("user.utils")
 
   tree.setup({
     actions = {
@@ -82,9 +81,10 @@ function M.config()
     update_cwd = true,
   })
 
-  u.highlight("NvimTreeEndOfBuffer", { fg = "#181818" })
-  u.highlight("NvimTreeWinSeparator", { fg = "#181818" })
-  u.highlight("NvimTreeStatusLine", {})
+  local hi = require("user.utils").hi
+  hi.NvimTreeEndOfBuffer = { fg = "#181818" }
+  hi.NvimTreeWinSeparator = { fg = "#181818" }
+  hi.NvimTreeStatusLine = {}
 end
 
 return M

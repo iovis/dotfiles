@@ -13,8 +13,6 @@ return {
     { mode = "x", "<leader>a=", "gai=", remap = true },
   },
   config = function()
-    local u = require("user.utils")
-
     --- mini.ai (text objects)
     local ai = require("mini.ai")
     ai.setup({
@@ -56,6 +54,7 @@ return {
       symbol = "│",
     })
 
-    u.highlight("MiniIndentscopeSymbol", { fg = "#333333" })
+    local hi = require("user.utils").hi
+    hi.MiniIndentscopeSymbol = { fg = "#333333" }
   end,
 }

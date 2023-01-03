@@ -83,11 +83,12 @@ function M.config()
     },
   })
 
-  local u = require("user.utils")
-  u.highlight("NeoTreeEndOfBuffer", { fg = "#181818" })
-  u.highlight("NeoTreeStatusLine", { fg = "#181818" })
-  u.highlight("NeoTreeStatusLineNC", {})
-  u.highlight("NeoTreeWinSeparator", { fg = "#181818" })
+  local hi = require("user.utils").hi
+
+  hi.NeoTreeEndOfBuffer = { fg = "#181818" }
+  hi.NeoTreeStatusLine = { fg = "#181818" }
+  hi.NeoTreeStatusLineNC = {}
+  hi.NeoTreeWinSeparator = { fg = "#181818" }
 end
 
 return M

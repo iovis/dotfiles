@@ -111,33 +111,30 @@ function M.config()
   })
 
   ---- Colors
-  local u = require("user.utils")
+  local hi = require("user.utils").hi
 
-  u.highlight("CmpItemAbbr", { fg = "#d8d8d8" })
+  hi.CmpItemAbbr = { fg = "#d8d8d8" }
 
   -- gray
-  u.highlight("CmpItemAbbrDeprecated", {
-    fg = "#808080",
-    strikethrough = true,
-  })
+  hi.CmpItemAbbrDeprecated = { fg = "#808080", strikethrough = true }
 
   -- blue
-  u.highlight("CmpItemAbbrMatch", { fg = "#569CD6" })
-  u.highlight("CmpItemAbbrMatchFuzzy", { fg = "#569CD6" })
+  hi.CmpItemAbbrMatch = { fg = "#569cd6" }
+  hi.CmpItemAbbrMatchFuzzy = { fg = "#569cd6" }
 
   -- light blue
-  u.highlight("CmpItemKindVariable", { fg = "#9CDCFE" })
-  u.highlight("CmpItemKindInterface", { fg = "#9CDCFE" })
-  u.highlight("CmpItemKindText", { fg = "#9CDCFE" })
+  hi.CmpItemKindVariable = { fg = "#9cdcfe" }
+  hi.CmpItemKindInterface = { fg = "#9cdcfe" }
+  hi.CmpItemKindText = { fg = "#9cdcfe" }
 
   -- pink
-  u.highlight("CmpItemKindFunction", { fg = "#C586C0" })
-  u.highlight("CmpItemKindMethod", { fg = "#C586C0" })
+  hi.CmpItemKindFunction = { fg = "#c586c0" }
+  hi.CmpItemKindMethod = { fg = "#c586c0" }
 
   -- front
-  u.highlight("CmpItemKindKeyword", { fg = "#D4D4D4" })
-  u.highlight("CmpItemKindProperty", { fg = "#D4D4D4" })
-  u.highlight("CmpItemKindUnit", { fg = "#D4D4D4" })
+  hi.CmpItemKindKeyword = { fg = "#d4d4d4" }
+  hi.CmpItemKindProperty = { fg = "#d4d4d4" }
+  hi.CmpItemKindUnit = { fg = "#d4d4d4" }
 end
 
 return M
