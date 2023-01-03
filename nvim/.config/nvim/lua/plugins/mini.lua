@@ -2,12 +2,23 @@ return {
   "echasnovski/mini.nvim",
   event = "VeryLazy",
   config = function()
-    -- TODO:
-    --   - mini.align
-    --   - mini.indentscope (indent textobjects)
+    local u = require("user.utils")
+    -- TODO: mini.align
 
+    ---- mini.indent (indentation guides and textobjects)
+    local indent = require("mini.indentscope")
+    indent.setup({
+      draw = {
+        delay = 0,
+        animation = indent.gen_animation.none(),
+      },
+      symbol = "│",
+    })
+
+    u.highlight("MiniIndentscopeSymbol", { fg = "#333333" })
+
+    --- mini.ai (text objects)
     local ai = require("mini.ai")
-
     ai.setup({
       custom_textobjects = {
         -- alias 'r' to []
