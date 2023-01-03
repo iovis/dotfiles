@@ -16,7 +16,12 @@ function M.config()
       "c",
       "comment", -- TODO: apparently really slow
       "css",
+      "diff", -- git diffs
       "dockerfile",
+      "git_rebase",
+      "gitattributes",
+      "gitcommit",
+      "gitignore",
       "graphql",
       "html",
       "http",
@@ -28,6 +33,7 @@ function M.config()
       "make",
       "php",
       "python",
+      "query", -- tree-sitter query language
       "regex",
       "ruby",
       "rust",
@@ -45,6 +51,14 @@ function M.config()
     },
     highlight = {
       enable = true,
+      disable = function(lang, buf)
+        local max_filesize = 10 * 1024 * 1024 -- 10 MB
+        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+
+        if ok and stats and stats.size > max_filesize then
+          return true
+        end
+      end,
     },
     incremental_selection = {
       enable = true,
