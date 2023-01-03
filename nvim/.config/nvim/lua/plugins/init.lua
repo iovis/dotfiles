@@ -23,16 +23,7 @@ return {
   { "tpope/vim-scriptease", event = "VeryLazy" },
   { "tpope/vim-speeddating", event = "VeryLazy" },
   { "vim-test/vim-test", event = "VeryLazy" },
-  { "wellle/targets.vim", event = "VeryLazy" },
 
-  {
-    "kana/vim-textobj-user",
-    event = "VeryLazy",
-    dependencies = {
-      "kana/vim-textobj-entire",
-      "kana/vim-textobj-indent",
-    },
-  },
   {
     "dstein64/vim-startuptime",
     cmd = "StartupTime",
