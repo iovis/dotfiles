@@ -3,7 +3,6 @@ vim.filetype.add({
     tmux = "tmux",
   },
   filename = {
-    ["justfile"] = "make",
     ["skhdrc"] = "skhd",
   },
 })

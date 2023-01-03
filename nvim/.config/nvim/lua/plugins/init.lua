@@ -1,4 +1,5 @@
 return {
+  "NoahTheDuke/vim-just",
   { "andrewradev/splitjoin.vim", event = "VeryLazy" },
   { "christoomey/vim-sort-motion", event = "VeryLazy" },
   { "iovis/browsers_castle", event = "VeryLazy" },
