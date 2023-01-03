@@ -2,6 +2,9 @@ return {
   "tpope/vim-projectionist",
   dependencies = {
     "tpope/vim-dispatch",
+    init = function()
+      vim.g.dispatch_no_maps = 1
+    end,
   },
   event = "VeryLazy",
   keys = {
