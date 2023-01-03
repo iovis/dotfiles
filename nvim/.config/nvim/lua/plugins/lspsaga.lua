@@ -3,7 +3,7 @@ return {
   config = function()
     require("lspsaga").init_lsp_saga({
       border_style = "rounded",
-      -- code_action_icon = "",
+      code_action_icon = "",
       code_action_lightbulb = {
         enable = true,
         cache_code_action = false,
