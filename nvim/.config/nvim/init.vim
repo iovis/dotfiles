@@ -223,8 +223,8 @@ nnoremap M <c-w>o
 nnoremap U :undolist<cr>:undo<space>
 nnoremap Y y$
 
-nnoremap ' `
-xnoremap ' `
+nmap ' `
+xmap ' `
 nnoremap <silent> <leader><cr> :noh<cr>
 xnoremap <silent> <leader><cr> :noh<cr>
 nnoremap H g^
