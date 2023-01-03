@@ -147,8 +147,6 @@ augroup end
 inoremap kj <Esc>
 inoremap KJ <Esc>
 inoremap Kj <Esc>
-nnoremap <space> <nop>
-xnoremap <space> <nop>
 
 " Some expansions
 inoremap ,, <c-o>A,
