@@ -1,21 +1,19 @@
 return {
   "echasnovski/mini.nvim",
   event = "VeryLazy",
+  keys = {
+    ---- Quick Align
+    { mode = "n", "<leader>a,", "mzgaip,'z", remap = true },
+    { mode = "x", "<leader>a,", "gai,", remap = true },
+
+    { mode = "n", "<leader>a:", "mzgaipip:'z", remap = true },
+    { mode = "x", "<leader>a:", "gaip:", remap = true },
+
+    { mode = "n", "<leader>a=", "mzgaipi='z", remap = true },
+    { mode = "x", "<leader>a=", "gai=", remap = true },
+  },
   config = function()
     local u = require("user.utils")
-    -- TODO: mini.align
-
-    ---- mini.indent (indentation guides and textobjects)
-    local indent = require("mini.indentscope")
-    indent.setup({
-      draw = {
-        delay = 0,
-        animation = indent.gen_animation.none(),
-      },
-      symbol = "│",
-    })
-
-    u.highlight("MiniIndentscopeSymbol", { fg = "#333333" })
 
     --- mini.ai (text objects)
     local ai = require("mini.ai")
@@ -44,5 +42,20 @@ return {
         end,
       },
     })
+
+    ---- mini.align
+    require("mini.align").setup({})
+
+    ---- mini.indent (indentation guides and textobjects)
+    local indent = require("mini.indentscope")
+    indent.setup({
+      draw = {
+        delay = 0,
+        animation = indent.gen_animation.none(),
+      },
+      symbol = "│",
+    })
+
+    u.highlight("MiniIndentscopeSymbol", { fg = "#333333" })
   end,
 }

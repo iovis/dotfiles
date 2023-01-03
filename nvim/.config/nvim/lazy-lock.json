@@ -62,7 +62,6 @@
   "vim-fugitive": { "branch": "master", "commit": "99cdb88bc64063dc4656ae53496f06fb2a394cd4" },
   "vim-git": { "branch": "master", "commit": "5143bea9ed17bc32163dbe3ca706344d79507b9d" },
   "vim-graphql": { "branch": "master", "commit": "ee618bc2101040a4a702b4724a094ca2820562b4" },
-  "vim-lion": { "branch": "master", "commit": "ce46593ecd60e6051fb6e4d3986d2fc9f5a618b1" },
   "vim-projectionist": { "branch": "master", "commit": "558013b66ba8f30e75fd67a67374662fd6961eb8" },
   "vim-ragtag": { "branch": "master", "commit": "51b313e8a2e3a44f37b9d625bc0d461e9066b7e9" },
   "vim-rails": { "branch": "master", "commit": "a6d2bac95b446a5c23eff4638eca164b0d77454a" },
