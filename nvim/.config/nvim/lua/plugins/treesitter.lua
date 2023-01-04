@@ -6,6 +6,7 @@ local M = {
     "nvim-treesitter/nvim-treesitter-textobjects",
     "nvim-treesitter/playground",
     "rrethy/nvim-treesitter-endwise",
+    "JoosepAlviste/nvim-ts-context-commentstring",
   },
 }
 
@@ -99,6 +100,10 @@ function M.config()
           ["g<"] = "@parameter.inner",
         },
       },
+    },
+    context_commentstring = {
+      enable = true,
+      enable_autocmd = false, -- let mini.comment trigger the update
     },
   })
 

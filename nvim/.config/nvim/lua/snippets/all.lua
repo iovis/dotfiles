@@ -1,4 +1,10 @@
 local commentstr = function()
+  -- Update commentstring with treesitter
+  local ok, ts_comment = pcall(require, "ts_context_commentstring.internal")
+  if ok then
+    ts_comment.update_commentstring()
+  end
+
   -- Substitute %s with one space
   return vim.api.nvim_buf_get_option(0, "commentstring"):gsub("%s*%%s", " ")
 end

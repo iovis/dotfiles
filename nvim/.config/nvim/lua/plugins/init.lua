@@ -28,9 +28,4 @@ return {
     "dstein64/vim-startuptime",
     cmd = "StartupTime",
   },
-  {
-    "numToStr/Comment.nvim",
-    event = "VeryLazy",
-    config = true,
-  },
 }
