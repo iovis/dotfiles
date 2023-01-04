@@ -238,20 +238,6 @@ xnoremap ñ /
 nnoremap Ñ ?
 xnoremap Ñ ?
 
-" buffer closing {{{ "
-" Don't close if there are changes (toggle removing split or not)
-nnoremap <silent> º :Bdelete<cr>
-nnoremap <silent> <leader>º :bdelete<cr>
-
-" Close even if there are changes (toggle removing the split)
-nnoremap <silent> ª :Bdelete!<cr>
-nnoremap <silent> <leader>ª :bdelete!<cr>
-" }}} buffer closing "
-" }}} bindings "
-
-" Map pending
-" nnoremap &
-
 " substitute {{{ "
 nnoremap s <Nop>
 xnoremap s <Nop>

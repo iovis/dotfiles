@@ -5,7 +5,6 @@ return {
   { "iovis/browsers_castle", event = "VeryLazy" },
   { "iovis/substitute.vim", event = "VeryLazy" },
   { "jparise/vim-graphql", event = "VeryLazy" },
-  { "moll/vim-bbye", event = "VeryLazy" },
   { "nvim-lua/plenary.nvim", lazy = true },
   { "nvim-tree/nvim-web-devicons", lazy = true },
   { "tpope/vim-abolish", event = "VeryLazy" },

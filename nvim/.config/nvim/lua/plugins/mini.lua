@@ -2,7 +2,7 @@ return {
   "echasnovski/mini.nvim",
   event = "VeryLazy",
   keys = {
-    ---- Quick Align
+    ---- align
     { mode = "n", "<leader>a,", "mzgaip,'z", remap = true },
     { mode = "x", "<leader>a,", "gai,", remap = true },
 
@@ -43,6 +43,15 @@ return {
 
     ---- mini.align
     require("mini.align").setup({})
+
+    ---- mini.bufremove (remove buffer without messing windows)
+    local bufrm = require("mini.bufremove")
+    bufrm.setup({})
+
+    vim.keymap.set("n", "º", bufrm.delete, { desc = "Bdelete" })
+    vim.keymap.set("n", "ª", function()
+      bufrm.delete(0, true)
+    end, { desc = "Bdelete!" })
 
     ---- mini.indent (indentation guides and textobjects)
     local indent = require("mini.indentscope")
