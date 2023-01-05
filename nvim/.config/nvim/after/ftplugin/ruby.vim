@@ -1,18 +1,18 @@
 setlocal makeprg=ruby\ %
 
 " sorbet {{{ "
-" nnoremap <silent> <leader>E :Tux RUBYOPT="-W0" bin/tapioca gems && RUBYOPT="-W0" bundle exec rails rails_rbi:all && RUBYOPT="-W0" bundle exec spoom bump<cr>
-" nnoremap <silent> <buffer> <leader>E :Tux RUBYOPT="-W0" bin/tapioca gems && RUBYOPT="-W0" bin/tapioca dsl && RUBYOPT="-W0" bin/tapioca todo && RUBYOPT="-W0" bundle exec spoom bump<cr>
+" nnoremap <silent> <buffer> <leader>sr :Tux bin/tapioca gems && bin/tapioca dsl && bin/tapioca todo && bin/tapioca check-shims && bundle exec spoom bump<cr>
+" nnoremap <silent> <buffer> <leader>st :e! sorbet/rbi/todo.rbi<cr>
 " nnoremap <silent> <buffer> m<cr> :Tux bundle exec srb tc<cr>
 "
-" nnoremap <buffer> +T :e sorbet/rbi/<c-r>%<cr>
+" nnoremap <buffer> +T :e sorbet/rbi/shims/<c-r>%<cr>
 " }}} sorbet "
 
 " solargraph {{{ "
 " Reset with: bundle exec solargraph clear && bundle exec yard gems --rebuild
 
-nnoremap <silent> <buffer> <leader>sy :TuxBg! ctags && bundle exec solargraph download-core && bundle exec solargraph bundle && bundle exec yard gems<cr>
-nnoremap <silent> <buffer> <leader>sr :TuxBg! ctags && bundle exec solargraph clear && bundle exec solargraph bundle && bundle exec yard gems --rebuild<cr>
+nnoremap <silent> <buffer> <leader>sy :TuxBg! ctags && bundle exec solargraph bundle && bundle exec yard gems<cr>
+nnoremap <silent> <buffer> <leader>sr :TuxBg! ctags && bundle exec solargraph clear && bundle exec solargraph download-core && bundle exec solargraph bundle && bundle exec yard gems --rebuild<cr>
 " }}} solargraph "
 
 " quick testing {{{ "
