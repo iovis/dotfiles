@@ -14,6 +14,12 @@ return {
       },
       checkOnSave = {
         command = "clippy",
+        extraArgs = {
+          "--",
+          "-Wclippy::pedantic",
+          "-Aclippy::missing-errors-doc",
+          "-Aclippy::missing-panics-doc",
+        },
       },
     },
   },
