@@ -1,16 +1,18 @@
 return {
-  "NoahTheDuke/vim-just", -- Not lazy because it calculates filetypes
-  "tpope/vim-git", -- Not lazy because it calculates filetypes
-  "tpope/vim-rhubarb", -- Not lazy because it calculates filetypes
+  -- Not lazy because it calculates filetypes
+  "NoahTheDuke/vim-just",
+  "tpope/vim-git",
+  "tpope/vim-rhubarb",
+
+  -- Other library dependencies
+  { "nvim-lua/plenary.nvim", lazy = true },
+  { "nvim-tree/nvim-web-devicons", lazy = true },
 
   { "andrewradev/splitjoin.vim", event = "VeryLazy" },
   { "christoomey/vim-sort-motion", event = "VeryLazy" },
   { "dstein64/vim-startuptime", cmd = "StartupTime" },
   { "iovis/browsers_castle", event = "VeryLazy" },
   { "iovis/substitute.vim", event = "VeryLazy" },
-  { "jparise/vim-graphql", event = "VeryLazy" },
-  { "nvim-lua/plenary.nvim", lazy = true },
-  { "nvim-tree/nvim-web-devicons", lazy = true },
   { "tpope/vim-abolish", event = "VeryLazy" },
   { "tpope/vim-bundler", event = "VeryLazy" },
   { "tpope/vim-characterize", event = "VeryLazy" },
