@@ -60,6 +60,7 @@ set showmatch
 set signcolumn=yes
 set smartcase
 set softtabstop=2
+set spelllang=en_us
 set splitbelow
 set splitright
 set tabstop=2
