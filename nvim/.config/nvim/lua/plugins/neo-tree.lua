@@ -1,15 +1,15 @@
 local M = {
   "nvim-neo-tree/neo-tree.nvim",
   branch = "v2.x",
-  cmd = { "NeoTree" },
+  cmd = { "Neotree" },
   keys = {
     {
       "<leader>k",
-      "<cmd>NeoTreeFocusToggle<cr>",
+      "<cmd>Neotree toggle<cr>",
     },
     {
       "-",
-      "<cmd>NeoTreeRevealToggle<cr>",
+      "<cmd>Neotree reveal<cr>",
     },
   },
   dependencies = {
@@ -20,7 +20,7 @@ local M = {
 }
 
 function M.config()
-  vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+  vim.g.neo_tree_remove_legacy_commands = true
 
   require("neo-tree").setup({
     enable_diagnostics = false,
