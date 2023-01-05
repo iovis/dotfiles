@@ -13,9 +13,6 @@ return {
     -- Execute current line
     { "<leader>I", ":silent execute 'Tux ' . escape(getline('.'), '#%')<cr>", silent = true },
     { "<leader>I", "y:silent execute 'Tux ' . escape(getreg('0'), '#%')<cr>", mode = "x", silent = true },
-
-    -- Quick open project
-    { "+V", ":Tux! vim_plugins && clear<cr>", silent = true },
   },
   init = function()
     local u = require("user.utils")

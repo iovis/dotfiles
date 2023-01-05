@@ -1,5 +1,7 @@
 local u = require("user.utils")
 
+
+---- Quick Tmux Session
 vim.keymap.set("n", "++", "<cmd>TmuxNewSession<cr>")
 vim.keymap.set("n", "+<space>", ":TmuxNewSession<space>")
 u.command("TmuxNewSession", function(opts)
@@ -27,6 +29,30 @@ u.command("TmuxNewSession", function(opts)
     directory,
     session_name
   )
+
+  vim.fn.system(cmd)
+end, { nargs = "?" })
+
+---- Quick open vim plugin in new window
+vim.keymap.set("n", "+V", "<cmd>VimPlugin<cr>")
+u.command("VimPlugin", function(opts)
+  local plugins_path = vim.fn.stdpath("data") .. "/lazy/"
+
+  local command = string.format([[fd -td --max-depth 1 . %s | fzf-tmux -p80%%,80%% --select-1 --exit-0 --reverse]], plugins_path)
+
+  -- Add query if provided
+  if not u.is_empty(opts.args) then
+    command = command .. string.format([[ --query="%s"]], opts.args)
+  end
+
+  local directory = vim.trim(vim.fn.system(command))
+
+  if u.is_empty(directory) then
+    print(string.format("directory %s not found", opts.args))
+    return
+  end
+
+  local cmd = string.format([[tmux new-window -c "%s"]], directory)
 
   vim.fn.system(cmd)
 end, { nargs = "?" })
