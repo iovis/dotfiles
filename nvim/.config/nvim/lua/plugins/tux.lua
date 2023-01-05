@@ -15,7 +15,6 @@ return {
     { "<leader>I", "y:silent execute 'Tux ' . escape(getreg('0'), '#%')<cr>", mode = "x", silent = true },
 
     -- Quick open project
-    { "+C", ":Tux! f && clear<cr>", silent = true },
     { "+V", ":Tux! vim_plugins && clear<cr>", silent = true },
   },
   init = function()

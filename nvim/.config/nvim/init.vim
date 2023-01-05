@@ -451,9 +451,8 @@ nnoremap ¡<space> :!open<space>
 " }}} open resource "
 
 " Highlights {{{ "
-nnoremap ++ :execute "hi " . synIDattr(synID(line("."),col("."),1),"name")<CR>
+nnoremap +h :execute "hi " . synIDattr(synID(line("."),col("."),1),"name")<CR>
 nnoremap +<cr> :so $VIMRUNTIME/syntax/hitest.vim<cr>
-nnoremap +<space> :hi<space>
 
 hi CursorLineNr guifg=#b8b8b8 guibg=none    cterm=none gui=bold
 hi LineNr       guifg=#585858

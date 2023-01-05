@@ -96,7 +96,6 @@ function M.config()
   vim.keymap.set("n", "+f", ":FzfLua<space>")
 
   vim.keymap.set("n", "+m", fzf_lua.marks, { desc = "fzf_lua.marks" })
-  vim.keymap.set("n", "+h", fzf_lua.help_tags, { desc = "fzf_lua.help_tags" })
   vim.keymap.set("n", "<c-p>", fzf_lua.commands, { desc = "fzf_lua.commands" })
   vim.keymap.set("n", "<leader><leader>", fzf_lua.buffers, { desc = "fzf_lua.buffers" })
   vim.keymap.set("n", "<leader>A", fzf_lua.filetypes, { desc = "fzf_lua.filetypes" })
