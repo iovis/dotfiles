@@ -8,6 +8,8 @@ setlocal makeprg=ruby\ %
 " nnoremap <buffer> +T :e sorbet/rbi/shims/<c-r>%<cr>
 " }}} sorbet "
 
+nnoremap <buffer> m<cr> :!ctags<cr>
+
 " solargraph {{{ "
 " Reset with: bundle exec solargraph clear && bundle exec yard gems --rebuild
 
