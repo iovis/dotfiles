@@ -1,6 +1,7 @@
 return {
   -- Not lazy because it calculates filetypes
   "NoahTheDuke/vim-just",
+  "jparise/vim-graphql",
   "tpope/vim-git",
   "tpope/vim-rhubarb",
 
