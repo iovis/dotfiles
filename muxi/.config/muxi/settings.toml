@@ -4,6 +4,7 @@ muxi_prefix = "g"
 [bindings]
 e = { popup = { title = " sessions ", height = "66%" }, command = "muxi sessions edit" }
 c = { popup = { title = " config ",   height = "66%" }, command = "muxi config edit" }
+s = { popup = { title = " muxi ",     height = "66%" }, command = "muxi sessions switch -i" }
 
 # Quick bookmarks (should this be in defaults?)
 J = { command = "muxi sessions set j && tmux display 'bound current session to j'" }
@@ -14,7 +15,3 @@ L = { command = "muxi sessions set l && tmux display 'bound current session to l
 M-j = { command = "muxi sessions delete j && tmux display 'unbound session j'" }
 M-k = { command = "muxi sessions delete k && tmux display 'unbound session k'" }
 M-l = { command = "muxi sessions delete l && tmux display 'unbound session l'" }
-
-[bindings.s]
-# FZF switcher
-command = "muxi sessions | fzf-tmux -p --reverse | awk '{ printf $2 }' | xargs tmux switch-client -t"

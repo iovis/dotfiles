@@ -146,6 +146,16 @@ _arguments "${_arguments_options[@]}" \
 ':key -- Tmux key binding:' \
 && ret=0
 ;;
+(switch)
+_arguments "${_arguments_options[@]}" \
+'--color=[]' \
+'-i[Choose session from a list]' \
+'--interactive[Choose session from a list]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'::key -- Tmux key binding:' \
+&& ret=0
+;;
 (help)
 _arguments "${_arguments_options[@]}" \
 ":: :_muxi__sessions__help_commands" \
@@ -171,6 +181,10 @@ _arguments "${_arguments_options[@]}" \
 && ret=0
 ;;
 (set)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+(switch)
 _arguments "${_arguments_options[@]}" \
 && ret=0
 ;;
@@ -259,6 +273,10 @@ _arguments "${_arguments_options[@]}" \
 && ret=0
 ;;
 (set)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+(switch)
 _arguments "${_arguments_options[@]}" \
 && ret=0
 ;;
@@ -403,6 +421,7 @@ _muxi__sessions__help_commands() {
 'edit:Open your editor to change your muxi sessions' \
 'list:Print your current muxi sessions' \
 'set:Set a binding for a new muxi session' \
+'switch:Go to session' \
 'help:Print this message or the help of the given subcommand(s)' \
     )
     _describe -t commands 'muxi sessions help commands' commands "$@"
@@ -459,6 +478,7 @@ _muxi__help__sessions_commands() {
 'edit:Open your editor to change your muxi sessions' \
 'list:Print your current muxi sessions' \
 'set:Set a binding for a new muxi session' \
+'switch:Go to session' \
     )
     _describe -t commands 'muxi help sessions commands' commands "$@"
 }
@@ -469,6 +489,7 @@ _muxi__sessions_commands() {
 'edit:Open your editor to change your muxi sessions' \
 'list:Print your current muxi sessions' \
 'set:Set a binding for a new muxi session' \
+'switch:Go to session' \
 'help:Print this message or the help of the given subcommand(s)' \
     )
     _describe -t commands 'muxi sessions commands' commands "$@"
@@ -487,6 +508,21 @@ _muxi__sessions__help__set_commands() {
 _muxi__sessions__set_commands() {
     local commands; commands=()
     _describe -t commands 'muxi sessions set commands' commands "$@"
+}
+(( $+functions[_muxi__help__sessions__switch_commands] )) ||
+_muxi__help__sessions__switch_commands() {
+    local commands; commands=()
+    _describe -t commands 'muxi help sessions switch commands' commands "$@"
+}
+(( $+functions[_muxi__sessions__help__switch_commands] )) ||
+_muxi__sessions__help__switch_commands() {
+    local commands; commands=()
+    _describe -t commands 'muxi sessions help switch commands' commands "$@"
+}
+(( $+functions[_muxi__sessions__switch_commands] )) ||
+_muxi__sessions__switch_commands() {
+    local commands; commands=()
+    _describe -t commands 'muxi sessions switch commands' commands "$@"
 }
 
 _muxi "$@"
