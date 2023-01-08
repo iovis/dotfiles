@@ -124,17 +124,17 @@ function M.config()
     "--exclude 'Session.vim'",
   }, " ")
 
-  vim.keymap.set("n", "<leader>se", function()
-    local filetype = require("luasnip.extras.filetype_functions").from_pos_or_filetype()[1]
-
-    -- fzf_query: 'snippets 'all | '<filetype>.
-    local query = [["'snippets 'all | ']] .. filetype .. '."'
-
-    fzf_lua.files({
-      cwd = "~/.dotfiles/nvim/",
-      fzf_opts = { ["--query"] = query },
-    })
-  end)
+  -- vim.keymap.set("n", "<leader>se", function()
+  --   local filetype = require("luasnip.extras.filetype_functions").from_pos_or_filetype()[1]
+  --
+  --   -- fzf_query: 'snippets 'all | '<filetype>.
+  --   local query = [["'snippets 'all | ']] .. filetype .. '."'
+  --
+  --   fzf_lua.files({
+  --     cwd = "~/.dotfiles/nvim/",
+  --     fzf_opts = { ["--query"] = query },
+  --   })
+  -- end)
 
   -- Files
   vim.keymap.set("n", "<leader>o", function()

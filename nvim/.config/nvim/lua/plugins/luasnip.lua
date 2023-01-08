@@ -67,6 +67,7 @@ function M.config()
   end, { desc = "previous choice" })
 
   -- Edit
+  vim.keymap.set("n", "<leader>se", require("luasnip.loaders").edit_snippet_files)
   vim.keymap.set("n", "<leader>ss", "<cmd>LuaSnipListAvailable<cr>")
 
   -- On the fly snippets (use snippet in register s). Use $word as placeholder.
