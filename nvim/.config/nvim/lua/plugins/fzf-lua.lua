@@ -95,7 +95,7 @@ function M.config()
   ---- Keymaps
   vim.keymap.set("n", "+f", ":FzfLua<space>")
 
-  vim.keymap.set("n", "+m", fzf_lua.marks, { desc = "fzf_lua.marks" })
+  -- vim.keymap.set("n", "+m", fzf_lua.marks, { desc = "fzf_lua.marks" })
   vim.keymap.set("n", "<c-p>", fzf_lua.commands, { desc = "fzf_lua.commands" })
   vim.keymap.set("n", "<leader><leader>", fzf_lua.buffers, { desc = "fzf_lua.buffers" })
   vim.keymap.set("n", "<leader>A", fzf_lua.filetypes, { desc = "fzf_lua.filetypes" })
@@ -162,18 +162,18 @@ function M.config()
     return result:match("%[(.-)%]")
   end
 
-  vim.keymap.set("n", "+r", function()
-    local opts = {}
-
-    opts.actions = {
-      ["@"] = function(selected)
-        local register = extract_register_from(selected[1])
-        vim.cmd.normal("@" .. register)
-      end,
-    }
-
-    fzf_lua.registers(opts)
-  end, { desc = "fzf_lua.registers" })
+  -- vim.keymap.set("n", "+r", function()
+  --   local opts = {}
+  --
+  --   opts.actions = {
+  --     ["@"] = function(selected)
+  --       local register = extract_register_from(selected[1])
+  --       vim.cmd.normal("@" .. register)
+  --     end,
+  --   }
+  --
+  --   fzf_lua.registers(opts)
+  -- end, { desc = "fzf_lua.registers" })
 end
 
 return M
