@@ -46,7 +46,7 @@ snippet ecl "extern crate log"
 snippet mod
 	mod ${1:mod_name} {
 		${0}
-	} /* $1 */
+	}
 # Testing
 snippet as "assert!"
 	assert!(${1:predicate});
@@ -54,10 +54,10 @@ snippet ase "assert_eq!"
 	assert_eq!(${1:expected}, ${2:actual});
 snippet test "Unit test function"
 	#[test]
-	fn test_${1:function_name}() {
+	fn ${1:function_name}() {
 		${0}
 	}
-snippet testmod "Test module" b
+snippet modtest "Test module" b
 	#[cfg(test)]
 	mod tests {
 		use super::${1:*};

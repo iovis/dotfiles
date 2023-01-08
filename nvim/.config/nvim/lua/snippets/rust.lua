@@ -3,20 +3,15 @@ local rust_fn = function()
     nil,
     fmta(
       [[
-        fn <fname>(<args>)<ret_type> {
+        fn <fname>(<args>)<arrow><ret_type> {
             <body>
         }
       ]],
       {
         fname = i(1, "fname"),
         args = i(2),
-        ret_type = c(3, {
-          {
-            t(" -> "),
-            i(1),
-          },
-          t(""),
-        }),
+        arrow = n(3, " -> "),
+        ret_type = i(3),
         body = i(4, "todo!()"),
       }
     )
@@ -25,13 +20,45 @@ end
 
 return {
   -- Functions
-  s({ trig = "fn", dscr = "function" }, d(1, rust_fn), { condition = conds.line_begin }),
-  s({ trig = "pfn", dscr = "pub function" }, fmt("pub {}", { d(1, rust_fn) }), { condition = conds.line_begin }),
-  s({ trig = "afn", dscr = "async function" }, fmt("async {}", { d(1, rust_fn) }), { condition = conds.line_begin }),
   s(
-    { trig = "pafn", dscr = "pub async function" },
+    {
+      trig = "fn",
+      dscr = "function",
+    },
+    d(1, rust_fn),
+    {
+      condition = conds.line_begin,
+    }
+  ),
+  s(
+    {
+      trig = "pfn",
+      dscr = "pub function",
+    },
+    fmt("pub {}", { d(1, rust_fn) }),
+    {
+      condition = conds.line_begin,
+    }
+  ),
+  s(
+    {
+      trig = "afn",
+      dscr = "async function",
+    },
+    fmt("async {}", { d(1, rust_fn) }),
+    {
+      condition = conds.line_begin,
+    }
+  ),
+  s(
+    {
+      trig = "pafn",
+      dscr = "pub async function",
+    },
     fmt("pub async {}", { d(1, rust_fn) }),
-    { condition = conds.line_begin }
+    {
+      condition = conds.line_begin,
+    }
   ),
   -- Tests
   s(
@@ -39,7 +66,7 @@ return {
     fmta(
       [[
         #[tokio::test]
-        async fn test_<test_name>() {
+        async fn <test_name>() {
             <>
         }
       ]],
@@ -55,12 +82,15 @@ return {
     "st",
     fmta(
       [[
-      struct <> {
-          <>
-      }
+        struct <> {
+            <>
+        }
       ]],
       { i(1), i(0) }
-    )
+    ),
+    {
+      condition = conds.line_begin,
+    }
   ),
   s(
     "pst",
@@ -71,16 +101,54 @@ return {
         }
       ]],
       { i(1), i(0) }
-    )
+    ),
+    {
+      condition = conds.line_begin,
+    }
   ),
   -- Misc
-  s("pln", fmt('println!("{}"{});', { i(1), i(2) })),
-  parse("dbg", "dbg!($1);"),
-  s("fd", fmt("{field}: {value},", { field = i(1, "field"), value = i(2, "value") }), { condition = conds.line_begin }),
+  s(
+    "pln",
+    fmta('println!("{<>}"<comma><>);', {
+      i(1),
+      comma = n(2, ", "),
+      i(2),
+    }),
+    {
+      condition = conds.line_begin,
+    }
+  ),
+  s(
+    "pd",
+    fmta('println!("<> = {<>:?}"<comma><>);', {
+      i(1),
+      dl(2, l._1, 1), -- dynamic lambda: repeat node 1 but let override
+      comma = n(3, ", "),
+      i(3),
+    }),
+    {
+      condition = conds.line_begin,
+    }
+  ),
+  s(
+    "fd",
+    fmt("{field}: {value},", {
+      field = i(1, "field"),
+      value = i(2, "value"),
+    }),
+    {
+      condition = conds.line_begin,
+    }
+  ),
   s(
     "pfd",
-    fmt("pub {field}: {value},", { field = i(1, "field"), value = i(2, "value") }),
-    { condition = conds.line_begin }
+    fmt("pub {field}: {value},", {
+      field = i(1, "field"),
+      value = i(2, "value"),
+    }),
+    {
+      condition = conds.line_begin,
+    }
   ),
   s("r", fmt('r#"{}"#', { i(1) })),
 }
