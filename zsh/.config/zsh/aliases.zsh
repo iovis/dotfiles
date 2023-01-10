@@ -119,6 +119,7 @@ alias tsinit="yarn add --dev ts-node typescript @types/node"
 
 ## rust
 alias cb="cargo build"
+alias cbr="cargo build --release"
 alias ch="cargo check --all-targets"
 alias clippy="cargo clippy -- -W clippy::pedantic"
 alias clippyfix="cargo clippy --fix -- -W clippy::pedantic"
