@@ -33,7 +33,7 @@ function M.config()
     "sumneko_lua",
     "taplo",
     "tsserver",
-    "vimls",
+    -- "vimls",
   }
 
   require("neodev").setup({})
