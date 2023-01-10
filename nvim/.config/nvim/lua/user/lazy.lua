@@ -14,6 +14,9 @@ require("lazy").setup("plugins", {
   dev = {
     path = "~/Sites/vim/",
   },
+  -- diff = {
+  --   cmd = "diffview.nvim",
+  -- },
   ui = {
     border = "rounded",
   },

@@ -2,7 +2,7 @@ return {
   "lewis6991/gitsigns.nvim",
   event = "VeryLazy",
   dependencies = "nvim-lua/plenary.nvim",
-  config = {
+  opts = {
     current_line_blame_opts = {
       delay = 100,
     },
