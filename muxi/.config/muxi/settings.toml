@@ -3,6 +3,6 @@ muxi_prefix = "g"
 uppercase_overrides = true
 
 [bindings]
-e = { popup = { title = " sessions ", height = "66%" }, command = "muxi sessions edit" }
 c = { popup = { title = " config ",   height = "66%" }, command = "muxi config edit" }
+e = { popup = { title = " sessions ", height = "66%" }, command = "muxi sessions edit" }
 s = { popup = { title = " muxi ",     height = "66%" }, command = "muxi sessions switch -i" }
