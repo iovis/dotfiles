@@ -151,4 +151,10 @@ return {
     }
   ),
   s("r", fmt('r#"{}"#', { i(1) })),
+  s("now", t("let now = std::time::Instant::now();"), {
+    condition = conds.line_begin,
+  }),
+  s("elapsed", t('println!("{:?}", now.elapsed());'), {
+    condition = conds.line_begin,
+  }),
 }
