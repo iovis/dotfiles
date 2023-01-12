@@ -22,9 +22,11 @@ return {
         },
         file_panel = {
           { "n", "<leader>k", actions.toggle_files, { desc = "Toggle the file panel." } },
+          { "n", "r", actions.cycle_layout, { desc = "Cycle available layouts" } },
         },
         file_history_panel = {
           { "n", "<leader>k", actions.toggle_files, { desc = "Toggle the file panel." } },
+          { "n", "r", actions.cycle_layout, { desc = "Cycle available layouts" } },
         },
       },
     })
