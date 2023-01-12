@@ -64,9 +64,22 @@ return {
     }
   ),
   -- Snippets
-  s("s", fmt([[s("{}", {}),]], { i(1), i(0) }), {
-    condition = conds.line_begin,
-  }),
+  s(
+    "s",
+    fmta(
+      [[
+        s(
+          "<>",
+          <>,
+          <>
+        ),
+      ]],
+      { i(1), i(0), i(2, "{ condition = conds.line_begin }") }
+    ),
+    {
+      condition = conds.line_begin,
+    }
+  ),
   s(
     "fmt",
     fmta("fmt(<>, {<>})", {

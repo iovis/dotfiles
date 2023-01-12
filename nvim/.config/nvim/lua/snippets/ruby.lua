@@ -119,4 +119,19 @@ return {
   ),
   parse("ts", "# typed: strict"),
   parse("tt", "# typed: true"),
+  parse("ret", "# @return [$1]"),
+  s(
+    "attr",
+    fmt(
+      [[
+        # @!attribute [r] {}
+        #   @return [{}]
+      ]],
+      {
+        i(1),
+        i(2),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
 }
