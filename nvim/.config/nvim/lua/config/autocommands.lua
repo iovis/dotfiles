@@ -61,9 +61,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 vim.api.nvim_create_autocmd("FileType", {
   group = config_augroup,
   pattern = {
-    "qf",
+    "fugitiveblame",
     "help",
     "man",
+    "qf",
     "startuptime",
     "tsplayground",
   },
