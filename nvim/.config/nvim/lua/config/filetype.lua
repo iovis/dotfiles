@@ -2,9 +2,6 @@ vim.filetype.add({
   extension = {
     tmux = "tmux",
   },
-  filename = {
-    ["skhdrc"] = "skhd",
-  },
 })
 
 ---- Quick FtPlugin
@@ -24,12 +21,13 @@ local edit_ft_plugin = function(opts)
   end
 
   ---- Open {filetype}.vim or {filetype}.lua
-  local path = "$HOME/.config/nvim/after/ftplugin/" .. filetype
+  local path = string.format("$HOME/.config/nvim/after/ftplugin/%s", filetype)
+  local open_cmd = string.format("keepjumps e! %s", path)
 
   if u.is_file(path .. ".vim") then
-    vim.cmd("keepjumps e! " .. path .. ".vim")
+    vim.cmd(open_cmd .. ".vim")
   else
-    vim.cmd("keepjumps e! " .. path .. ".lua")
+    vim.cmd(open_cmd .. ".lua")
   end
 end
 

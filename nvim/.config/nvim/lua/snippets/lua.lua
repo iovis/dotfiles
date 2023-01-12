@@ -7,7 +7,9 @@ return {
     condition = conds.line_begin,
   }),
   -- Lua snippets
-  s("pr", fmt("print({})", { i(1) })),
+  s("pr", fmt("print({})", { i(1) }), {
+    condition = conds.line_begin,
+  }),
   s(
     "prf",
     fmt([[print(string.format("{}"{comma}{}))]], {
@@ -18,6 +20,14 @@ return {
     {
       condition = conds.line_begin,
     }
+  ),
+  s(
+    "fmt",
+    fmt([[string.format("{}"{comma}{})]], {
+      i(1, "%s"),
+      comma = n(2, ", "),
+      i(2),
+    })
   ),
   s(
     "mod",
@@ -81,7 +91,7 @@ return {
     }
   ),
   s(
-    "fmt",
+    "sfmt",
     fmta("fmt(<>, {<>})", {
       c(1, {
         sn(nil, fmt([["{}"]], i(1))),
