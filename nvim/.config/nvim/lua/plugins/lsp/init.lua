@@ -27,7 +27,7 @@ function M.config()
     "jsonls",
     "pyright",
     "rust_analyzer",
-    -- "sorbet", -- Seems to have issues on ARM
+    -- "sorbet",
     "solargraph",
     "sqls",
     "sumneko_lua",
@@ -47,9 +47,7 @@ function M.config()
     },
   })
 
-  require("mason-lspconfig").setup({
-    ensure_installed = lsp_servers,
-  })
+  require("mason-lspconfig").setup({})
 
   ---- LSP Settings files loading
   local config = require("plugins.lsp.config")
