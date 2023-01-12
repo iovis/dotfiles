@@ -1,9 +1,9 @@
 return {
   -- Quick imports
-  s("u", t('local u = require("user.utils")'), {
+  s("u", t('local u = require("config.utils")'), {
     condition = conds.line_begin,
   }),
-  s("hi", t('local hi = require("user.utils").hi'), {
+  s("hi", t('local hi = require("config.utils").hi'), {
     condition = conds.line_begin,
   }),
   -- Lua snippets

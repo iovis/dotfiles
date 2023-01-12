@@ -1,4 +1,4 @@
-local u = require("user.utils")
+local u = require("config.utils")
 
 u.lsp_autoformat()
 

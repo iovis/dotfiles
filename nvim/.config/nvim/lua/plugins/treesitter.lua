@@ -119,7 +119,7 @@ function M.config()
   vim.keymap.set("n", "+H", "<cmd>TSHighlightCapturesUnderCursor<cr>")
 
   ---- Diff highlights
-  local hi = require("user.utils").hi
+  local hi = require("config.utils").hi
   hi["@text.diff.delete"] = "DiffDelete"
   hi["@text.diff.add"] = "DiffAdd"
 end

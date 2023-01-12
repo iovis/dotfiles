@@ -1,4 +1,4 @@
-local u = require("user.utils")
+local u = require("config.utils")
 
 local meeting_title = function()
   local title = u.system("icalBuddy -ea -nc -ic 'david.marchante@rubiconmd.com' -b '' -iep title eventsNow")

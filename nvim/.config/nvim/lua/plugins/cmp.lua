@@ -111,7 +111,7 @@ function M.config()
   })
 
   ---- Colors
-  local hi = require("user.utils").hi
+  local hi = require("config.utils").hi
 
   hi.CmpItemAbbr = { fg = "#d8d8d8" }
 

@@ -1,5 +1,5 @@
 ---- Utils
-local u = require("user.utils")
+local u = require("config.utils")
 
 ---@return boolean
 local within_session = function()

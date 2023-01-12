@@ -74,7 +74,7 @@ return {
       symbol = "│",
     })
 
-    local hi = require("user.utils").hi
+    local hi = require("config.utils").hi
     hi.MiniIndentscopeSymbol = { fg = "#333333" }
   end,
 }

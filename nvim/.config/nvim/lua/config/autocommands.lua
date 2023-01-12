@@ -1,4 +1,4 @@
-local hi = require("user.utils").hi
+local hi = require("config.utils").hi
 
 local config_augroup = vim.api.nvim_create_augroup("user_config", { clear = true })
 

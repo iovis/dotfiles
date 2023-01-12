@@ -8,7 +8,7 @@ vim.filetype.add({
 })
 
 ---- Quick FtPlugin
-local u = require("user.utils")
+local u = require("config.utils")
 
 local edit_ft_plugin = function(opts)
   ---- Filetype detection

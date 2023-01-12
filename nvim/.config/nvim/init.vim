@@ -4,15 +4,15 @@ scriptencoding utf-8
 let g:mapleader = "\<Space>"
 
 lua <<EOF
-require("user.lazy")
-require("user.filetype")
+require("config.lazy")
+require("config.filetype")
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",
   callback = function()
-    require("user.autocommands")
-    require("user.commands")
-    require("user.diagnostics")
+    require("config.autocommands")
+    require("config.commands")
+    require("config.diagnostics")
   end,
 })
 EOF

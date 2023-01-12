@@ -15,7 +15,7 @@ return {
     { "<leader>I", "y:silent execute 'Tux ' . escape(getreg('0'), '#%')<cr>", mode = "x", silent = true },
   },
   init = function()
-    local u = require("user.utils")
+    local u = require("config.utils")
 
     -- Docker
     u.command("Dcps", "TuxBg docker compose ps | less")

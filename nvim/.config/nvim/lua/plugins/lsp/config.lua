@@ -1,7 +1,7 @@
 local M = {}
 
-local u = require("user.utils")
-local hi = require("user.utils").hi
+local u = require("config.utils")
+local hi = require("config.utils").hi
 
 ---- Global LSP settings
 u.command("LspActiveClients", "Redir lua =vim.lsp.get_active_clients() | setf lua")
