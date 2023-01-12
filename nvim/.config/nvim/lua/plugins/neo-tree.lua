@@ -39,7 +39,7 @@ function M.config()
           ["<s-up>"] = "prev_git_modified",
           ["h"] = "fold_left",
           ["l"] = "fold_right",
-          ["ñ"] = "fuzzy_finder",
+          ["Ñ"] = "fuzzy_finder",
         },
       },
       commands = {
