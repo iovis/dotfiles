@@ -225,8 +225,6 @@ snippet use "use ...;" b
 	use ${1:std::$2};
 snippet aoc
 	use color_eyre::Result;
-	#[allow(unused_imports)]
-	use itertools::Itertools;
 
 	pub fn main() -> Result<()> {
 		color_eyre::install()?;
@@ -255,7 +253,7 @@ snippet aoc
 					$1
 				"};
 
-				assert_eq!(p1(input), $2);
+				assert_eq!(p1(input), $0);
 			}
 		}
 	}
