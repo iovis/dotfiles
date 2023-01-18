@@ -13,6 +13,7 @@ vim.api.nvim_create_autocmd("User", {
     require("config.autocommands")
     require("config.commands")
     require("config.diagnostics")
+    require("config.keymap")
   end,
 })
 EOF
