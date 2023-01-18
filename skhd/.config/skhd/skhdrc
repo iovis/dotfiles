@@ -22,6 +22,7 @@ ctrl + alt + cmd - r : open -a Google\ Chrome\ Canary
 
 ctrl + alt + cmd - b : open -a Bear
 ctrl + alt + cmd - c : open -a Fantastical
+ctrl + alt + cmd - z : open -a zoom.us
 
 
 # Right hand (care with conflicts with movement)
