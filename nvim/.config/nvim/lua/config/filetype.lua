@@ -2,6 +2,9 @@ vim.filetype.add({
   extension = {
     tmux = "tmux",
   },
+  filename = {
+    ["pryrc"] = "ruby",
+  },
 })
 
 ---- Quick FtPlugin

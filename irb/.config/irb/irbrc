@@ -1,0 +1,7 @@
+begin
+  require 'awesome_print'
+
+  AwesomePrint.irb!
+rescue LoadError
+  puts "couldn't load awesome_print"
+end
