@@ -63,6 +63,7 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = {
     "fugitiveblame",
     "help",
+    "lspsagaoutline",
     "man",
     "qf",
     "startuptime",
