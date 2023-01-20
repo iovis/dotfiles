@@ -18,6 +18,7 @@ return {
     --- mini.ai (text objects)
     local ai = require("mini.ai")
     ai.setup({
+      search_method = "cover_or_nearest",
       custom_textobjects = {
         -- alias 'r' to []
         r = { { "%b[]" }, "^.().*().$" },
