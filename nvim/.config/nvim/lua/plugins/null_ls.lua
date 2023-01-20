@@ -20,24 +20,18 @@ function M.config()
       end, { buffer = true, desc = "vim.lsp.buf.format" })
     end,
     sources = {
-      diagnostics.codespell.with({
-        filetypes = { "ruby" },
-      }),
-      diagnostics.pylint.with({
-        extra_args = {
-          "--disable",
-          "C0301,C0114,C0115,C0116,E501,F0401",
-        },
-      }),
-      diagnostics.rubocop,
+      diagnostics.codespell.with({ filetypes = { "ruby" } }),
+      -- diagnostics.cpplint.with({ extra_args = { "--filter -legal/copyright" } }),
       diagnostics.erb_lint,
+      diagnostics.pylint.with({ extra_args = { "--disable", "C0301,C0114,C0115,C0116,E501,F0401" } }),
+      diagnostics.rubocop,
       diagnostics.shellcheck,
       diagnostics.vint,
       diagnostics.yamllint.with({ extra_args = { "-f", "parsable", "--no-warnings" } }),
       diagnostics.zsh,
 
-      formatting.rubocop,
       formatting.erb_lint,
+      formatting.rubocop,
       formatting.sql_formatter.with({ extra_args = { "-l", "postgresql" } }),
       formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "2" } }),
     },

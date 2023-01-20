@@ -137,6 +137,9 @@ ctn() {
   cargo nextest run --nocapture
 }
 
+## cpp
+alias clang++="clang++ -std=c++17"
+
 ## tmux
 alias ta='tmux attach -t'
 alias tad='tmux attach -d -t'

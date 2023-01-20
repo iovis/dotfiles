@@ -21,6 +21,7 @@ function M.config()
   local lsp_servers = {
     "angularls",
     "bashls",
+    "clangd",
     "dockerls",
     "emmet_ls",
     "html",
@@ -74,6 +75,11 @@ function M.config()
     -- Autoloading of plugins.lsp.settings.*
     if lsp_settings[server] then
       opts = vim.tbl_deep_extend("force", lsp_settings[server], opts)
+    end
+
+    if server == "clangd" then
+      -- https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428#issuecomment-997226723
+      opts.capabilities.offsetEncoding = { "utf-16" }
     end
 
     require("lspconfig")[server].setup(opts)
