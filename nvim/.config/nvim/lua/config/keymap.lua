@@ -1,3 +1,6 @@
+vim.keymap.set("n", "<leader>P", ":lua =")
+
+---- Toggle autoformat
 vim.g.autoformat = true
 vim.keymap.set("n", "<leader>B", function()
   if vim.g.autoformat then
