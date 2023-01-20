@@ -30,6 +30,9 @@ function M.config()
     filesystem = {
       filtered_items = {
         hide_dotfiles = false,
+        hide_by_name = {
+          "Session.vim",
+        },
       },
       window = {
         mappings = {
