@@ -46,7 +46,6 @@ function M.config()
     },
     formatting = {
       format = lspkind.cmp_format({
-        with_text = true,
         menu = {
           buffer = "[Buf]",
           git = "[GIT]",
