@@ -1,3 +1,4 @@
+vim.keymap.set("n", "<Space>", "<Nop>")
 vim.keymap.set("n", "<leader>P", ":lua =")
 
 ---- Toggle autoformat

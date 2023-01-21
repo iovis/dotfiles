@@ -18,6 +18,7 @@ return {
 
     require("lspsaga").setup({
       diagnostic = {
+        jump_num_shortcut = false, -- Seems buggy
         keys = {
           exec_action = "<cr>",
         },
