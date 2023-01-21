@@ -12,7 +12,7 @@ local rust_fn = function()
         args = i(2),
         arrow = n(3, " -> "),
         ret_type = i(3),
-        body = i(4, "todo!()"),
+        body = i(0, "todo!()"),
       }
     )
   )
