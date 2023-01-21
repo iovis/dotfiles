@@ -32,6 +32,7 @@ function M.config()
       "jsonc",
       "lua",
       "make",
+      "markdown",
       "php",
       "python",
       "query", -- tree-sitter query language
