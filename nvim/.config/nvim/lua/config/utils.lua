@@ -132,19 +132,4 @@ M.pascal_case = function(str)
   return new_str
 end
 
-M.lsp_autoformat = function()
-  local group = vim.api.nvim_create_augroup("lsp_document_format", { clear = true })
-
-  vim.api.nvim_create_autocmd("BufWritePre", {
-    group = group,
-    buffer = 0,
-    callback = function()
-      if vim.g.autoformat then
-        vim.lsp.buf.format({ async = false })
-      end
-    end,
-    desc = "Autoformat with LSP on save",
-  })
-end
-
 return M

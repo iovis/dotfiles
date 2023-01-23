@@ -86,6 +86,29 @@ M.on_attach = function(client, bufnr)
     vim.lsp.buf.format({ timeout_ms = 2000 })
   end, "vim.lsp.buf.format")
 
+  -- Autoformat on save
+  local autoformat_filetypes = {
+    "cpp",
+    "lua",
+    "rust",
+  }
+
+  if vim.tbl_contains(autoformat_filetypes, vim.bo.filetype) and client.supports_method("textDocument/formatting") then
+    local group = vim.api.nvim_create_augroup("lsp_document_format", { clear = false })
+
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      vim.api.nvim_clear_autocmds({ group = group, buffer = bufnr }),
+      group = group,
+      buffer = bufnr,
+      callback = function()
+        if vim.g.autoformat then
+          vim.lsp.buf.format()
+        end
+      end,
+      desc = "Autoformat with LSP on save",
+    })
+  end
+
   ---- fzf-lua
   local ok_fzf, fzf_lua = pcall(require, "fzf-lua")
   if ok_fzf then
