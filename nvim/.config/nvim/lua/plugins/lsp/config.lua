@@ -91,6 +91,7 @@ M.on_attach = function(client, bufnr)
     "cpp",
     "lua",
     "rust",
+    "typescript",
   }
 
   if vim.tbl_contains(autoformat_filetypes, vim.bo.filetype) and client.supports_method("textDocument/formatting") then
