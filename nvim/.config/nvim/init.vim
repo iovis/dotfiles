@@ -110,9 +110,6 @@ tnoremap kj    <c-\><c-n>
 tnoremap KJ    <c-\><c-n>
 tnoremap Kj    <c-\><c-n>
 
-" disable unused providers
-let g:loaded_perl_provider = 0
-
 " Understand Sorbet files
 augroup rbi
   autocmd!

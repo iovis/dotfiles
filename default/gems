@@ -2,7 +2,6 @@ awesome_print
 bundler
 gem-browse
 gem-ctags
-neovim
 pry
 pry-doc
 rubocop
