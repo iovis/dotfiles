@@ -2,8 +2,6 @@ local u = require("config.utils")
 
 
 ---- Quick Tmux Session
-vim.keymap.set("n", "++", "<cmd>TmuxNewSession<cr>")
-vim.keymap.set("n", "+<space>", ":TmuxNewSession<space>")
 u.command("TmuxNewSession", function(opts)
   local command = [[fd -td --max-depth 2 . $HOME/Sites | fzf-tmux -p80%,80% --select-1 --exit-0 --reverse ]]
 
@@ -34,7 +32,6 @@ u.command("TmuxNewSession", function(opts)
 end, { nargs = "?" })
 
 ---- Quick open vim plugin in new window
-vim.keymap.set("n", "+V", "<cmd>VimPlugin<cr>")
 u.command("VimPlugin", function(opts)
   local plugins_path = vim.fn.stdpath("data") .. "/lazy/"
 
