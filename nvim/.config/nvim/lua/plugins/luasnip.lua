@@ -72,10 +72,10 @@ function M.config()
 
   -- On the fly snippets (use snippet in register s). Use $word as placeholder.
   -- Example: Hello $World!
-  vim.keymap.set("x", "<c-s>", '"sc<cmd>lua require("luasnip.extras.otf").on_the_fly()<cr>')
-  vim.keymap.set("i", "<c-s>", function()
-    require("luasnip.extras.otf").on_the_fly("s")
-  end, { desc = "expand on the fly snippet" })
+  -- vim.keymap.set("x", "<c-s>", '"sc<cmd>lua require("luasnip.extras.otf").on_the_fly()<cr>')
+  -- vim.keymap.set("i", "<c-s>", function()
+  --   require("luasnip.extras.otf").on_the_fly("s")
+  -- end, { desc = "expand on the fly snippet" })
 end
 
 return M
