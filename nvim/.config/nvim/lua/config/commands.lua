@@ -1,6 +1,5 @@
 local u = require("config.utils")
 
-
 ---- Quick Tmux Session
 u.command("TmuxNewSession", function(opts)
   local command = [[fd -td --max-depth 2 . $HOME/Sites | fzf-tmux -p80%,80% --select-1 --exit-0 --reverse ]]
@@ -35,7 +34,8 @@ end, { nargs = "?" })
 u.command("VimPlugin", function(opts)
   local plugins_path = vim.fn.stdpath("data") .. "/lazy/"
 
-  local command = string.format([[fd -td --max-depth 1 . %s | fzf-tmux -p80%%,80%% --select-1 --exit-0 --reverse]], plugins_path)
+  local command =
+  string.format([[fd -td --max-depth 1 . %s | fzf-tmux -p80%%,80%% --select-1 --exit-0 --reverse]], plugins_path)
 
   -- Add query if provided
   if not u.is_empty(opts.args) then
