@@ -2,6 +2,11 @@ vim.keymap.set("n", "<Space>", "<Nop>")
 
 vim.keymap.set("n", "<leader>P", ":lua=")
 
+---- Global substitutions
+vim.keymap.set({ "n", "x" }, "+g", ":g//<left>")
+vim.keymap.set({ "n", "x" }, "+l", ':luado return string.format("%s", line)')
+vim.keymap.set({ "n", "x" }, "+v", ":v//<left>")
+
 ---- Tmux quick switching
 vim.keymap.set("n", "++", "<cmd>TmuxNewSession<cr>")
 vim.keymap.set("n", "+<space>", ":TmuxNewSession<space>")

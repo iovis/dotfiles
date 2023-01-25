@@ -249,14 +249,6 @@ function! SubstituteOperator(type)
 endfunction
 " }}} substitute "
 
-" global command {{{ "
-nnoremap +g :g//<left>
-nnoremap +v :v//<left>
-
-xnoremap +g :g//<left>
-xnoremap +v :v//<left>
-" }}} global command "
-
 " folds {{{ "
 set nofoldenable
 "
