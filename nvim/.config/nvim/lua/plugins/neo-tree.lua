@@ -40,6 +40,8 @@ function M.config()
           ["."] = "run_command",
           ["<s-down>"] = "next_git_modified",
           ["<s-up>"] = "prev_git_modified",
+          ["C"] = "copy",
+          ["c"] = "close_node",
           ["h"] = "fold_left",
           ["l"] = "fold_right",
           ["Ñ"] = "fuzzy_finder",
