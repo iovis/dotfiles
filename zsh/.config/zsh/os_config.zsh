@@ -5,6 +5,7 @@ if [[ $OSTYPE == darwin* ]]; then
   export ICLOUD_PATH="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
   export NOTES="$ICLOUD_PATH/notes"
 
+  alias battery="pmset -g batt"
   alias fixtrash="rm -rf ~/.Trash; mkdir ~/.Trash; killall Finder"
   alias flushcache="dscacheutil -flushcache"
   alias icloud="cd '$ICLOUD_PATH'"
