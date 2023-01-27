@@ -16,10 +16,10 @@ _muxi() {
     local context curcontext="$curcontext" state line
     _arguments "${_arguments_options[@]}" \
 '--color=[]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
-'-V[Print version information]' \
-'--version[Print version information]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
 ":: :_muxi_commands" \
 "*::: :->muxi" \
 && ret=0
@@ -32,15 +32,15 @@ _muxi() {
             (init)
 _arguments "${_arguments_options[@]}" \
 '--color=[]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
+'-h[Print help]' \
+'--help[Print help]' \
 && ret=0
 ;;
 (config)
 _arguments "${_arguments_options[@]}" \
 '--color=[]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
+'-h[Print help]' \
+'--help[Print help]' \
 ":: :_muxi__config_commands" \
 "*::: :->config" \
 && ret=0
@@ -54,15 +54,15 @@ _arguments "${_arguments_options[@]}" \
             (edit)
 _arguments "${_arguments_options[@]}" \
 '--color=[]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
+'-h[Print help]' \
+'--help[Print help]' \
 && ret=0
 ;;
 (list)
 _arguments "${_arguments_options[@]}" \
 '--color=[]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
+'-h[Print help]' \
+'--help[Print help]' \
 && ret=0
 ;;
 (help)
@@ -100,8 +100,8 @@ esac
 (sessions)
 _arguments "${_arguments_options[@]}" \
 '--color=[]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
+'-h[Print help]' \
+'--help[Print help]' \
 ":: :_muxi__sessions_commands" \
 "*::: :->sessions" \
 && ret=0
@@ -115,23 +115,23 @@ _arguments "${_arguments_options[@]}" \
             (delete)
 _arguments "${_arguments_options[@]}" \
 '--color=[]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
+'-h[Print help]' \
+'--help[Print help]' \
 ':key -- Tmux key binding:' \
 && ret=0
 ;;
 (edit)
 _arguments "${_arguments_options[@]}" \
 '--color=[]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
+'-h[Print help]' \
+'--help[Print help]' \
 && ret=0
 ;;
 (list)
 _arguments "${_arguments_options[@]}" \
 '--color=[]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
+'-h[Print help]' \
+'--help[Print help]' \
 && ret=0
 ;;
 (set)
@@ -141,8 +141,8 @@ _arguments "${_arguments_options[@]}" \
 '-p+[Path of the session (default: current session'\''s path)]:PATH:_files' \
 '--path=[Path of the session (default: current session'\''s path)]:PATH:_files' \
 '--color=[]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
+'-h[Print help]' \
+'--help[Print help]' \
 ':key -- Tmux key binding:' \
 && ret=0
 ;;
@@ -151,8 +151,8 @@ _arguments "${_arguments_options[@]}" \
 '--color=[]' \
 '-i[Choose session from a list]' \
 '--interactive[Choose session from a list]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
+'-h[Print help]' \
+'--help[Print help]' \
 '::key -- Tmux key binding:' \
 && ret=0
 ;;
@@ -203,8 +203,8 @@ esac
 (completions)
 _arguments "${_arguments_options[@]}" \
 '--color=[]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
+'-h[Print help]' \
+'--help[Print help]' \
 ':shell:(bash elvish fish powershell zsh)' \
 && ret=0
 ;;
