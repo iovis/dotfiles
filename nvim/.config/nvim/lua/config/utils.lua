@@ -132,4 +132,20 @@ M.pascal_case = function(str)
   return new_str
 end
 
+---Is there only one listed buffer
+---
+---@return boolean
+M.is_only_buffer = function()
+  local buffers = vim.api.nvim_list_bufs()
+  local count = 0
+
+  for _, buffer in ipairs(buffers) do
+    if vim.api.nvim_buf_is_loaded(buffer) then
+      count = count + 1
+    end
+  end
+
+  return count == 1
+end
+
 return M
