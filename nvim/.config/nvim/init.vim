@@ -6,6 +6,14 @@ let g:mapleader = "\<Space>"
 lua <<EOF
 require("config.lazy")
 
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = vim.api.nvim_create_augroup("highlights", { clear = true }),
+  callback = function()
+    require("config.highlights")
+  end,
+  desc = "Apply custom highlights",
+})
+
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",
   callback = function()
@@ -418,27 +426,6 @@ nnoremap ¡<space> :!open<space>
 " Highlights {{{ "
 nnoremap +h :execute "hi " . synIDattr(synID(line("."),col("."),1),"name")<CR>
 nnoremap +<cr> :so $VIMRUNTIME/syntax/hitest.vim<cr>
-
-hi CursorLineNr guifg=#b8b8b8 guibg=none    cterm=none gui=bold
-hi LineNr       guifg=#585858
-
-hi StatusLine   guifg=#d8d8d8 guibg=#212326 cterm=none
-hi StatusLineNC guifg=#b8b8b8 guibg=#212326 cterm=none
-
-hi VertSplit    guifg=#212326 guibg=#212326 cterm=none
-hi FloatBorder  guifg=#585858
-
-hi GitGutterAdd          guifg=#a1b56c guibg=none cterm=none
-hi GitGutterChange       guifg=#7cafc2 guibg=none cterm=none
-hi GitGutterChangeDelete guifg=#ba8baf guibg=none cterm=none
-hi GitGutterDelete       guifg=#ab4642 guibg=none cterm=none
-
-hi DiffAdd     guifg=#a1b56c guibg=none
-hi DiffAdded   guifg=#a1b56c guibg=none
-hi DiffChange  guifg=#585858 guibg=none
-hi DiffDelete  guifg=#ab4642 guibg=none gui=bold
-hi DiffRemoved guifg=#ab4642 guibg=none gui=bold
-hi DiffText    guifg=#7cafc2 guibg=none gui=bold
 " }}} Highlights "
 
 " redir {{{ "

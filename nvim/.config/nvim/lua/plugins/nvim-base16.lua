@@ -12,6 +12,8 @@ return {
   end,
 }
 
+-- require("base16-colorscheme").colors
+
 -- Grays
 -- base00 = '#181818'
 -- base01 = '#282828'
