@@ -197,3 +197,13 @@ fi
 if type stow > /dev/null; then
   alias stow='stow --ignore=".+\.enc"'
 fi
+
+# tldr
+if type tldr > /dev/null; then
+  if type fzf > /dev/null; then
+    tlf() {
+      doc=$(tldr --list | fzf --query="$*" --select-1 --exit-0 --reverse)
+      [[ -n "$doc" ]] && tldr "$doc"
+    }
+  fi
+fi
