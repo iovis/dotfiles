@@ -50,14 +50,17 @@ M.on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
   ---- Signature/Definition
-  buf_imap("<c-s>", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
+  buf_imap("<m-h>", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
+  buf_imap("<m-k>", vim.lsp.buf.hover, "vim.lsp.buf.hover")
 
   buf_nmap("t", vim.lsp.buf.definition, "vim.lsp.buf.definition")
   buf_nmap("gd", vim.lsp.buf.hover, "vim.lsp.buf.hover")
   buf_nmap("T", vim.lsp.buf.references, "vim.lsp.buf.references")
 
   ---- Actions
+  buf_imap("<m-j>", vim.lsp.buf.code_action, "vim.lsp.buf.code_action")
   buf_nmap("<leader>la", vim.lsp.buf.code_action, "vim.lsp.buf.code_action")
+
   buf_nmap("<leader>lr", vim.lsp.buf.rename, "vim.lsp.buf.rename")
   buf_xmap("<leader>lr", vim.lsp.buf.rename, "vim.lsp.buf.rename")
 
@@ -124,12 +127,16 @@ M.on_attach = function(client, bufnr)
   if ok_lspsaga then
     ---- definition
     buf_nmap("gd", "<cmd>Lspsaga hover_doc<cr>")
+    buf_imap("<m-k>", "<cmd>Lspsaga hover_doc<cr>")
+
     buf_nmap("T", "<cmd>Lspsaga lsp_finder<cr>")
     buf_nmap("<leader>lf", "<cmd>Lspsaga peek_definition<cr>")
 
     ---- actions
+    buf_imap("<m-j>", "<cmd>Lspsaga code_action<cr>")
     buf_nmap("<leader>la", "<cmd>Lspsaga code_action<cr>")
     buf_xmap("<leader>la", "<cmd>Lspsaga code_action<cr>")
+
     buf_nmap("<leader>lr", "<cmd>Lspsaga rename<cr>")
     buf_xmap("<leader>lr", "<cmd>Lspsaga rename<cr>")
 
