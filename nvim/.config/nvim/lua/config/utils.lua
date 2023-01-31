@@ -11,24 +11,6 @@ end
 
 local M = {}
 
---- Create highlight groups
----
---- hi.Comment = { fg="#ffffff", bg="#000000" }
---- hi.LspDiagnosticsDefaultError = 'DiagnosticError' -- Link to another group
-M.hi = setmetatable({}, {
-  ---@param hlgroup string
-  ---@param args string|table
-  __newindex = function(_, hlgroup, args)
-    -- Link highlight group
-    if "string" == type(args) then
-      vim.api.nvim_set_hl(0, hlgroup, { link = args })
-      return
-    end
-
-    vim.api.nvim_set_hl(0, hlgroup, args)
-  end,
-})
-
 M.command = function(name, fn, opts)
   vim.api.nvim_create_user_command(name, fn, opts or {})
 end

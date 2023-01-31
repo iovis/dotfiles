@@ -2,7 +2,7 @@ return {
   "kevinhwang91/nvim-bqf",
   event = "VeryLazy",
   init = function()
-    local hi = require("config.utils").hi
+    local hi = require("config.highlights").hi
     hi.BqfSign = "Directory"
   end,
   config = function()

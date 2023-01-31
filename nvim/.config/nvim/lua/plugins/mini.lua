@@ -75,9 +75,6 @@ return {
       symbol = "│",
     })
 
-    local hi = require("config.utils").hi
-    hi.MiniIndentscopeSymbol = { fg = "#333333" }
-
     -- Disable in filetypes
     local indent_augroup = vim.api.nvim_create_augroup("disable_indent_guides", { clear = true })
     vim.api.nvim_create_autocmd("FileType", {

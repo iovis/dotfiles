@@ -88,7 +88,7 @@ function M.config()
     },
   })
 
-  local hi = require("config.utils").hi
+  local hi = require("config.highlights").hi
 
   hi.NeoTreeEndOfBuffer = { fg = "#181818" }
   hi.NeoTreeStatusLine = { fg = "#181818" }

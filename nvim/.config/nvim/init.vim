@@ -9,7 +9,7 @@ require("config.lazy")
 vim.api.nvim_create_autocmd("ColorScheme", {
   group = vim.api.nvim_create_augroup("highlights", { clear = true }),
   callback = function()
-    require("config.highlights")
+    require("config.highlights").custom_highlights()
   end,
   desc = "Apply custom highlights",
 })
@@ -56,6 +56,7 @@ set noshowmode
 set nostartofline
 set noswapfile
 set nowritebackup
+set nowrap
 set number
 set relativenumber
 set scrolloff=7

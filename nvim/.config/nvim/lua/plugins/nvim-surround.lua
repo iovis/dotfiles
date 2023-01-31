@@ -34,7 +34,7 @@ function M.config()
   vim.keymap.set("n", [[<leader>"]], [[cs'"]], { remap = true })
   vim.keymap.set("n", [[<leader>']], [[cs"']], { remap = true })
 
-  local hi = require("config.utils").hi
+  local hi = require("config.highlights").hi
   hi.NvimSurroundHighlightTextObject = { bg = "#8fafd7", fg = "#262626" }
 end
 

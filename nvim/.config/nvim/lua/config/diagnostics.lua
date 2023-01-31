@@ -1,5 +1,5 @@
 ---- UI
-local hi = require("config.utils").hi
+local hi = require("config.highlights").hi
 
 hi.DiagnosticSignError = { fg = "#ab4642" }
 hi.DiagnosticSignWarn = { fg = "#f7ca88" }

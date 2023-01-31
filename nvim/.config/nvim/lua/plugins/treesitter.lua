@@ -54,6 +54,11 @@ function M.config()
     highlight = {
       enable = true,
       disable = function(lang, buf)
+        -- TODO: 'diff' seems to have lost highlight somehow
+        if lang == "diff" then
+          return true
+        end
+
         local max_filesize = 10 * 1024 * 1024 -- 10 MB
         local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
 
@@ -120,7 +125,7 @@ function M.config()
   vim.keymap.set("n", "+H", "<cmd>TSHighlightCapturesUnderCursor<cr>")
 
   ---- Diff highlights
-  local hi = require("config.utils").hi
+  local hi = require("config.highlights").hi
   hi["@text.diff.delete"] = "DiffDelete"
   hi["@text.diff.add"] = "DiffAdd"
 end
