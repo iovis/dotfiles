@@ -3,8 +3,9 @@ return {
   ft = "csv",
   config = function()
     local hi = require("config.highlights").hi
+    local c = require("config.highlights").colors
 
-    hi.CSVColumnEven = { bg = "#6C6C6C" }
+    hi.CSVColumnEven = { bg = c.gray3 }
     hi.CSVColumnOdd = {}
   end,
 }

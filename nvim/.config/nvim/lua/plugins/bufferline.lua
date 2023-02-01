@@ -4,10 +4,12 @@ local M = {
 }
 
 function M.config()
+  local c = require("config.highlights").colors
+
   require("bufferline").setup({
     highlights = {
       indicator_selected = {
-        fg = "#8fafd7",
+        fg = c.blue,
       },
     },
     options = {
@@ -44,11 +46,9 @@ function M.config()
     },
   })
 
-  -- TODO: move this to `M.init()`?
   vim.keymap.set("n", "<tab>", "<cmd>BufferLineCycleNext<cr>")
   vim.keymap.set("n", "<s-tab>", "<cmd>BufferLineCyclePrev<cr>")
 
-  -- nnoremap <silent> <leader>1 <cmd>BufferLineGoToBuffer 1<cr>
   for i = 1, 9 do
     vim.keymap.set("n", "<leader>" .. i, function()
       require("bufferline").go_to_buffer(i, true)

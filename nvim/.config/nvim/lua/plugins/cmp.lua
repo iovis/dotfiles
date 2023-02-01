@@ -111,29 +111,30 @@ function M.config()
 
   ---- Colors
   local hi = require("config.highlights").hi
+  local c = require("config.highlights").colors
 
-  hi.CmpItemAbbr = { fg = "#d8d8d8" }
+  hi.CmpItemAbbr = { fg = c.gray5 }
 
   -- gray
-  hi.CmpItemAbbrDeprecated = { fg = "#808080", strikethrough = true }
+  hi.CmpItemAbbrDeprecated = { fg = c.gray3, strikethrough = true }
 
   -- blue
-  hi.CmpItemAbbrMatch = { fg = "#569cd6" }
-  hi.CmpItemAbbrMatchFuzzy = { fg = "#569cd6" }
+  hi.CmpItemAbbrMatch = { fg = c.blue }
+  hi.CmpItemAbbrMatchFuzzy = { fg = c.blue }
 
   -- light blue
-  hi.CmpItemKindVariable = { fg = "#9cdcfe" }
-  hi.CmpItemKindInterface = { fg = "#9cdcfe" }
-  hi.CmpItemKindText = { fg = "#9cdcfe" }
+  hi.CmpItemKindVariable = { fg = c.cyan }
+  hi.CmpItemKindInterface = { fg = c.cyan }
+  hi.CmpItemKindText = { fg = c.cyan }
 
   -- pink
-  hi.CmpItemKindFunction = { fg = "#c586c0" }
-  hi.CmpItemKindMethod = { fg = "#c586c0" }
+  hi.CmpItemKindFunction = { fg = c.magenta }
+  hi.CmpItemKindMethod = { fg = c.magenta }
 
   -- front
-  hi.CmpItemKindKeyword = { fg = "#d4d4d4" }
-  hi.CmpItemKindProperty = { fg = "#d4d4d4" }
-  hi.CmpItemKindUnit = { fg = "#d4d4d4" }
+  hi.CmpItemKindKeyword = { fg = c.gray5 }
+  hi.CmpItemKindProperty = { fg = c.gray5 }
+  hi.CmpItemKindUnit = { fg = c.gray5 }
 end
 
 return M

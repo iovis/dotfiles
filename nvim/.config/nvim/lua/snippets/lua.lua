@@ -6,6 +6,9 @@ return {
   s("hi", t('local hi = require("config.highlights").hi'), {
     condition = conds.line_begin,
   }),
+  s("c", t('local c = require("config.highlights").colors'), {
+    condition = conds.line_begin,
+  }),
   -- Lua snippets
   s("pr", fmt("print({})", { i(1) }), {
     condition = conds.line_begin,

@@ -24,6 +24,7 @@ function M.config()
 
   require("neo-tree").setup({
     enable_diagnostics = false,
+    popup_border_style = "rounded",
     window = {
       width = 33,
     },
@@ -58,12 +59,14 @@ function M.config()
 
           vim.api.nvim_input(": " .. path .. "<Home>")
         end,
+
         run_external_command = function(state)
           local node = state.tree:get_node()
           local path = node:get_id()
 
           vim.api.nvim_input(":! " .. path .. "<Home><Right>")
         end,
+
         fold_left = function(state)
           local node = state.tree:get_node()
 
@@ -73,6 +76,7 @@ function M.config()
             require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
           end
         end,
+
         fold_right = function(state)
           local node = state.tree:get_node()
 
@@ -89,11 +93,12 @@ function M.config()
   })
 
   local hi = require("config.highlights").hi
+  local c = require("config.highlights").colors
 
-  hi.NeoTreeEndOfBuffer = { fg = "#181818" }
-  hi.NeoTreeStatusLine = { fg = "#181818" }
+  hi.NeoTreeEndOfBuffer = { fg = c.black }
+  hi.NeoTreeStatusLine = { fg = c.black }
   hi.NeoTreeStatusLineNC = {}
-  hi.NeoTreeWinSeparator = { fg = "#181818" }
+  hi.NeoTreeWinSeparator = { fg = c.black }
 end
 
 return M
