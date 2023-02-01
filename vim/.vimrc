@@ -1,6 +1,6 @@
 " config {{{ "
 set nocompatible
-filetype indent on
+filetype plugin indent on
 
 colorscheme habamax
 
@@ -17,6 +17,7 @@ set conceallevel=0
 set diffopt+=hiddenoff
 set diffopt+=vertical
 set expandtab
+set fillchars+=vert:│,diff:╱
 set formatoptions-=ro  " Don't insert comment leader on new line
 set hidden
 set hlsearch
@@ -677,7 +678,7 @@ nnoremap ++ :execute "hi " . synIDattr(synID(line("."),col("."),1),"name")<CR>
 nnoremap +<cr> :so $VIMRUNTIME/syntax/hitest.vim<cr>
 nnoremap +<space> :hi<space>
 
-hi! def link VertSplit Type
+hi! def link VertSplit Comment
 hi! def link ModeMsg Comment
 
 hi DiffAdd      ctermfg=2     ctermbg=none  cterm=none
