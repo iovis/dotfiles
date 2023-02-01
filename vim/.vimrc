@@ -774,6 +774,10 @@ augroup status_line
 augroup END
 
 function! RenderStatuslineFor(winnum)
+  if &filetype ==# 'netrw'
+    return ''
+  endif
+
   let l:isActive = a:winnum == winnr()
   let statusline = ''
 
@@ -873,7 +877,7 @@ nmap <leader>H :old<cr>
 " netrw {{{ "
 let g:netrw_altv = 1
 let g:netrw_banner = 0
-let g:netrw_browse_split = 4
+" let g:netrw_browse_split = 4
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro rnu'
 " let g:netrw_list_hide = '^.*\.o/\=$,^.*\.obj/\=$,^.*\.bak/\=$,^.*\.exe/\=$,^.*\.py[co]/\=$,^.*\.swp/\=$,^.*\~/\=$,^.*\.pyc/\=$,^\.svn/\=$,^\.\.\=/\=$'
 let g:netrw_liststyle = 3

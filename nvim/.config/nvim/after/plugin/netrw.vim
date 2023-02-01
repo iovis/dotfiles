@@ -1,6 +1,5 @@
 let g:netrw_altv = 1
 let g:netrw_banner = 0
-let g:netrw_browse_split = 4
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro rnu'
 " let g:netrw_list_hide = '^.*\.o/\=$,^.*\.obj/\=$,^.*\.bak/\=$,^.*\.exe/\=$,^.*\.py[co]/\=$,^.*\.swp/\=$,^.*\~/\=$,^.*\.pyc/\=$,^\.svn/\=$,^\.\.\=/\=$'
 let g:netrw_liststyle = 3
