@@ -71,6 +71,8 @@ M.custom_highlights = function()
   hi.FloatBorder = { fg = c.gray3 }
   hi.VertSplit = { fg = feline_bg, bg = feline_bg }
 
+  hi.HighlightedYankRegion = { bg = c.gray2 }
+
   hi.DiffAdd = { fg = c.green }
   hi.DiffAdded = { fg = c.green }
   hi.DiffChange = { fg = c.gray3 }

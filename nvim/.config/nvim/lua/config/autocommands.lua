@@ -1,5 +1,3 @@
-local hi = require("config.highlights").hi
-
 local config_augroup = vim.api.nvim_create_augroup("user_config", { clear = true })
 
 ---- Reload the file when changed from elsewhere
@@ -76,13 +74,14 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 ---- Highlight on yank
-hi.HighlightedYankRegion = { fg = "#262626", bg = "#8fafd7" }
-
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   group = config_augroup,
   pattern = "*",
   callback = function()
-    vim.highlight.on_yank({ higroup = "HighlightedYankRegion", timeout = 300 })
+    vim.highlight.on_yank({
+      higroup = "HighlightedYankRegion",
+      timeout = 75,
+    })
   end,
 })
 
