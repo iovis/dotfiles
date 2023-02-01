@@ -25,7 +25,6 @@ return {
   { "tpope/vim-rake", event = "VeryLazy" },
   { "tpope/vim-rbenv", event = "VeryLazy" },
   { "tpope/vim-repeat", event = "VeryLazy" },
-  { "tpope/vim-scriptease", event = "VeryLazy" },
   { "tpope/vim-speeddating", event = "VeryLazy" },
   { "vim-test/vim-test", event = "VeryLazy" },
 }
