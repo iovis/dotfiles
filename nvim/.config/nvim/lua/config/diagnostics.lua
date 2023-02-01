@@ -1,16 +1,4 @@
 ---- UI
-local hi = require("config.highlights").hi
-
-hi.DiagnosticSignError = { fg = "#ab4642" }
-hi.DiagnosticSignWarn = { fg = "#f7ca88" }
-hi.DiagnosticSignInfo = { fg = "#7cafc2" }
-hi.DiagnosticSignHint = { fg = "#7cafc2" }
-
-hi.DiagnosticVirtualTextError = { fg = "#ab4642" }
-hi.DiagnosticVirtualTextWarn = { fg = "#f7ca88" }
-hi.DiagnosticVirtualTextInfo = { fg = "#7cafc2" }
-hi.DiagnosticVirtualTextHint = { fg = "#7cafc2" }
-
 local signs = {
   { name = "DiagnosticSignError", text = "" },
   { name = "DiagnosticSignWarn", text = "" },

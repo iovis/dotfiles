@@ -6,14 +6,6 @@ let g:mapleader = "\<Space>"
 lua <<EOF
 require("config.lazy")
 
-vim.api.nvim_create_autocmd("ColorScheme", {
-  group = vim.api.nvim_create_augroup("highlights", { clear = true }),
-  callback = function()
-    require("config.highlights").custom_highlights()
-  end,
-  desc = "Apply custom highlights",
-})
-
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",
   callback = function()

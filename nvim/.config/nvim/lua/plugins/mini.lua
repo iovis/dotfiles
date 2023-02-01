@@ -75,6 +75,10 @@ return {
       symbol = "│",
     })
 
+    local hi = require("config.highlights").hi
+    local colors = require("config.highlights").colors
+    hi.MiniIndentscopeSymbol = { fg = colors.gray1 }
+
     -- Disable in filetypes
     local indent_augroup = vim.api.nvim_create_augroup("disable_indent_guides", { clear = true })
     vim.api.nvim_create_autocmd("FileType", {

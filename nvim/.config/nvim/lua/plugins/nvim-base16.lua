@@ -3,11 +3,13 @@ return {
   lazy = false,
   priority = 1000,
   config = function()
-    require("base16-colorscheme").with_config({
+    local h = require("config.highlights")
+
+    require("base16-colorscheme").setup(h.base16_colors, {
       telescope = false,
       cmp = true,
     })
 
-    vim.cmd.colorscheme("base16-default-dark")
+    h.custom_highlights()
   end,
 }
