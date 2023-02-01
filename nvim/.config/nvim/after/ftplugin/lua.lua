@@ -1,7 +1,9 @@
 vim.keymap.set("n", "<leader>so", function()
   vim.cmd.source("%")
   print("File sourced")
-end, { buffer = true })
+end, { buffer = true, desc = "Source file" })
+
+vim.keymap.set("x", "<leader>so", ":source<cr>", { buffer = true, desc = "Evaluate lua range" })
 
 ---- Re-source `config()` for the current plugin
 -- if string.match(vim.fn.expand("%"), "plugins/") then
