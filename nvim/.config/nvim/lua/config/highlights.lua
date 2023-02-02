@@ -72,6 +72,10 @@ M.custom_highlights = function()
   hi.StatusLine = { fg = c.gray5, bg = feline_bg }
   hi.StatusLineNC = { fg = c.gray4, bg = feline_bg }
 
+  hi.TabLine = { fg = c.gray3 }
+  hi.TabLineSel = { fg = c.green }
+  hi.TabLineFill = {}
+
   hi.FloatBorder = { fg = c.gray3 }
   hi.VertSplit = { fg = feline_bg, bg = feline_bg }
 

@@ -54,6 +54,13 @@ u.command("VimPlugin", function(opts)
   vim.fn.system(cmd)
 end, { nargs = "?" })
 
+----Reload Highlights
+u.command("ReloadHighlights", function()
+  -- Not sure why I have to reload the package for the function to run
+  package.loaded["config.highlights"] = nil
+  require("config.highlights").custom_highlights()
+end)
+
 -- u.command("ReloadPlugins", function()
 --   for name, _ in pairs(package.loaded) do
 --     if name:match("^plugins") then
