@@ -318,8 +318,8 @@ xnoremap <silent> <M-k> :m'<-2<cr>`>my`<mzgv=gv`yo`z
 
 " buffers {{{ "
 nnoremap <BS> <C-^>
-nnoremap <silent> <tab> :bnext<cr>
-nnoremap <silent> <s-tab> :bprevious<cr>
+" nnoremap <silent> <tab> :bnext<cr>
+" nnoremap <silent> <s-tab> :bprevious<cr>
 nnoremap <silent> <leader>t :enew<cr>
 " }}} buffers "
 
