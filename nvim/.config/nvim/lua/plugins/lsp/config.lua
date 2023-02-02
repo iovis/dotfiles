@@ -1,8 +1,6 @@
 local M = {}
 
 local u = require("config.utils")
-local hi = require("config.highlights").hi
-local c = require("config.highlights").colors
 
 ---- Global LSP settings
 u.command("LspActiveClients", "Redir lua =vim.lsp.get_active_clients() | setf lua")
@@ -14,11 +12,6 @@ vim.keymap.set("n", "<leader>lp", "<cmd>Mason<cr>")
 
 ---- Floating window
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-
-hi.NormalFloat = "Normal"
-hi.FloatBorder = { bg = c.black, fg = c.gray2 }
-hi.LspCodeLens = "Comment"
-hi.LspCodeLensSeparator = "Comment"
 
 ---- On LSP attached buffers
 M.on_attach = function(client, bufnr)
@@ -176,12 +169,6 @@ M.on_attach = function(client, bufnr)
 
   ---- Document Highlights
   -- if client.server_capabilities.document_highlight then
-  --   vim.cmd([[
-  --     hi! link LspReferenceRead Visual
-  --     hi! link LspReferenceText Visual
-  --     hi! link LspReferenceWrite Visual
-  --   ]])
-  --
   --   vim.api.nvim_create_autocmd("CursorHold", {
   --     buffer = bufnr,
   --     callback = vim.lsp.buf.document_highlight,

@@ -98,6 +98,15 @@ M.custom_highlights = function()
   hi.DiagnosticVirtualTextWarn = { fg = c.yellow }
   hi.DiagnosticVirtualTextInfo = { fg = c.blue }
   hi.DiagnosticVirtualTextHint = { fg = c.blue }
+
+  hi.NormalFloat = "Normal"
+  hi.FloatBorder = { bg = c.black, fg = c.gray2 }
+  hi.LspCodeLens = "Comment"
+  hi.LspCodeLensSeparator = "Comment"
+
+  hi.LspReferenceRead = "Visual"
+  hi.LspReferenceText = "Visual"
+  hi.LspReferenceWrite = "Visual"
 end
 
 return M
