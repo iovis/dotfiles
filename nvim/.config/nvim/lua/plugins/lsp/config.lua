@@ -116,6 +116,15 @@ M.on_attach = function(client, bufnr)
     buf_nmap("<leader>ld", fzf_lua.lsp_workspace_diagnostics, "fzf_lua.lsp_workspace_diagnostics")
   end
 
+  ---- telescope
+  local ok_telescope, telescope = pcall(require, "telescope.builtin")
+  if ok_telescope then
+    buf_nmap("<leader>r", telescope.lsp_document_symbols, "telescope.lsp_document_symbols")
+    buf_nmap("<leader>R", telescope.lsp_workspace_symbols, "telescope.lsp_workspace_symbols")
+
+    buf_nmap("<leader>ld", telescope.diagnostics, "telescope.lsp_workspace_diagnostics")
+  end
+
   ---- lspsaga
   local ok_lspsaga, _ = pcall(require, "lspsaga")
   if ok_lspsaga then
