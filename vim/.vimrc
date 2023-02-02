@@ -678,8 +678,10 @@ nnoremap ++ :execute "hi " . synIDattr(synID(line("."),col("."),1),"name")<CR>
 nnoremap +<cr> :so $VIMRUNTIME/syntax/hitest.vim<cr>
 nnoremap +<space> :hi<space>
 
-hi! def link VertSplit Comment
+hi! def link VertSplit StatusLineNC
 hi! def link ModeMsg Comment
+
+hi Normal       ctermfg=white ctermbg=none
 
 hi DiffAdd      ctermfg=2     ctermbg=none  cterm=none
 hi DiffDelete   ctermfg=1     ctermbg=none  cterm=bold
