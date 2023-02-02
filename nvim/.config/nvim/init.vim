@@ -5,6 +5,7 @@ let g:mapleader = "\<Space>"
 
 lua <<EOF
 require("config.lazy")
+require("config.highlights").custom_highlights()
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",

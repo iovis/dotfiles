@@ -3,13 +3,11 @@ return {
   lazy = false,
   priority = 1000,
   config = function()
-    local h = require("config.highlights")
+    local colors = require("config.highlights").base16_colors
 
-    require("base16-colorscheme").setup(h.base16_colors, {
+    require("base16-colorscheme").setup(colors, {
       telescope = false,
       cmp = true,
     })
-
-    h.custom_highlights()
   end,
 }

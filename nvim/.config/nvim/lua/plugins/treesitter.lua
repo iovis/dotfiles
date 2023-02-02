@@ -54,11 +54,6 @@ function M.config()
     highlight = {
       enable = true,
       disable = function(lang, buf)
-        -- TODO: 'diff' seems to have lost highlight somehow
-        if lang == "diff" then
-          return true
-        end
-
         local max_filesize = 10 * 1024 * 1024 -- 10 MB
         local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
 

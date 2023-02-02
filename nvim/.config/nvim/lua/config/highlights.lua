@@ -62,6 +62,10 @@ M.custom_highlights = function()
   local c = M.colors
   local feline_bg = "#212326"
 
+  hi.Normal = { fg = c.gray5 }
+  hi.NormalNC = "Normal"
+  hi.SignColumn = "Normal"
+
   hi.CursorLineNr = { fg = c.gray4, bold = true }
   hi.LineNr = { fg = c.gray3 }
 
