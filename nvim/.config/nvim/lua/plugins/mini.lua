@@ -11,8 +11,6 @@ return {
 
     { mode = "n", "<leader>a=", "mzgaipi='z", remap = true },
     { mode = "x", "<leader>a=", "gai=", remap = true },
-    ---- comment
-    { "gcu", "mzgcgc'z", remap = true },
   },
   config = function()
     --- mini.ai (text objects)
@@ -55,15 +53,6 @@ return {
     vim.keymap.set("n", "ª", function()
       bufrm.delete(0, true)
     end, { desc = "Bdelete!" })
-
-    ---- mini.comment
-    require("mini.comment").setup({
-      hooks = {
-        pre = function()
-          require("ts_context_commentstring.internal").update_commentstring({})
-        end,
-      },
-    })
 
     ---- mini.indent (indentation guides and textobjects)
     local indent = require("mini.indentscope")
