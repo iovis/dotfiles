@@ -13,12 +13,6 @@ bind S {
   set -g status
 }
 
-# Quick find
-bind C-f {
-  new-window
-  send 'f && clear' Enter
-}
-
 # Quick settings
 bind b {
   attach -c "#{pane_current_path}"
@@ -34,6 +28,10 @@ bind L customize-mode -Z
 
 # Session management
 bind C-Space switch-client -l
+
+bind f {
+  run sessionist
+}
 
 bind C command-prompt -p "new session name:" {
   new-session -A -s "%1" -c "#{pane_current_path}"
