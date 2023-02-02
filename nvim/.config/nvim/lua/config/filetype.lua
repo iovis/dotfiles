@@ -5,6 +5,9 @@ vim.filetype.add({
   filename = {
     ["pryrc"] = "ruby",
   },
+  pattern = {
+    [".*/yamllint/config"] = "yaml",
+  },
 })
 
 ---- Quick FtPlugin

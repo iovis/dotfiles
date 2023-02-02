@@ -28,7 +28,7 @@ function M.config()
       diagnostics.shellcheck,
       diagnostics.stylelint,
       diagnostics.vint,
-      diagnostics.yamllint.with({ extra_args = { "-f", "parsable", "--no-warnings" } }),
+      diagnostics.yamllint,
       diagnostics.zsh,
 
       formatting.erb_lint,
