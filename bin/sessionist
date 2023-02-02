@@ -1,6 +1,11 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 session_path=$(fd -td --max-depth 2 . "$HOME/Sites" | fzf-tmux -p80%,80% --select-1 --exit-0 --reverse)
 session_name=$(basename "$session_path")
+
+if [[ -z $session_path || -z $session_name ]]; then
+  echo 'variables are empty'
+  exit 1
+fi
 
 tmux has-session -t "$session_name" || tmux new-session -d -s "$session_name" -c "$session_name" && tmux switch-client -t "$session_name"

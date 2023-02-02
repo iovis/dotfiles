@@ -29,7 +29,7 @@ bind L customize-mode -Z
 # Session management
 bind C-Space switch-client -l
 
-bind f {
+bind F {
   run sessionist
 }
 
