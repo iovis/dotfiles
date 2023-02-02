@@ -8,6 +8,11 @@ bind R {
   display "Tmux reloaded!"
 }
 
+# Toggle status line
+bind S {
+  set -g status
+}
+
 # Quick find
 bind C-f {
   new-window
