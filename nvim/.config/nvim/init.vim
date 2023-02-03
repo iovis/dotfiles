@@ -33,7 +33,6 @@ set expandtab
 set fillchars+=diff:╱
 set formatoptions-=ro  " Don't insert comment leader on new line
 set hidden
-" set hlsearch
 set ignorecase
 set inccommand=split
 set incsearch
@@ -44,6 +43,7 @@ set listchars=tab:>-,trail:-,nbsp:+,eol:$
 set magic
 set mouse=a
 set nobackup
+set nohlsearch
 set noruler
 set noshowmode
 set nostartofline
