@@ -41,6 +41,9 @@ function M.config()
   luasnip.filetype_extend("typescript", { "javascript" })
 
   ---- Keymaps
+  -- Fix backspace exiting select mode
+  vim.keymap.set("s", "<BS>", "<c-o>s")
+
   -- Expansion
   vim.keymap.set({ "i", "s" }, "<c-j>", function()
     if luasnip.expand_or_jumpable() then
