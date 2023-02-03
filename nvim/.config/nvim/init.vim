@@ -33,7 +33,7 @@ set expandtab
 set fillchars+=diff:╱
 set formatoptions-=ro  " Don't insert comment leader on new line
 set hidden
-set hlsearch
+" set hlsearch
 set ignorecase
 set inccommand=split
 set incsearch
@@ -127,6 +127,22 @@ inoremap Kj <Esc>
 " Some expansions
 inoremap ,, <c-o>A,
 inoremap ;; <c-o>A;
+
+inoremap (<cr> (<cr>)<esc>O
+inoremap [<cr> [<cr>]<esc>O
+inoremap {<cr> {<cr>}<esc>O
+
+inoremap (,<cr> (<cr>),<esc>O
+inoremap [,<cr> [<cr>],<esc>O
+inoremap {,<cr> {<cr>},<esc>O
+
+inoremap (<space> (<space><space>)<left><left>
+inoremap [<space> [<space><space>]<left><left>
+inoremap {<space> {<space><space>}<left><left>
+
+inoremap (,<space> (<space><space>),<left><left>
+inoremap [,<space> [<space><space>],<left><left>
+inoremap {,<space> {<space><space>},<left><left>
 
 " Jump to next match with TAB during a search
 set wildcharm=<c-z>

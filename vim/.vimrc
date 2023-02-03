@@ -107,12 +107,22 @@ xnoremap <space> <nop>
 " Some expansions
 inoremap ,, <c-o>A,
 inoremap ;; <c-o>A;
+
 inoremap (<cr> (<cr>)<esc>O
 inoremap [<cr> [<cr>]<esc>O
 inoremap {<cr> {<cr>}<esc>O
+
+inoremap (,<cr> (<cr>),<esc>O
+inoremap [,<cr> [<cr>],<esc>O
+inoremap {,<cr> {<cr>},<esc>O
+
 inoremap (<space> (<space><space>)<left><left>
 inoremap [<space> [<space><space>]<left><left>
 inoremap {<space> {<space><space>}<left><left>
+
+inoremap (,<space> (<space><space>),<left><left>
+inoremap [,<space> [<space><space>],<left><left>
+inoremap {,<space> {<space><space>},<left><left>
 
 " Jump to next match with TAB during a search
 set wildcharm=<c-z>
