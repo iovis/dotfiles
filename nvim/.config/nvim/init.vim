@@ -210,7 +210,6 @@ nnoremap <silent> g4 :set shiftwidth=4 softtabstop=4 expandtab \| retab<cr>gg=G
 nnoremap & g&
 nnoremap +c :cd %:p:h<cr>
 nnoremap M <c-w>o
-nnoremap U :undolist<cr>:undo<space>
 nnoremap Y y$
 
 nmap ' `
