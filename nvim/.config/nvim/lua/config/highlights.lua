@@ -81,6 +81,8 @@ M.custom_highlights = function()
 
   hi.HighlightedYankRegion = { bg = c.gray2 }
 
+  hi.FoldColumn = "Comment"
+
   hi.DiffAdd = { fg = c.green }
   hi.DiffAdded = { fg = c.green }
   hi.DiffChange = { fg = c.gray3 }

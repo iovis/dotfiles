@@ -6,8 +6,8 @@ return {
         enable = false,
       },
       diagnostic = {
-        custom_fix = " ",
-        custom_msg = " ",
+        custom_fix = "Fix",
+        custom_msg = "Diagnostics",
         keys = {
           exec_action = "<cr>",
         },
