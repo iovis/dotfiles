@@ -73,7 +73,7 @@ M.custom_highlights = function()
   hi.StatusLineNC = { fg = c.gray4, bg = feline_bg }
 
   hi.TabLine = { fg = c.gray3 }
-  hi.TabLineSel = { fg = c.green }
+  hi.TabLineSel = { fg = c.blue }
   hi.TabLineFill = {}
 
   hi.FloatBorder = { fg = c.gray3 }
