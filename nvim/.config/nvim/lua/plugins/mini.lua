@@ -18,8 +18,19 @@ return {
     ai.setup({
       search_method = "cover_or_nearest",
       custom_textobjects = {
+        -- NOTES:
+        --   - %b(xy) => delimited pair  %b[], %b{}
+        --   - %f[x]  => frontier  %f[%w]
+        --   - ()x()x()x() => define limits of 'a' and 'i'
+        --       - a: xxx
+        --       - i:  x
+
         -- alias 'r' to []
-        r = { { "%b[]" }, "^.().*().$" },
+        r = { "%b[]", "^.().*().$" },
+        -- Number
+        n = { "%f[%d]%d+" },
+        -- Line
+        l = { "^()%s*().*()().$" },
         -- Entire buffer
         e = function(ai_type)
           local n_lines = vim.fn.line("$")
@@ -39,6 +50,17 @@ return {
             to = { line = end_line, col = to_col },
           }
         end,
+      },
+      mappings = {
+        -- Next/last textobjects
+        around_next = "",
+        inside_next = "",
+        around_last = "",
+        inside_last = "",
+
+        -- Move cursor to corresponding edge of `a` textobject
+        goto_left = "",
+        goto_right = "",
       },
     })
 
