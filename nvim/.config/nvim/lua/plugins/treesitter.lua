@@ -61,15 +61,6 @@ function M.config()
         end
       end,
     },
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = "<c-n>",
-        node_incremental = "<c-n>",
-        -- scope_incremental = "<c-s>",
-        node_decremental = "<c-p>",
-      },
-    },
     indent = {
       enable = true, -- Experimental
     },
