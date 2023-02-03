@@ -267,18 +267,6 @@ function! SubstituteOperator(type)
 endfunction
 " }}} substitute "
 
-" folds {{{ "
-set nofoldenable
-"
-" augroup folds
-"   autocmd!
-"
-"   " Pre-set the folds to indent but allow for manual folds
-"   autocmd BufReadPre  * setlocal foldmethod=indent
-"   autocmd BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
-" augroup end
-" }}} folds "
-
 " pasting with indent {{{ "
 nnoremap <silent> p p:execute ":silent normal! `[v`]="<cr>
 nnoremap <silent> P P:execute ":silent normal! `[v`]="<cr>
