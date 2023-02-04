@@ -48,8 +48,8 @@ set -wg automatic-rename on
 set -wg automatic-rename-format '#{b:pane_current_path}/#{pane_current_command}'
 
 set -g window-status-activity-style 'bg=default'
-set -g window-status-current-format "#[fg=white]:: #[fg=green]#I|#W#{?window_zoomed_flag,#[fg=blue][+],}"
-set -g window-status-format ":: #{?window_activity_flag,#[fg=red],}#I|#W"
+set -g window-status-current-format "#[fg=colour8]:: #[fg=green]#I|#W#{?window_zoomed_flag,#[fg=cyan][+],}"
+set -g window-status-format "#[fg=colour8]:: #{?window_activity_flag,#[fg=yellow],}#I#[fg=colour8]|#W#{?window_zoomed_flag,[+],}"
 
 ## Pane
 # Inactive pane shaded out
