@@ -34,7 +34,10 @@ set -ag status-right '#{?pane_synchronized,#[fg=blue]sync,}'
 # CPU
 set -ag status-right ' '
 set -ag status-right '#{cpu_fg_color}#{cpu_percentage}#{cpu_icon}'
+
+# SSH session
 set -ag status-right ' '
+set -ag status-right '#{?#{SSH_CLIENT},#[fg=colour8]#(whoami)@#h ,}'
 
 ## Window
 set -g base-index 1
