@@ -8,6 +8,7 @@ set -g message-style 'bg=default,fg=yellow'
 ## Status line
 set -g status-interval 5
 set -g status-justify left
+set -g status-position bottom
 set -g status-style 'bg=default,fg=white'
 
 ### Left
