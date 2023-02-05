@@ -7,6 +7,8 @@ alias ...='cd ../..'
 alias d="cdh"
 alias md="mkdir -p"
 
+alias brewdump="cd; brew bundle dump -f; cd -"
+
 ## docker
 alias dcdn="docker compose down"
 alias dcl="docker compose logs"
