@@ -4,14 +4,21 @@ set -Ux XDG_DATA_HOME $XDG_CONFIG_HOME/.local/share
 set -Ux XDG_CACHE_HOME $XDG_CONFIG_HOME/.cache
 
 set -Ux FDOTDIR $XDG_CONFIG_HOME/fish
+set -Ux ICLOUD_PATH "$HOME/Library/Mobile Documents/com~apple~CloudDocs"
+set -Ux NOTES "$ICLOUD_PATH/notes"
 
 set -Ux DOTFILES "$HOME/.dotfiles"
 set -Ux REVIEW_BASE master
 set -Ux PROJECT_HOME "$HOME/Sites"
 set -Ux EDITOR nvim
 
-set -Ux ICLOUD_PATH "$HOME/Library/Mobile Documents/com~apple~CloudDocs"
-set -Ux NOTES "$ICLOUD_PATH/notes"
+set -Ux FZF_DEFAULT_COMMAND "fd -H -E '.git' -E '.keep' --type file --follow --color=always"
+set -Ux FZF_CTRL_T_OPTS "--select-1 --exit-0 --preview '$preview_command' --bind º:toggle-preview"
+set -Ux FZF_DEFAULT_OPTS "--ansi --bind=ctrl-n:page-down,ctrl-p:page-up,alt-a:select-all,alt-d:deselect-all,alt-t:toggle-all,home:first,end:last"
+set preview_command 'bat --style=numbers --color=always {} 2> /dev/null'
+
+set -Ux MANPAGER "$EDITOR +Man!"
+
 
 ## PATH
 if test -f /opt/homebrew/bin/brew

@@ -7,7 +7,44 @@ alias ...='cd ../..'
 alias d="cdh"
 alias md="mkdir -p"
 
+## bat
+set -Ux BAT_THEME "base16"
+alias c="bat"
+
+## brew
 alias brewdump="cd; brew bundle dump -f; cd -"
+
+## codespell
+alias codespell="codespell --skip 'tags,*.dmp'"
+
+# # dexios
+# if type dexios > /dev/null; then
+#   encrypt() {
+#     dexios encrypt "$1" "${1}.enc"
+#   }
+#
+#   decrypt() {
+#     dexios decrypt "$1" "${1%.enc}"
+#   }
+#
+#   kencrypt() {
+#     dexios encrypt -k "$DOTFILES/master.key" "$1" "${1}.enc"
+#   }
+#
+#   kdecrypt() {
+#     dexios decrypt -k "$DOTFILES/master.key" "$1" "${1%.enc}"
+#   }
+#
+#   encrypt_all() {
+#     # fd can't find custom commands unless you execute within `zsh -i`
+#     # {}:  match
+#     # {.}: match without extension
+#     fd -H -e enc . $DOTFILES -x dexios encrypt -f -k "$DOTFILES/master.key" "{.}" "{}"
+#   }
+#
+#   decrypt_all() {
+#     fd -H -e enc . $DOTFILES -x dexios decrypt -f -k "$DOTFILES/master.key" "{}" "{.}"
+#   }
 
 ## docker
 alias dcdn="docker compose down"
@@ -16,6 +53,14 @@ alias dclf="docker compose logs -f"
 alias dcps="docker compose ps"
 alias dcstop="docker compose stop"
 alias dcup="docker compose up -d --remove-orphans"
+
+## exa
+alias l="exa -lag --git --group-directories-first"
+alias t="exa --group-directories-first -T"
+
+## fd
+
+## fzf
 
 ## git
 alias ga="git add"
@@ -55,6 +100,37 @@ alias gst="git status"
 alias gsta="git stash push"
 alias gstl="git stash list"
 alias gstp="git stash pop"
+
+# hub
+alias gpr="git hub pull-request --push --browse -m '' --edit -a iovis -b"
+
+# gh
+alias gprb="gh pr view --web"
+alias gprc="gh pr checkout"
+alias gprs="gh pr list"
+alias gprss="gh pr status"
+alias pulls="gh pr list --web"
+
+# just
+alias j="just"
+
+# lazygit
+alias lg="lazygit"
+
+# litecli
+alias sqli="litecli"
+
+# nvim
+alias ni="nvim"
+alias nin="nvim --clean -u \$HOME/.vimrc"
+alias nis="nvim -S Session.vim"
+alias notes="cd '$NOTES' && nvim -S Session.vim +ZenMode"
+
+# ripgrep
+alias g="rg -Suu -g '!{.bzr,CVS,.git,.hg,.svn,.idea,.tox}'"
+
+# stow
+alias stow='stow --ignore=".+\.enc"'
 
 ## quick editing
 alias aliases="\$EDITOR \$FDOTDIR/local/aliases.fish"
@@ -131,6 +207,7 @@ alias ctn="cargo nextest run --nocapture"
 alias ctr="cargo nextest run --release"
 alias cupdate="cargo install --locked \$(cat \$DOTFILES/default/crates)"
 alias cw="cargo watch -x 'nextest run'"
+alias irust="evcxr"
 
 ## cpp
 alias clang++="clang++ -std=c++17"
@@ -152,13 +229,11 @@ alias rsync-synchronize="rsync -avzu --delete --progress -h"
 alias rsync-update="rsync -avzu --progress -h"
 
 ## misc
-alias ag="alias | g --"
+alias ag="alias | g"
 alias bell="say ding"
 alias ds="du -sh * .* | sort -rh"
-alias g="grep -sinr --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}"
-alias l="ls -alh"
+alias f="functions"
 alias paths="echo \$PATH | tr ' ' '\n'"
-alias t="tree"
 alias tailf="tail -f"
 alias tmux_plugins="cd $XDG_CONFIG_HOME/tmux/plugins/"
 alias vim_plugins="cd $XDG_DATA_HOME/nvim/lazy/"
