@@ -10,6 +10,9 @@ set -Ux REVIEW_BASE master
 set -Ux PROJECT_HOME "$HOME/Sites"
 set -Ux EDITOR nvim
 
+set -Ux ICLOUD_PATH "$HOME/Library/Mobile Documents/com~apple~CloudDocs"
+set -Ux NOTES "$ICLOUD_PATH/notes"
+
 ## PATH
 if test -f /opt/homebrew/bin/brew
     /opt/homebrew/bin/brew shellenv | source
@@ -27,6 +30,10 @@ fish_add_path $HOME/.dotfiles/bin
 ## Interactive mode
 set -U fish_greeting # remove greeting message
 status is-interactive || exit
+
+ulimit -n 12288
+
+source "$FDOTDIR/aliases.fish"
 
 # TODO: move to ~/.config/starship
 set -gx STARSHIP_CONFIG $XDG_CONFIG_HOME/zsh/themes/starship.toml
