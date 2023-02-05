@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 
-rustup completions zsh > "$ZDOTDIR/completions/_rustup"
-rustup completions zsh cargo > "$ZDOTDIR/completions/_cargo"
+if [[ -n $ZDOTDIR ]]; then
+  rustup completions zsh > "$ZDOTDIR/completions/_rustup"
+  rustup completions zsh cargo > "$ZDOTDIR/completions/_cargo"
+  muxi completions zsh > "$ZDOTDIR/completions/_muxi"
+fi
 
-muxi completions zsh > "$ZDOTDIR/completions/_muxi"
+if [[ -n $FDOTDIR ]]; then
+  rustup completions fish > "$FDOTDIR/completions/rustup.fish"
+  # rustup completions fish cargo > "$FDOTDIR/completions/cargo.fish"
+  muxi completions fish > "$FDOTDIR/completions/muxi.fish"
+fi
+
 # starship completions zsh > "$ZDOTDIR/completions/_starship"

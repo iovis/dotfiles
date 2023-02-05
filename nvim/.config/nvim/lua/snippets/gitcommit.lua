@@ -42,6 +42,7 @@ end
 return {
   -- Labels
   s("brew", t("[brew] ")),
+  s("fish", t("[fish] ")),
   s("gem", t("[gem] ")),
   s("git", t("[git] ")),
   s("muxi", t("[muxi] ")),
