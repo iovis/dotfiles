@@ -13,14 +13,12 @@ set -Ux DOTFILES "$HOME/.dotfiles"
 set -Ux REVIEW_BASE master
 set -Ux PROJECT_HOME "$HOME/Sites"
 set -Ux EDITOR nvim
+set -Ux MANPAGER "$EDITOR +Man!"
 
+set -l  preview_command 'bat --style=numbers --color=always {} 2> /dev/null'
 set -Ux FZF_DEFAULT_COMMAND "fd -H -E '.git' -E '.keep' --type file --follow --color=always"
 set -Ux FZF_CTRL_T_OPTS "--select-1 --exit-0 --preview '$preview_command' --bind º:toggle-preview"
 set -Ux FZF_DEFAULT_OPTS "--ansi --bind=ctrl-n:page-down,ctrl-p:page-up,alt-a:select-all,alt-d:deselect-all,alt-t:toggle-all,home:first,end:last"
-set preview_command 'bat --style=numbers --color=always {} 2> /dev/null'
-
-set -Ux MANPAGER "$EDITOR +Man!"
-
 
 ## PATH
 if test -f /opt/homebrew/bin/brew
