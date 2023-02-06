@@ -24,7 +24,13 @@ set -Ux BAT_THEME "base16"
 
 ## PATH
 if test -f /opt/homebrew/bin/brew
-    /opt/homebrew/bin/brew shellenv | source
+    # /opt/homebrew/bin/brew shellenv | source
+    set -gx HOMEBREW_PREFIX "/opt/homebrew";
+    set -gx HOMEBREW_CELLAR "/opt/homebrew/Cellar";
+    set -gx HOMEBREW_REPOSITORY "/opt/homebrew";
+    set -q PATH; or set PATH ''; set -gx PATH "/opt/homebrew/bin" "/opt/homebrew/sbin" $PATH;
+    set -q MANPATH; or set MANPATH ''; set -gx MANPATH "/opt/homebrew/share/man" $MANPATH;
+    set -q INFOPATH; or set INFOPATH ''; set -gx INFOPATH "/opt/homebrew/share/info" $INFOPATH;
 else if test -f /usr/local/bin/brew
     # /usr/local/bin/brew shellenv | source
     set -gx HOMEBREW_PREFIX "/usr/local";
