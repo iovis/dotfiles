@@ -2,7 +2,6 @@
 bind -n C-f choose-tree -Zs
 
 # Window switching
-bind -n M-l     last-window
 bind -n S-left  previous-window
 bind -n S-right next-window
 

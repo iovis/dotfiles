@@ -48,6 +48,7 @@ bind X confirm-before -p "Kill session #{session_name}? (y/n)" {
 
 # Window management
 bind c new-window -c "#{pane_current_path}"
+bind BSpace last-window
 
 bind -r < swap-window -dt -1
 bind -r > swap-window -dt +1
