@@ -383,15 +383,15 @@ endif
 nnoremap <leader>u <nop>
 nnoremap <leader>us :so $MYVIMRC<cr>:echo 'vimrc sourced'<cr>
 
-nnoremap <silent> <leader>ua :e! ~/.zsh/aliases.zsh<cr>
+nnoremap <silent> <leader>ua :e! $FDOTDIR/aliases.zsh<cr>
 nnoremap <silent> <leader>uh :sp $MYVIMRC<cr>
 nnoremap <silent> <leader>um :e! $DOTFILES/vim/.vimrc<cr>
 nnoremap <silent> <leader>ur :e! .projections.json<cr>
 nnoremap <silent> <leader>ut :e! $DOTFILES/tmux/.config/tmux/tmux.conf<cr>
 nnoremap <silent> <leader>uu :e! $MYVIMRC<cr>
 nnoremap <silent> <leader>uv :vs $MYVIMRC<cr>
-nnoremap <silent> <leader>uw :e! $ZDOTDIR/local/work.zsh<cr>
-nnoremap <silent> <leader>uz :e! $ZDOTDIR/.zshrc<cr>
+nnoremap <silent> <leader>uw :e! $FDOTDIR/local/work.fish<cr>
+nnoremap <silent> <leader>uz :e! $FDOTDIR/config.fish<cr>
 " }}} config editing "
 
 " duplicate file {{{ "
