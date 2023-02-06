@@ -14,8 +14,7 @@ set -g status-style 'bg=default,fg=white'
 ### Left
 set -g status-left-length 90
 
-set -g status-left ' '
-set -ag status-left '#[fg=blue]#S'
+set -g status-left '#[fg=blue]#S'
 set -ag status-left ' '
 
 ### Right
@@ -38,7 +37,7 @@ set -ag status-right '#{cpu_fg_color}#{cpu_percentage}#{cpu_icon}'
 
 # SSH session
 set -ag status-right ' '
-set -ag status-right '#{?#{SSH_CLIENT},#[fg=colour8]#(whoami)@#h ,}'
+set -ag status-right '#{?#{SSH_CLIENT},#[fg=colour8]#(whoami)@#h,}'
 
 ## Window
 set -g base-index 1
