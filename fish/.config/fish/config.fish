@@ -43,6 +43,4 @@ ulimit -n 12288
 
 source "$FDOTDIR/aliases.fish"
 
-# TODO: move to ~/.config/starship
-set -gx STARSHIP_CONFIG $XDG_CONFIG_HOME/zsh/themes/starship.toml
 starship init fish | source
