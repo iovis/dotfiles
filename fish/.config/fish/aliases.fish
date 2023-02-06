@@ -56,7 +56,7 @@ alias dcup="docker compose up -d --remove-orphans"
 
 ## exa
 alias l="exa -lag --git --group-directories-first"
-alias t="exa --group-directories-first -T"
+alias tree="exa --group-directories-first -T"
 
 ## fd
 
@@ -236,3 +236,4 @@ alias paths="echo \$PATH | tr ' ' '\n'"
 alias tailf="tail -f"
 alias tmux_plugins="cd $XDG_CONFIG_HOME/tmux/plugins/"
 alias vim_plugins="cd $XDG_DATA_HOME/nvim/lazy/"
+alias t "type"
