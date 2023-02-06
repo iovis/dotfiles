@@ -20,6 +20,8 @@ set -Ux FZF_DEFAULT_COMMAND "fd -H -E '.git' -E '.keep' --type file --follow --c
 set -Ux FZF_CTRL_T_OPTS "--select-1 --exit-0 --preview '$preview_command' --bind º:toggle-preview"
 set -Ux FZF_DEFAULT_OPTS "--ansi --bind=ctrl-n:page-down,ctrl-p:page-up,alt-a:select-all,alt-d:deselect-all,alt-t:toggle-all,home:first,end:last"
 
+set -Ux BAT_THEME "base16"
+
 ## PATH
 if test -f /opt/homebrew/bin/brew
     /opt/homebrew/bin/brew shellenv | source
@@ -39,7 +41,7 @@ status is-interactive || exit
 
 ulimit -n 12288
 
-source "$FDOTDIR/aliases.fish"
+source "$FDOTDIR/abbrs.fish"
 
 for local_override in $FDOTDIR/local/*.fish
     source $local_override
