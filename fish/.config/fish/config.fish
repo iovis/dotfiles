@@ -26,7 +26,13 @@ set -Ux BAT_THEME "base16"
 if test -f /opt/homebrew/bin/brew
     /opt/homebrew/bin/brew shellenv | source
 else if test -f /usr/local/bin/brew
-    /usr/local/bin/brew shellenv | source
+    # /usr/local/bin/brew shellenv | source
+    set -gx HOMEBREW_PREFIX "/usr/local";
+    set -gx HOMEBREW_CELLAR "/usr/local/Cellar";
+    set -gx HOMEBREW_REPOSITORY "/usr/local/Homebrew";
+    set -q PATH; or set PATH ''; set -gx PATH "/usr/local/bin" "/usr/local/sbin" $PATH;
+    set -q MANPATH; or set MANPATH ''; set -gx MANPATH "/usr/local/share/man" $MANPATH;
+    set -q INFOPATH; or set INFOPATH ''; set -gx INFOPATH "/usr/local/share/info" $INFOPATH;
 end
 
 if test -f "$HOME/.asdf/asdf.fish"
