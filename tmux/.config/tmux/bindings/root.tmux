@@ -40,5 +40,5 @@ bind -n M-Space if -F '#{==:#{session_name},·}' {
 bind -n M-n if -F '#{==:#{session_name},notes}' {
   switch-client -l
 } {
-  new-session -A -s notes -c "~/Library/Mobile Documents/com~apple~CloudDocs/notes"
+  new-session -A -s notes -c "$ICLOUD_PATH"
 }
