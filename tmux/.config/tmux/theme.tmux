@@ -21,10 +21,11 @@ set -ag status-left ' '
 ### Right
 set -g status-right-length 60
 
-# Prefix indicator
 # NOTE: Tmux format (FORMAT in man page)
-# #{?condition,positive,negative} => show positive if condition, else negative
-# #{!=:left_hand_side,right_hand_side} => compare left to right
+#   #{?condition,positive,negative} => show positive if condition, else negative
+#   #{!=:left_hand_side,right_hand_side} => compare left to right
+
+# Prefix indicator
 set -g status-right '#{?#{!=:#{client_key_table},root},#[fg=cyan]<#{client_key_table}>,}'
 
 # Synchronized panes indicator
