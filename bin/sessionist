@@ -8,6 +8,6 @@ if [[ -z $session_path || -z $session_name ]]; then
   exit 1
 fi
 
-session_name=$(echo $session_name | tr '.' '_')
+session_name=$(echo "$session_name" | tr '.' '_')
 
 tmux has-session -t "$session_name" || tmux new-session -d -s "$session_name" -c "$session_path" && tmux switch-client -t "$session_name"

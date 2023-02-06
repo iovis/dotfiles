@@ -24,19 +24,6 @@ if [[ $OSTYPE == darwin* ]]; then
   alias airport="sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport"
   alias airportd="sudo /usr/libexec/airportd"
 
-  function fix_mosh_server() {
-    local fw='/usr/libexec/ApplicationFirewall/socketfilterfw'
-    local mosh_sym="$(which mosh-server)"
-    # local mosh_abs="$(greadlink -f $mosh_sym)"
-
-    sudo "$fw" --setglobalstate off
-    sudo "$fw" --add "$mosh_sym"
-    sudo "$fw" --unblockapp "$mosh_sym"
-    sudo "$fw" --add "$mosh_abs"
-    sudo "$fw" --unblockapp "$mosh_abs"
-    sudo "$fw" --setglobalstate on
-  }
-
   function upgrade_libraries() {
     brew update
     brew upgrade
