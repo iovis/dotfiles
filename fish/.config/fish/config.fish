@@ -1,3 +1,5 @@
+set -U fish_greeting # remove greeting message
+
 ## Environment
 set -Ux XDG_CONFIG_HOME $HOME/.config
 set -Ux XDG_DATA_HOME $XDG_CONFIG_HOME/.local/share
@@ -35,7 +37,6 @@ fish_add_path $HOME/.cargo/bin
 fish_add_path $HOME/.dotfiles/bin
 
 ## Interactive mode
-set -U fish_greeting # remove greeting message
 status is-interactive || exit
 
 ulimit -n 12288

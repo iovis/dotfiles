@@ -18,6 +18,7 @@ function M.config()
       "css",
       "diff", -- git diffs
       "dockerfile",
+      "fish",
       "git_rebase",
       "gitattributes",
       "gitcommit",
