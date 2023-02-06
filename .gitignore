@@ -1,5 +1,6 @@
 # fish
 fish/.config/fish/fish_variables
+fish/.config/fish/local/*
 
 # zsh
 *.zwc
