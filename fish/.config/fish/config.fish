@@ -57,7 +57,7 @@ fish_add_path $HOME/.dotfiles/bin
 ## Interactive mode
 status is-interactive || exit
 
-ulimit -n 12288
+ulimit -n 2048
 
 source "$FDOTDIR/abbrs.fish"
 
