@@ -4,7 +4,7 @@
 # Scripts in ~/.zshenv, otherwise skhd can't see them
 
 # Restart Yabai
-hyper - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+hyper - r : brew services restart yabai
 
 ##########################
 #  Application Launcher  #
