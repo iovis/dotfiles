@@ -28,16 +28,13 @@ set -g status-right-length 60
 set -g status-right '#{?#{!=:#{client_key_table},root},#[fg=cyan]<#{client_key_table}>,}'
 
 # Synchronized panes indicator
-set -ag status-right ' '
-set -ag status-right '#{?pane_synchronized,#[fg=blue]sync,}'
+set -ag status-right ' #{?pane_synchronized,#[fg=blue]sync,}'
 
 # CPU
-set -ag status-right ' '
-set -ag status-right '#{cpu_fg_color}#{cpu_percentage}#{cpu_icon}'
+set -ag status-right ' #{cpu_fg_color}#{cpu_percentage}#{cpu_icon}'
 
 # SSH session
-set -ag status-right ' '
-set -ag status-right '#{?#{SSH_CLIENT},#[fg=colour8]#(whoami)@#h,}'
+set -ag status-right ' #{?#{SSH_CLIENT},#[fg=colour8]#(whoami)@#h,}'
 
 ## Window
 set -g base-index 1
