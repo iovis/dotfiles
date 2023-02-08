@@ -1,6 +1,6 @@
 vim.cmd.compiler("cargo")
 
-vim.keymap.set("n", "c<cr>", "<cmd>Tux irust<cr>", { buffer = true })
+vim.keymap.set("n", "c<cr>", "<cmd>Tux! irust<cr>", { buffer = true })
 vim.keymap.set("n", "m<cr>", "<cmd>Tux cargo check --all-targets && clippy<cr>", { buffer = true })
 
 vim.keymap.set("n", "<leader>sn", "<cmd>TestNearest -strategy=rust_print<cr>", { buffer = true })
