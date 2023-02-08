@@ -86,7 +86,7 @@ return {
 
     -- vim.keymap.set("n", "+m", fzf_lua.marks, { desc = "fzf_lua.marks" })
     vim.keymap.set("n", "<c-p>", fzf_lua.commands, { desc = "fzf_lua.commands" })
-    vim.keymap.set("n", "<leader><leader>", fzf_lua.buffers, { desc = "fzf_lua.buffers" })
+    -- vim.keymap.set("n", "<leader><leader>", fzf_lua.buffers, { desc = "fzf_lua.buffers" })
     vim.keymap.set("n", "<leader>A", fzf_lua.filetypes, { desc = "fzf_lua.filetypes" })
     vim.keymap.set("n", "<leader>R", fzf_lua.tags, { desc = "fzf_lua.tags" })
     vim.keymap.set("n", "<leader>gH", fzf_lua.git_bcommits, { desc = "fzf_lua.git_bcommits" })
@@ -95,6 +95,8 @@ return {
     vim.keymap.set("n", "<leader>j", fzf_lua.git_status, { desc = "fzf_lua.git_status" })
     vim.keymap.set("n", "<leader>r", fzf_lua.btags, { desc = "fzf_lua.btags" })
     vim.keymap.set("n", "<leader>ñ", fzf_lua.blines, { desc = "fzf_lua.blines" })
+
+    vim.keymap.set("n", "gm", fzf_lua.buffers, { desc = "fzf_lua.buffers" })
 
     vim.keymap.set("n", "<m-f>", fzf_lua.resume, { desc = "fzf_lua.resume" })
     vim.keymap.set("n", "ƒ", fzf_lua.resume, { desc = "fzf_lua.resume" })
