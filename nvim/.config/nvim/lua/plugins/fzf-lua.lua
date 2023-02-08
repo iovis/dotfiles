@@ -5,12 +5,6 @@ return {
   dependencies = {
     "vijaymarupudi/nvim-fzf",
     "nvim-tree/nvim-web-devicons",
-    {
-      "junegunn/fzf",
-      build = function()
-        vim.fn["fzf#install"]()
-      end,
-    },
   },
   config = function()
     local fzf_lua = require("fzf-lua")
