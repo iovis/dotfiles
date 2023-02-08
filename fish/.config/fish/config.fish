@@ -28,10 +28,14 @@ if test -f /opt/homebrew/bin/brew
     set -gx HOMEBREW_PREFIX /opt/homebrew
     set -gx HOMEBREW_CELLAR /opt/homebrew/Cellar
     set -gx HOMEBREW_REPOSITORY /opt/homebrew
-    set -q PATH; or set PATH ''
-    set -gx PATH /opt/homebrew/bin /opt/homebrew/sbin $PATH
+
+    # set -q PATH; or set PATH ''
+    # set -gx PATH /opt/homebrew/bin /opt/homebrew/sbin $PATH
+    fish_add_path /opt/homebrew/bin /opt/homebrew/sbin
+
     set -q MANPATH; or set MANPATH ''
     set -gx MANPATH /opt/homebrew/share/man $MANPATH
+
     set -q INFOPATH; or set INFOPATH ''
     set -gx INFOPATH /opt/homebrew/share/info $INFOPATH
 else if test -f /usr/local/bin/brew
@@ -39,10 +43,14 @@ else if test -f /usr/local/bin/brew
     set -gx HOMEBREW_PREFIX /usr/local
     set -gx HOMEBREW_CELLAR /usr/local/Cellar
     set -gx HOMEBREW_REPOSITORY /usr/local/Homebrew
-    set -q PATH; or set PATH ''
-    set -gx PATH /usr/local/bin /usr/local/sbin $PATH
+
+    # set -q PATH; or set PATH ''
+    # set -gx PATH /usr/local/bin /usr/local/sbin $PATH
+    fish_add_path /usr/local/bin /usr/local/sbin
+
     set -q MANPATH; or set MANPATH ''
     set -gx MANPATH /usr/local/share/man $MANPATH
+
     set -q INFOPATH; or set INFOPATH ''
     set -gx INFOPATH /usr/local/share/info $INFOPATH
 end
