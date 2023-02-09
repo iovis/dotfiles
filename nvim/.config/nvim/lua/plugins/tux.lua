@@ -1,6 +1,6 @@
 return {
   "iovis/tux.vim",
-  cmd = { "Tux", "TuxBg" },
+  event = "VeryLazy",
   keys = {
     { "c<space>", ":Tux<space>" },
     { "y<space>", ":TuxBg<space>" },
