@@ -56,11 +56,11 @@ function M.config()
   vim.keymap.set("n", "<tab>", "<cmd>BufferLineCycleNext<cr>")
   vim.keymap.set("n", "<s-tab>", "<cmd>BufferLineCyclePrev<cr>")
 
-  -- for i = 1, 9 do
-  --   vim.keymap.set("n", "<leader>" .. i, function()
-  --     require("bufferline").go_to_buffer(i, true)
-  --   end, { desc = "Go to buffer " .. i })
-  -- end
+  for i = 1, 9 do
+    vim.keymap.set("n", "<leader>" .. i, function()
+      require("bufferline").go_to_buffer(i, true)
+    end, { desc = "Go to buffer " .. i })
+  end
 end
 
 return M
