@@ -2,46 +2,50 @@ local config_augroup = vim.api.nvim_create_augroup("user_config", { clear = true
 
 ---- Reload the file when changed from elsewhere
 vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
-  group = config_augroup,
-  command = "checktime",
   desc = "Refresh buffer if changes detected",
+  group = config_augroup,
+  command = "silent! checktime",
 })
 
 ---- Resize splits if window got resized
 vim.api.nvim_create_autocmd("VimResized", {
+  desc = "Resize splits on window resize",
   group = config_augroup,
   callback = function()
     vim.cmd("tabdo wincmd =")
   end,
-  desc = "Resize splits on window resize",
 })
 
 ---- Resize splits if window got resized
 vim.api.nvim_create_autocmd({ "FocusLost", "BufLeave" }, {
+  desc = "Autosave on focus lost",
   group = config_augroup,
   callback = function()
     vim.cmd("silent! wall")
   end,
-  desc = "Autosave on focus lost",
 })
 
 ---- Remove trailing whitespace on save
 vim.api.nvim_create_autocmd("BufWritePre", {
+  desc = "Clean trailing whitespace",
   group = config_augroup,
   callback = function()
     vim.cmd([[%s/\s\+$//e]])
   end,
-  desc = "Clean trailing whitespace",
 })
 
 ---- Go to last known position when open a buffer
 vim.api.nvim_create_autocmd("BufReadPost", {
+  desc = "Go to last known position of a buffer",
   group = config_augroup,
   callback = function()
-    -- Remove some filetypes
-    local filetype = vim.bo.filetype
+    local ignore_filetypes = {
+      "fugitive",
+      "git",
+      "gitcommit",
+    }
 
-    if filetype == "fugitive" or filetype == "git" or filetype == "gitcommit" then
+    if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
       return
     end
 
@@ -52,11 +56,11 @@ vim.api.nvim_create_autocmd("BufReadPost", {
       pcall(vim.api.nvim_win_set_cursor, 0, mark)
     end
   end,
-  desc = "Go to last known position of a buffer",
 })
 
 ---- Close some filetypes with [q]
 vim.api.nvim_create_autocmd("FileType", {
+  desc = "Close with [q]",
   group = config_augroup,
   pattern = {
     "fugitiveblame",
@@ -75,6 +79,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 ---- Highlight on yank
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+  desc = "Highlight on yank",
   group = config_augroup,
   pattern = "*",
   callback = function()
@@ -87,8 +92,9 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 
 ---- Auto create intermediate directories if they don't exist
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  pattern = "*",
+  desc = "Create intermediate directories if they don't exist",
   group = config_augroup,
+  pattern = "*",
   callback = function(ctx)
     local dir = vim.fn.fnamemodify(ctx.file, ":p:h")
     vim.fn.mkdir(dir, "p")
