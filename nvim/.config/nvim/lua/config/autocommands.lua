@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd("VimResized", {
   desc = "Resize splits on window resize",
   group = config_augroup,
   callback = function()
-    vim.cmd("tabdo wincmd =")
+    vim.cmd("wincmd =")
   end,
 })
 

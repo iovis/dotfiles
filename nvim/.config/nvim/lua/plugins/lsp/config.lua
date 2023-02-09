@@ -95,6 +95,7 @@ M.on_attach = function(client, bufnr)
     local group = vim.api.nvim_create_augroup("lsp_document_format", { clear = false })
 
     vim.api.nvim_create_autocmd("BufWritePre", {
+      desc = "Autoformat with LSP on save",
       vim.api.nvim_clear_autocmds({ group = group, buffer = bufnr }),
       group = group,
       buffer = bufnr,
@@ -103,7 +104,6 @@ M.on_attach = function(client, bufnr)
           vim.lsp.buf.format()
         end
       end,
-      desc = "Autoformat with LSP on save",
     })
   end
 
