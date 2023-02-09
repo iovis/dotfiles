@@ -1,7 +1,7 @@
 vim.keymap.set("n", "<Space>", "<Nop>")
 
 vim.keymap.set("n", "<leader>P", ":lua=")
-vim.keymap.set("n", "+T", "<c-w>T")
+vim.keymap.set("n", "+t", "<c-w>T")
 
 ---- Global substitutions
 vim.keymap.set({ "n", "x" }, "+g", ":g//<left>")
