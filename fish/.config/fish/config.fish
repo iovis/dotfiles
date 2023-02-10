@@ -73,5 +73,7 @@ for local_override in $FDOTDIR/local/*.fish
     source $local_override
 end
 
-# starship init fish | source
-starship init fish --print-full-init | source
+if command -q starship
+    # starship init fish | source
+    starship init fish --print-full-init | source
+end
