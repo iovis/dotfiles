@@ -44,8 +44,8 @@ M.on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
   ---- Signature/Definition
-  buf_imap("<m-h>", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
-  buf_imap("<m-k>", vim.lsp.buf.hover, "vim.lsp.buf.hover")
+  buf_imap("<m-h>", vim.lsp.buf.hover, "vim.lsp.buf.hover")
+  buf_imap("<m-k>", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
 
   buf_nmap("t", vim.lsp.buf.definition, "vim.lsp.buf.definition")
   buf_nmap("gd", vim.lsp.buf.hover, "vim.lsp.buf.hover")
