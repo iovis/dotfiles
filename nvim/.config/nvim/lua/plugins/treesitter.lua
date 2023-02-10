@@ -33,9 +33,10 @@ function M.config()
       "lua",
       "make",
       "markdown",
+      "markdown_inline",
       "php",
       "python",
-      "query", -- tree-sitter query language
+      "query", -- treesitter query language
       "regex",
       "ruby",
       "rust",
