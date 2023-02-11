@@ -174,37 +174,28 @@ function M.config()
   end
 
   local file_name_provider = function()
-    -- Get icon from file and extension
-    local filename = vim.api.nvim_buf_get_name(0)
-    filename = get_unique_filename(filename, true)
-
-    local extension = vim.fn.expand("%:e")
-    local icon = require("nvim-web-devicons").get_icon(filename, extension)
-
-    if icon then
-      return " " .. icon .. " " .. filename .. " "
-    end
-
-    -- Get icon from filetype
     local filetype = vim.bo.filetype
-    icon = require("nvim-web-devicons").get_icon_by_filetype(filetype)
 
-    if icon then
-      if filename == "" then
-        filename = "No Name"
-      end
-
-      return " " .. icon .. " " .. filename .. " "
-    end
-
-    -- Special cases
+    -- Special filetypes
     if filetype == "fugitive" or filetype == "git" then
       return "  git "
     elseif filetype == "qf" then
       return "  quickfix "
     end
 
-    return "  scratch "
+    local devicons = require("nvim-web-devicons")
+    local icon = devicons.get_icon_by_filetype(filetype) or ""
+    local no_file = "no name"
+    local filename = (vim.fn.expand("%") == "" and no_file) or vim.fn.expand("%:t")
+
+    -- if filename ~= no_file then
+    --   -- filename exists
+    --   local ft_icon = devicons.get_icon(filename)
+    --
+    --   icon = (ft_icon ~= nil and " " .. ft_icon) or ""
+    -- end
+
+    return " " .. icon .. " " .. filename .. " "
   end
 
   local file_name = {
