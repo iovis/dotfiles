@@ -5,7 +5,7 @@ return {
   priority = 1000,
   config = function()
     require("catppuccin").setup({
-      flavour = "mocha", -- latte, frappe, macchiato, mocha
+      flavour = "mocha",
       transparent_background = true,
       integrations = {
         cmp = true,
@@ -37,6 +37,7 @@ return {
       },
       custom_highlights = function(colors)
         return {
+          EndOfBuffer = {}, -- doesn't seem to work?
           MiniIndentscopeSymbol = { fg = colors.surface0 },
         }
       end,

@@ -14,6 +14,9 @@ require("lazy").setup("plugins", {
   dev = {
     path = "~/Sites/vim/",
   },
+  install = {
+    colorscheme = { "catppuccin" },
+  },
   -- diff = {
   --   cmd = "diffview.nvim",
   -- },
