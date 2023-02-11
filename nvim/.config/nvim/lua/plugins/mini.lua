@@ -91,6 +91,7 @@ return {
     vim.api.nvim_create_autocmd("FileType", {
       group = indent_augroup,
       pattern = {
+        "help",
         "lspsagafinder",
         "lspsagaoutline",
         "markdown",
