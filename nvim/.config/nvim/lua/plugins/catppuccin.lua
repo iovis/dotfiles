@@ -7,6 +7,9 @@ return {
     require("catppuccin").setup({
       flavour = "mocha",
       transparent_background = true,
+      dim_inactive = {
+        enabled = false,
+      },
       integrations = {
         cmp = true,
         gitsigns = true,
@@ -36,8 +39,22 @@ return {
         },
       },
       custom_highlights = function(colors)
+        -- lua=require("catppuccin.palettes").get_palette()
+        local none = "#181818"
+
         return {
-          EndOfBuffer = {}, -- doesn't seem to work?
+          -- general
+          EndOfBuffer = { fg = none },
+
+          -- fzf-lua
+          FzfLuaBorder = { fg = colors.blue },
+
+          -- lspsaga
+          CodeActionNumber = { fg = colors.teal },
+          CodeActionText = { fg = colors.blue },
+          LspSagaLightBulb = { fg = colors.yellow },
+
+          -- mini
           MiniIndentscopeSymbol = { fg = colors.surface0 },
         }
       end,
