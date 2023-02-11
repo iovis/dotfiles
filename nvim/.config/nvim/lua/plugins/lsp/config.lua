@@ -13,6 +13,21 @@ vim.keymap.set("n", "<leader>lp", "<cmd>Mason<cr>")
 ---- Floating window
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
+---- LSP Format
+local lsp_format = function()
+  vim.lsp.buf.format({
+    timeout_ms = 2000,
+    filter = function(client)
+      local dont_format_with = {
+        "sqls",
+        "sumneko_lua",
+      }
+
+      return not vim.tbl_contains(dont_format_with, client.name)
+    end,
+  })
+end
+
 ---- On LSP attached buffers
 M.on_attach = function(client, bufnr)
   local function buf_imap(lhs, rhs, desc)
@@ -75,13 +90,8 @@ M.on_attach = function(client, bufnr)
   -- })
 
   ---- Formatting
-  buf_nmap("<leader>b", function()
-    vim.lsp.buf.format({ timeout_ms = 2000 })
-  end, "vim.lsp.buf.format")
-
-  buf_xmap("<leader>b", function()
-    vim.lsp.buf.format({ timeout_ms = 2000 })
-  end, "vim.lsp.buf.format")
+  buf_nmap("<leader>b", lsp_format, "vim.lsp.buf.format")
+  buf_xmap("<leader>b", lsp_format, "vim.lsp.buf.format")
 
   -- Autoformat on save
   local autoformat_filetypes = {
@@ -101,7 +111,7 @@ M.on_attach = function(client, bufnr)
       buffer = bufnr,
       callback = function()
         if vim.g.autoformat then
-          vim.lsp.buf.format()
+          lsp_format()
         end
       end,
     })
@@ -188,12 +198,6 @@ M.on_attach = function(client, bufnr)
   --     callback = vim.lsp.buf.clear_references,
   --   })
   -- end
-
-  ---- Server Options
-  if vim.tbl_contains({ "sqls", "sumneko_lua" }, client.name) then
-    client.server_capabilities.document_formatting = false
-    client.server_capabilities.document_range_formatting = false
-  end
 end
 
 ---- Additional capabilities
