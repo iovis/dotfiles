@@ -35,6 +35,11 @@ return {
           },
         },
       },
+      custom_highlights = function(colors)
+        return {
+          MiniIndentscopeSymbol = { fg = colors.surface0 },
+        }
+      end,
     })
 
     -- setup must be called before loading
