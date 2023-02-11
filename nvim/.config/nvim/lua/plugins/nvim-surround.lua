@@ -34,8 +34,8 @@ function M.config()
   vim.keymap.set("n", [[<leader>"]], [[cs'"]], { remap = true })
   vim.keymap.set("n", [[<leader>']], [[cs"']], { remap = true })
 
-  local hi = require("config.highlights").hi
-  hi.NvimSurroundHighlightTextObject = "HighlightedYankRegion"
+  -- local hi = require("config.highlights").hi
+  -- hi.NvimSurroundHighlightTextObject = "HighlightedYankRegion"
 end
 
 return M

@@ -87,8 +87,9 @@ return {
     })
 
     local hi = require("config.highlights").hi
-    local colors = require("config.highlights").colors
-    hi.MiniIndentscopeSymbol = { fg = colors.gray1 }
+    -- local colors = require("config.highlights").colors
+    local c = require("catppuccin.palettes").get_palette()
+    hi.MiniIndentscopeSymbol = { fg = c.surface0 }
 
     -- Disable in filetypes
     local indent_augroup = vim.api.nvim_create_augroup("disable_indent_guides", { clear = true })

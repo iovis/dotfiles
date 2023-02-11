@@ -92,13 +92,13 @@ function M.config()
     },
   })
 
-  local hi = require("config.highlights").hi
-  local c = require("config.highlights").colors
-
-  hi.NeoTreeEndOfBuffer = { fg = c.black }
-  hi.NeoTreeStatusLine = { fg = c.black }
-  hi.NeoTreeStatusLineNC = {}
-  hi.NeoTreeWinSeparator = { fg = c.black }
+  -- local hi = require("config.highlights").hi
+  -- local c = require("config.highlights").colors
+  --
+  -- hi.NeoTreeEndOfBuffer = { fg = c.black }
+  -- hi.NeoTreeStatusLine = { fg = c.black }
+  -- hi.NeoTreeStatusLineNC = {}
+  -- hi.NeoTreeWinSeparator = { fg = c.black }
 end
 
 return M
