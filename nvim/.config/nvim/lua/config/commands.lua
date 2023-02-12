@@ -1,5 +1,43 @@
 local u = require("config.utils")
 
+---- Quick FtPlugin
+u.command("EditFtplugin", function(opts)
+  -- Filetype detection
+  local filetype = opts.args
+
+  if u.is_empty(opts.args) then
+    filetype = vim.bo.filetype
+  end
+
+  if u.is_empty(filetype) then
+    print("no filetype specified")
+    return
+  end
+
+  -- Open {filetype}.vim or {filetype}.lua
+  local path = string.format("$HOME/.config/nvim/after/ftplugin/%s", filetype)
+  local open_cmd = string.format("keepjumps e! %s", path)
+
+  if u.is_file(path .. ".vim") then
+    vim.cmd(open_cmd .. ".vim")
+  else
+    vim.cmd(open_cmd .. ".lua")
+  end
+end, { nargs = "?", complete = "filetype" })
+
+---- Redir Lua
+u.command("LuaRedir", function(ctx)
+  -- TODO: make more like 'Redir'
+  --   - Create a scratch buffer
+  --   - split vertically
+  --   - clean up '!' commands
+  local lines = vim.split(vim.api.nvim_exec(ctx.args, true), "\n", { plain = true })
+
+  vim.cmd("new")
+  vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+  vim.opt_local.modified = false
+end, { nargs = "+", complete = "command" })
+
 ---- Quick Tmux Session
 u.command("TmuxNewSession", function(opts)
   local command = [[fd -td --max-depth 2 . $HOME/Sites | fzf-tmux -p80%,80% --select-1 --exit-0 --reverse ]]
@@ -35,7 +73,7 @@ u.command("VimPlugin", function(opts)
   local plugins_path = vim.fn.stdpath("data") .. "/lazy/"
 
   local command =
-  string.format([[fd -td --max-depth 1 . %s | fzf-tmux -p80%%,80%% --select-1 --exit-0 --reverse]], plugins_path)
+    string.format([[fd -td --max-depth 1 . %s | fzf-tmux -p80%%,80%% --select-1 --exit-0 --reverse]], plugins_path)
 
   -- Add query if provided
   if not u.is_empty(opts.args) then

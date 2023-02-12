@@ -4,6 +4,7 @@ scriptencoding utf-8
 let g:mapleader = "\<Space>"
 
 lua <<EOF
+require("config.filetype")
 require("config.lazy")
 -- require("config.highlights").custom_highlights()
 
