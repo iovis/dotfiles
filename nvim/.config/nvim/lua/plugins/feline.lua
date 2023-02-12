@@ -2,6 +2,12 @@ return {
   "feline-nvim/feline.nvim",
   event = "VeryLazy",
   config = function()
+    -- local ctp_feline = require("catppuccin.groups.integrations.feline")
+    -- ctp_feline.setup({})
+    -- require("feline").setup({
+    --   components = ctp_feline.get(),
+    -- })
+
     local feline = require("feline")
     local lsp = require("feline.providers.lsp")
     local lsp_severity = vim.diagnostic.severity
@@ -73,7 +79,8 @@ return {
         str = icons.right,
         hl = {
           fg = colors.surface1,
-          bg = colors.surface0,
+          -- bg = colors.surface0, -- if dir_name
+          bg = "none",
         },
       },
     }
@@ -407,7 +414,7 @@ return {
     -- left
     add_table(left, main_icon)
     add_table(left, file_name)
-    add_table(left, dir_name)
+    -- add_table(left, dir_name)
     -- add_table(left, diff.add)
     -- add_table(left, diff.change)
     -- add_table(left, diff.remove)
@@ -439,6 +446,7 @@ return {
     feline.setup({
       theme = {
         bg = colors.base,
+        -- bg = "none",
       },
       components = {
         active = {

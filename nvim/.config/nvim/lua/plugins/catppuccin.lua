@@ -48,6 +48,7 @@ return {
           EndOfBuffer = { fg = none },
           StatusLine = { bg = colors.surface0 },
           StatusLineNC = { bg = colors.base },
+          -- TODO: CursorLine
 
           -- fzf-lua
           FzfLuaBorder = { fg = colors.blue },
