@@ -95,6 +95,7 @@ M.on_attach = function(client, bufnr)
 
   -- Autoformat on save
   local autoformat_filetypes = {
+    "c",
     "cpp",
     "lua",
     "rust",
