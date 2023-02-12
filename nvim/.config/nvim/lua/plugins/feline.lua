@@ -2,99 +2,35 @@ return {
   "feline-nvim/feline.nvim",
   event = "VeryLazy",
   config = function()
-    -- Stolen from:
-    -- https://github.com/NvChad/NvChad/blob/main/lua/plugins/configs/statusline.lua
     local feline = require("feline")
     local lsp = require("feline.providers.lsp")
     local lsp_severity = vim.diagnostic.severity
-
-    ---- Colors
-    -- Stolen from:
-    -- https://github.com/NvChad/base46/blob/master/lua/hl_themes/tomorrow_night.lua
-    --
-    -- TODO: translate to catppuccin
-    -- local c = require("catppuccin.palettes").get_palette()
-    --
-    local colors = {
-      white = "#C5C8C2",
-      black = "#1d1f21", -- nvim bg
-      one_bg = "#363a41",
-      one_bg2 = "#353b45",
-      grey = "#434547",
-      grey_fg2 = "#616875",
-      red = "#cc6666",
-      pink = "#ff9ca3",
-      green = "#a4b595",
-      nord_blue = "#728da8",
-      yellow = "#d7bd8d",
-      dark_purple = "#b290ac",
-      teal = "#8abdb6",
-      orange = "#DE935F",
-      cyan = "#70c0b1",
-      statusline_bg = "#212326",
-      lightbg = "#373B41",
-      lightbg2 = "#2D3035",
-    }
+    local colors = require("catppuccin.palettes").get_palette()
 
     ---- Icon Styles
-    local icon_styles = {
-      default = {
-        left = "",
-        right = " ",
-        main_icon = "  ",
-        vi_mode_icon = " ",
-        position_icon = " ",
-      },
-      arrow = {
-        left = "",
-        right = "",
-        main_icon = "  ",
-        vi_mode_icon = " ",
-        position_icon = " ",
-      },
-
-      block = {
-        left = " ",
-        right = " ",
-        main_icon = "   ",
-        vi_mode_icon = "  ",
-        position_icon = "  ",
-      },
-
-      round = {
-        left = "",
-        right = "",
-        main_icon = "  ",
-        vi_mode_icon = " ",
-        position_icon = " ",
-      },
-
-      slant = {
-        left = " ",
-        right = " ",
-        main_icon = "  ",
-        vi_mode_icon = " ",
-        position_icon = " ",
-      },
+    local icons = {
+      left = "",
+      right = "",
+      main_icon = "  ",
+      vi_mode_icon = " ",
+      position_icon = " ",
     }
-
-    local separator_style = icon_styles["round"]
 
     ---- Components
     -- Main icon
     local main_icon = {
-      provider = separator_style.main_icon,
+      provider = icons.main_icon,
 
       hl = {
-        fg = colors.statusline_bg,
-        bg = colors.nord_blue,
+        fg = colors.mantle,
+        bg = colors.lavender,
       },
 
       right_sep = {
-        str = separator_style.right,
+        str = icons.right,
         hl = {
-          fg = colors.nord_blue,
-          bg = colors.lightbg,
+          fg = colors.lavender,
+          bg = colors.surface1,
         },
       },
     }
@@ -129,13 +65,16 @@ return {
       provider = file_name_provider,
 
       hl = {
-        fg = colors.white,
-        bg = colors.lightbg,
+        fg = colors.text,
+        bg = colors.surface1,
       },
 
       right_sep = {
-        str = separator_style.right,
-        hl = { fg = colors.lightbg, bg = colors.lightbg2 },
+        str = icons.right,
+        hl = {
+          fg = colors.surface1,
+          bg = colors.surface0,
+        },
       },
     }
 
@@ -143,15 +82,15 @@ return {
       provider = file_name_provider,
 
       hl = {
-        fg = colors.grey_fg2,
-        bg = colors.lightbg2,
+        fg = colors.overlay0,
+        bg = colors.surface0,
       },
 
       right_sep = {
-        str = separator_style.right,
+        str = icons.right,
         hi = {
-          fg = colors.lightbg2,
-          bg = colors.statusline_bg,
+          fg = colors.surface0,
+          -- bg = "none",
         },
       },
     }
@@ -166,15 +105,15 @@ return {
       short_provider = " ",
 
       hl = {
-        fg = colors.grey_fg2,
-        bg = colors.lightbg2,
+        fg = colors.overlay0,
+        bg = colors.surface0,
       },
 
       right_sep = {
-        str = separator_style.right,
-        hi = {
-          fg = colors.lightbg2,
-          bg = colors.statusline_bg,
+        str = icons.right,
+        hl = {
+          fg = colors.surface0,
+          bg = "none",
         },
       },
     }
@@ -184,8 +123,8 @@ return {
       add = {
         provider = "git_diff_added",
         hl = {
-          fg = colors.grey_fg2,
-          bg = colors.statusline_bg,
+          fg = colors.overlay0,
+          bg = "none",
         },
         icon = "  ",
       },
@@ -193,8 +132,8 @@ return {
       change = {
         provider = "git_diff_changed",
         hl = {
-          fg = colors.grey_fg2,
-          bg = colors.statusline_bg,
+          fg = colors.overlay0,
+          bg = "none",
         },
         icon = "  ",
       },
@@ -202,23 +141,11 @@ return {
       remove = {
         provider = "git_diff_removed",
         hl = {
-          fg = colors.grey_fg2,
-          bg = colors.statusline_bg,
+          fg = colors.overlay0,
+          bg = "none",
         },
         icon = "  ",
       },
-    }
-
-    -- Git branch
-    local git_branch = {
-      provider = "git_branch",
-      short_provider = "",
-      priority = 5,
-      hl = {
-        fg = colors.grey_fg2,
-        bg = colors.statusline_bg,
-      },
-      icon = "  ",
     }
 
     -- Diagnostics
@@ -228,8 +155,10 @@ return {
         enabled = function()
           return lsp.diagnostics_exist(lsp_severity.ERROR)
         end,
-
-        hl = { fg = colors.red },
+        hl = {
+          fg = colors.red,
+          bg = "none",
+        },
         icon = "  ",
       },
 
@@ -238,7 +167,10 @@ return {
         enabled = function()
           return lsp.diagnostics_exist(lsp_severity.WARN)
         end,
-        hl = { fg = colors.yellow },
+        hl = {
+          fg = colors.yellow,
+          bg = "none",
+        },
         icon = "  ",
       },
 
@@ -247,7 +179,10 @@ return {
         enabled = function()
           return lsp.diagnostics_exist(lsp_severity.HINT)
         end,
-        hl = { fg = colors.grey_fg2 },
+        hl = {
+          fg = colors.teal,
+          bg = "none",
+        },
         icon = "  ",
       },
 
@@ -256,7 +191,10 @@ return {
         enabled = function()
           return lsp.diagnostics_exist(lsp_severity.INFO)
         end,
-        hl = { fg = colors.green },
+        hl = {
+          fg = colors.sky,
+          bg = "none",
+        },
         icon = "  ",
       },
     }
@@ -295,40 +233,58 @@ return {
         return ""
       end,
 
-      hl = { fg = colors.green },
+      hl = {
+        fg = colors.lavender,
+        bg = "none",
+      },
     }
 
     -- LSP icon
     local lsp_icon = {
       provider = function()
         if next(vim.lsp.get_active_clients()) ~= nil then
-          return "  LSP "
+          return " LSP "
         else
           return ""
         end
       end,
 
-      short_provider = " ",
+      short_provider = " ",
       priority = 1,
 
-      hl = { fg = colors.grey_fg2, bg = colors.statusline_bg },
+      hl = {
+        fg = colors.overlay0,
+        bg = "none",
+      },
+    }
+
+    -- Git branch
+    local git_branch = {
+      provider = "git_branch",
+      short_provider = "",
+      priority = 5,
+      hl = {
+        fg = colors.overlay0,
+        bg = "none",
+      },
+      icon = "  ",
     }
 
     -- Vim mode
     local mode_colors = {
       ["n"] = { "NORMAL", colors.red },
       ["no"] = { "N-PENDING", colors.red },
-      ["i"] = { "INSERT", colors.dark_purple },
-      ["ic"] = { "INSERT", colors.dark_purple },
+      ["i"] = { "INSERT", colors.mauve },
+      ["ic"] = { "INSERT", colors.mauve },
       ["t"] = { "TERMINAL", colors.green },
-      ["v"] = { "VISUAL", colors.cyan },
-      ["V"] = { "V-LINE", colors.cyan },
-      [""] = { "V-BLOCK", colors.cyan },
-      ["R"] = { "REPLACE", colors.orange },
-      ["Rv"] = { "V-REPLACE", colors.orange },
-      ["s"] = { "SELECT", colors.nord_blue },
-      ["S"] = { "S-LINE", colors.nord_blue },
-      ["s"] = { "S-BLOCK", colors.nord_blue },
+      ["v"] = { "VISUAL", colors.sapphire },
+      ["V"] = { "V-LINE", colors.sapphire },
+      [""] = { "V-BLOCK", colors.sapphire },
+      ["R"] = { "REPLACE", colors.peach },
+      ["Rv"] = { "V-REPLACE", colors.peach },
+      ["s"] = { "SELECT", colors.lavender },
+      ["S"] = { "S-LINE", colors.lavender },
+      ["s"] = { "S-BLOCK", colors.lavender },
       ["c"] = { "COMMAND", colors.pink },
       ["cv"] = { "COMMAND", colors.pink },
       ["ce"] = { "COMMAND", colors.pink },
@@ -341,34 +297,34 @@ return {
     local chad_mode_hl = function()
       return {
         fg = mode_colors[vim.fn.mode()][2],
-        bg = colors.one_bg,
+        bg = colors.surface0,
       }
     end
 
     local empty_space = {
-      provider = " " .. separator_style.left,
+      provider = " " .. icons.left,
       hl = {
-        fg = colors.one_bg2,
-        bg = colors.statusline_bg,
+        fg = colors.surface1,
+        bg = "none",
       },
     }
 
     -- this matches the vi mode color
     local empty_spaceColored = {
-      provider = separator_style.left,
+      provider = icons.left,
       hl = function()
         return {
           fg = mode_colors[vim.fn.mode()][2],
-          bg = colors.one_bg2,
+          bg = colors.surface1,
         }
       end,
     }
 
     local mode_icon = {
-      provider = separator_style.vi_mode_icon,
+      provider = icons.vi_mode_icon,
       hl = function()
         return {
-          fg = colors.statusline_bg,
+          fg = colors.mantle,
           bg = mode_colors[vim.fn.mode()][2],
         }
       end,
@@ -384,35 +340,35 @@ return {
     }
 
     local separator_right = {
-      provider = separator_style.left,
+      provider = icons.left,
       hl = {
-        fg = colors.grey,
-        bg = colors.one_bg,
+        fg = colors.surface1,
+        bg = colors.surface0,
       },
     }
 
     local separator_right2 = {
-      provider = separator_style.left,
+      provider = icons.left,
       hl = {
-        fg = colors.green,
-        bg = colors.grey,
+        fg = colors.teal,
+        bg = colors.surface1,
       },
     }
 
     local separator_right3 = {
-      provider = "   " .. separator_style.left,
+      provider = "   " .. icons.left,
       hl = {
-        fg = colors.lightbg2,
-        bg = colors.statusline_bg,
+        fg = colors.surface0,
+        -- bg = "none",
       },
     }
 
     -- Position
     local position_icon = {
-      provider = separator_style.position_icon,
+      provider = icons.position_icon,
       hl = {
-        fg = colors.black,
-        bg = colors.green,
+        fg = colors.mantle,
+        bg = colors.teal,
       },
     }
 
@@ -433,8 +389,8 @@ return {
       end,
 
       hl = {
-        fg = colors.green,
-        bg = colors.one_bg,
+        fg = colors.teal,
+        bg = colors.surface0,
       },
     }
 
@@ -452,9 +408,9 @@ return {
     add_table(left, main_icon)
     add_table(left, file_name)
     add_table(left, dir_name)
-    add_table(left, diff.add)
-    add_table(left, diff.change)
-    add_table(left, diff.remove)
+    -- add_table(left, diff.add)
+    -- add_table(left, diff.change)
+    -- add_table(left, diff.remove)
     add_table(left, diagnostic.error)
     add_table(left, diagnostic.warning)
     add_table(left, diagnostic.hint)
@@ -482,8 +438,7 @@ return {
     ---- Setup
     feline.setup({
       theme = {
-        bg = colors.statusline_bg,
-        fg = colors.fg,
+        bg = colors.base,
       },
       components = {
         active = {

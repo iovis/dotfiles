@@ -46,6 +46,8 @@ return {
         return {
           -- general
           EndOfBuffer = { fg = none },
+          StatusLine = { bg = colors.surface0 },
+          StatusLineNC = { bg = colors.base },
 
           -- fzf-lua
           FzfLuaBorder = { fg = colors.blue },
@@ -57,6 +59,10 @@ return {
 
           -- mini
           MiniIndentscopeSymbol = { fg = colors.surface0 },
+
+          -- neotree
+          NeoTreeStatusLine = { bg = none },
+          NeoTreeStatusLineNC = { bg = none },
         }
       end,
     })
