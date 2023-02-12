@@ -141,7 +141,7 @@ M.on_attach = function(client, bufnr)
   if ok_lspsaga then
     ---- definition
     buf_nmap("gd", "<cmd>Lspsaga hover_doc<cr>")
-    buf_imap("<m-k>", "<cmd>Lspsaga hover_doc<cr>")
+    buf_imap("<m-h>", "<cmd>Lspsaga hover_doc<cr>")
 
     buf_nmap("T", "<cmd>Lspsaga lsp_finder<cr>")
     buf_nmap("<leader>lf", "<cmd>Lspsaga peek_definition<cr>")
