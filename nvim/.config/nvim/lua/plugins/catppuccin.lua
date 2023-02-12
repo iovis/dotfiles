@@ -48,7 +48,7 @@ return {
           EndOfBuffer = { fg = none },
           StatusLine = { bg = colors.surface0 },
           StatusLineNC = { bg = colors.base },
-          -- TODO: CursorLine
+          CursorLine = { bg = colors.base },
 
           -- fzf-lua
           FzfLuaBorder = { fg = colors.blue },
@@ -64,6 +64,9 @@ return {
           -- neotree
           NeoTreeStatusLine = { bg = none },
           NeoTreeStatusLineNC = { bg = none },
+
+          -- treesitter
+          TreesitterContext = { bg = colors.base, bold = true },
         }
       end,
     })
