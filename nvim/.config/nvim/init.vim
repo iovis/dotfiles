@@ -136,13 +136,13 @@ inoremap (,<cr> (<cr>),<esc>O
 inoremap [,<cr> [<cr>],<esc>O
 inoremap {,<cr> {<cr>},<esc>O
 
-inoremap (<space> (<space><space>)<left><left>
+inoremap (<space> ()<left>
 inoremap [<space> [<space><space>]<left><left>
 inoremap {<space> {<space><space>}<left><left>
 
-inoremap (,<space> (<space><space>),<left><left>
-inoremap [,<space> [<space><space>],<left><left>
-inoremap {,<space> {<space><space>},<left><left>
+inoremap (,<space> (),<left><left>
+inoremap [,<space> [<space><space>],<left><left><left>
+inoremap {,<space> {<space><space>},<left><left><left>
 
 " Jump to next match with TAB during a search
 set wildcharm=<c-z>
