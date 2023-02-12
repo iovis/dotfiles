@@ -93,9 +93,11 @@ return {
       pattern = {
         "fzf",
         "help",
+        "lazy",
         "lspsagafinder",
         "lspsagaoutline",
         "markdown",
+        "mason",
         "sagacodeaction",
       },
       callback = function()
