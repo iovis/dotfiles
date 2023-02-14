@@ -1,12 +1,22 @@
 return {
   "feline-nvim/feline.nvim",
   event = "VeryLazy",
+  init = function()
+    if vim.g.full_catppuccin then
+      vim.o.laststatus = 3
+    end
+  end,
   config = function()
-    -- local ctp_feline = require("catppuccin.groups.integrations.feline")
-    -- ctp_feline.setup({})
-    -- require("feline").setup({
-    --   components = ctp_feline.get(),
-    -- })
+    if false then
+      local ctp_feline = require("catppuccin.groups.integrations.feline")
+      ctp_feline.setup({})
+
+      require("feline").setup({
+        components = ctp_feline.get(),
+      })
+
+      return
+    end
 
     local feline = require("feline")
     local lsp = require("feline.providers.lsp")
@@ -456,9 +466,26 @@ return {
 
     --- Inactive
     local left_inactive = {}
-    add_table(left_inactive, left_separator_file_inactive)
-    add_table(left_inactive, file_name_inactive)
-    add_table(left_inactive, right_separator_file_inactive)
+
+    if not vim.g.full_catppuccin then
+      add_table(left_inactive, left_separator_file_inactive)
+      add_table(left_inactive, file_name_inactive)
+      add_table(left_inactive, right_separator_file_inactive)
+    end
+
+    --- Disable Filetypes
+    local disable_filetypes = {}
+
+    if not vim.g.full_catppuccin then
+      disable_filetypes = {
+        filetypes = {
+          "^NvimTree$",
+          "^neo%-tree$",
+          "^dapui_.*",
+          "^dap-repl$",
+        },
+      }
+    end
 
     ---- Setup
     feline.setup({
@@ -476,14 +503,7 @@ return {
           left_inactive,
         },
       },
-      disable = {
-        filetypes = {
-          "^NvimTree$",
-          "^neo%-tree$",
-          "^dapui_.*",
-          "^dap-repl$",
-        },
-      },
+      disable = disable_filetypes,
       force_inactive = {
         filetypes = {
           "^NvimTree$",

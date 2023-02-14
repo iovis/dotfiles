@@ -6,8 +6,8 @@ return {
         enable = false,
       },
       diagnostic = {
-        custom_fix = "Fix",
-        custom_msg = "Diagnostics",
+        custom_msg = "■ Diagnostics",
+        custom_fix = " Fix",
         keys = {
           exec_action = "<cr>",
         },
@@ -30,8 +30,8 @@ return {
         border = "rounded",
         code_action = "",
         -- catppuccin
-        colors = require("catppuccin.groups.integrations.lsp_saga").custom_colors(),
-        kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
+        -- colors = require("catppuccin.groups.integrations.lsp_saga").custom_colors(),
+        -- kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
       },
     })
 

@@ -7,7 +7,7 @@ return {
   config = function()
     require("catppuccin").setup({
       flavour = "mocha",
-      transparent_background = true,
+      transparent_background = not vim.g.full_catppuccin,
       dim_inactive = {
         enabled = false,
       },
@@ -42,16 +42,12 @@ return {
       -- NOTE: May need to re-compile after changing
       custom_highlights = function(colors)
         -- lua=require("catppuccin.palettes").get_palette()
-        local none = "#181818"
 
-        return {
+        local custom_highlights = {
           -- general
-          EndOfBuffer = { fg = none },
-          StatusLine = { bg = colors.surface0 },
-          StatusLineNC = { bg = none },
-          CursorLine = { bg = "#1e1e1e" },
+          StatusLine = { bg = colors.base },
 
-          -- fzf-lua
+          -- fzf-lua (pane color controlled in fish)
           FzfLuaBorder = { fg = colors.blue },
 
           -- lspsaga
@@ -62,14 +58,28 @@ return {
 
           -- mini
           MiniIndentscopeSymbol = { fg = colors.surface0 },
-
-          -- neotree
-          NeoTreeStatusLine = { bg = none },
-          NeoTreeStatusLineNC = { bg = none },
-
-          -- treesitter
-          TreesitterContext = { bg = colors.base, bold = true },
         }
+
+        if not vim.g.full_catppuccin then
+          local none = "#181818"
+
+          custom_highlights = vim.tbl_extend("force", custom_highlights, {
+            -- general
+            EndOfBuffer = { fg = none },
+            StatusLine = { bg = colors.surface0 },
+            StatusLineNC = { bg = none },
+            CursorLine = { bg = "#1e1e1e" },
+
+            -- neotree
+            NeoTreeStatusLine = { bg = none },
+            NeoTreeStatusLineNC = { bg = none },
+
+            -- treesitter
+            TreesitterContext = { bg = "#1e1e1e", bold = true },
+          })
+        end
+
+        return custom_highlights
       end,
     })
 

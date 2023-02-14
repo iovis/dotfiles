@@ -4,9 +4,10 @@ scriptencoding utf-8
 let g:mapleader = "\<Space>"
 
 lua <<EOF
+vim.g.full_catppuccin = true
+
 require("config.filetype")
 require("config.lazy")
--- require("config.highlights").custom_highlights()
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",
@@ -37,7 +38,7 @@ set hidden
 set ignorecase
 set inccommand=split
 set incsearch
-set laststatus=2 " statusline mode
+" set laststatus=2 " statusline mode
 set lazyredraw  " Try to not draw while doing macros (helps with scrolling performance)
 set linespace=2
 set listchars=tab:>-,trail:-,nbsp:+,eol:$
