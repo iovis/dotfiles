@@ -58,3 +58,5 @@
   side-by-side = false
   line-numbers = true
   syntax-theme = base16
+[init]
+	defaultBranch = master
