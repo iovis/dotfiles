@@ -24,3 +24,14 @@ vim.keymap.set("n", "<leader>B", function()
     print("Autoformat enabled")
   end
 end, { desc = "Toggle autoformat" })
+
+---- Toggle autotest
+vim.keymap.set("n", "+T", function()
+  if vim.g.autotest then
+    vim.g.autotest = false
+    print("Autotest disabled")
+  else
+    vim.g.autotest = true
+    print("Autotest enabled")
+  end
+end, { desc = "Toggle autotest" })

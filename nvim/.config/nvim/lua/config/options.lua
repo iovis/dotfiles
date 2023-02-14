@@ -1,4 +1,5 @@
 vim.g.autoformat = true
+vim.g.autotest = true
 
 ---- disable legacy providers
 vim.g.loaded_perl_provider = 0
