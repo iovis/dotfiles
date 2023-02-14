@@ -96,7 +96,12 @@ local run_rspec = function()
         return
       end
 
-      local json = vim.json.decode(data[1])
+      local ok, json = pcall(vim.json.decode, data[1])
+
+      if not ok then
+        vim.notify("Error parsing the RSpec output", vim.log.levels.ERROR)
+        return
+      end
 
       for _, example in ipairs(json.examples) do
         -- example.status = passed|failed|pending
