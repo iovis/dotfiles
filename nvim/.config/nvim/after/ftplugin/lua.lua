@@ -6,16 +6,14 @@ end, { buffer = true, desc = "Source file" })
 vim.keymap.set("x", "<leader>so", ":source<cr>", { buffer = true, desc = "Evaluate lua range" })
 
 ---- Re-source `config()` for the current plugin
--- if string.match(vim.fn.expand("%"), "plugins/") then
---   vim.keymap.set("n", "<leader>sr", function()
---     -- Get the name of the current buffer's file
---     local filename = vim.api.nvim_buf_get_name(0)
---     local base_name = string.match(filename, "([^/\\]+)%.[^.]+$")
---     local name = "plugins." .. base_name
---
---     -- Require the plugin and run its config function
---     require(name).config()
---
---     print(string.format("Reloaded %s", name))
---   end, { buffer = true })
--- end
+if string.match(vim.fn.expand("%"), "plugins/") then
+  vim.keymap.set("n", "<leader>sr", function()
+    -- Get the name of the current buffer's file
+    local plugin = "plugins." .. vim.fn.expand("%:t:r")
+
+    -- Require the plugin and run its config function
+    require(plugin).config()
+
+    print(string.format("Reloaded %s", plugin))
+  end, { buffer = true })
+end
