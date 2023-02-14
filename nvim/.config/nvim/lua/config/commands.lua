@@ -25,17 +25,20 @@ u.command("EditFtplugin", function(opts)
   end
 end, { nargs = "?", complete = "filetype" })
 
----- Redir Lua
-u.command("LuaRedir", function(ctx)
-  -- TODO: make more like 'Redir'
-  --   - Create a scratch buffer
-  --   - split vertically
-  --   - clean up '!' commands
-  local lines = vim.split(vim.api.nvim_exec(ctx.args, true), "\n", { plain = true })
+---- Redir
+u.command("R", function(ctx)
+  -- Run command
+  local lines = vim.split(vim.api.nvim_exec(ctx.args, true), "\r?\n", {})
 
-  vim.cmd("new")
+  -- Create new scratch buffer
+  vim.cmd.vnew()
+  vim.bo.bufhidden = "wipe"
+  vim.bo.buflisted = false
+  vim.bo.buftype = "nofile"
+  vim.bo.filetype = "redir"
+
+  -- Write the result to the buffer
   vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
-  vim.opt_local.modified = false
 end, { nargs = "+", complete = "command" })
 
 ---- Quick Tmux Session
@@ -93,12 +96,12 @@ u.command("VimPlugin", function(opts)
 end, { nargs = "?" })
 
 ----Reload Highlights
-u.command("ReloadHighlights", function()
-  -- Not sure why I have to reload the package for the function to run
-  package.loaded["config.highlights"] = nil
-  require("config.highlights").custom_highlights()
-end)
-
+-- u.command("ReloadHighlights", function()
+--   -- Not sure why I have to reload the package for the function to run
+--   package.loaded["config.highlights"] = nil
+--   require("config.highlights").custom_highlights()
+-- end)
+--
 -- u.command("ReloadPlugins", function()
 --   for name, _ in pairs(package.loaded) do
 --     if name:match("^plugins") then
