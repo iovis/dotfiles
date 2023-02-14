@@ -56,6 +56,7 @@ return {
           -- lspsaga
           CodeActionNumber = { fg = colors.teal },
           CodeActionText = { fg = colors.blue },
+          DiagnosticSource = { link = "Comment" },
           LspSagaLightBulb = { fg = colors.yellow },
 
           -- mini

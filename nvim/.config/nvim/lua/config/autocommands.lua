@@ -68,6 +68,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "lspsagaoutline",
     "man",
     "qf",
+    "rspec",
     "startuptime",
     "tsplayground",
   },

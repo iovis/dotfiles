@@ -46,10 +46,43 @@ local run_rspec = function()
     return
   end
 
-  local state = {
-    failed_tests = {},
-  }
+  local failed_tests = {}
 
+  -- Create buffer local command to show rspec failure
+  vim.api.nvim_buf_create_user_command(bufnr, "RspecOutput", function()
+    local line = vim.fn.line(".")
+
+    for _, test in ipairs(failed_tests) do
+      if test.line_number == line then
+        vim.cmd("10new")
+
+        vim.bo.bufhidden = "wipe"
+        vim.bo.buflisted = false
+        vim.bo.buftype = "nofile"
+        vim.bo.filetype = "rspec"
+
+        vim.api.nvim_buf_set_lines(
+          vim.api.nvim_get_current_buf(),
+          0,
+          -1,
+          false,
+          vim.tbl_flatten({
+            test.full_description,
+            "",
+            vim.fn.split(test.exception.message, "\n"),
+          })
+        )
+
+        return
+      end
+    end
+
+    print("No RSpec output for this line")
+  end, {})
+
+  vim.keymap.set("n", "+R", ":RspecOutput<cr>", { buffer = true })
+
+  -- Run rspec
   vim.fn.jobstart({
     -- "spring",
     "rspec",
@@ -74,7 +107,7 @@ local run_rspec = function()
             },
           })
         elseif example.status == "failed" then
-          table.insert(state.failed_tests, example)
+          table.insert(failed_tests, example)
 
           vim.api.nvim_buf_set_extmark(bufnr, ns, example.line_number - 1, 0, {
             virt_text = {
@@ -82,8 +115,6 @@ local run_rspec = function()
             },
           })
         elseif example.status == "pending" then
-          table.insert(state.failed_tests, example)
-
           vim.api.nvim_buf_set_extmark(bufnr, ns, example.line_number - 1, 0, {
             virt_text = {
               { "■ pending", "DiagnosticVirtualTextWarn" },
@@ -95,7 +126,7 @@ local run_rspec = function()
     on_exit = function()
       local failed = {}
 
-      for _, test in ipairs(state.failed_tests) do
+      for _, test in ipairs(failed_tests) do
         table.insert(failed, {
           bufnr = bufnr,
           lnum = test.line_number - 1,
