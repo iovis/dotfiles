@@ -39,6 +39,7 @@ return {
           },
         },
       },
+      -- NOTE: May need to re-compile after changing
       custom_highlights = function(colors)
         -- lua=require("catppuccin.palettes").get_palette()
         local none = "#181818"
@@ -48,7 +49,7 @@ return {
           EndOfBuffer = { fg = none },
           StatusLine = { bg = colors.surface0 },
           StatusLineNC = { bg = colors.base },
-          CursorLine = { bg = colors.base },
+          CursorLine = { bg = "#1e1e1e" },
 
           -- fzf-lua
           FzfLuaBorder = { fg = colors.blue },
