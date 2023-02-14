@@ -89,14 +89,16 @@ return {
       provider = file_name_provider,
 
       hl = {
-        fg = colors.overlay0,
-        bg = colors.surface0,
+        fg = colors.text,
+        bg = colors.surface1,
+        -- fg = colors.overlay0,
+        -- bg = colors.surface1,
       },
 
       right_sep = {
         str = icons.right,
         hi = {
-          fg = colors.surface0,
+          fg = colors.surface1,
           -- bg = "none",
         },
       },
@@ -362,10 +364,25 @@ return {
       },
     }
 
-    local separator_right3 = {
-      provider = "   " .. icons.left,
+    local left_separator_file_inactive = {
+      provider = "───" .. icons.left,
+      -- priority = 1,
       hl = {
-        fg = colors.surface0,
+        fg = colors.surface1,
+        -- bg = "none",
+      },
+    }
+
+    local right_separator_file_inactive = {
+      provider = function()
+        local window_width = vim.api.nvim_win_get_width(0)
+        local file_width = #file_name_provider()
+
+        return string.rep("─", window_width - file_width - 3)
+      end,
+
+      hl = {
+        fg = colors.surface1,
         -- bg = "none",
       },
     }
@@ -439,13 +456,14 @@ return {
 
     --- Inactive
     local left_inactive = {}
-    add_table(left_inactive, separator_right3)
+    add_table(left_inactive, left_separator_file_inactive)
     add_table(left_inactive, file_name_inactive)
+    add_table(left_inactive, right_separator_file_inactive)
 
     ---- Setup
     feline.setup({
       theme = {
-        bg = colors.base,
+        bg = "none",
         -- bg = "none",
       },
       components = {

@@ -48,7 +48,7 @@ return {
           -- general
           EndOfBuffer = { fg = none },
           StatusLine = { bg = colors.surface0 },
-          StatusLineNC = { bg = colors.base },
+          StatusLineNC = { bg = none },
           CursorLine = { bg = "#1e1e1e" },
 
           -- fzf-lua
