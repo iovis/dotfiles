@@ -1,5 +1,6 @@
 return {
   "rrethy/nvim-base16",
+  enabled = false,
   lazy = false,
   priority = 1000,
   config = function()

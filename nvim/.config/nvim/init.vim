@@ -4,8 +4,9 @@ scriptencoding utf-8
 let g:mapleader = "\<Space>"
 
 lua <<EOF
+require("config.filetype")
 require("config.lazy")
-require("config.highlights").custom_highlights()
+-- require("config.highlights").custom_highlights()
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",
@@ -128,21 +129,21 @@ inoremap Kj <Esc>
 inoremap ,, <c-o>A,
 inoremap ;; <c-o>A;
 
-inoremap (<cr> (<cr>)<esc>O
-inoremap [<cr> [<cr>]<esc>O
-inoremap {<cr> {<cr>}<esc>O
-
-inoremap (,<cr> (<cr>),<esc>O
-inoremap [,<cr> [<cr>],<esc>O
-inoremap {,<cr> {<cr>},<esc>O
-
-inoremap (<space> (<space><space>)<left><left>
-inoremap [<space> [<space><space>]<left><left>
-inoremap {<space> {<space><space>}<left><left>
-
-inoremap (,<space> (<space><space>),<left><left>
-inoremap [,<space> [<space><space>],<left><left>
-inoremap {,<space> {<space><space>},<left><left>
+" inoremap (<cr> (<cr>)<esc>O
+" inoremap [<cr> [<cr>]<esc>O
+" inoremap {<cr> {<cr>}<esc>O
+"
+" inoremap (,<cr> (<cr>),<esc>O
+" inoremap [,<cr> [<cr>],<esc>O
+" inoremap {,<cr> {<cr>},<esc>O
+"
+" inoremap (<space> ()<left>
+" inoremap [<space> [<space><space>]<left><left>
+" inoremap {<space> {<space><space>}<left><left>
+"
+" inoremap (,<space> (),<left><left>
+" inoremap [,<space> [<space><space>],<left><left><left>
+" inoremap {,<space> {<space><space>},<left><left><left>
 
 " Jump to next match with TAB during a search
 set wildcharm=<c-z>
@@ -192,6 +193,7 @@ nnoremap <silent> <leader><down>  :cnfile<cr>
 nnoremap <silent> <leader><left>  :lpfile<cr>
 nnoremap <silent> <leader><right> :lnfile<cr>
 nnoremap <silent> <leader><up>    :cpfile<cr>
+nnoremap <silent> <leader>0 <c-w>=
 nnoremap <silent> <leader>= <c-w>=
 nnoremap <silent> <leader>C :tabclose<cr>
 nnoremap <silent> <leader>Q :%bdelete\|e#\|bd#<cr>
@@ -209,6 +211,7 @@ nnoremap <silent> g2 :set shiftwidth=2 softtabstop=2 expandtab \| retab<cr>gg=G
 nnoremap <silent> g4 :set shiftwidth=4 softtabstop=4 expandtab \| retab<cr>gg=G
 nnoremap & g&
 nnoremap +c :cd %:p:h<cr>
+nnoremap +Q :tabonly<cr>
 nnoremap M <c-w>o
 nnoremap Y y$
 

@@ -1,6 +1,6 @@
 return {
   "windwp/nvim-autopairs",
-  enabled = false,
+  -- enabled = false,
   event = "VeryLazy",
   opts = {
     check_ts = true,

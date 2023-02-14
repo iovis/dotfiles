@@ -1,8 +1,7 @@
 ## Main
 # main
 # snippet main
-# 	int main(int argc, char *argv[])
-# 	{
+# 	int main(int argc, char *argv[]) {
 # 		${0}
 # 	}
 
@@ -13,9 +12,9 @@ snippet inc
 	#include <${1:stdio}.h>
 	$0
 # #include "..."
-snippet Inc
-	#include "${1:`vim_snippets#Filename("$1.h")`}"
-	$0
+# snippet Inc
+# 	#include "${1:`vim_snippets#Filename("$1.h")`}"
+# 	$0
 # ifndef...define...endif
 snippet ndef
 	#ifndef $1
@@ -34,15 +33,6 @@ snippet #if
 	#if ${1:FOO}
 		${0:${VISUAL}}
 	#endif
-# header include guard
-snippet once
-	#ifndef ${1:`toupper(vim_snippets#Filename('$1_H', 'UNTITLED_H'))`}
-
-	#define $1
-
-	${0}
-
-	#endif /* end of include guard: $1 */
 # Disable C++ name mangling in C headers
 snippet nocxx
 	#ifdef __cplusplus
@@ -92,13 +82,6 @@ snippet switch
 		default:
 			${6}
 	}
-# switch without default
-snippet switchndef
-	switch (${1:/* variable */}) {
-		case ${2:/* variable case */}:
-			${3}
-			${4:break;}${5}
-	}
 # case
 snippet case
 	case ${1:/* variable case */}:
@@ -114,11 +97,6 @@ snippet ex
 snippet for
 	for (int ${2:i} = 0; $2 < ${1:count}; $2${3:++}) {
 		${4}
-	}
-# for (custom)
-snippet forr
-	for (int ${1:i} = ${2:0}; ${3:$1 < 10}; $1${4:++}) {
-		${5}
 	}
 # while
 snippet wh
@@ -138,87 +116,8 @@ snippet do
 ## Functions
 # function definition
 snippet fun
-	${1:void} ${2:function_name}(${3})
-	{
+	${1:void} ${2:function_name}(${3}) {
 		${4}
-	}
-# function definition with zero parameters
-snippet fun0
-	${1:void} ${2:function_name}()
-	{
-		${3}
-	}
-# function definition with Doxygen documentation
-snippet dfun0
-	/*! \brief ${1:Brief function description here}
-	 *
-	 *  ${2:Detailed description of the function}
-	 *
-	 * \return ${3:Return parameter description}
-	 */
-	${4:void} ${5:function_name}()
-	{
-		${6}
-	}
-# function definition with one parameter
-snippet fun1
-	${1:void} ${2:function_name}(${3:Type} ${4:Parameter})
-	{
-		${5}
-	}
-# function definition with one parameter with  Doxygen documentation
-snippet dfun1
-	/*! \brief ${1:Brief function description here}
-	 *
-	 *  ${2:Detailed description of the function}
-	 *
-	 * \param $3 ${4:Parameter description}
-	 * \return ${5:Return parameter description}
-	 */
-	${6:void} ${7:function_name}(${8:Type} ${3:Parameter})
-	{
-		${9}
-	}
-# function definition with two parameters
-snippet fun2
-	${1:void} ${2:function_name}(${3:Type} ${4:Parameter}, ${5:Type} ${6:Parameter})
-	{
-		${7}
-	}
-# function definition with two parameters with  Doxygen documentation
-snippet dfun2
-	/*! \brief ${1:Brief function description here}
-	 *
-	 *  ${2:Detailed description of the function}
-	 *
-	 * \param $3 ${4:Parameter description}
-	 * \param $5 ${6:Parameter description}
-	 * \return ${7:Return parameter description}
-	 */
-	${8:void} ${9:function_name}(${10:Type} ${3:Parameter}, ${11:Type} ${5:Parameter})
-	{
-		${12}
-	}
-# function definition with three parameters
-snippet fun3
-	${1:void} ${2:function_name}(${3:Type} ${4:Parameter}, ${5:Type} ${6:Parameter}, ${7:Type} ${8:Parameter})
-	{
-		${9}
-	}
-# function definition with three parameters with  Doxygen documentation
-snippet dfun3
-	/*! \brief ${1:Brief function description here}
-	 *
-	 *  ${2:Detailed description of the function}
-	 *
-	 * \param $3 ${4:Parameter description}
-	 * \param $5 ${6:Parameter description}
-	 * \param $7 ${8:Parameter description}
-	 * \return ${9:Return parameter description}
-	 */
-	${10:void} ${11:function_name}(${12:Type} ${3:Parameter}, ${13:Type} ${5:Parameter}, ${14:Type} ${7:Parameter})
-	{
-		${15}
 	}
 # function declaration
 snippet fund
@@ -370,20 +269,7 @@ snippet clcd
 snippet fre
 	free(${1:ptr});
 
-##
-# TODO section
-snippet todo
-	/*! TODO: ${1:Todo description here}
-	 *  \todo $1
-	 */
 ## Miscellaneous
 # This is kind of convenient
 snippet .
 	[${1}]
-
-snippet asm
-	__asm__ __volatile__(
-	"${0}\n\t"
-	:
-	:
-	);

@@ -110,31 +110,31 @@ function M.config()
   })
 
   ---- Colors
-  local hi = require("config.highlights").hi
-  local c = require("config.highlights").colors
-
-  hi.CmpItemAbbr = { fg = c.gray5 }
-
-  -- gray
-  hi.CmpItemAbbrDeprecated = { fg = c.gray3, strikethrough = true }
-
-  -- blue
-  hi.CmpItemAbbrMatch = { fg = c.blue }
-  hi.CmpItemAbbrMatchFuzzy = { fg = c.blue }
-
-  -- light blue
-  hi.CmpItemKindVariable = { fg = c.cyan }
-  hi.CmpItemKindInterface = { fg = c.cyan }
-  hi.CmpItemKindText = { fg = c.cyan }
-
-  -- pink
-  hi.CmpItemKindFunction = { fg = c.magenta }
-  hi.CmpItemKindMethod = { fg = c.magenta }
-
-  -- front
-  hi.CmpItemKindKeyword = { fg = c.gray5 }
-  hi.CmpItemKindProperty = { fg = c.gray5 }
-  hi.CmpItemKindUnit = { fg = c.gray5 }
+  -- local hi = require("config.highlights").hi
+  -- local c = require("config.highlights").colors
+  --
+  -- hi.CmpItemAbbr = { fg = c.gray5 }
+  --
+  -- -- gray
+  -- hi.CmpItemAbbrDeprecated = { fg = c.gray3, strikethrough = true }
+  --
+  -- -- blue
+  -- hi.CmpItemAbbrMatch = { fg = c.blue }
+  -- hi.CmpItemAbbrMatchFuzzy = { fg = c.blue }
+  --
+  -- -- light blue
+  -- hi.CmpItemKindVariable = { fg = c.cyan }
+  -- hi.CmpItemKindInterface = { fg = c.cyan }
+  -- hi.CmpItemKindText = { fg = c.cyan }
+  --
+  -- -- pink
+  -- hi.CmpItemKindFunction = { fg = c.magenta }
+  -- hi.CmpItemKindMethod = { fg = c.magenta }
+  --
+  -- -- front
+  -- hi.CmpItemKindKeyword = { fg = c.gray5 }
+  -- hi.CmpItemKindProperty = { fg = c.gray5 }
+  -- hi.CmpItemKindUnit = { fg = c.gray5 }
 end
 
 return M

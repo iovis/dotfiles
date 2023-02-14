@@ -14,11 +14,6 @@ function M.config()
 
   null_ls.setup({
     debug = false,
-    on_attach = function()
-      vim.keymap.set({ "n", "x" }, "<leader>b", function()
-        vim.lsp.buf.format({ timeout_ms = 2000 })
-      end, { buffer = true, desc = "vim.lsp.buf.format" })
-    end,
     sources = {
       diagnostics.codespell.with({ filetypes = { "ruby" } }),
       -- diagnostics.cpplint.with({ extra_args = { "--filter -legal/copyright" } }),
@@ -37,7 +32,7 @@ function M.config()
       formatting.rubocop,
       formatting.sql_formatter.with({ extra_args = { "-l", "postgresql" } }),
       formatting.stylelint,
-      formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "2" } }),
+      formatting.stylua,
     },
   })
 end

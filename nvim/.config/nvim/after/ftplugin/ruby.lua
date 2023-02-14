@@ -1,0 +1,143 @@
+vim.cmd.compiler("ruby")
+
+vim.keymap.set("n", "m<cr>", ":!ctags<cr>", { buffer = true })
+vim.keymap.set("n", "<leader>b", vim.lsp.buf.format, { buffer = true })
+
+---- Solargraph
+-- Reset with: bundle exec solargraph clear && bundle exec yard gems --rebuild
+vim.keymap.set(
+  "n",
+  "<leader>sy",
+  ":TuxBg! ctags && bundle exec solargraph bundle && bundle exec yard gems<cr>",
+  { buffer = true }
+)
+
+vim.keymap.set(
+  "n",
+  "<leader>sr",
+  ":TuxBg! ctags && bundle exec solargraph clear && bundle exec solargraph download-core && bundle exec solargraph bundle && bundle exec yard gems --rebuild<cr>",
+  { buffer = true }
+)
+
+---- quick testing
+vim.keymap.set("n", "<leader>sd", ":TestFile --format documentation<cr>", { buffer = true })
+vim.keymap.set("n", "<leader>sp", ":TestNearest -strategy=test_prof<cr>", { buffer = true })
+
+---- runnables
+if string.match(vim.fn.expand("%"), "_spec.rb") then
+  vim.keymap.set("n", "s<cr>", "<cmd>Tux rspec %<cr>", { buffer = true })
+elseif string.match(vim.fn.expand("%"), "bin/console") then
+  vim.keymap.set("n", "s<cr>", "<cmd>Tux bin/console<cr>", { buffer = true })
+else
+  vim.keymap.set("n", "s<cr>", "<cmd>Tux ruby %<cr>", { buffer = true })
+end
+
+---- Autorun rspec tests (EXPERIMENTAL)
+local run_rspec = function()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local file = vim.fn.expand("%")
+  local ns = vim.api.nvim_create_namespace("rspec")
+
+  -- Clear virtual text and diagnostics
+  vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
+  vim.diagnostic.reset(ns, bufnr)
+
+  if not vim.g.autotest then
+    return
+  end
+
+  local state = {
+    failed_tests = {},
+  }
+
+  vim.fn.jobstart({
+    -- "spring",
+    "rspec",
+    "--format",
+    "json",
+    file,
+  }, {
+    stdout_buffered = true,
+    on_stdout = function(_, data)
+      if not data then
+        return
+      end
+
+      local json = vim.json.decode(data[1])
+
+      for _, example in ipairs(json.examples) do
+        -- example.status = passed|failed|pending
+        if example.status == "passed" then
+          vim.api.nvim_buf_set_extmark(bufnr, ns, example.line_number - 1, 0, {
+            virt_text = {
+              { "✓ pass", "DiffAdded" },
+            },
+          })
+        elseif example.status == "failed" then
+          table.insert(state.failed_tests, example)
+
+          vim.api.nvim_buf_set_extmark(bufnr, ns, example.line_number - 1, 0, {
+            virt_text = {
+              { "✗ failed", "DiagnosticVirtualTextError" },
+            },
+          })
+        elseif example.status == "pending" then
+          table.insert(state.failed_tests, example)
+
+          vim.api.nvim_buf_set_extmark(bufnr, ns, example.line_number - 1, 0, {
+            virt_text = {
+              { "■ pending", "DiagnosticVirtualTextWarn" },
+            },
+          })
+        end
+      end
+    end,
+    on_exit = function()
+      local failed = {}
+
+      for _, test in ipairs(state.failed_tests) do
+        table.insert(failed, {
+          bufnr = bufnr,
+          lnum = test.line_number - 1,
+          col = 0,
+          severity = vim.diagnostic.severity.ERROR,
+          source = "rspec",
+          message = test.full_description,
+          user_data = {},
+        })
+      end
+
+      vim.diagnostic.set(ns, bufnr, failed, {
+        virtual_text = false,
+      })
+    end,
+  })
+end
+
+if string.match(vim.fn.expand("%"), "_spec.rb") then
+  local rspec_augroup = vim.api.nvim_create_augroup("rspec_runner", { clear = true })
+
+  vim.api.nvim_create_autocmd("BufWritePost", {
+    desc = "Run rspec on save",
+    buffer = vim.api.nvim_get_current_buf(),
+    group = rspec_augroup,
+    callback = run_rspec,
+  })
+end
+
+-- " Load failing tests in a scratch window
+-- nmap <silent> <buffer> +R :Redir !cat tmp/rspec-failures.txt<cr>
+--       \ :g/\(passed\\|pending\)/d<cr>
+--       \ :v/spec/d<cr>
+--       \ :%s/\[\d.*<cr>
+--       \ :sort u<cr>
+--       \ :%norm! Irspec <cr>
+-- " }}} quick testing "
+--
+-- " sorbet {{{ "
+-- " nnoremap <silent> <buffer> <leader>sr :Tux bin/tapioca gems && bin/tapioca dsl && bin/tapioca todo && bin/tapioca check-shims && bundle exec spoom bump<cr>
+-- " nnoremap <silent> <buffer> <leader>st :e! sorbet/rbi/todo.rbi<cr>
+-- " nnoremap <silent> <buffer> m<cr> :Tux bundle exec srb tc<cr>
+-- "
+-- " nnoremap <buffer> +T :e sorbet/rbi/shims/<c-r>%<cr>
+-- " }}} sorbet "

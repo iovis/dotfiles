@@ -1,10 +1,10 @@
 return {
   "kevinhwang91/nvim-bqf",
   event = "VeryLazy",
-  init = function()
-    local hi = require("config.highlights").hi
-    hi.BqfSign = "Directory"
-  end,
+  -- init = function()
+  --   local hi = require("config.highlights").hi
+  --   hi.BqfSign = "Directory"
+  -- end,
   config = function()
     require("bqf").setup({
       filter = {

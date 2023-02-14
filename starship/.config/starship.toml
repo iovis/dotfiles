@@ -1,4 +1,7 @@
 # https://starship.rs/config/
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
 add_newline = false
 
 format = """
@@ -7,6 +10,7 @@ $git_branch\
 $git_state\
 $git_status\
 $git_commit\
+$status\
 $line_break\
 $jobs\
 $python\
@@ -42,6 +46,10 @@ stashed = "≡"
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
 style = "bright-black"
+
+[status]
+format = '[\[$common_meaning$signal_name $status\]]($style) '
+disabled = false
 
 [cmd_duration]
 format = "[$duration]($style) "
