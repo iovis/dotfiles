@@ -466,6 +466,21 @@ return {
           "^dap-repl$",
         },
       },
+      force_inactive = {
+        filetypes = {
+          "^NvimTree$",
+          "^packer$",
+          "^startify$",
+          "^fugitive$",
+          "^fugitiveblame$",
+          -- "^qf$",
+          -- "^help$",
+        },
+        buftypes = {
+          "^terminal$",
+        },
+        bufnames = {},
+      },
     })
   end,
 }
