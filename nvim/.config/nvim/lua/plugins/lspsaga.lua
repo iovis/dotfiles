@@ -5,6 +5,9 @@ return {
       beacon = {
         enable = false,
       },
+      code_action = {
+        extend_gitsigns = false,
+      },
       diagnostic = {
         custom_msg = "■ Diagnostics",
         custom_fix = " Fix",
