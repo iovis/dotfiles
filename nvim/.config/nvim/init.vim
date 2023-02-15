@@ -4,7 +4,7 @@ scriptencoding utf-8
 let g:mapleader = "\<Space>"
 
 lua <<EOF
-vim.g.full_catppuccin = true
+vim.g.full_catppuccin = false
 
 require("config.filetype")
 require("config.lazy")

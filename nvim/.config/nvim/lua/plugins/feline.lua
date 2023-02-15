@@ -2,9 +2,7 @@ return {
   "feline-nvim/feline.nvim",
   event = "VeryLazy",
   init = function()
-    if vim.g.full_catppuccin then
-      vim.o.laststatus = 3
-    end
+    vim.o.laststatus = 3
   end,
   config = function()
     if false then
@@ -476,7 +474,7 @@ return {
     --- Disable Filetypes
     local disable_filetypes = {}
 
-    if not vim.g.full_catppuccin then
+    if vim.o.laststatus ~= 3 then
       disable_filetypes = {
         filetypes = {
           "^NvimTree$",
