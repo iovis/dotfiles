@@ -6,10 +6,12 @@ gui:
   showIcons: true
   theme:
     selectedLineBgColor:
+      # - '#383838'
       - 'black'
       - 'bold'
     selectedRangeBgColor:
       - 'black'
+      - 'bold'
 git:
   paging:
     colorArg: always
