@@ -7,7 +7,6 @@ return {
     "SmiteshP/nvim-navic",
     "nvim-tree/nvim-web-devicons",
   },
-  event = "VeryLazy",
   opts = {
     theme = "catppuccin",
     show_dirname = false,
