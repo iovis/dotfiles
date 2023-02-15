@@ -61,18 +61,16 @@ return {
         }
 
         if not vim.g.full_catppuccin then
-          local none = "#181818"
-
           custom_highlights = vim.tbl_extend("force", custom_highlights, {
             -- general
-            EndOfBuffer = { fg = none },
-            StatusLine = { bg = colors.surface0 },
-            StatusLineNC = { bg = none },
+            EndOfBuffer = {},
+            StatusLine = {},
+            StatusLineNC = {},
             CursorLine = { bg = "#222222" },
 
             -- neotree
-            NeoTreeStatusLine = { bg = none },
-            NeoTreeStatusLineNC = { bg = none },
+            NeoTreeStatusLine = {},
+            NeoTreeStatusLineNC = {},
             NeoTreeCursorLine = { bold = true },
 
             -- treesitter
