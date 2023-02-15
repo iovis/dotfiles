@@ -464,8 +464,14 @@ return {
 
     --- Inactive
     local left_inactive = {}
+    local middle_inactive = {}
+    local right_inactive = {}
 
-    if not vim.g.full_catppuccin then
+    if vim.o.laststatus == 3 then
+      left_inactive = left
+      middle_inactive = middle
+      right_inactive = right
+    else
       add_table(left_inactive, left_separator_file_inactive)
       add_table(left_inactive, file_name_inactive)
       add_table(left_inactive, right_separator_file_inactive)
@@ -489,7 +495,6 @@ return {
     feline.setup({
       theme = {
         bg = "none",
-        -- bg = "none",
       },
       components = {
         active = {
@@ -499,6 +504,8 @@ return {
         },
         inactive = {
           left_inactive,
+          middle_inactive,
+          right_inactive,
         },
       },
       disable = disable_filetypes,
