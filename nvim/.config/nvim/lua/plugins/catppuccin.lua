@@ -68,14 +68,15 @@ return {
             EndOfBuffer = { fg = none },
             StatusLine = { bg = colors.surface0 },
             StatusLineNC = { bg = none },
-            CursorLine = { bg = "#1e1e1e" },
+            CursorLine = { bg = "#222222" },
 
             -- neotree
             NeoTreeStatusLine = { bg = none },
             NeoTreeStatusLineNC = { bg = none },
+            NeoTreeCursorLine = { bold = true },
 
             -- treesitter
-            TreesitterContext = { bg = "#1e1e1e", bold = true },
+            TreesitterContext = { bg = "#222222", bold = true },
           })
         end
 
