@@ -103,12 +103,22 @@ local run_rspec = function()
         return
       end
 
+      -- threshold to show timing the spec took
+      local threshold = 0.01 -- second(s)
+
       for _, example in ipairs(json.examples) do
+        local run_time = ""
+
+        if example.run_time > threshold then
+          run_time = string.format(" (%.2fs)", example.run_time)
+        end
+
         -- example.status = passed|failed|pending
         if example.status == "passed" then
           vim.api.nvim_buf_set_extmark(bufnr, ns, example.line_number - 1, 0, {
             virt_text = {
               { "✓ pass", "DiffAdded" },
+              { run_time, "Comment" },
             },
           })
         elseif example.status == "failed" then
@@ -117,12 +127,14 @@ local run_rspec = function()
           vim.api.nvim_buf_set_extmark(bufnr, ns, example.line_number - 1, 0, {
             virt_text = {
               { "✗ failed", "DiagnosticVirtualTextError" },
+              { run_time, "Comment" },
             },
           })
         elseif example.status == "pending" then
           vim.api.nvim_buf_set_extmark(bufnr, ns, example.line_number - 1, 0, {
             virt_text = {
               { "■ pending", "DiagnosticVirtualTextWarn" },
+              { run_time, "Comment" },
             },
           })
         end
