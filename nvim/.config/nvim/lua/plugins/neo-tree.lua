@@ -5,11 +5,11 @@ local M = {
   keys = {
     {
       "<leader>k",
-      "<cmd>Neotree toggle<cr>",
+      "<cmd>Neotree float toggle<cr>",
     },
     {
       "-",
-      "<cmd>Neotree reveal<cr>",
+      "<cmd>Neotree float reveal<cr>",
     },
   },
   dependencies = {
