@@ -64,7 +64,7 @@ function M.config()
       end,
     },
     indent = {
-      enable = false, -- Experimental
+      enable = true, -- Experimental
     },
     playground = {
       enable = true,
