@@ -6,9 +6,10 @@ gui:
   showIcons: true
   theme:
     selectedLineBgColor:
-      - '#383838'
-    # selectedRangeBgColor:
-    #   - '#383838'  # Bug: https://github.com/jesseduffield/lazygit/issues/1749
+      - 'black'
+      - 'bold'
+    selectedRangeBgColor:
+      - 'black'
 git:
   paging:
     colorArg: always
