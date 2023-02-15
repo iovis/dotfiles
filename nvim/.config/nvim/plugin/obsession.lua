@@ -44,13 +44,14 @@ end
 local obsession_augroup = vim.api.nvim_create_augroup("obsession", { clear = true })
 
 vim.api.nvim_create_autocmd("BufEnter", {
+  desc = "Autosave session",
   group = obsession_augroup,
   pattern = "*",
   callback = persist_session,
-  desc = "Autosave session",
 })
 
 vim.api.nvim_create_autocmd("VimLeavePre", {
+  desc = "Autosave session",
   group = obsession_augroup,
   pattern = "*",
   callback = function()
@@ -62,5 +63,4 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 
     persist_session()
   end,
-  desc = "Autosave session",
 })

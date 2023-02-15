@@ -430,7 +430,7 @@ nnoremap +<cr> :so $VIMRUNTIME/syntax/hitest.vim<cr>
 " }}} Highlights "
 
 " notes {{{ "
-nnoremap <leader>n :execute "e $NOTES/" . strftime('%F') . ".md"<cr>
+nnoremap <silent> <leader>n :execute "e $NOTES/" . strftime('%F') . ".md"<cr>
 " }}} notes "
 
 " jq {{{ "
