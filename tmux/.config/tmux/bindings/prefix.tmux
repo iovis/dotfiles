@@ -9,8 +9,8 @@ bind R {
 }
 
 # Toggle status line
-bind S {
-  set -g status
+bind s {
+  set status
 }
 
 # Quick settings
@@ -19,7 +19,7 @@ bind b {
   display "changed path to #{pane_current_path}"
 }
 
-bind s set -w synchronize-panes
+bind S set -w synchronize-panes
 bind w set -w automatic-rename
 
 # Help & settings
