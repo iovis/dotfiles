@@ -99,6 +99,7 @@ M.on_attach = function(client, bufnr)
     "cpp",
     "lua",
     "rust",
+    "svelte",
     "typescript",
   }
 
