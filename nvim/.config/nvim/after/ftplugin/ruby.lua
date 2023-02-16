@@ -24,9 +24,9 @@ vim.keymap.set("n", "<leader>sd", ":TestFile --format documentation<cr>", { buff
 vim.keymap.set("n", "<leader>sp", ":TestNearest -strategy=test_prof<cr>", { buffer = true })
 
 ---- runnables
-if string.match(vim.fn.expand("%"), "_spec.rb") then
+if vim.fn.expand("%"):match("_spec.rb") then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux rspec %<cr>", { buffer = true })
-elseif string.match(vim.fn.expand("%"), "bin/console") then
+elseif vim.fn.expand("%"):match("bin/console") then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux bin/console<cr>", { buffer = true })
 else
   vim.keymap.set("n", "s<cr>", "<cmd>Tux ruby %<cr>", { buffer = true })

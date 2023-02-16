@@ -1,5 +1,5 @@
 ---- runnables
-if string.match(vim.fn.expand("%"), "ext/") then
+if vim.fn.expand("%"):match("ext/") then
   vim.keymap.set("n", "m<cr>", "<cmd>Tux bear -- rake compile<cr>", { buffer = true })
 else
   vim.keymap.set("n", "m<cr>", "<cmd>Tux make<cr>", { buffer = true })
