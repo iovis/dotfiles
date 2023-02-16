@@ -10,4 +10,4 @@ abbr REQ RAILS_ENV=qa
 abbr RET RAILS_ENV=test
 
 ## rust
-abbr RT RUST_BACKTRACE=1
+abbr RB RUST_BACKTRACE=1
