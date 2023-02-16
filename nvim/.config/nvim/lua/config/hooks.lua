@@ -13,10 +13,10 @@ function M.run_cargo_outdated()
   local toml = vim.api.nvim_buf_get_lines(bufnr, 0, -1, true)
 
   local find_pkg = function(name)
-    local pattern = string.format("^%s = ", name)
+    local pkg_name = string.format("%s = ", name)
 
     for i, line in ipairs(toml) do
-      if line:match(pattern) then
+      if line:find(pkg_name, nil, true) then
         return i - 1 -- nvim is 0 based
       end
     end
@@ -71,9 +71,9 @@ function M.run_npm_outdated()
   local package_json = vim.api.nvim_buf_get_lines(bufnr, 0, -1, true)
 
   local find_pkg = function(name)
-    for i, line in ipairs(package_json) do
-      local pkg_name = string.format('"%s":', name)
+    local pkg_name = string.format('"%s":', name)
 
+    for i, line in ipairs(package_json) do
       -- Find string literally (no pattern matching)
       if line:find(pkg_name, nil, true) then
         return i - 1 -- nvim is 0 based
@@ -130,9 +130,9 @@ function M.run_bundle_outdated()
   local package_json = vim.api.nvim_buf_get_lines(bufnr, 0, -1, true)
 
   local find_pkg = function(name)
-    for i, line in ipairs(package_json) do
-      local pkg_name = string.format("'%s'", name)
+    local pkg_name = string.format("'%s'", name)
 
+    for i, line in ipairs(package_json) do
       -- Find string literally (no pattern matching)
       if line:find(pkg_name, nil, true) then
         return i - 1 -- nvim is 0 based
