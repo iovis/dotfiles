@@ -1,4 +1,5 @@
 local M = {}
+local u = require("config.utils")
 
 ---- Check for outdated Cargo.toml dependencies (EXPERIMENTAL)
 function M.run_cargo_outdated()
@@ -112,6 +113,71 @@ function M.run_npm_outdated()
             { pkg_version, "Comment" },
           },
         })
+      end
+    end,
+  })
+end
+
+---- Check for outdated Gemfile dependencies (EXPERIMENTAL)
+function M.run_bundle_outdated()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local ns = vim.api.nvim_create_namespace("bundle_dependencies")
+
+  -- Clear virtual text and diagnostics
+  vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
+  vim.diagnostic.reset(ns, bufnr)
+
+  local package_json = vim.api.nvim_buf_get_lines(bufnr, 0, -1, true)
+
+  local find_pkg = function(name)
+    for i, line in ipairs(package_json) do
+      local pkg_name = string.format("'%s'", name)
+
+      -- Find string literally (no pattern matching)
+      if line:find(pkg_name, nil, true) then
+        return i - 1 -- nvim is 0 based
+      end
+    end
+
+    vim.notify(string.format("Couldn't find %s", name), vim.log.levels.ERROR)
+  end
+
+  -- Run npm outdated
+  vim.fn.jobstart({
+    "bundle",
+    "outdated",
+    "--only-explicit",
+    "--parseable",
+  }, {
+    stdout_buffered = true,
+    on_stdout = function(_, data)
+      if not data then
+        return
+      end
+
+      for _, line in ipairs(data) do
+        if u.is_empty(line) then
+          goto continue
+        end
+
+        -- line => puma (newest 6.1.0, installed 5.6.5, requested ~> 5.6.5)
+        local pkg_name, pkg_latest = line:match("([%w._-]+) %(newest ([%d.]+)")
+
+        if not pkg_name or not pkg_latest then
+          vim.notify(string.format("Error parsing line: %s", line), vim.log.levels.ERROR)
+          return
+        end
+
+        local pkg_line_number = find_pkg(pkg_name)
+        local pkg_version = string.format(" %s", pkg_latest)
+
+        vim.api.nvim_buf_set_extmark(bufnr, ns, pkg_line_number, 0, {
+          virt_text = {
+            { pkg_version, "Comment" },
+          },
+        })
+
+        ::continue::
       end
     end,
   })

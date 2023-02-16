@@ -10,6 +10,15 @@ if vim.fn.expand("%"):match("_spec.rb") then
     buffer = vim.api.nvim_get_current_buf(),
     callback = require("config.hooks").run_rspec,
   })
+elseif vim.fn.expand("%"):match("Gemfile") then
+  vim.keymap.set("n", "s<cr>", "<cmd>Tux bundle install<cr>", { buffer = true })
+
+  vim.api.nvim_create_autocmd({ "BufWinEnter", "BufWritePost" }, {
+    desc = "Check bundler dependencies",
+    group = vim.api.nvim_create_augroup("bundler_dependencies", { clear = true }),
+    buffer = vim.api.nvim_get_current_buf(),
+    callback = require("config.hooks").run_bundle_outdated,
+  })
 elseif vim.fn.expand("%"):match("bin/console") then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux bin/console<cr>", { buffer = true })
 else
