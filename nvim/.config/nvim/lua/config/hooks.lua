@@ -1,6 +1,16 @@
 local M = {}
 local u = require("config.utils")
 
+local find_pkg_in = function(doc, pattern)
+  for i, line in ipairs(doc) do
+    if line:match(pattern) then
+      return i - 1 -- nvim is 0 based
+    end
+  end
+
+  vim.notify(string.format("Couldn't find %s", pattern), vim.log.levels.ERROR)
+end
+
 ---- Check for outdated Cargo.toml dependencies (EXPERIMENTAL)
 function M.run_cargo_outdated()
   local bufnr = vim.api.nvim_get_current_buf()
@@ -10,19 +20,7 @@ function M.run_cargo_outdated()
   vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
   vim.diagnostic.reset(ns, bufnr)
 
-  local toml = vim.api.nvim_buf_get_lines(bufnr, 0, -1, true)
-
-  local find_pkg = function(name)
-    local pkg_name = string.format("%s = ", name)
-
-    for i, line in ipairs(toml) do
-      if line:find(pkg_name, nil, true) then
-        return i - 1 -- nvim is 0 based
-      end
-    end
-
-    vim.notify(string.format("Couldn't find %s", name), vim.log.levels.ERROR)
-  end
+  local doc = vim.api.nvim_buf_get_lines(bufnr, 0, -1, true)
 
   -- Run cargo outdated
   vim.fn.jobstart({
@@ -46,7 +44,9 @@ function M.run_cargo_outdated()
       end
 
       for _, package in ipairs(json.dependencies) do
-        local pkg_line_number = find_pkg(package.name)
+        -- ^clap = { version = "4.1.6", features = ["derive"] }
+        local pattern = string.format("^%s = ", u.escape_lua_pattern(package.name))
+        local pkg_line_number = find_pkg_in(doc, pattern)
         local pkg_version = string.format(" %s", package.latest)
 
         vim.api.nvim_buf_set_extmark(bufnr, ns, pkg_line_number, 0, {
@@ -68,20 +68,7 @@ function M.run_npm_outdated()
   vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
   vim.diagnostic.reset(ns, bufnr)
 
-  local package_json = vim.api.nvim_buf_get_lines(bufnr, 0, -1, true)
-
-  local find_pkg = function(name)
-    local pkg_name = string.format('"%s":', name)
-
-    for i, line in ipairs(package_json) do
-      -- Find string literally (no pattern matching)
-      if line:find(pkg_name, nil, true) then
-        return i - 1 -- nvim is 0 based
-      end
-    end
-
-    vim.notify(string.format("Couldn't find %s", name), vim.log.levels.ERROR)
-  end
+  local doc = vim.api.nvim_buf_get_lines(bufnr, 0, -1, true)
 
   -- Run npm outdated
   vim.fn.jobstart({
@@ -105,7 +92,9 @@ function M.run_npm_outdated()
       end
 
       for package, metadata in pairs(json) do
-        local pkg_line_number = find_pkg(package)
+        -- ^    "@angular/core": "^14.2.8",
+        local pattern = string.format('^%%s+"%s":', u.escape_lua_pattern(package))
+        local pkg_line_number = find_pkg_in(doc, pattern)
         local pkg_version = string.format(" %s", metadata.latest)
 
         vim.api.nvim_buf_set_extmark(bufnr, ns, pkg_line_number, 0, {
@@ -127,20 +116,7 @@ function M.run_bundle_outdated()
   vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
   vim.diagnostic.reset(ns, bufnr)
 
-  local package_json = vim.api.nvim_buf_get_lines(bufnr, 0, -1, true)
-
-  local find_pkg = function(name)
-    local pkg_name = string.format("'%s'", name)
-
-    for i, line in ipairs(package_json) do
-      -- Find string literally (no pattern matching)
-      if line:find(pkg_name, nil, true) then
-        return i - 1 -- nvim is 0 based
-      end
-    end
-
-    vim.notify(string.format("Couldn't find %s", name), vim.log.levels.ERROR)
-  end
+  local doc = vim.api.nvim_buf_get_lines(bufnr, 0, -1, true)
 
   -- Run npm outdated
   vim.fn.jobstart({
@@ -168,7 +144,9 @@ function M.run_bundle_outdated()
           return
         end
 
-        local pkg_line_number = find_pkg(pkg_name)
+        -- ^  gem "bullet", '~> 7.0.1'
+        local pattern = string.format("^%%s*gem%%s*[\"']%s[\"']", u.escape_lua_pattern(pkg_name))
+        local pkg_line_number = find_pkg_in(doc, pattern)
         local pkg_version = string.format(" %s", pkg_latest)
 
         vim.api.nvim_buf_set_extmark(bufnr, ns, pkg_line_number, 0, {
