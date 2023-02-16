@@ -82,7 +82,7 @@ bind -T join_pane v {
 }
 
 # Resize panes equally
-bind = select-layout tiled
+bind 0 select-layout tiled
 
 # Pass-through
 bind C-l send 'C-l'
