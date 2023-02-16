@@ -16,7 +16,7 @@ return {
   s(
     "prf",
     fmt([[print(string.format("{}"{comma}{}))]], {
-      i(1, "%s"),
+      i(1),
       comma = n(2, ", "),
       i(2),
     }),
@@ -27,7 +27,7 @@ return {
   s(
     "fmt",
     fmt([[string.format("{}"{comma}{})]], {
-      i(1, "%s"),
+      i(1),
       comma = n(2, ", "),
       i(2),
     })
