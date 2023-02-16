@@ -114,6 +114,31 @@ M.pascal_case = function(str)
   return new_str
 end
 
+---Escape string for use in lua pattern
+---
+---@param str string
+---@return string
+M.escape_lua_pattern = function(str)
+  local matches = {
+    ["^"] = "%^",
+    ["$"] = "%$",
+    ["("] = "%(",
+    [")"] = "%)",
+    ["%"] = "%%",
+    ["."] = "%.",
+    ["["] = "%[",
+    ["]"] = "%]",
+    ["*"] = "%*",
+    ["+"] = "%+",
+    ["-"] = "%-",
+    ["?"] = "%?",
+    ["\0"] = "%z",
+  }
+
+  return (str:gsub(".", matches))
+end
+
+----Buffers
 ---Is there only one listed buffer
 ---
 ---@return boolean
