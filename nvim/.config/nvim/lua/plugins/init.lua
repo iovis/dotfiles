@@ -11,7 +11,6 @@ return {
   { "tpope/vim-dotenv", lazy = true },
 
   { "andrewradev/splitjoin.vim", event = "VeryLazy" },
-  { "christoomey/vim-sort-motion", event = "VeryLazy" },
   { "dstein64/vim-startuptime", cmd = "StartupTime" },
   { "iovis/browsers_castle", event = "VeryLazy" },
   { "iovis/substitute.vim", event = "VeryLazy" },
