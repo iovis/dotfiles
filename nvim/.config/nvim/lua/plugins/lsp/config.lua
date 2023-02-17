@@ -63,9 +63,10 @@ M.on_attach = function(client, bufnr)
   buf_imap("<m-h>", vim.lsp.buf.hover, "vim.lsp.buf.hover")
   buf_imap("<m-k>", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
 
-  buf_nmap("t", vim.lsp.buf.definition, "vim.lsp.buf.definition")
-  buf_nmap("gd", vim.lsp.buf.hover, "vim.lsp.buf.hover")
   buf_nmap("T", vim.lsp.buf.references, "vim.lsp.buf.references")
+  buf_nmap("gd", vim.lsp.buf.hover, "vim.lsp.buf.hover")
+  buf_nmap("gt", vim.lsp.buf.type_definition, "vim.lsp.buf.type_definition")
+  buf_nmap("t", vim.lsp.buf.definition, "vim.lsp.buf.definition")
 
   ---- Actions
   buf_imap("<m-j>", vim.lsp.buf.code_action, "vim.lsp.buf.code_action")
@@ -142,11 +143,13 @@ M.on_attach = function(client, bufnr)
   local ok_lspsaga, _ = pcall(require, "lspsaga")
   if ok_lspsaga then
     ---- definition
-    buf_nmap("gd", "<cmd>Lspsaga hover_doc<cr>")
     buf_imap("<m-h>", "<cmd>Lspsaga hover_doc<cr>")
+    buf_nmap("gd", "<cmd>Lspsaga hover_doc<cr>")
+    buf_nmap("gt", "<cmd>Lspsaga goto_type_definition<cr>")
 
     buf_nmap("T", "<cmd>Lspsaga lsp_finder<cr>")
     buf_nmap("<leader>lf", "<cmd>Lspsaga peek_definition<cr>")
+    buf_nmap("<leader>lt", "<cmd>Lspsaga peek_type_definition<cr>")
 
     ---- actions
     buf_imap("<m-j>", "<cmd>Lspsaga code_action<cr>")
