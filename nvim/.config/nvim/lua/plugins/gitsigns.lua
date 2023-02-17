@@ -16,7 +16,7 @@ return {
       end
 
       map({ "n", "v" }, "<leader>dh", ":Gitsigns reset_hunk<cr>")
-      map("n", "+q", gs.toggle_current_line_blame, { desc = "toggle_current_line_blame" })
+      map("n", "+Q", gs.toggle_current_line_blame, { desc = "toggle_current_line_blame" })
 
       map("n", "]c", function()
         if vim.wo.diff then

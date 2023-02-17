@@ -188,6 +188,7 @@ nnoremap <silent> g2 :set shiftwidth=2 softtabstop=2 expandtab \| retab<cr>gg=G
 nnoremap <silent> g4 :set shiftwidth=4 softtabstop=4 expandtab \| retab<cr>gg=G
 nnoremap & g&
 nnoremap +c :cd %:p:h<cr>
+nnoremap +q :tabonly<cr>
 nnoremap +t <c-w>T
 nnoremap M <c-w>o
 nnoremap Q @q
