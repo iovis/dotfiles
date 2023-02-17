@@ -24,7 +24,6 @@ function M.config()
     "clangd",
     "cssls",
     "dockerls",
-    "emmet_ls",
     "html",
     "jsonls",
     "lua_ls",
