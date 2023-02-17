@@ -188,7 +188,7 @@ function M.run_rspec()
         vim.bo.bufhidden = "wipe"
         vim.bo.buflisted = false
         vim.bo.buftype = "nofile"
-        vim.bo.filetype = "rspec"
+        vim.bo.filetype = "diff"
 
         vim.api.nvim_buf_set_lines(
           vim.api.nvim_get_current_buf(),
@@ -217,7 +217,8 @@ function M.run_rspec()
     "rspec",
     "--format",
     "json",
-    file,
+    -- file,
+    string.format("%s:%s", file, vim.fn.line(".")), -- only execute current context
   }, {
     stdout_buffered = true,
     on_stdout = function(_, data)
