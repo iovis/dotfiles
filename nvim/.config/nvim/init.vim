@@ -25,7 +25,7 @@ set autowriteall
 set background=dark
 set backspace=indent,eol,start
 set breakindent
-" set cmdheight=0
+set cmdheight=2
 set completeopt=menu,menuone,noselect
 set conceallevel=0
 set cursorline  " Highlight current line (slow)
