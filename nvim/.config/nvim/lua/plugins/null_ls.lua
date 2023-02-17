@@ -29,6 +29,7 @@ function M.config()
 
       formatting.erb_lint,
       formatting.fish_indent,
+      formatting.prettier,
       formatting.rubocop,
       formatting.sql_formatter.with({ extra_args = { "-l", "postgresql" } }),
       formatting.stylelint,

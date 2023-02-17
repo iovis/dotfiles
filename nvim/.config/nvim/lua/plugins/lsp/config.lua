@@ -19,6 +19,7 @@ local lsp_format = function()
     timeout_ms = 2000,
     filter = function(client)
       local dont_format_with = {
+        "html",
         "lua_ls",
         "sqls",
       }

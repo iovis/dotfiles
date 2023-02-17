@@ -1,5 +1,6 @@
 eslint
 npm
+prettier
 ts-node
 typescript
 yarn
