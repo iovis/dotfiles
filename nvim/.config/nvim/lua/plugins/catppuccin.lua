@@ -66,9 +66,12 @@ return {
         }
 
         if not vim.g.full_catppuccin then
+          -- colors.crust = hsl(229, 20, 17) => black = hsl(229, 20, 15)
+          local black = "#1f212e"
+
           custom_highlights = vim.tbl_extend("force", custom_highlights, {
             -- general
-            CursorLine = { bg = "#222222" },
+            CursorLine = { bg = black },
             EndOfBuffer = {},
             StatusLine = {},
             StatusLineNC = {},
@@ -80,7 +83,8 @@ return {
             NeoTreeCursorLine = { bold = true },
 
             -- treesitter
-            TreesitterContext = { bg = "#222222", bold = true },
+            TreesitterContext = { bg = black, bold = true },
+            TreesitterContextLineNumber = { fg = colors.surface1, bg = black, bold = true },
           })
         end
 
