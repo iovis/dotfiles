@@ -1,8 +1,8 @@
 local M = {}
 local u = require("config.utils")
 
----- Check for outdated Cargo.toml dependencies (EXPERIMENTAL)
-function M.run_cargo_outdated()
+---Check for outdated Cargo.toml dependencies (EXPERIMENTAL)
+function M.run()
   local bufnr = vim.api.nvim_get_current_buf()
   local ns = vim.api.nvim_create_namespace("cargo_dependencies")
 

@@ -1,7 +1,7 @@
 local M = {}
 
----- Autorun rspec tests (EXPERIMENTAL)
-function M.run_rspec()
+---Autorun RSpec tests (EXPERIMENTAL)
+function M.run()
   local bufnr = vim.api.nvim_get_current_buf()
   local file = vim.fn.expand("%")
   local ns = vim.api.nvim_create_namespace("rspec")

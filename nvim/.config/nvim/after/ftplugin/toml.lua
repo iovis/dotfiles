@@ -8,6 +8,6 @@ elseif vim.fn.expand("%"):match("Cargo.toml") then
     desc = "Check Cargo dependencies",
     group = vim.api.nvim_create_augroup("cargo_dependencies", { clear = true }),
     buffer = vim.api.nvim_get_current_buf(),
-    callback = require("config.hooks").run_cargo_outdated,
+    callback = require("config.hooks.cargo").run,
   })
 end

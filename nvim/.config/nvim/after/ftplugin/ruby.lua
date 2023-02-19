@@ -8,7 +8,7 @@ if vim.fn.expand("%"):match("_spec.rb") then
     desc = "Run RSpec on save",
     group = vim.api.nvim_create_augroup("rspec_runner", { clear = true }),
     buffer = vim.api.nvim_get_current_buf(),
-    callback = require("config.hooks").run_rspec,
+    callback = require("config.hooks.rspec").run,
   })
 elseif vim.fn.expand("%"):match("Gemfile") then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux bundle install<cr>", { buffer = true })
@@ -17,7 +17,7 @@ elseif vim.fn.expand("%"):match("Gemfile") then
     desc = "Check bundler dependencies",
     group = vim.api.nvim_create_augroup("bundler_dependencies", { clear = true }),
     buffer = vim.api.nvim_get_current_buf(),
-    callback = require("config.hooks").run_bundle_outdated,
+    callback = require("config.hooks.bundler").run,
   })
 elseif vim.fn.expand("%"):match("bin/console") then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux bin/console<cr>", { buffer = true })
