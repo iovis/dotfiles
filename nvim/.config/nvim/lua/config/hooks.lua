@@ -50,6 +50,7 @@ function M.run_cargo_outdated()
         local pkg_version = string.format(" %s", package.latest)
 
         vim.api.nvim_buf_set_extmark(bufnr, ns, pkg_line_number, 0, {
+          hl_mode = "combine",
           virt_text = {
             { pkg_version, "Comment" },
           },
@@ -98,6 +99,7 @@ function M.run_npm_outdated()
         local pkg_version = string.format(" %s", metadata.latest)
 
         vim.api.nvim_buf_set_extmark(bufnr, ns, pkg_line_number, 0, {
+          hl_mode = "combine",
           virt_text = {
             { pkg_version, "Comment" },
           },
@@ -150,6 +152,7 @@ function M.run_bundle_outdated()
         local pkg_version = string.format(" %s", pkg_latest)
 
         vim.api.nvim_buf_set_extmark(bufnr, ns, pkg_line_number, 0, {
+          hl_mode = "combine",
           virt_text = {
             { pkg_version, "Comment" },
           },
@@ -217,8 +220,8 @@ function M.run_rspec()
     "rspec",
     "--format",
     "json",
-    -- file,
-    string.format("%s:%s", file, vim.fn.line(".")), -- only execute current context
+    file,
+    -- string.format("%s:%s", file, vim.fn.line(".")), -- only execute current context
   }, {
     stdout_buffered = true,
     on_stdout = function(_, data)
@@ -246,6 +249,7 @@ function M.run_rspec()
         -- example.status = passed|failed|pending
         if example.status == "passed" then
           vim.api.nvim_buf_set_extmark(bufnr, ns, example.line_number - 1, 0, {
+            hl_mode = "combine",
             virt_text = {
               { "✓ pass", "DiffAdded" },
               { run_time, "Comment" },
@@ -255,6 +259,7 @@ function M.run_rspec()
           table.insert(failed_tests, example)
 
           vim.api.nvim_buf_set_extmark(bufnr, ns, example.line_number - 1, 0, {
+            hl_mode = "combine",
             virt_text = {
               { "✗ failed", "DiagnosticVirtualTextError" },
               { run_time, "Comment" },
@@ -262,6 +267,7 @@ function M.run_rspec()
           })
         elseif example.status == "pending" then
           vim.api.nvim_buf_set_extmark(bufnr, ns, example.line_number - 1, 0, {
+            hl_mode = "combine",
             virt_text = {
               { "■ pending", "DiagnosticVirtualTextWarn" },
               { run_time, "Comment" },

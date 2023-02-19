@@ -65,7 +65,9 @@ function M.config()
     },
     indent = {
       enable = true, -- Experimental
-      disable = {},
+      disable = {
+        "lua",
+      },
     },
     playground = {
       enable = true,
