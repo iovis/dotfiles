@@ -448,7 +448,7 @@ return {
     add_table(left, diagnostic.hint)
     add_table(left, diagnostic.info)
 
-    add_table(middle, lsp_progress)
+    -- add_table(middle, lsp_progress)
 
     -- right
     add_table(right, lsp_icon)

@@ -9,10 +9,11 @@ return {
       flavour = "mocha",
       transparent_background = not vim.g.full_catppuccin,
       dim_inactive = {
-        enabled = false,
+        enabled = vim.g.full_catppuccin,
       },
       integrations = {
         cmp = true,
+        fidget = false,
         gitsigns = true,
         harpoon = true,
         leap = true,
