@@ -114,7 +114,7 @@ M.pascal_case = function(str)
   return new_str
 end
 
----Escape string for use in lua pattern
+---Is there only one listed buffer
 ---
 ---@param str string
 ---@return string
@@ -139,6 +139,7 @@ M.escape_lua_pattern = function(str)
 end
 
 ----Buffers
+
 ---Is there only one listed buffer
 ---
 ---@return boolean
@@ -153,6 +154,20 @@ M.is_only_buffer = function()
   end
 
   return count == 1
+end
+
+---Find pattern in a document
+---@param lines string[]
+---@param pattern string
+---@return number|nil line_number
+M.find_pattern_in = function(lines, pattern)
+  for i, line in ipairs(lines) do
+    if line:match(pattern) then
+      return i - 1 -- nvim is 0 based
+    end
+  end
+
+  vim.notify(string.format("Couldn't find %s", pattern), vim.log.levels.ERROR)
 end
 
 return M
