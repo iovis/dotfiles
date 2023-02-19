@@ -1,5 +1,6 @@
 return {
   "feline-nvim/feline.nvim",
+  -- enabled = false,
   event = "VeryLazy",
   init = function()
     vim.o.laststatus = 3

@@ -6,7 +6,11 @@ return {
   priority = 1000,
   config = function()
     require("catppuccin").setup({
-      flavour = "mocha",
+      flavour = "frappe",
+      background = {
+        light = "latte",
+        dark = "frappe",
+      },
       transparent_background = not vim.g.full_catppuccin,
       dim_inactive = {
         enabled = vim.g.full_catppuccin,
