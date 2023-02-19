@@ -9,7 +9,7 @@ return {
   },
   opts = {
     theme = "catppuccin",
-    show_dirname = false,
+    show_dirname = true,
     show_modified = true,
   },
 }
