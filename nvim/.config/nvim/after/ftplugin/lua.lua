@@ -11,6 +11,9 @@ if vim.fn.expand("%"):match("plugins/") then
     -- Get the name of the current buffer's file
     local plugin = "plugins." .. vim.fn.expand("%:t:r")
 
+    -- Remove it from cache
+    package.loaded[plugin] = nil
+
     -- Require the plugin and run its config function
     require(plugin).config()
 
