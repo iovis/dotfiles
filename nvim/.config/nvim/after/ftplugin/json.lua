@@ -7,3 +7,6 @@ if vim.fn.expand("%"):match("package.json") then
     callback = require("config.hooks.npm").run,
   })
 end
+
+vim.keymap.set("n", "+j", ":%!jq ''<left>")
+vim.keymap.set("n", "+R", ":R !jq ''<left> %")

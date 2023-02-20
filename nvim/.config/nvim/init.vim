@@ -433,10 +433,6 @@ nnoremap +<cr> :so $VIMRUNTIME/syntax/hitest.vim<cr>
 nnoremap <silent> <leader>n :execute "e $NOTES/" . strftime('%F') . ".md"<cr>
 " }}} notes "
 
-" jq {{{ "
-nnoremap +j :%!jq ''<left>
-" }}} jq "
-
 " commands {{{ "
 " Git {{{ "
 nnoremap <leader>gcb   :Gcb<space>
