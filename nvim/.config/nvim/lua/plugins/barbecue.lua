@@ -1,15 +1,18 @@
 return {
   "utilyre/barbecue.nvim",
-  -- cond = vim.g.full_catppuccin,
+  -- enabled = false
   name = "barbecue",
   version = "*",
   dependencies = {
     "SmiteshP/nvim-navic",
     "nvim-tree/nvim-web-devicons",
   },
-  opts = {
-    theme = "catppuccin",
-    show_dirname = true,
-    show_modified = true,
-  },
+  config = function()
+    require("barbecue").setup({
+      show_dirname = true,
+      show_modified = true,
+      show_navic = true, -- LSP location
+      theme = "catppuccin",
+    })
+  end,
 }

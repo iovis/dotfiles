@@ -121,7 +121,6 @@ function RSpec:close()
 end
 
 ---Create buffer local command to show RSpec output
--- TODO: nvim_create_buf() and nvim_open_win()?
 -- TODO: Handle multiple tests in the same line (use ID?)
 -- TODO: Add timings?
 function RSpec:create_buf_command()
@@ -144,17 +143,13 @@ function RSpec:create_buf_command()
     vim.bo.buftype = "nofile"
     vim.bo.filetype = "diff"
 
-    vim.api.nvim_buf_set_lines(
-      vim.api.nvim_get_current_buf(),
-      0,
-      -1,
-      false,
-      vim.tbl_flatten({
-        test.full_description,
-        "",
-        vim.fn.split(test.exception.message, "\n"),
-      })
-    )
+    local lines = vim.tbl_flatten({
+      test.full_description,
+      "",
+      vim.fn.split(test.exception.message, "\n"),
+    })
+
+    vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
   end, {})
 end
 
