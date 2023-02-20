@@ -10,11 +10,11 @@ return {
         relative = "editor",
         blend = 0,
       },
-      -- sources = {
-      --   ["null-ls"] = {
-      --     ignore = true,
-      --   },
-      -- },
+      sources = {
+        ["null-ls"] = {
+          ignore = true,
+        },
+      },
     })
   end,
 }
