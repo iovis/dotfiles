@@ -59,6 +59,8 @@ end
 
 ---Clear virtual text and diagnostics
 function RSpec:clear()
+  self.failed_tests = {}
+
   vim.api.nvim_buf_clear_namespace(self.file_bufnr, self.namespace, 0, -1)
   vim.diagnostic.reset(self.namespace, self.file_bufnr)
 

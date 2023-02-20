@@ -2,8 +2,25 @@ local M = {}
 
 local RSpec = require("config.hooks.rspec.model")
 
----Autorun RSpec tests (EXPERIMENTAL)
-function M.run()
+---Autorun RSpec tests for current file
+function M.run_current_file()
+  local file = vim.fn.expand("%")
+
+  M.run(file)
+end
+
+---Autorun RSpec tests for current file
+function M.run_current_line()
+  local file = vim.fn.expand("%")
+  local line = vim.fn.line(".")
+  local path = string.format("%s:%s", file, line)
+
+  M.run(path)
+end
+
+---Run RSpec for given path
+---@param path string
+function M.run(path)
   local rspec = RSpec:new()
 
   rspec:clear()
@@ -12,16 +29,13 @@ function M.run()
     return
   end
 
-  rspec:create_buf_command()
-
   -- Run rspec
   vim.fn.jobstart({
     -- "spring",
     "rspec",
     "--format",
     "json",
-    rspec.filename,
-    -- string.format("%s:%s", rspec.filename, vim.fn.line(".")), -- only execute current context
+    path,
   }, {
     stdout_buffered = true,
     on_stdout = function(_, data)
@@ -31,9 +45,8 @@ function M.run()
       end
 
       rspec:set_virtual_text()
-    end,
-    on_exit = function()
       rspec:set_diagnostics()
+      rspec:create_buf_command()
     end,
   })
 end
