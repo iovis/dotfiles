@@ -30,7 +30,14 @@ u.command("R", function(ctx)
   -- Run command
   local lines = vim.split(vim.api.nvim_exec(ctx.args, true), "\r?\n", {})
 
-  -- Create new scratch buffer
+  -- Remove the first 2 lines if it's a external command (starts with `!`)
+  local is_external_command = (ctx.args:sub(1, 1) == "!")
+  if is_external_command then
+    lines = vim.list_slice(lines, 3, #lines) -- same as lines[3..]
+  end
+
+  -- TODO: Reuse window?
+  -- Create new scratch buffer in a vertical split
   vim.cmd.vnew()
   vim.bo.bufhidden = "wipe"
   vim.bo.buflisted = false
