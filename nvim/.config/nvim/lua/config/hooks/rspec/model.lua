@@ -26,19 +26,25 @@
 ---@field class string
 ---@field backtrace string[]
 
+---@class Popup
+---@field bufnr? number Buffer ID of the popup
+---@field winid? number Window ID of the popup
+
 ---@class RSpec
 ---@field filename string Filename of the test
 ---@field file_bufnr number Filename of the test
 ---@field time_threshold number Threshold to show spec time in virtual text
 ---@field output RSpecOutput Output of `rspec` command
+---@field job_id? number ID of the current running job
 ---@field failed_tests Test[] Failed tests
----@field private popup_bufnr? number Buffer ID of the popup
 ---@field private namespace number
+---@field private popup? Popup
 local RSpec = {
+  job_id = nil,
+  failed_tests = {},
   namespace = vim.api.nvim_create_namespace("rspec"),
   output = {},
-  failed_tests = {},
-  popup_bufnr = nil,
+  popup = {},
   time_threshold = 0.01, -- seconds
 }
 
@@ -66,6 +72,52 @@ function RSpec:clear()
 
   pcall(vim.api.nvim_buf_del_user_command, self.file_bufnr, "RspecOutput")
   pcall(vim.keymap.del, "n", "+R", { buffer = true })
+end
+
+---Show progress popup
+function RSpec:show_popup()
+  local message = { " Running RSpec " }
+
+  self.popup.bufnr = vim.api.nvim_create_buf(false, true)
+  self.popup.winid = vim.api.nvim_open_win(self.popup.bufnr, false, {
+    width = #message[1],
+    height = 1,
+
+    relative = "editor",
+    anchor = "NE",
+    row = 0,
+    col = vim.opt.columns:get(), -- width of the editor
+
+    style = "minimal",
+    border = "rounded",
+    focusable = true,
+    noautocmd = true,
+  })
+
+  vim.api.nvim_set_option_value("winhighlight", "Normal:Comment,FloatBorder:Comment", {
+    scope = "local",
+    win = self.popup.winid,
+  })
+
+  vim.api.nvim_buf_set_lines(self.popup.bufnr, 0, -1, false, message)
+end
+
+---Close progress popup
+function RSpec:close()
+  self.job_id = nil
+
+  if self.popup.winid ~= nil and vim.api.nvim_win_is_valid(self.popup.winid) then
+    vim.api.nvim_win_hide(self.popup.winid)
+    self.popup.winid = nil
+  end
+
+  if self.popup.bufnr ~= nil and vim.api.nvim_buf_is_valid(self.popup.bufnr) then
+    if self.popup.bufnr ~= vim.api.nvim_get_current_buf() then
+      vim.api.nvim_buf_delete(self.popup.bufnr, { force = true })
+    end
+
+    self.popup.bufnr = nil
+  end
 end
 
 ---Create buffer local command to show RSpec output

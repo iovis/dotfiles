@@ -21,16 +21,19 @@ end
 ---Run RSpec for given path
 ---@param path string
 function M.run(path)
+  -- TODO: this instance is GLOBAL right now
   local rspec = RSpec:new()
 
   rspec:clear()
 
-  if not vim.g.autotest then
+  if not vim.g.autotest or rspec.job_id then
     return
   end
 
+  rspec:show_popup()
+
   -- Run rspec
-  vim.fn.jobstart({
+  rspec.job_id = vim.fn.jobstart({
     -- "spring",
     "rspec",
     "--format",
@@ -47,6 +50,8 @@ function M.run(path)
       rspec:set_virtual_text()
       rspec:set_diagnostics()
       rspec:create_buf_command()
+
+      rspec:close()
     end,
   })
 end
