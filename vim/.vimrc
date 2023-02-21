@@ -37,10 +37,12 @@ set nowritebackup
 set number
 set path=.,,**  " world's worst fuzzy finder
 set relativenumber
-set scrolloff=7
+set scrolloff=4
+set shiftround
 set shiftwidth=2
 set shortmess-=S
 set showmatch
+set sidescrolloff=4
 set signcolumn=yes
 set smartcase
 set softtabstop=2
@@ -196,7 +198,7 @@ nnoremap Y y$
 nnoremap Ñ ?
 nnoremap ñ /
 noremap ' `
-noremap <silent> <leader><cr> :noh<cr>
+noremap <silent> <leader>ñ :noh<cr>
 noremap H g^
 noremap L g$
 xnoremap <silent> Q :norm @q<cr>
@@ -686,9 +688,9 @@ nnoremap <leader>P :echo<space>
 " }}} buffer autocommands "
 
 " Highlights {{{ "
-nnoremap ++ :execute "hi " . synIDattr(synID(line("."),col("."),1),"name")<CR>
-nnoremap +<cr> :so $VIMRUNTIME/syntax/hitest.vim<cr>
-nnoremap +<space> :hi<space>
+nnoremap <leader>ui :execute "hi " . synIDattr(synID(line("."),col("."),1),"name")<CR>
+" nnoremap +<cr> :so $VIMRUNTIME/syntax/hitest.vim<cr>
+" nnoremap +<space> :hi<space>
 
 hi! def link VertSplit StatusLineNC
 hi! def link ModeMsg Comment

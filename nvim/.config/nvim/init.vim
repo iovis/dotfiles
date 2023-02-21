@@ -54,10 +54,12 @@ set nowritebackup
 set nowrap
 set number
 set relativenumber
-set scrolloff=7
+set scrolloff=4
+set shiftround
 set shiftwidth=2
 set shortmess-=S
 set showmatch
+set sidescrolloff=4
 set signcolumn=yes
 set smartcase
 set softtabstop=2
@@ -218,8 +220,8 @@ nnoremap Y y$
 
 nmap ' `
 xmap ' `
-nnoremap <silent> <leader><cr> :noh<cr>
-xnoremap <silent> <leader><cr> :noh<cr>
+" nnoremap <silent> <leader>ñ :noh<cr>
+" xnoremap <silent> <leader>ñ :noh<cr>
 nnoremap H g^
 onoremap H g^
 xnoremap H g^
@@ -425,7 +427,8 @@ nnoremap ¡<space> :!open<space>
 " }}} open resource "
 
 " Highlights {{{ "
-nnoremap +h :execute "hi " . synIDattr(synID(line("."),col("."),1),"name")<CR>
+" TODO: Change to vim.show_pos() in nvim 0.9.0
+nnoremap <leader>ui :execute "hi " . synIDattr(synID(line("."),col("."),1),"name")<CR>
 nnoremap +<cr> :so $VIMRUNTIME/syntax/hitest.vim<cr>
 " }}} Highlights "
 
