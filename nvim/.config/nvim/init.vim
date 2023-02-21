@@ -42,7 +42,8 @@ set incsearch
 set laststatus=3 " statusline mode
 set lazyredraw  " Try to not draw while doing macros (helps with scrolling performance)
 set linespace=2
-set listchars=tab:>-,trail:-,nbsp:+,eol:$
+set listchars=lead:·,tab:>-,trail:-,nbsp:+,eol:$
+" set listchars=leadmultispace:··│,tab:>-,trail:-,nbsp:+,eol:$
 set magic
 set mouse=a
 set nobackup
