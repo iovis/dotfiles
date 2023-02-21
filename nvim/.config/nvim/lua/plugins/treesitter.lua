@@ -34,7 +34,6 @@ function M.config()
       "make",
       "markdown",
       "markdown_inline",
-      "php",
       "python",
       "query", -- treesitter query language
       "regex",
@@ -46,7 +45,6 @@ function M.config()
       "tsx",
       "typescript",
       "vim",
-      "vue",
       "yaml",
     },
     endwise = {
