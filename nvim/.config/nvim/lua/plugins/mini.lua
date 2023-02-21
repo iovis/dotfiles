@@ -1,5 +1,6 @@
 return {
   "echasnovski/mini.nvim",
+  -- enabled = false,
   event = "VeryLazy",
   keys = {
     ---- align
@@ -98,6 +99,8 @@ return {
         "lspsagaoutline",
         "markdown",
         "mason",
+        "noice",
+        "notify",
         "sagacodeaction",
       },
       callback = function()

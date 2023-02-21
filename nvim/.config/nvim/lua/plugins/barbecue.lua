@@ -9,7 +9,7 @@ return {
   },
   config = function()
     require("barbecue").setup({
-      show_dirname = true,
+      show_dirname = false,
       show_modified = true,
       show_navic = true, -- LSP location
       theme = "catppuccin",

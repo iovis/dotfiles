@@ -90,7 +90,15 @@ return {
               right = 0,
             },
           },
-          "filename",
+          {
+            "filename",
+            path = 1,
+            symbols = {
+              modified = "●",
+              readonly = "",
+              unnamed = "",
+            },
+          },
         },
         lualine_c = {},
         lualine_x = {},

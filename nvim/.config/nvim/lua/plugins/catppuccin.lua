@@ -25,6 +25,8 @@ return {
         mason = true,
         mini = true,
         neotree = true,
+        noice = true,
+        notify = true,
         treesitter = true,
         treesitter_context = true,
         which_key = true,
@@ -63,6 +65,9 @@ return {
 
           -- mini
           MiniIndentscopeSymbol = { fg = colors.surface0 },
+
+          -- noice
+          NotifyBackground = { fg = colors.text, bg = colors.base },
         }
 
         if not vim.g.full_catppuccin then
