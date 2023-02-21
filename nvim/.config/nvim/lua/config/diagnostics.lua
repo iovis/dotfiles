@@ -17,17 +17,21 @@ end
 ---- Configuration
 local config = {
   float = {
-    focusable = false,
+    focusable = true,
     close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
     border = "rounded",
     source = "always", -- show source in diagnostic popup window
     prefix = " ",
   },
+  severity_sort = true,
   signs = {
     active = signs,
   },
   underline = {
-    severity = vim.diagnostic.severity.ERROR,
+    severity = {
+      vim.diagnostic.severity.WARN,
+      vim.diagnostic.severity.ERROR,
+    },
   },
   virtual_text = true,
 }
