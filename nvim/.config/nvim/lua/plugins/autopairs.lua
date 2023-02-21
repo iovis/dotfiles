@@ -14,7 +14,7 @@ return {
     })
 
     ---- Support space padding after pair
-    local brackets = { { "(", ")" }, { "[", "]" }, { "{", "}" } }
+    local brackets = { { "[", "]" }, { "{", "}" } }
 
     npairs.add_rules({
       Rule(" ", " ")
@@ -24,7 +24,6 @@ return {
           return vim.tbl_contains({
             brackets[1][1] .. brackets[1][2],
             brackets[2][1] .. brackets[2][2],
-            brackets[3][1] .. brackets[3][2],
           }, pair)
         end)
         :with_move(cond.none())
@@ -36,7 +35,6 @@ return {
           return vim.tbl_contains({
             brackets[1][1] .. "  " .. brackets[1][2],
             brackets[2][1] .. "  " .. brackets[2][2],
-            brackets[3][1] .. "  " .. brackets[3][2],
           }, context)
         end),
     })
