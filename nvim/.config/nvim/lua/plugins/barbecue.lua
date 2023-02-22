@@ -1,6 +1,6 @@
 return {
   "utilyre/barbecue.nvim",
-  -- enabled = false
+  -- enabled = false,
   branch = "fix/E36", -- https://github.com/utilyre/barbecue.nvim/issues/61
   name = "barbecue",
   version = "*",

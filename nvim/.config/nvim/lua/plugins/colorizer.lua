@@ -12,7 +12,7 @@ return {
       user_default_options = {
         names = false,
         RRGGBBAA = true,
-        mode = "virtualtext",
+        -- mode = "virtualtext",
       },
     })
   end,
