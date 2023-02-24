@@ -30,7 +30,7 @@ function M.run(path)
     return
   end
 
-  rspec:show_popup()
+  rspec:progress()
 
   -- Run rspec
   rspec.job_id = vim.fn.jobstart({

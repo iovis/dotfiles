@@ -27,8 +27,8 @@
 ---@field backtrace string[]
 
 ---@class Popup
----@field bufnr? number Buffer ID of the popup
----@field winid? number Window ID of the popup
+---@field spinner number
+---@field notification? notify.Record From notify.nvim
 
 ---@class RSpec
 ---@field filename string Filename of the test
@@ -40,12 +40,12 @@
 ---@field private namespace number
 ---@field private popup? Popup
 local RSpec = {
-  job_id = nil,
-  failed_tests = {},
-  namespace = vim.api.nvim_create_namespace("rspec"),
-  output = {},
-  popup = {},
   time_threshold = 0.01, -- seconds
+  failed_tests = {},
+  output = {},
+  job_id = nil,
+  namespace = vim.api.nvim_create_namespace("rspec"),
+  popup = nil,
 }
 
 ---Create new RSpec instance for the current buffer
@@ -75,48 +75,45 @@ function RSpec:clear()
 end
 
 ---Show progress popup
-function RSpec:show_popup()
-  local message = { " Running RSpec " }
+function RSpec:progress()
+  self.popup = { spinner = 1 }
+  self:update_popup()
+end
 
-  self.popup.bufnr = vim.api.nvim_create_buf(false, true)
-  self.popup.winid = vim.api.nvim_open_win(self.popup.bufnr, false, {
-    width = #message[1],
-    height = 1,
+local spinner_frames = { "⣷", "⣯", "⣟", "⡿", "⢿", "⣻", "⣽", "⣾" }
 
-    relative = "editor",
-    anchor = "NE",
-    row = 0,
-    col = vim.opt.columns:get(), -- width of the editor
+---Popup animation
+---@private
+function RSpec:update_popup()
+  if not self.popup then
+    return
+  end
 
-    style = "minimal",
-    border = "rounded",
-    focusable = true,
-    noautocmd = true,
+  self.popup.spinner = (self.popup.spinner + 1) % #spinner_frames
+
+  self.popup.notification = require("notify").notify("RSpec is running", vim.log.levels.INFO, {
+    icon = spinner_frames[self.popup.spinner],
+    replace = self.popup.notification,
+    hide_from_history = true,
   })
 
-  vim.api.nvim_set_option_value("winhighlight", "Normal:Comment,FloatBorder:Comment", {
-    scope = "local",
-    win = self.popup.winid,
-  })
-
-  vim.api.nvim_buf_set_lines(self.popup.bufnr, 0, -1, false, message)
+  vim.defer_fn(function()
+    self:update_popup()
+  end, 80)
 end
 
 ---Close progress popup
 function RSpec:close()
+  local notification = self.popup.notification
   self.job_id = nil
+  self.popup = nil
 
-  if self.popup.winid ~= nil and vim.api.nvim_win_is_valid(self.popup.winid) then
-    vim.api.nvim_win_hide(self.popup.winid)
-    self.popup.winid = nil
-  end
-
-  if self.popup.bufnr ~= nil and vim.api.nvim_buf_is_valid(self.popup.bufnr) then
-    if self.popup.bufnr ~= vim.api.nvim_get_current_buf() then
-      vim.api.nvim_buf_delete(self.popup.bufnr, { force = true })
-    end
-
-    self.popup.bufnr = nil
+  if notification then
+    require("notify").notify("RSpec done", vim.log.levels.INFO, {
+      icon = "",
+      replace = notification,
+      hide_from_history = true,
+    })
   end
 end
 
