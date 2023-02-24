@@ -65,9 +65,7 @@ else if test -f /usr/local/bin/brew
     set -gx INFOPATH /usr/local/share/info $INFOPATH
 end
 
-if test -f "$HOME/.asdf/asdf.fish"
-    source "$HOME/.asdf/asdf.fish"
-end
+rtx activate fish | source
 
 fish_add_path $HOME/.cargo/bin
 fish_add_path $HOME/.dotfiles/bin

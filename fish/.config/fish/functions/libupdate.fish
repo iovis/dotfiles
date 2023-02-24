@@ -6,8 +6,6 @@ function libupdate
     fish_update_completions
     generate_completions
 
-    asdf_update
-
     npm -g outdated
 
     echo -e "\nOutdated gems"

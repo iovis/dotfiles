@@ -5,6 +5,7 @@ git-delta
 hexyl
 hyperfine
 ripgrep
+rtx-cli
 sd
 starship
 stylua
