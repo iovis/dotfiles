@@ -54,6 +54,32 @@ return {
       },
     }
 
+    local noice_section = {}
+
+    local noice_ok, noice = pcall(require, "noice")
+    if noice_ok then
+      noice_section = vim.tbl_extend("force", noice_section, {
+        {
+          -- Show current search
+          noice.api.status.search.get,
+          cond = noice.api.status.search.has,
+          color = { fg = colors.sapphire },
+        },
+        {
+          -- Show "recording" messages
+          noice.api.status.mode.get,
+          cond = noice.api.status.mode.has,
+          color = { fg = colors.peach },
+        },
+        -- {
+        --   -- Show current keystroke
+        --   noice.api.status.command.get,
+        --   cond = noice.api.status.command.has,
+        --   color = { fg = colors.overlay0 },
+        -- },
+      })
+    end
+
     ----Setup
     require("lualine").setup({
       options = {
@@ -104,7 +130,7 @@ return {
         lualine_c = {
           "diagnostics",
         },
-        lualine_x = {},
+        lualine_x = noice_section,
         lualine_y = {
           {
             "diff",

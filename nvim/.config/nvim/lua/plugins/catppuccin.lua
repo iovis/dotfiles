@@ -68,6 +68,7 @@ return {
 
           -- noice
           NotifyBackground = { fg = colors.text, bg = colors.base },
+          NoiceMini = { fg = colors.text, bg = colors.base },
         }
 
         if not vim.g.full_catppuccin then
