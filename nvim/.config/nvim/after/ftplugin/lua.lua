@@ -1,3 +1,6 @@
+----Annotations: https://github.com/LuaLS/lua-language-server/wiki/Annotations
+
+----Bindings
 vim.keymap.set("n", "<leader>so", function()
   vim.cmd.source("%")
   print("File sourced")
@@ -5,7 +8,7 @@ end, { buffer = true, desc = "Source file" })
 
 vim.keymap.set("x", "<leader>so", ":source<cr>", { buffer = true, desc = "Evaluate lua range" })
 
----- Re-source `config()` for the current plugin
+----Re-source `config()` for the current plugin
 if vim.fn.expand("%"):match("plugins/") then
   vim.keymap.set("n", "<leader>sr", function()
     -- Get the name of the current buffer's file
