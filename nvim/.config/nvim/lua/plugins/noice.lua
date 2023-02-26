@@ -34,6 +34,7 @@ return {
         bottom_search = false, -- use a classic bottom cmdline for search
         command_palette = true, -- position the cmdline and popupmenu together
         inc_rename = false, -- enables an input dialog for inc-rename.nvim
+        long_message_to_split = true, -- long messages will be sent to a split
         lsp_doc_border = true, -- add a border to hover docs and signature help
       },
       routes = {
@@ -45,13 +46,6 @@ return {
             find = "written",
           },
           opts = { skip = true },
-        },
-        { -- Send long "messages" to a split
-          filter = {
-            -- event = "msg_show",
-            min_height = 5,
-          },
-          view = "split",
         },
       },
       views = {
