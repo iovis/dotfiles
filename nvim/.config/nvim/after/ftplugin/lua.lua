@@ -3,7 +3,7 @@
 ----Bindings
 vim.keymap.set("n", "<leader>so", function()
   vim.cmd.source("%")
-  print("File sourced")
+  -- print("File sourced")
 end, { buffer = true, desc = "Source file" })
 
 vim.keymap.set("x", "<leader>so", ":source<cr>", { buffer = true, desc = "Evaluate lua range" })
