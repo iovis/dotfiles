@@ -19,7 +19,7 @@ local M = {
 function M.config()
   ---- Initialize servers
   local lsp_servers = {
-    "angularls",
+    -- "angularls",
     "bashls",
     "clangd",
     "cssls",

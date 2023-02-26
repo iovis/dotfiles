@@ -22,7 +22,7 @@ function M.config()
       diagnostics.pylint.with({ extra_args = { "--disable", "C0301,C0114,C0115,C0116,E501,F0401" } }),
       diagnostics.rubocop,
       diagnostics.shellcheck,
-      diagnostics.stylelint,
+      -- diagnostics.stylelint,
       diagnostics.vint,
       diagnostics.yamllint,
       diagnostics.zsh,
@@ -32,7 +32,7 @@ function M.config()
       formatting.prettier,
       formatting.rubocop,
       formatting.sql_formatter.with({ extra_args = { "-l", "postgresql" } }),
-      formatting.stylelint,
+      -- formatting.stylelint,
       formatting.stylua,
     },
   })
