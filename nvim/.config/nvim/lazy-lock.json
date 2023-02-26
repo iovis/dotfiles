@@ -1,7 +1,7 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "6821b3ae27a57f1f3cf8ed030e4a55d70d0c4e43" },
   "LuaSnip": { "branch": "master", "commit": "f7c845749aba6096f041a73a26ba64f3817bab99" },
-  "barbecue": { "branch": "fix/E36", "commit": "b894a3696c03842eb2934ce0c856947508afe660" },
+  "barbecue": { "branch": "main", "commit": "b894a3696c03842eb2934ce0c856947508afe660" },
   "browsers_castle": { "branch": "master", "commit": "d87628443711a2bbc71397c975b8844179329e90" },
   "catppuccin": { "branch": "main", "commit": "87516f43267f1ec286069621f9bd288381a9097f" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },

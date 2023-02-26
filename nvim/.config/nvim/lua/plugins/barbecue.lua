@@ -1,7 +1,7 @@
 return {
   "utilyre/barbecue.nvim",
   -- enabled = false,
-  branch = "fix/E36", -- https://github.com/utilyre/barbecue.nvim/issues/61
+  -- branch = "fix/E36", -- https://github.com/utilyre/barbecue.nvim/issues/61
   name = "barbecue",
   version = "*",
   dependencies = {
@@ -15,5 +15,9 @@ return {
       show_navic = true, -- LSP location
       theme = "catppuccin",
     })
+
+    require("barbecue.ui").toggle(false)
+
+    vim.keymap.set("n", "+b", require("barbecue.ui").toggle, { desc = "Toggle barbecue" })
   end,
 }
