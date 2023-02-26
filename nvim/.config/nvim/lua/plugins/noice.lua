@@ -15,7 +15,9 @@ return {
     },
   },
   config = function()
-    require("noice").setup({
+    local noice = require("noice")
+
+    noice.setup({
       cmdline = {
         -- enabled = false,
       },
@@ -57,14 +59,25 @@ return {
       },
     })
 
+    vim.keymap.set("n", "+n", function()
+      if vim.o.cmdheight == 0 then
+        noice.disable()
+        vim.o.cmdheight = 2
+      else
+        noice.enable()
+      end
+    end, {
+      desc = "Toggle Noice",
+    })
+
     vim.keymap.set("c", "<m-cr>", function()
-      require("noice").redirect(vim.fn.getcmdline())
+      noice.redirect(vim.fn.getcmdline())
     end, {
       desc = "Redirect Cmdline",
     })
 
     vim.keymap.set("n", "<leader>M", function()
-      require("noice").cmd("history")
+      noice.cmd("history")
     end, {
       desc = "Noice history",
     })
