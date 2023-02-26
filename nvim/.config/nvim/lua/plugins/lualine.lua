@@ -161,7 +161,7 @@ return {
       },
       tabline = {},
       extensions = {
-        "neo-tree",
+        -- "neo-tree",
         "quickfix",
         "fugitive",
       },
