@@ -10,7 +10,6 @@ return {
   { "nvim-tree/nvim-web-devicons", lazy = true },
   { "tpope/vim-dotenv", lazy = true },
 
-  { "andrewradev/splitjoin.vim", event = "VeryLazy" },
   { "dstein64/vim-startuptime", cmd = "StartupTime" },
   { "iovis/browsers_castle", event = "VeryLazy" },
   { "iovis/substitute.vim", event = "VeryLazy" },
