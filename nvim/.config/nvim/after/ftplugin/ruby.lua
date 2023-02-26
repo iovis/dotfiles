@@ -17,7 +17,9 @@ elseif vim.fn.expand("%"):match("Gemfile") then
     desc = "Check bundler dependencies",
     group = vim.api.nvim_create_augroup("bundler_dependencies", { clear = true }),
     buffer = vim.api.nvim_get_current_buf(),
-    callback = require("config.hooks.bundler").run,
+    callback = function()
+      require("config.hooks.dependencies").run("bundler")
+    end,
   })
 elseif vim.fn.expand("%"):match("bin/console") then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux bin/console<cr>", { buffer = true })
