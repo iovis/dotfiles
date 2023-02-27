@@ -16,8 +16,8 @@ nnoremap <buffer> <leader>- mz^r-`z
 " }}} change bullet point style "
 
 " strike-through line {{{ "
-nmap     <buffer> <leader>ñ mzyss~`z
-xnoremap <buffer> <leader>ñ :norm yss~<cr>
+" nmap     <buffer> <leader>ñ mzyss~`z
+" xnoremap <buffer> <leader>ñ :norm yss~<cr>
 " }}} strike-through line "
 " }}} Bindings "
 
