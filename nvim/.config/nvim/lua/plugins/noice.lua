@@ -41,6 +41,15 @@ return {
       },
       routes = {
         {
+          -- Filter "No code actions available" messages
+          filter = {
+            event = "notify",
+            kind = "info",
+            find = "No code actions available",
+          },
+          opts = { skip = true },
+        },
+        {
           -- Filter "buffer written" messages
           filter = {
             event = "msg_show",
