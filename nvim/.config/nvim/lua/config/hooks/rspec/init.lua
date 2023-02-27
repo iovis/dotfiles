@@ -2,25 +2,20 @@ local M = {}
 
 local RSpec = require("config.hooks.rspec.model")
 
----Autorun RSpec tests for current file
-function M.run_current_file()
-  local file = vim.fn.expand("%")
+local strategy = {
+  file = function()
+    return vim.fn.expand("%")
+  end,
+  line = function()
+    local file = vim.fn.expand("%")
+    local line = vim.fn.line(".")
 
-  M.run(file)
-end
-
----Autorun RSpec tests for current file
-function M.run_current_line()
-  local file = vim.fn.expand("%")
-  local line = vim.fn.line(".")
-  local path = string.format("%s:%s", file, line)
-
-  M.run(path)
-end
+    return string.format("%s:%s", file, line)
+  end,
+}
 
 ---Run RSpec for given path
----@param path string
-function M.run(path)
+function M.run()
   -- TODO: this instance is GLOBAL right now
   local rspec = RSpec:new()
 
@@ -32,18 +27,22 @@ function M.run(path)
 
   rspec:progress()
 
-  -- Run rspec
+  pp(strategy[vim.g.autotest]())
+
+  -- Run RSpec
   rspec.job_id = vim.fn.jobstart({
     -- "spring",
     "rspec",
     "--format",
     "json",
-    path,
+    strategy[vim.g.autotest](),
   }, {
     stdout_buffered = true,
     on_stdout = function(_, data)
       if not data or not pcall(rspec.parse, rspec, data[1]) then
+        rspec:close()
         vim.notify("Error parsing the RSpec output (not a valid JSON)", vim.log.levels.ERROR)
+        pp(data)
         return
       end
 

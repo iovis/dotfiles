@@ -27,11 +27,22 @@ end, { desc = "Toggle autoformat" })
 
 ---- Toggle autotest
 vim.keymap.set("n", "+T", function()
-  if vim.g.autotest then
-    vim.g.autotest = false
-    print("Autotest disabled")
-  else
-    vim.g.autotest = true
-    print("Autotest enabled")
-  end
+  vim.ui.select({ "file", "line", "disable" }, {
+    prompt = "RSpec> ",
+    format_item = function(item)
+      local is_current = ""
+
+      if vim.g.autotest == item or (vim.g.autotest == nil and item == "disable") then
+        is_current = " (current)"
+      end
+
+      return item .. is_current
+    end,
+  }, function(choice)
+    if choice == "disable" then
+      vim.g.autotest = nil
+    else
+      vim.g.autotest = choice
+    end
+  end)
 end, { desc = "Toggle autotest" })

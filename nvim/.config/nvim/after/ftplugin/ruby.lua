@@ -8,7 +8,7 @@ if vim.fn.expand("%"):match("_spec.rb") then
     desc = "Run RSpec on save",
     group = vim.api.nvim_create_augroup("rspec_runner", { clear = true }),
     buffer = vim.api.nvim_get_current_buf(),
-    callback = require("config.hooks.rspec").run_current_file,
+    callback = require("config.hooks.rspec").run,
   })
 elseif vim.fn.expand("%"):match("Gemfile") then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux bundle install<cr>", { buffer = true })
