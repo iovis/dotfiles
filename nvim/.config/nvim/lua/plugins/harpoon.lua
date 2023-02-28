@@ -1,6 +1,6 @@
 return {
   "ThePrimeagen/harpoon",
-  enabled = true,
+  -- enabled = false,
   event = "VeryLazy",
   config = function()
     vim.keymap.set("n", "ge", require("harpoon.ui").toggle_quick_menu, { desc = "Toggle Harpoon" })
