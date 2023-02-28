@@ -1,6 +1,6 @@
 vim.keymap.set("n", "<Space>", "<Nop>")
 
-vim.keymap.set("n", "<leader>P", ":lua=")
+vim.keymap.set("n", "<leader>P", ":lua =")
 vim.keymap.set("n", "+t", "<c-w>T")
 vim.keymap.set("n", "<leader>uf", "<cmd>EditFtplugin<cr>")
 
