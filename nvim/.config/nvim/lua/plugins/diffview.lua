@@ -8,9 +8,9 @@ return {
     "DiffviewOpen",
   },
   keys = {
-    { "<leader>gd", ":DiffviewOpen<cr>", desc = "Open Diffview" },
-    { "<leader>gh", ":DiffviewFileHistory %<cr>", desc = "File History" },
-    { "<leader>gh", ":DiffviewFileHistory<cr>", mode = "x" },
+    { "<leader>gd", ":DiffviewOpen<cr>", silent = true },
+    { "<leader>gh", ":DiffviewFileHistory %<cr>", silent = true },
+    { "<leader>gh", ":DiffviewFileHistory<cr>", silent = true, mode = "x" },
   },
   config = function()
     local actions = require("diffview.actions")
