@@ -31,7 +31,10 @@ return {
         view = "mini",
         view_search = false, -- "virtualtext", show search messages
       },
-      -- you can enable a preset for easier configuration
+      popupmenu = {
+        -- enabled = false,
+        backend = "cmp",
+      },
       presets = {
         bottom_search = false, -- use a classic bottom cmdline for search
         command_palette = true, -- position the cmdline and popupmenu together
