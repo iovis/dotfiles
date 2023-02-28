@@ -68,6 +68,11 @@ return {
             winblend = 50,
           },
         },
+        popup = {
+          size = {
+            width = "75%",
+          },
+        },
       },
     })
 
