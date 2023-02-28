@@ -1,5 +1,6 @@
 return {
   "glepnir/lspsaga.nvim",
+  -- dev = true,
   config = function()
     require("lspsaga").setup({
       beacon = {
