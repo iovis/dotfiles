@@ -159,8 +159,18 @@ return {
             fmt = truncate(20),
           },
           {
-            "progress",
-            icon = "",
+            -- icon = "",
+            function()
+              local cur = vim.fn.line(".")
+              local total = vim.fn.line("$")
+              local progress = math.floor(cur / total * 100) .. "%%"
+
+              return string.format("%5s:%s", progress, total)
+            end,
+            padding = {
+              left = 0,
+              right = 1,
+            },
           },
         },
         lualine_z = {}, -- bg color same as "mode"
@@ -176,7 +186,7 @@ return {
       tabline = {},
       extensions = {
         -- "neo-tree",
-        "quickfix",
+        -- "quickfix",
         "fugitive",
       },
     })
