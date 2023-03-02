@@ -71,6 +71,20 @@ return {
           cond = noice.api.status.mode.has,
           color = { fg = colors.peach },
         },
+        {
+          -- Show number of selected lines in Visual
+          function()
+            local starts = vim.fn.line("v")
+            local ends = vim.fn.line(".")
+            local count = math.abs(ends - starts) + 1
+
+            return count .. vim.fn.mode()
+          end,
+          cond = function()
+            return vim.fn.mode():find("[vV]") ~= nil
+          end,
+          color = { fg = colors.mauve },
+        },
         -- {
         --   -- Show current keystroke
         --   noice.api.status.command.get,
