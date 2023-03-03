@@ -5,15 +5,17 @@ return {
   lazy = false,
   priority = 1000,
   config = function()
+    local transparent_background = true
+
     require("catppuccin").setup({
       flavour = "frappe",
       background = {
         light = "latte",
         dark = "frappe",
       },
-      transparent_background = not vim.g.full_catppuccin,
+      transparent_background = transparent_background,
       dim_inactive = {
-        enabled = vim.g.full_catppuccin,
+        enabled = false,
       },
       integrations = {
         cmp = true,
@@ -71,7 +73,7 @@ return {
           NoiceMini = { fg = colors.text, bg = colors.base },
         }
 
-        if not vim.g.full_catppuccin then
+        if transparent_background then
           -- colors.crust = hsl(229, 20, 17) => black = hsl(229, 20, 15)
           local black = "#1f212e"
 
