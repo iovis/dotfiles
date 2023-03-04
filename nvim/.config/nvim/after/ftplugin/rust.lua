@@ -15,6 +15,8 @@ if vim.fn.expand("%"):match("examples/") then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux cargo run -q --example %:t:r<cr>", { buffer = true })
 elseif vim.fn.expand("%"):match("benches/") then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux cargo bench -q --bench %:t:r<cr>", { buffer = true })
+elseif vim.fn.expand("%"):match("ext/") then
+  vim.keymap.set("n", "s<cr>", "<cmd>Tux bundle exec rake compile<cr>", { buffer = true })
 else
   vim.keymap.set("n", "s<cr>", "<cmd>Tux cargo run<cr>", { buffer = true })
 end
