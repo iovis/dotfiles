@@ -83,27 +83,6 @@ if exists('g:neovide')
   inoremap <D-v> "+p<CR>
 endif
 
-let g:markdown_fenced_languages = [
-  \ 'bash',
-  \ 'css',
-  \ 'erb=eruby',
-  \ 'gql=graphql',
-  \ 'graphql',
-  \ 'html',
-  \ 'javascript',
-  \ 'js=javascript',
-  \ 'json=javascript',
-  \ 'py=python',
-  \ 'python',
-  \ 'rb=ruby',
-  \ 'ruby',
-  \ 'sass',
-  \ 'sh=bash',
-  \ 'ts=typescript',
-  \ 'typescript',
-  \ 'xml',
-\ ]
-
 " Terminal config
 autocmd TermOpen * startinsert
 autocmd TermOpen * setlocal norelativenumber signcolumn=no nonumber
