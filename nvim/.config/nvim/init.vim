@@ -78,11 +78,6 @@ set wildmode=full
 let &showbreak = '└ '
 let @/ = ''  " don't show search highlights when entering or resourcing vimrc
 
-if exists('g:neovide')
-  set guifont=FiraCode\ Nerd\ Font\ Mono:h18
-  inoremap <D-v> "+p<CR>
-endif
-
 " Terminal config
 autocmd TermOpen * startinsert
 autocmd TermOpen * setlocal norelativenumber signcolumn=no nonumber
