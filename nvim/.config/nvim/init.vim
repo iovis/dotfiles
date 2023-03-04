@@ -154,8 +154,8 @@ cnoremap <expr> <tab>   getcmdtype() =~ '[?/]' ? "<c-g>" : "<c-z>"
 cnoremap <expr> <s-tab> getcmdtype() =~ '[?/]' ? "<c-t>" : "<s-tab>"
 
 " QOL remappings
-cnoremap %h <c-r>=fnameescape(expand('%:h')).'/'<cr>
-cnoremap %t <c-r>=fnameescape(expand('%:t'))<cr>
+" cnoremap <silent> %h <c-r>=fnameescape(expand('%:h')).'/'<cr>
+" cnoremap <silent> %t <c-r>=fnameescape(expand('%:t'))<cr>
 cnoremap <c-a> <c-b>
 cnoremap <c-b> <Nop>
 cnoremap <c-j> <down>
@@ -165,6 +165,7 @@ cnoremap <m-right> <s-right>
 cnoremap <m-+> ]
 cnoremap <m-ç> }
 cnoremap <m-ñ> ~
+
 inoremap <m-left> <s-left>
 inoremap <m-right> <s-right>
 inoremap <c-a> <home>
@@ -174,6 +175,7 @@ inoremap <m-o> <esc>o
 inoremap <m-+> ]
 inoremap <m-ç> }
 inoremap <m-ñ> ~
+
 nmap     <s-down> ]c
 nmap     <s-up>   [c
 nnoremap <expr> j v:count ? 'j' : 'gj'
@@ -188,6 +190,8 @@ nnoremap <m-O> mzO<esc>`z
 nnoremap <m-o> mzo<esc>`z
 nnoremap Ø     mzO<esc>`z
 nnoremap ø     mzo<esc>`z
+nnoremap <silent> +c :cd %:p:h<cr>
+nnoremap <silent> +q :tabonly<cr>
 nnoremap <silent> <down>  :cnext<cr>
 nnoremap <silent> <left>  :lprevious<cr>
 nnoremap <silent> <right> :lnext<cr>
@@ -213,8 +217,6 @@ nnoremap <silent> <leader>x :confirm qa<cr>
 nnoremap <silent> g2 :set shiftwidth=2 softtabstop=2 expandtab \| retab<cr>gg=G
 nnoremap <silent> g4 :set shiftwidth=4 softtabstop=4 expandtab \| retab<cr>gg=G
 nnoremap & g&
-nnoremap +c :cd %:p:h<cr>
-nnoremap +q :tabonly<cr>
 nnoremap M <c-w>o
 nnoremap Y y$
 
@@ -242,7 +244,7 @@ xnoremap s <Nop>
 nnoremap ss :%s/\v//g<left><left><left>
 
 nnoremap <silent> s :set operatorfunc=SubstituteOperator<cr>g@
-xnoremap s :<c-u>call SubstituteOperator(visualmode())<cr>
+xnoremap <silent> s :<c-u>call SubstituteOperator(visualmode())<cr>
 
 function! SubstituteOperator(type)
   if a:type ==# 'v'
@@ -387,7 +389,7 @@ endif
 
 " config editing {{{ "
 nnoremap <leader>u <nop>
-nnoremap <leader>us :so $MYVIMRC<cr>:echo 'vimrc sourced'<cr>
+nnoremap <silent> <leader>us :so $MYVIMRC<cr>:echo 'vimrc sourced'<cr>
 
 nnoremap <silent> <leader>ua :e! $FDOTDIR/aliases.zsh<cr>
 nnoremap <silent> <leader>uh :sp $MYVIMRC<cr>
@@ -405,18 +407,18 @@ nnoremap <leader>W :saveas <c-r>=fnameescape(expand('%:h')).'/'<cr>
 " }}} duplicate file "
 
 " vim-unimpaired {{{ "
-nnoremap yo, :set number! relativenumber! cursorline!<cr>
+nnoremap <silent> yo, :set number! relativenumber! cursorline!<cr>
 
-nnoremap yoc :set cursorline!<cr>
-nnoremap yod :<c-r>=&diff ? "diffoff" : "diffthis"<cr><cr>
-nnoremap yoh :set hlsearch!<cr>
-nnoremap yol :set list!<cr>
-nnoremap yon :set number!<cr>
-nnoremap yop :set paste!<cr>
-nnoremap yor :set relativenumber!<cr>
+nnoremap <silent> yoc :set cursorline!<cr>
+nnoremap <silent> yod :<c-r>=&diff ? "diffoff" : "diffthis"<cr><cr>
+nnoremap <silent> yoh :set hlsearch!<cr>
+nnoremap <silent> yol :set list!<cr>
+nnoremap <silent> yon :set number!<cr>
+nnoremap <silent> yop :set paste!<cr>
+nnoremap <silent> yor :set relativenumber!<cr>
 
-nnoremap yos :setlocal spell! spelllang=en_us<cr>
-nnoremap yow :setlocal wrap!<cr>
+nnoremap <silent> yos :setlocal spell! spelllang=en_us<cr>
+nnoremap <silent> yow :setlocal wrap!<cr>
 " }}} vim-unimpaired "
 
 " open resource {{{ "
