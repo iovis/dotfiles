@@ -4,6 +4,9 @@ vim.keymap.set("n", "<leader>P", ":lua =")
 vim.keymap.set("n", "+t", "<c-w>T")
 vim.keymap.set("n", "<leader>uf", "<cmd>EditFtplugin<cr>")
 
+----Quick `R`
+vim.keymap.set("n", "_", ":R lua=")
+
 ---- Global substitutions
 vim.keymap.set({ "n", "x" }, "+g", ":g//<left>")
 vim.keymap.set({ "n", "x" }, "+l", ':luado return string.format("%s", line)')
