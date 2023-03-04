@@ -3,7 +3,7 @@ muxi_prefix = "g"
 uppercase_overrides = true
 
 [bindings]
-c = { popup = { title = " config ",   height = "66%" }, command = "muxi config edit -- +ZenMode -c 'nmap q :wqa<cr>'" }
-e = { popup = { title = " sessions ", height = "66%" }, command = "muxi sessions edit -- +ZenMode -c 'nmap q :wqa<cr>'" }
+c = { popup = { title = " config ",   height = "66%" }, command = "muxi config edit -- +ZenMode -c 'nmap <silent> q :wqa<cr>'" }
+e = { popup = { title = " sessions ", height = "66%" }, command = "muxi sessions edit -- +ZenMode -c 'nmap <silent> q :wqa<cr>'" }
 s = { popup = { title = " muxi ", height = "33%", width = "50%" }, command = "muxi sessions switch -i" }
 # s = { command = "muxi sessions switch -t" }
