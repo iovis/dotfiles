@@ -6,7 +6,7 @@ return {
   s("hi", t('local hi = require("config.highlights").hi'), {
     condition = conds.line_begin,
   }),
-  s("c", t('local c = require("config.highlights").colors'), {
+  s("c", t('local c = require("catppuccin.palettes").get_palette()'), {
     condition = conds.line_begin,
   }),
   -- Lua snippets
