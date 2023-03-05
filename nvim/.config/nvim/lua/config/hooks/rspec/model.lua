@@ -200,9 +200,9 @@ function RSpec:set_virtual_text()
 end
 
 local virtual_text_message = {
-  passed = { "✓ pass", "DiffAdded" },
-  failed = { "✗ failed", "DiagnosticVirtualTextError" },
-  pending = { "■ pending", "DiagnosticVirtualTextWarn" },
+  passed = { "[✓ pass]", "DiffAdded" },
+  failed = { "[✗ failed]", "DiagnosticVirtualTextError" },
+  pending = { "[■ pending]", "DiagnosticVirtualTextWarn" },
 }
 
 ---Sets the virtual text for the provided test
