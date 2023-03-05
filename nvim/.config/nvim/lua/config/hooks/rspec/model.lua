@@ -1,3 +1,5 @@
+local u = require("config.utils")
+
 ---@class RSpecOutput
 ---@field examples Test[]
 ---@field summary RSpecSummary
@@ -55,6 +57,36 @@ function RSpec:new()
   self.file_bufnr = vim.api.nvim_get_current_buf()
 
   return self
+end
+
+---Determine RSpec command
+---@param strategy "file"|"line" Strategy to use
+---@return table command
+function RSpec:command(strategy)
+  local command = {}
+  local file = vim.fn.expand("%")
+
+  -- Use `spring` if available
+  if u.is_executable("bin/spring") then
+    table.insert(command, "bin/spring")
+  end
+
+  command = vim.fn.extend(command, {
+    "rspec",
+    "--format",
+    "json",
+  })
+
+  if strategy == "file" then
+    table.insert(command, file)
+  elseif strategy == "line" then
+    local line = vim.fn.line(".")
+    local path = string.format("%s:%s", file, line)
+
+    table.insert(command, path)
+  end
+
+  return command
 end
 
 ---Parse RSpec JSON output (rspec --format json)
