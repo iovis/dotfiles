@@ -53,6 +53,15 @@ return {
           opts = { skip = true },
         },
         {
+          -- Filter Lspsaga bug messages
+          filter = {
+            event = "notify",
+            kind = "error",
+            find = "method textDocument/codeAction is not supported by any of the servers registered for the current buffer",
+          },
+          opts = { skip = true },
+        },
+        {
           -- Filter "buffer written" messages
           filter = {
             event = "msg_show",
