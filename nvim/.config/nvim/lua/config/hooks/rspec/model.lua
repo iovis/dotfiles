@@ -141,7 +141,13 @@ function RSpec:close()
   self.popup = nil
 
   if notification then
-    require("notify").notify("RSpec done", vim.log.levels.INFO, {
+    local message = "RSpec done"
+
+    if self.output.summary then
+      message = string.format("%s (%.2fs)", message, self.output.summary.duration)
+    end
+
+    require("notify").notify(message, vim.log.levels.INFO, {
       icon = "",
       replace = notification,
       hide_from_history = true,
