@@ -129,9 +129,9 @@ function RSpec:update_popup()
     hide_from_history = true,
   })
 
-  vim.defer_fn(function()
-    self:update_popup()
-  end, 80)
+  -- stylua: ignore
+  ---@diagnostic disable-next-line: param-type-mismatch
+  vim.defer_fn(function() self:update_popup() end, 80)
 end
 
 ---Close progress popup
