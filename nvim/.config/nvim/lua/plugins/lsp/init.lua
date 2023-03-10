@@ -37,6 +37,7 @@ function M.config()
     "taplo",
     "tsserver",
     -- "vimls",
+    "zls",
   }
 
   require("neodev").setup({})

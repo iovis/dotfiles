@@ -67,6 +67,7 @@ brew "wget"
 brew "wrk"
 brew "xsv"
 brew "youtube-dl"
+brew "zig", args: ["HEAD"]
 brew "zsh"
 brew "jesseduffield/lazygit/lazygit"
 brew "koekeishiya/formulae/skhd"

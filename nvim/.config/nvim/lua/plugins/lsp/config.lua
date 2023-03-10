@@ -103,6 +103,7 @@ M.on_attach = function(client, bufnr)
     "rust",
     "svelte",
     "typescript",
+    "zig",
   }
 
   if vim.tbl_contains(autoformat_filetypes, vim.bo.filetype) and client.supports_method("textDocument/formatting") then
