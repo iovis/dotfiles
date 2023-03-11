@@ -32,12 +32,6 @@ bind -n C-left  resize-pane -L 5
 bind -n C-right resize-pane -R 5
 bind -n C-up    resize-pane -U 5
 
-## Move panes
-bind -n M-H move-pane -fh -b -t '.{next}'
-bind -n M-J move-pane -fv -t '.{next}'
-bind -n M-K move-pane -fv -b -t '.{next}'
-bind -n M-L move-pane -fh -t '.{next}'
-
 ## Scratch Session popup
 # bind -n M-Space if -F '#{==:#{session_name},·}' {
 #   detach-client

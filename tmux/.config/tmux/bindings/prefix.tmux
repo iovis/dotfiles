@@ -24,7 +24,7 @@ bind w set -w automatic-rename
 
 # Help & settings
 bind ? list-keys
-bind L customize-mode -Z
+# bind L customize-mode -Z
 
 # Session management
 # bind C-Space switch-client -l
@@ -58,8 +58,8 @@ bind q confirm -p "reset session? (y/n)" {
 }
 
 # Split panes
-bind H split-window -fv -c "#{pane_current_path}"
-bind V split-window -fh -c "#{pane_current_path}"
+# bind H split-window -fv -c "#{pane_current_path}"
+# bind V split-window -fh -c "#{pane_current_path}"
 bind h split-window -v  -c "#{pane_current_path}"
 bind v split-window -h  -c "#{pane_current_path}"
 
@@ -68,6 +68,11 @@ bind -r down  swap-pane -dt "{down-of}"
 bind -r left  swap-pane -dt "{left-of}"
 bind -r right swap-pane -dt "{right-of}"
 bind -r up    swap-pane -dt "{up-of}"
+
+bind H move-pane -fh -b -t '.{next}'
+bind J move-pane -fv -t '.{next}'
+bind K move-pane -fv -b -t '.{next}'
+bind L move-pane -fh -t '.{next}'
 
 # Join panes
 bind t switch-client -T join_pane
