@@ -89,14 +89,7 @@ return {
       },
     })
 
-    require("treesitter-context").setup({
-      patterns = {
-        ruby = {
-          "do_block",
-          "module",
-        },
-      },
-    })
+    require("treesitter-context").setup({})
 
     vim.keymap.set("n", "+H", "<cmd>TSHighlightCapturesUnderCursor<cr>")
   end,
