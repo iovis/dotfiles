@@ -103,7 +103,11 @@ return {
     ---- Filetypes
     cmp.setup.filetype("ruby", {
       sources = cmp.config.sources({
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+        { name = "buffer", keyword_length = 4 },
         { name = "tags" },
+        { name = "path" },
       }),
     })
   end,
