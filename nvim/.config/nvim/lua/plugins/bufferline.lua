@@ -3,11 +3,8 @@ return {
   -- enabled = false,
   event = "BufAdd",
   config = function()
-    -- local c = require("config.highlights").colors
-
     require("bufferline").setup({
       highlights = require("catppuccin.groups.integrations.bufferline").get(),
-      -- highlights = { indicator_selected = { fg = c.blue } },
       options = {
         mode = "tabs",
         numbers = "none",
@@ -23,6 +20,7 @@ return {
         -- end,
         show_buffer_close_icons = false,
         show_close_icon = false,
+        show_duplicate_prefix = false,
         separator_style = { "", "" },
         always_show_bufferline = false,
         offsets = {
