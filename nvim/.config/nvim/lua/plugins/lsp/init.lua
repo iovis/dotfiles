@@ -28,6 +28,7 @@ function M.config()
     "html",
     "jsonls",
     "lua_ls",
+    "marksman",
     "pyright",
     "rust_analyzer",
     "solargraph",
