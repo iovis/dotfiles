@@ -14,7 +14,7 @@ set -g status-style 'bg=default,fg=white'
 ### Left
 set -g status-left-length 90
 
-set -g status-left '#[fg=blue]#S'
+set -g status-left '  #[fg=blue]#S'
 set -ag status-left ' '
 
 ### Right
