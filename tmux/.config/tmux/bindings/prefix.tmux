@@ -2,6 +2,11 @@ unbind C-b
 set -g prefix C-Space
 bind Space send-prefix
 
+# Pass-through
+bind C-l send 'C-l'
+bind C-k send 'C-k'
+
+## Quick settings
 # Reload tmux
 bind R {
   source "$XDG_CONFIG_HOME/tmux/tmux.conf"
@@ -13,7 +18,7 @@ bind s {
   set status
 }
 
-# Quick settings
+# Set session path to current
 bind b {
   attach -c "#{pane_current_path}"
   display "changed path to #{pane_current_path}"
@@ -21,14 +26,13 @@ bind b {
 
 bind S set -w synchronize-panes
 bind w set -w automatic-rename
-
-# Help & settings
 bind ? list-keys
-# bind L customize-mode -Z
 
-# Session management
-# bind C-Space switch-client -l
+## Paste Buffers (clipboard)
+bind C-p choose-buffer
+bind p   paste-buffer
 
+## Session management
 bind c-f run sessionist
 
 bind C command-prompt -p "new session name:" {
@@ -44,7 +48,7 @@ bind X confirm-before -p "Kill session #{session_name}? (y/n)" {
 # bind '"'
 # https://github.com/tmux-plugins/tmux-sessionist/blob/master/scripts/promote_pane.sh
 
-# Window management
+## Window management
 bind c new-window -c "#{pane_current_path}"
 
 bind -r < swap-window -dt -1
@@ -57,11 +61,12 @@ bind q confirm -p "reset session? (y/n)" {
   kill-window -a
 }
 
-# Split panes
-# bind H split-window -fv -c "#{pane_current_path}"
-# bind V split-window -fh -c "#{pane_current_path}"
+## Pane Management
 bind h split-window -v  -c "#{pane_current_path}"
 bind v split-window -h  -c "#{pane_current_path}"
+
+# Resize panes equally
+bind 0 select-layout tiled
 
 # Move panes
 bind -r down  swap-pane -dt "{down-of}"
@@ -69,12 +74,13 @@ bind -r left  swap-pane -dt "{left-of}"
 bind -r right swap-pane -dt "{right-of}"
 bind -r up    swap-pane -dt "{up-of}"
 
+# Make pane full split
 bind H move-pane -fh -b -t '.{next}'
 bind J move-pane -fv -t '.{next}'
 bind K move-pane -fv -b -t '.{next}'
 bind L move-pane -fh -t '.{next}'
 
-# Join panes
+## Join panes
 bind t switch-client -T join_pane
 
 bind -T join_pane h {
@@ -84,14 +90,3 @@ bind -T join_pane h {
 bind -T join_pane v {
   join-pane -h
 }
-
-# Resize panes equally
-bind 0 select-layout tiled
-
-# Pass-through
-bind C-l send 'C-l'
-bind C-k send 'C-k'
-
-# Buffers (clipboard)
-bind C-p choose-buffer
-bind p   paste-buffer
