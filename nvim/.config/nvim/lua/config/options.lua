@@ -1,5 +1,5 @@
 vim.g.autoformat = true
-vim.g.autotest = "disable"
+vim.g.autotest = nil
 
 ---- disable legacy providers
 vim.g.loaded_perl_provider = 0
