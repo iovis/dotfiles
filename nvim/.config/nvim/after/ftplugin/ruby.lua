@@ -40,14 +40,14 @@ vim.keymap.set("n", "<leader>sp", ":TestNearest -strategy=test_prof<cr>", { buff
 vim.keymap.set(
   "n",
   "<leader>sy",
-  ":TuxBg! ctags && bundle exec solargraph bundle && bundle exec yard gems<cr>",
+  ":TuxBg! ctags && bundle exec solargraph bundle && bundle exec yard gems; pause<cr>",
   { buffer = true }
 )
 
 vim.keymap.set(
   "n",
   "<leader>sr",
-  ":TuxBg! ctags && bundle exec solargraph clear && bundle exec solargraph download-core && bundle exec solargraph bundle && bundle exec yard gems --rebuild<cr>",
+  ":TuxBg! ctags && bundle exec solargraph clear && bundle exec solargraph download-core && bundle exec solargraph bundle && bundle exec yard gems --rebuild; pause<cr>",
   { buffer = true }
 )
 
