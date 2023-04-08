@@ -4,7 +4,7 @@
 ---- Global
 --- Pretty print object
 function pp(...)
-  return vim.pretty_print(...)
+  return vim.print(...)
 end
 
 ----
