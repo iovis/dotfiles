@@ -1,7 +1,6 @@
 local M = {
   "neovim/nvim-lspconfig",
   dependencies = {
-    "tpope/vim-dotenv", -- sqls config
     "b0o/schemastore.nvim",
     "folke/neodev.nvim",
     "jose-elias-alvarez/null-ls.nvim",
@@ -33,7 +32,6 @@ function M.config()
     "rust_analyzer",
     "solargraph",
     -- "sorbet",
-    "sqls",
     "svelte",
     "taplo",
     "tsserver",
