@@ -1,8 +1,9 @@
 vim.keymap.set("n", "<Space>", "<Nop>")
 
-vim.keymap.set("n", "<leader>P", ":lua =")
 vim.keymap.set("n", "+t", "<c-w>T")
+vim.keymap.set("n", "<leader>P", ":lua =")
 vim.keymap.set("n", "<leader>uf", "<cmd>EditFtplugin<cr>")
+vim.keymap.set("n", "<leader>ñ", "<cmd>nohlsearch<cr>")
 
 ----Quick `R`
 vim.keymap.set("n", "_", ":R lua=")
