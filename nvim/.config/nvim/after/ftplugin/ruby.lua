@@ -28,12 +28,12 @@ else
 end
 
 ---- keymaps
-vim.keymap.set("n", "m<cr>", ":!ctags<cr>", { buffer = true })
+vim.keymap.set("n", "m<cr>", ":!ctags<cr>", { buffer = true, silent = true })
 vim.keymap.set("n", "<leader>b", vim.lsp.buf.format, { buffer = true })
 
 ---- quick testing
-vim.keymap.set("n", "<leader>sd", ":TestFile --format documentation<cr>", { buffer = true })
-vim.keymap.set("n", "<leader>sp", ":TestNearest -strategy=test_prof<cr>", { buffer = true })
+vim.keymap.set("n", "<leader>sd", ":TestFile --format documentation<cr>", { buffer = true, silent = true })
+vim.keymap.set("n", "<leader>sp", ":TestNearest -strategy=test_prof<cr>", { buffer = true, silent = true })
 
 ---- Solargraph
 -- Reset with: bundle exec solargraph clear && bundle exec yard gems --rebuild
@@ -41,14 +41,14 @@ vim.keymap.set(
   "n",
   "<leader>sy",
   ":TuxBg! ctags && bundle exec solargraph bundle && bundle exec yard gems; pause<cr>",
-  { buffer = true }
+  { buffer = true, silent = true }
 )
 
 vim.keymap.set(
   "n",
   "<leader>sr",
   ":TuxBg! ctags && bundle exec solargraph clear && bundle exec solargraph download-core && bundle exec solargraph bundle && bundle exec yard gems --rebuild; pause<cr>",
-  { buffer = true }
+  { buffer = true, silent = true }
 )
 
 -- " Load failing tests in a scratch window
