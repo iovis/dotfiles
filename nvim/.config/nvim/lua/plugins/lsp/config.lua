@@ -11,7 +11,11 @@ vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
 vim.keymap.set("n", "<leader>lp", "<cmd>Mason<cr>")
 
 ---- Floating window
+require("lspconfig.ui.windows").default_options.border = "rounded"
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+  border = "rounded",
+})
 
 ---- LSP Format
 local lsp_format = function()
@@ -61,6 +65,7 @@ M.on_attach = function(client, bufnr)
   ---- Signature/Definition
   buf_imap("<m-h>", vim.lsp.buf.hover, "vim.lsp.buf.hover")
   buf_imap("<m-k>", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
+  buf_imap("<c-s>", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
 
   buf_nmap("T", vim.lsp.buf.references, "vim.lsp.buf.references")
   buf_nmap("gd", vim.lsp.buf.hover, "vim.lsp.buf.hover")
