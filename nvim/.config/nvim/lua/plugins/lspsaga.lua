@@ -1,6 +1,10 @@
 return {
   "glepnir/lspsaga.nvim",
-  -- dev = true,
+  event = "LspAttach",
+  dependencies = {
+    { "nvim-tree/nvim-web-devicons" },
+    { "nvim-treesitter/nvim-treesitter" },
+  },
   config = function()
     require("lspsaga").setup({
       beacon = {
@@ -10,7 +14,6 @@ return {
       --   extend_gitsigns = false,
       -- },
       diagnostic = {
-        on_insert = false,
         keys = {
           exec_action = "<cr>",
         },
@@ -22,8 +25,7 @@ return {
       },
       outline = {
         keys = {
-          jump = "<cr>",
-          expand_collapse = "x",
+          expand_or_jump = "<cr>",
         },
       },
       symbol_in_winbar = {

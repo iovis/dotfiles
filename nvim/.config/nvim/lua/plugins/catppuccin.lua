@@ -63,7 +63,7 @@ return {
           CodeActionNumber = { fg = colors.teal },
           CodeActionText = { fg = colors.blue },
           DiagnosticSource = { link = "Comment" },
-          LspSagaLightBulb = { fg = colors.yellow },
+          SagaLightBulb = { fg = colors.yellow },
 
           -- mini
           MiniIndentscopeSymbol = { fg = colors.surface0 },
