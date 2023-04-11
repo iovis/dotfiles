@@ -8,7 +8,6 @@ return {
   -- Other library dependencies
   { "nvim-lua/plenary.nvim", lazy = true },
   { "nvim-tree/nvim-web-devicons", lazy = true },
-  { "tpope/vim-dotenv", lazy = true },
 
   { "dstein64/vim-startuptime", cmd = "StartupTime" },
   { "iovis/browsers_castle", event = "VeryLazy" },
@@ -16,6 +15,7 @@ return {
   { "tpope/vim-abolish", event = "VeryLazy" },
   { "tpope/vim-bundler", event = "VeryLazy" },
   { "tpope/vim-characterize", event = "VeryLazy" },
+  { "tpope/vim-dotenv", event = "VeryLazy" },
   { "tpope/vim-eunuch", event = "VeryLazy" },
   { "tpope/vim-fugitive", event = "VeryLazy" },
   { "tpope/vim-ragtag", event = "VeryLazy" },
