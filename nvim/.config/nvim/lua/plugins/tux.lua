@@ -18,8 +18,8 @@ return {
     local u = require("config.utils")
 
     -- Docker
-    u.command("Dcps", "TuxBg docker compose ps | less")
-    u.command("Dcstop", "TuxBg! docker compose stop")
-    u.command("Dcup", "TuxBg! docker compose up -d --remove-orphans")
+    u.command("Dcps", "TuxBg dcps")
+    u.command("Dcstop", "TuxBg! dcstop")
+    u.command("Dcup", "TuxBg! dcup")
   end,
 }
