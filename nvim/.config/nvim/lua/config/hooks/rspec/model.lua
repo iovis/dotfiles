@@ -108,8 +108,14 @@ end
 
 ---Show progress popup
 function RSpec:progress()
-  self.popup = { spinner = 1 }
-  self:update_popup()
+  local notify_present, _ = pcall(require, "notify")
+
+  if notify_present then
+    self.popup = { spinner = 1 }
+    self:update_popup()
+  else
+    vim.notify("RSpec is running", vim.log.levels.INFO)
+  end
 end
 
 local spinner_frames = { "⣷", "⣯", "⣟", "⡿", "⢿", "⣻", "⣽", "⣾" }
@@ -136,22 +142,25 @@ end
 
 ---Close progress popup
 function RSpec:close()
-  local notification = self.popup.notification
+  local message = "RSpec done"
+
+  if self.output.summary then
+    message = string.format("%s (%.2fs)", message, self.output.summary.duration)
+  end
+
+  local notification = self.popup and self.popup.notification
+
   self.job_id = nil
   self.popup = nil
 
   if notification then
-    local message = "RSpec done"
-
-    if self.output.summary then
-      message = string.format("%s (%.2fs)", message, self.output.summary.duration)
-    end
-
     require("notify").notify(message, vim.log.levels.INFO, {
       icon = "",
       replace = notification,
       hide_from_history = true,
     })
+  else
+    vim.notify(message, vim.log.levels.INFO)
   end
 end
 

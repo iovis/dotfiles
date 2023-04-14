@@ -55,7 +55,6 @@ set relativenumber
 set scrolloff=4
 set shiftround
 set shiftwidth=2
-set shortmess-=S
 set showmatch
 set sidescrolloff=4
 set signcolumn=yes
