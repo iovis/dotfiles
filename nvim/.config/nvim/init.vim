@@ -373,21 +373,6 @@ nnoremap <silent> <leader>n :execute "e $NOTES/" . strftime('%F') . ".md"<cr>
 " }}} notes "
 
 " commands {{{ "
-" Git {{{ "
-nnoremap <leader>gcb   :Gcb<space>
-nnoremap <leader>gcm   :Gcm<cr>
-nnoremap <leader>gcq   :Gcq<cr>
-nnoremap <leader>gpsup :Gpsup<cr>
-
-command! -nargs=0 Grev  %bdelete <bar> next! `git files` <bar> bd #
-
-command! -nargs=0 Gcm   !git checkout master
-command! -nargs=0 Gcq   !git checkout qa
-command! -nargs=0 Gpsup !git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
-command! -nargs=0 Grhh  !git reset --hard
-command! -nargs=1 Gcb   !git checkout -b <args>
-" }}} Git "
-
 " QuickFix toggle {{{ "
 function! GetBufferList()
   redir =>buflist
