@@ -102,6 +102,8 @@ u.command("VimPlugin", function(opts)
   vim.fn.system(cmd)
 end, { nargs = "?" })
 
+u.command("REMember", [[%s/\v(\s)([-+]?\d*\.?\d*px)/\1REMember(\2)/g]], { nargs = 0 })
+
 ----Reload Highlights
 -- u.command("ReloadHighlights", function()
 --   -- Not sure why I have to reload the package for the function to run

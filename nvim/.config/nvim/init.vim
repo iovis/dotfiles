@@ -371,9 +371,3 @@ nnoremap +<cr> :so $VIMRUNTIME/syntax/hitest.vim<cr>
 " notes {{{ "
 nnoremap <silent> <leader>n :execute "e $NOTES/" . strftime('%F') . ".md"<cr>
 " }}} notes "
-
-" commands {{{ "
-" REMember {{{ "
-command! -nargs=0 REMember %s/\(\s\)\([-+]\?\d*\.\?\d*px\)/\1REMember(\2)/g
-" }}} REMember "
-" }}} commands "
