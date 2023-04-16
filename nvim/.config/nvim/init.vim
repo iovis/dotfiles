@@ -287,25 +287,6 @@ nnoremap <leader>K <c-w>K
 nnoremap <leader>L <c-w>L
 " }}} splits "
 
-" grep {{{ "
-command! -nargs=+ -complete=file Grep silent! grep! -R <args>|botright cwindow|redraw!
-
-nnoremap <leader>F  :Grep ""<left>
-xmap     <leader>F *:<c-u>Grep "<c-r>""
-
-nmap <silent> K *:Grep "\b<cword>\b"<cr>
-xmap <silent> K *:Grep -F "<c-r>""<cr>
-" }}} grep "
-
-" ripgrep {{{ "
-if executable('rg')
-  command! -nargs=+ -complete=file Grep silent! grep! <args>|botright cwindow|redraw!
-
-  set grepprg=rg\ --hidden\ --vimgrep\ --smart-case\ -g\ '!sorbet'\ -g\ '!Session.vim'
-  set grepformat=%f:%l:%c:%m
-endif
-" }}} ripgrep "
-
 " config editing {{{ "
 nnoremap <leader>u <nop>
 nnoremap <silent> <leader>us :so $MYVIMRC<cr>:echo 'vimrc sourced'<cr>
