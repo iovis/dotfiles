@@ -35,6 +35,10 @@ vim.keymap.set("n", "<leader>ñ", "<cmd>nohlsearch<cr>")
 ---- Quick `R`
 vim.keymap.set("n", "_", ":R lua=")
 
+---- Notes
+vim.keymap.set("n", "<leader>n", ":e notes/index.md<cr>", { silent = true })
+vim.keymap.set("n", "<leader>N", [[:execute "e notes/" . strftime('%F') . ".md"<cr>]], { silent = true })
+
 ---- Global substitutions
 vim.keymap.set({ "n", "x" }, "+g", ":g//<left>")
 vim.keymap.set({ "n", "x" }, "+l", ':luado return string.format("%s", line)')

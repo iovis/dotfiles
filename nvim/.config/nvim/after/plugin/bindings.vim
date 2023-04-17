@@ -203,7 +203,3 @@ nnoremap ¡<space> :!open<space>
 nnoremap <leader>ui :execute "hi " . synIDattr(synID(line("."),col("."),1),"name")<CR>
 nnoremap +<cr> :so $VIMRUNTIME/syntax/hitest.vim<cr>
 " }}} Highlights "
-
-" notes {{{ "
-nnoremap <silent> <leader>n :execute "e $NOTES/" . strftime('%F') . ".md"<cr>
-" }}} notes "
