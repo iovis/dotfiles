@@ -88,7 +88,7 @@ return {
     vim.keymap.set("n", "+n", function()
       if vim.o.cmdheight == 0 then
         noice.disable()
-        vim.o.cmdheight = 2
+        vim.o.cmdheight = 1
       else
         noice.enable()
       end
