@@ -1,11 +1,10 @@
-" plugins {{{ "
 scriptencoding utf-8
 
-let g:mapleader = "\<Space>"
-
 lua <<EOF
+vim.g.mapleader = " "
+
 require("config.filetype")
-require("config.lazy")
+require("config.lazy") -- load plugins
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",
@@ -14,67 +13,8 @@ vim.api.nvim_create_autocmd("User", {
   end,
 })
 EOF
-" }}} plugins "
 
 " config {{{ "
-set autoindent
-set autoread
-set autowriteall
-set background=dark
-set backspace=indent,eol,start
-set breakindent
-set cmdheight=2
-set completeopt=menu,menuone,noselect
-set conceallevel=0
-set cursorline  " Highlight current line (slow)
-set diffopt+=hiddenoff
-set diffopt+=vertical
-set expandtab
-set fillchars+=diff:╱
-set formatoptions-=ro  " Don't insert comment leader on new line
-set hidden
-set hlsearch
-set ignorecase
-set inccommand=split
-set incsearch
-set laststatus=3 " statusline mode
-set lazyredraw  " Try to not draw while doing macros (helps with scrolling performance)
-set linespace=2
-set listchars=lead:·,tab:>-,trail:-,nbsp:+,eol:$
-set magic
-set mouse=a
-set nobackup
-set noruler
-set noshowmode
-set nostartofline
-set noswapfile
-set nowritebackup
-set nowrap
-set number
-set relativenumber
-set scrolloff=4
-set shiftround
-set shiftwidth=2
-set showmatch
-set sidescrolloff=4
-set signcolumn=yes
-set smartcase
-set softtabstop=2
-set spelllang=en_us
-set splitbelow
-set splitright
-set tabstop=2
-set termguicolors
-set updatetime=200
-set undofile
-set virtualedit=block
-set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn
-set wildignorecase
-set wildmenu
-set wildmode=full
-let &showbreak = '└ '
-let @/ = ''  " don't show search highlights when entering or resourcing vimrc
-
 " Terminal config
 autocmd TermOpen * startinsert
 autocmd TermOpen * setlocal norelativenumber signcolumn=no nonumber
