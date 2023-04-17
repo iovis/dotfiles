@@ -14,26 +14,6 @@ vim.api.nvim_create_autocmd("User", {
 })
 EOF
 
-" config {{{ "
-" Terminal config
-autocmd TermOpen * startinsert
-autocmd TermOpen * setlocal norelativenumber signcolumn=no nonumber
-
-tnoremap <c-h> <c-\><c-n><C-w>h
-tnoremap <c-j> <c-\><c-n><C-w>j
-tnoremap <c-k> <c-\><c-n><C-w>k
-tnoremap <c-l> <c-\><c-n><C-w>l
-tnoremap kj    <c-\><c-n>
-tnoremap KJ    <c-\><c-n>
-tnoremap Kj    <c-\><c-n>
-
-" Understand Sorbet files
-augroup rbi
-  autocmd!
-  autocmd BufNewFile,BufRead *.rbi set filetype=ruby
-augroup end
-" }}} config "
-
 " bindings {{{ "
 inoremap kj <Esc>
 inoremap KJ <Esc>

@@ -50,3 +50,11 @@ vim.keymap.set("n", "+T", function()
     end
   end)
 end, { desc = "Toggle autotest" })
+
+---- Terminal mode
+vim.keymap.set("t", "kj", [[<c-\><c-n>]])
+
+vim.keymap.set("t", "<c-h>", [[<c-\><c-n><C-w>h]])
+vim.keymap.set("t", "<c-j>", [[<c-\><c-n><C-w>j]])
+vim.keymap.set("t", "<c-k>", [[<c-\><c-n><C-w>k]])
+vim.keymap.set("t", "<c-l>", [[<c-\><c-n><C-w>l]])
