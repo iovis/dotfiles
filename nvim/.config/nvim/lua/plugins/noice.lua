@@ -19,7 +19,7 @@ return {
 
     noice.setup({
       cmdline = {
-        -- enabled = false,
+        enabled = false, -- Needs to be disabled with `messages` as well
       },
       lsp = {
         -- Controlled by lspsaga
@@ -27,7 +27,7 @@ return {
         signature = { enabled = false },
       },
       messages = {
-        -- enabled = false,
+        enabled = false, -- enables `cmdline` automatically
         view = "mini",
         view_search = false, -- "virtualtext", show search messages
       },
