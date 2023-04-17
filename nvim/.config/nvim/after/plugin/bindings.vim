@@ -1,28 +1,4 @@
 " bindings {{{ "
-inoremap kj <Esc>
-inoremap KJ <Esc>
-inoremap Kj <Esc>
-
-" Some expansions
-inoremap ,, <c-o>A,
-inoremap ;; <c-o>A;
-
-" inoremap (<cr> (<cr>)<esc>O
-" inoremap [<cr> [<cr>]<esc>O
-" inoremap {<cr> {<cr>}<esc>O
-"
-" inoremap (,<cr> (<cr>),<esc>O
-" inoremap [,<cr> [<cr>],<esc>O
-" inoremap {,<cr> {<cr>},<esc>O
-"
-" inoremap (<space> ()<left>
-" inoremap [<space> [<space><space>]<left><left>
-" inoremap {<space> {<space><space>}<left><left>
-"
-" inoremap (,<space> (),<left><left>
-" inoremap [,<space> [<space><space>],<left><left><left>
-" inoremap {,<space> {<space><space>},<left><left><left>
-
 " Jump to next match with TAB during a search
 set wildcharm=<c-z>
 cnoremap <expr> <tab>   getcmdtype() =~ '[?/]' ? "<c-g>" : "<c-z>"
@@ -40,16 +16,6 @@ cnoremap <m-right> <s-right>
 cnoremap <m-+> ]
 cnoremap <m-ç> }
 cnoremap <m-ñ> ~
-
-inoremap <m-left> <s-left>
-inoremap <m-right> <s-right>
-inoremap <c-a> <home>
-inoremap <c-e> <end>
-inoremap <m-O> <esc>O
-inoremap <m-o> <esc>o
-inoremap <m-+> ]
-inoremap <m-ç> }
-inoremap <m-ñ> ~
 
 nmap     <s-down> ]c
 nmap     <s-up>   [c

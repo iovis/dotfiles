@@ -1,11 +1,38 @@
+---- Disable Space to not conflict with Leader
 vim.keymap.set("n", "<Space>", "<Nop>")
+
+---- Insert mode
+-- Exit
+vim.keymap.set("i", "kj", "<esc>")
+vim.keymap.set("i", "KJ", "<esc>")
+vim.keymap.set("i", "Kj", "<esc>")
+
+-- Quick expansions
+vim.keymap.set("i", ",,", "<c-o>A,")
+vim.keymap.set("i", ";;", "<c-o>A;")
+
+vim.keymap.set("i", "<m-+>", "]")
+vim.keymap.set("i", "<m-ç>", "}")
+vim.keymap.set("i", "<m-ñ>", "~")
+
+-- Movement
+vim.keymap.set("i", "<m-left>", "<s-left>")
+vim.keymap.set("i", "<m-right>", "<s-right>")
+
+vim.keymap.set("i", "<c-a>", "<home>")
+vim.keymap.set("i", "<c-e>", "<end>")
+
+vim.keymap.set("i", "<m-O>", "<esc>O")
+vim.keymap.set("i", "<m-o>", "<esc>o")
+
+----------------------------------------------
 
 vim.keymap.set("n", "+t", "<c-w>T")
 vim.keymap.set("n", "<leader>P", ":lua =")
 vim.keymap.set("n", "<leader>uf", "<cmd>EditFtplugin<cr>")
 vim.keymap.set("n", "<leader>ñ", "<cmd>nohlsearch<cr>")
 
-----Quick `R`
+---- Quick `R`
 vim.keymap.set("n", "_", ":R lua=")
 
 ---- Global substitutions
