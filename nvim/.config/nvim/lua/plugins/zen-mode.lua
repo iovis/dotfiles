@@ -25,12 +25,12 @@ return {
 
         -- There's a bug if cmdheight = 0 that zen-mode can't hide the statusline
         -- https://github.com/folke/zen-mode.nvim/issues/69
-        require("lualine").hide({})
-        vim.o.statusline = " "
+        -- require("lualine").hide({})
+        -- vim.o.statusline = " "
       end,
       on_close = function()
         require("barbecue.ui").toggle(true)
-        require("lualine").hide({ unhide = true })
+        -- require("lualine").hide({ unhide = true })
       end,
     })
   end,
