@@ -49,30 +49,6 @@ nnoremap & g&
 nnoremap M <c-w>o
 nnoremap Y y$
 
-nmap ' `
-xmap ' `
-" nnoremap <silent> <leader>ñ :noh<cr>
-" xnoremap <silent> <leader>ñ :noh<cr>
-nnoremap H g^
-onoremap H g^
-xnoremap H g^
-nnoremap L g$
-onoremap L g$
-xnoremap L g$
-nnoremap Q @q
-xnoremap <silent> Q :norm @q<cr>
-nnoremap ñ /
-xnoremap ñ /
-nnoremap Ñ ?
-xnoremap Ñ ?
-
-" pasting with indent {{{ "
-nnoremap <silent> p p:execute ":silent normal! `[v`]="<cr>
-nnoremap <silent> P P:execute ":silent normal! `[v`]="<cr>
-nnoremap gp p
-nnoremap gP P
-" }}} pasting with indent "
-
 " select last inserted text {{{ "
 nnoremap gV `[v`]
 " }}} select last inserted text "
@@ -102,15 +78,6 @@ xnoremap # y:let @/=escape(@@, '/\') <bar> normal! ?<cr>
 " root {{{ "
 command! W w !sudo tee % > /dev/null
 " }}} root "
-
-" clipboard {{{ "
-nnoremap <leader>y "+y
-nnoremap <leader>Y "+y$
-xnoremap <leader>y "+y
-nnoremap <leader>d "+d
-nnoremap <leader>D "+D
-xnoremap <leader>d "+d
-" }}} clipboard "
 
 " move line {{{ "
 nnoremap <silent> <M-j> :m+<cr>==

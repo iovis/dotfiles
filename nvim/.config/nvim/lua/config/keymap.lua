@@ -44,6 +44,31 @@ vim.keymap.set("c", "<c-b>", "<nop>")
 vim.keymap.set("c", "<c-j>", "<down>")
 vim.keymap.set("c", "<c-k>", "<up>")
 
+---- Normal mode
+-- Movement
+vim.keymap.set({ "n", "x", "o" }, "H", "g^")
+vim.keymap.set({ "n", "x", "o" }, "L", "g$")
+vim.keymap.set({ "n", "x", "o" }, "'", "`")
+
+-- Search
+vim.keymap.set({ "n", "x" }, "ñ", "/")
+vim.keymap.set({ "n", "x" }, "Ñ", "?")
+
+-- Paste
+vim.keymap.set("n", "p", [[p<cmd>execute ":silent normal! `[v`]="<cr>]])
+vim.keymap.set("n", "P", [[P<cmd>execute ":silent normal! `[v`]="<cr>]])
+vim.keymap.set("n", "gp", "p")
+vim.keymap.set("n", "gP", "P")
+
+vim.keymap.set({ "n", "x" }, "<leader>y", '"+y')
+vim.keymap.set("n", "<leader>Y", '"+y$')
+vim.keymap.set({ "n", "x" }, "<leader>d", '"+d')
+vim.keymap.set("n", "<leader>D", '"+d$')
+
+-- Macros
+vim.keymap.set("n", "Q", "@q")
+vim.keymap.set("x", "Q", ":norm @q<cr>", { silent = true })
+
 ----------------------------------------------
 
 vim.keymap.set("n", "+t", "<c-w>T")
