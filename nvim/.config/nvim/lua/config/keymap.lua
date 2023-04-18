@@ -25,6 +25,25 @@ vim.keymap.set("i", "<c-e>", "<end>")
 vim.keymap.set("i", "<m-O>", "<esc>O")
 vim.keymap.set("i", "<m-o>", "<esc>o")
 
+---- Command mode
+-- " cnoremap <silent> %h <c-r>=fnameescape(expand('%:h')).'/'<cr>
+-- " cnoremap <silent> %t <c-r>=fnameescape(expand('%:t'))<cr>
+
+-- Quick expansions
+vim.keymap.set("c", "<m-+>", "]")
+vim.keymap.set("c", "<m-ç>", "}")
+vim.keymap.set("c", "<m-ñ>", "~")
+
+-- Movement
+vim.keymap.set("c", "<m-left>", "<s-left>")
+vim.keymap.set("c", "<m-right>", "<s-right>")
+
+vim.keymap.set("c", "<c-a>", "<c-b>")
+vim.keymap.set("c", "<c-b>", "<nop>")
+
+vim.keymap.set("c", "<c-j>", "<down>")
+vim.keymap.set("c", "<c-k>", "<up>")
+
 ----------------------------------------------
 
 vim.keymap.set("n", "+t", "<c-w>T")

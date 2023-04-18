@@ -5,18 +5,6 @@ cnoremap <expr> <tab>   getcmdtype() =~ '[?/]' ? "<c-g>" : "<c-z>"
 cnoremap <expr> <s-tab> getcmdtype() =~ '[?/]' ? "<c-t>" : "<s-tab>"
 
 " QOL remappings
-" cnoremap <silent> %h <c-r>=fnameescape(expand('%:h')).'/'<cr>
-" cnoremap <silent> %t <c-r>=fnameescape(expand('%:t'))<cr>
-cnoremap <c-a> <c-b>
-cnoremap <c-b> <Nop>
-cnoremap <c-j> <down>
-cnoremap <c-k> <up>
-cnoremap <m-left> <s-left>
-cnoremap <m-right> <s-right>
-cnoremap <m-+> ]
-cnoremap <m-ç> }
-cnoremap <m-ñ> ~
-
 nmap     <s-down> ]c
 nmap     <s-up>   [c
 nnoremap <expr> j v:count ? 'j' : 'gj'
