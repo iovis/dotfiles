@@ -46,6 +46,9 @@ vim.keymap.set("c", "<c-k>", "<up>")
 
 ---- Normal mode
 -- Movement
+vim.keymap.set({ "n", "x" }, "j", "(v:count == 0 ? 'gj' : 'j')", { expr = true })
+vim.keymap.set({ "n", "x" }, "k", "(v:count == 0 ? 'gk' : 'k')", { expr = true })
+
 vim.keymap.set({ "n", "x", "o" }, "H", "g^")
 vim.keymap.set({ "n", "x", "o" }, "L", "g$")
 vim.keymap.set({ "n", "x", "o" }, "'", "`")
@@ -55,6 +58,8 @@ vim.keymap.set({ "n", "x" }, "ñ", "/")
 vim.keymap.set({ "n", "x" }, "Ñ", "?")
 
 -- Paste
+vim.keymap.set("n", "Y", "y$")
+
 vim.keymap.set("n", "p", [[p<cmd>execute ":silent normal! `[v`]="<cr>]])
 vim.keymap.set("n", "P", [[P<cmd>execute ":silent normal! `[v`]="<cr>]])
 vim.keymap.set("n", "gp", "p")
@@ -65,9 +70,24 @@ vim.keymap.set("n", "<leader>Y", '"+y$')
 vim.keymap.set({ "n", "x" }, "<leader>d", '"+d')
 vim.keymap.set("n", "<leader>D", '"+d$')
 
+-- Replace
+vim.keymap.set("n", "R", "ciw<c-r>0<esc>")
+vim.keymap.set("x", "R", '"0p')
+
 -- Macros
 vim.keymap.set("n", "Q", "@q")
 vim.keymap.set("x", "Q", ":norm @q<cr>", { silent = true })
+
+-- Indent in visual mode
+vim.keymap.set("x", "<", "<gv")
+vim.keymap.set("x", ">", ">gv")
+
+-- Tags
+vim.keymap.set("n", "t", "<c-]>")
+vim.keymap.set("n", "T", "g]")
+
+-- Highlights
+vim.keymap.set("n", "+<cr>", "<cmd>so $VIMRUNTIME/syntax/hitest.vim<cr>")
 
 ----------------------------------------------
 

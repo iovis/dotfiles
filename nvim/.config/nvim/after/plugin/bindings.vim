@@ -7,10 +7,6 @@ cnoremap <expr> <s-tab> getcmdtype() =~ '[?/]' ? "<c-t>" : "<s-tab>"
 " QOL remappings
 nmap     <s-down> ]c
 nmap     <s-up>   [c
-nnoremap <expr> j v:count ? 'j' : 'gj'
-nnoremap <expr> k v:count ? 'k' : 'gk'
-xnoremap <expr> j v:count ? 'j' : 'gj'
-xnoremap <expr> k v:count ? 'k' : 'gk'
 nnoremap <leader>. @:
 nnoremap <leader>, @@
 nnoremap <leader>E :e<space><c-r>=fnameescape(expand('%:h')).'/'<cr>
@@ -47,25 +43,14 @@ nnoremap <silent> g2 :set shiftwidth=2 softtabstop=2 expandtab \| retab<cr>gg=G
 nnoremap <silent> g4 :set shiftwidth=4 softtabstop=4 expandtab \| retab<cr>gg=G
 nnoremap & g&
 nnoremap M <c-w>o
-nnoremap Y y$
 
 " select last inserted text {{{ "
 nnoremap gV `[v`]
 " }}} select last inserted text "
 
-" replace {{{ "
-nnoremap R ciw<c-r>0<esc>
-xnoremap R "0p
-" }}} replace "
-
 " repeat on visual {{{ "
 xnoremap <silent> . :normal .<cr>
 " }}} repeat on visual "
-
-" indent {{{ "
-xnoremap < <gv
-xnoremap > >gv
-" }}} indent "
 
 " start search {{{ "
 nnoremap <silent> * :let @/='\<<C-R>=expand("<cword>")<cr>\>'<bar>set hls<cr>
@@ -74,10 +59,6 @@ nnoremap # #N
 xnoremap * y:let @/=escape(@@, '/\') <bar> normal! /<cr>
 xnoremap # y:let @/=escape(@@, '/\') <bar> normal! ?<cr>
 " }}} start search "
-
-" root {{{ "
-command! W w !sudo tee % > /dev/null
-" }}} root "
 
 " move line {{{ "
 nnoremap <silent> <M-j> :m+<cr>==
@@ -96,11 +77,6 @@ nnoremap <silent> <leader>t :enew<cr>
 " fix c-i after mapping tab {{{ "
 nnoremap <c-e> <c-i>
 " }}} fix c-i after mapping tab "
-
-" tags {{{ "
-nmap T g]
-nmap t <c-]>
-" }}} tags "
 
 " splits {{{ "
 nnoremap <leader>v <c-w>v
@@ -122,9 +98,3 @@ xnoremap <silent> ¡  y:silent execute '!open ' . escape(getreg('0'), '#')<cr>
 
 nnoremap ¡<space> :!open<space>
 " }}} open resource "
-
-" Highlights {{{ "
-" TODO: Change to vim.show_pos() in nvim 0.9.0
-nnoremap <leader>ui :execute "hi " . synIDattr(synID(line("."),col("."),1),"name")<CR>
-nnoremap +<cr> :so $VIMRUNTIME/syntax/hitest.vim<cr>
-" }}} Highlights "
