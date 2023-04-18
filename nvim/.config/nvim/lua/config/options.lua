@@ -1,3 +1,6 @@
+---- Set Space as the leader key
+vim.g.mapleader = " "
+
 ---- Global Variables
 vim.g.autoformat = true
 vim.g.autotest = nil
@@ -14,7 +17,7 @@ vim.opt.fillchars:append("diff:╱")
 vim.o.ignorecase = true
 vim.o.inccommand = "split"
 vim.o.laststatus = 3
-vim.o.lazyredraw = true
+-- vim.o.lazyredraw = true
 vim.opt.listchars:append({
   lead = "·",
   tab = ">-",
@@ -49,9 +52,9 @@ vim.o.wildignorecase = true
 vim.o.wrap = false
 
 ---- Session Options
-vim.opt.sessionoptions:remove("blank")
-vim.opt.sessionoptions:remove("folds")
-vim.opt.sessionoptions:append("localoptions")
+-- vim.opt.sessionoptions:remove("blank")
+-- vim.opt.sessionoptions:remove("folds")
+-- vim.opt.sessionoptions:append("localoptions")
 
 ---- Disable legacy providers
 vim.g.loaded_perl_provider = 0
