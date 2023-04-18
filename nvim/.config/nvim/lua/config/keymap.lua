@@ -42,6 +42,23 @@ vim.keymap.set("c", "<c-j>", "<down>")
 vim.keymap.set("c", "<c-k>", "<up>")
 
 ---- Normal mode
+-- Buffers
+vim.keymap.set("n", "<bs>", "<c-^>")
+
+vim.keymap.set("n", "<leader>t", "<cmd>enew<cr>")
+vim.keymap.set("n", "<leader>q", "<cmd>%bdelete<cr>")
+vim.keymap.set("n", "<leader>Q", "<cmd>%bdelete|e#|bd#<cr>")
+
+vim.keymap.set("n", "<leader>e", ":e<space>")
+vim.keymap.set("n", "<leader>E", ":e<space><c-r>=fnameescape(expand('%:h')).'/'<cr>")
+vim.keymap.set("n", "<leader>W", ":saveas <c-r>=fnameescape(expand('%:h')).'/'<cr>")
+
+-- Editor
+vim.keymap.set("n", "+c", ":cd <c-r>=fnameescape(expand('%:p:h'))<cr><cr>")
+vim.keymap.set("n", "<leader>x", "<cmd>confirm qa<cr>")
+vim.keymap.set("n", "<leader>X", "<cmd>qa!<cr>")
+vim.keymap.set("n", "<leader>w", "<cmd>w!<cr>")
+
 -- Movement
 vim.keymap.set({ "n", "x" }, "j", "(v:count == 0 ? 'gj' : 'j')", { expr = true })
 vim.keymap.set({ "n", "x" }, "k", "(v:count == 0 ? 'gk' : 'k')", { expr = true })
@@ -52,6 +69,14 @@ vim.keymap.set({ "n", "x", "o" }, "'", "`")
 
 vim.keymap.set("n", "<s-up>", "[c", { remap = true })
 vim.keymap.set("n", "<s-down>", "]c", { remap = true })
+
+vim.keymap.set("n", "<c-e>", "<c-i>")
+
+-- Open Resource
+vim.keymap.set("n", "¡¡", "<cmd>silent execute '!open ' . escape(expand('<cWORD>'), '#')<cr>")
+vim.keymap.set("x", "¡", "y<cmd>silent execute '!open ' . escape(getreg('0'), '#')<cr>")
+
+vim.keymap.set("n", "¡<space>", ":!open<space>")
 
 -- Panes
 vim.keymap.set("n", "<leader>v", "<c-w>v")
@@ -78,6 +103,11 @@ vim.keymap.set("x", "<m-k>", ":m'<-2<cr>`>my`<mzgv=gv`yo`z")
 
 vim.keymap.set("n", "<m-o>", "mzo<esc>`z")
 vim.keymap.set("n", "<m-O>", "mzO<esc>`z")
+
+vim.keymap.set("n", "<leader>b", "gg=G")
+
+vim.keymap.set("n", "g2", "mz:set shiftwidth=2 softtabstop=2 expandtab | retab<cr>gg=G`z")
+vim.keymap.set("n", "g4", "mz:set shiftwidth=4 softtabstop=4 expandtab | retab<cr>gg=G`z")
 
 -- Search
 vim.keymap.set({ "n", "x" }, "ñ", "/")
