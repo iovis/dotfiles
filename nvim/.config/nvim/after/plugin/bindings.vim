@@ -176,21 +176,6 @@ nnoremap <silent> <leader>uz :e! $FDOTDIR/config.fish<cr>
 nnoremap <leader>W :saveas <c-r>=fnameescape(expand('%:h')).'/'<cr>
 " }}} duplicate file "
 
-" vim-unimpaired {{{ "
-nnoremap <silent> yo, :set number! relativenumber! cursorline!<cr>
-
-nnoremap <silent> yoc :set cursorline!<cr>
-nnoremap <silent> yod :<c-r>=&diff ? "diffoff" : "diffthis"<cr><cr>
-nnoremap <silent> yoh :set hlsearch!<cr>
-nnoremap <silent> yol :set list!<cr>
-nnoremap <silent> yon :set number!<cr>
-nnoremap <silent> yop :set paste!<cr>
-nnoremap <silent> yor :set relativenumber!<cr>
-
-nnoremap <silent> yos :setlocal spell! spelllang=en_us<cr>
-nnoremap <silent> yow :setlocal wrap!<cr>
-" }}} vim-unimpaired "
-
 " open resource {{{ "
 nnoremap <silent> ¡¡  :silent execute '!open ' . escape(expand('<cWORD>'), '#')<cr>
 xnoremap <silent> ¡  y:silent execute '!open ' . escape(getreg('0'), '#')<cr>

@@ -32,6 +32,20 @@ vim.keymap.set("n", "<leader>P", ":lua =")
 vim.keymap.set("n", "<leader>uf", "<cmd>EditFtplugin<cr>")
 vim.keymap.set("n", "<leader>ñ", "<cmd>nohlsearch<cr>")
 
+---- Setting toggles
+vim.keymap.set("n", "yo", "<cmd>set number! relativenumber! cursorline!<cr>")
+
+vim.keymap.set("n", "yoc", "<cmd>set cursorline!<cr>")
+vim.keymap.set("n", "yod", ":<c-r>=&diff ? 'diffoff' : 'diffthis'<cr><cr>")
+vim.keymap.set("n", "yoh", "<cmd>set hlsearch!<cr>")
+vim.keymap.set("n", "yol", "<cmd>set list!<cr>")
+vim.keymap.set("n", "yon", "<cmd>set number!<cr>")
+vim.keymap.set("n", "yop", "<cmd>set paste!<cr>")
+vim.keymap.set("n", "yor", "<cmd>set relativenumber!<cr>")
+
+vim.keymap.set("n", "yos", "<cmd>setlocal spell! spelllang=en_us<cr>")
+vim.keymap.set("n", "yow", "<cmd>setlocal wrap!<cr>")
+
 ---- Quick `R`
 vim.keymap.set("n", "_", ":R lua=")
 
