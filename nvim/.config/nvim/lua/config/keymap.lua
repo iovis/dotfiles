@@ -53,6 +53,9 @@ vim.keymap.set({ "n", "x", "o" }, "H", "g^")
 vim.keymap.set({ "n", "x", "o" }, "L", "g$")
 vim.keymap.set({ "n", "x", "o" }, "'", "`")
 
+vim.keymap.set("n", "<s-up>", "[c", { remap = true })
+vim.keymap.set("n", "<s-down>", "]c", { remap = true })
+
 -- Panes
 vim.keymap.set("n", "<leader>v", "<c-w>v")
 vim.keymap.set("n", "<leader>h", "<c-w>s")
@@ -69,6 +72,15 @@ vim.keymap.set("n", "M", "<c-w>o")
 vim.keymap.set("n", "<leader>m", "<c-w>_<c-w>|")
 vim.keymap.set("n", "<leader>_", "<c-w>_")
 vim.keymap.set("n", "<leader>|", "<c-w>|")
+
+-- Editing
+vim.keymap.set("n", "<m-j>", ":m+<cr>==")
+vim.keymap.set("n", "<m-k>", ":m-2<cr>==")
+vim.keymap.set("x", "<m-j>", ":m'>+<cr>`<my`>mzgv=gv`yo`z")
+vim.keymap.set("x", "<m-k>", ":m'<-2<cr>`>my`<mzgv=gv`yo`z")
+
+vim.keymap.set("n", "<m-o>", "mzo<esc>`z")
+vim.keymap.set("n", "<m-O>", "mzO<esc>`z")
 
 -- Search
 vim.keymap.set({ "n", "x" }, "ñ", "/")
@@ -91,6 +103,19 @@ vim.keymap.set({ "n", "x" }, "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>Y", '"+y$')
 vim.keymap.set({ "n", "x" }, "<leader>d", '"+d')
 vim.keymap.set("n", "<leader>D", '"+d$')
+
+-- Quickfix/Location list
+vim.keymap.set("n", "<up>", "<cmd>cprevious<cr>")
+vim.keymap.set("n", "<down>", "<cmd>cnext<cr>")
+
+vim.keymap.set("n", "<leader><up>", "<cmd>cpfile<cr>")
+vim.keymap.set("n", "<leader><down>", "<cmd>cnfile<cr>")
+
+vim.keymap.set("n", "<left>", "<cmd>lprevious<cr>")
+vim.keymap.set("n", "<right>", "<cmd>lnext<cr>")
+
+vim.keymap.set("n", "<leader><left>", "<cmd>lpfile<cr>")
+vim.keymap.set("n", "<leader><right>", "<cmd>lnfile<cr>")
 
 -- Repeat
 vim.keymap.set("x", ".", ":normal .<cr>")
