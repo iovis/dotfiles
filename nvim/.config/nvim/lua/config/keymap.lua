@@ -53,9 +53,31 @@ vim.keymap.set({ "n", "x", "o" }, "H", "g^")
 vim.keymap.set({ "n", "x", "o" }, "L", "g$")
 vim.keymap.set({ "n", "x", "o" }, "'", "`")
 
+-- Panes
+vim.keymap.set("n", "<leader>v", "<c-w>v")
+vim.keymap.set("n", "<leader>h", "<c-w>s")
+
+vim.keymap.set("n", "<leader>c", "<c-w>c")
+vim.keymap.set("n", "<leader>0", "<c-w>=")
+
+vim.keymap.set("n", "<leader>H", "<c-w>H")
+vim.keymap.set("n", "<leader>J", "<c-w>J")
+vim.keymap.set("n", "<leader>K", "<c-w>K")
+vim.keymap.set("n", "<leader>L", "<c-w>L")
+
+vim.keymap.set("n", "M", "<c-w>o")
+vim.keymap.set("n", "<leader>m", "<c-w>_<c-w>|")
+vim.keymap.set("n", "<leader>_", "<c-w>_")
+vim.keymap.set("n", "<leader>|", "<c-w>|")
+
 -- Search
 vim.keymap.set({ "n", "x" }, "ñ", "/")
 vim.keymap.set({ "n", "x" }, "Ñ", "?")
+
+vim.keymap.set({ "n", "x" }, "<leader>ñ", "<cmd>nohlsearch<cr>")
+
+vim.keymap.set("n", "*", [[:let @/= '\<' . expand('<cword>') . '\>' <bar> set hls <cr>]], { silent = true })
+vim.keymap.set("x", "*", [[y:let @/= '\V' . escape(@@, '/\') <bar> normal! /<cr>]], { silent = true })
 
 -- Paste
 vim.keymap.set("n", "Y", "y$")
@@ -69,6 +91,9 @@ vim.keymap.set({ "n", "x" }, "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>Y", '"+y$')
 vim.keymap.set({ "n", "x" }, "<leader>d", '"+d')
 vim.keymap.set("n", "<leader>D", '"+d$')
+
+-- Repeat
+vim.keymap.set("x", ".", ":normal .<cr>")
 
 -- Replace
 vim.keymap.set("n", "R", "ciw<c-r>0<esc>")
@@ -93,7 +118,6 @@ vim.keymap.set("n", "+<cr>", "<cmd>so $VIMRUNTIME/syntax/hitest.vim<cr>")
 
 vim.keymap.set("n", "+t", "<c-w>T")
 vim.keymap.set("n", "<leader>P", ":lua =")
-vim.keymap.set("n", "<leader>ñ", "<cmd>nohlsearch<cr>")
 
 ---- Quick File access (TODO: do I need this anymore?)
 vim.keymap.set("n", "<leader>u", "<nop>")
