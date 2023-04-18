@@ -53,11 +53,32 @@ vim.keymap.set("n", "<leader>e", ":e<space>")
 vim.keymap.set("n", "<leader>E", ":e<space><c-r>=fnameescape(expand('%:h')).'/'<cr>")
 vim.keymap.set("n", "<leader>W", ":saveas <c-r>=fnameescape(expand('%:h')).'/'<cr>")
 
+-- Editing
+vim.keymap.set("n", "<m-j>", ":m+<cr>==")
+vim.keymap.set("n", "<m-k>", ":m-2<cr>==")
+vim.keymap.set("x", "<m-j>", ":m'>+<cr>`<my`>mzgv=gv`yo`z")
+vim.keymap.set("x", "<m-k>", ":m'<-2<cr>`>my`<mzgv=gv`yo`z")
+
+vim.keymap.set("n", "<m-o>", "mzo<esc>`z")
+vim.keymap.set("n", "<m-O>", "mzO<esc>`z")
+
+vim.keymap.set("n", "<leader>b", "gg=G")
+
+vim.keymap.set("n", "g2", "mz:set shiftwidth=2 softtabstop=2 expandtab | retab<cr>gg=G`z")
+vim.keymap.set("n", "g4", "mz:set shiftwidth=4 softtabstop=4 expandtab | retab<cr>gg=G`z")
+
+vim.keymap.set("x", "<", "<gv")
+vim.keymap.set("x", ">", ">gv")
+
 -- Editor
 vim.keymap.set("n", "+c", ":cd <c-r>=fnameescape(expand('%:p:h'))<cr><cr>")
 vim.keymap.set("n", "<leader>x", "<cmd>confirm qa<cr>")
 vim.keymap.set("n", "<leader>X", "<cmd>qa!<cr>")
 vim.keymap.set("n", "<leader>w", "<cmd>w!<cr>")
+
+-- Macros
+vim.keymap.set("n", "Q", "@q")
+vim.keymap.set("x", "Q", ":norm @q<cr>", { silent = true })
 
 -- Movement
 vim.keymap.set({ "n", "x" }, "j", "(v:count == 0 ? 'gj' : 'j')", { expr = true })
@@ -95,29 +116,6 @@ vim.keymap.set("n", "<leader>m", "<c-w>_<c-w>|")
 vim.keymap.set("n", "<leader>_", "<c-w>_")
 vim.keymap.set("n", "<leader>|", "<c-w>|")
 
--- Editing
-vim.keymap.set("n", "<m-j>", ":m+<cr>==")
-vim.keymap.set("n", "<m-k>", ":m-2<cr>==")
-vim.keymap.set("x", "<m-j>", ":m'>+<cr>`<my`>mzgv=gv`yo`z")
-vim.keymap.set("x", "<m-k>", ":m'<-2<cr>`>my`<mzgv=gv`yo`z")
-
-vim.keymap.set("n", "<m-o>", "mzo<esc>`z")
-vim.keymap.set("n", "<m-O>", "mzO<esc>`z")
-
-vim.keymap.set("n", "<leader>b", "gg=G")
-
-vim.keymap.set("n", "g2", "mz:set shiftwidth=2 softtabstop=2 expandtab | retab<cr>gg=G`z")
-vim.keymap.set("n", "g4", "mz:set shiftwidth=4 softtabstop=4 expandtab | retab<cr>gg=G`z")
-
--- Search
-vim.keymap.set({ "n", "x" }, "ñ", "/")
-vim.keymap.set({ "n", "x" }, "Ñ", "?")
-
-vim.keymap.set({ "n", "x" }, "<leader>ñ", "<cmd>nohlsearch<cr>")
-
-vim.keymap.set("n", "*", [[:let @/= '\<' . expand('<cword>') . '\>' <bar> set hls <cr>]], { silent = true })
-vim.keymap.set("x", "*", [[y:let @/= '\V' . escape(@@, '/\') <bar> normal! /<cr>]], { silent = true })
-
 -- Paste
 vim.keymap.set("n", "Y", "y$")
 
@@ -153,13 +151,14 @@ vim.keymap.set("x", ".", ":normal .<cr>")
 vim.keymap.set("n", "R", "ciw<c-r>0<esc>")
 vim.keymap.set("x", "R", '"0p')
 
--- Macros
-vim.keymap.set("n", "Q", "@q")
-vim.keymap.set("x", "Q", ":norm @q<cr>", { silent = true })
+-- Search
+vim.keymap.set({ "n", "x" }, "ñ", "/")
+vim.keymap.set({ "n", "x" }, "Ñ", "?")
 
--- Indent in visual mode
-vim.keymap.set("x", "<", "<gv")
-vim.keymap.set("x", ">", ">gv")
+vim.keymap.set({ "n", "x" }, "<leader>ñ", "<cmd>nohlsearch<cr>")
+
+vim.keymap.set("n", "*", [[:let @/= '\<' . expand('<cword>') . '\>' <bar> set hls <cr>]], { silent = true })
+vim.keymap.set("x", "*", [[y:let @/= '\V' . escape(@@, '/\') <bar> normal! /<cr>]], { silent = true })
 
 -- Tabs
 vim.keymap.set("n", "<leader>T", "<cmd>tabnew<cr>")
