@@ -29,8 +29,24 @@ vim.keymap.set("i", "<m-o>", "<esc>o")
 
 vim.keymap.set("n", "+t", "<c-w>T")
 vim.keymap.set("n", "<leader>P", ":lua =")
-vim.keymap.set("n", "<leader>uf", "<cmd>EditFtplugin<cr>")
 vim.keymap.set("n", "<leader>ñ", "<cmd>nohlsearch<cr>")
+
+---- Quick File access (TODO: do I need this anymore?)
+vim.keymap.set("n", "<leader>u", "<nop>")
+
+vim.keymap.set("n", "<leader>uf", "<cmd>EditFtplugin<cr>")
+vim.keymap.set("n", "<leader>uu", "<cmd>e! $MYVIMRC<cr>")
+
+-- nnoremap <silent> <leader>us :so $MYVIMRC<cr>:echo 'vimrc sourced'<cr>
+--
+-- nnoremap <silent> <leader>ua :e! $FDOTDIR/aliases.zsh<cr>
+-- nnoremap <silent> <leader>uh :sp $MYVIMRC<cr>
+-- nnoremap <silent> <leader>um :e! $DOTFILES/vim/.vimrc<cr>
+-- nnoremap <silent> <leader>ur :e! .projections.json<cr>
+-- nnoremap <silent> <leader>ut :e! $DOTFILES/tmux/.config/tmux/tmux.conf<cr>
+-- nnoremap <silent> <leader>uv :vs $MYVIMRC<cr>
+-- nnoremap <silent> <leader>uw :e! $FDOTDIR/local/work.fish<cr>
+-- nnoremap <silent> <leader>uz :e! $FDOTDIR/config.fish<cr>
 
 ---- Setting toggles
 vim.keymap.set("n", "yo", "<cmd>set number! relativenumber! cursorline!<cr>")
