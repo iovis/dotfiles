@@ -1,14 +1,9 @@
 " bindings {{{ "
-nnoremap <leader>. @:
-nnoremap <leader>, @@
 nnoremap <leader>E :e<space><c-r>=fnameescape(expand('%:h')).'/'<cr>
 nnoremap <leader>e :e<space>
 nnoremap <silent> +c :cd %:p:h<cr>
-nnoremap <silent> +q :tabonly<cr>
 
-nnoremap <silent> <leader>C :tabclose<cr>
 nnoremap <silent> <leader>Q :%bdelete\|e#\|bd#<cr>
-nnoremap <silent> <leader>T :tabnew<cr>
 nnoremap <silent> <leader>X :qa!<cr>
 nnoremap <silent> <leader>b gg=G
 nnoremap <silent> <leader>q :%bdelete<cr>

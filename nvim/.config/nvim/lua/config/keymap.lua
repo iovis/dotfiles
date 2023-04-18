@@ -1,6 +1,3 @@
----- Disable Space to not conflict with Leader
-vim.keymap.set("n", "<Space>", "<Nop>")
-
 ---- Insert mode
 -- Exit
 vim.keymap.set("i", "kj", "<esc>")
@@ -118,6 +115,8 @@ vim.keymap.set("n", "<leader><left>", "<cmd>lpfile<cr>")
 vim.keymap.set("n", "<leader><right>", "<cmd>lnfile<cr>")
 
 -- Repeat
+vim.keymap.set("n", "<leader>.", "@:")
+vim.keymap.set("n", "<leader>,", "@@")
 vim.keymap.set("x", ".", ":normal .<cr>")
 
 -- Replace
@@ -132,17 +131,15 @@ vim.keymap.set("x", "Q", ":norm @q<cr>", { silent = true })
 vim.keymap.set("x", "<", "<gv")
 vim.keymap.set("x", ">", ">gv")
 
+-- Tabs
+vim.keymap.set("n", "<leader>T", "<cmd>tabnew<cr>")
+vim.keymap.set("n", "<leader>C", "<cmd>tabclose<cr>")
+vim.keymap.set("n", "+t", "<c-w>T")
+vim.keymap.set("n", "+q", "<cmd>tabonly<cr>")
+
 -- Tags
 vim.keymap.set("n", "t", "<c-]>")
 vim.keymap.set("n", "T", "g]")
-
--- Highlights
-vim.keymap.set("n", "+<cr>", "<cmd>so $VIMRUNTIME/syntax/hitest.vim<cr>")
-
-----------------------------------------------
-
-vim.keymap.set("n", "+t", "<c-w>T")
-vim.keymap.set("n", "<leader>P", ":lua =")
 
 ---- Quick File access (TODO: do I need this anymore?)
 vim.keymap.set("n", "<leader>u", "<nop>")
@@ -161,7 +158,7 @@ vim.keymap.set("n", "<leader>uu", "<cmd>e! $MYVIMRC<cr>")
 -- nnoremap <silent> <leader>uw :e! $FDOTDIR/local/work.fish<cr>
 -- nnoremap <silent> <leader>uz :e! $FDOTDIR/config.fish<cr>
 
----- Setting toggles
+---- Toggle Settings
 vim.keymap.set("n", "yo", "<cmd>set number! relativenumber! cursorline!<cr>")
 
 vim.keymap.set("n", "yoc", "<cmd>set cursorline!<cr>")
@@ -175,8 +172,11 @@ vim.keymap.set("n", "yor", "<cmd>set relativenumber!<cr>")
 vim.keymap.set("n", "yos", "<cmd>setlocal spell! spelllang=en_us<cr>")
 vim.keymap.set("n", "yow", "<cmd>setlocal wrap!<cr>")
 
----- Quick `R`
+---- Misc
+vim.keymap.set("n", "<Space>", "<Nop>")
+vim.keymap.set("n", "+<cr>", "<cmd>so $VIMRUNTIME/syntax/hitest.vim<cr>")
 vim.keymap.set("n", "_", ":R lua=")
+vim.keymap.set("n", "<leader>P", ":lua =")
 
 ---- Notes
 vim.keymap.set("n", "<leader>n", ":e notes/index.md<cr>", { silent = true })
