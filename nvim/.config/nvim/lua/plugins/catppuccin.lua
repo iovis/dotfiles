@@ -5,15 +5,13 @@ return {
   lazy = false,
   priority = 1000,
   config = function()
-    local transparent_background = true
-
     require("catppuccin").setup({
       flavour = "frappe",
       background = {
         light = "latte",
         dark = "frappe",
       },
-      transparent_background = transparent_background,
+      transparent_background = true,
       dim_inactive = {
         enabled = false,
       },
@@ -27,8 +25,8 @@ return {
         mason = true,
         mini = true,
         neotree = true,
-        noice = true,
-        notify = true,
+        noice = false,
+        notify = false,
         treesitter = true,
         treesitter_context = true,
         which_key = true,
@@ -49,12 +47,18 @@ return {
         },
       },
       -- NOTE: May need to re-compile after changing
+      -- lua=require("catppuccin.palettes").get_palette()
       custom_highlights = function(colors)
-        -- lua=require("catppuccin.palettes").get_palette()
+        -- colors.crust = hsl(229, 20, 17) => black = hsl(229, 20, 15)
+        local black = "#1f212e"
 
-        local custom_highlights = {
+        return {
           -- general
-          StatusLine = { bg = colors.base },
+          CursorLine = { bg = black },
+          EndOfBuffer = {},
+          StatusLine = {},
+          StatusLineNC = {},
+          Visual = { bg = colors.surface0, bold = true },
 
           -- fzf-lua (pane color controlled in fish)
           FzfLuaBorder = { fg = colors.blue },
@@ -68,35 +72,19 @@ return {
           -- mini
           MiniIndentscopeSymbol = { fg = colors.surface0 },
 
+          -- neotree
+          NeoTreeStatusLine = {},
+          NeoTreeStatusLineNC = {},
+          NeoTreeCursorLine = { bold = true },
+
           -- noice
           NotifyBackground = { fg = colors.text, bg = colors.base },
           NoiceMini = { fg = colors.text, bg = colors.base },
+
+          -- treesitter
+          TreesitterContext = { bg = black, bold = true },
+          TreesitterContextLineNumber = { fg = colors.surface1, bg = black, bold = true },
         }
-
-        if transparent_background then
-          -- colors.crust = hsl(229, 20, 17) => black = hsl(229, 20, 15)
-          local black = "#1f212e"
-
-          custom_highlights = vim.tbl_extend("force", custom_highlights, {
-            -- general
-            CursorLine = { bg = black },
-            EndOfBuffer = {},
-            StatusLine = {},
-            StatusLineNC = {},
-            Visual = { bg = colors.surface0, bold = true },
-
-            -- neotree
-            NeoTreeStatusLine = {},
-            NeoTreeStatusLineNC = {},
-            NeoTreeCursorLine = { bold = true },
-
-            -- treesitter
-            TreesitterContext = { bg = black, bold = true },
-            TreesitterContextLineNumber = { fg = colors.surface1, bg = black, bold = true },
-          })
-        end
-
-        return custom_highlights
       end,
     })
 
