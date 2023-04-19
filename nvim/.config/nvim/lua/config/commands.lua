@@ -28,7 +28,13 @@ end, { nargs = "?", complete = "filetype" })
 ---- Redir
 u.command("R", function(ctx)
   -- Run command
-  local lines = vim.split(vim.api.nvim_exec(ctx.args, true), "\r?\n", {})
+  local lines = vim.split(
+    vim.api.nvim_exec2(ctx.args, {
+      output = true,
+    }).output,
+    "\r?\n",
+    {}
+  )
 
   -- Remove the first 2 lines if it's a external command (starts with `!`)
   local is_external_command = (ctx.args:sub(1, 1) == "!")
@@ -36,9 +42,13 @@ u.command("R", function(ctx)
     lines = vim.list_slice(lines, 3, #lines) -- same as lines[3..]
   end
 
-  -- TODO: Reuse window?
-  -- Create new scratch buffer in a vertical split
-  vim.cmd.vnew()
+  -- Create new scratch buffer in a split
+  if ctx.bang then
+    vim.cmd("10new")
+  else
+    vim.cmd.vnew()
+  end
+
   vim.bo.bufhidden = "wipe"
   vim.bo.buflisted = false
   vim.bo.buftype = "nofile"
@@ -46,7 +56,7 @@ u.command("R", function(ctx)
 
   -- Write the result to the buffer
   vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
-end, { nargs = "+", complete = "command" })
+end, { nargs = "+", complete = "command", bang = true })
 
 ---- Quick Tmux Session
 u.command("TmuxNewSession", function(opts)

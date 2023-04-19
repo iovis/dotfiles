@@ -204,8 +204,10 @@ vim.keymap.set("n", "yow", "<cmd>setlocal wrap!<cr>")
 ---- Misc
 vim.keymap.set("n", "<Space>", "<Nop>")
 vim.keymap.set("n", "+<cr>", "<cmd>so $VIMRUNTIME/syntax/hitest.vim<cr>")
+
 vim.keymap.set("n", "_", ":R lua=")
-vim.keymap.set("n", "<leader>P", ":lua =")
+vim.keymap.set("n", "<leader>P", ":=")
+vim.keymap.set("n", "<leader>M", "<cmd>R! messages<cr>")
 
 ---- Notes
 vim.keymap.set("n", "<leader>n", ":e notes/index.md<cr>", { silent = true })
