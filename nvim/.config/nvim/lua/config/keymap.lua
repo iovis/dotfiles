@@ -26,6 +26,9 @@ vim.keymap.set("i", "<m-o>", "<esc>o")
 -- " cnoremap <silent> %h <c-r>=fnameescape(expand('%:h')).'/'<cr>
 -- " cnoremap <silent> %t <c-r>=fnameescape(expand('%:t'))<cr>
 
+-- Fish's binding for edit command in editor
+vim.keymap.set("c", "<m-e>", "<c-f>")
+
 -- Quick expansions
 vim.keymap.set("c", "<m-+>", "]")
 vim.keymap.set("c", "<m-ç>", "}")
@@ -203,6 +206,8 @@ vim.keymap.set("n", "yow", "<cmd>setlocal wrap!<cr>")
 
 ---- Misc
 vim.keymap.set("n", "<Space>", "<Nop>")
+vim.keymap.set("n", "q:", ":")
+
 vim.keymap.set("n", "+<cr>", "<cmd>so $VIMRUNTIME/syntax/hitest.vim<cr>")
 
 vim.keymap.set("n", "_", ":R lua=")
