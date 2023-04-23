@@ -206,7 +206,7 @@ vim.keymap.set("n", "yow", "<cmd>setlocal wrap!<cr>")
 
 ---- Misc
 vim.keymap.set("n", "<Space>", "<Nop>")
-vim.keymap.set("n", "q:", ":")
+-- vim.keymap.set("n", "q:", ":") -- If you enable, then you have to wait when finishing macros
 
 vim.keymap.set("n", "+<cr>", "<cmd>so $VIMRUNTIME/syntax/hitest.vim<cr>")
 
