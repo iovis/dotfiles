@@ -216,7 +216,7 @@ vim.keymap.set("n", "<Space>", "<Nop>")
 
 vim.keymap.set("n", "+<cr>", "<cmd>so $VIMRUNTIME/syntax/hitest.vim<cr>")
 
-vim.keymap.set("n", "_", ":R lua=")
+vim.keymap.set("n", "_", ":R=")
 vim.keymap.set("n", "<leader>P", ":=")
 vim.keymap.set("n", "<leader>M", "<cmd>R! messages<cr>")
 
