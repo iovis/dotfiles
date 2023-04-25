@@ -3,9 +3,12 @@ bind -n C-f choose-tree -Zs
 bind -n M-Space switch-client -l
 
 ## Window switching
-bind -n S-left   previous-window
-bind -n S-right  next-window
-bind -n M-l      last-window
+# bind -n S-left   previous-window
+# bind -n S-right  next-window
+
+bind -n M-h      previous-window
+bind -n M-l      next-window
+
 bind -n M-BSpace last-window
 
 ## Window indexing
