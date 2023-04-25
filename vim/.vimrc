@@ -2,8 +2,6 @@
 set nocompatible
 filetype plugin indent on
 
-colorscheme habamax
-
 if !has('g:syntax_on')
   syntax enable
 endif
@@ -26,7 +24,7 @@ set incsearch
 set laststatus=2
 set lazyredraw
 set linespace=2
-set listchars=lead:·,tab:>-,trail:-,nbsp:+,eol:$
+set listchars=tab:>-,trail:-,nbsp:+,eol:$ ",lead:·
 set magic
 set mouse=a
 set nobackup
@@ -132,8 +130,8 @@ cnoremap <expr> <tab>   getcmdtype() =~ '[?/]' ? "<c-g>" : "<c-z>"
 cnoremap <expr> <s-tab> getcmdtype() =~ '[?/]' ? "<c-t>" : "<s-tab>"
 
 " QOL remappings
-cnoremap %h <c-r>=fnameescape(expand('%:h')).'/'<cr>
-cnoremap %t <c-r>=fnameescape(expand('%:t'))<cr>
+" cnoremap %h <c-r>=fnameescape(expand('%:h')).'/'<cr>
+" cnoremap %t <c-r>=fnameescape(expand('%:t'))<cr>
 cnoremap <c-a> <c-b>
 cnoremap <c-j> <down>
 cnoremap <c-k> <up>
@@ -396,12 +394,12 @@ xnoremap <silent> § :m'<-2<cr>`>my`<mzgv=gv`yo`z
 " }}} move line "
 
 " buffers {{{ "
-nmap <leader><leader> :ls<cr>
+nmap gm :ls<cr>
 
 nnoremap <BS> <C-^>
 nnoremap <silent> <leader>t :enew<cr>
-nnoremap <silent> <s-tab> :bprevious<cr>
-nnoremap <silent> <tab> :bnext<cr>
+nnoremap <silent> <s-tab> :tabprevious<cr>
+nnoremap <silent> <tab> :tabnext<cr>
 " }}} buffers "
 
 " fix c-i after mapping tab {{{ "
@@ -693,9 +691,20 @@ nnoremap <leader>ui :execute "hi " . synIDattr(synID(line("."),col("."),1),"name
 " nnoremap +<space> :hi<space>
 
 hi! def link VertSplit StatusLineNC
+hi! def link SignColumn Normal
 hi! def link ModeMsg Comment
 
 hi Normal       ctermfg=white ctermbg=none
+hi Comment      ctermfg=8
+hi NonText      ctermfg=8
+hi CursorLineNr ctermfg=blue
+hi LineNr       ctermfg=8
+hi Pmenu        ctermfg=white ctermbg=none
+hi PmenuSel     ctermfg=black ctermbg=white
+hi Search       ctermfg=0     ctermbg=11
+hi Visual       ctermfg=7     ctermbg=8     cterm=none
+hi Folded       ctermfg=8     ctermbg=none
+hi FoldColumn   ctermfg=blue  ctermbg=none
 
 hi DiffAdd      ctermfg=2     ctermbg=none  cterm=none
 hi DiffDelete   ctermfg=1     ctermbg=none  cterm=bold
@@ -887,7 +896,6 @@ nnoremap <leader>A :setf<space>
 nnoremap <leader>O :e **/
 nnoremap <leader>o :find *
 
-nmap <leader>ñ :g//#<Left><Left>
 nmap <leader>H :old<cr>
 " }}} fzf commands "
 
