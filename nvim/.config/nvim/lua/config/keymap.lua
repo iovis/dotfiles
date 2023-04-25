@@ -119,7 +119,7 @@ vim.keymap.set("n", "<leader>m", "<c-w>_<c-w>|")
 vim.keymap.set("n", "<leader>_", "<c-w>_")
 vim.keymap.set("n", "<leader>|", "<c-w>|")
 
--- Paste
+-- Copy/Paste
 vim.keymap.set("n", "Y", "y$")
 
 vim.keymap.set("n", "p", [[p<cmd>execute ":silent normal! `[v`]="<cr>]])
@@ -131,6 +131,12 @@ vim.keymap.set({ "n", "x" }, "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>Y", '"+y$')
 vim.keymap.set({ "n", "x" }, "<leader>d", '"+d')
 vim.keymap.set("n", "<leader>D", '"+d$')
+
+vim.keymap.set("n", "<leader>y<c-g>", function()
+  local path = vim.fn.expand("%")
+  vim.fn.setreg("+", path)
+  vim.notify('Copied "' .. path .. '" to the clipboard!')
+end, { desc = "Copy current buffer's path to clipboard" })
 
 -- Quickfix/Location list
 vim.keymap.set("n", "<up>", "<cmd>cprevious<cr>")
