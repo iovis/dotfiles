@@ -15,6 +15,7 @@ gui:
 git:
   paging:
     colorArg: always
+    # pager: delta --paging=never
     pager: delta --dark --paging=never --true-color=auto --diff-so-fancy
 notARepository: 'quit'
 promptToReturnFromSubprocess: false
