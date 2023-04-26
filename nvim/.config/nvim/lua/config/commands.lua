@@ -44,9 +44,9 @@ u.command("R", function(ctx)
 
   -- Create new scratch buffer in a split
   if ctx.bang then
-    vim.cmd("10new")
+    vim.cmd("botright 10new")
   else
-    vim.cmd.vnew()
+    vim.cmd("botright vnew")
   end
 
   vim.bo.bufhidden = "wipe"
