@@ -17,7 +17,7 @@ return {
         },
       },
       window = {
-        border = "single",
+        border = "rounded",
       },
     })
   end,
