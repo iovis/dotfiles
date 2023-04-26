@@ -22,6 +22,9 @@ vim.keymap.set("i", "<c-e>", "<end>")
 vim.keymap.set("i", "<m-O>", "<esc>O")
 vim.keymap.set("i", "<m-o>", "<esc>o")
 
+---- Terminal mode
+vim.keymap.set("t", "kj", [[<c-\><c-n>]])
+
 ---- Command mode
 -- " cnoremap <silent> %h <c-r>=fnameescape(expand('%:h')).'/'<cr>
 -- " cnoremap <silent> %t <c-r>=fnameescape(expand('%:t'))<cr>
@@ -266,11 +269,3 @@ vim.keymap.set("n", "+T", function()
     end
   end)
 end, { desc = "Toggle autotest" })
-
----- Terminal mode
-vim.keymap.set("t", "kj", [[<c-\><c-n>]])
-
-vim.keymap.set("t", "<c-h>", [[<c-\><c-n><C-w>h]])
-vim.keymap.set("t", "<c-j>", [[<c-\><c-n><C-w>j]])
-vim.keymap.set("t", "<c-k>", [[<c-\><c-n><C-w>k]])
-vim.keymap.set("t", "<c-l>", [[<c-\><c-n><C-w>l]])
