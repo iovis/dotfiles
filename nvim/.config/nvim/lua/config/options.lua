@@ -13,7 +13,7 @@ vim.o.completeopt = "menu,menuone,noselect"
 vim.o.cursorline = true
 vim.opt.diffopt:append("hiddenoff,vertical")
 vim.o.expandtab = true
-vim.opt.fillchars:append("diff:╱")
+vim.opt.fillchars:append("diff:╱, eob: ")
 vim.o.ignorecase = true
 vim.o.inccommand = "split"
 vim.o.laststatus = 3
