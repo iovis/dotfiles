@@ -6,6 +6,11 @@ return {
     vim.keymap.set("n", "ge", require("harpoon.ui").toggle_quick_menu, { desc = "Toggle Harpoon" })
     vim.keymap.set("n", "gh", require("harpoon.mark").add_file, { desc = "Add file to Harpoon" })
 
+    vim.keymap.set("n", "gH", function()
+      require("harpoon.mark").clear_all()
+      vim.notify("Cleared Harpoon marks")
+    end, { desc = "Clear Harpoon marks" })
+
     vim.keymap.set("n", "gj", function()
       require("harpoon.ui").nav_file(1)
     end, { desc = "Go to harpoon 1" })
