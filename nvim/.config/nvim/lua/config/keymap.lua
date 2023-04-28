@@ -174,7 +174,10 @@ vim.keymap.set("x", "R", '"0p')
 vim.keymap.set({ "n", "x" }, "ñ", "/")
 vim.keymap.set({ "n", "x" }, "Ñ", "?")
 
-vim.keymap.set({ "n", "x" }, "<leader>ñ", "<cmd>nohlsearch<cr>")
+vim.keymap.set({ "n", "x" }, "<leader>ñ", function()
+  vim.cmd.nohlsearch()
+  vim.cmd.echon()
+end, { desc = "Clear search highlights and command line output" })
 
 vim.keymap.set("n", "*", [[:let @/= '\<' . expand('<cword>') . '\>' <bar> set hls <cr>]], { silent = true })
 vim.keymap.set("x", "*", [[y:let @/= '\V' . escape(@@, '/\') <bar> set hls <bar> normal! /<cr>]], { silent = true })
