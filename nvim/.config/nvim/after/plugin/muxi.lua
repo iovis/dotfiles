@@ -1,0 +1,23 @@
+-- TODO: Do a file bookmark plugin similar to muxi
+--
+-- IDEAS:
+--   - `vim.api.nvim_win_get_cursor(0)` => { 1, 0 }
+--   - `vim.api.nvim_win_set_cursor(0, { 1, 0 })`
+--
+--   - muxi saves things in TOML, but it may be easier to do JSON in nvim
+--     - `vim.json.encode()` and `vim.json.decode()`
+--   - Maybe:
+--   ```
+--   {
+--     "/Users/david/.dotfiles": {
+--       "j": {
+--         "file": "nvim/.config/nvim/after/plugin/muxi.lua",
+--         "pos": [3, 5]
+--       }
+--     }
+--   }
+--   ```
+--   - How would you clean up?
+--     - Maybe clean up empty objects
+--     - Might be problematic with multiple nvim instances running at the same time
+--     - Clean up only the current folder key if there are no marks for it?
