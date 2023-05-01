@@ -7,16 +7,14 @@ gui:
   theme:
     selectedLineBgColor:
       - '#262626'
-      - 'bold'
-    selectedRangeBgColor: # Bug: https://github.com/jesseduffield/lazygit/issues/1749
-      # - '#262626'
-      - 'black'
-      - 'bold'
+    selectedRangeBgColor:
+      - black
+      - bold
 git:
   paging:
     colorArg: always
-    # pager: delta --paging=never
-    pager: delta --dark --paging=never --true-color=auto --diff-so-fancy
+    pager: delta --paging=never
+    # pager: delta --dark --paging=never --true-color=auto --diff-so-fancy
 notARepository: 'quit'
 promptToReturnFromSubprocess: false
 keybinding:
