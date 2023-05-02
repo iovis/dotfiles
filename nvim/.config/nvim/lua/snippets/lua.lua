@@ -10,6 +10,7 @@ return {
     condition = conds.line_begin,
   }),
   -- Lua snippets
+  s("as", fmt("--[[@as {}]]", { i(1, "<type>") })), -- TODO: Do alternate for `--[=[@as string[]]=]`
   s("pr", fmt("print({})", { i(1) }), {
     condition = conds.line_begin,
   }),
