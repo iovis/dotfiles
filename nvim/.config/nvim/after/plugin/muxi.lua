@@ -26,7 +26,7 @@ if false then
 
     if fd then
       local stat = assert(vim.loop.fs_fstat(fd))
-      data = assert(vim.loop.fs_read(fd, stat.size, 0))
+      data = assert(vim.loop.fs_read(fd, stat.size, 0)) --[[@as string]]
       assert(vim.loop.fs_close(fd))
     end
 
@@ -40,6 +40,11 @@ if false then
     assert(vim.loop.fs_close(fd))
   end
 
+  ---@param str string
+  local function is_empty(str)
+    return vim.fn.empty(str) == 1
+  end
+
   ---- Init muxi
   print("---- Init muxi")
 
@@ -49,9 +54,12 @@ if false then
   local data = read_file_sync(muxi_path)
   print("synchronous read", data)
 
-  local muxi = data and vim.json.decode(data) or {}
+  local muxi = {}
+  if not is_empty(data) then
+    muxi = vim.json.decode(data, { luanil = { object = true, array = true } }) --[[@as table]]
+  end
 
-  vim.print(muxi)
+  vim.print("muxi: ", muxi)
 
   ---- Initialize muxi table for current directory
   print("---- Init current directory")
@@ -69,7 +77,7 @@ if false then
   -- Seems like lua does references, not copy. Good to know
   local current = muxi[cwd]
 
-  vim.print(muxi)
+  vim.print("muxi: ", muxi)
 
   ---- Save bookmark for current file
   print("---- Save key")
@@ -81,21 +89,21 @@ if false then
     pos = vim.api.nvim_win_get_cursor(0),
   }
 
-  vim.print(muxi)
+  vim.print("muxi: ", muxi)
 
   ---- Navigating to bookmark
   print("---- Navigating to key")
 
   local pos = current[key].pos
 
-  vim.print(pos)
+  vim.print("pos: ", pos)
   vim.api.nvim_win_set_cursor(0, pos)
 
   ---- Cleaning up a bookmark
   print("---- Clean up key")
   current[key] = nil
 
-  vim.print(muxi)
+  vim.print("muxi: ", muxi)
 
   ---- Cleaning up a workspace
   print("---- Clean up workspace")
@@ -104,13 +112,13 @@ if false then
     muxi[cwd] = nil
   end
 
-  vim.print(muxi)
+  vim.print("muxi: ", muxi)
 
   ---- JSON encode the muxi table
   print("---- JSON encode")
 
   local json = vim.json.encode(muxi)
-  vim.print(json)
+  vim.print("json: ", json)
 
   ---- Save to file
   print("---- Write to file")
@@ -118,4 +126,5 @@ if false then
 
   -----------------------------------------
   vim.cmd("R! messages")
+  vim.cmd("se ft=lua")
 end
