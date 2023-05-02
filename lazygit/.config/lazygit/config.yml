@@ -11,6 +11,8 @@ gui:
       - black
       - bold
 git:
+  commit:
+    verbose: 'always'
   paging:
     colorArg: always
     pager: delta --paging=never
@@ -29,3 +31,6 @@ keybinding:
   commits:
     moveDownCommit: 'J'
     moveUpCommit: 'K'
+  files:
+    commitChanges: 'C'
+    commitChangesWithEditor: 'c'
