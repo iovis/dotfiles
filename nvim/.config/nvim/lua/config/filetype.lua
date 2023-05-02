@@ -5,6 +5,7 @@ vim.filetype.add({
   filename = {
     ["pryrc"] = "ruby",
     [".clang-format"] = "yaml",
+    ["PULLREQ_EDITMSG"] = "gitcommit",
   },
   pattern = {
     [".*/yamllint/config"] = "yaml",
