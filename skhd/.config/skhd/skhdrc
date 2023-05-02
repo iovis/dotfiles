@@ -4,7 +4,7 @@
 # Scripts in ~/.zshenv, otherwise skhd can't see them
 
 # Restart Yabai
-hyper - r : brew services restart yabai
+hyper - r : yabai --restart-service
 
 ##########################
 #  Application Launcher  #
