@@ -207,7 +207,7 @@ vim.keymap.set("n", "<leader>N", function()
 end, { desc = "Open daily note" })
 
 -- Project files
-vim.keymap.set("n", "<leader>ue", "<cmd>e! .env<cr>")
+vim.keymap.set("n", "<leader>uv", "<cmd>e! .env<cr>")
 vim.keymap.set("n", "<leader>uj", "<cmd>e! justfile<cr>")
 
 -- nnoremap <silent> <leader>us :so $MYVIMRC<cr>:echo 'vimrc sourced'<cr>
