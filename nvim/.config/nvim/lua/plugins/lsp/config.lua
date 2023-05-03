@@ -25,7 +25,6 @@ local lsp_format = function()
       local dont_format_with = {
         "html",
         "lua_ls",
-        "sqls",
       }
 
       return not vim.tbl_contains(dont_format_with, client.name)
