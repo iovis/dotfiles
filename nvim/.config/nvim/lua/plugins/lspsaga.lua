@@ -18,6 +18,11 @@ return {
           exec_action = "<cr>",
         },
       },
+      finder = {
+        keys = {
+          expand_or_jump = "<cr>",
+        },
+      },
       lightbulb = {
         enable = true,
         enable_in_insert = false,
