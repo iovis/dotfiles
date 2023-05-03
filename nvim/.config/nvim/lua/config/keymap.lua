@@ -60,18 +60,20 @@ vim.keymap.set("n", "<leader>E", ":e<space><c-r>=fnameescape(expand('%:h')).'/'<
 vim.keymap.set("n", "<leader>W", ":saveas <c-r>=fnameescape(expand('%:h')).'/'<cr>")
 
 -- Editing
+vim.keymap.set("n", "J", "m`J``")
+
 vim.keymap.set("n", "<m-j>", "<cmd>m+<cr>==")
 vim.keymap.set("n", "<m-k>", "<cmd>m-2<cr>==")
 vim.keymap.set("x", "<m-j>", ":m'>+<cr>`<my`>mzgv=gv`yo`z", { silent = true })
 vim.keymap.set("x", "<m-k>", ":m'<-2<cr>`>my`<mzgv=gv`yo`z", { silent = true })
 
-vim.keymap.set("n", "<m-o>", "mzo<esc>`z")
-vim.keymap.set("n", "<m-O>", "mzO<esc>`z")
+vim.keymap.set("n", "<m-o>", "m`o<esc>``")
+vim.keymap.set("n", "<m-O>", "m`O<esc>``")
 
 vim.keymap.set("n", "<leader>b", "gg=G")
 
-vim.keymap.set("n", "g2", "mz:set shiftwidth=2 softtabstop=2 expandtab | retab<cr>gg=G`z")
-vim.keymap.set("n", "g4", "mz:set shiftwidth=4 softtabstop=4 expandtab | retab<cr>gg=G`z")
+vim.keymap.set("n", "g2", "m`:set shiftwidth=2 softtabstop=2 expandtab | retab<cr>gg=G``")
+vim.keymap.set("n", "g4", "m`:set shiftwidth=4 softtabstop=4 expandtab | retab<cr>gg=G``")
 
 vim.keymap.set("x", "<", "<gv")
 vim.keymap.set("x", ">", ">gv")
