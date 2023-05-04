@@ -88,23 +88,23 @@ return {
     })
 
     -- Command line
-    -- NOTE: it breaks "-complete=command" and ":!" autocompletion
-    -- cmp.setup.cmdline(":", {
-    --   mapping = cmp.mapping.preset.cmdline({
-    --     ["<C-b>"] = { c = toggle_completion },
-    --     ["<C-e>"] = cmp.config.disable,
-    --   }),
-    --   sources = cmp.config.sources({
-    --     { name = "path" },
-    --   }, {
-    --     {
-    --       name = "cmdline",
-    --       option = {
-    --         ignore_cmds = {},
-    --       },
-    --     },
-    --   }),
-    -- })
+    -- NOTE: it breaks "-complete=command"
+    cmp.setup.cmdline(":", {
+      mapping = cmp.mapping.preset.cmdline({
+        ["<C-b>"] = { c = toggle_completion },
+        ["<C-e>"] = cmp.config.disable,
+      }),
+      sources = cmp.config.sources({
+        { name = "path" },
+      }, {
+        {
+          name = "cmdline",
+          option = {
+            ignore_cmds = { "Man" },
+          },
+        },
+      }),
+    })
 
     ---- Filetypes
     cmp.setup.filetype("ruby", {
