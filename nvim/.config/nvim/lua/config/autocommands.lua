@@ -30,6 +30,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   desc = "Clean trailing whitespace",
   group = config_augroup,
   callback = function()
+    vim.cmd([[normal! m`]])
     vim.cmd([[%s/\s\+$//e]])
     vim.cmd([[normal! ``]])
   end,
