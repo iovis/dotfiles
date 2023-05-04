@@ -12,6 +12,7 @@ return {
   { "tpope/vim-abolish", event = "VeryLazy" }, -- Case coercion: `crs` coerce to snake_case
   { "tpope/vim-dotenv", event = "VeryLazy" },
   { "tpope/vim-eunuch", event = "VeryLazy" }, -- UNIX commands
+  { "tpope/vim-repeat", event = "VeryLazy" },
 
   {
     "tpope/vim-fugitive",
