@@ -1,6 +1,7 @@
 return {
   "iovis/muxi.nvim",
   dev = true,
+  event = "VeryLazy",
   keys = {
     {
       "<leader>gj",
@@ -12,13 +13,21 @@ return {
     {
       "<leader>gm",
       function()
-        local muxi_path = vim.fn.stdpath("data") .. "/muxi.json"
+        local muxi_path = require("muxi").config.path
         vim.cmd.split(muxi_path)
       end,
       desc = "Open muxi file",
     },
+    {
+      "<leader>gr",
+      function()
+        package.loaded["muxi"] = nil
+        print("muxi reloaded")
+      end,
+      desc = "Reload muxi",
+    },
   },
   config = function()
-    require("muxi")
+    require("muxi").setup({})
   end,
 }
