@@ -9,10 +9,10 @@ inoremap <buffer> [<cr> [<cr>]<esc>O
 nnoremap <buffer> m<space> :Move<space>
 
 " change bullet point style {{{ "
-nnoremap <buffer> <leader>* mz^r*`z
-nnoremap <buffer> <leader>? mz^r?`z
-nnoremap <buffer> <leader>+ mz^r+`z
-nnoremap <buffer> <leader>- mz^r-`z
+nnoremap <buffer> <leader>* m`^r*``
+nnoremap <buffer> <leader>? m`^r?``
+nnoremap <buffer> <leader>+ m`^r+``
+nnoremap <buffer> <leader>- m`^r-``
 " }}} change bullet point style "
 
 " strike-through line {{{ "
@@ -62,7 +62,7 @@ nnoremap <buffer> <silent> <Plug>ToggleCheckbox
       \  call repeat#set("\<Plug>ToggleCheckbox")<cr>
 
 nmap <buffer> <silent> yox <Plug>ToggleCheckbox
-" xmap <buffer> <silent> yox :call ToggleCheckbox()<cr>  --> makes yank slow :(
+xmap <buffer> <silent> X :call ToggleCheckbox()<cr>
 
 function! ToggleCheckbox()
   let line = getline('.')
