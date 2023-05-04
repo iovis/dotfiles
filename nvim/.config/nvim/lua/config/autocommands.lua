@@ -35,7 +35,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 ---- Go to last known position when open a buffer
-vim.api.nvim_create_autocmd("BufReadPost", {
+vim.api.nvim_create_autocmd("BufWinEnter", {
   desc = "Go to last known position of a buffer",
   group = config_augroup,
   callback = function()
@@ -45,7 +45,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
       "gitcommit",
     }
 
-    if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
+    if vim.bo.filetype and vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
       return
     end
 
