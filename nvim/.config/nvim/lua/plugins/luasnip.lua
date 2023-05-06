@@ -29,10 +29,11 @@ return {
 
     ---- Language config
     luasnip.filetype_extend("gitcommit", { "markdown" })
+    luasnip.filetype_extend("markdown_inline", { "markdown" })
     luasnip.filetype_extend("pullrequest", { "markdown", "gitcommit" })
     luasnip.filetype_extend("scss", { "css" })
-    luasnip.filetype_extend("typescript", { "javascript" })
     luasnip.filetype_extend("svelte", { "typescript", "scss", "html" })
+    luasnip.filetype_extend("typescript", { "javascript" })
 
     ---- Keymaps
     -- Fix backspace exiting select mode

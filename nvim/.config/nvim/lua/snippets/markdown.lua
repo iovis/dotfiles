@@ -7,6 +7,8 @@ local meeting_title = function()
 end
 
 return {
+  s("li", fmt("[{}]({})", { i(1), i(2) })),
+  s("img", fmt("![{}]({})", { i(1), i(2) })),
   -- Quick checkbox
   s("x", t("- [ ] "), {
     condition = conds.line_begin,
