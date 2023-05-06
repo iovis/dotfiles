@@ -114,6 +114,13 @@ return {
       "--exclude 'Session.vim'",
     }, " ")
 
+    -- TODO: Edit Notes
+    -- vim.keymap.set("n", "<leader>uo", function()
+    --   -- TODO: somehow look only for markdown files?
+    --   -- TODO: do I need `fd_opts_no_ignore`
+    --   fzf_lua.files({ cwd = "notes/" })
+    -- end)
+
     -- vim.keymap.set("n", "<leader>se", function()
     --   local filetype = require("luasnip.extras.filetype_functions").from_pos_or_filetype()[1]
     --
