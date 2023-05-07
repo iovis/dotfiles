@@ -10,7 +10,7 @@ xnoremap <silent> <leader>gg :GBrowse<cr>
 " }}} fugitive.vim "
 
 " Git commands {{{ "
-nnoremap <silent> <leader>gl :Glol -500<cr>
+" nnoremap <silent> <leader>gl :Glol -500<cr>
 
 command! -nargs=*        Glol Git log --graph --pretty='%h -%d %s (%cr) <%an>' <args>
 command! -range -nargs=* GLogL Git log -L <line1>,<line2>:% <args>
