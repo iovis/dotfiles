@@ -22,7 +22,7 @@ nnoremap <buffer> <leader>- m`^r-``
 " }}} Bindings "
 
 " Options {{{ "
-setlocal conceallevel=2
+" setlocal conceallevel=2
 setlocal spelllang=en_us
 setlocal spell
 setlocal shiftwidth=4
