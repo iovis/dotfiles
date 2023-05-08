@@ -115,7 +115,7 @@ return {
     vim.keymap.set("n", "<leader>uo", function()
       -- TODO: somehow look only for markdown files?
       -- TODO: do I need `fd_opts_no_ignore`
-      fzf_lua.files({ cwd = "notes/" })
+      fzf_lua.files({ cwd = "notes/", fd_opts = fd_opts_no_ignore })
     end)
 
     -- vim.keymap.set("n", "<leader>se", function()
