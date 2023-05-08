@@ -60,6 +60,8 @@ return {
     end, { desc = "[muxi] Reload muxi" })
   end,
   config = function()
-    require("muxi").setup({})
+    require("muxi").setup({
+      save_cursor = false,
+    })
   end,
 }
