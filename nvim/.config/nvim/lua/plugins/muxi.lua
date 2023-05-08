@@ -24,6 +24,8 @@ return {
       vim.notify("Added current file to ñ")
     end, { desc = "[muxi] Add session to ñ" })
 
+    vim.keymap.set("n", "ge", require("muxi.fzf").marks, { desc = "[muxi] fzf-lua marks" })
+
     vim.keymap.set("n", "<leader>gs", require("muxi.ui").go_to_prompt, { desc = "[muxi] Interactive go to" })
     vim.keymap.set("n", "<leader>gd", require("muxi.ui").delete_prompt, { desc = "[muxi] Interactive delete" })
 
