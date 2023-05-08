@@ -19,7 +19,7 @@ return {
         cmp = true,
         fidget = false,
         gitsigns = true,
-        harpoon = true,
+        harpoon = false,
         leap = true,
         lsp_saga = false,
         mason = true,
@@ -60,9 +60,6 @@ return {
           StatusLineNC = {},
           Visual = { bg = colors.surface0, bold = true },
 
-          -- fzf-lua (pane color controlled in fish)
-          FzfLuaBorder = { fg = colors.blue },
-
           -- lspsaga
           CodeActionNumber = { fg = colors.teal },
           CodeActionText = { fg = colors.blue },
@@ -84,6 +81,17 @@ return {
           -- treesitter
           TreesitterContext = { bg = black, bold = true },
           TreesitterContextLineNumber = { fg = colors.surface1, bg = black, bold = true },
+
+          ----Apparently semantic LSP messes everything up for `fg` colors
+          ----and I don't have the energy to look into changing priorities now
+          -- TODO: something
+          -- NOTE: something
+          -- FIXME: something
+          -- HACK: something
+          -- ["@text.todo"] = { fg = C.yellow, bg = "none" },
+          -- ["@text.note"] = { fg = C.blue, bg = "none" },
+          -- ["@text.warning"] = { fg = C.yellow, bg = "none" },
+          -- ["@text.danger"] = { fg = C.red, bg = "none" },
         }
       end,
     })

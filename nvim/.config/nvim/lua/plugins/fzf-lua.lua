@@ -21,6 +21,10 @@ return {
     ---- Config
     fzf_lua.setup({
       winopts = {
+        hl = {
+          border = "FloatBorder",
+          scrollborder_f = "RedrawDebugClear",
+        },
         window_on_create = function()
           buf_tmap("<c-j>", "<down>")
           buf_tmap("<c-k>", "<up>")
