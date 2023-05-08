@@ -13,7 +13,7 @@ return {
         -- diagnostics.cpplint.with({ extra_args = { "--filter -legal/copyright" } }),
         diagnostics.erb_lint,
         diagnostics.fish,
-        diagnostics.pylint.with({ extra_args = { "--disable", "C0301,C0114,C0115,C0116,E501,F0401" } }),
+        diagnostics.pylint.with({ extra_args = { "--disable", "C0301,C0114,C0115,C0116,F0401" } }),
         -- diagnostics.rubocop,
         diagnostics.shellcheck,
         -- diagnostics.stylelint,
