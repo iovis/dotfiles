@@ -3,8 +3,11 @@ return {
   -- enabled = false,
   dev = true,
   event = "VeryLazy",
-  keys = {},
-  init = function()
+  config = function()
+    require("muxi").setup({
+      save_cursor = false,
+    })
+
     local keys = { "h", "j", "k", "l", "ñ" }
 
     for _, key in ipairs(keys) do
@@ -58,10 +61,5 @@ return {
 
       require("muxi").setup({})
     end, { desc = "[muxi] Reload muxi" })
-  end,
-  config = function()
-    require("muxi").setup({
-      save_cursor = false,
-    })
   end,
 }
