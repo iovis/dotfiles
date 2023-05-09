@@ -1,6 +1,5 @@
-httpie
 ipython
 pip
+ruff
 setuptools
-vim-vint
 yamllint
