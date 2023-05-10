@@ -29,6 +29,32 @@ bind -n C-k  if "$is_vim" "send C-k"  "select-pane -U"
 bind -n C-l  if "$is_vim" "send C-l"  "select-pane -R"
 bind -n C-\\ if "$is_vim" 'send C-\\' "select-pane -l" # c-ç
 
+##
+# In hindsight, this was a terrible idea, but it was hard enough to
+# find out how to make this even work, so here it is, as a wall of shame
+#
+# bind -n C-h if "$is_vim" {
+#   # TODO: make neovim understand this
+#   send C-h
+# } {
+#   if -F "#{pane_at_left}" {
+#     previous-window
+#   } {
+#     select-pane -L
+#   }
+# }
+#
+# bind -n C-l if "$is_vim" {
+#   # TODO: make neovim understand this
+#   send C-l
+# } {
+#   if -F "#{pane_at_right}" {
+#     next-window
+#   } {
+#     select-pane -R
+#   }
+# }
+
 ## Resize panes
 bind -n C-down  resize-pane -D 5
 bind -n C-left  resize-pane -L 5
