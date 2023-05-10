@@ -9,6 +9,6 @@ xmap <silent> K *:Grep -F "<c-r>""<cr>
 if executable('rg')
   command! -nargs=+ -complete=file Grep silent! grep! <args>|botright cwindow|redraw!
 
-  set grepprg=rg\ --hidden\ --vimgrep\ --smart-case\ -g\ '!Session.vim'
+  set grepprg=rg\ --hidden\ --vimgrep\ --smart-case\ -g\ '!Session.vim'\ -g\ '!.git'
   set grepformat=%f:%l:%c:%m
 endif
