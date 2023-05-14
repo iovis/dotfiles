@@ -13,6 +13,9 @@ bind R {
   display "Tmux reloaded!"
 }
 
+# Tmux settings
+bind l customize-mode -Z
+
 # Toggle status line
 bind s {
   set status
