@@ -2,6 +2,10 @@
 set -g set-titles on
 set -g set-titles-string '#S :: #W'
 
+## Border
+set -g pane-border-style 'fg=#383838'
+set -g pane-active-border-style '#{?pane_in_mode,fg=#E5C890,#{?synchronize-panes,fg=#E78284,fg=#838ba7}}'
+
 ## Message
 set -g message-style 'bg=default,fg=yellow'
 
@@ -54,8 +58,8 @@ set -g window-status-format "#[fg=colour8]:: #I|#W#{?window_zoomed_flag,[+],}"
 # set -wg window-active-style fg=white,bg=default
 
 ## Copy mode
-set -wg mode-style 'bg=#383838,fg=white'
+set -wg mode-style 'bg=#292C3C,fg=white'
 
 set -wg copy-mode-current-match-style 'bg=blue,fg=black'
 set -wg copy-mode-mark-style 'bg=default,fg=green'
-set -wg copy-mode-match-style 'bg=#383838,fg=white'
+set -wg copy-mode-match-style 'bg=#292C3C,fg=white'
