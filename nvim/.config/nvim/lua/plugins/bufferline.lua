@@ -4,7 +4,21 @@ return {
   event = "BufAdd",
   config = function()
     require("bufferline").setup({
-      highlights = require("catppuccin.groups.integrations.bufferline").get(),
+      -- highlights = require("catppuccin.groups.integrations.bufferline").get(),
+      highlights = {
+        buffer_selected = {
+          bg = "NONE",
+          fg = "#c6d0f5",
+          bold = true,
+          italic = false,
+        },
+        indicator_selected = {
+          bg = "NONE",
+          bold = true,
+          fg = "#8CAAEE",
+          italic = false,
+        },
+      },
       options = {
         mode = "tabs",
         numbers = "none",
