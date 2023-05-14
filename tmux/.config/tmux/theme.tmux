@@ -29,7 +29,7 @@ set -g status-right-length 60
 #   #{!=:left_hand_side,right_hand_side} => compare left to right
 
 # Prefix indicator
-set -g status-right '#{?#{!=:#{client_key_table},root},#[fg=#85c1dc]<#{client_key_table}>,}'
+set -g status-right '#{?#{!=:#{client_key_table},root},#[fg=#8caaee]<#{client_key_table}>,}'
 
 # Synchronized panes indicator
 set -ag status-right ' #{?pane_synchronized,#[fg=#e78284]sync,}'
