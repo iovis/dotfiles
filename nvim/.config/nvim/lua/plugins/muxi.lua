@@ -29,15 +29,15 @@ return {
 
     vim.keymap.set("n", "ge", require("muxi.fzf").marks, { desc = "[muxi] fzf-lua marks" })
 
-    vim.keymap.set("n", "<leader>gs", require("muxi.ui").go_to_prompt, { desc = "[muxi] Interactive go to" })
-    vim.keymap.set("n", "<leader>gd", require("muxi.ui").delete_prompt, { desc = "[muxi] Interactive delete" })
-
-    vim.keymap.set("n", "<leader>g-", function()
+    vim.keymap.set("n", "g-", function()
       require("muxi").clear_all()
       vim.notify("Cleared current session")
     end, { desc = "[muxi] Clear current workspace" })
 
     ---Testing-------------------------------------
+    -- vim.keymap.set("n", "<leader>gs", require("muxi.ui").go_to_prompt, { desc = "[muxi] Interactive go to" })
+    -- vim.keymap.set("n", "<leader>gd", require("muxi.ui").delete_prompt, { desc = "[muxi] Interactive delete" })
+
     vim.keymap.set("n", "<leader>ge", function()
       vim.cmd("R! =require('muxi').marks")
       vim.cmd("se ft=lua")
