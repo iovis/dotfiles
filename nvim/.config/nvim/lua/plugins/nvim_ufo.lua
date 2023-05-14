@@ -56,5 +56,12 @@ return {
 
     vim.keymap.set("n", "zm", ufo.closeFoldsWith)
     vim.keymap.set("n", "zr", ufo.openFoldsExceptKinds)
+
+    vim.keymap.set("n", "<leader>lf", function()
+      local winid = require("ufo").peekFoldedLinesUnderCursor()
+      if not winid then
+        vim.cmd([[Lspsaga peek_definition]])
+      end
+    end)
   end,
 }
