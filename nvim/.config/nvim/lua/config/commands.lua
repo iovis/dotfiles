@@ -43,12 +43,22 @@ u.command("R", function(ctx)
   end
 
   -- Create new scratch buffer in a split
-  if ctx.bang then
-    vim.cmd("botright 10new")
-  else
-    vim.cmd("botright vnew")
+  -- Ex: "botright 10new"
+  local split_cmd = "botright "
+
+  if ctx.count ~= 0 then
+    split_cmd = split_cmd .. ctx.count
   end
 
+  if ctx.bang then
+    split_cmd = split_cmd .. "new"
+  else
+    split_cmd = split_cmd .. "vnew"
+  end
+
+  vim.cmd(split_cmd)
+
+  -- Set scratch buffer properties
   vim.bo.bufhidden = "wipe"
   vim.bo.buflisted = false
   vim.bo.buftype = "nofile"
@@ -56,7 +66,7 @@ u.command("R", function(ctx)
 
   -- Write the result to the buffer
   vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
-end, { nargs = "+", complete = "command", bang = true })
+end, { nargs = "+", complete = "command", bang = true, count = true })
 
 ---- Quick Tmux Session
 u.command("TmuxNewSession", function(opts)
