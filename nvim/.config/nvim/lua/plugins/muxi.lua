@@ -41,7 +41,20 @@ return {
     vim.keymap.set("n", "<leader>ge", function()
       vim.cmd("R! =require('muxi').marks")
       vim.cmd("se ft=lua")
-    end, { desc = "[muxi] Inspect current workspace" })
+
+      vim.keymap.set("n", "q", function()
+        -- Poor man's eval
+        local new_marks_string = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
+        local new_marks = loadstring(table.concat({ "return", new_marks_string }, " "))()
+
+        require("muxi"):sync(function(muxi)
+          muxi.marks = new_marks
+        end)
+
+        vim.cmd.close()
+        vim.notify("muxi updated")
+      end, { buffer = true, desc = "Update muxi marks and close" })
+    end, { desc = "[muxi] Modify current workspace interactively" })
 
     vim.keymap.set("n", "<leader>gm", function()
       local muxi_path = require("muxi").config.path
