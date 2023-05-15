@@ -11,6 +11,6 @@ set -g visual-activity off
 set -wg mode-keys vi
 set -wg monitor-activity on
 
-set -sa terminal-overrides ",*:RGB"
-set -sg default-terminal "tmux-256color"
+set -sa terminal-overrides ",$TERM:RGB"
+set -sg default-terminal "$TERM"
 set -sg escape-time 0
