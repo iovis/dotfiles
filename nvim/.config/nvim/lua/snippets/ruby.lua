@@ -102,6 +102,7 @@ return {
     )
   ),
   parse("arg", "argument :${1:name}"),
+  -- Sorbet
   s("esig", t("extend T::Sig")),
   parse("sig", "sig { $1 }"),
   parse("sigv", "sig { void }"),
@@ -119,17 +120,20 @@ return {
   ),
   parse("ts", "# typed: strict"),
   parse("tt", "# typed: true"),
-  parse("ret", "# @return [$1]"),
+  -- Yard
+  parse("ret", "# @return [${1:type}] ${0:Description}"),
+  parse("param", "# @param ${1:name} [${2:type}] ${0:Description}"),
   s(
     "attr",
     fmt(
       [[
         # @!attribute [r] {}
-        #   @return [{}]
+        #   @return [{}] {}
       ]],
       {
-        i(1),
-        i(2),
+        i(1, "attr_name"),
+        i(2, "ret_type"),
+        i(0, "Description"),
       }
     ),
     { condition = conds.line_begin }
