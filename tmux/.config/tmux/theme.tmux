@@ -62,4 +62,4 @@ set -wg mode-style 'bg=#292c3c,fg=white'
 
 set -wg copy-mode-current-match-style 'bg=#8caaee,fg=black'
 set -wg copy-mode-mark-style 'bg=default,fg=#a6d189'
-set -wg copy-mode-match-style 'bg=#292c3c,fg=white'
+set -wg copy-mode-match-style 'bg=#414559,fg=white'
