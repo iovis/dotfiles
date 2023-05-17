@@ -27,7 +27,7 @@ return {
       vim.notify("Added current file to ñ")
     end, { desc = "[muxi] Add session to ñ" })
 
-    vim.keymap.set("n", "ge", require("muxi.fzf").marks, { desc = "[muxi] fzf-lua marks" })
+    vim.keymap.set("n", "<leader>ge", require("muxi.fzf").marks, { desc = "[muxi] fzf-lua marks" })
 
     vim.keymap.set("n", "g-", function()
       require("muxi").clear_all()
@@ -38,10 +38,35 @@ return {
     -- vim.keymap.set("n", "<leader>gs", require("muxi.ui").go_to_prompt, { desc = "[muxi] Interactive go to" })
     -- vim.keymap.set("n", "<leader>gd", require("muxi.ui").delete_prompt, { desc = "[muxi] Interactive delete" })
 
-    vim.keymap.set("n", "<leader>ge", function()
-      vim.cmd("R! =require('muxi').marks")
+    vim.keymap.set("n", "ge", function()
+      -- Turn muxi marks into a pretty array of strings
+      local marks = require("muxi").marks
+      local marks_table = vim.split(vim.inspect(marks), "\n")
+
+      -- Make a popup window
+      local bufnr = vim.api.nvim_create_buf(false, true)
+      local half_screen_width = math.floor(vim.o.columns / 2)
+      local half_screen_height = math.floor(vim.o.lines / 2)
+      local width = half_screen_width
+      local height = math.max(math.min(half_screen_height, #marks_table), 10)
+
+      vim.api.nvim_open_win(bufnr, true, {
+        relative = "editor",
+        width = width,
+        height = height,
+        row = 10,
+        col = half_screen_width - math.floor(width / 2) - 6,
+        style = "minimal",
+        border = "rounded",
+        title = " muxi ",
+        noautocmd = true,
+      })
+
+      -- Set the contents to muxi table and the filetype to lua
+      vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, marks_table)
       vim.cmd("se ft=lua")
 
+      -- Map [q] to read the changes and close the popup
       vim.keymap.set("n", "q", function()
         -- Poor man's eval
         local new_marks_string = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
