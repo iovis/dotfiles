@@ -9,7 +9,6 @@ return {
     null_ls.setup({
       debug = false,
       sources = {
-        diagnostics.codespell.with({ filetypes = { "ruby" } }),
         -- diagnostics.cpplint.with({ extra_args = { "--filter -legal/copyright" } }),
         diagnostics.erb_lint,
         diagnostics.fish,

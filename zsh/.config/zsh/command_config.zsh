@@ -23,11 +23,6 @@ if type brew > /dev/null; then
   alias brewdump="cd; brew bundle dump -f; cd -"
 fi
 
-# codespell
-if type codespell > /dev/null; then
-  alias codespell="codespell --skip 'tags,*.dmp'"
-fi
-
 # dexios
 if type dexios > /dev/null; then
   encrypt() {
