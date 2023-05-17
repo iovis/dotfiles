@@ -73,6 +73,7 @@ yabai -m rule --add app="^Pastebot$" manage=off
 yabai -m rule --add app="^Perimeter" manage=off
 yabai -m rule --add app="^Raycast$" manage=off
 yabai -m rule --add app="^Spark$" manage=off
+yabai -m rule --add app="^Spark Desktop$" manage=off
 yabai -m rule --add app="^System Information$" manage=off
 yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^System Settings$" manage=off
