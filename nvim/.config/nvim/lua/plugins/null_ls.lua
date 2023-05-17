@@ -22,7 +22,7 @@ return {
 
         formatting.erb_lint,
         formatting.fish_indent,
-        -- formatting.prettier,
+        formatting.prettier,
         -- formatting.rubocop,
         formatting.ruff,
         formatting.sql_formatter.with({ extra_args = { "-l", "postgresql" } }),
