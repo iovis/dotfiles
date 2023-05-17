@@ -16,7 +16,7 @@ return {
         -- diagnostics.rubocop,
         diagnostics.shellcheck,
         -- diagnostics.stylelint,
-        diagnostics.vint,
+        -- diagnostics.vint,
         diagnostics.yamllint,
         diagnostics.zsh,
 
