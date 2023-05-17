@@ -96,8 +96,8 @@ vim.keymap.set({ "n", "x" }, "k", function()
   return vim.v.count == 0 and "gk" or "k"
 end, { expr = true })
 
-vim.keymap.set({ "n", "x", "o" }, "H", "g^")
-vim.keymap.set({ "n", "x", "o" }, "L", "g$")
+vim.keymap.set({ "n", "x", "o" }, "H", "^")
+vim.keymap.set({ "n", "x", "o" }, "L", "$")
 vim.keymap.set({ "n", "x", "o" }, "'", "`")
 
 vim.keymap.set("n", "<s-up>", "[c", { remap = true })
