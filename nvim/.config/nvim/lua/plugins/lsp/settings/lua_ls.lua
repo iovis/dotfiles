@@ -4,6 +4,10 @@ return {
       diagnostics = {
         globals = {
           "pp", -- pretty print
+          -- luassert
+          "before_each",
+          "describe",
+          "it",
           -- luasnip globals (luasnip.config.snip_env)
           -- https://github.com/L3MON4D3/LuaSnip/blob/master/lua/luasnip/config.lua
           "s", -- snippet

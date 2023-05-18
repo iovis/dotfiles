@@ -1,12 +1,20 @@
 ----Annotations: https://github.com/LuaLS/lua-language-server/wiki/Annotations
 
 ----Bindings
-vim.keymap.set("n", "<leader>so", function()
-  vim.cmd.source("%")
-  -- print("File sourced")
-end, { buffer = true, desc = "Source file" })
+if vim.fn.expand("%"):match("_spec.lua") then
+  vim.keymap.set("n", "<leader>so", ":PlenaryBustedFile %<cr>", { buffer = true, desc = "Run test" })
 
-vim.keymap.set("x", "<leader>so", ":source<cr>", { buffer = true, desc = "Evaluate lua range" })
+  vim.keymap.set("n", "<leader>sa", function()
+    vim.cmd.PlenaryBustedDirectory("tests/")
+  end, { buffer = true, desc = "Run test" })
+else
+  vim.keymap.set("n", "<leader>so", function()
+    vim.cmd.source("%")
+    -- print("File sourced")
+  end, { buffer = true, desc = "Source file" })
+
+  vim.keymap.set("x", "<leader>so", ":source<cr>", { buffer = true, desc = "Evaluate lua range" })
+end
 
 ----Re-source `config()` for the current plugin
 if vim.fn.expand("%"):match("plugins/") then
