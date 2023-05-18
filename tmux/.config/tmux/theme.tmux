@@ -18,7 +18,7 @@ set -g status-style 'bg=default,fg=white'
 ### Left
 set -g status-left-length 90
 
-set -g status-left ' #[fg=#8caaee]#S'
+set -g status-left ' #[fg=blue]#S'
 set -ag status-left ' '
 
 ### Right
@@ -29,7 +29,7 @@ set -g status-right-length 60
 #   #{!=:left_hand_side,right_hand_side} => compare left to right
 
 # Prefix indicator
-set -g status-right '#{?#{!=:#{client_key_table},root},#[fg=#8caaee]<#{client_key_table}>,}'
+set -g status-right '#{?#{!=:#{client_key_table},root},#[fg=cyan]<#{client_key_table}>,}'
 
 # Synchronized panes indicator
 set -ag status-right ' #{?pane_synchronized,#[fg=#e78284]sync,}'
@@ -49,7 +49,7 @@ set -wg automatic-rename on
 set -wg automatic-rename-format '#{b:pane_current_path}/#{pane_current_command}'
 
 set -g window-status-activity-style 'bg=default'
-set -g window-status-current-format "#[fg=colour8]:: #[fg=#a6d189]#I|#W#{?window_zoomed_flag,#[fg=#85c1dc][+],}"
+set -g window-status-current-format "#[fg=colour8]:: #[fg=green]#I|#W#{?window_zoomed_flag,#[fg=cyan][+],}"
 set -g window-status-format "#[fg=colour8]:: #I|#W#{?window_zoomed_flag,[+],}"
 
 ## Pane
