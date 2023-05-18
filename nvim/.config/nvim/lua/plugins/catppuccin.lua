@@ -47,7 +47,7 @@ return {
         },
       },
       -- NOTE: May need to re-compile after changing
-      -- R=require("catppuccin.palettes").get_palette()
+      -- lua=require("catppuccin.palettes").get_palette()
       custom_highlights = function(colors)
         -- colors.crust = hsl(229, 20, 17) => black = hsl(229, 20, 15)
         local black = "#1f212e"
