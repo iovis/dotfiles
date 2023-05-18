@@ -34,6 +34,33 @@ return {
     })
   ),
   s(
+    "class",
+    fmta(
+      [[
+        ---@class <>
+        ---@field private my_field? string Description of `my field`
+        local <> = {}
+
+        ---<docs>
+        function <>:new(<>)
+          local instance = {<>}
+
+          self.__index = self
+          return setmetatable(instance, self)
+        end
+      ]],
+      {
+        rep(1),
+        i(1, "class_name"),
+        rep(1),
+        i(2),
+        i(3),
+        docs = i(0),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
     "mod",
     fmta(
       [[
@@ -77,7 +104,7 @@ return {
       condition = conds.line_begin,
     }
   ),
-  -- Snippets
+  -- Luasnip
   s(
     "s",
     fmta(
