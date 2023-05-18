@@ -80,7 +80,7 @@ return {
         callback = function()
           -- Poor man's eval
           local new_marks_string = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
-          local new_marks = loadstring(table.concat({ "return", new_marks_string }, " "))()
+          local new_marks = load(table.concat({ "return", new_marks_string }, " "))()
 
           require("muxi"):sync(function(muxi)
             muxi.marks = new_marks
