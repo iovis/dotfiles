@@ -11,6 +11,7 @@
   "cmp-nvim-tags": { "branch": "main", "commit": "30bdc2eec86eb66730af541bb06d24d4a67e3eeb" },
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp_luasnip": { "branch": "master", "commit": "18095520391186d634a0045dacaa346291096566" },
+  "crates.nvim": { "branch": "main", "commit": "1dffccc0a95f656ebe00cacb4de282473430c5a1" },
   "csv.vim": { "branch": "master", "commit": "15ff93edf5b26c466affbb356e0696b7d6a3b499" },
   "diffview.nvim": { "branch": "main", "commit": "7987d7f5c9ca3838ef950053b6d00c4251efadb0" },
   "fidget.nvim": { "branch": "main", "commit": "0ba1e16d07627532b6cae915cc992ecac249fb97" },
