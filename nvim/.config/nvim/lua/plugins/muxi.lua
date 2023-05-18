@@ -34,6 +34,11 @@ return {
       vim.notify("Cleared current session")
     end, { desc = "[muxi] Clear current workspace" })
 
+    vim.keymap.set("n", "yom", function()
+      local muxi = require("muxi")
+      muxi.config.save_cursor = not muxi.config.save_cursor
+    end, { desc = "[muxi] Toggle go to cursor" })
+
     ---Testing-------------------------------------
     -- vim.keymap.set("n", "<leader>gs", require("muxi.ui").go_to_prompt, { desc = "[muxi] Interactive go to" })
     -- vim.keymap.set("n", "<leader>gd", require("muxi.ui").delete_prompt, { desc = "[muxi] Interactive delete" })
