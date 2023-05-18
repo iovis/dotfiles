@@ -76,6 +76,7 @@ return {
       vim.api.nvim_create_autocmd("BufLeave", {
         desc = "Save muxi table",
         group = augroup_muxi,
+        buffer = bufnr,
         callback = function()
           -- Poor man's eval
           local new_marks_string = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
@@ -90,7 +91,7 @@ return {
       })
 
       -- Map [q] to read the changes and close the popup
-      vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = true })
+      vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = bufnr })
     end, { desc = "[muxi] Modify current workspace interactively" })
 
     vim.keymap.set("n", "<leader>gm", function()
