@@ -27,7 +27,7 @@ return {
       vim.notify("Added current file to ñ")
     end, { desc = "[muxi] Add session to ñ" })
 
-    vim.keymap.set("n", "<leader>ge", require("muxi.fzf").marks, { desc = "[muxi] fzf-lua marks" })
+    vim.keymap.set("n", "<leader>gs", require("muxi.fzf").marks, { desc = "[muxi] fzf-lua marks" })
     vim.keymap.set("n", "ge", require("muxi.ui").show, {
       desc = "[muxi] Modify current workspace interactively",
     })
