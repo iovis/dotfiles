@@ -62,11 +62,11 @@ bind -n C-right resize-pane -R 5
 bind -n C-up    resize-pane -U 5
 
 ## Scratch Session popup
-# bind -n M-Space if -F '#{==:#{session_name},·}' {
-#   detach-client
-# } {
-#   display-popup -w 75% -h 75% -b rounded -d '#{pane_current_path}' -E "tmux new-session -A -s ·"
-# }
+bind -n M-- if -F '#{==:#{session_name},·}' {
+  detach-client
+} {
+  display-popup -w 75% -h 75% -b rounded -d '#{pane_current_path}' -E "tmux new-session -A -s ·"
+}
 
 ## Quick Notes
 bind -n M-n if -F '#{==:#{session_name},notes}' {
