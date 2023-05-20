@@ -224,11 +224,6 @@ vim.keymap.set("n", "<leader>uj", "<cmd>e! justfile<cr>")
 -- nnoremap <silent> <leader>uw :e! $FDOTDIR/local/work.fish<cr>
 -- nnoremap <silent> <leader>uz :e! $FDOTDIR/config.fish<cr>
 
----- Tmux
-vim.keymap.set("n", "&", [[:10R!!tmux capture-pane -Jp -S- -t\! | rg '.'<left>]], {
-  desc = "Capture and filter tmux last pane's contents",
-})
-
 ---- Toggle Settings
 vim.keymap.set("n", "yo,", ":set number! relativenumber! cursorline!<cr>")
 
@@ -263,6 +258,19 @@ vim.keymap.set({ "n", "x" }, "+v", ":v//<left>")
 vim.keymap.set({ "n", "x" }, "+l", function()
   return ':luado return string.format("-- %s", line)' .. ("<left>"):rep(10)
 end, { expr = true })
+
+---- Just
+vim.keymap.set(
+  "n",
+  "S",
+  "<cmd>TuxBg! just --choose --chooser 'fzf-tmux -p --select-1 --reverse'<cr>",
+  { desc = "Run a task from the Justfile" }
+)
+
+---- Tmux capture
+vim.keymap.set("n", "&", [[:10R!!tmux capture-pane -Jp -S- -t\! | rg '.'<left>]], {
+  desc = "Capture and filter tmux last pane's contents",
+})
 
 ---- Tmux quick switching
 vim.keymap.set("n", "++", "<cmd>TmuxNewSession<cr>")
