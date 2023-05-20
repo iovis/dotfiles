@@ -10,7 +10,7 @@ set -g @resurrect-dir '~/.config/tmux/resurrect'
 set -g @resurrect-strategy-nvim 'session'
 
 set -g @plugin 'tmux-plugins/tmux-yank'
-set -g @copy_mode_put 'p'
+set -g @copy_mode_put 'Space'
 set -g @yank_selection_mouse 'clipboard'
 
 set -g @plugin 'tmux-plugins/tpm'

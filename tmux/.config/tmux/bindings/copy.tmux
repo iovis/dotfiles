@@ -22,6 +22,7 @@ bind -T copy-mode-vi K send -X top-line
 bind -T copy-mode-vi J send -X bottom-line
 bind -T copy-mode-vi d send -X halfpage-down
 bind -T copy-mode-vi u send -X halfpage-up
+bind -T copy-mode-vi p send -X search-reverse
 
 # Search
 bind -T copy-mode-vi ñ command-prompt -p "(search up)"   { send -X search-backward "%%%" }
@@ -32,11 +33,16 @@ bind -T copy-mode-vi m   send -X set-mark
 bind -T copy-mode-vi "'" send -X jump-to-mark
 
 # Quick select
-bind -T copy-mode-vi a send -X copy-pipe
-bind -T copy-mode-vi s send -X select-word
+bind -T copy-mode-vi a send -X copy-pipe-no-clear "pbcopy"
 bind -T copy-mode-vi v send -X begin-selection
 
+
 bind -T copy-mode-vi C send Escape 'V!'
+bind -T copy-mode-vi c {
+  send -X select-word
+  send -X copy-pipe-and-cancel "pbcopy"
+}
+
 bind -T copy-mode-vi Y send Escape 'v$!'
 
 # Switch panes
