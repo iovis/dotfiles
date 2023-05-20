@@ -224,6 +224,11 @@ vim.keymap.set("n", "<leader>uj", "<cmd>e! justfile<cr>")
 -- nnoremap <silent> <leader>uw :e! $FDOTDIR/local/work.fish<cr>
 -- nnoremap <silent> <leader>uz :e! $FDOTDIR/config.fish<cr>
 
+---- Tmux
+vim.keymap.set("n", "&", [[:10R!!tmux capture-pane -Jp -S- -t\! | rg '.'<left>]], {
+  desc = "Capture and filter tmux last pane's contents",
+})
+
 ---- Toggle Settings
 vim.keymap.set("n", "yo,", ":set number! relativenumber! cursorline!<cr>")
 
