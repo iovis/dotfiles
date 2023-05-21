@@ -36,6 +36,7 @@ bind -T copy-mode-vi "'" send -X jump-to-mark
 bind -T copy-mode-vi a send -X copy-pipe-no-clear "pbcopy"
 bind -T copy-mode-vi v send -X begin-selection
 
+bind -T copy-mode-vi Enter send -X copy-pipe-and-cancel "tmux paste-buffer"
 
 bind -T copy-mode-vi C send Escape 'V!'
 bind -T copy-mode-vi c {
