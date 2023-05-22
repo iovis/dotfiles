@@ -14,6 +14,7 @@ return {
           -- vim.wo options
           cursorcolumn = false,
           cursorline = false,
+          foldcolumn = "0",
           list = false,
           number = false,
           relativenumber = false,

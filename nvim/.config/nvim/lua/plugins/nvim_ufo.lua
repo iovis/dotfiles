@@ -7,7 +7,7 @@ return {
     "luukvbaal/statuscol.nvim",
   },
   init = function()
-    vim.o.foldcolumn = "1"
+    vim.o.foldcolumn = "0"
     vim.o.foldlevel = 99
     vim.o.foldlevelstart = 99
     vim.o.foldenable = true
@@ -62,6 +62,7 @@ return {
 
     vim.keymap.set("n", "<leader>lf", function()
       local winid = require("ufo").peekFoldedLinesUnderCursor()
+
       if not winid then
         vim.cmd([[Lspsaga peek_definition]])
       end

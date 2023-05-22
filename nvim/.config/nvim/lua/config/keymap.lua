@@ -83,6 +83,7 @@ vim.keymap.set("n", "+c", ":cd <c-r>=fnameescape(expand('%:p:h'))<cr><cr>")
 vim.keymap.set("n", "<leader>x", "<cmd>confirm qa<cr>")
 vim.keymap.set("n", "<leader>X", "<cmd>qa!<cr>")
 vim.keymap.set("n", "<leader>w", "<cmd>w!<cr>")
+-- vim.keymap.set("n", "zñ", "za") -- Should have something easy here
 
 -- Macros
 vim.keymap.set("n", "Q", "@q")
@@ -237,6 +238,14 @@ vim.keymap.set("n", "yor", ":set relativenumber!<cr>")
 
 vim.keymap.set("n", "yos", ":setlocal spell! spelllang=en_us<cr>")
 vim.keymap.set("n", "yow", ":setlocal wrap!<cr>")
+
+vim.keymap.set("n", "yof", function()
+  if vim.o.foldcolumn == "1" then
+    vim.o.foldcolumn = "0"
+  else
+    vim.o.foldcolumn = "1"
+  end
+end, { desc = "Toggle foldcolumn" })
 
 ---- Misc
 vim.keymap.set("n", "<Space>", "<Nop>")
