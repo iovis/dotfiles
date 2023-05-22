@@ -20,6 +20,7 @@ if "test -d ~/.config/tmux/plugins/tpm" {
   run "git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm && ~/.config/tmux/plugins/tpm/bin/install_plugins"
 }
 
+set -g @muxi-uppercase-overrides 'on'
 if "type muxi" {
   run -b "muxi init"
 }

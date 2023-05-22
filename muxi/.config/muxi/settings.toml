@@ -1,7 +1,3 @@
-muxi_prefix = "g"
-# tmux_prefix = false
-uppercase_overrides = true
-
 [bindings]
 c = { popup = { title = " config ",   height = "66%" }, command = "muxi config edit -- +ZenMode -c 'nmap <silent> q :wqa<cr>'" }
 e = { popup = { title = " sessions ", height = "66%" }, command = "muxi sessions edit -- +ZenMode -c 'nmap <silent> q :wqa<cr>'" }
