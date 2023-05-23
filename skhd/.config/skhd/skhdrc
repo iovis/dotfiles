@@ -66,7 +66,7 @@ ctrl + alt + cmd - 0x29 : yabai -m window --toggle zoom-parent
 ######################
 #  Floating Windows  #
 ######################
-ctrl + alt + cmd - y : yabai -m window --toggle float
+ctrl + alt + cmd - y : yabai_set_no_float
 
 # NOTE: <rows>:<cols>:<start-x>:<start-y>:<width>:<height>
 # Sidebar
