@@ -12,6 +12,7 @@ return {
         -- diagnostics.cpplint.with({ extra_args = { "--filter -legal/copyright" } }),
         diagnostics.erb_lint,
         diagnostics.fish,
+        diagnostics.markdownlint.with({ extra_args = { "--disable", "MD013", "MD041" } }),
         diagnostics.ruff,
         -- diagnostics.rubocop,
         diagnostics.shellcheck,
