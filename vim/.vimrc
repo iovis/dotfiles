@@ -31,6 +31,7 @@ set nobackup
 set noruler
 set nostartofline
 set noswapfile
+set nowrap
 set nowritebackup
 set number
 set path=.,,**  " world's worst fuzzy finder
