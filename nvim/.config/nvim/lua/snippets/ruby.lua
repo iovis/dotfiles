@@ -17,7 +17,7 @@ local extract_name_from = function(path)
   return path
 end
 
-local contant_name_choices = function()
+local constant_name_choices = function()
   local path = vim.api.nvim_buf_get_name(0)
   local class_name = extract_name_from(path)
 
@@ -40,7 +40,7 @@ return {
         end
       ]],
       {
-        name = d(1, contant_name_choices),
+        name = d(1, constant_name_choices),
         parent = c(2, {
           i(1),
           {
@@ -79,7 +79,7 @@ return {
         end
       ]],
       {
-        name = d(1, contant_name_choices),
+        name = d(1, constant_name_choices),
         i(0),
       }
     )
