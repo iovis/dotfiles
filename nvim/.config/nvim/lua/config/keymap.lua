@@ -265,10 +265,13 @@ end, { desc = "Clear messages" })
 vim.keymap.set({ "n", "x" }, "+g", ":g//<left>")
 vim.keymap.set({ "n", "x" }, "+v", ":v//<left>")
 vim.keymap.set({ "n", "x" }, "+l", function()
+  return ':luado return string.format("%s", line)' .. ("<left>"):rep(10)
+end, { expr = true })
+vim.keymap.set({ "n", "x" }, "+L", function()
   ----Notes:
   -- - Splitting line on a separator: vim.split(line, "<separator>")
   -- - Joining array of strings: table.concat(<table>, "<separator>")
-  return ':luado return string.format("%s", line)' .. ("<left>"):rep(10)
+  return ':luado return table.concat(vim.split(line, "", { trimempty = true }), "")' .. ("<left>"):rep(29)
 end, { expr = true })
 
 ---- Just
