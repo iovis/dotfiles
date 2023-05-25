@@ -17,7 +17,7 @@ ctrl + alt + cmd - f : open -a Firefox
 ctrl + alt + cmd - g : open -a Tower
 
 ctrl + alt + cmd - w : open -a Messages
-ctrl + alt + cmd - e : open -a Spark\ Desktop
+ctrl + alt + cmd - e : open -a Spark
 ctrl + alt + cmd - r : open -a Google\ Chrome\ Canary
 
 ctrl + alt + cmd - b : open -a Bear
