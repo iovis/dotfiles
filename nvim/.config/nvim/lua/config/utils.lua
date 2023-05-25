@@ -1,14 +1,6 @@
 -- EmmyLua annotations for lua-language-server:
 -- https://github.com/sumneko/lua-language-server/wiki/Annotations
 
----- Global
---- Pretty print object
-function pp(...)
-  return vim.print(...)
-end
-
-----
-
 local M = {}
 
 M.command = function(name, fn, opts)
@@ -16,7 +8,11 @@ M.command = function(name, fn, opts)
 end
 
 M.warn = function(msg)
-  vim.api.nvim_echo({ { msg, "WarningMsg" } }, true, {})
+  vim.notify(msg, vim.log.levels.WARN)
+end
+
+M.error = function(msg)
+  vim.notify(msg, vim.log.levels.ERROR)
 end
 
 ---Check if file exists
@@ -24,28 +20,6 @@ end
 ---@return boolean
 M.is_file = function(path)
   return vim.fn.filereadable(vim.fn.expand(path)) == 1 or false
-end
-
-M.make_floating_window = function(custom_window_config, height_ratio, width_ratio)
-  height_ratio = height_ratio or 0.8
-  width_ratio = width_ratio or 0.8
-
-  local height = math.ceil(vim.opt.lines:get() * height_ratio)
-  local width = math.ceil(vim.opt.columns:get() * width_ratio)
-  local window_config = {
-    relative = "editor",
-    style = "minimal",
-    border = "double",
-    width = width,
-    height = height,
-    row = width / 2,
-    col = height / 2,
-  }
-  window_config = vim.tbl_extend("force", window_config, custom_window_config or {})
-
-  local bufnr = vim.api.nvim_create_buf(false, true)
-  local winnr = vim.api.nvim_open_win(bufnr, true, window_config)
-  return winnr, bufnr
 end
 
 ---Run system command
@@ -107,7 +81,7 @@ end
 ---@param str string
 ---@return string
 M.pascal_case = function(str)
-  local new_str, _ = str:gsub("_?(%l)(%w*)", function(a, b)
+  local new_str, _ = str:gsub("%s?_?-?(%l)(%w*)", function(a, b)
     return string.upper(a) .. b
   end)
 
