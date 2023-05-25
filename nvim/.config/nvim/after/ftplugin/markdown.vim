@@ -25,8 +25,8 @@ nnoremap <buffer> <leader>- m`^r-``
 " setlocal conceallevel=2
 setlocal spelllang=en_us
 setlocal spell
-setlocal shiftwidth=4
-setlocal softtabstop=4
+setlocal shiftwidth=2
+setlocal softtabstop=2
 " }}} Options "
 
 " Formatting {{{ "
