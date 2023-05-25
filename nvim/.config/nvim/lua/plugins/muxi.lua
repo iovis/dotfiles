@@ -6,7 +6,7 @@ return {
   config = function()
     ----Setup
     require("muxi").setup({
-      save_cursor = false,
+      go_to_cursor = false,
     })
 
     ----Arbitrary mapping
@@ -49,10 +49,10 @@ return {
     vim.keymap.set("n", "yom", function()
       local muxi = require("muxi")
 
-      muxi.config.save_cursor = not muxi.config.save_cursor
+      muxi.config.go_to_cursor = not muxi.config.go_to_cursor
 
       local message = "Muxi go to cursor "
-      message = message .. (muxi.config.save_cursor and "enabled" or "disabled")
+      message = message .. (muxi.config.go_to_cursor and "enabled" or "disabled")
       vim.notify(message)
     end, { desc = "[muxi] Toggle go to cursor" })
 
