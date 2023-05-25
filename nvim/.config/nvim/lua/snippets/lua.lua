@@ -27,9 +27,8 @@ return {
   ),
   s(
     "fmt",
-    fmt([[string.format("{}"{comma}{})]], {
+    fmt([[("{}").format({})]], {
       i(1),
-      comma = n(2, ", "),
       i(2),
     })
   ),
