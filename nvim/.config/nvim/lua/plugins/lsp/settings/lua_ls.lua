@@ -33,6 +33,9 @@ return {
           "ai",
         },
       },
+      -- hint = {
+      --   enable = true,
+      -- },
       workspace = {
         checkThirdParty = false,
       },

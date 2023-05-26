@@ -208,6 +208,9 @@ M.on_attach = function(client, bufnr)
   --     callback = vim.lsp.buf.clear_references,
   --   })
   -- end
+
+  ----Inlay hints
+  -- require("lsp-inlayhints").on_attach(client, bufnr)
 end
 
 ---- Additional capabilities
