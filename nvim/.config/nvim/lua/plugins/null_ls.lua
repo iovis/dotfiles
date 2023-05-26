@@ -29,7 +29,6 @@ return {
         formatting.sql_formatter.with({ extra_args = { "-l", "postgresql" } }),
         -- formatting.stylelint,
         formatting.stylua,
-        formatting.zigfmt,
       },
     })
   end,
