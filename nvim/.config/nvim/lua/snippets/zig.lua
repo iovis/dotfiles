@@ -220,22 +220,22 @@ return {
   ),
 
   -- Printing
-  s("print", fmta('std.debug.print("<>", .{ <> })', { i(1), i(2) }), {
+  s("dbg", fmta('std.debug.print("<>", .{ <> })', { i(1), i(2) }), {
     condition = conds.line_begin,
   }),
   s("todo!", fmta('std.debug.todo("<>", .{ <> })', { i(1), i(2) }), {
     condition = conds.line_begin,
   }),
-  s("debug", fmta('std.log.debug("<>", .{ <> })', { i(1), i(2) }), {
+  s("logd", fmta('std.log.debug("<>", .{ <> })', { i(1), i(2) }), {
     condition = conds.line_begin,
   }),
-  s("error", fmta('std.log.error("<>", .{ <> })', { i(1), i(2) }), {
+  s("loge", fmta('std.log.error("<>", .{ <> })', { i(1), i(2) }), {
     condition = conds.line_begin,
   }),
-  s("info", fmta('std.log.info("<>", .{ <> })', { i(1), i(2) }), {
+  s("logi", fmta('std.log.info("<>", .{ <> })', { i(1), i(2) }), {
     condition = conds.line_begin,
   }),
-  s("warn", fmta('std.log.warn("<>", .{ <> })', { i(1), i(2) }), {
+  s("logw", fmta('std.log.warn("<>", .{ <> })', { i(1), i(2) }), {
     condition = conds.line_begin,
   }),
 }

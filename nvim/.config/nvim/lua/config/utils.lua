@@ -7,14 +7,6 @@ M.command = function(name, fn, opts)
   vim.api.nvim_create_user_command(name, fn, opts or {})
 end
 
-M.warn = function(msg)
-  vim.notify(msg, vim.log.levels.WARN)
-end
-
-M.error = function(msg)
-  vim.notify(msg, vim.log.levels.ERROR)
-end
-
 ---Check if file exists
 ---@param path string
 ---@return boolean

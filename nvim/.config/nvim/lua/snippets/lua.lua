@@ -25,6 +25,21 @@ return {
       condition = conds.line_begin,
     }
   ),
+  s("dbg", fmt("vim.print({})", { i(1) }), {
+    condition = conds.line_begin,
+  }),
+  s("logd", fmt('vim.notify("{}", vim.log.levels.DEBUG)', { i(1) }), {
+    condition = conds.line_begin,
+  }),
+  s("loge", fmt('vim.notify("{}", vim.log.levels.ERROR)', { i(1) }), {
+    condition = conds.line_begin,
+  }),
+  s("logi", fmt('vim.notify("{}")', { i(1) }), {
+    condition = conds.line_begin,
+  }),
+  s("logw", fmt('vim.notify("{}", vim.log.levels.WARN)', { i(1) }), {
+    condition = conds.line_begin,
+  }),
   s(
     "fmt",
     fmt([[("{}").format({})]], {
