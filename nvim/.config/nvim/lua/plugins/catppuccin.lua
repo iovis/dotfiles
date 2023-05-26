@@ -67,7 +67,7 @@ return {
           SagaLightBulb = { fg = colors.yellow },
 
           -- mini
-          MiniIndentscopeSymbol = { fg = colors.surface0 },
+          MiniIndentscopeSymbol = { fg = colors.surface0, nocombine = true },
 
           -- neotree
           NeoTreeStatusLine = {},
