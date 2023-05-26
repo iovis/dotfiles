@@ -60,6 +60,7 @@ bind -n C-down  resize-pane -D 5
 bind -n C-left  resize-pane -L 5
 bind -n C-right resize-pane -R 5
 bind -n C-up    resize-pane -U 5
+bind -n M-m     resize-pane -Z
 
 ## Scratch Session popup
 bind -n M-- if -F '#{==:#{session_name},·}' {
