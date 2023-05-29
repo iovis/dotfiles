@@ -20,3 +20,14 @@ elseif vim.fn.expand("%"):match("ext/") then
 else
   vim.keymap.set("n", "s<cr>", "<cmd>Tux cargo run<cr>", { buffer = true })
 end
+
+----Surround debug
+require("nvim-surround").buffer_setup({
+  surrounds = {
+    ["d"] = {
+      add = { "dbg!(", ")" },
+      find = "dbg!%b()",
+      delete = "^(dbg!%()().-(%))()$",
+    },
+  },
+})

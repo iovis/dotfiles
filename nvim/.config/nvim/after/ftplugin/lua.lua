@@ -31,3 +31,14 @@ if vim.fn.expand("%"):match("plugins/") then
     print(string.format("Reloaded %s", plugin))
   end, { buffer = true })
 end
+
+----Surround debug
+require("nvim-surround").buffer_setup({
+  surrounds = {
+    ["d"] = {
+      add = { "vim.print(", ")" },
+      find = "vim.print%b()",
+      delete = "^(vim.print%()().-(%))()$",
+    },
+  },
+})

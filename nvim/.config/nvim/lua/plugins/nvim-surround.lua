@@ -11,24 +11,9 @@ return {
       highlight = {
         duration = 5000,
       },
-      surrounds = {
-        ["d"] = {
-          add = { "dbg!(", ")" },
-          find = "dbg!%b()",
-          delete = "^(dbg!%()().-(%))()$",
-        },
-        ["p"] = {
-          add = { "pp(", ")" },
-          find = "pp%b()",
-          delete = "^(pp%()().-(%))()$",
-        },
-      },
     })
 
     vim.keymap.set("n", [[<leader>"]], [[cs'"]], { remap = true })
     vim.keymap.set("n", [[<leader>']], [[cs"']], { remap = true })
-
-    -- local hi = require("config.highlights").hi
-    -- hi.NvimSurroundHighlightTextObject = "HighlightedYankRegion"
   end,
 }
