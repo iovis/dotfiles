@@ -51,7 +51,7 @@ vim.keymap.set("c", "<c-k>", "<up>")
 -- Buffers
 vim.keymap.set("n", "<bs>", "<c-^>")
 
-vim.keymap.set("n", "<leader>t", "<cmd>enew<cr>")
+vim.keymap.set("n", "<leader>n", "<cmd>enew<cr>")
 vim.keymap.set("n", "<leader>q", "<cmd>%bdelete<cr>")
 vim.keymap.set("n", "<leader>Q", "<cmd>%bdelete|e#|bd#<cr>")
 
@@ -186,8 +186,7 @@ vim.keymap.set("n", "*", [[:let @/= '\<' . expand('<cword>') . '\>' <bar> set hl
 vim.keymap.set("x", "*", [[y:let @/= '\V' . escape(@@, '/\') <bar> set hls <bar> normal! /<cr>]], { silent = true })
 
 -- Tabs
--- vim.keymap.set("n", "<leader>T", "<cmd>tabnew<cr>") -- TODO: use for autotest preferences?
-vim.keymap.set("n", "<leader>n", "<cmd>tabnew<cr>")
+vim.keymap.set("n", "<leader>t", "<cmd>tabnew<cr>")
 vim.keymap.set("n", "<leader>C", "<cmd>tabclose<cr>")
 vim.keymap.set("n", "+t", "<c-w>T")
 vim.keymap.set("n", "+q", "<cmd>tabonly<cr>")
