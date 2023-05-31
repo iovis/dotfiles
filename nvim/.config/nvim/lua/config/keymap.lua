@@ -303,6 +303,21 @@ vim.keymap.set("n", "<leader>B", function()
 end, { desc = "Toggle autoformat" })
 
 ---- Toggle autotest
+vim.keymap.set("n", "<leader>TD", function()
+  vim.g.autotest = nil
+  vim.notify("Autotest disabled")
+end, { desc = "Autotest disable" })
+
+vim.keymap.set("n", "<leader>TL", function()
+  vim.g.autotest = "line"
+  vim.notify("Autotest line")
+end, { desc = "Autotest line" })
+
+vim.keymap.set("n", "<leader>TF", function()
+  vim.g.autotest = "file"
+  vim.notify("Autotest file")
+end, { desc = "Autotest file" })
+
 vim.keymap.set("n", "+T", function()
   vim.ui.select({ "file", "line", "disable" }, {
     prompt = "RSpec> ",
