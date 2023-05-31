@@ -157,5 +157,5 @@ return {
   s("elapsed", t('println!("{:?}", now.elapsed());'), {
     condition = conds.line_begin,
   }),
-  s("fmtskip", t("#![rustfmt::skip]"), { condition = conds.line_begin }),
+  s("skipfmt", t("#[rustfmt::skip]"), { condition = conds.line_begin }),
 }
