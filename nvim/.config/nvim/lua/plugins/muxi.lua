@@ -10,9 +10,7 @@ return {
     })
 
     ----Arbitrary mapping
-    vim.keymap.set("n", "<leader>gm", function()
-      return ':lua require("muxi").add("")' .. ("<left>"):rep(2)
-    end, { expr = true, desc = "[muxi] Add arbitrary key" })
+    vim.keymap.set("n", "<leader>gm", require("muxi.ui").add, { desc = "[muxi] Add arbitrary key" })
 
     ----Quick maps
     local keys = { "h", "j", "k", "l", "ñ" }
