@@ -28,6 +28,24 @@ return {
   s("dbg", fmt("vim.print({})", { i(1) }), {
     condition = conds.line_begin,
   }),
+  s(
+    "pry",
+    fmt(
+      [[
+        vim.cmd("messages clear")
+
+        vim.print({})
+
+        vim.cmd("R! messages")
+        vim.cmd("se ft=lua")
+        vim.cmd("norm! G")
+      ]],
+      { i(1) }
+    ),
+    {
+      condition = conds.line_begin,
+    }
+  ),
   s("logd", fmt('vim.notify("{}", vim.log.levels.DEBUG)', { i(1) }), {
     condition = conds.line_begin,
   }),
