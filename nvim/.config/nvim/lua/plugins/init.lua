@@ -15,14 +15,6 @@ return {
   { "tpope/vim-repeat", event = "VeryLazy" },
 
   {
-    "tpope/vim-fugitive",
-    event = "VeryLazy",
-    dependencies = {
-      "tpope/vim-rhubarb",
-    },
-  },
-
-  {
     "tpope/vim-rails",
     event = "VeryLazy",
     dependencies = {

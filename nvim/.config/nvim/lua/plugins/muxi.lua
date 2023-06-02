@@ -9,6 +9,20 @@ return {
       go_to_cursor = false,
     })
 
+    ----Generate <leader>g[a-zA-Z] mappings
+    for i = 97, 122 do -- [a-z]
+      local key = string.char(i)
+
+      vim.keymap.set("n", "<leader>g" .. key:upper(), function()
+        require("muxi").add(key)
+        vim.notify("Added current file to " .. key)
+      end, { desc = "[muxi] Add session to " .. key })
+
+      vim.keymap.set("n", "<leader>g" .. key, function()
+        require("muxi").go_to(key)
+      end, { desc = "[muxi] go to session " .. key })
+    end
+
     ----Arbitrary mapping
     vim.keymap.set("n", "<leader>gm", require("muxi.ui").add, { desc = "[muxi] Add arbitrary key" })
 
@@ -60,7 +74,6 @@ return {
 
     vim.keymap.set("n", "<leader>gM", function()
       local muxi_path = require("muxi").config.path
-
       vim.cmd.split(muxi_path)
       vim.keymap.set("n", "q", "<cmd>q!<cr>", { buffer = true })
     end, { desc = "[muxi] Open storage" })
