@@ -136,4 +136,26 @@ M.find_pattern_in = function(lines, pattern)
   vim.notify(string.format("Couldn't find %s", pattern), vim.log.levels.ERROR)
 end
 
+---Treesitter utils
+M.ts = {}
+
+---Get the Treesitter root node
+---@param lang? string
+---@param bufnr? number
+---@return TSNode
+M.ts.root_node = function(lang, bufnr)
+  local parser = vim.treesitter.get_parser(bufnr, lang)
+  local tree = parser:parse()[1]
+
+  return tree:root()
+end
+
+---Get the Treesitter root node
+---@param node TSNode
+---@param text string
+M.ts.replace = function(node, text)
+  local start_row, start_col, end_row, end_col = node:range()
+  vim.api.nvim_buf_set_text(0, start_row, start_col, end_row, end_col, { text })
+end
+
 return M
