@@ -86,7 +86,7 @@ return {
     })
 
     ---- Keymaps
-    vim.keymap.set("n", "+f", ":FzfLua<space>")
+    vim.keymap.set("n", "+z", ":FzfLua<space>")
 
     -- vim.keymap.set("n", "+m", fzf_lua.marks, { desc = "fzf_lua.marks" })
     vim.keymap.set("n", "<c-p>", fzf_lua.commands, { desc = "fzf_lua.commands" })
