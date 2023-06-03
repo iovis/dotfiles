@@ -23,7 +23,9 @@ return {
       winopts = {
         hl = {
           border = "FloatBorder",
-          scrollborder_f = "RedrawDebugClear",
+        },
+        preview = {
+          scrollbar = false,
         },
         window_on_create = function()
           buf_tmap("<c-j>", "<down>")
@@ -51,6 +53,21 @@ return {
           ["<S-left>"] = "preview-page-reset",
         },
       },
+      actions = {
+        files = {
+          ["default"] = fzf_actions.file_edit,
+          -- defaults (overriden otherwise)
+          ["ctrl-s"] = fzf_actions.file_split,
+          ["ctrl-v"] = fzf_actions.file_vsplit,
+          ["ctrl-t"] = fzf_actions.file_tabedit,
+          ["alt-q"] = fzf_actions.file_sel_to_qf,
+        },
+      },
+      previewers = {
+        git_diff = {
+          pager = "delta --width $FZF_PREVIEW_COLUMNS",
+        },
+      },
       git = {
         icons = {
           ["?"] = { icon = "?", color = "magenta" },
@@ -67,21 +84,6 @@ return {
           ["--nth"] = "4..",
         },
         rg_opts = [[--hidden --column --line-number --no-heading --color=always --smart-case -g '!Session.vim' -g '!sorbet' -g '!.git']],
-      },
-      actions = {
-        files = {
-          ["default"] = fzf_actions.file_edit,
-          -- defaults (overriden otherwise)
-          ["ctrl-s"] = fzf_actions.file_split,
-          ["ctrl-v"] = fzf_actions.file_vsplit,
-          ["ctrl-t"] = fzf_actions.file_tabedit,
-          ["alt-q"] = fzf_actions.file_sel_to_qf,
-        },
-      },
-      previewers = {
-        git_diff = {
-          pager = "delta --width $FZF_PREVIEW_COLUMNS",
-        },
       },
     })
 
