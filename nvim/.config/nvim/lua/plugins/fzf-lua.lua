@@ -63,7 +63,7 @@ return {
       },
       previewers = {
         git_diff = {
-          pager = "delta --width $FZF_PREVIEW_COLUMNS",
+          pager = "delta --width $FZF_PREVIEW_COLUMNS --file-style omit --hunk-header-style omit",
         },
       },
       git = {
