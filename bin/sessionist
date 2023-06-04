@@ -13,14 +13,14 @@ fd_command() {
 
 INITIAL_QUERY="${*:-}"
 fzf_command() {
+  # if no match, return query string
   fzf-tmux \
-    -p 80%,80% \
+    -p 60%,60% \
     --exit-0 \
+    --bind=enter:replace-query+print-query \
     --reverse \
-    --info inline \
-    --bind "ctrl-f:execute-silent(mkdir -p $PROJECT_HOME/{q})+print-query" \
+    --info hidden \
     --prompt "$PROJECT_HOME/" \
-    --header ":: <ctrl-f> to create a new folder from the query" \
     --query "$INITIAL_QUERY"
 }
 
@@ -31,4 +31,7 @@ if [[ -z "$session_path" || -z "$session_name" ]]; then
   exit 0
 fi
 
-tmux has-session -t "$session_name" || tmux new-session -d -s "$session_name" -c "$PROJECT_HOME/$session_path" && tmux switch-client -t "$session_name"
+session_path="$PROJECT_HOME/$session_path"
+mkdir -p "$session_path"
+
+tmux has-session -t "$session_name" || tmux new-session -d -s "$session_name" -c "$session_path" && tmux switch-client -t "$session_name"
