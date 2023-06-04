@@ -8,32 +8,27 @@ fd_command() {
     --exclude public \
     --exclude src \
     --exclude target \
-    --base-directory "$PROJECT_HOME" .
+    --base-directory "$PROJECT_HOME"
 }
 
+INITIAL_QUERY="${*:-}"
 fzf_command() {
   fzf-tmux \
     -p 80%,80% \
     --exit-0 \
     --reverse \
     --info inline \
+    --bind "ctrl-f:execute-silent(mkdir -p $PROJECT_HOME/{q})+print-query" \
     --prompt "$PROJECT_HOME/" \
-    --header ":: <ctrl-f> to create a new folder"
+    --header ":: <ctrl-f> to create a new folder from the query" \
+    --query "$INITIAL_QUERY"
 }
 
-session_path="$PROJECT_HOME/$(fd_command | fzf_command)"
-session_name=$(basename "$session_path")
+session_path=$(fd_command | fzf_command)
+session_name=$(basename "$session_path" | tr '.' '_')
 
-if [[ -z $session_path || -z $session_name ]]; then
+if [[ -z "$session_path" || -z "$session_name" ]]; then
   exit 0
 fi
 
-# TODO: if $session_path doesn't exist, create it
-# mkdir -p $session_path
-
-session_name=$(echo "$session_name" | tr '.' '_')
-
-# echo "session_name=$session_name"
-# echo "session_path=$session_path"
-
-tmux has-session -t "$session_name" || tmux new-session -d -s "$session_name" -c "$session_path" && tmux switch-client -t "$session_name"
+tmux has-session -t "$session_name" || tmux new-session -d -s "$session_name" -c "$PROJECT_HOME/$session_path" && tmux switch-client -t "$session_name"
