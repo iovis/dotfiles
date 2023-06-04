@@ -12,8 +12,6 @@ return {
     -- register fzf-lua as the UI interface for vim.ui.select
     fzf_lua.register_ui_select()
 
-    local fzf_actions = require("fzf-lua.actions")
-
     local function buf_tmap(lhs, rhs)
       vim.keymap.set("t", lhs, rhs, { buffer = true })
     end
@@ -55,12 +53,12 @@ return {
       },
       actions = {
         files = {
-          ["default"] = fzf_actions.file_edit,
+          ["default"] = fzf_lua.actions.file_edit,
           -- defaults (overriden otherwise)
-          ["ctrl-s"] = fzf_actions.file_split,
-          ["ctrl-v"] = fzf_actions.file_vsplit,
-          ["ctrl-t"] = fzf_actions.file_tabedit,
-          ["alt-q"] = fzf_actions.file_sel_to_qf,
+          ["ctrl-s"] = fzf_lua.actions.file_split,
+          ["ctrl-v"] = fzf_lua.actions.file_vsplit,
+          ["ctrl-t"] = fzf_lua.actions.file_tabedit,
+          ["alt-q"] = fzf_lua.actions.file_sel_to_qf,
         },
       },
       previewers = {
@@ -117,7 +115,7 @@ return {
     end)
 
     -- Edit snippets
-    local original_fd_opts = require("fzf-lua.config").globals.files.fd_opts
+    local original_fd_opts = fzf_lua.config.globals.files.fd_opts
     local fd_opts_no_ignore = table.concat({
       original_fd_opts,
       "--no-ignore",
