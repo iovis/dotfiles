@@ -1,12 +1,39 @@
 #!/usr/bin/env bash
 
-session_path=$(fd -td --max-depth 2 . "$HOME/Sites" | fzf-tmux -p80%,80% --select-1 --exit-0 --reverse)
+fd_command() {
+  fd  \
+    --type d  \
+    --max-depth 2  \
+    --exclude node_modules \
+    --exclude public \
+    --exclude src \
+    --exclude target \
+    --base-directory "$PROJECT_HOME" .
+}
+
+fzf_command() {
+  fzf-tmux \
+    -p 80%,80% \
+    --exit-0 \
+    --reverse \
+    --info inline \
+    --prompt "$PROJECT_HOME/" \
+    --header ":: <ctrl-f> to create a new folder"
+}
+
+session_path="$PROJECT_HOME/$(fd_command | fzf_command)"
 session_name=$(basename "$session_path")
 
 if [[ -z $session_path || -z $session_name ]]; then
   exit 0
 fi
 
+# TODO: if $session_path doesn't exist, create it
+# mkdir -p $session_path
+
 session_name=$(echo "$session_name" | tr '.' '_')
+
+# echo "session_name=$session_name"
+# echo "session_path=$session_path"
 
 tmux has-session -t "$session_name" || tmux new-session -d -s "$session_name" -c "$session_path" && tmux switch-client -t "$session_name"
