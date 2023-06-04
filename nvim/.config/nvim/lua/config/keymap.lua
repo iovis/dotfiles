@@ -287,8 +287,8 @@ vim.keymap.set("n", "&", [[:10R!!tmux capture-pane -Jp -S- -t\! | rg '.'<left>]]
 })
 
 ---- Tmux quick switching
-vim.keymap.set("n", "++", "<cmd>TmuxNewSession<cr>")
-vim.keymap.set("n", "+<space>", ":TmuxNewSession<space>")
+vim.keymap.set("n", "++", "<cmd>Sessionist<cr>")
+vim.keymap.set("n", "+<space>", ":Sessionist<space>")
 vim.keymap.set("n", "+V", "<cmd>VimPlugin<cr>")
 
 ---- Toggle autoformat
