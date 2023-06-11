@@ -1,8 +1,11 @@
 return {
   "iovis/muxi.nvim",
   -- enabled = false,
-  dev = true,
+  -- dev = true,
   event = "VeryLazy",
+  dependencies = {
+    "ibhagwan/fzf-lua",
+  },
   config = function()
     ----Setup
     require("muxi").setup({
