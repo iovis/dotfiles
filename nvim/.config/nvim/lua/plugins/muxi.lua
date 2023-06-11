@@ -12,22 +12,15 @@ return {
       go_to_cursor = false,
     })
 
-    ----Generate <leader>g[a-zA-Z] mappings
-    for i = 97, 122 do -- [a-z]
-      local key = string.char(i)
-
-      vim.keymap.set("n", "<leader>g" .. key:upper(), function()
-        require("muxi").add(key)
-        vim.notify("Added current file to " .. key)
-      end, { desc = "[muxi] Add session to " .. key })
-
-      vim.keymap.set("n", "<leader>g" .. key, function()
-        require("muxi").go_to(key)
-      end, { desc = "[muxi] go to session " .. key })
-    end
+    ----Muxi superbinding
+    vim.keymap.set("n", "<leader>g", require("muxi.ui").superbinding, {
+      desc = "[muxi] Mark/go to file",
+    })
 
     ----Arbitrary mapping
-    vim.keymap.set("n", "<leader>gm", require("muxi.ui").add, { desc = "[muxi] Add arbitrary key" })
+    vim.keymap.set("n", "<leader>gñ", require("muxi.ui").add, {
+      desc = "[muxi] Add arbitrary key",
+    })
 
     ----Quick maps
     local keys = { "h", "j", "k", "l", "ñ" }
@@ -50,7 +43,10 @@ return {
     end, { desc = "[muxi] Add session to ñ" })
 
     ----Mark management
-    vim.keymap.set("n", "<leader>gs", require("muxi.fzf").marks, { desc = "[muxi] fzf-lua marks" })
+    vim.keymap.set("n", "<leader>gs", require("muxi.fzf").marks, {
+      desc = "[muxi] fzf-lua marks",
+    })
+
     vim.keymap.set("n", "ge", require("muxi.ui").show, {
       desc = "[muxi] Modify current workspace interactively",
     })
@@ -74,11 +70,11 @@ return {
     ---Testing-------------------------------------
     -- vim.keymap.set("n", "<leader>gs", require("muxi.ui").go_to_prompt, { desc = "[muxi] Interactive go to" })
     -- vim.keymap.set("n", "<leader>gd", require("muxi.ui").delete_prompt, { desc = "[muxi] Interactive delete" })
-
-    vim.keymap.set("n", "<leader>gM", function()
-      local muxi_path = require("muxi").config.path
-      vim.cmd.split(muxi_path)
-      vim.keymap.set("n", "q", "<cmd>q!<cr>", { buffer = true })
-    end, { desc = "[muxi] Open storage" })
+    --
+    -- vim.keymap.set("n", "<leader>gM", function()
+    --   local muxi_path = require("muxi").config.path
+    --   vim.cmd.split(muxi_path)
+    --   vim.keymap.set("n", "q", "<cmd>q!<cr>", { buffer = true })
+    -- end, { desc = "[muxi] Open storage" })
   end,
 }
