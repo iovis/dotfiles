@@ -6,7 +6,7 @@ return {
     "iovis/muxi.nvim", -- to not conflict with mappings defined here
   },
   config = function()
-    vim.keymap.set("n", "<leader>-", "<cmd>Gedit:<cr>")
+    vim.keymap.set("n", "<leader>-", "<cmd>Gtabedit:<cr>")
     vim.keymap.set("n", "<leader>go", "<cmd>Gread<cr>")
     vim.keymap.set("n", "<leader>gb", "<cmd>Git blame<cr>")
     vim.keymap.set("n", "<leader>gl", "<cmd>Glol -500<cr>")
