@@ -8,9 +8,10 @@ return {
         default: {}
 
         alias l := list
+
         # lists available tasks
         list:
-          @just --list
+            @just --list
       ]],
       {
         i(1, "list"),

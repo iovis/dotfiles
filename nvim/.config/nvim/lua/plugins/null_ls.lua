@@ -23,6 +23,7 @@ return {
 
         formatting.erb_lint,
         formatting.fish_indent,
+        formatting.just,
         formatting.prettier,
         -- formatting.rubocop,
         formatting.ruff,
