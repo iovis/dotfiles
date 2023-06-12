@@ -3,7 +3,6 @@ return {
   event = "VeryLazy",
   dependencies = {
     "tpope/vim-rhubarb",
-    "iovis/muxi.nvim", -- to not conflict with mappings defined here
   },
   config = function()
     vim.keymap.set("n", "<leader>-", "<cmd>Gtabedit:<cr>")
