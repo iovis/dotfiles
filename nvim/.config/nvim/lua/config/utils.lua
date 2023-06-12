@@ -34,6 +34,26 @@ M.system = function(cmd, raw)
   return s
 end
 
+---Run system command asynchronously
+---@param cmd string
+---@param args? string[]
+---@param callback? function(code: integer, signal: integer): nil
+M.system_async = function(cmd, args, callback)
+  local handle
+
+  handle = vim.loop.spawn(cmd, {
+    args = args,
+  }, function(code, signal)
+    if callback then
+      callback(code, signal)
+    end
+
+    if handle then
+      handle:close()
+    end
+  end)
+end
+
 ---Check if command is executable
 ---@param cmd string
 ---@return boolean
