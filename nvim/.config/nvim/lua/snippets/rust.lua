@@ -77,6 +77,60 @@ return {
     ),
     { condition = conds.line_begin }
   ),
+  -- Benchmarks
+  s(
+    "benchmain",
+    fmta(
+      [[
+      use criterion::{black_box, criterion_group, criterion_main, Criterion};
+
+      fn bench_fib(c: &mut Criterion) {
+          c.bench_function("fib 20", |b| b.iter(|| fib(black_box(20))));
+      }
+
+      criterion_group!(benches, bench_fib);
+      criterion_main!(benches);
+      ]],
+      {}
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "bench",
+    fmta(
+      [[
+      fn bench_fib(c: &mut Criterion) {
+          c.bench_function("fib 20", |b| b.iter(|| fib(black_box(20))));
+      }
+      ]],
+      {}
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "benchgroup",
+    fmta(
+      [[
+      fn bench_fibs(c: &mut Criterion) {
+          let mut group = c.benchmark_group("Fibonacci");
+
+          for i in &[5, 10, 100] {
+              group.bench_with_input(BenchmarkId::new("Recursive", i), i, |b, i| {
+                  b.iter(|| fibonacci_slow(*i));
+              });
+
+              group.bench_with_input(BenchmarkId::new("Iterative", i), i, |b, i| {
+                  b.iter(|| fibonacci_fast(*i));
+              });
+          }
+
+          group.finish();
+      }
+      ]],
+      {}
+    ),
+    { condition = conds.line_begin }
+  ),
   -- Structs
   s(
     "st",
@@ -158,4 +212,5 @@ return {
     condition = conds.line_begin,
   }),
   s("skipfmt", t("#[rustfmt::skip]"), { condition = conds.line_begin }),
+  s("axumdebug", t("#[axum::debug_handler]"), { condition = conds.line_begin }),
 }

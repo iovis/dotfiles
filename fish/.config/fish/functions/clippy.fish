@@ -1,3 +1,3 @@
-function clippy --wraps='cargo clippy -- -W clippy::pedantic -Aclippy::missing-errors-doc -Aclippy::missing-panics-doc' --description 'alias clippy=cargo clippy -- -W clippy::pedantic -Aclippy::missing-errors-doc -Aclippy::missing-panics-doc'
-    cargo clippy -- -W clippy::pedantic -Aclippy::missing-errors-doc -Aclippy::missing-panics-doc $argv
+function clippy
+    cargo clippy -- -W clippy::pedantic -A clippy::missing-errors-doc -A clippy::missing-panics-doc -A clippy::must-use-candidate $argv
 end

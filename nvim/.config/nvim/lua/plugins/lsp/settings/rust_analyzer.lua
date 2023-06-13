@@ -15,6 +15,7 @@ return {
           "-Wclippy::pedantic",
           "-Aclippy::missing-errors-doc",
           "-Aclippy::missing-panics-doc",
+          "-Aclippy::must-use-candidate",
         },
       },
     },
