@@ -43,6 +43,7 @@ Session.vim
 .projections.json
 NvimTree
 BqfPreviewBorder
+BqfPreviewScrollBar
 
 ### Npm ###
 node_modules/
