@@ -44,7 +44,7 @@ return {
       },
       {
         "filename",
-        -- path = 1, -- Show full path
+        path = 1, -- Show full path
         symbols = {
           modified = "●",
           readonly = "",
