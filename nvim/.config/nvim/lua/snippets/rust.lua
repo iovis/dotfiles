@@ -60,6 +60,26 @@ return {
       condition = conds.line_begin,
     }
   ),
+  s(
+    {
+      trig = "axh",
+      dscr = "axum handler",
+    },
+    fmt(
+      [[
+        #[axum::debug_handler]
+        #[tracing::instrument{}]
+        pub async {}
+      ]],
+      {
+        i(1),
+        d(2, rust_fn),
+      }
+    ),
+    {
+      condition = conds.line_begin,
+    }
+  ),
   -- Tests
   s(
     { trig = "tt", dscr = "Tokio test" },
@@ -212,5 +232,7 @@ return {
     condition = conds.line_begin,
   }),
   s("skipfmt", t("#[rustfmt::skip]"), { condition = conds.line_begin }),
-  s("axumdebug", t("#[axum::debug_handler]"), { condition = conds.line_begin }),
+  s("tin", fmt("#[tracing::instrument{}]", { i(1) }), {
+    condition = conds.line_begin,
+  }),
 }
