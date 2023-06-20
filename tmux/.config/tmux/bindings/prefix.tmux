@@ -7,88 +7,105 @@ bind C-l send 'C-l'
 bind C-k send 'C-k'
 
 ## Quick settings
-# Reload tmux
-bind R {
+bind -N "Reload tmux" R {
   source "$XDG_CONFIG_HOME/tmux/tmux.conf"
   display "Tmux reloaded!"
 }
 
-# Tmux settings
-bind l customize-mode -Z
+bind -N "Tmux customization mode" l {
+  customize-mode -Z
+}
 
-# Toggle status line
-bind s {
+bind -N "Toggle status line" s {
   set status
 }
 
-# Set session path to current
-bind b {
+bind -N "Set session path to current pane's" b {
   attach -c "#{pane_current_path}"
   display "changed path to #{pane_current_path}"
 }
 
-bind S set -w synchronize-panes
-bind w set -w automatic-rename
-bind ? list-keys
+bind -N "Toggle synchronize panes" S {
+  set -w synchronize-panes
+}
+
+bind -N "Toggle automatic window rename" w {
+  set -w automatic-rename
+}
+
+bind -N "List keys" ? list-keys
 
 ## Paste Buffers (clipboard)
-bind C-p choose-buffer
-bind p   paste-buffer
+bind -N "Choose paste buffer" C-p choose-buffer
+bind -N "Paste buffer" P paste-buffer
 
 ## Session management
-bind c-f run sessionist
+bind -N "Run sessionist" c-f run sessionist
 
-bind C command-prompt -p "new session name:" {
+bind -N "New session" C command-prompt -p "new session name:" {
   new-session -A -s "%1" -c "#{pane_current_path}"
 }
 
-bind X confirm-before -p "Kill session #{session_name}? (y/n)" {
+bind -N "Kill session" X confirm-before -p "Kill session #{session_name}? (y/n)" {
   switch-client -l
   run 'tmux kill-session -t #{client_last_session}'
 }
 
 ## Window management
-bind c new-window -c "#{pane_current_path}"
+bind -N "New window" c new-window -c "#{pane_current_path}"
 
-bind -r < swap-window -dt -1
-bind -r > swap-window -dt +1
+bind -N "Move window to the left"  -r < swap-window -dt -1
+bind -N "Move window to the right" -r > swap-window -dt +1
 
-bind Q confirm -p "kill the rest of the windows? (y/n)" { kill-window -a }
-bind º confirm -p "kill-window #W? (y/n)" { kill-window }
-bind q confirm -p "reset session? (y/n)" {
+bind -N "Close the rest of the windwos" Q confirm -p "kill the rest of the windows? (y/n)" {
+  kill-window -a
+}
+
+bind -N "Kill window" º confirm -p "kill-window #W? (y/n)" {
+  kill-window
+}
+
+bind -N "Reset session" q confirm -p "reset session? (y/n)" {
   new-window -c "#{pane_current_path}"
   kill-window -a
 }
 
 ## Pane Management
-bind h split-window -v  -c "#{pane_current_path}"
-bind v split-window -h  -c "#{pane_current_path}"
+bind -N "Horizontal pane" h {
+  split-window -v  -c "#{pane_current_path}"
+}
 
-# Resize panes equally
-bind 0 select-layout tiled
+bind -N "Vertical pane" v {
+  split-window -h  -c "#{pane_current_path}"
+}
+
+bind -N "Resize panes equally" 0 {
+  select-layout tiled
+}
 
 # Move panes
-bind -r down  swap-pane -dt "{down-of}"
-bind -r left  swap-pane -dt "{left-of}"
-bind -r right swap-pane -dt "{right-of}"
-bind -r up    swap-pane -dt "{up-of}"
+bind -N "Move pane down"  -r down  swap-pane -dt "{down-of}"
+bind -N "Move pane left"  -r left  swap-pane -dt "{left-of}"
+bind -N "Move pane right" -r right swap-pane -dt "{right-of}"
+bind -N "Move pane up"    -r up    swap-pane -dt "{up-of}"
 
 # Make pane full split
-bind H move-pane -fh -b -t '.{next}'
-bind J move-pane -fv -t '.{next}'
-bind K move-pane -fv -b -t '.{next}'
-bind L move-pane -fh -t '.{next}'
+bind -N "Move pane down (full)"  H move-pane -fh -b -t '.{next}'
+bind -N "Move pane left (full)"  J move-pane -fv -t '.{next}'
+bind -N "Move pane right (full)" K move-pane -fv -b -t '.{next}'
+bind -N "Move pane up (full)"    L move-pane -fh -t '.{next}'
 
-# Promote pane to session
-bind '"' run tmux_promote_pane
+bind -N "Promote pane to session" '"' {
+  run tmux_promote_pane
+}
 
 ## Join panes
-bind t switch-client -T join_pane
+bind -N "Join pane" t switch-client -T join_pane
 
-bind -T join_pane h {
+bind -N "Join pane horizontally" -T join_pane h {
   join-pane -v
 }
 
-bind -T join_pane v {
+bind -N "Join pane vertically" -T join_pane v {
   join-pane -h
 }

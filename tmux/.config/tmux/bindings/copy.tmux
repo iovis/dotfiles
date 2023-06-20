@@ -33,18 +33,22 @@ bind -T copy-mode-vi m   send -X set-mark
 bind -T copy-mode-vi "'" send -X jump-to-mark
 
 # Quick select
-bind -T copy-mode-vi a send -X copy-pipe-no-clear "pbcopy" # append selection
+bind -N "append selection" -T copy-mode-vi a send -X copy-pipe-no-clear "pbcopy"
 bind -T copy-mode-vi v send -X begin-selection
 
-bind -T copy-mode-vi Enter send -X copy-pipe-and-cancel "tmux paste-buffer" # copy+paste (also Space)
+bind -N "Copy selection and paste it directly" -T copy-mode-vi Enter {
+  send -X copy-pipe-and-cancel "tmux paste-buffer"
+}
 
-bind -T copy-mode-vi C send Escape 'V!' # copy line
-bind -T copy-mode-vi c {                # copy word
+bind -N "Copy line" -T copy-mode-vi C send Escape 'V!'
+bind -N "Copy word" -T copy-mode-vi c {
   send -X select-word
   send -X copy-pipe-and-cancel "pbcopy"
 }
 
-bind -T copy-mode-vi Y send Escape 'v$!' # copy till end of line
+bind -N "Copy till end of line" -T copy-mode-vi Y {
+  send Escape 'v$!'
+}
 
 # Switch panes
 bind -T copy-mode-vi C-h  select-pane -L

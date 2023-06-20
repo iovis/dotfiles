@@ -1,14 +1,15 @@
 ## Session picker
-bind -n C-f choose-tree -Zs
-bind -n M-Space switch-client -l
+bind -N "Create session from FZF" -n C-f {
+  choose-tree -Zs
+}
+
+bind -N "Switch to last session" -n M-Space {
+  switch-client -l
+}
 
 ## Window switching
-# bind -n S-left   previous-window
-# bind -n S-right  next-window
-
-bind -n M-h      previous-window
-bind -n M-l      next-window
-
+bind -n M-h previous-window
+bind -n M-l next-window
 bind -n M-BSpace last-window
 
 ## Window indexing
@@ -63,14 +64,14 @@ bind -n C-up    resize-pane -U 5
 bind -n M-m     resize-pane -Z
 
 ## Scratch Session popup
-bind -n M-- if -F '#{==:#{session_name},·}' {
+bind -N "Scratch session popup" -n M-- if -F '#{==:#{session_name},·}' {
   detach-client
 } {
   display-popup -w 75% -h 75% -b rounded -d '#{pane_current_path}' -E "tmux new-session -A -s ·"
 }
 
 ## Quick Notes
-bind -n M-n if -F '#{==:#{session_name},notes}' {
+bind -N "Notes session popup" -n M-n if -F '#{==:#{session_name},notes}' {
   detach-client
 } {
   display-popup -w 75% -h 75% -b rounded -d '$NOTES' -E "tmux new-session -A -s notes -c \"$NOTES\""
