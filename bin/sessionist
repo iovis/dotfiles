@@ -34,4 +34,4 @@ fi
 session_path="$PROJECT_HOME/$session_path"
 mkdir -p "$session_path"
 
-tmux has-session -t "$session_name" || tmux new-session -d -s "$session_name" -c "$session_path" && tmux switch-client -t "$session_name"
+tmux has-session -t "=$session_name" || tmux new-session -d -s "$session_name" -c "$session_path" && tmux switch-client -t "=$session_name"
