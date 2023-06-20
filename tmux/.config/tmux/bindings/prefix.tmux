@@ -47,10 +47,6 @@ bind X confirm-before -p "Kill session #{session_name}? (y/n)" {
   run 'tmux kill-session -t #{client_last_session}'
 }
 
-# TODO: Promote pane to session
-# bind '"'
-# https://github.com/tmux-plugins/tmux-sessionist/blob/master/scripts/promote_pane.sh
-
 ## Window management
 bind c new-window -c "#{pane_current_path}"
 
@@ -82,6 +78,9 @@ bind H move-pane -fh -b -t '.{next}'
 bind J move-pane -fv -t '.{next}'
 bind K move-pane -fv -b -t '.{next}'
 bind L move-pane -fh -t '.{next}'
+
+# Promote pane to session
+bind '"' run tmux_promote_pane
 
 ## Join panes
 bind t switch-client -T join_pane

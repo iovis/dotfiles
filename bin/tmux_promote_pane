@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+number_of_panes=$(tmux list-panes -s | wc -l | tr -d ' ')
+
+if [[ $number_of_panes == 1 ]]; then
+  tmux display "Can't promote with only one pane in session"
+  exit
+fi
+
+current_pane_id=$(tmux display -p '#{pane_id}')
+current_path=$(tmux display -p '#{pane_current_path}')
+new_session_name=$(basename "$current_path" | tr '.' '_')
+
+
+if tmux has-session -t "=$new_session_name" &> /dev/null; then
+  tmux display "Session $new_session_name already exists!"
+  exit
+fi
+
+# Create new session
+tmux new-session -d -s "$new_session_name" -c "$current_path"
+
+# Move the pane to the new session and delete the default pane
+new_session_pane_id=$(tmux list-panes -t "=$new_session_name" -F "#{pane_id}")
+tmux join-pane -s "$current_pane_id" -t "$new_session_pane_id"
+tmux kill-pane -t "$new_session_pane_id"
+
+# Switch to new session
+tmux switch-client -t "=$new_session_name"
