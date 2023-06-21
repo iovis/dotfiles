@@ -77,6 +77,7 @@ ulimit -n 2048
 
 source "$FDOTDIR/abbrs.fish"
 
+# Remember to `stow`
 for local_override in $FDOTDIR/local/*.fish
     source $local_override
 end
