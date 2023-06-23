@@ -7,14 +7,37 @@ return {
 
         default: {}
 
-        alias l := list
-
         # lists available tasks
         list:
             @just --list
+
+        # start the server
+        dev:
+            {}
+
+        # open the project in the browser
+        open:
+            {}
+
+        # start a console
+        console:
+            {}
+
+        # run tests
+        test:
+            {}
+
+        # Open the DB
+        db:
+            {}
       ]],
       {
         i(1, "list"),
+        i(2, "dev"),
+        i(3, "open"),
+        i(4, "console"),
+        i(5, "test"),
+        i(6, "db"),
       }
     ),
     { condition = conds.line_begin }
