@@ -3,8 +3,11 @@ local M = {}
 local u = require("config.utils")
 
 ---- Global LSP settings
-u.command("LspActiveClients", "Redir lua =vim.lsp.get_active_clients() | setf lua")
 u.command("LspConfigHelp", "help lspconfig-server-configurations")
+u.command("LspActiveClients", function()
+  vim.cmd("R!=vim.lsp.get_active_clients()")
+  vim.cmd("se ft=lua")
+end)
 
 vim.keymap.set("n", "<leader>lh", "<cmd>LspConfigHelp<cr>")
 vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
