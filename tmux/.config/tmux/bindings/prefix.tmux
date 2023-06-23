@@ -12,10 +12,6 @@ bind -N "Reload tmux" R {
   display "Tmux reloaded!"
 }
 
-bind -N "Tmux customization mode" l {
-  customize-mode -Z
-}
-
 bind -N "Toggle status line" s {
   set status
 }
