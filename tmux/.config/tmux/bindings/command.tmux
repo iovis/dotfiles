@@ -31,7 +31,7 @@ bind -N "Open just" -T command j {
 
 bind -N "Run just dev" -T command s {
   if "test -f justfile" {
-    new-window -n dev just dev
+    new-window -n dev -d just dev
   } {
     display "No justfile!"
   }
@@ -48,6 +48,14 @@ bind -N "Run just console" -T command c {
 bind -N "Run just db" -T command d {
   if "test -f justfile" {
     new-window -n db just db
+  } {
+    display "No justfile!"
+  }
+}
+
+bind -N "Run just open" -T command o {
+  if "test -f justfile" {
+    new-window -n open -d just open
   } {
     display "No justfile!"
   }
