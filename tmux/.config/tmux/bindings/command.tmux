@@ -60,3 +60,11 @@ bind -N "Run just open" -T command o {
     display "No justfile!"
   }
 }
+
+bind -N "Run just test" -T command t {
+  if "test -f justfile" {
+    new-window -n test -d just test
+  } {
+    display "No justfile!"
+  }
+}
