@@ -18,6 +18,7 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 })
 
 ---- LSP Format
+local autoformat_augroup = vim.api.nvim_create_augroup("lsp_document_format", { clear = false })
 local lsp_format = function()
   vim.lsp.buf.format({
     timeout_ms = 2000,
@@ -111,12 +112,11 @@ M.on_attach = function(client, bufnr)
   }
 
   if vim.tbl_contains(autoformat_filetypes, vim.bo.filetype) and client.supports_method("textDocument/formatting") then
-    local group = vim.api.nvim_create_augroup("lsp_document_format", { clear = false })
+    vim.api.nvim_clear_autocmds({ group = autoformat_augroup, buffer = bufnr })
 
     vim.api.nvim_create_autocmd("BufWritePre", {
       desc = "Autoformat with LSP on save",
-      vim.api.nvim_clear_autocmds({ group = group, buffer = bufnr }),
-      group = group,
+      group = autoformat_augroup,
       buffer = bufnr,
       callback = function()
         if vim.g.autoformat then

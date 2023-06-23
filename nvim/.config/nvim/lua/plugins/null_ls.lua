@@ -7,7 +7,7 @@ return {
     local formatting = null_ls.builtins.formatting
 
     null_ls.setup({
-      debug = false,
+      -- debug = true,
       sources = {
         -- diagnostics.cpplint.with({ extra_args = { "--filter -legal/copyright" } }),
         diagnostics.erb_lint,
@@ -31,6 +31,9 @@ return {
         -- formatting.stylelint,
         formatting.stylua,
       },
+      on_attach = function()
+        vim.keymap.set({ "n", "x" }, "<leader>b", vim.lsp.buf.format, { buffer = true, desc = "vim.lsp.buf.format" })
+      end,
     })
   end,
 }

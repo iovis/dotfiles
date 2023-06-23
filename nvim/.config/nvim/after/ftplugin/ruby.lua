@@ -29,7 +29,6 @@ end
 
 ---- keymaps
 vim.keymap.set("n", "m<cr>", ":!ctags<cr>", { buffer = true, silent = true })
-vim.keymap.set("n", "<leader>b", vim.lsp.buf.format, { buffer = true })
 
 ---- quick testing
 vim.keymap.set("n", "<leader>sd", ":TestFile --format documentation<cr>", { buffer = true, silent = true })
