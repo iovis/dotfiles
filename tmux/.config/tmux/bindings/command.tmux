@@ -8,6 +8,14 @@ bind -N "Open htop" -T command h {
   new-window -n htop htop
 }
 
+bind -N "Open nvim" -T command n {
+  if "test -f Session.vim" {
+    new-window -n nvim nvim -S Session.vim
+  } {
+    new-window -n nvim nvim
+  }
+}
+
 bind -N "Tmux customization mode" -T command z {
   customize-mode -Z
 }
