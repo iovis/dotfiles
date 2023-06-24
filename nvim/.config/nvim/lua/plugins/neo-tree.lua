@@ -7,10 +7,10 @@ return {
       "<leader>k",
       "<cmd>Neotree toggle<cr>",
     },
-    {
-      "-",
-      "<cmd>Neotree reveal<cr>",
-    },
+    -- {
+    --   "-",
+    --   "<cmd>Neotree reveal<cr>",
+    -- },
   },
   dependencies = {
     "nvim-lua/plenary.nvim",

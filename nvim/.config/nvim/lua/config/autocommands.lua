@@ -71,6 +71,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "help",
     "lspsagaoutline",
     "notify",
+    "oil",
     "qf",
     "redir",
     "startuptime",
