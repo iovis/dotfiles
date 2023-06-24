@@ -70,7 +70,6 @@ vim.api.nvim_create_autocmd("FileType", {
     "fugitiveblame",
     "help",
     "lspsagaoutline",
-    "man",
     "notify",
     "qf",
     "redir",
