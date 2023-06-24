@@ -15,11 +15,13 @@ INITIAL_QUERY="${*:-}"
 fzf_command() {
   # if no match, return query string
   fzf-tmux \
-    -p 60%,60% \
+    -p 80%,80% \
     --exit-0 \
     --bind=enter:replace-query+print-query \
     --reverse \
     --info hidden \
+    --preview "exa -lag --git --group-directories-first $PROJECT_HOME/{}" \
+    --preview-window down \
     --prompt "$PROJECT_HOME/" \
     --query "$INITIAL_QUERY"
 }
