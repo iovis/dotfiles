@@ -12,6 +12,6 @@ set -g visual-activity off
 set -wg mode-keys vi
 set -wg monitor-activity on
 
-# set -sa terminal-overrides ",$TERM:RGB"
+set -sa terminal-features ",$TERM:RGB"
 set -sg default-terminal "screen-256color"
 set -sg escape-time 0
