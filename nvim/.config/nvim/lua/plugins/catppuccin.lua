@@ -80,6 +80,7 @@ return {
 
           -- treesitter
           TreesitterContext = { bg = black, bold = true },
+          TreesitterContextBottom = { style = {} }, -- Disable underline
           TreesitterContextLineNumber = { fg = colors.surface1, bg = black, bold = true },
 
           ----Apparently semantic LSP messes everything up for `fg` colors
