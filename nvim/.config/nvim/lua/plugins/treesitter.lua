@@ -60,6 +60,15 @@ return {
           end
         end,
       },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<cr>",
+          node_incremental = "<cr>",
+          scope_incremental = "<c-s>",
+          node_decremental = "<bs>",
+        },
+      },
       playground = {
         enable = true,
       },
