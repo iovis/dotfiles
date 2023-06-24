@@ -17,6 +17,9 @@ return {
       func_map = {
         ptoggleauto = "p",
       },
+      preview = {
+        winblend = 0,
+      },
     })
   end,
 }
