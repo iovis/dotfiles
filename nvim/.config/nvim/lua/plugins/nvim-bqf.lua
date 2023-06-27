@@ -10,7 +10,7 @@ return {
         fzf = {
           extra_opts = {
             "--bind",
-            "ctrl-p:page-down,ctrl-n:page-up,alt-a:select-all,alt-d:deselect-all,alt-t:toggle-all",
+            "ctrl-p:page-up,ctrl-n:page-down,alt-a:select-all,alt-d:deselect-all,alt-t:toggle-all",
           },
         },
       },
