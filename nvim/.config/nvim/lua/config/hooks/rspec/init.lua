@@ -20,7 +20,7 @@ function M.run()
   rspec.job_id = vim.fn.jobstart(command, {
     stdout_buffered = true,
     on_stdout = function(_, data)
-      if not data or not pcall(rspec.parse, rspec, data[1]) then
+      if not rspec:parse(data) then
         rspec:close()
 
         vim.notify("Error parsing the RSpec output (not a valid JSON)", vim.log.levels.ERROR)

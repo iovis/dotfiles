@@ -36,7 +36,7 @@ local u = require("config.utils")
 ---@field filename string Filename of the test
 ---@field file_bufnr number Filename of the test
 ---@field time_threshold number Threshold to show spec time in virtual text
----@field output RSpecOutput Output of `rspec` command
+---@field output RSpecOutput? Output of `rspec` command
 ---@field job_id? number ID of the current running job
 ---@field failed_tests Test[] Failed tests
 ---@field private namespace number
@@ -90,9 +90,26 @@ function RSpec:command(strategy)
 end
 
 ---Parse RSpec JSON output (rspec --format json)
----@param output string
-function RSpec:parse(output)
-  self.output = vim.json.decode(output)
+---@param data string[]
+---@return boolean result
+function RSpec:parse(data)
+  if not data then
+    return false
+  end
+
+  for _, line in ipairs(data) do
+    local ok, json = pcall(vim.json.decode, line)
+
+    if ok then
+      self.output = json
+      return true
+    else
+      print("Line:", line)
+      print("Error:", json)
+    end
+  end
+
+  return false
 end
 
 ---Clear virtual text and diagnostics
