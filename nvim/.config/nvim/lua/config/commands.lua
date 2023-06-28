@@ -8,8 +8,7 @@ u.command("Delregisters", function(opts)
   if #reg == 1 then
     vim.fn.setreg(reg, "")
   else
-    for i = 97, 122 do -- [a-z]
-      local char = string.char(i)
+    for char in u.range("a", "z") do
       vim.fn.setreg(char, "")
     end
   end

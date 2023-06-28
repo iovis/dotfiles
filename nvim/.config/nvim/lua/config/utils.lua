@@ -156,6 +156,32 @@ M.find_pattern_in = function(lines, pattern)
   vim.notify(string.format("Couldn't find %s", pattern), vim.log.levels.ERROR)
 end
 
+---Create an iterator from a range
+---@generic T: number|string
+---@param start T
+---@param finish T
+---@param step number?
+---@return fun(): T
+M.range = function(start, finish, step)
+  step = step or 1
+
+  if type(start) == "number" and type(finish) == "number" then
+    return coroutine.wrap(function()
+      for num = start, finish, step do
+        coroutine.yield(num)
+      end
+    end)
+  elseif type(start) == "string" and type(finish) == "string" then
+    return coroutine.wrap(function()
+      for charCode = string.byte(start), string.byte(finish), step do
+        coroutine.yield(string.char(charCode))
+      end
+    end)
+  else
+    vim.notify("Invalid range", vim.log.levels.ERROR)
+  end
+end
+
 ---Treesitter utils
 M.ts = {}
 
