@@ -74,6 +74,9 @@ return {
           NeoTreeStatusLineNC = {},
           NeoTreeCursorLine = { bold = true },
 
+          -- oil.nvim
+          OilDir = { fg = colors.blue },
+
           -- noice
           NotifyBackground = { fg = colors.text, bg = colors.base },
           NoiceMini = { fg = colors.text, bg = colors.base },
