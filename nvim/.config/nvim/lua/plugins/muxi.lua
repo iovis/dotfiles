@@ -3,9 +3,6 @@ return {
   -- enabled = false,
   -- dev = true,
   event = "VeryLazy",
-  dependencies = {
-    "ibhagwan/fzf-lua",
-  },
   config = function()
     ----Setup
     require("muxi").setup({

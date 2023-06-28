@@ -3,10 +3,8 @@ local M = {
   dependencies = {
     "b0o/schemastore.nvim",
     "folke/neodev.nvim",
-    "jose-elias-alvarez/null-ls.nvim",
     -- "lvimuser/lsp-inlayhints.nvim",
     "simrat39/rust-tools.nvim",
-    "glepnir/lspsaga.nvim",
     {
       "williamboman/mason.nvim",
       dependencies = {
