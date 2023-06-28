@@ -21,6 +21,10 @@ vim.api.nvim_create_autocmd({ "FocusLost", "BufLeave" }, {
   desc = "Autosave on focus lost",
   group = config_augroup,
   callback = function()
+    if vim.bo.filetype == "oil" then
+      return
+    end
+
     vim.cmd("silent! wall")
   end,
 })
@@ -71,7 +75,6 @@ vim.api.nvim_create_autocmd("FileType", {
     "help",
     "lspsagaoutline",
     "notify",
-    "oil",
     "qf",
     "redir",
     "startuptime",
@@ -102,6 +105,10 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   group = config_augroup,
   pattern = "*",
   callback = function(ctx)
+    if vim.bo.filetype == "oil" then
+      return
+    end
+
     local dir = vim.fn.fnamemodify(ctx.file, ":p:h")
     vim.fn.mkdir(dir, "p")
   end,

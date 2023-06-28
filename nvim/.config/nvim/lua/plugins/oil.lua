@@ -20,7 +20,15 @@ return {
         },
       },
       keymaps = {
-        ["<c-r>"] = "actions.refresh",
+        ["R"] = "actions.refresh",
+        ["q"] = {
+          desc = "Save and close",
+          callback = function()
+            oil.save()
+            oil.close()
+          end,
+          nowait = true,
+        },
       },
       view_options = {
         show_hidden = true,
