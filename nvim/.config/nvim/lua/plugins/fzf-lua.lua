@@ -9,8 +9,20 @@ return {
   config = function()
     local fzf_lua = require("fzf-lua")
 
-    -- register fzf-lua as the UI interface for vim.ui.select
-    fzf_lua.register_ui_select()
+    ---- Register fzf-lua as the UI interface for vim.ui.select
+    fzf_lua.register_ui_select(function(_, items)
+      local min_h = 0.15
+      local max_h = 0.70
+
+      local h = (#items + 4) / vim.o.lines
+      if h < min_h then
+        h = min_h
+      elseif h > max_h then
+        h = max_h
+      end
+
+      return { winopts = { height = h, width = 0.40, row = 0.40 } }
+    end)
 
     local function buf_tmap(lhs, rhs)
       vim.keymap.set("t", lhs, rhs, { buffer = true })
