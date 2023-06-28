@@ -3,7 +3,7 @@ return {
   event = "VeryLazy",
   cmd = "WhichKey",
   keys = {
-    { "+r", ':WhichKey "<cr>', desc = "which registers" },
+    -- { "+r", ':WhichKey "<cr>', desc = "which registers" },
     { "+m", ":WhichKey `<cr>", desc = "which marks" },
   },
   config = function()

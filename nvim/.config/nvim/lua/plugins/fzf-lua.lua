@@ -162,23 +162,35 @@ return {
 
     vim.keymap.set("x", "<leader>f", fzf_lua.grep_visual, { silent = true, desc = "fzf_lua.grep" })
 
-    -- Registers (paste register or apply macro)
-    -- local extract_register_from = function(result)
-    --   -- `selected[1]` is going to be "[2] contents of register 2"
-    --   return result:match("%[(.-)%]")
-    -- end
-    --
-    -- vim.keymap.set("n", "+r", function()
-    --   local opts = {}
-    --
-    --   opts.actions = {
-    --     ["@"] = function(selected)
-    --       local register = extract_register_from(selected[1])
-    --       vim.cmd.normal("@" .. register)
-    --     end,
-    --   }
-    --
-    --   fzf_lua.registers(opts)
-    -- end, { desc = "fzf_lua.registers" })
+    -- Registers
+    local run_macro = function(selected)
+      local reg = selected[1]:match("%[(.-)%]")
+      local ok, data = pcall(vim.fn.getreg, reg)
+
+      if ok and #data > 0 then
+        vim.cmd.normal("@" .. reg)
+      end
+    end
+
+    local delete_register = function(selected)
+      for _, item in ipairs(selected) do
+        local reg = item:match("%[(.-)%]")
+        vim.fn.setreg(reg:lower(), "")
+      end
+    end
+
+    fzf_lua.config.set_action_helpstr(run_macro, "run-macro")
+    fzf_lua.config.set_action_helpstr(delete_register, "delete-register")
+
+    vim.keymap.set("n", "+r", function()
+      local opts = {}
+
+      opts.actions = {
+        ["@"] = run_macro,
+        ["ctrl-x"] = delete_register,
+      }
+
+      fzf_lua.registers(opts)
+    end, { desc = "fzf_lua.registers" })
   end,
 }
