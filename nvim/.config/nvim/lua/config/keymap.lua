@@ -318,7 +318,7 @@ vim.keymap.set("n", "<leader>TF", function()
   vim.notify("Autotest file")
 end, { desc = "Autotest file" })
 
-vim.keymap.set("n", "+T", function()
+vim.keymap.set("n", "<leader>TT", function()
   vim.ui.select({ "file", "line", "disable" }, {
     prompt = "RSpec> ",
     format_item = function(item)
