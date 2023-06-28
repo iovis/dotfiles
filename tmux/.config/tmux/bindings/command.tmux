@@ -23,7 +23,7 @@ bind -N "Tmux customization mode" -T command z {
 ## Justfile
 bind -N "Open just" -T command j {
   if "test -f justfile" {
-    new-window -n just just --choose --chooser "fzf-tmux -p80\%,80\% --prompt 'just> ' --reverse --info inline --preview 'just --show {}' --preview-window 'down'"
+    new-window -n just -d just --choose --chooser "fzf-tmux -p80\%,80\% --prompt 'just> ' --reverse --info inline --preview 'just --show {}' --preview-window 'down' && tmux select-window -t ':=just'"
   } {
     display "No justfile!"
   }
