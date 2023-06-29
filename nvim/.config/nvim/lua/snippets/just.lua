@@ -1,6 +1,6 @@
 return {
   s(
-    "main",
+    "base",
     fmt(
       [[
         # set dotenv-load  # Uncomment to load .env
