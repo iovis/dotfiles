@@ -13,7 +13,7 @@ hyper - r : yabai --restart-service
 ctrl + alt + cmd - a : open -a zoom.us
 ctrl + alt + cmd - s : open -a Slack
 ctrl + alt + cmd - d : open -a iTerm
-ctrl + alt + cmd - f : open -a Firefox
+ctrl + alt + cmd - f : open -a Arc
 ctrl + alt + cmd - g : open -a Tower
 
 ctrl + alt + cmd - w : open -a Messages
