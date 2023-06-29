@@ -101,11 +101,20 @@ ctrl + alt - up  : yabai_grid 1:1:0:0:1:1
 # send window to monitor and follow focus
 hyper - d : yabai_send_to_other_display
 
+############
+#  Spaces  #
+############
+# NOTE: yabai would need scripting-addition for some actions
+#    => Make Mission Control switch to space: ctrl+alt+cmd - 1
+hyper - 1 : yabai -m window --space 1
+hyper - 2 : yabai -m window --space 2
+hyper - 3 : yabai -m window --space 3
+
 #############
 #  Layouts  #
 #############
-ctrl + alt + cmd - 1 : yabai -m space --layout bsp
-ctrl + alt + cmd - 2 : yabai -m space --layout float
+ctrl + alt + cmd - 8 : yabai -m space --layout float
+ctrl + alt + cmd - 9 : yabai -m space --layout bsp
 ctrl + alt + cmd - 0 : yabai -m space --balance
 
 # Set my second screen
