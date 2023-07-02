@@ -1,5 +1,6 @@
 return {
   "stevearc/oil.nvim",
+  -- enabled = false,
   cmd = { "Oil" },
   keys = {
     { "-", "<cmd>Oil --float<cr>" },

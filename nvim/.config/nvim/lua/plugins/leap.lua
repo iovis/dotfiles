@@ -1,5 +1,6 @@
 return {
   "ggandor/leap.nvim",
+  -- enabled = false,
   event = "VeryLazy",
   config = function()
     require("leap").setup({})

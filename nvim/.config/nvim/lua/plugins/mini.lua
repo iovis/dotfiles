@@ -69,12 +69,12 @@ return {
     require("mini.align").setup({})
 
     ---- mini.bufremove (remove buffer without messing windows)
-    local bufrm = require("mini.bufremove")
-    bufrm.setup({})
+    local bufremove = require("mini.bufremove")
+    bufremove.setup({})
 
-    vim.keymap.set("n", "º", bufrm.delete, { desc = "Bdelete" })
+    vim.keymap.set("n", "º", bufremove.delete, { desc = "Bdelete" })
     vim.keymap.set("n", "ª", function()
-      bufrm.delete(0, true)
+      bufremove.delete(0, true)
     end, { desc = "Bdelete!" })
 
     ---- mini.indent (indentation guides and textobjects)
@@ -107,5 +107,49 @@ return {
         vim.b.miniindentscope_disable = true
       end,
     })
+
+    ---- mini.files
+    -- local files = require("mini.files")
+    -- files.setup({
+    --   content = {
+    --     -- Predicate for which file system entries to show
+    --     filter = nil,
+    --     -- What prefix to show to the left of file system entry
+    --     prefix = nil,
+    --     -- In which order to show file system entries
+    --     sort = nil,
+    --   },
+    --
+    --   -- Module mappings created only inside explorer.
+    --   -- Use `''` (empty string) to not create one.
+    --   mappings = {
+    --     close = "q",
+    --     go_in = "l",
+    --     go_in_plus = "<cr>",
+    --     go_out = "h",
+    --     go_out_plus = "H",
+    --     reset = "<BS>",
+    --     show_help = "g?",
+    --     synchronize = "=",
+    --     trim_left = "<",
+    --     trim_right = ">",
+    --   },
+    --
+    --   options = {
+    --     use_as_default_explorer = false,
+    --   },
+    --
+    --   windows = {
+    --     max_number = math.huge,
+    --     preview = false,
+    --     width_focus = 50,
+    --     width_nofocus = 15,
+    --     width_preview = 25,
+    --   },
+    -- })
+    --
+    -- vim.keymap.set("n", "-", function()
+    --   files.open(vim.api.nvim_buf_get_name(0), false)
+    -- end, { desc = "Open mini.files for current file" })
   end,
 }
