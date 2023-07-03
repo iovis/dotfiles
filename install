@@ -1,12 +1,18 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
-local mods=(
+mods=(
   asdf
+  fish
   git
+  muxi
   nvim
+  starship
+  stylua
   tmux
   vim
-  zsh
 )
 
-(cd "${0:A:h}" && stow --ignore='.+\.enc' -v2 $mods)
+# Find encrypted files and decrypt them
+# fd -H -e enc . "$DOTFILES" -x dexios decrypt -f -k "$DOTFILES/master.key" "{}" "{.}"
+
+(cd "${0%/*}" && stow --ignore='.+\.enc' --verbose=2 "${mods[@]}")
