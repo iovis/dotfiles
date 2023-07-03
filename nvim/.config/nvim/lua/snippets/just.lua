@@ -3,13 +3,17 @@ return {
     "base",
     fmt(
       [[
-        # set dotenv-load  # Uncomment to load .env
+        set dotenv-load
 
         default: {}
 
+        full:
+            tmux new-window -n backend 'just dev'
+            tmux new-window -n frontend 'just worker'
+
         # lists available tasks
-        list:
-            @just --list
+        @list:
+            just --list
 
         # start the server
         dev:
@@ -33,11 +37,11 @@ return {
       ]],
       {
         i(1, "list"),
-        i(2, "dev"),
-        i(3, "open"),
-        i(4, "console"),
-        i(5, "test"),
-        i(6, "db"),
+        i(2, "rails server -b 0.0.0.0"),
+        i(3, 'open "$PROJECT_URL" -a "Google Chrome Canary"'),
+        i(4, "rails console"),
+        i(5, "rspec"),
+        i(6, "pgcli $DATABASE_URL"),
       }
     ),
     { condition = conds.line_begin }
