@@ -15,6 +15,7 @@ M.is_file = function(path)
 end
 
 ---Run system command
+---TODO: Remove in v0.10 `vim.system(cmd, opts):wait()`
 ---@param cmd string
 ---@param raw boolean?
 ---@return string
@@ -35,6 +36,7 @@ M.system = function(cmd, raw)
 end
 
 ---Run system command asynchronously
+---TODO: Remove in v0.10 `vim.system(cmd, opts, on_exit)`
 ---@param cmd string
 ---@param args? string[]
 ---@param callback? function(code: integer, signal: integer): nil

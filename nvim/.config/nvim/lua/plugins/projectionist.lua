@@ -13,6 +13,6 @@ return {
     { "<leader>ah", "<cmd>AS<cr>" },
     { "<leader>ar", "<cmd>R<cr>" },
     { "<leader>av", "<cmd>AV<cr>" },
-    { "m<space>", ":Make<space>" },
+    -- { "m<space>", ":Make<space>" },
   },
 }

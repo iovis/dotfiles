@@ -14,8 +14,14 @@ return {
       desc = "[muxi] Mark/go to file",
     })
 
+    vim.keymap.set("n", "m", function()
+      require("muxi.ui").superbinding({ go_to_cursor = true })
+    end, {
+      desc = "[muxi] Mark/go to file (cursor: true)",
+    })
+
     ----Arbitrary mapping
-    vim.keymap.set("n", "<leader>gñ", require("muxi.ui").add, {
+    vim.keymap.set("n", "m<space>", require("muxi.ui").add, {
       desc = "[muxi] Add arbitrary key",
     })
 
@@ -24,7 +30,7 @@ return {
 
     for _, key in ipairs(keys) do
       vim.keymap.set("n", "g" .. key:upper(), function()
-        require("muxi").add(key)
+        require("muxi").add(key, { go_to_cursor = false })
         vim.notify("Added current file to " .. key)
       end, { desc = "[muxi] Add session to " .. key })
 
