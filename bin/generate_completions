@@ -10,6 +10,7 @@ if [[ -n $FDOTDIR ]]; then
   rustup completions fish > "$FDOTDIR/completions/rustup.fish"
   # rustup completions fish cargo > "$FDOTDIR/completions/cargo.fish"
   muxi completions fish > "$FDOTDIR/completions/muxi.fish"
+  wezterm shell-completion --shell fish > "$FDOTDIR/completions/wezterm.fish"
 fi
 
 # starship completions zsh > "$ZDOTDIR/completions/_starship"

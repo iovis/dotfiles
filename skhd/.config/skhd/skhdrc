@@ -12,7 +12,7 @@ hyper - r : yabai --restart-service
 # Left hand
 ctrl + alt + cmd - a : open -a zoom.us
 ctrl + alt + cmd - s : open -a Slack
-ctrl + alt + cmd - d : open -a iTerm
+ctrl + alt + cmd - d : open -a WezTerm
 ctrl + alt + cmd - f : open -a Arc
 ctrl + alt + cmd - g : open -a Tower
 
