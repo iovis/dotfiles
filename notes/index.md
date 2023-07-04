@@ -1,2 +1,3 @@
 ## Tmux
-[[capture]]
+
+[[tmux/capture]]
