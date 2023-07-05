@@ -1,4 +1,6 @@
 -- https://wezfurlong.org/wezterm/config/lua/general.html
+require("events")
+
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
