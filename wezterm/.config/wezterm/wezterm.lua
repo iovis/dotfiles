@@ -1,7 +1,5 @@
 -- https://wezfurlong.org/wezterm/config/lua/general.html
-
 local wezterm = require("wezterm")
-local act = wezterm.action
 local config = wezterm.config_builder()
 
 config:set_strict_mode(true)
@@ -35,34 +33,27 @@ config.window_frame = {
 }
 
 ----Keymaps
+-- wezterm show-keys --lua
 config.disable_default_key_bindings = true
 -- config.use_dead_keys = false
+config.keys = require("keymap")
 
--- wezterm show-keys --lua
-config.keys = {
-  { key = "-", mods = "CTRL", action = wezterm.action({ SendString = "\x1f" }) }, -- Enable C-_
+----Hyperlinks
+config.hyperlink_rules = wezterm.default_hyperlink_rules()
 
-  { key = "+", mods = "SUPER", action = act.IncreaseFontSize },
-  { key = "-", mods = "SUPER", action = act.DecreaseFontSize },
-  { key = "0", mods = "SUPER", action = act.ResetFontSize },
-  { key = "L", mods = "SUPER", action = act.ShowDebugOverlay },
-  { key = "c", mods = "SUPER", action = act.CopyTo("Clipboard") },
-  { key = "f", mods = "SUPER", action = act.Search("CurrentSelectionOrEmptyString") },
-  { key = "h", mods = "SUPER", action = act.HideApplication },
-  { key = "k", mods = "SUPER", action = act.ClearScrollback("ScrollbackOnly") },
-  { key = "m", mods = "SUPER", action = act.Hide },
-  { key = "n", mods = "SUPER", action = act.SpawnWindow },
-  { key = "q", mods = "SUPER", action = act.QuitApplication },
-  { key = "r", mods = "SUPER", action = act.ReloadConfiguration },
-  { key = "t", mods = "SUPER", action = act.SpawnTab("CurrentPaneDomain") },
-  { key = "v", mods = "SUPER", action = act.PasteFrom("Clipboard") },
-  { key = "w", mods = "SUPER", action = act.CloseCurrentTab({ confirm = true }) },
-  { key = "1", mods = "SUPER", action = act.ActivateTab(0) },
-  { key = "2", mods = "SUPER", action = act.ActivateTab(1) },
-  { key = "3", mods = "SUPER", action = act.ActivateTab(2) },
-  { key = "4", mods = "SUPER", action = act.ActivateTab(3) },
-  { key = "5", mods = "SUPER", action = act.ActivateTab(4) },
-  { key = "6", mods = "SUPER", action = act.ActivateTab(5) },
-}
+-- make username/project paths clickable. this implies paths like the following are for github.
+-- ( "nvim-treesitter/nvim-treesitter" | wbthomason/packer.nvim | wez/wezterm | "wez/wezterm.git" )
+-- as long as a full url hyperlink regex exists above this it should not match a full url to
+-- github or gitlab / bitbucket (i.e. https://gitlab.com/user/project.git is still a whole clickable url)
+table.insert(config.hyperlink_rules, {
+  regex = [[["]?([\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)["]?]],
+  format = "https://www.github.com/$1/$3",
+})
+
+-- JIRA cards (PE-411)
+table.insert(config.hyperlink_rules, {
+  regex = [[([A-Z]+-\d+)]],
+  format = "https://rubiconmd.atlassian.net/browse/$1",
+})
 
 return config
