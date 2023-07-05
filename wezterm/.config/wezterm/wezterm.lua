@@ -8,6 +8,7 @@ config:set_strict_mode(true)
 
 ----UI
 config.adjust_window_size_when_changing_font_size = false
+config.audible_bell = "Disabled"
 config.color_scheme = "Default Dark (base16)"
 config.exit_behavior = "Close"
 config.hide_tab_bar_if_only_one_tab = true
