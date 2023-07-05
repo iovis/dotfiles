@@ -16,6 +16,10 @@ bind -N "Open nvim" -T command n {
   }
 }
 
+bind -N "Browse PRs for current branch" -T command r {
+  run -b "gh pr view --web"
+}
+
 bind -N "Tmux customization mode" -T command z {
   customize-mode -Z
 }
