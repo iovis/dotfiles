@@ -4,6 +4,8 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local config = wezterm.config_builder()
 
+config:set_strict_mode(true)
+
 ----UI
 config.adjust_window_size_when_changing_font_size = false
 config.color_scheme = "Default Dark (base16)"
