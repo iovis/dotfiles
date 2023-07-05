@@ -17,6 +17,13 @@ config.window_background_opacity = 0.8
 config.window_close_confirmation = "NeverPrompt"
 config.window_decorations = "RESIZE"
 
+config.window_padding = {
+  left = "1cell",
+  right = "1cell",
+  top = "1cell",
+  bottom = "0.5cell",
+}
+
 ---Fonts
 -- wezterm ls-fonts --list-system | rg Fira
 -- wezterm ls-fonts --text "✔"
