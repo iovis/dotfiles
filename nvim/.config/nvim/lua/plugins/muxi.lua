@@ -30,12 +30,12 @@ return {
 
     for _, key in ipairs(keys) do
       vim.keymap.set("n", "g" .. key:upper(), function()
-        require("muxi").add(key, { go_to_cursor = false })
+        require("muxi").add(key)
         vim.notify("Added current file to " .. key)
       end, { desc = "[muxi] Add session to " .. key })
 
       vim.keymap.set("n", "g" .. key, function()
-        require("muxi").go_to(key)
+        require("muxi").go_to(key, { go_to_cursor = false })
       end, { desc = "[muxi] go to session " .. key })
     end
 
