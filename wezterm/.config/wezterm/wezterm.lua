@@ -28,7 +28,7 @@ config.window_padding = {
 ---Fonts
 -- wezterm ls-fonts --list-system | rg Fira
 -- wezterm ls-fonts --text "✔"
-config.font_size = 19
+config.font_size = 20
 config.font = wezterm.font_with_fallback({
   "FiraCode Nerd Font",
   "Menlo", -- This has the check mark and cross symbols
