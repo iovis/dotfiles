@@ -28,21 +28,19 @@ function M.run(strategy)
         return
       end
 
-      -- pp(dependencies)
+      local diagnostics = vim.tbl_map(function(dependency)
+        return {
+          bufnr = bufnr,
+          lnum = runner.find_in(spec_file, dependency),
+          col = 0,
+          severity = vim.diagnostic.severity.INFO,
+          source = dependency.name,
+          message = dependency.version,
+          user_data = {},
+        }
+      end, dependencies)
 
-      for _, package in ipairs(dependencies) do
-        local version = string.format(" %s", package.version)
-        local line_number = runner.find_in(spec_file, package)
-
-        if line_number then
-          vim.api.nvim_buf_set_extmark(bufnr, ns, line_number, 0, {
-            hl_mode = "combine",
-            virt_text = {
-              { version, "Comment" },
-            },
-          })
-        end
-      end
+      vim.diagnostic.set(ns, bufnr, diagnostics)
     end,
   })
 end

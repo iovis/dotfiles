@@ -13,6 +13,10 @@ local Cargo = {
 function Cargo.parse_command_output(output)
   local json = vim.json.decode(output[1])
 
+  if not json then
+    return
+  end
+
   local dependencies = {}
   for _, package in ipairs(json.dependencies) do
     table.insert(dependencies, {
