@@ -10,7 +10,6 @@ return {
     "petertriho/cmp-git",
     "quangnguyen30192/cmp-nvim-tags",
     "saadparwaiz1/cmp_luasnip",
-    "saecki/crates.nvim",
   },
   config = function()
     local cmp = require("cmp")
@@ -26,9 +25,6 @@ return {
 
     -- Git
     require("cmp_git").setup()
-
-    -- Crates.nvim
-    cmp.register_source("crates", require("crates.src.cmp").new())
 
     ---- Setup
     local toggle_completion = function()
@@ -50,7 +46,6 @@ return {
         format = lspkind.cmp_format({
           menu = {
             buffer = "[Buf]",
-            crates = "[Cra]",
             git = "[GIT]",
             luasnip = "[Snip]",
             nvim_lsp = "[LSP]",
@@ -60,7 +55,6 @@ return {
         }),
       },
       sources = cmp.config.sources({
-        { name = "crates" },
         { name = "git" },
         { name = "nvim_lsp" },
         { name = "luasnip" },
