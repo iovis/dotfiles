@@ -2,7 +2,7 @@
 snippet base
 	.PHONY: clean, mrproper
 	CC = clang
-	CFLAGS = -std=c17 -g -Wall -Wpedantic
+	CFLAGS = -std=c17 -g -Wall -Wextra -Wpedantic -fsanitize=address
 
 	all: $1
 
