@@ -1,12 +1,14 @@
 -- https://wezfurlong.org/wezterm/config/lua/general.html
-require("events")
-
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
+----Events
+require("events")
+
+----Config
 config:set_strict_mode(true)
 
-----UI
+---UI
 config.adjust_window_size_when_changing_font_size = false
 config.audible_bell = "Disabled"
 config.color_scheme = "Default Dark (base16)"
@@ -42,16 +44,16 @@ config.window_frame = {
   }),
 }
 
-----Keymaps
+---Keymaps
 -- wezterm show-keys --lua
 config.disable_default_key_bindings = true
 -- config.use_dead_keys = false
 config.keys = require("keymap")
 
-----Hyperlinks
+---Hyperlinks
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
 
--- make username/project paths clickable. this implies paths like the following are for github.
+-- make username/project paths clickable (with shift+click). this implies paths like the following are for github.
 -- ( "nvim-treesitter/nvim-treesitter" | wbthomason/packer.nvim | wez/wezterm | "wez/wezterm.git" )
 -- as long as a full url hyperlink regex exists above this it should not match a full url to
 -- github or gitlab / bitbucket (i.e. https://gitlab.com/user/project.git is still a whole clickable url)
