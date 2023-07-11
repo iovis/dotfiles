@@ -9,10 +9,21 @@ end
 return {
   s("li", fmt("[{}]({})", { i(1), i(2) })),
   s("img", fmt("![{}]({})", { i(1), i(2) })),
-  -- Quick checkbox
-  s("x", t("- [ ] "), {
-    condition = conds.line_begin,
-  }),
+  s("x", t("- [ ] "), { condition = conds.line_begin }),
+  s(
+    { trig = "c", dscr = "Code block" },
+    fmt(
+      [[
+        ```{}
+        {}
+        ```
+      ]],
+      { i(1), i(2) }
+    ),
+    {
+      condition = conds.line_begin,
+    }
+  ),
   -- Quick title
   s(
     { trig = "t", dscr = "Quick title" },
