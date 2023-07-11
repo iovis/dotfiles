@@ -1,8 +1,12 @@
 return {
   settings = {
     Lua = {
+      completion = {
+        callSnippet = "Replace",
+      },
       diagnostics = {
         globals = {
+          "vim",
           "pp", -- pretty print
           -- luassert
           "before_each",
@@ -37,6 +41,7 @@ return {
       --   enable = true,
       -- },
       workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
         checkThirdParty = false,
       },
       telemetry = {
