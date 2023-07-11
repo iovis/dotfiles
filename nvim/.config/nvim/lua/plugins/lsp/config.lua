@@ -155,7 +155,7 @@ M.on_attach = function(client, bufnr)
     buf_nmap("gd", "<cmd>Lspsaga hover_doc<cr>")
     buf_nmap("gt", "<cmd>Lspsaga goto_type_definition<cr>")
 
-    buf_nmap("T", "<cmd>Lspsaga lsp_finder<cr>")
+    buf_nmap("T", "<cmd>Lspsaga finder<cr>")
     -- buf_nmap("<leader>lf", "<cmd>Lspsaga peek_definition<cr>")  -- Handled by ufo
     buf_nmap("<leader>lt", "<cmd>Lspsaga peek_type_definition<cr>")
 

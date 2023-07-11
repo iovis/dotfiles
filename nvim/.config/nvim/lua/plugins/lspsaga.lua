@@ -1,23 +1,21 @@
 return {
   "glepnir/lspsaga.nvim",
   event = "LspAttach",
-  commit = "4f07545", -- pre v0.3
+  -- commit = "4f07545", -- pre v0.3
   config = function()
     require("lspsaga").setup({
       beacon = {
         enable = false,
       },
-      -- code_action = {
-      --   extend_gitsigns = false,
-      -- },
       diagnostic = {
         keys = {
           exec_action = "<cr>",
         },
       },
       finder = {
+        -- TODO: Implementation seems broken?
         keys = {
-          expand_or_jump = "<cr>",
+          toggle_or_open = "<cr>",
         },
       },
       lightbulb = {
@@ -27,7 +25,13 @@ return {
       },
       outline = {
         keys = {
-          expand_or_jump = "<cr>",
+          toggle_or_jump = "<cr>",
+        },
+      },
+      rename = {
+        auto_save = true,
+        keys = {
+          quit = "<esc>",
         },
       },
       symbol_in_winbar = {
@@ -35,9 +39,9 @@ return {
       },
       ui = {
         border = "rounded",
-        code_action = "",
+        code_action = " ",
         kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
-        -- winblend = 0.5,  -- nvim v0.9.0
+        lines = { "└", "├", "│", "─", "┌" },
       },
     })
   end,
