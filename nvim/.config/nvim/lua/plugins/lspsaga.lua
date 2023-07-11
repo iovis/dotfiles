@@ -1,10 +1,7 @@
 return {
   "glepnir/lspsaga.nvim",
   event = "LspAttach",
-  dependencies = {
-    { "nvim-tree/nvim-web-devicons" },
-    { "nvim-treesitter/nvim-treesitter" },
-  },
+  commit = "4f07545", -- pre v0.3
   config = function()
     require("lspsaga").setup({
       beacon = {
