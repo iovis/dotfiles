@@ -23,5 +23,17 @@ return {
     command! -nargs=1 Gcb   !git checkout -b <args>
     " }}} Git "
     ]])
+
+    local fugitive_augroup = vim.api.nvim_create_augroup("fugitive_augroup", { clear = true })
+    vim.api.nvim_create_autocmd("FileType", {
+      desc = "Fugitive keymaps",
+      group = fugitive_augroup,
+      pattern = "fugitive",
+      callback = function(params)
+        vim.keymap.set("n", "cc", "<cmd>Git commit -v<cr>", {
+          buffer = params.buf,
+        })
+      end,
+    })
   end,
 }
