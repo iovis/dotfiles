@@ -124,7 +124,7 @@ return {
     -- Edit dotfiles
     vim.keymap.set("n", "<leader>ue", function()
       fzf_lua.files({ cwd = "~/.dotfiles/" })
-    end)
+    end, { desc = "Open Dotfiles" })
 
     -- Edit snippets
     local original_fd_opts = fzf_lua.config.globals.files.fd_opts
@@ -135,12 +135,10 @@ return {
       "--exclude 'Session.vim'",
     }, " ")
 
-    -- TODO: Edit Notes
+    -- Open Project Notes
     vim.keymap.set("n", "<leader>uo", function()
-      -- TODO: somehow look only for markdown files?
-      -- TODO: do I need `fd_opts_no_ignore`
       fzf_lua.files({ cwd = "notes/", fd_opts = fd_opts_no_ignore })
-    end)
+    end, { desc = "Open Project Notes" })
 
     -- vim.keymap.set("n", "<leader>se", function()
     --   local filetype = require("luasnip.extras.filetype_functions").from_pos_or_filetype()[1]

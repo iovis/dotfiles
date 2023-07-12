@@ -65,8 +65,11 @@ return {
     end, { desc = "previous choice" })
 
     -- View/Edit
-    vim.keymap.set("n", "<leader>us", require("luasnip.loaders").edit_snippet_files)
-    vim.keymap.set("n", "<leader>ss", require("luasnip.extras.snippet_list").open)
+    vim.keymap.set("n", "<leader>us", require("luasnip.loaders").edit_snippet_files, {
+      desc = "Edit snippets",
+    })
+
+    -- vim.keymap.set("n", "<leader>ss", require("luasnip.extras.snippet_list").open)
 
     -- On the fly snippets (use snippet in register s). Use $word as placeholder.
     -- Example: Hello $World!
