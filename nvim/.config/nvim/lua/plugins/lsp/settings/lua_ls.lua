@@ -36,6 +36,9 @@ return {
           "parse", -- parse snipmate format
           "ai",
         },
+        -- unusedLocalExclude = {
+        --   "_*", -- Don't warn about variables that start with underscore
+        -- },
       },
       -- hint = {
       --   enable = true,
