@@ -84,6 +84,9 @@ return {
         delay = 0,
         animation = indent.gen_animation.none(),
       },
+      options = {
+        try_as_border = true,
+      },
       symbol = "│",
     })
 
