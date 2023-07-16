@@ -104,6 +104,8 @@ return {
         "mason",
         "noice",
         "notify",
+        "oil",
+        "oil_preview",
         "sagacodeaction",
       },
       callback = function()
