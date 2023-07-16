@@ -3,8 +3,20 @@
 
 local M = {}
 
+---Define user command
+---@param name string
+---@param fn any
+---@param opts? table<string, any>
 M.command = function(name, fn, opts)
   vim.api.nvim_create_user_command(name, fn, opts or {})
+end
+
+---Type the string as if it were the user typing it
+---@param keys string
+M.send_keys = function(keys)
+  local escaped_termcodes = vim.api.nvim_replace_termcodes(keys, true, false, true)
+
+  vim.api.nvim_feedkeys(escaped_termcodes, "t", true)
 end
 
 ---Check if file exists

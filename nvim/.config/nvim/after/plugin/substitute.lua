@@ -1,3 +1,5 @@
+local u = require("config.utils")
+
 -- Test String: a:+[^"s:,]#_(&-)~@d\d.f*{<fas?>}a$s!d=fa
 
 ---@alias mode "char" | "line" | "V" | "v"
@@ -33,16 +35,6 @@ local is_same_line = function(mode)
   return (vim.fn.getpos("v")[2] - vim.fn.getpos(".")[2]) == 0
 end
 
----Type the string as if it were the user typing it
----@param command string
----@param search_term string?
-local type_command = function(command, search_term)
-  local generated_command = string.format(command, search_term)
-  local escaped_termcodes = vim.api.nvim_replace_termcodes(generated_command, true, false, true)
-
-  vim.api.nvim_feedkeys(escaped_termcodes, "t", true)
-end
-
 ---Will take a motion `mode` and build a substitute command based on it
 ---@param mode mode
 function SubstituteMotion(mode)
@@ -51,23 +43,23 @@ function SubstituteMotion(mode)
     if is_same_line(mode) then
       -- Something like `iw`
       local search_term = capture_motion_text(mode)
-      type_command([[:%%s/\v%s//g<left><left>]], search_term)
+      u.send_keys(([[:%%s/\v%s//g<left><left>]]):format(search_term))
     else
       -- Something like `if`
-      type_command([[:'[,']s/\v//g<left><left><left>]])
+      u.send_keys([[:'[,']s/\v//g<left><left><left>]])
     end
   elseif mode == "line" then
     -- Something like `2j`
-    type_command([[:'[,']s/\v//g<left><left><left>]])
+    u.send_keys([[:'[,']s/\v//g<left><left><left>]])
   ---- Visual modes
   elseif mode == "V" then
-    type_command([[:s/\v//g<left><left><left>]])
+    u.send_keys([[:s/\v//g<left><left><left>]])
   elseif mode == "v" then
     if is_same_line(mode) then
       local search_term = capture_motion_text(mode)
-      type_command([[:%%s/\v%s//g<left><left>]], search_term)
+      u.send_keys(([[:%%s/\v%s//g<left><left>]]):format(search_term))
     else
-      type_command([[:s/\v//g<left><left><left>]])
+      u.send_keys([[:s/\v//g<left><left><left>]])
     end
   else
     vim.notify("Unrecognized type: " .. mode, vim.log.levels.ERROR)
@@ -81,7 +73,7 @@ vim.keymap.set("n", "s", function()
 end, { expr = true, desc = "Substitute motion" })
 
 vim.keymap.set("n", "ss", function()
-  type_command([[:%%s/\v//g<left><left><left>]])
+  u.send_keys([[:%s/\v//g<left><left><left>]])
 end, { expr = true, desc = "Substitute in the whole document" })
 
 vim.keymap.set("x", "s", function()
