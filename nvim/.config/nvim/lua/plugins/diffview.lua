@@ -8,9 +8,10 @@ return {
     "DiffviewOpen",
   },
   keys = {
-    { "<leader>dv", ":DiffviewOpen<cr>", silent = true },
-    { "<leader>df", ":DiffviewFileHistory %<cr>", silent = true },
-    { "<leader>D", ":DiffviewFileHistory<cr>", silent = true, mode = "x" },
+    { "<leader>dv", "<cmd>DiffviewOpen<cr>", desc = "Diffview open" },
+    { "<leader>df", "<cmd>DiffviewFileHistory %<cr>", desc = "Diffview current file history" },
+    { "<leader>dh", "<cmd>DiffviewFileHistory<cr>", desc = "Diffview all commits" },
+    { "<leader>df", ":DiffviewFileHistory<cr>", silent = true, mode = "x" },
   },
   config = function()
     local actions = require("diffview.actions")
@@ -23,6 +24,7 @@ return {
           { "n", "<down>", actions.select_next_entry, { desc = "Open the diff for the next file" } },
           { "n", "<up>", actions.select_prev_entry, { desc = "Open the diff for the previous file" } },
           { "n", "<leader>k", actions.toggle_files, { desc = "Toggle the file panel." } },
+          { "n", "q", "<cmd>DiffviewClose<cr>", { desc = "Close Diffview" } },
         },
         file_panel = {
           ["<tab>"] = false,
@@ -31,6 +33,7 @@ return {
           { "n", "<up>", actions.select_prev_entry, { desc = "Open the diff for the previous file" } },
           { "n", "<leader>k", actions.toggle_files, { desc = "Toggle the file panel." } },
           { "n", "r", actions.cycle_layout, { desc = "Cycle available layouts" } },
+          { "n", "q", "<cmd>DiffviewClose<cr>", { desc = "Close Diffview" } },
         },
         file_history_panel = {
           ["<tab>"] = false,
@@ -39,6 +42,7 @@ return {
           { "n", "<up>", actions.select_prev_entry, { desc = "Open the diff for the previous file" } },
           { "n", "<leader>k", actions.toggle_files, { desc = "Toggle the file panel." } },
           { "n", "r", actions.cycle_layout, { desc = "Cycle available layouts" } },
+          { "n", "q", "<cmd>DiffviewClose<cr>", { desc = "Close Diffview" } },
         },
       },
     })

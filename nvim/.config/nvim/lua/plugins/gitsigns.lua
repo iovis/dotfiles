@@ -15,8 +15,11 @@ return {
         vim.keymap.set(mode, lhs, rhs, opts)
       end
 
-      map({ "n", "v" }, "<leader>dh", ":Gitsigns reset_hunk<cr>")
       map("n", "+Q", gs.toggle_current_line_blame, { desc = "toggle_current_line_blame" })
+
+      map({ "n", "x" }, "<leader>dk", ":Gitsigns reset_hunk<cr>")
+      map({ "n", "x" }, "<leader>ds", ":Gitsigns preview_hunk<cr>")
+      map({ "o", "x" }, "ik", ":<C-U>Gitsigns select_hunk<CR>")
 
       map("n", "]c", function()
         if vim.wo.diff then
@@ -41,9 +44,6 @@ return {
 
         return "<Ignore>"
       end, { expr = true, desc = "previous hunk" })
-
-      -- Text object
-      map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
     end,
   },
 }

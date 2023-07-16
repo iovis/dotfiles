@@ -142,7 +142,7 @@ vim.keymap.set("x", "P", "p")
 
 vim.keymap.set({ "n", "x" }, "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>Y", '"+y$')
-vim.keymap.set({ "n", "x" }, "<leader>d", '"+d')
+vim.keymap.set("n", "<leader>d", '"+d')
 vim.keymap.set("n", "<leader>D", '"+d$')
 
 vim.keymap.set("n", "<leader>y<c-g>", function()
