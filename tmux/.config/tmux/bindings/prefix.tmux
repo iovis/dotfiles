@@ -63,7 +63,7 @@ bind -N "Kill window" º confirm -p "kill-window #W? (y/n)" {
 }
 
 bind -N "Reset session" q confirm -p "reset session? (y/n)" {
-  new-window -c "#{pane_current_path}"
+  new-window -c
   kill-window -a
 }
 
