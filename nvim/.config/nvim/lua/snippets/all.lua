@@ -10,6 +10,10 @@ local commentstr = function()
 end
 
 return {
+  s("#!", {
+    t("#!/usr/bin/env "),
+    i(1, "bash"),
+  }),
   s("todo", {
     p(commentstr),
     t("TODO: "),
