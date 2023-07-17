@@ -50,15 +50,17 @@ vim.keymap.set(
   { buffer = true, silent = true }
 )
 
--- " Load failing tests in a scratch window
--- nmap <silent> <buffer> +R :Redir !cat tmp/rspec-failures.txt<cr>
---       \ :g/\(passed\\|pending\)/d<cr>
---       \ :v/spec/d<cr>
---       \ :%s/\[\d.*<cr>
---       \ :sort u<cr>
---       \ :%norm! Irspec <cr>
--- " }}} quick testing "
---
+-- Load failing tests in a scratch window
+vim.keymap.set("n", "<leader>TR", function()
+  vim.cmd("R .")
+  vim.cmd("r tmp/rspec-failures.txt")
+  vim.cmd([[v/| failed/d]])
+  vim.cmd([[%s/\v[\d.*]])
+  vim.cmd("sort u")
+  vim.cmd("%norm! Irspec ")
+  vim.cmd("se ft=sh")
+end, { buffer = true, silent = true, desc = "Show RSpec suite failures" })
+
 -- " sorbet {{{ "
 -- " nnoremap <silent> <buffer> <leader>sr :Tux bin/tapioca gems && bin/tapioca dsl && bin/tapioca todo && bin/tapioca check-shims && bundle exec spoom bump<cr>
 -- " nnoremap <silent> <buffer> <leader>st :e! sorbet/rbi/todo.rbi<cr>
