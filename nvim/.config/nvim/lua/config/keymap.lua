@@ -254,7 +254,7 @@ vim.keymap.set("n", "+<cr>", "<cmd>so $VIMRUNTIME/syntax/hitest.vim<cr>")
 
 -- vim.keymap.set("n", "_", ":R=")
 vim.keymap.set("n", "<leader>P", ":=")
-vim.keymap.set("n", "<leader>M", "<cmd>R! messages<cr><cmd>se ft=lua<cr>G")
+vim.keymap.set("n", "<leader>M", "<cmd>10R messages<cr><cmd>se ft=lua<cr>G")
 vim.keymap.set("n", "+M", function()
   print("messages cleared")
   vim.cmd("messages clear")
@@ -282,7 +282,7 @@ vim.keymap.set(
 )
 
 ---- Tmux capture
-vim.keymap.set("n", "&", [[:10R!!tmux capture-pane -Jp -S- -t\! | rg '.'<left>]], {
+vim.keymap.set("n", "&", [[:10R !tmux capture-pane -Jp -S- -t\! | rg '.'<left>]], {
   desc = "Capture and filter tmux last pane's contents",
 })
 

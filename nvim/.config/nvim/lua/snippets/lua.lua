@@ -36,7 +36,7 @@ return {
 
         vim.print({})
 
-        vim.cmd("R! messages")
+        vim.cmd("R messages")
         vim.cmd("se ft=lua")
         vim.cmd("norm! G")
       ]],

@@ -19,6 +19,66 @@ M.send_keys = function(keys)
   vim.api.nvim_feedkeys(escaped_termcodes, "t", true)
 end
 
+M.scratch = function(contents, opts)
+  if opts.type == "float" then
+    return M.floating_window(contents, opts)
+  end
+
+  local split_cmd = "botright "
+
+  if opts.lines ~= 0 then
+    split_cmd = split_cmd .. opts.lines
+  end
+
+  if opts.type == "horizontal" then
+    split_cmd = split_cmd .. "new"
+  else
+    split_cmd = split_cmd .. "vnew"
+  end
+
+  vim.cmd(split_cmd)
+
+  vim.bo.bufhidden = "wipe"
+  vim.bo.buflisted = false
+  vim.bo.buftype = "nofile"
+  vim.bo.filetype = "redir"
+
+  vim.api.nvim_buf_set_lines(0, 0, -1, false, contents)
+  vim.api.nvim_buf_set_option(0, "filetype", opts.filetype)
+end
+
+M.floating_window = function(contents, opts)
+  local win_opts = vim.tbl_extend("force", {
+    title = nil,
+    filetype = "lua",
+    width = 0.66,
+    height = 0.5,
+  }, opts or {})
+
+  local bufnr = vim.api.nvim_create_buf(false, true)
+  local width = math.floor(vim.o.columns * win_opts.width)
+  local height = math.floor(vim.o.lines * win_opts.height)
+
+  vim.api.nvim_open_win(bufnr, true, {
+    relative = "editor",
+    width = width,
+    height = height,
+    col = math.floor(vim.o.columns / 2 - width / 2 - 3),
+    row = math.floor(vim.o.lines / 2 - height / 2 - 2),
+    style = "minimal",
+    border = "rounded",
+    title = win_opts.title,
+    noautocmd = true,
+  })
+
+  -- Set the contents to muxi table and the filetype to lua
+  vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, contents)
+  vim.api.nvim_buf_set_option(bufnr, "filetype", win_opts.filetype)
+
+  -- Map [q] to read the changes and close the popup
+  vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = bufnr })
+end
+
 ---Check if file exists
 ---@param path string
 ---@return boolean
