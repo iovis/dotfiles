@@ -254,7 +254,7 @@ vim.keymap.set("n", "+<cr>", "<cmd>so $VIMRUNTIME/syntax/hitest.vim<cr>")
 
 -- vim.keymap.set("n", "_", ":R=")
 vim.keymap.set("n", "<leader>P", ":=")
-vim.keymap.set("n", "<leader>M", "<cmd>10R messages<cr><cmd>se ft=lua<cr>G")
+vim.keymap.set("n", "<leader>M", "<cmd>10R messages<cr>G")
 vim.keymap.set("n", "+M", function()
   print("messages cleared")
   vim.cmd("messages clear")

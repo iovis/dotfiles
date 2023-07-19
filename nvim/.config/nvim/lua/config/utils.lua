@@ -44,7 +44,7 @@ M.scratch = function(contents, opts)
   vim.bo.filetype = "redir"
 
   vim.api.nvim_buf_set_lines(0, 0, -1, false, contents)
-  vim.api.nvim_buf_set_option(0, "filetype", opts.filetype)
+  vim.api.nvim_buf_set_option(0, "filetype", opts.filetype or "lua")
 end
 
 M.floating_window = function(contents, opts)
