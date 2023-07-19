@@ -50,6 +50,10 @@ return {
       desc = "[muxi] fzf-lua marks",
     })
 
+    vim.keymap.set("n", "<leader>g?", require("muxi.fzf").sessions, {
+      desc = "[muxi] fzf-lua sessions",
+    })
+
     vim.keymap.set("n", "ge", require("muxi.ui").show, {
       desc = "[muxi] Modify current workspace interactively",
     })
