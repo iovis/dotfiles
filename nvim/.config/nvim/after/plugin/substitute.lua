@@ -81,3 +81,5 @@ vim.keymap.set("x", "s", function()
   -- meaning it breaks on the first one
   SubstituteMotion(vim.fn.mode())
 end, { desc = "Substitute motion" })
+
+vim.keymap.set("n", "<leader>s", "<nop>")
