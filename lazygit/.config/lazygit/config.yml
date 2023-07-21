@@ -3,7 +3,7 @@ gui:
   showBottomLine: false
   showCommandLog: false
   showFileTree: false
-  showIcons: true
+  nerdFontsVersion: 3
   theme:
     selectedLineBgColor:
       - '#262626'
@@ -11,8 +11,6 @@ gui:
       - black
       - bold
 git:
-  commit:
-    verbose: always
   log:
     showGraph: always
   paging:

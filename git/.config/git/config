@@ -13,6 +13,8 @@
   unpublish = !git push origin :$(git branch-name)
 [color]
   ui = auto
+[commit]
+  verbose = true
 [core]
   autocrlf = input
   excludesfile = ~/.config/git/global_gitignore
