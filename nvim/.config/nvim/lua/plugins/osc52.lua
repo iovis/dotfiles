@@ -1,9 +1,9 @@
 return {
   "ojroques/nvim-osc52",
   event = "VeryLazy",
-  cond = function()
-    return vim.env.SSH_CLIENT ~= nil
-  end,
+  -- cond = function()
+  --   return vim.env.SSH_CLIENT ~= nil
+  -- end,
   config = function()
     require("osc52").setup({})
 
