@@ -1,0 +1,222 @@
+snippet v "shorthand variable declaration"
+	${1} := ${2}
+
+snippet var "variable declaration"
+	var ${1} ${2} = ${3}
+
+snippet channel "channel"
+	chan ${0:int}
+
+snippet case "case"
+	case ${1:value}:
+		${0:${VISUAL}}
+
+snippet def "defer"
+	defer ${0:func}()
+
+snippet defr "defer recover"
+	defer func() {
+		if err := recover(); err != nil {
+			${0:${VISUAL}}
+		}
+	}()
+
+snippet in "interface"
+	interface{}
+
+snippet inf "full interface "
+	interface ${1:name} {
+		${2:/* methods */}
+	}
+
+snippet if "if condition"
+	if $1 {
+		${2:${VISUAL}}
+	}
+
+
+snippet ife "if else condition"
+	if $1 {
+		${2:${VISUAL}}
+	} else {
+		${0}
+	}
+
+snippet el "else"
+	else {
+		${0:${VISUAL}}
+	}
+
+snippet iferr "if error not nil, return err"
+	if err != nil {
+		return err
+	}
+	${0}
+
+snippet for "for loop"
+	for ${1}{
+		${0:${VISUAL}}
+	}
+
+snippet fori "for int loop"
+	for ${2:i} := 0; $2 < ${1:count}; $2${3:++} {
+		${0:${VISUAL}}
+	}
+
+snippet forr "for range loop"
+	for ${1:e} := range ${2:collection} {
+		${0:${VISUAL}}
+	}
+
+# TODO: Do a lua version that cycles the return value to ``(something, error)``
+snippet fn "function"
+	func ${1:funcName}(${2}) ${3:error} {
+		${4}
+	}
+	${0}
+
+snippet fnm "method"
+	func (${1:receiver} ${2:type}) ${3:funcName}(${4}) ${5:error} {
+		${6}
+	}
+	${0}
+
+snippet httphandler "http handler function on receiver"
+	func (${1:receiver} ${2:type}) ${3:funcName}(${4:w} http.ResponseWriter, ${5:r} *http.Request) {
+		${0:${VISUAL}}
+	}
+
+snippet lf "log printf"
+	log.Printf("%${1:s}", ${2:var})
+
+snippet lp "log println"
+	log.Println("${1}")
+
+snippet make "make"
+	make(${1:[]string}, ${0:0})
+
+snippet map "map"
+	map[${1:string}]${0:int}
+
+snippet main "func main()"
+	package main
+
+	func main() {
+		${1}
+	}
+	${0}
+
+snippet new "new"
+	new(${0:type})
+
+snippet package "package"
+	package ${1:main}
+
+snippet pn "panic"
+	panic("${0:msg}")
+
+snippet pf "fmt.Printf()"
+	fmt.Printf("%${1:s}\n", ${2:var})
+
+snippet pl "fmt.Println()"
+	fmt.Println("${1:s}")
+
+snippet rn "range"
+	range ${0}
+
+snippet sel "select"
+	select {
+	case ${1:v1} := <-${2:chan1}
+		${3}
+	default:
+		${0}
+	}
+
+snippet st "struct"
+	type ${1:name} struct {
+		${2:/* data */}
+	}
+	${0}
+
+snippet switch "switch"
+	switch ${1:var} {
+	case ${2:value1}:
+		${3}
+	case ${4:value2}:
+		${5}
+	default:
+		${0}
+	}
+
+snippet ps "fmt.Sprintf"
+	fmt.Sprintf("%${1:s}", ${2:var})
+
+snippet go "goroutine named function"
+	go ${1:funcName}(${0})
+
+snippet goa "goroutine anonymous function"
+	go func(${1} ${2:type}) {
+		${3:/* code */}
+	}(${0})
+
+snippet test "test function"
+	func Test${1:name}(t *testing.T) {
+		${0:${VISUAL}}
+	}
+
+snippet testt "table test function"
+	func Test${1:name}(t *testing.T) {
+		tests := []struct {
+			name string
+		}{
+			{
+				name: "${2:test name}",
+			},
+		}
+
+		for _, test := range tests {
+			t.Run(test.name, func(t *testing.T) {
+				${0:${VISUAL}}
+			})
+		}
+	}
+
+snippet bench "benchmark function"
+	func Benchmark${1:name}(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			${2}
+		}
+	}
+	${0}
+
+snippet cl "composite literals"
+	type ${1:name} struct {
+		${2:attrName} ${3:attrType}
+	}
+
+snippet ifkey "if key in a map"
+	if ${1:value}, ok := ${2:map}[${3:key}]; ok == true {
+		${4:/* code */}
+	}
+
+
+snippet gg "Grouped globals with anonymous struct"
+	var ${1:var} = struct{
+		${2:name} ${3:type}
+	}{
+		$2: ${4:value},
+	}
+
+
+snippet ja "Marshalable json alias"
+	type ${1:parentType}Alias $1
+
+	func (p *$1) MarshalJSON() ([]byte, error) {
+		return json.Marshal(&struct{ *$1Alias }{(*$1Alias)(p)})
+	}
+
+
+snippet errwr "Error handling with fmt.Errorf"
+	if ${1}err != nil {
+		return fmt.Errorf("${2} %w", err)
+	}
