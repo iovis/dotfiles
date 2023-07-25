@@ -85,8 +85,7 @@ local function_node_types = {
 local function go_result_type(info)
   local cursor_node = ts_utils.get_node_at_cursor()
   if not cursor_node then
-    print("Not inside of a function")
-    return t("cursor_node")
+    return t("")
   end
 
   local scope = ts_locals.get_scope_tree(cursor_node, 0)
@@ -135,7 +134,7 @@ end
 return {
   -- Functions
   s(
-    "fn",
+    "f",
     fmta(
       [[
       func <fname>(<args>) <ret_type><space>{
@@ -150,7 +149,7 @@ return {
         args = i(2),
         space = n(3, " "),
         ret_type = i(3),
-        body = i(4, 'panic("todo %s")'),
+        body = i(4, 'panic("todo")'),
       }
     ),
     { condition = conds.line_begin }
@@ -229,5 +228,26 @@ return {
       }
     ),
     { condition = conds.line_begin }
+  ),
+  -- Misc
+  s(
+    "pln",
+    fmt("fmt.Println({})", {
+      i(1),
+    }),
+    {
+      condition = conds.line_begin,
+    }
+  ),
+  s(
+    "prf",
+    fmta('fmt.Printf("<>"<comma><>)', {
+      i(1, "%s"),
+      comma = n(2, ", "),
+      i(2),
+    }),
+    {
+      condition = conds.line_begin,
+    }
   ),
 }
