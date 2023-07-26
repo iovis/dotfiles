@@ -154,6 +154,26 @@ return {
     ),
     { condition = conds.line_begin }
   ),
+  s(
+    "handler",
+    fmta(
+      [[
+      func <fname>(<res> http.ResponseWriter, <req> *http.Request) {
+        <body>
+      }
+      ]],
+      {
+        fname = c(1, {
+          i(1, "fname"),
+          fmt("({} {}) {}", { i(1, "receiver"), i(2, "type"), i(3, "fname") }),
+        }),
+        res = i(2, "w"),
+        req = i(3, "r"),
+        body = i(4, 'panic("todo")'),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
   -- Conditionals
   s(
     "if",

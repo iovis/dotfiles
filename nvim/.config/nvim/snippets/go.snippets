@@ -29,11 +29,6 @@ snippet inf "full interface "
 		${2:/* methods */}
 	}
 
-snippet httphandler "http handler function on receiver"
-	func (${1:receiver} ${2:type}) ${3:funcName}(${4:w} http.ResponseWriter, ${5:r} *http.Request) {
-		${0:${VISUAL}}
-	}
-
 snippet lf "log printf"
 	log.Printf("%${1:s}", ${2:var})
 
