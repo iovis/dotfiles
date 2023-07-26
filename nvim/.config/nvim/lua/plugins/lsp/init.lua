@@ -22,7 +22,7 @@ function M.config()
     "clangd",
     "cssls",
     "dockerls",
-    "emmet_ls",
+    "emmet_language_server",
     "gopls",
     "html",
     "jsonls",
