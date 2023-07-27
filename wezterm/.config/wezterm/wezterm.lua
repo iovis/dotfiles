@@ -32,7 +32,7 @@ config.window_padding = {
 -- wezterm ls-fonts --text "✔"
 config.font_size = 20
 config.font = wezterm.font_with_fallback({
-  "FiraCode Nerd Font",
+  { family = "FiraCode Nerd Font", weight = 450 }, -- Retina
   "Menlo", -- This has the check mark and cross symbols
   "Apple Color Emoji",
 })
