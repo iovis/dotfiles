@@ -1,5 +1,3 @@
-ipython
 pip
-ruff
 setuptools
 yamllint
