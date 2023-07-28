@@ -14,6 +14,9 @@ else
   end, { buffer = true, desc = "Source file" })
 
   vim.keymap.set("x", "<leader>so", ":source<cr>", { buffer = true, desc = "Evaluate lua range" })
+
+  vim.keymap.set("n", "<leader>sp", ":R source<cr>", { buffer = true })
+  vim.keymap.set("x", "<leader>sp", ":<c-u>R '<,'>source<cr>", { buffer = true })
 end
 
 ----Re-source `config()` for the current plugin
