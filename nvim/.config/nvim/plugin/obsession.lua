@@ -55,11 +55,7 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
   group = obsession_augroup,
   pattern = "*",
   callback = function()
-    local ok, neotree = pcall(require, "neo-tree")
-
-    if ok then
-      neotree.close_all()
-    end
+    require("neo-tree.sources.manager").close_all()
 
     persist_session()
   end,
