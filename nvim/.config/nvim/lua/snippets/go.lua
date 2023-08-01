@@ -83,27 +83,31 @@ local function_node_types = {
 }
 
 local function go_result_type(info)
+  -- Get node at cursor (TreeSitter)
   local cursor_node = ts_utils.get_node_at_cursor()
+
+  -- If no cursor, return empty
   if not cursor_node then
     return t("")
   end
 
+  -- Find containing function
   local scope = ts_locals.get_scope_tree(cursor_node, 0)
 
   local function_node
   for _, v in ipairs(scope) do
-    vim.print(v)
     if function_node_types[v:type()] then
       function_node = v
       break
     end
   end
 
+  -- Not inside a function, return empty
   if not function_node then
-    print("Not inside of a function")
     return t("")
   end
 
+  -- Find the return type of the function
   local query = vim.treesitter.query.parse(
     "go",
     [[
@@ -114,11 +118,15 @@ local function go_result_type(info)
       ]
     ]]
   )
+
   for _, node in query:iter_captures(function_node, 0) do
     if handlers[node:type()] then
       return handlers[node:type()](node, info)
     end
   end
+
+  -- No return value
+  return t("")
 end
 
 local go_ret_vals = function(args)
