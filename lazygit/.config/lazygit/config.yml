@@ -15,7 +15,7 @@ git:
     showGraph: always
   paging:
     colorArg: always
-    pager: delta --paging=never
+    pager: delta --paging=never --tabs=2
 notARepository: 'quit'
 promptToReturnFromSubprocess: false
 keybinding:
