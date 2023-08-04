@@ -1,17 +1,41 @@
 local u = require("config.utils")
 
-local conventional_commit = function()
-  return sn(
-    nil,
-    c(1, {
-      sn(nil, fmt("({}): {}", { r(1, "scope", i(1)), r(2, "message", i(2)) })),
-      sn(nil, fmt("({})!: {}", { r(1, "scope", i(1)), r(2, "message", i(2)) })),
-    })
-  )
-end
+----PR Templates
+-- Some functions get called more than once, so we store some of
+-- the expensive results
+local ctx = {}
 
 local get_branch = function()
-  return u.system("git rev-parse --abbrev-ref HEAD")
+  if not ctx.branch then
+    ctx.branch = u.system("git rev-parse --abbrev-ref HEAD")
+  end
+
+  return ctx.branch
+end
+
+---@return table
+local get_qa_prs = function()
+  if ctx.prs then
+    return ctx.prs
+  end
+
+  local branch = get_branch()
+  local cmd = ([[gh pr list --head "%s" --base qa --search "sort:created-asc" --state all --json "title,url"]]):format(
+    branch
+  )
+
+  local output = u.system(cmd, true)
+  local ok, json = pcall(vim.json.decode, output)
+
+  if ok then
+    ctx.prs = json
+  else
+    vim.notify("There was an issue parsing the JSON", vim.log.levels.ERROR)
+    vim.print(output)
+    ctx.prs = {}
+  end
+
+  return ctx.prs
 end
 
 local get_jira_card = function()
@@ -47,6 +71,45 @@ local get_pr_title = function()
   title = u.titleize(title:gsub("_", " "))
 
   return sn(nil, i(1, title))
+end
+
+local get_master_pr_title = function()
+  local qa_prs = get_qa_prs()
+  local title
+
+  if vim.tbl_isempty(ctx.prs) then
+    title = u.titleize(extract_title_from_branch():gsub("_", " "))
+  else
+    -- Reuse title from QA PR (strip prefix)
+    title = qa_prs[1].title:gsub([[^qa|%w+-%d+ ]], "")
+  end
+
+  return sn(nil, i(1, title))
+end
+
+local get_related_prs = function()
+  local qa_prs = get_qa_prs()
+
+  if vim.tbl_isempty(qa_prs) then
+    return sn(nil, fmt("- {}", { i(1) }))
+  else
+    local pr_list = vim.tbl_map(function(item)
+      return ("- %s"):format(item.url)
+    end, qa_prs)
+
+    return sn(nil, t(pr_list))
+  end
+end
+
+----Conventional Commits
+local conventional_commit = function()
+  return sn(
+    nil,
+    c(1, {
+      sn(nil, fmt("({}): {}", { r(1, "scope", i(1)), r(2, "message", i(2)) })),
+      sn(nil, fmt("({})!: {}", { r(1, "scope", i(1)), r(2, "message", i(2)) })),
+    })
+  )
 end
 
 return {
@@ -110,16 +173,16 @@ return {
         master|{jira}{space}{title}
         {jira_url}
         **Related PRs:**
-        - {}
+        {qa_prs}
 
         **Changelog:** {}
       ]],
       {
         jira = d(1, get_jira_card),
         space = n(1, " "),
-        title = d(2, get_pr_title),
+        title = d(2, get_master_pr_title),
         jira_url = d(3, get_jira_url, { 1 }),
-        i(4),
+        qa_prs = d(4, get_related_prs),
         i(0),
       }
     ),
