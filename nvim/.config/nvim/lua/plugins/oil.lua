@@ -35,6 +35,9 @@ return {
       view_options = {
         show_hidden = true,
       },
+      win_options = {
+        cursorline = true,
+      },
     })
 
     local oil_augroup = vim.api.nvim_create_augroup("oil_augroup", { clear = true })
