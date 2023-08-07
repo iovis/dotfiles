@@ -35,18 +35,10 @@ vim.keymap.set("n", "<leader>sd", ":TestFile --format documentation<cr>", { buff
 vim.keymap.set("n", "<leader>sp", ":TestNearest -strategy=test_prof<cr>", { buffer = true, silent = true })
 
 ---- Solargraph
--- Reset with: bundle exec solargraph clear && bundle exec yard gems --rebuild
-vim.keymap.set(
-  "n",
-  "<leader>sy",
-  ":TuxBg! ctags && bundle exec solargraph bundle && bundle exec yard gems; pause<cr>",
-  { buffer = true, silent = true }
-)
-
 vim.keymap.set(
   "n",
   "<leader>sr",
-  ":TuxBg! ctags && bundle exec solargraph clear && bundle exec solargraph download-core && bundle exec solargraph bundle && bundle exec yard gems --rebuild; pause<cr>",
+  ":TuxBg! ctags && bundle exec yard gems --rebuild; pause<cr>",
   { buffer = true, silent = true }
 )
 
