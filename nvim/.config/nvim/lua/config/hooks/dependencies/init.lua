@@ -29,12 +29,14 @@ function M.run(strategy)
       end
 
       local diagnostics = vim.tbl_map(function(dependency)
+        local installed_package = ("%s (%s installed)"):format(dependency.name, dependency.installed_version)
+
         return {
           bufnr = bufnr,
           lnum = runner.find_in(spec_file, dependency),
           col = 0,
           severity = vim.diagnostic.severity.INFO,
-          source = dependency.name,
+          source = installed_package,
           message = dependency.version,
           user_data = {},
         }

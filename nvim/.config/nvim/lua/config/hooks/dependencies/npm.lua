@@ -12,11 +12,19 @@ function Npm.parse_command_output(output)
   -- npm gives multiline json, gotta join first
   local json = vim.json.decode(table.concat(output, ""))
 
+  -- "@angular/core": {
+  --   "current": "16.1.5",
+  --   "wanted": "16.1.8",
+  --   "latest": "16.1.8",
+  --   "dependent": "rubicon-angular",
+  --   "location": "/Users/david/Sites/rubicon/rubicon-angular/node_modules/@angular/core"
+  -- },
   local dependencies = {}
   for package, metadata in pairs(json) do
     table.insert(dependencies, {
       name = package,
       version = metadata.latest,
+      installed_version = metadata.current,
     })
   end
 

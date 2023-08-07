@@ -17,11 +17,20 @@ function Cargo.parse_command_output(output)
     return
   end
 
+  -- {
+  --   "name": "clap",
+  --   "project": "4.3.0",
+  --   "compat": "4.3.19",
+  --   "latest": "4.3.19",
+  --   "kind": "Normal",
+  --   "platform": null
+  -- }
   local dependencies = {}
   for _, package in ipairs(json.dependencies) do
     table.insert(dependencies, {
       name = package.name,
       version = package.latest,
+      installed_version = package.project,
     })
   end
 

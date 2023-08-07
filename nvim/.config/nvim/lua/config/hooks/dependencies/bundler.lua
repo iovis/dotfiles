@@ -17,17 +17,21 @@ function Bundler.parse_command_output(output)
       goto continue
     end
 
-    -- line => puma (newest 6.1.0, installed 5.6.5, requested ~> 5.6.5)
-    local name, version = line:match("([%w._-]+) %(newest ([%d.]+)")
+    -- puma (newest 6.1.0, installed 5.6.5, requested ~> 5.6.5)
+    -- attr_encrypted (newest 3.1.0 df02ab0, installed 3.1.0 eafd77a)
+    -- view_component (newest 3.5.0, installed 2.56.2)
+    local regex = "([%w._-]+) %(newest ([%d. a-f]+), installed ([%d. a-f]+)"
+    local name, newer_version, installed_version = line:match(regex)
 
-    if not name or not version then
+    if not name or not newer_version then
       vim.notify(string.format("Error parsing line: %s", line), vim.log.levels.ERROR)
       return
     end
 
     table.insert(dependencies, {
       name = name,
-      version = version,
+      version = newer_version,
+      installed_version = installed_version,
     })
 
     ::continue::
