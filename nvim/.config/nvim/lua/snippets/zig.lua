@@ -35,7 +35,7 @@ return {
             <>
         };
       ]],
-      { i(1), i(0) }
+      { i(1, "Name"), i(2) }
     ),
     {
       condition = conds.line_begin,
@@ -49,7 +49,21 @@ return {
             <>
         };
       ]],
-      { i(1), i(0) }
+      { i(1, "name"), i(2) }
+    ),
+    {
+      condition = conds.line_begin,
+    }
+  ),
+  s(
+    "union",
+    fmta(
+      [[
+        const <> = union(<>) {
+            <>
+        };
+      ]],
+      { i(1, "name"), i(2, "enum"), i(3) }
     ),
     {
       condition = conds.line_begin,
@@ -63,7 +77,7 @@ return {
             <>
         };
       ]],
-      { i(1), i(0) }
+      { i(1, "Err"), i(2) }
     ),
     {
       condition = conds.line_begin,
@@ -148,40 +162,18 @@ return {
     "for",
     fmta(
       [[
-        for (<>) {
+        for <> {
             <>
         }
       ]],
-      { i(1), i(0) }
-    ),
-    {
-      condition = conds.line_begin,
-    }
-  ),
-  s(
-    "forv",
-    fmta(
-      [[
-        for (<>) |<>| {
-            <>
-        }
-      ]],
-      { i(1), i(2, "value"), i(3) }
-    ),
-    {
-      condition = conds.line_begin,
-    }
-  ),
-  -- TODO: do a picker between for and for |value, index|
-  s(
-    "fori",
-    fmta(
-      [[
-        for (<>) |_, <>| {
-            <>
-        }
-      ]],
-      { i(1), i(2, "i"), i(0) }
+      {
+        c(1, {
+          fmt("({})", { i(1) }),
+          fmt("({}) |{}|", { i(1, "list"), i(2, "value") }),
+          fmt("({}, 0..) |{}, {}|", { i(1, "list"), i(2, "value"), i(3, "i") }),
+        }),
+        i(2),
+      }
     ),
     {
       condition = conds.line_begin,
@@ -191,11 +183,17 @@ return {
     "while",
     fmta(
       [[
-        while (<>) {
+        while <> {
             <>
         }
       ]],
-      { i(1), i(0) }
+      {
+        c(1, {
+          fmt("({})", { i(1) }),
+          fmt("({}) : ({})", { i(1, "i < n"), i(2, "i += 1") }),
+        }),
+        i(0),
+      }
     ),
     {
       condition = conds.line_begin,
