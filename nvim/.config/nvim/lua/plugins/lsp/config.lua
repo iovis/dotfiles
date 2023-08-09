@@ -12,6 +12,7 @@ end)
 vim.keymap.set("n", "<leader>lh", "<cmd>LspConfigHelp<cr>")
 vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
 vim.keymap.set("n", "<leader>ul", "<cmd>Mason<cr>")
+vim.keymap.set("n", "<leader>sr", "<cmd>LspRestart<cr>")
 
 ---- Floating window
 require("lspconfig.ui.windows").default_options.border = "rounded"

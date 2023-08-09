@@ -1,6 +1,8 @@
 vim.cmd.compiler("ruby")
 
----- runnables
+vim.keymap.set("n", "m<cr>", ":!ctags<cr>", { buffer = true, silent = true })
+
+---- Runnables
 if vim.fn.expand("%"):match("_spec.rb") then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux rspec %<cr>", { buffer = true })
 
@@ -27,22 +29,20 @@ else
   vim.keymap.set("n", "s<cr>", "<cmd>Tux ruby %<cr>", { buffer = true })
 end
 
----- keymaps
-vim.keymap.set("n", "m<cr>", ":!ctags<cr>", { buffer = true, silent = true })
-
----- quick testing
+---- Quick Testing
 vim.keymap.set("n", "<leader>sd", ":TestFile --format documentation<cr>", { buffer = true, silent = true })
 vim.keymap.set("n", "<leader>sp", ":TestNearest -strategy=test_prof<cr>", { buffer = true, silent = true })
 
 ---- Solargraph
+vim.keymap.set("n", "<leader>sr", ":TuxBg! ctags && bundle exec yard gems<cr>", { buffer = true, silent = true })
 vim.keymap.set(
   "n",
-  "<leader>sr",
+  "<leader>sR",
   ":TuxBg! ctags && bundle exec yard gems --rebuild; pause<cr>",
   { buffer = true, silent = true }
 )
 
--- Load failing tests in a scratch window
+---- Load failing tests in a scratch window
 vim.keymap.set("n", "<leader>TR", function()
   vim.cmd("R .")
   vim.cmd("r tmp/rspec-failures.txt")
@@ -52,11 +52,3 @@ vim.keymap.set("n", "<leader>TR", function()
   vim.cmd("%norm! Irspec ")
   vim.cmd("se ft=sh")
 end, { buffer = true, silent = true, desc = "Show RSpec suite failures" })
-
--- " sorbet {{{ "
--- " nnoremap <silent> <buffer> <leader>sr :Tux bin/tapioca gems && bin/tapioca dsl && bin/tapioca todo && bin/tapioca check-shims && bundle exec spoom bump<cr>
--- " nnoremap <silent> <buffer> <leader>st :e! sorbet/rbi/todo.rbi<cr>
--- " nnoremap <silent> <buffer> m<cr> :Tux bundle exec srb tc<cr>
--- "
--- " nnoremap <buffer> +T :e sorbet/rbi/shims/<c-r>%<cr>
--- " }}} sorbet "
