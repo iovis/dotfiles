@@ -109,8 +109,7 @@ return {
 
     vim.keymap.set("n", "gm", fzf_lua.buffers, { desc = "fzf_lua.buffers" })
 
-    vim.keymap.set("n", "<m-f>", fzf_lua.resume, { desc = "fzf_lua.resume" })
-    vim.keymap.set("n", "ƒ", fzf_lua.resume, { desc = "fzf_lua.resume" })
+    vim.keymap.set("n", "+f", fzf_lua.resume, { desc = "fzf_lua.resume" })
 
     vim.keymap.set("n", "<leader>A", function()
       fzf_lua.filetypes({
