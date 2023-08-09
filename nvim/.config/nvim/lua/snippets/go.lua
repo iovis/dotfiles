@@ -163,7 +163,7 @@ return {
     { condition = conds.line_begin }
   ),
   s(
-    "handler",
+    "fh",
     fmta(
       [[
       func <fname>(<res> http.ResponseWriter, <req> *http.Request) {
