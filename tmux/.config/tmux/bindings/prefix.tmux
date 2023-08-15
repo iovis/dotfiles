@@ -37,7 +37,6 @@ bind -N "Paste buffer" P paste-buffer
 
 ## Session management
 bind -N "Run sessionist" c-f run sessionist
-bind -N "Session picker" F choose-tree -Zs
 
 bind -N "New session" C command-prompt -p "new session name:" {
   new-session -A -s "%1" -c "#{pane_current_path}"

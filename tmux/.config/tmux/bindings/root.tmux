@@ -1,4 +1,8 @@
 ## Session picker
+bind -N "Create session from FZF" -n C-f {
+  choose-tree -Zs
+}
+
 bind -N "Switch to last session" -n M-Space {
   switch-client -l
 }
