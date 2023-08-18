@@ -22,18 +22,18 @@ return {
       updateevents = "TextChanged,TextChangedI",
     })
 
+    ---- Language config
+    luasnip.filetype_extend("gitcommit", { "markdown" })
+    luasnip.filetype_extend("markdown_inline", { "markdown" })
+    luasnip.filetype_extend("pullrequest", { "gitcommit" })
+    luasnip.filetype_extend("scss", { "css" })
+    luasnip.filetype_extend("svelte", { "typescript", "scss", "html" })
+    luasnip.filetype_extend("typescript", { "javascript" })
+
     ---- Load Snippets
     require("luasnip.loaders.from_vscode").lazy_load()
     require("luasnip.loaders.from_snipmate").lazy_load()
     require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/lua/snippets" })
-
-    ---- Language config
-    luasnip.filetype_extend("gitcommit", { "markdown" })
-    luasnip.filetype_extend("markdown_inline", { "markdown" })
-    luasnip.filetype_extend("pullrequest", { "markdown", "gitcommit" })
-    luasnip.filetype_extend("scss", { "css" })
-    luasnip.filetype_extend("svelte", { "typescript", "scss", "html" })
-    luasnip.filetype_extend("typescript", { "javascript" })
 
     ---- Keymaps
     -- Fix backspace exiting select mode
