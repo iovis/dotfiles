@@ -9,7 +9,17 @@ end
 return {
   s("li", fmt("[{}]({})", { i(1), i(2) })),
   s("img", fmt("![{}]({})", { i(1), i(2) })),
-  s("x", t("- [ ] "), { condition = conds.line_begin }),
+  s({ trig = "[", dscr = "Insert checkbox", snippetType = "autosnippet" }, {
+    c(1, {
+      fmt("[ ] {}", { r(1, "title", i(1)) }),
+      fmt("[x] {}", { r(1, "title", i(1)) }),
+    }),
+  }, {
+    condition = function(line_to_cursor, _matched_trigger, _captures)
+      -- optional whitespace followed by `- [`
+      return line_to_cursor:match("^%s*- %[$")
+    end,
+  }),
   s(
     { trig = "c", dscr = "Code block" },
     fmt(

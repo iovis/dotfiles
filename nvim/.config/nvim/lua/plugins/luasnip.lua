@@ -8,6 +8,7 @@ return {
 
     ---- Config
     luasnip.config.set_config({
+      enable_autosnippets = true,
       ext_opts = {
         [types.choiceNode] = {
           active = {

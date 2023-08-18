@@ -9,9 +9,15 @@ return {
 
     npairs.setup({
       check_ts = true,
-      disable_filetype = { "TelescopePrompt", "fzf" },
+      disable_filetype = {
+        "TelescopePrompt",
+        "fzf",
+      },
       disable_in_macro = true,
     })
+
+    ---- Disable `[` for checkboxes in markdown
+    npairs.get_rules("[")[1]:with_pair(cond.not_before_text("- "))
 
     ---- Support space padding after pair
     local brackets = { { "[", "]" }, { "{", "}" } }
