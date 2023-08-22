@@ -22,5 +22,3 @@ if [[ -n $FDOTDIR ]]; then
   # echo "Generating completions for ngrok"
   # ngrok completion >  "$FDOTDIR/completions/ngrok.fish"
 fi
-
-echo "Done"
