@@ -37,14 +37,17 @@
   cmd = nvim -d $LOCAL $REMOTE
 [difftool "nvim"]
   cmd = nvim -c DiffviewOpen
+[fetch]
+  prune = true
 [init]
   defaultBranch = master
 [interactive]
   diffFilter = delta --color-only
 [filter "lfs"]
-  clean = git-lfs clean %f
-  smudge = git-lfs smudge %f
-  required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 [filter "media"]
   clean = git media clean %f
   smudge = git media smudge %f
