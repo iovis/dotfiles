@@ -27,6 +27,41 @@ config.window_padding = {
   bottom = "0.5cell",
 }
 
+config.window_frame = {
+  font_size = 15,
+  active_titlebar_bg = "#1f212e",
+  font = wezterm.font({
+    family = "FiraCode Nerd Font",
+    weight = "Regular",
+  }),
+}
+
+-- R=require("catppuccin.palettes").get_palette()
+config.colors = {
+  tab_bar = {
+    active_tab = {
+      bg_color = "#181818",
+      fg_color = "#8caaee",
+    },
+    inactive_tab = {
+      bg_color = "#1f212e",
+      fg_color = "#51576d",
+    },
+    new_tab = {
+      bg_color = "#1f212e",
+      fg_color = "#8caaee",
+    },
+    new_tab_hover = {
+      bg_color = "#8caaee",
+      fg_color = "#1f212e",
+    },
+    inactive_tab_hover = {
+      bg_color = "#1f212e",
+      fg_color = "#8caaee",
+    },
+  },
+}
+
 ---Fonts
 -- wezterm ls-fonts --list-system | rg Fira
 -- wezterm ls-fonts --text "✔"
@@ -36,13 +71,6 @@ config.font = wezterm.font_with_fallback({
   "Menlo", -- This has the check mark and cross symbols
   "Apple Color Emoji",
 })
-
-config.window_frame = {
-  font = wezterm.font({
-    family = "FiraCode Nerd Font",
-    weight = "Regular",
-  }),
-}
 
 ---Keymaps
 -- wezterm show-keys --lua
