@@ -1,9 +1,10 @@
 # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
 gui:
+  nerdFontsVersion: 3
   showBottomLine: false
   showCommandLog: false
   showFileTree: false
-  nerdFontsVersion: 3
+  skipRewordInEditorWarning: true
   theme:
     selectedLineBgColor:
       - '#262626'
@@ -16,6 +17,7 @@ git:
   paging:
     colorArg: always
     pager: delta --paging=never --tabs=2
+  parseEmoji: true
 notARepository: 'quit'
 promptToReturnFromSubprocess: false
 keybinding:
