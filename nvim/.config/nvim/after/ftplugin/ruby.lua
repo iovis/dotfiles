@@ -52,3 +52,8 @@ vim.keymap.set("n", "<leader>TR", function()
   vim.cmd("%norm! Irspec ")
   vim.cmd("se ft=sh")
 end, { buffer = true, silent = true, desc = "Show RSpec suite failures" })
+
+---- Regenerate Rubocop TODO
+vim.api.nvim_buf_create_user_command(0, "RubocopRegenerateTodo", function()
+  vim.cmd.Tux("rubocop --regenerate-todo")
+end, {})
