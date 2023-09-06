@@ -11,7 +11,7 @@ return {
     { "<leader>S", "<cmd>Start!<cr>" },
     { "<leader>aa", "<cmd>A<cr>" },
     { "<leader>ah", "<cmd>AS<cr>" },
-    { "<leader>ar", "<cmd>R<cr>" },
+    -- { "<leader>ar", "<cmd>R<cr>" },
     { "<leader>av", "<cmd>AV<cr>" },
     -- { "m<space>", ":Make<space>" },
   },
