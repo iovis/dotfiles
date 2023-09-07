@@ -34,16 +34,18 @@ vim.keymap.set("n", "<leader>sd", ":TestFile --format documentation<cr>", { buff
 vim.keymap.set("n", "<leader>sp", ":TestNearest -strategy=test_prof<cr>", { buffer = true, silent = true })
 
 ---- Solargraph
-vim.keymap.set("n", "<leader>sr", ":TuxBg! ctags && bundle exec yard gems<cr>", { buffer = true, silent = true })
-vim.keymap.set(
-  "n",
-  "<leader>sR",
-  ":TuxBg! ctags && bundle exec yard gems --rebuild; pause<cr>",
-  { buffer = true, silent = true }
-)
+vim.api.nvim_buf_create_user_command(0, "SolargraphRestart", function(ctx)
+  local cmd = "TuxBg! ctags && bundle exec yard gems"
+
+  if ctx.bang then
+    cmd = cmd .. " --rebuild; pause"
+  end
+
+  vim.cmd(cmd)
+end, { bang = true })
 
 ---- Load failing tests in a scratch window
-vim.keymap.set("n", "<leader>TR", function()
+vim.api.nvim_buf_create_user_command(0, "FailedRSpecTests", function()
   vim.cmd("R .")
   vim.cmd("r tmp/rspec-failures.txt")
   vim.cmd([[v/| failed/d]])
@@ -51,7 +53,7 @@ vim.keymap.set("n", "<leader>TR", function()
   vim.cmd("sort u")
   vim.cmd("%norm! Irspec ")
   vim.cmd("se ft=sh")
-end, { buffer = true, silent = true, desc = "Show RSpec suite failures" })
+end, {})
 
 ---- Regenerate Rubocop TODO
 vim.api.nvim_buf_create_user_command(0, "RubocopRegenerateTodo", function()
