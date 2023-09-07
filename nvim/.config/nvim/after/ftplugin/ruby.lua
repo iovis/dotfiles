@@ -49,7 +49,15 @@ vim.api.nvim_buf_create_user_command(0, "FailedRSpecTests", function()
   vim.cmd("R .")
   vim.cmd("r tmp/rspec-failures.txt")
   vim.cmd([[v/| failed/d]])
-  vim.cmd([[%s/\v[\d.*]])
+
+  local ok, _ = pcall(vim.cmd, [[%s/\v[\d.*]])
+  vim.cmd.nohlsearch()
+
+  if not ok then
+    vim.cmd("norm! Ino failed tests!")
+    return
+  end
+
   vim.cmd("sort u")
   vim.cmd("%norm! Irspec ")
   vim.cmd("se ft=sh")
