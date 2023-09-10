@@ -16,6 +16,7 @@ return {
     ---- Initialize servers
     local lsp_servers = {
       -- "angularls",
+      "astro",
       "bashls",
       "clangd",
       "cssls",

@@ -10,9 +10,10 @@ return {
   config = function()
     require("nvim-treesitter.configs").setup({
       ensure_installed = {
+        "astro",
         "bash",
         "c",
-        "comment", -- TODO: apparently really slow
+        "comment",
         "css",
         "diff", -- git diffs
         "dockerfile",
@@ -42,6 +43,7 @@ return {
         "rust",
         "scss",
         "sql",
+        "svelte",
         "toml",
         "tsx",
         "typescript",
