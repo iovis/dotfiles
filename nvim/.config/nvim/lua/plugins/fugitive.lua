@@ -5,7 +5,7 @@ return {
     "tpope/vim-rhubarb",
   },
   config = function()
-    vim.keymap.set("n", "<leader>G", "<cmd>Gtabedit:<cr>")
+    vim.keymap.set("n", "g-", "<cmd>Gtabedit:<cr>")
     vim.keymap.set("n", "<leader>go", "<cmd>Gread<cr>")
     vim.keymap.set("n", "<leader>gb", "<cmd>Git blame<cr>")
     -- vim.keymap.set("n", "<leader>gl", "<cmd>Glol -500<cr>")

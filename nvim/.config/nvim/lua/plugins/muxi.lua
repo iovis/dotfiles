@@ -46,22 +46,22 @@ return {
     end, { desc = "[muxi] Add session to ñ" })
 
     ----Mark management
-    vim.keymap.set("n", "<leader>gs", require("muxi.fzf").marks, {
+    vim.keymap.set("n", "m-", require("muxi.fzf").marks, {
       desc = "[muxi] fzf-lua marks",
     })
 
-    vim.keymap.set("n", "<leader>g?", require("muxi.fzf").sessions, {
+    vim.keymap.set("n", "m?", require("muxi.fzf").sessions, {
       desc = "[muxi] fzf-lua sessions",
     })
+
+    vim.keymap.set("n", "m!", function()
+      require("muxi").clear_all()
+      vim.notify("Cleared current session")
+    end, { desc = "[muxi] Clear current workspace" })
 
     vim.keymap.set("n", "ge", require("muxi.ui").show, {
       desc = "[muxi] Modify current workspace interactively",
     })
-
-    vim.keymap.set("n", "g-", function()
-      require("muxi").clear_all()
-      vim.notify("Cleared current session")
-    end, { desc = "[muxi] Clear current workspace" })
 
     ----Settings toggles
     vim.keymap.set("n", "yom", function()
