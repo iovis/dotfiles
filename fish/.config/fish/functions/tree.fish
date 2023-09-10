@@ -1,3 +1,3 @@
-function tree --wraps='exa --group-directories-first -T' --description 'alias tree=exa --group-directories-first -T'
-    exa --group-directories-first -T $argv
+function tree --wraps='eza --group-directories-first -T' --description 'alias tree=eza --group-directories-first -T'
+    eza --group-directories-first -T $argv
 end

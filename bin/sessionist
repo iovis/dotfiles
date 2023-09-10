@@ -20,7 +20,7 @@ fzf_command() {
     --bind=enter:replace-query+print-query \
     --reverse \
     --info hidden \
-    --preview "exa -lag --git --group-directories-first $PROJECT_HOME/{}" \
+    --preview "eza -lag --git --group-directories-first $PROJECT_HOME/{}" \
     --preview-window down \
     --prompt "$PROJECT_HOME/" \
     --query "$INITIAL_QUERY"

@@ -1,3 +1,3 @@
-function l --wraps='exa -lag --git --group-directories-first' --description 'alias l=exa -lag --git --group-directories-first'
-    exa -lag --git --group-directories-first $argv
+function l --wraps='eza -lag --git --group-directories-first' --description 'alias l=eza -lag --git --group-directories-first'
+    eza -lag --git --group-directories-first $argv
 end
