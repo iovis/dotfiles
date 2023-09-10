@@ -25,4 +25,4 @@ if "type muxi" {
   run -b "muxi init"
 }
 
-# bind -n "" run "muxi sessions switch --tmux-menu"  # alt-g
+bind -n M-- run "muxi sessions switch --tmux-menu"
