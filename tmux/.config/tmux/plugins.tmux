@@ -25,4 +25,4 @@ if "type muxi" {
   run -b "muxi init"
 }
 
-bind -n M-- run "muxi sessions switch --tmux-menu"
+bind -n M-- run "muxi fzf"
