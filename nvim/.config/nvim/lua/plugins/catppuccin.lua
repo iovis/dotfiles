@@ -19,7 +19,6 @@ return {
         cmp = true,
         fidget = false,
         gitsigns = true,
-        harpoon = false,
         leap = true,
         lsp_saga = false,
         mason = true,
