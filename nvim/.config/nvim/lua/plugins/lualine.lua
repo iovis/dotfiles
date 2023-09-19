@@ -9,7 +9,9 @@ return {
 
     ----Helper functions
     --- Truncate component to `len` characters
+    ---
     --- @param len number
+    --- @return fun(string): string
     local function truncate(len)
       return function(str)
         if #str <= len then
@@ -54,45 +56,57 @@ return {
       },
     }
 
-    local noice_section = {}
+    local status = {
+      {
+        "diff",
+        diff_color = {
+          added = "DiffAdded",
+          modified = "DiffChanged",
+          removed = "DiffRemoved",
+        },
+      },
+      {
+        "branch",
+        fmt = truncate(20),
+      },
+      {
+        function()
+          local cur = vim.fn.line(".")
+          local total = vim.fn.line("$")
+          local progress = math.floor(cur / total * 100) .. "%%"
 
-    local noice_ok, noice = pcall(require, "noice")
-    if noice_ok then
-      noice_section = vim.tbl_extend("force", noice_section, {
-        {
-          -- Show current search
-          noice.api.status.search.get,
-          cond = noice.api.status.search.has,
-          color = { fg = colors.sapphire },
+          return string.format("%5s:%s", progress, total)
+        end,
+        padding = {
+          left = 0,
+          right = 1,
         },
-        {
-          -- Show "recording" messages
-          noice.api.status.mode.get,
-          cond = noice.api.status.mode.has,
-          color = { fg = colors.peach },
-        },
-        {
-          -- Show number of selected lines in Visual
-          function()
-            local starts = vim.fn.line("v")
-            local ends = vim.fn.line(".")
-            local count = math.abs(ends - starts) + 1
+      },
+    }
 
-            return count .. vim.fn.mode()
-          end,
-          cond = function()
-            return vim.fn.mode():find("[vV]") ~= nil
-          end,
-          color = { fg = colors.mauve },
+    ----Extensions
+    local qf = {
+      sections = {
+        lualine_a = block,
+        lualine_b = {
+          {
+            icon = "",
+            function()
+              -- Print the title of the quickfix/location list
+              local is_loclist = vim.fn.getloclist(0, { filewinid = 1 }).filewinid ~= 0
+
+              if is_loclist then
+                return vim.fn.getloclist(0, { title = 0 }).title
+              else
+                return vim.fn.getqflist({ title = 0 }).title
+              end
+            end,
+          },
         },
-        -- {
-        --   -- Show current keystroke
-        --   noice.api.status.command.get,
-        --   cond = noice.api.status.command.has,
-        --   color = { fg = colors.overlay0 },
-        -- },
-      })
-    end
+        lualine_y = status,
+      },
+      filetypes = { "qf" },
+    }
 
     ----Setup
     require("lualine").setup({
@@ -144,36 +158,9 @@ return {
         lualine_c = {
           "diagnostics",
         },
-        lualine_x = noice_section,
-        lualine_y = {
-          {
-            "diff",
-            diff_color = {
-              added = "DiffAdded",
-              modified = "DiffChanged",
-              removed = "DiffRemoved",
-            },
-          },
-          {
-            "branch",
-            fmt = truncate(20),
-          },
-          {
-            -- icon = "",
-            function()
-              local cur = vim.fn.line(".")
-              local total = vim.fn.line("$")
-              local progress = math.floor(cur / total * 100) .. "%%"
-
-              return string.format("%5s:%s", progress, total)
-            end,
-            padding = {
-              left = 0,
-              right = 1,
-            },
-          },
-        },
-        lualine_z = {}, -- bg color same as "mode"
+        lualine_x = {},
+        lualine_y = status,
+        lualine_z = {},
       },
       inactive_sections = {
         lualine_a = block,
@@ -187,6 +174,7 @@ return {
       extensions = {
         -- "neo-tree",
         -- "quickfix",
+        qf,
         "fugitive",
       },
     })
