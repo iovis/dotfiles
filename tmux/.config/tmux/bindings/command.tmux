@@ -1,7 +1,7 @@
 bind -N "Command mode" l switch-client -T command
 
 bind -N "Open lazygit" -T command g {
-  new-window -n lazygit lazygit
+  new-window -c "#{pane_current_path}" -n lazygit lazygit
 }
 
 bind -N "Open htop" -T command h {
