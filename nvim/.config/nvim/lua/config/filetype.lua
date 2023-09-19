@@ -9,15 +9,5 @@ vim.filetype.add({
   },
   pattern = {
     [".*/yamllint/config"] = "yaml",
-    [".*"] = {
-      priority = -math.huge,
-      function(_, bufnr)
-        local content = vim.filetype.getlines(bufnr, 1)
-
-        if vim.filetype.matchregex(content, [[^#!.*\<cargo\>]]) then
-          return "rust"
-        end
-      end,
-    },
   },
 })
