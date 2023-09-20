@@ -98,7 +98,10 @@ return {
               if is_loclist then
                 return vim.fn.getloclist(0, { title = 0 }).title
               else
-                return vim.fn.getqflist({ title = 0 }).title
+                local total_pages = vim.fn.getqflist({ nr = "$" }).nr
+                local qf = vim.fn.getqflist({ nr = 0, title = 0 })
+
+                return ("[%d/%d] %s"):format(qf.nr, total_pages, qf.title)
               end
             end,
           },
