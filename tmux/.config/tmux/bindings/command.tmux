@@ -20,6 +20,10 @@ bind -N "Browse PRs for current branch" -T command r {
   run -b "gh pr view --web"
 }
 
+bind -N "Switch to git worktree" -T command w {
+  run -b gwl
+}
+
 bind -N "Tmux customization mode" -T command z {
   customize-mode -Z
 }

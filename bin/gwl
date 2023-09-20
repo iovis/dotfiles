@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+fzf-tmux \
+  -p 80%,80% \
+  --reverse \
+  --info hidden \
+  --preview "git log -20 --color=always --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' \$(echo {-1} | tr -d '[]') --" \
+  --preview-window down \
+  --bind 'start:reload:git worktree list' \
+  --bind 'enter:become(tmux new-window -c {1})' \
+  --bind 'ctrl-x:execute-silent(git worktree remove {1})+reload(git worktree list)' \
+  --prompt "git> " \
+  --query "${*:-}" || true
