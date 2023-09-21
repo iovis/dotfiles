@@ -6,6 +6,7 @@ fzf-tmux \
   --info hidden \
   --preview "git log -20 --color=always --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' \$(echo {-1} | tr -d '[]') --" \
   --preview-window down \
+  --sync \
   --bind 'start:reload:git worktree list' \
   --bind 'enter:become(tmux new-window -c {1})' \
   --bind 'ctrl-x:execute-silent(git worktree remove {1})+reload(git worktree list)' \

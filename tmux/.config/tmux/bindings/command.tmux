@@ -21,7 +21,7 @@ bind -N "Browse PRs for current branch" -T command r {
 }
 
 bind -N "Switch to git worktree" -T command w {
-  run -b gwl
+  run -b "cd #{pane_current_path} && gws"
 }
 
 bind -N "Tmux customization mode" -T command z {
