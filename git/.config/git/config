@@ -1,4 +1,5 @@
 [alias]
+  bare-clone = !git_bare_clone
   branch-name = !git rev-parse --abbrev-ref HEAD
   files = !git diff --name-only $(git merge-base HEAD \"$REVIEW_BASE\")
   hidden = !git ls-files -v | grep \"^[a-z]\"
