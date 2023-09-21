@@ -15,6 +15,10 @@ return {
         @list:
             just --list
 
+        # init project
+        init:
+            {}
+
         # start the server
         dev:
             {}
@@ -37,11 +41,12 @@ return {
       ]],
       {
         i(1, "list"),
-        i(2, "rails server -b 0.0.0.0"),
-        i(3, 'open "$PROJECT_URL" -a "Google Chrome Canary"'),
-        i(4, "rails console"),
-        i(5, "rspec"),
-        i(6, "pgcli $DATABASE_URL"),
+        i(2, "bundle install"),
+        i(3, "rails server -b 0.0.0.0"),
+        i(4, 'open "$PROJECT_URL" -a "Google Chrome Canary"'),
+        i(5, "rails console"),
+        i(6, "rspec"),
+        i(7, "pgcli $DATABASE_URL"),
       }
     ),
     { condition = conds.line_begin }
