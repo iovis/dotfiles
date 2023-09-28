@@ -25,8 +25,8 @@ bind -T copy-mode-vi u send -X halfpage-up
 bind -T copy-mode-vi p send -X search-reverse
 
 # Search
-bind -T copy-mode-vi ñ command-prompt -p "(search up)"   { send -X search-backward "%%%" }
-bind -T copy-mode-vi Ñ command-prompt -p "(search down)" { send -X search-forward  "%%%" }
+bind -T copy-mode-vi ñ command-prompt -i -I "#{pane_search_string}" -T search -p "(search up)" { send-keys -X search-backward-incremental "%%" }
+bind -T copy-mode-vi Ñ command-prompt -i -I "#{pane_search_string}" -T search -p "(search down)" { send-keys -X search-forward-incremental "%%" }
 
 # Marks
 bind -T copy-mode-vi m   send -X set-mark
