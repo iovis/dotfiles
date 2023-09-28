@@ -8,6 +8,7 @@ set -g @plugin 'Morantron/tmux-fingers'
 set -g @fingers-highlight-style "fg=colour111"
 set -g @fingers-backdrop-style "fg=colour8"
 set -g @fingers-pattern-0 '(❯|❮) ((?<match>.+?)(\s{2,}.+$|$))'
+set -g @fingers-pattern-1 '(rspec|cucumber) [^:]+:\d+'
 
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @resurrect-capture-pane-contents 'on'
