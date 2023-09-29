@@ -22,7 +22,7 @@ notARepository: 'quit'
 promptToReturnFromSubprocess: false
 keybinding:
   universal:
-    return: 'q'
+    # return: 'q'
     prevBlock-alt: '<c-k>'
     nextBlock-alt: '<c-j>'
     nextTab: 'l'
