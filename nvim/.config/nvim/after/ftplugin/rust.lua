@@ -21,6 +21,12 @@ else
   vim.keymap.set("n", "s<cr>", "<cmd>Tux cargo run<cr>", { buffer = true })
 end
 
+----Clippy fix
+vim.api.nvim_buf_create_user_command(0, "ClippyFix", function()
+  require("config.utils").system("cargo clippy --fix --allow-dirty -- -W clippy::pedantic >/dev/null 2>&1")
+  vim.cmd("silent! checktime")
+end, {})
+
 ----Surround debug
 require("nvim-surround").buffer_setup({
   surrounds = {
