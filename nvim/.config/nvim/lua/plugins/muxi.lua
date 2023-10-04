@@ -47,7 +47,7 @@ return {
     end, { desc = "[muxi] Add session to ñ" })
 
     ----Mark management
-    vim.keymap.set("n", "m-", require("muxi.fzf").marks, {
+    vim.keymap.set("n", "g-", require("muxi.fzf").marks, {
       desc = "[muxi] fzf-lua marks",
     })
 
