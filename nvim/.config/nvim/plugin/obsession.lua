@@ -56,6 +56,7 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
   pattern = "*",
   callback = function()
     require("neo-tree.sources.manager").close_all()
+    vim.cmd.DBUIClose()
 
     persist_session()
   end,

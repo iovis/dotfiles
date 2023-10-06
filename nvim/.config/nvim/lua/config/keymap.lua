@@ -192,7 +192,7 @@ vim.keymap.set("n", "+t", "<c-w>T")
 vim.keymap.set("n", "+q", "<cmd>tabonly<cr>")
 
 -- Tags
-vim.keymap.set("n", "t", "<c-]>")
+vim.keymap.set("n", "t", "<c-]>", { remap = true })
 vim.keymap.set("n", "T", "g]")
 
 ---- Quick File access

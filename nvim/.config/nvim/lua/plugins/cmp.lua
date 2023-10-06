@@ -51,6 +51,7 @@ return {
             nvim_lsp = "[LSP]",
             path = "[Path]",
             tags = "[TAG]",
+            ["vim-dadbod-completion"] = "[DB]",
           },
         }),
       },
@@ -114,6 +115,13 @@ return {
         { name = "buffer", keyword_length = 4 },
         { name = "tags" },
         { name = "path" },
+      }),
+    })
+
+    cmp.setup.filetype("sql", {
+      sources = cmp.config.sources({
+        { name = "vim-dadbod-completion" },
+        { name = "luasnip" },
       }),
     })
   end,
