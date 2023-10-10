@@ -7,7 +7,7 @@ return {
     ----Setup
     require("muxi").setup({
       go_to_cursor = false,
-      path = ".muxi.json",
+      -- path = ".muxi.json",
     })
 
     ----Muxi superbinding
