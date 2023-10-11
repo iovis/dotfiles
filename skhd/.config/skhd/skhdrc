@@ -10,7 +10,7 @@ hyper - r : yabai --restart-service
 #  Application Launcher  #
 ##########################
 # Left hand
-ctrl + alt + cmd - a : open -a zoom.us
+ctrl + alt + cmd - a : open -a Things3
 ctrl + alt + cmd - s : open -a Slack
 ctrl + alt + cmd - d : open -a WezTerm
 ctrl + alt + cmd - f : open -a Arc
@@ -28,8 +28,6 @@ ctrl + alt + cmd - z : open -a zoom.us
 # Right hand (care with conflicts with movement)
 hyper - m : open -a Music
 ctrl + alt + cmd - n : open -a Numi
-
-hyper - o : open -a Things3
 
 ############
 #  Window  #
