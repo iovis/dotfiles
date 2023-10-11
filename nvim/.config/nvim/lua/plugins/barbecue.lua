@@ -13,6 +13,12 @@ return {
       show_modified = true,
       show_navic = true, -- LSP location
       theme = "catppuccin",
+      exclude_filetypes = {
+        "dbui",
+        "fugitiveblame",
+        "netrw",
+        "toggleterm",
+      },
     })
 
     -- require("barbecue.ui").toggle(false)
