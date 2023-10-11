@@ -12,7 +12,7 @@ return {
     "DBUIFindBuffer",
   },
   init = function()
-    vim.keymap.set("n", "<leader>db", "<cmd>DBUIToggle<cr>")
+    -- vim.keymap.set("n", "<leader>db", "<cmd>DBUIToggle<cr>")
     vim.keymap.set("n", "d<space>", ":DB<space>")
 
     ----DBUI
