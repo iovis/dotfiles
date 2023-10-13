@@ -1,11 +1,13 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
+-- wezterm show-keys --lua
 return {
   { key = "-", mods = "CTRL", action = wezterm.action({ SendString = "\x1f" }) }, -- Enable C-_
   { key = "ñ", mods = "ALT", action = wezterm.action({ SendString = "~" }) },
   { key = "+", mods = "ALT", action = wezterm.action({ SendString = "]" }) },
   { key = "ç", mods = "ALT", action = wezterm.action({ SendString = "}" }) },
+  { key = "Enter", mods = "ALT", action = wezterm.action({ SendString = "{" }) },
 
   { key = "+", mods = "SUPER", action = act.IncreaseFontSize },
   { key = "-", mods = "SUPER", action = act.DecreaseFontSize },
