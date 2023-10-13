@@ -65,6 +65,7 @@ yabai -m rule --add app="^Docker Desktop$" manage=off
 yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^IINA$" manage=off
 yabai -m rule --add app="^Keka$" manage=off
+yabai -m rule --add app="^Keyboard Maestro$" manage=off
 yabai -m rule --add app="^Logi Options" manage=off
 yabai -m rule --add app="^Mail$" manage=off
 yabai -m rule --add app="^Maps$" manage=off

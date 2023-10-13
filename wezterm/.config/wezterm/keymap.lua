@@ -5,9 +5,9 @@ local act = wezterm.action
 return {
   { key = "-", mods = "CTRL", action = wezterm.action({ SendString = "\x1f" }) }, -- Enable C-_
   { key = "ñ", mods = "ALT", action = wezterm.action({ SendString = "~" }) },
-  { key = "+", mods = "ALT", action = wezterm.action({ SendString = "]" }) },
-  { key = "ç", mods = "ALT", action = wezterm.action({ SendString = "}" }) },
-  { key = "Enter", mods = "ALT", action = wezterm.action({ SendString = "{" }) },
+  -- { key = "+", mods = "ALT", action = wezterm.action({ SendString = "]" }) },
+  -- { key = "ç", mods = "ALT", action = wezterm.action({ SendString = "}" }) },
+  -- { key = "Enter", mods = "ALT", action = wezterm.action({ SendString = "{" }) },
 
   { key = "+", mods = "SUPER", action = act.IncreaseFontSize },
   { key = "-", mods = "SUPER", action = act.DecreaseFontSize },
