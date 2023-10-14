@@ -55,7 +55,7 @@ yabai -m rule --add app="^1Password" manage=off
 yabai -m rule --add app="^Activity Monitor$" manage=off
 yabai -m rule --add app="^AppCleaner$" manage=off
 yabai -m rule --add app="^App Store$" manage=off
-yabai -m rule --add app="^Arc$" manage=off  # Because of mini Arc
+# yabai -m rule --add app="^Arc$" manage=off  # Because of mini Arc
 yabai -m rule --add app="^Backblaze$" manage=off
 yabai -m rule --add app="^Bartender" manage=off
 yabai -m rule --add app="^Bazecor$" manage=off
@@ -65,7 +65,6 @@ yabai -m rule --add app="^Docker Desktop$" manage=off
 yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^IINA$" manage=off
 yabai -m rule --add app="^Keka$" manage=off
-yabai -m rule --add app="^Keyboard Maestro$" manage=off
 yabai -m rule --add app="^Logi Options" manage=off
 yabai -m rule --add app="^Mail$" manage=off
 yabai -m rule --add app="^Maps$" manage=off

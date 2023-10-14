@@ -1,3 +1,6 @@
+local workspace_libraries = vim.api.nvim_get_runtime_file("", true)
+table.insert(workspace_libraries, "/Users/david/.dotfiles/hammerspoon/.hammerspoon/Spoons/EmmyLua.spoon/annotations")
+
 return {
   settings = {
     Lua = {
@@ -44,7 +47,7 @@ return {
       --   enable = true,
       -- },
       workspace = {
-        library = vim.api.nvim_get_runtime_file("", true),
+        library = workspace_libraries,
         checkThirdParty = false,
       },
       telemetry = {
