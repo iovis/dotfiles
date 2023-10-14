@@ -1,40 +1,29 @@
----Generate EmmyLua annotations
--- hs.loadSpoon("EmmyLua")
+---Console
+hs.console.darkMode(true)
+hs.console.consoleCommandColor({ white = 0.6 })
+hs.console.consolePrintColor({ white = 1 })
+hs.console.consoleResultColor({ white = 0.8 })
+hs.console.outputBackgroundColor({ white = 0.12 })
 
----Key Overrides
--- print(hs.inspect(hs.keycodes.map))
-hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "r", function()
-  hs.reload()
-end)
+---Globals
+ctrl_alt = { "ctrl", "alt" }
+ctrl_alt_cmd = { "ctrl", "alt", "cmd" }
+hyper = { "ctrl", "cmd", "alt", "shift" }
 
-hs.hotkey.bind({ "alt", "shift" }, "+", function()
-  hs.eventtap.keyStrokes("]")
-end)
+function notify(message)
+  hs.notify
+    .new({
+      title = "Hammerspoon",
+      informativeText = message,
+      withdrawAfter = 2,
+    })
+    :send()
+end
 
-hs.hotkey.bind({ "alt" }, "+", function()
-  hs.eventtap.keyStrokes("[")
-end)
+-- hs.loadSpoon("EmmyLua") -- Generate EmmyLua annotations
+require("application_launcher")
+require("bindings")
+require("key_overrides")
+require("yabai")
 
-hs.hotkey.bind({ "shift" }, "`", function()
-  hs.eventtap.keyStrokes("^")
-end)
-
-hs.hotkey.bind({}, "`", function()
-  hs.eventtap.keyStrokes("`")
-end)
-
-hs.hotkey.bind({ "alt", "shift" }, "return", function()
-  hs.eventtap.keyStrokes("}")
-end)
-
-hs.hotkey.bind({ "alt" }, "return", function()
-  hs.eventtap.keyStrokes("{")
-end)
-
----Debug keystrokes
--- local tap = hs.eventtap.new({ hs.eventtap.event.types.keyDown }, function(event)
---   print(hs.inspect(event:getRawEventData()))
--- end)
--- tap:start()
-
-hs.notify.new({ title = "Hammerspoon", informativeText = "Configuration Reloaded" }):send()
+notify("Configuration Reloaded")
