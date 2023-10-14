@@ -23,6 +23,10 @@ hs.hotkey.bind({}, "`", function()
   hs.eventtap.keyStrokes("`")
 end)
 
+hs.hotkey.bind({ "alt", "shift" }, "return", function()
+  hs.eventtap.keyStrokes("}")
+end)
+
 hs.hotkey.bind({ "alt" }, "return", function()
   hs.eventtap.keyStrokes("{")
 end)
