@@ -28,6 +28,7 @@ return {
       "lua_ls",
       "marksman",
       "pyright",
+      -- "ruby_ls",
       "rust_analyzer",
       "solargraph",
       -- "sorbet",
