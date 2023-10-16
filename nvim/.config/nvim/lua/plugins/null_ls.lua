@@ -14,7 +14,7 @@ return {
         diagnostics.fish,
         diagnostics.markdownlint.with({ extra_args = { "--disable", "MD013", "MD022", "MD034", "MD041" } }),
         diagnostics.ruff,
-        -- diagnostics.rubocop,
+        -- diagnostics.rubocop, -- Disable with nvim v0.10 because ruby-lsp uses pull diagnostics (https://github.com/Shopify/ruby-lsp/blob/main/EDITORS.md#Neovim-LSP)
         diagnostics.shellcheck,
         -- diagnostics.stylelint,
         -- diagnostics.vint,
