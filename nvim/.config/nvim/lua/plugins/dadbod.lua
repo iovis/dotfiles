@@ -7,6 +7,7 @@ return {
   cmd = {
     "DB",
     "DBUI",
+    "DBUIClose",
     "DBUIToggle",
     "DBUIAddConnection",
     "DBUIFindBuffer",
