@@ -6,6 +6,7 @@ hs.console.consoleResultColor({ white = 0.8 })
 hs.console.outputBackgroundColor({ white = 0.12 })
 
 ---Globals
+---@diagnostic disable: lowercase-global
 ctrl_alt = { "ctrl", "alt" }
 ctrl_alt_cmd = { "ctrl", "alt", "cmd" }
 hyper = { "ctrl", "cmd", "alt", "shift" }
