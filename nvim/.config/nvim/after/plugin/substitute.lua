@@ -2,10 +2,10 @@ local u = require("config.utils")
 
 -- Test String: a:+[^"s:,]#_(&-)~@d\d.f*{<fas?>}a$s!d=fa
 
----@alias mode "char" | "line" | "V" | "v"
+---@alias vim_mode "char" | "line" | "V" | "v"
 
 ---Get the text covered by the motion
----@param mode mode
+---@param mode vim_mode
 ---@return string
 local capture_motion_text = function(mode)
   local saved_unnamed_register = vim.fn.getreg("@")
@@ -23,7 +23,7 @@ local capture_motion_text = function(mode)
 end
 
 ---Check if the motion is within the same line
----@param mode mode
+---@param mode vim_mode
 ---@return boolean
 local is_same_line = function(mode)
   if mode == "char" then
@@ -36,7 +36,7 @@ local is_same_line = function(mode)
 end
 
 ---Will take a motion `mode` and build a substitute command based on it
----@param mode mode
+---@param mode vim_mode
 function SubstituteMotion(mode)
   ---- Normal modes
   if mode == "char" then
