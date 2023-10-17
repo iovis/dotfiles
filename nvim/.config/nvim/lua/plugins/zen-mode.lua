@@ -21,6 +21,12 @@ return {
           signcolumn = "no",
         },
       },
+      plugins = {
+        options = {
+          enabled = true,
+          laststatus = 0,
+        },
+      },
       on_open = function(win)
         require("barbecue.ui").toggle(false)
 
