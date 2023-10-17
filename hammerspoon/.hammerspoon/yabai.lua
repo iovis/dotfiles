@@ -95,9 +95,9 @@ bind_command({ ctrl_alt, "j" }, "yabai_grid 2:2:0:1:1:1")
 bind_command({ ctrl_alt, "k" }, "yabai_grid 2:2:1:1:1:1")
 
 ---Centered
-bind_command({ { "cmd", "alt" }, "-" }, "yabai_grid 10:10:1:1:8:8")
-bind_command({ ctrl_alt_cmd, "-" }, "yabai_grid 10:10:1:0:8:10")
 bind_command({ ctrl_alt, "up" }, "yabai_grid 1:1:0:0:1:1")
+bind_command({ ctrl_alt, "-" }, "yabai_grid 10:10:1:1:8:8")
+bind_command({ ctrl_alt_cmd, "-" }, "yabai_grid 10:10:1:0:8:10")
 
 --------------
 -- Displays --
