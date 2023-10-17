@@ -71,6 +71,7 @@ yabai -m rule --add app="^Maps$" manage=off
 yabai -m rule --add app="^Messages$" manage=off
 yabai -m rule --add app="^Music$" manage=off
 yabai -m rule --add app="^Numi$" manage=off
+yabai -m rule --add app="^Opal Composer$" manage=off
 yabai -m rule --add app="^Parallels" manage=off
 yabai -m rule --add app="^Path Finder$" manage=off
 yabai -m rule --add app="^Pastebot$" manage=off
