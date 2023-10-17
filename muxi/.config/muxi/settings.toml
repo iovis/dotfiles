@@ -1,6 +1,8 @@
 [bindings]
+- = { command = "muxi fzf" }
 c = { popup = { title = " config ",   height = "66%" }, command = "muxi config edit -- +ZenMode -c 'nmap <silent> q :wqa<cr>'" }
 e = { popup = { title = " sessions ", height = "66%" }, command = "muxi sessions edit -- +ZenMode -c 'nmap <silent> q :wqa<cr>'" }
+
+# s = { command = "muxi fzf" }
 # s = { popup = { title = " muxi ", height = "33%", width = "50%" }, command = "muxi sessions switch -i" }
 # s = { command = "muxi sessions switch --tmux-menu" }
-s = { command = "muxi fzf" }
