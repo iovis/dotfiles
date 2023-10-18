@@ -73,6 +73,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "diff",
     "fugitiveblame",
     "help",
+    "httpResult",
     "lspsagaoutline",
     "notify",
     "qf",
