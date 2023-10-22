@@ -25,6 +25,7 @@ function M.run(strategy)
 
       if not ok then
         vim.notify("Error parsing the output", vim.log.levels.ERROR)
+        vim.notify(data)
         return
       end
 
