@@ -1,17 +1,18 @@
-hs.hotkey.bind({ "alt", "shift" }, "+", function()
-  hs.eventtap.keyStrokes("]")
-end)
-
-hs.hotkey.bind({ "alt" }, "+", function()
-  hs.eventtap.keyStrokes("[")
-end)
-
 hs.hotkey.bind({ "shift" }, "`", function()
   hs.eventtap.keyStrokes("^")
 end)
 
 hs.hotkey.bind({}, "`", function()
   hs.eventtap.keyStrokes("`")
+end)
+
+-- TODO: Only enable when using the Defy
+hs.hotkey.bind({ "alt", "shift" }, "+", function()
+  hs.eventtap.keyStrokes("]")
+end)
+
+hs.hotkey.bind({ "alt" }, "+", function()
+  hs.eventtap.keyStrokes("[")
 end)
 
 hs.hotkey.bind({ "alt", "shift" }, "return", function()
