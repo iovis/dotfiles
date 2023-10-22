@@ -4,14 +4,6 @@ set -g @continuum-save-interval '5'
 
 set -g @plugin 'tmux-plugins/tmux-cpu'
 
-set -g @plugin 'morantron/tmux-fingers'
-set -g @fingers-backdrop-style "fg=colour8"
-set -g @fingers-highlight-style "fg=colour111"
-set -g @fingers-selected-hint-style "fg=yellow,bold"
-set -g @fingers-selected-highlight-style "fg=yellow"
-set -g @fingers-pattern-0 '(❯|❮) ((?<match>.+?)(\s{2,}.+$|$))'
-set -g @fingers-pattern-1 '(rspec|cucumber) [^:]+:\d+'
-
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @resurrect-capture-pane-contents 'on'
 set -g @resurrect-dir '~/.config/tmux/resurrect'
