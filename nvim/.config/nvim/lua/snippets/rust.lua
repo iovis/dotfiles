@@ -217,8 +217,8 @@ return {
     }
   ),
   s(
-    "pd",
-    fmta('println!("<> = {<>:?}"<comma><>);', {
+    "epln",
+    fmta('eprintln!("<> = {<>:?}"<comma><>);', {
       i(1),
       dl(2, l._1, 1), -- dynamic lambda: repeat node 1 but let override
       comma = n(3, ", "),
