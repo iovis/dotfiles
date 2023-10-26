@@ -157,7 +157,7 @@ return {
         args = i(2),
         space = n(3, " "),
         ret_type = i(3),
-        body = i(4, 'panic("todo")'),
+        body = i(0, 'panic("todo")'),
       }
     ),
     { condition = conds.line_begin }

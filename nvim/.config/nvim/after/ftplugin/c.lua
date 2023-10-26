@@ -1,3 +1,5 @@
+vim.keymap.set("i", "<m-cr>", "<c-o>A;", { buffer = true })
+
 ---- runnables
 if vim.fn.expand("%"):match("ext/") then
   vim.keymap.set("n", "m<cr>", "<cmd>Tux bear -- rake compile<cr>", { buffer = true })
