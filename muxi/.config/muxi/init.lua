@@ -5,7 +5,7 @@ local inspect = require("inspect")
 
 local nvim_opts = "+ZenMode -c 'nmap <silent> q :wqa<cr>'"
 
--- muxi.uppercase_overrides = true
+muxi.uppercase_overrides = true
 muxi.bindings = {
   ["-"] = {
     command = "muxi fzf",
