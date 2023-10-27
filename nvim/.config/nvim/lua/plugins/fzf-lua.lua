@@ -93,7 +93,7 @@ return {
           ["--delimiter"] = ":",
           ["--nth"] = "4..",
         },
-        rg_opts = [[--hidden --column --line-number --no-heading --color=always --smart-case -g '!Session.vim' -g '!sorbet' -g '!.git']],
+        rg_opts = [[--hidden --column --line-number --no-heading --color=always --smart-case -g '!Session.vim' -g '!.venv' -g '!.git']],
       },
     })
 
@@ -153,7 +153,7 @@ return {
 
     -- Files
     vim.keymap.set("n", "<leader>o", function()
-      fzf_lua.files({ fd_opts = original_fd_opts .. [[ --exclude 'sorbet' ]] })
+      fzf_lua.files({ fd_opts = original_fd_opts .. [[ --exclude '.venv' ]] })
     end, { desc = "fzf_lua.files" })
 
     vim.keymap.set("n", "<leader>O", function()
