@@ -10,7 +10,7 @@ return {
       {
         ret_type = i(1, "void"),
         fname = i(2, "fname"),
-        args = i(3),
+        args = i(3, "void"),
         body = i(0, "// body"),
       }
     ),
