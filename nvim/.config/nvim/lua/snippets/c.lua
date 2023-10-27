@@ -16,4 +16,35 @@ return {
     ),
     { condition = conds.line_begin }
   ),
+  s(
+    "st",
+    c(1, {
+      fmta(
+        [[
+          typedef struct <> {
+            <>
+          } <>;
+        ]],
+        {
+          r(1, "name", i(1)),
+          r(2, "body", i(2)),
+          rep(1),
+        }
+      ),
+      fmta(
+        [[
+          struct <> {
+            <>
+          };
+        ]],
+        {
+          r(1, "name", i(1)),
+          r(2, "body", i(2)),
+        }
+      ),
+    }),
+    {
+      condition = conds.line_begin,
+    }
+  ),
 }
