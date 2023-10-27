@@ -8,7 +8,7 @@ return {
       }
       ]],
       {
-        ret_type = i(1, "int"),
+        ret_type = i(1, "void"),
         fname = i(2, "fname"),
         args = i(3),
         body = i(0, "// body"),
