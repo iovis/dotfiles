@@ -29,6 +29,7 @@ return {
       "marksman",
       "pyright",
       -- "ruby_ls",
+      "rubocop",
       "rust_analyzer",
       "solargraph",
       -- "sorbet",
