@@ -34,7 +34,7 @@ vim.keymap.set("n", "<leader>sd", ":TestFile --format documentation<cr>", { buff
 vim.keymap.set("n", "<leader>sp", ":TestNearest -strategy=test_prof<cr>", { buffer = true, silent = true })
 
 ---- Solargraph
-vim.api.nvim_buf_create_user_command(0, "SolargraphRestart", function(ctx)
+vim.api.nvim_buf_create_user_command(0, "SolargraphInit", function(ctx)
   local cmd = "TuxBg! ctags && bundle exec yard gems"
 
   if ctx.bang then
