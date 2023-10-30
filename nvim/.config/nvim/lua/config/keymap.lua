@@ -276,7 +276,7 @@ end, { expr = true })
 vim.keymap.set(
   "n",
   "S",
-  [[<cmd>TuxBg! just --choose --chooser "fzf-tmux -p80\%,80\% --prompt 'just> ' --reverse --info inline --preview 'just --show {}' --preview-window 'down'" || true<cr>]],
+  [[<cmd>Tux just --choose --chooser "fzf-tmux -p80\%,80\% --prompt 'just> ' --reverse --info inline --preview 'just --show {}' --preview-window 'down'"<cr>]],
   { desc = "Run a task from the Justfile" }
 )
 
