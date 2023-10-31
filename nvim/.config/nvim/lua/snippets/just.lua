@@ -40,7 +40,7 @@ return {
             {}
       ]],
       {
-        i(1, "list"),
+        i(1, "init"),
         i(2, "bundle install"),
         i(3, "rails server -b 0.0.0.0"),
         i(4, 'open "$PROJECT_URL" -a "Google Chrome Canary"'),
