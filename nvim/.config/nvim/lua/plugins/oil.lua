@@ -36,7 +36,8 @@ return {
         show_hidden = true,
       },
       win_options = {
-        cursorline = true,
+        number = false,
+        relativenumber = false,
       },
     })
 
