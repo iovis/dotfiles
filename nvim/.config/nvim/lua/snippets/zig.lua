@@ -19,10 +19,10 @@ end
 
 return {
   -- Functions
-  s("fn", d(1, zig_fn), {
+  s("f", d(1, zig_fn), {
     condition = conds.line_begin,
   }),
-  s("pfn", fmt("pub {}", { d(1, zig_fn) }), {
+  s("pf", fmt("pub {}", { d(1, zig_fn) }), {
     condition = conds.line_begin,
   }),
 
@@ -142,20 +142,6 @@ return {
       condition = conds.line_begin,
     }
   ),
-  s(
-    "switch",
-    fmta(
-      [[
-        switch (<>) {
-            <>
-        }
-      ]],
-      { i(1), i(2) }
-    ),
-    {
-      condition = conds.line_begin,
-    }
-  ),
 
   -- Loops
   s(
@@ -176,6 +162,7 @@ return {
       }
     ),
     {
+      -- condition = conds.line_begin,
       condition = conds.line_begin,
     }
   ),
@@ -200,40 +187,37 @@ return {
     }
   ),
 
-  -- Catch
+  -- Printing
   s(
-    "cswitch",
+    "stdout",
     fmta(
       [[
-        catch |<error>| switch (<>) {
-            <>
-        };
+        const stdout = std.io.getStdOut().writer();
+        try stdout.print("<>\n", .{<>});
       ]],
       {
-        error = i(1, "err"),
-        rep(1),
+        i(1),
         i(2),
       }
-    )
+    ),
+    {
+      condition = conds.line_begin,
+    }
   ),
 
-  -- Printing
-  s("dbg", fmta('std.debug.print("<>", .{ <> })', { i(1), i(2) }), {
-    condition = conds.line_begin,
-  }),
-  s("todo!", fmta('std.debug.todo("<>", .{ <> })', { i(1), i(2) }), {
-    condition = conds.line_begin,
-  }),
-  s("logd", fmta('std.log.debug("<>", .{ <> })', { i(1), i(2) }), {
-    condition = conds.line_begin,
-  }),
-  s("loge", fmta('std.log.error("<>", .{ <> })', { i(1), i(2) }), {
-    condition = conds.line_begin,
-  }),
-  s("logi", fmta('std.log.info("<>", .{ <> })', { i(1), i(2) }), {
-    condition = conds.line_begin,
-  }),
-  s("logw", fmta('std.log.warn("<>", .{ <> })', { i(1), i(2) }), {
-    condition = conds.line_begin,
+  -- Misc
+  s(
+    "import",
+    fmt('const {} = @import("{}");', {
+      i(1),
+      dl(2, l._1, 1), -- pre-populate from node 1
+    }),
+    { condition = conds.line_begin }
+  ),
+  s(".", fmta(".{ <> }", { i(1) }), {
+    condition = function(line_to_cursor)
+      -- Only expand if preceded by whitespace
+      return line_to_cursor:match("^.*%s$")
+    end,
   }),
 }
