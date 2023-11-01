@@ -102,6 +102,21 @@ return {
     )
   ),
   parse("arg", "argument :${1:name}"),
+  -- Rubocop
+  s(
+    "rubocopdisable",
+    fmt(
+      [[
+        # rubocop: disable {}
+        # rubocop: enable {}
+      ]],
+      {
+        i(1),
+        rep(1),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
   -- Sorbet
   s("esig", t("extend T::Sig")),
   parse("sig", "sig { $1 }"),
