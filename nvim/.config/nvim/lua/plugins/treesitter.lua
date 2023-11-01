@@ -50,6 +50,7 @@ return {
         "vim",
         "vimdoc",
         "yaml",
+        "zig",
       },
       endwise = {
         enable = true,
