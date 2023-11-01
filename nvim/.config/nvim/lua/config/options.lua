@@ -4,6 +4,7 @@ vim.g.mapleader = " "
 ---- Global Variables
 vim.g.autoformat = true
 vim.g.autotest = nil
+vim.g.zig_fmt_autosave = 0
 
 ---- Nvim Options
 vim.o.autowriteall = true
