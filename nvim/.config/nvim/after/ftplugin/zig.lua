@@ -1,9 +1,9 @@
-vim.keymap.set("n", "m<cr>", "<cmd>Tux zig build<cr>", { buffer = true })
-
-if vim.fn.expand("%"):match("exercises/") then -- TODO: remove
-  vim.keymap.set("n", "s<cr>", "<cmd>Tux zig run %<cr>", { buffer = true })
-else
+if vim.fn.expand("%"):match("src/") then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux zig build run<cr>", { buffer = true })
+  vim.keymap.set("n", "m<cr>", "<cmd>Tux zig build<cr>", { buffer = true })
+else
+  vim.keymap.set("n", "s<cr>", "<cmd>Tux zig run %<cr>", { buffer = true })
+  vim.keymap.set("n", "m<cr>", "<cmd>Tux zig build-exe %<cr>", { buffer = true })
 end
 
 -- vim.keymap.set("n", "<leader>sn", "<cmd>TestNearest -strategy=rust_print<cr>", { buffer = true })
