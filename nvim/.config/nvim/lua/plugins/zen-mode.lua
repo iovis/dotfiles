@@ -26,6 +26,9 @@ return {
           enabled = true,
           laststatus = 0,
         },
+        twilight = {
+          enabled = false,
+        },
       },
       on_open = function(win)
         require("barbecue.ui").toggle(false)
