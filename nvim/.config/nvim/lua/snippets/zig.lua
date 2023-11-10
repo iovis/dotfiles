@@ -209,7 +209,7 @@ return {
   s(
     "import",
     fmt('const {} = @import("{}");', {
-      i(1),
+      i(1, "std"),
       dl(2, l._1, 1), -- pre-populate from node 1
     }),
     { condition = conds.line_begin }
