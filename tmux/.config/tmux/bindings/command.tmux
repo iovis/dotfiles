@@ -16,7 +16,7 @@ bind -N "Open nvim" -T command n {
   }
 }
 
-bind -N "Browse PRs for current branch" -T command r {
+bind -N "Browse PRs for current branch" -T command p {
   run -b "gh pr view --web"
 }
 
