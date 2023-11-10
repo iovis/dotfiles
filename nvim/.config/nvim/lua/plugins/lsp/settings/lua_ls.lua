@@ -10,12 +10,14 @@ return {
       diagnostics = {
         globals = {
           "vim",
-          "pp", -- pretty print
-          -- luassert
-          "before_each",
+          ----plenary.test_harness
+          -- https://github.com/nvim-lua/plenary.nvim/blob/master/TESTS_README.md
           "describe",
           "it",
-          -- luasnip globals (luasnip.config.snip_env)
+          "pending",
+          "before_each",
+          "after_each",
+          ----luasnip globals (luasnip.config.snip_env)
           -- https://github.com/L3MON4D3/LuaSnip/blob/master/lua/luasnip/config.lua
           "s", -- snippet
           "sn", -- snippet node

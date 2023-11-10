@@ -1,12 +1,11 @@
-----Annotations: https://github.com/LuaLS/lua-language-server/wiki/Annotations
+----EmmyLua Annotations: https://luals.github.io/wiki/annotations/
+----plenary.nvim test harness: https://github.com/nvim-lua/plenary.nvim/blob/master/TESTS_README.md
 
 ----Bindings
 if vim.fn.expand("%"):match("_spec.lua") then
-  vim.keymap.set("n", "<leader>so", ":PlenaryBustedFile %<cr>", { buffer = true, desc = "Run test" })
-
-  vim.keymap.set("n", "<leader>sa", function()
-    vim.cmd.PlenaryBustedDirectory("tests/")
-  end, { buffer = true, desc = "Run test" })
+  vim.keymap.set("n", "<leader>so", "<cmd>Tux nvimtest %<cr>", { buffer = true, desc = "Run test" })
+  vim.keymap.set("n", "s<cr>", "<cmd>Tux nvimtest %<cr>", { buffer = true, desc = "Run test" })
+  vim.keymap.set("n", "<leader>sa", "<cmd>Tux nvimtest<cr>", { buffer = true, desc = "Run test suite" })
 else
   vim.keymap.set("n", "<leader>so", function()
     vim.cmd.source("%")
@@ -15,7 +14,7 @@ else
 
   vim.keymap.set("x", "<leader>so", ":source<cr>", { buffer = true, desc = "Evaluate lua range" })
 
-  vim.keymap.set("n", "<leader>sp", ":R! source<cr>", { buffer = true })
+  vim.keymap.set("n", "s<cr>", ":R! source<cr>", { buffer = true })
   vim.keymap.set("x", "<leader>sp", ":<c-u>R! '<,'>source<cr>", { buffer = true })
 end
 
@@ -36,7 +35,12 @@ if vim.fn.expand("%"):match("plugins/") then
 end
 
 ----Surround debug
-require("nvim-surround").buffer_setup({
+local ok, surround = pcall(require, "nvim-surround") -- To not break plenary.test_harness
+if not ok then
+  return
+end
+
+surround.buffer_setup({
   surrounds = {
     ["d"] = {
       add = { "vim.print(", ")" },

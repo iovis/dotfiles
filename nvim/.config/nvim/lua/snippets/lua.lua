@@ -157,7 +157,6 @@ return {
     "sfmt",
     fmta("fmt(<>, {<>})", {
       c(1, {
-        sn(nil, fmt([["{}"]], i(1))),
         sn(
           nil,
           fmt(
@@ -169,8 +168,97 @@ return {
             i(1)
           )
         ),
+        sn(nil, fmt([["{}"]], i(1))),
       }),
       i(0),
     })
+  ),
+  -- Test
+  s("luassert", t('local assert = require("luassert")'), {
+    condition = conds.line_begin,
+  }),
+  s(
+    "desc",
+    fmt(
+      [[
+        describe("{}", function()
+          {}
+        end)
+      ]],
+      {
+        i(1),
+        i(0),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "bef",
+    fmt(
+      [[
+        before_each(function()
+          {}
+        end)
+      ]],
+      {
+        i(1),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "aft",
+    fmt(
+      [[
+        after_each(function()
+          {}
+        end)
+      ]],
+      {
+        i(1),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "it",
+    fmt(
+      [[
+        it("{}", function()
+          {}
+        end)
+      ]],
+      {
+        i(1),
+        i(0),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s("ast", fmt("assert.is_true({})", { i(1) }), {
+    condition = conds.line_begin,
+  }),
+  s("asnt", fmt("assert.is_not_true({})", { i(1) }), {
+    condition = conds.line_begin,
+  }),
+  s("ase", fmt("assert.are.equal({}, {})", { i(1), i(2) }), {
+    condition = conds.line_begin,
+  }),
+  s("ass", fmt("assert.are.same({}, {})", { i(1), i(2) }), {
+    condition = conds.line_begin,
+  }),
+  s(
+    "ashe",
+    fmt(
+      [[
+        assert.has.error(function()
+          {}
+        end)
+      ]],
+      {
+        i(1),
+      }
+    ),
+    { condition = conds.line_begin }
   ),
 }
