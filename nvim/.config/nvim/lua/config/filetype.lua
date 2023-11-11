@@ -3,9 +3,10 @@ vim.filetype.add({
     tmux = "tmux",
   },
   filename = {
-    ["pryrc"] = "ruby",
+    Brewfile = "ruby",
+    PULLREQ_EDITMSG = "gitcommit",
     [".clang-format"] = "yaml",
-    ["PULLREQ_EDITMSG"] = "gitcommit",
+    pryrc = "ruby",
   },
   pattern = {
     [".*/yamllint/config"] = "yaml",
