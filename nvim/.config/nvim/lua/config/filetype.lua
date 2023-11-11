@@ -1,6 +1,7 @@
 vim.filetype.add({
   extension = {
     tmux = "tmux",
+    zon = "zig",
   },
   filename = {
     Brewfile = "ruby",
