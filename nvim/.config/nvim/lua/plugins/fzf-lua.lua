@@ -100,9 +100,6 @@ return {
     ---- Keymaps
     vim.keymap.set("n", "+z", ":FzfLua<space>")
 
-    -- vim.keymap.set("n", "+m", fzf_lua.marks, { desc = "fzf_lua.marks" })
-    vim.keymap.set("n", "<c-p>", fzf_lua.commands, { desc = "fzf_lua.commands" })
-    -- vim.keymap.set("n", "<leader><leader>", fzf_lua.buffers, { desc = "fzf_lua.buffers" })
     vim.keymap.set("n", "<leader>R", fzf_lua.tags, { desc = "fzf_lua.tags" })
     vim.keymap.set("n", "<leader>j", fzf_lua.git_status, { desc = "fzf_lua.git_status" })
     vim.keymap.set("n", "<leader>r", fzf_lua.btags, { desc = "fzf_lua.btags" })
@@ -159,10 +156,6 @@ return {
     vim.keymap.set("n", "<leader>O", function()
       fzf_lua.files({ fd_opts = fd_opts_no_ignore })
     end, { desc = "fzf_lua.all_files" })
-
-    -- vim.keymap.set("n", "+t", function()
-    --   fzf_lua.files({ fd_opts = original_fd_opts .. [[ -e 'rbi' ]] })
-    -- end, { desc = "fzf_lua.sorbet_files" })
 
     -- Ripgrep search
     vim.keymap.set("n", "<leader>f", function()

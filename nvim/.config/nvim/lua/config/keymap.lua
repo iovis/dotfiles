@@ -104,7 +104,7 @@ vim.keymap.set({ "n", "x", "o" }, "'", "`")
 vim.keymap.set("n", "<s-up>", "[c", { remap = true })
 vim.keymap.set("n", "<s-down>", "]c", { remap = true })
 
-vim.keymap.set("n", "<c-e>", "<c-i>")
+vim.keymap.set("n", "<c-p>", "<c-i>")
 
 -- Open Resource
 vim.keymap.set("n", "¡¡", "<cmd>silent execute '!open ' . escape(expand('<cWORD>'), '#')<cr>")
@@ -188,6 +188,8 @@ vim.keymap.set("x", "*", [[y:let @/= '\V' . escape(@@, '/\') <bar> set hls <bar>
 -- Tabs
 vim.keymap.set("n", "<leader>t", "<cmd>tabnew<cr>")
 vim.keymap.set("n", "<leader>C", "<cmd>tabclose<cr>")
+vim.keymap.set("n", "<leader><", "<cmd>tabmove -1<cr>")
+vim.keymap.set("n", "<leader>>", "<cmd>tabmove +1<cr>")
 vim.keymap.set("n", "+t", "<c-w>T")
 vim.keymap.set("n", "+q", "<cmd>tabonly<cr>")
 
