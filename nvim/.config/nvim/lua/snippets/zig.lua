@@ -18,6 +18,25 @@ local zig_fn = function()
 end
 
 return {
+  s(
+    "main",
+    fmta(
+      [[
+        const std = @import("std");
+        const print = std.debug.print;
+
+        pub fn main() !void {
+            <>
+        }
+      ]],
+      {
+        i(0, [[print("Hello World!\n", .{});]]),
+      }
+    ),
+    {
+      condition = conds.line_begin,
+    }
+  ),
   -- Functions
   s("f", d(1, zig_fn), {
     condition = conds.line_begin,
