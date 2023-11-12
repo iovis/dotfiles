@@ -23,6 +23,6 @@ return {
 
     -- require("barbecue.ui").toggle(false)
 
-    vim.keymap.set("n", "+b", require("barbecue.ui").toggle, { desc = "Toggle barbecue" })
+    vim.keymap.set("n", "+B", require("barbecue.ui").toggle, { desc = "Toggle barbecue" })
   end,
 }

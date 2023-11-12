@@ -15,10 +15,15 @@ return {
         vim.keymap.set(mode, lhs, rhs, opts)
       end
 
-      map("n", "+Q", gs.toggle_current_line_blame, { desc = "toggle_current_line_blame" })
-
-      map({ "n", "x" }, "<leader>dk", ":Gitsigns reset_hunk<cr>")
-      map({ "n", "x" }, "<leader>ds", ":Gitsigns preview_hunk<cr>")
+      map("n", "yob", gs.toggle_current_line_blame)
+      map("n", "<leader>ds", gs.preview_hunk)
+      map("n", "<leader>dk", gs.reset_hunk)
+      map("x", "<leader>dk", function()
+        gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+      end)
+      map("n", "+b", function()
+        gs.blame_line({ full = true })
+      end)
       map({ "o", "x" }, "ik", ":<C-U>Gitsigns select_hunk<CR>")
 
       map("n", "]c", function()
