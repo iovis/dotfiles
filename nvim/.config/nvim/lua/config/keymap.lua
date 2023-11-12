@@ -79,7 +79,7 @@ vim.keymap.set("x", "<", "<gv")
 vim.keymap.set("x", ">", ">gv")
 
 -- Editor
-vim.keymap.set("n", "+c", ":cd <c-r>=fnameescape(expand('%:p:h'))<cr><cr>")
+-- vim.keymap.set("n", "+c", ":cd <c-r>=fnameescape(expand('%:p:h'))<cr><cr>")
 vim.keymap.set("n", "<leader>x", "<cmd>confirm qa<cr>")
 vim.keymap.set("n", "<leader>X", "<cmd>qa!<cr>")
 vim.keymap.set("n", "<leader>w", "<cmd>w!<cr>")
@@ -187,10 +187,10 @@ vim.keymap.set("x", "*", [[y:let @/= '\V' . escape(@@, '/\') <bar> set hls <bar>
 
 -- Tabs
 vim.keymap.set("n", "<leader>t", "<cmd>tabnew<cr>")
-vim.keymap.set("n", "<leader>C", "<cmd>tabclose<cr>")
 vim.keymap.set("n", "<leader><", "<cmd>tabmove -1<cr>")
 vim.keymap.set("n", "<leader>>", "<cmd>tabmove +1<cr>")
 vim.keymap.set("n", "+t", "<c-w>T")
+vim.keymap.set("n", "+c", "<cmd>tabclose<cr>")
 vim.keymap.set("n", "+q", "<cmd>tabonly<cr>")
 
 -- Tags
