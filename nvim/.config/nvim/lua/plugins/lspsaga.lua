@@ -1,11 +1,21 @@
 return {
   "glepnir/lspsaga.nvim",
   event = "LspAttach",
-  -- commit = "4f07545", -- pre v0.3
   config = function()
     require("lspsaga").setup({
       beacon = {
         enable = false,
+      },
+      definition = {
+        width = 0.8,
+        height = 0.6,
+        keys = {
+          edit = "M",
+          vsplit = "<leader>v",
+          split = "<leader>h",
+          tabe = "<leader>t",
+          quit = "q",
+        },
       },
       diagnostic = {
         keys = {
