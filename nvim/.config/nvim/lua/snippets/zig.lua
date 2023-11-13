@@ -37,6 +37,7 @@ return {
       condition = conds.line_begin,
     }
   ),
+
   -- Functions
   s("f", d(1, zig_fn), {
     condition = conds.line_begin,
@@ -219,6 +220,30 @@ return {
         i(2),
       }
     ),
+    {
+      condition = conds.line_begin,
+    }
+  ),
+
+  -- Allocators
+  s(
+    "arena",
+    t({
+      "var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);",
+      "defer arena.deinit();",
+      "const allocator = arena.allocator();",
+    }),
+    {
+      condition = conds.line_begin,
+    }
+  ),
+  s(
+    "gpa",
+    t({
+      "var gpa = std.heap.GeneralPurposeAllocator(.{}){};",
+      "defer gpa.deinit();",
+      "const allocator = gpa.allocator();",
+    }),
     {
       condition = conds.line_begin,
     }
