@@ -56,7 +56,7 @@ vim.keymap.set("n", "<leader>q", "<cmd>%bdelete<cr>")
 vim.keymap.set("n", "<leader>Q", "<cmd>%bdelete|e#|bd#<cr>")
 
 vim.keymap.set("n", "<leader>e", ":e<space>")
-vim.keymap.set("n", "<leader>E", ":e<space><c-r>=fnameescape(expand('%:h')).'/'<cr>")
+vim.keymap.set("n", "<leader>E", ":e <c-r>=fnameescape(expand('%:h')).'/'<cr>")
 vim.keymap.set("n", "<leader>W", ":saveas <c-r>=fnameescape(expand('%:h')).'/'<cr>")
 
 -- Editing
@@ -202,7 +202,6 @@ vim.keymap.set("n", "<leader>u", "<nop>")
 
 -- Config files
 vim.keymap.set("n", "<leader>uf", "<cmd>EditFtplugin<cr>")
-vim.keymap.set("n", "<leader>uu", "<cmd>e! $MYVIMRC<cr>")
 
 -- Notes
 vim.keymap.set("n", "<leader>un", ":e! notes/index.md<cr>")
@@ -214,17 +213,6 @@ end, { desc = "Open daily note" })
 -- Project files
 vim.keymap.set("n", "<leader>uv", "<cmd>e! .env<cr>")
 vim.keymap.set("n", "<leader>uj", "<cmd>e! justfile<cr>")
-
--- nnoremap <silent> <leader>us :so $MYVIMRC<cr>:echo 'vimrc sourced'<cr>
---
--- nnoremap <silent> <leader>ua :e! $FDOTDIR/aliases.zsh<cr>
--- nnoremap <silent> <leader>uh :sp $MYVIMRC<cr>
--- nnoremap <silent> <leader>um :e! $DOTFILES/vim/.vimrc<cr>
--- nnoremap <silent> <leader>ur :e! .projections.json<cr>
--- nnoremap <silent> <leader>ut :e! $DOTFILES/tmux/.config/tmux/tmux.conf<cr>
--- nnoremap <silent> <leader>uv :vs $MYVIMRC<cr>
--- nnoremap <silent> <leader>uw :e! $FDOTDIR/local/work.fish<cr>
--- nnoremap <silent> <leader>uz :e! $FDOTDIR/config.fish<cr>
 
 ---- Toggle Settings
 vim.keymap.set("n", "yo,", ":set number! relativenumber! cursorline!<cr>")
@@ -288,8 +276,8 @@ vim.keymap.set("n", "&", [[:10R !tmux capture-pane -Jp -S- -t\! | rg '.'<left>]]
 })
 
 ---- Tmux quick switching
-vim.keymap.set("n", "++", "<cmd>Sessionist<cr>")
-vim.keymap.set("n", "+<space>", ":Sessionist<space>")
+-- vim.keymap.set("n", "++", "<cmd>Sessionist<cr>")
+-- vim.keymap.set("n", "+<space>", ":Sessionist<space>")
 vim.keymap.set("n", "+V", "<cmd>VimPlugin<cr>")
 
 ---- Toggle autoformat
