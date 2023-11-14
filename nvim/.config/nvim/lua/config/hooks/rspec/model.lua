@@ -36,21 +36,25 @@ local u = require("config.utils")
 ---@field failed_tests RSpecTest[] Failed tests
 ---@field private namespace number
 ---@field private notification_key string Fidget key
-local RSpec = {
-  threshold_in_seconds = 0.01,
-  failed_tests = {},
-  output = nil,
-  namespace = vim.api.nvim_create_namespace("rspec"),
-  notification_key = "rspec_job",
-}
+local RSpec = {}
 
 ---Create new RSpec instance for the current buffer
 ---@return RSpec
 function RSpec:new()
-  self.filename = vim.fn.expand("%")
-  self.file_bufnr = vim.api.nvim_get_current_buf()
+  local rspec = {
+    filename = vim.fn.expand("%"),
+    file_bufnr = vim.api.nvim_get_current_buf(),
+    threshold_in_seconds = 0.01,
+    output = nil,
+    failed_tests = {},
+    namespace = vim.api.nvim_create_namespace("rspec"),
+    notification_key = "rspec_job",
+  }
 
-  return self
+  setmetatable(rspec, self)
+  self.__index = self
+
+  return rspec
 end
 
 ---Determine RSpec command
