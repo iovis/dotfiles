@@ -36,7 +36,7 @@ local u = require("config.utils")
 ---@field filename string Filename of the test
 ---@field file_bufnr number Filename of the test
 ---@field time_threshold number Threshold to show spec time in virtual text
----@field output RSpecOutput? Output of `rspec` command
+---@field output? RSpecOutput Output of `rspec` command
 ---@field job_id? number ID of the current running job
 ---@field failed_tests Test[] Failed tests
 ---@field private namespace number
@@ -44,7 +44,7 @@ local u = require("config.utils")
 local RSpec = {
   time_threshold = 0.01, -- seconds
   failed_tests = {},
-  output = {},
+  output = nil,
   job_id = nil,
   namespace = vim.api.nvim_create_namespace("rspec"),
   popup = nil,
@@ -131,7 +131,11 @@ function RSpec:progress()
     self.popup = { spinner = 1 }
     self:update_popup()
   else
-    vim.notify("RSpec is running", vim.log.levels.INFO)
+    -- vim.notify("RSpec is running", vim.log.levels.INFO)
+    require("fidget").notify("Running...", vim.log.levels.INFO, {
+      annote = "RSpec",
+      key = "rspec_job",
+    })
   end
 end
 
@@ -159,7 +163,7 @@ end
 
 ---Close progress popup
 function RSpec:close()
-  local message = "RSpec done"
+  local message = "✔ Done"
 
   if self.output.summary then
     message = string.format("%s (%.2fs)", message, self.output.summary.duration)
@@ -177,7 +181,11 @@ function RSpec:close()
       hide_from_history = true,
     })
   else
-    vim.notify(message, vim.log.levels.INFO)
+    -- vim.notify(message, vim.log.levels.INFO)
+    require("fidget").notify(message, vim.log.levels.INFO, {
+      annote = "RSpec",
+      key = "rspec_job",
+    })
   end
 end
 
@@ -226,7 +234,7 @@ function RSpec:set_virtual_text()
 end
 
 local virtual_text_message = {
-  passed = { "[✓ pass]", "DiffAdded" },
+  passed = { "[✔ pass]", "DiffAdded" },
   failed = { "[✗ failed]", "DiagnosticVirtualTextError" },
   pending = { "[■ pending]", "DiagnosticVirtualTextWarn" },
 }
