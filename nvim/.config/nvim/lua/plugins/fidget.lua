@@ -25,6 +25,11 @@ return {
       notification = {
         configs = {
           default = fidget.notification.default_config,
+          dependencies = vim.tbl_extend("force", fidget.notification.default_config, {
+            name = "dependencies",
+            icon = fidget.progress.display.for_icon(fidget.spinner.animate("dots", 1), "✔"),
+            icon_style = "Title",
+          }),
           rspec = vim.tbl_extend("force", fidget.notification.default_config, {
             name = "RSpec",
             icon = fidget.progress.display.for_icon(fidget.spinner.animate("dots", 1), "✔"),
