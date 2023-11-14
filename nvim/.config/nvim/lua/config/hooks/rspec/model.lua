@@ -115,6 +115,7 @@ function RSpec:parse_failure()
     group = "rspec",
     key = self.notification_key,
     data = "✗", -- Force group to finish progress
+    ttl = 3,
   })
 end
 
@@ -135,6 +136,7 @@ function RSpec:progress_start()
     annote = vim.g.autotest,
     group = "rspec",
     key = self.notification_key,
+    ttl = math.huge,
   })
 end
 
@@ -158,6 +160,7 @@ function RSpec:progress_end()
     group = "rspec",
     key = self.notification_key,
     data = "✔", -- Force group to finish progress
+    ttl = 3,
   })
 end
 
