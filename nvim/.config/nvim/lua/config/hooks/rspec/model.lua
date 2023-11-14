@@ -1,7 +1,7 @@
 local u = require("config.utils")
 
 ---@class RSpecOutput
----@field examples Test[]
+---@field examples RSpecTest[]
 ---@field summary RSpecSummary
 ---@field summary_line string Summary of the run
 
@@ -12,7 +12,7 @@ local u = require("config.utils")
 ---@field pending_count number Number of pending tests
 ---@field errors_outside_of_examples_count number
 
----@class Test
+---@class RSpecTest
 ---@field id string ID of the test
 ---@field description string Description of the test
 ---@field full_description string Full description of the test
@@ -21,33 +21,27 @@ local u = require("config.utils")
 ---@field line_number number First line of the test
 ---@field run_time number
 ---@field pending_message? string
----@field exception Exception? Output of the failed test
+---@field exception? RSpecException Output of the failed test
 
----@class Exception
+---@class RSpecException
 ---@field message string
 ---@field class string
 ---@field backtrace string[]
 
----@class Popup
----@field spinner number
----@field notification? notify.Record From notify.nvim
-
 ---@class RSpec
 ---@field filename string Filename of the test
 ---@field file_bufnr number Filename of the test
----@field time_threshold number Threshold to show spec time in virtual text
+---@field threshold_in_seconds number Threshold to show spec time in virtual text
 ---@field output? RSpecOutput Output of `rspec` command
----@field job_id? number ID of the current running job
----@field failed_tests Test[] Failed tests
+---@field failed_tests RSpecTest[] Failed tests
 ---@field private namespace number
----@field private popup? Popup
+---@field private notification_key string Fidget key
 local RSpec = {
-  time_threshold = 0.01, -- seconds
+  threshold_in_seconds = 0.01,
   failed_tests = {},
   output = nil,
-  job_id = nil,
   namespace = vim.api.nvim_create_namespace("rspec"),
-  popup = nil,
+  notification_key = "rspec_job",
 }
 
 ---Create new RSpec instance for the current buffer
@@ -104,12 +98,20 @@ function RSpec:parse(data)
       self.output = json
       return true
     else
-      print("Line:", line)
-      print("Error:", json)
+      print("Unexpected output:", line)
     end
   end
 
   return false
+end
+
+function RSpec:parse_failure()
+  require("fidget").notify("Failed to parse output", vim.log.levels.ERROR, {
+    annote = "error",
+    group = "rspec",
+    key = self.notification_key,
+    data = "✗", -- Force group to finish progress
+  })
 end
 
 ---Clear virtual text and diagnostics
@@ -119,83 +121,49 @@ function RSpec:clear()
   vim.api.nvim_buf_clear_namespace(self.file_bufnr, self.namespace, 0, -1)
   vim.diagnostic.reset(self.namespace, self.file_bufnr)
 
-  pcall(vim.api.nvim_buf_del_user_command, self.file_bufnr, "RspecOutput")
+  pcall(vim.api.nvim_buf_del_user_command, self.file_bufnr, "RSpecOutput")
   pcall(vim.keymap.del, "n", "+R", { buffer = true })
 end
 
 ---Show progress popup
-function RSpec:progress()
-  local notify_present, _ = pcall(require, "notify")
-
-  if notify_present then
-    self.popup = { spinner = 1 }
-    self:update_popup()
-  else
-    -- vim.notify("RSpec is running", vim.log.levels.INFO)
-    require("fidget").notify("Running...", vim.log.levels.INFO, {
-      annote = "RSpec",
-      key = "rspec_job",
-    })
-  end
-end
-
-local spinner_frames = { "⣷", "⣯", "⣟", "⡿", "⢿", "⣻", "⣽", "⣾" }
-
----Popup animation
----@private
-function RSpec:update_popup()
-  if not self.popup then
-    return
-  end
-
-  self.popup.spinner = (self.popup.spinner + 1) % #spinner_frames
-
-  self.popup.notification = require("notify").notify("RSpec is running", vim.log.levels.INFO, {
-    icon = spinner_frames[self.popup.spinner],
-    replace = self.popup.notification,
-    hide_from_history = true,
+function RSpec:progress_start()
+  require("fidget").notify("In progress...", vim.log.levels.WARN, {
+    annote = vim.g.autotest,
+    group = "rspec",
+    key = self.notification_key,
   })
-
-  -- stylua: ignore
-  ---@diagnostic disable-next-line: param-type-mismatch
-  vim.defer_fn(function() self:update_popup() end, 80)
 end
 
 ---Close progress popup
-function RSpec:close()
-  local message = "✔ Done"
+function RSpec:progress_end()
+  local message = "Completed"
+  local annote = vim.g.autotest
+  local log_level = vim.log.levels.INFO
 
   if self.output.summary then
     message = string.format("%s (%.2fs)", message, self.output.summary.duration)
   end
 
-  local notification = self.popup and self.popup.notification
-
-  self.job_id = nil
-  self.popup = nil
-
-  if notification then
-    require("notify").notify(message, vim.log.levels.INFO, {
-      icon = "",
-      replace = notification,
-      hide_from_history = true,
-    })
-  else
-    -- vim.notify(message, vim.log.levels.INFO)
-    require("fidget").notify(message, vim.log.levels.INFO, {
-      annote = "RSpec",
-      key = "rspec_job",
-    })
+  if #self.failed_tests > 0 then
+    log_level = vim.log.levels.ERROR
+    annote = ("%d failed tests"):format(#self.failed_tests)
   end
+
+  require("fidget").notify(message, log_level, {
+    annote = annote,
+    group = "rspec",
+    key = self.notification_key,
+    data = "✔", -- Force group to finish progress
+  })
 end
 
 ---Create buffer local command to show RSpec output
 -- TODO: Handle multiple tests in the same line (use ID?)
 -- TODO: Add timings?
 function RSpec:create_buf_command()
-  vim.keymap.set("n", "+R", ":RspecOutput<cr>", { buffer = true, silent = true })
+  vim.keymap.set("n", "+R", ":RSpecOutput<cr>", { buffer = true, silent = true })
 
-  vim.api.nvim_buf_create_user_command(self.file_bufnr, "RspecOutput", function()
+  vim.api.nvim_buf_create_user_command(self.file_bufnr, "RSpecOutput", function()
     local line_number = vim.fn.line(".")
 
     local test = self:find_failed_test_for(line_number)
@@ -241,7 +209,7 @@ local virtual_text_message = {
 
 ---Sets the virtual text for the provided test
 ---@private
----@param test Test
+---@param test RSpecTest
 function RSpec:set_virtual_text_line_for(test)
   vim.api.nvim_buf_set_extmark(self.file_bufnr, self.namespace, test.line_number - 1, 0, {
     hl_mode = "combine",
@@ -267,7 +235,7 @@ end
 
 ---Format a test for diagnostics
 ---@private
----@param test Test
+---@param test RSpecTest
 ---@return table diagnostics
 function RSpec:format_test_for_diagnostic(test)
   local message
@@ -294,12 +262,12 @@ end
 
 ---Format runtime of test
 ---@private
----@param test Test
+---@param test RSpecTest
 ---@return string Runtime description if it goes above threshold
 function RSpec:format_runtime_for(test)
   local run_time = ""
 
-  if test.run_time > self.time_threshold then
+  if test.run_time > self.threshold_in_seconds then
     run_time = string.format(" (%.2fs)", test.run_time)
   end
 
@@ -309,7 +277,7 @@ end
 ---Find failed test for current line
 ---@private
 ---@param line_number number
----@return Test|nil
+---@return RSpecTest?
 function RSpec:find_failed_test_for(line_number)
   for _, test in ipairs(self.failed_tests) do
     if test.line_number == line_number then

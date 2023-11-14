@@ -1,29 +1,26 @@
 local M = {}
 
 local RSpec = require("config.hooks.rspec.model")
+local job = { id = nil }
 
 ---Run RSpec for given path
 function M.run()
   local rspec = RSpec:new()
-
   rspec:clear()
 
-  if not vim.g.autotest or rspec.job_id then
+  if not vim.g.autotest or job.id then
     return
   end
 
-  rspec:progress()
+  rspec:progress_start()
 
-  local command = rspec:command(vim.g.autotest)
-
-  -- Run RSpec
-  rspec.job_id = vim.fn.jobstart(command, {
+  job.id = vim.fn.jobstart(rspec:command(vim.g.autotest), {
     stdout_buffered = true,
     on_stdout = function(_, data)
-      if not rspec:parse(data) then
-        rspec:close()
+      job.id = nil
 
-        vim.notify("Error parsing the RSpec output (not a valid JSON)", vim.log.levels.ERROR)
+      if not rspec:parse(data) then
+        rspec:parse_failure()
         print(table.concat(data, "\n"))
 
         return
@@ -32,8 +29,7 @@ function M.run()
       rspec:set_virtual_text()
       rspec:set_diagnostics()
       rspec:create_buf_command()
-
-      rspec:close()
+      rspec:progress_end()
     end,
   })
 end
