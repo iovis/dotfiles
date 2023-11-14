@@ -46,7 +46,7 @@ return {
   -- Functions
   s(
     {
-      trig = "fn",
+      trig = "f",
       dscr = "function",
     },
     d(1, rust_fn),
@@ -56,7 +56,7 @@ return {
   ),
   s(
     {
-      trig = "pfn",
+      trig = "pf",
       dscr = "pub function",
     },
     fmt("pub {}", { d(1, rust_fn) }),
@@ -66,7 +66,7 @@ return {
   ),
   s(
     {
-      trig = "afn",
+      trig = "af",
       dscr = "async function",
     },
     fmt("async {}", { d(1, rust_fn) }),
@@ -76,7 +76,7 @@ return {
   ),
   s(
     {
-      trig = "pafn",
+      trig = "paf",
       dscr = "pub async function",
     },
     fmt("pub async {}", { d(1, rust_fn) }),
