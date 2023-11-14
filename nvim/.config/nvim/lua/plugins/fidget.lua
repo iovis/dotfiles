@@ -2,6 +2,8 @@ return {
   "j-hui/fidget.nvim",
   event = "VeryLazy",
   config = function()
+    local fidget = require("fidget")
+
     ---@param msg ProgressMessage
     ---@return string?
     local lsp_format_message = function(msg)
@@ -10,20 +12,9 @@ return {
         return nil
       end
 
-      local message = msg.message
-
-      if not message then
-        message = msg.done and "Completed" or "In progress..."
-      end
-
-      if msg.percentage ~= nil then
-        message = string.format("%s (%.0f%%)", message, msg.percentage)
-      end
-
-      return message
+      return fidget.progress.display.default_format_message(msg)
     end
 
-    local fidget = require("fidget")
     fidget.setup({
       progress = { -- LSP
         ignore = { "null-ls" },
