@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+current_path=$(tmux display -p '#{pane_current_path}')
+new_session_name=$(basename "$current_path" | tr '.' '_')
+
+tmux rename-session "$new_session_name"
