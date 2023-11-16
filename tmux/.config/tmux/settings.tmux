@@ -8,7 +8,7 @@ set -g mouse on
 set -g set-clipboard on
 set -g status-keys emacs
 set -g visual-activity off
-set -g remain-on-exit failed
+set -g remain-on-exit off # failed
 
 set -wg mode-keys vi
 set -wg monitor-activity on
