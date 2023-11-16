@@ -22,9 +22,9 @@ bind -N "Set session path to current pane's" b {
 }
 
 bind -N "Set session name and path to current pane's" 4 {
-  run tmux_set_session_name
   attach -c "#{pane_current_path}"
   display "changed path to #{pane_current_path}"
+  run tmux_set_session_name
 }
 
 bind -N "Toggle synchronize panes" S {
