@@ -5,14 +5,14 @@ bind -N "Open lazygit" -T command g {
 }
 
 bind -N "Open htop" -T command h {
-  new-window -S -n htop htop
+  new-window -Sn htop htop
 }
 
 bind -N "Open nvim" -T command n {
   if "test -f Session.vim" {
-    new-window -S -n nvim nvim -S Session.vim
+    new-window -Sn nvim nvim -S Session.vim
   } {
-    new-window -S -n nvim nvim
+    new-window -Sn nvim nvim
   }
 }
 
@@ -29,17 +29,9 @@ bind -N "Tmux customization mode" -T command z {
 }
 
 ## Justfile
-bind -N "Open just" -T command j {
-  if "test -f justfile" {
-    new-window -n just -d just --choose --chooser "fzf-tmux -p80\%,80\% --prompt 'just> ' --reverse --info inline --preview 'just --show {}' --preview-window 'down' && tmux select-window -t ':=just'"
-  } {
-    display "No justfile!"
-  }
-}
-
 bind -N "Run just dev" -T command s {
   if "test -f justfile" {
-    new-window -Sd -n dev just dev
+    new-window -Sn dev just dev
   } {
     display "No justfile!"
   }
@@ -47,7 +39,7 @@ bind -N "Run just dev" -T command s {
 
 bind -N "Run just console" -T command c {
   if "test -f justfile" {
-    new-window -S -n console just console
+    new-window -Sn console just console
   } {
     display "No justfile!"
   }
@@ -55,7 +47,7 @@ bind -N "Run just console" -T command c {
 
 bind -N "Run just db" -T command d {
   if "test -f justfile" {
-    new-window -S -n db just db
+    new-window -Sn db just db
   } {
     display "No justfile!"
   }
@@ -63,7 +55,7 @@ bind -N "Run just db" -T command d {
 
 bind -N "Run just open" -T command o {
   if "test -f justfile" {
-    new-window -S -n open -d just open
+    new-window -Sd just open
   } {
     display "No justfile!"
   }

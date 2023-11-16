@@ -262,14 +262,6 @@ vim.keymap.set({ "n", "x" }, "+L", function()
   return ':luado return table.concat(vim.split(line, "", { trimempty = true }), "")' .. ("<left>"):rep(29)
 end, { expr = true })
 
----- Just
-vim.keymap.set(
-  "n",
-  "S",
-  [[<cmd>Tux just --choose --chooser "fzf-tmux -p80\%,80\% --prompt 'just> ' --reverse --info inline --preview 'just --show {}' --preview-window 'down'"<cr>]],
-  { desc = "Run a task from the Justfile" }
-)
-
 ---- Tmux capture
 vim.keymap.set("n", "&", [[:10R !tmux capture-pane -Jp -S- -t\! | rg '.'<left>]], {
   desc = "Capture and filter tmux last pane's contents",

@@ -17,7 +17,12 @@ return {
   init = function()
     local u = require("config.utils")
 
-    -- Docker
+    ----Just
+    vim.keymap.set("n", "S", "<cmd>Tux jf<cr>", { desc = "Run a task from the Justfile" })
+    vim.keymap.set("n", "s<cr>", "<cmd>Tux just run<cr>", { desc = "just run" })
+    vim.keymap.set("n", "m<cr>", "<cmd>Tux just build<cr>", { desc = "just build" })
+
+    ----Docker
     u.command("Dcps", "TuxBg dcps")
     u.command("Dcstop", "TuxBg! dcstop")
     u.command("Dcup", "TuxBg! dcup")

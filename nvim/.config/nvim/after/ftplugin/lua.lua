@@ -2,24 +2,18 @@
 ----plenary.nvim test harness: https://github.com/nvim-lua/plenary.nvim/blob/master/TESTS_README.md
 
 ----Bindings
+vim.keymap.set("n", "<leader>so", ":source<cr>", { buffer = true, desc = "Source file" })
+vim.keymap.set("x", "<leader>so", ":source<cr>", { buffer = true, desc = "Evaluate lua range" })
+
+vim.keymap.set("n", "s<cr>", ":R! source<cr>", { buffer = true })
+vim.keymap.set("x", "<leader>sp", ":<c-u>R! '<,'>source<cr>", { buffer = true })
+
 if vim.fn.expand("%"):match("_spec.lua") then
   vim.keymap.set("n", "<leader>so", "<cmd>Tux nvimtest %<cr>", { buffer = true, desc = "Run test" })
   vim.keymap.set("n", "s<cr>", "<cmd>Tux nvimtest %<cr>", { buffer = true, desc = "Run test" })
   vim.keymap.set("n", "<leader>sa", "<cmd>Tux nvimtest<cr>", { buffer = true, desc = "Run test suite" })
-else
-  vim.keymap.set("n", "<leader>so", function()
-    vim.cmd.source("%")
-    -- print("File sourced")
-  end, { buffer = true, desc = "Source file" })
-
-  vim.keymap.set("x", "<leader>so", ":source<cr>", { buffer = true, desc = "Evaluate lua range" })
-
-  vim.keymap.set("n", "s<cr>", ":R! source<cr>", { buffer = true })
-  vim.keymap.set("x", "<leader>sp", ":<c-u>R! '<,'>source<cr>", { buffer = true })
-end
-
-----Re-source `config()` for the current plugin
-if vim.fn.expand("%"):match("plugins/") then
+elseif vim.fn.expand("%"):match("plugins/") then
+  ----Re-source `config()` for the current plugin
   vim.keymap.set("n", "<leader>sr", function()
     -- Get the name of the current buffer's file
     local plugin = "plugins." .. vim.fn.expand("%:t:r")

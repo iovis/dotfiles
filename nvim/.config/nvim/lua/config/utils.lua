@@ -86,6 +86,12 @@ M.is_file = function(path)
   return vim.fn.filereadable(vim.fn.expand(path)) == 1 or false
 end
 
+---Check if there's a justfile
+---@return boolean
+M.has_justfile = function()
+  return M.is_file("justfile")
+end
+
 ---Run system command
 ---TODO: Remove in v0.10 `vim.system(cmd, opts):wait()`
 ---@param cmd string
@@ -174,7 +180,7 @@ M.pascal_case = function(str)
   return new_str
 end
 
----Is there only one listed buffer
+---Escape Lua pattern
 ---
 ---@param str string
 ---@return string

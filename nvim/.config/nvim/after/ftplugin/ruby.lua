@@ -1,6 +1,7 @@
 vim.cmd.compiler("ruby")
 
-vim.keymap.set("n", "m<cr>", ":!ctags<cr>", { buffer = true, silent = true })
+vim.keymap.set("n", "s<cr>", "<cmd>Tux ruby %<cr>", { buffer = true })
+vim.keymap.set("n", "m<cr>", ":SolargraphRebuild!<cr>", { buffer = true })
 
 ---- Runnables
 if vim.fn.expand("%"):match("_spec.rb") then
@@ -25,8 +26,6 @@ elseif vim.fn.expand("%"):match("Gemfile") then
   })
 elseif vim.fn.expand("%"):match("bin/console") then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux bin/console<cr>", { buffer = true })
-else
-  vim.keymap.set("n", "s<cr>", "<cmd>Tux ruby %<cr>", { buffer = true })
 end
 
 ---- Quick Testing
