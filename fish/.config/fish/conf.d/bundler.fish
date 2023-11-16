@@ -1,30 +1,15 @@
 set -l execs annotate \
     cap \
-    capify \
     cucumber \
-    dashing \
     guard \
-    kitchen \
-    middleman \
-    nanoc \
     puma \
     rackup \
     rails \
-    rainbows \
     rake \
     rspec \
     rubocop \
-    ruby \
-    shotgun \
     sidekiq \
-    spec \
-    spinach \
-    spork \
-    spring \
-    thin \
-    thor \
-    unicorn \
-    unicorn_rails
+    spring
 
 if set -q bundler_plugin_execs
     set execs $execs $bundler_plugin_execs
