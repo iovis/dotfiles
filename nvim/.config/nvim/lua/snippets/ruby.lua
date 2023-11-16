@@ -32,6 +32,23 @@ end
 
 return {
   s(
+    "case",
+    fmt(
+      [[
+        case {}
+        when {}
+          {}
+        end
+      ]],
+      {
+        i(1, "object"),
+        i(2, "condition"),
+        i(3, "# body"),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
     "class",
     fmt(
       [[
@@ -102,39 +119,157 @@ return {
     )
   ),
   parse("arg", "argument :${1:name}"),
-  -- Rubocop
+  -- RSpec
   s(
-    "rubocopdisable",
+    "desc",
     fmt(
       [[
-        # rubocop: disable {}
-        # rubocop: enable {}
+        describe '{}' do
+          {}
+        end
       ]],
       {
         i(1),
-        rep(1),
+        i(0),
       }
     ),
     { condition = conds.line_begin }
   ),
-  -- Sorbet
-  s("esig", t("extend T::Sig")),
-  parse("sig", "sig { $1 }"),
-  parse("sigv", "sig { void }"),
-  parse("sigb", "sig { returns(T::Boolean) }"),
   s(
-    "sigd",
+    "cont",
     fmt(
       [[
-        sig do
+        context '{}' do
           {}
         end
       ]],
-      { i(1) }
-    )
+      {
+        i(1),
+        i(0),
+      }
+    ),
+    { condition = conds.line_begin }
   ),
-  parse("ts", "# typed: strict"),
-  parse("tt", "# typed: true"),
+  s(
+    "it",
+    fmt(
+      [[
+        it '{}' do
+          {}
+        end
+      ]],
+      {
+        i(1),
+        i(0),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "bef",
+    fmt(
+      [[
+        before {}{space}{}
+      ]],
+      {
+        i(1),
+        space = n(1, " "),
+        c(2, {
+          sn(
+            nil,
+            fmt(
+              [[
+                do
+                  {}
+                end
+              ]],
+              { r(1, "block", i(1)) }
+            )
+          ),
+          sn(nil, fmta("{ <> }", { r(1, "block", i(1)) })),
+        }),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "aft",
+    fmt(
+      [[
+        after {}{space}{}
+      ]],
+      {
+        i(1),
+        space = n(1, " "),
+        c(2, {
+          sn(
+            nil,
+            fmt(
+              [[
+                do
+                  {}
+                end
+              ]],
+              { r(1, "block", i(1)) }
+            )
+          ),
+          sn(nil, fmta("{ <> }", { r(1, "block", i(1)) })),
+        }),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "let", -- TODO: let!
+    fmt(
+      [[
+        let(:{}) {}
+      ]],
+      {
+        i(1, "object"),
+        c(2, {
+          sn(nil, fmta("{ <> }", { r(1, "block", i(1)) })),
+          sn(
+            nil,
+            fmt(
+              [[
+                do
+                  {}
+                end
+              ]],
+              { r(1, "block", i(1)) }
+            )
+          ),
+        }),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "subj",
+    fmt(
+      [[
+        subject {}
+      ]],
+      {
+        c(2, {
+          sn(nil, fmta("{ <> }", { r(1, "block", i(1)) })),
+          sn(
+            nil,
+            fmt(
+              [[
+                do
+                  {}
+                end
+              ]],
+              { r(1, "block", i(1)) }
+            )
+          ),
+        }),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
   -- Yard
   parse("ret", "# @return [${1:type}] ${0:Description}"),
   parse("param", "# @param ${1:name} [${2:type}] ${0:Description}"),
@@ -149,6 +284,51 @@ return {
         i(1, "attr_name"),
         i(2, "ret_type"),
         i(0, "Description"),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  -- Misc
+  s("#!", t("#!/usr/bin/env ruby"), {
+    condition = conds.line_begin,
+  }),
+  s("r", fmt("attr_reader :{}", { i(0, "attr_name") }), {
+    condition = conds.line_begin,
+  }),
+  s("w", fmt("attr_writer :{}", { i(0, "attr_name") }), {
+    condition = conds.line_begin,
+  }),
+  s("rw", fmt("attr_accessor :{}", { i(0, "attr_name") }), {
+    condition = conds.line_begin,
+  }),
+  s("pry", t("require 'pry'; binding.pry"), {
+    condition = conds.line_begin,
+  }),
+  s("b", fmta("{ |<>| <> }", { i(1, "arg"), i(2) })),
+  s(
+    "do",
+    fmt(
+      [[
+        do |{}|
+          {}
+        end
+      ]],
+      {
+        i(1, "arg"),
+        i(2, "# body"),
+      }
+    )
+  ),
+  s(
+    "rubocopdisable",
+    fmt(
+      [[
+        # rubocop: disable {}
+        # rubocop: enable {}
+      ]],
+      {
+        i(1),
+        rep(1),
       }
     ),
     { condition = conds.line_begin }
