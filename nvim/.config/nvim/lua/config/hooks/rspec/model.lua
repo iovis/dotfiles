@@ -165,34 +165,52 @@ function RSpec:progress_end()
 end
 
 ---Create buffer local command to show RSpec output
--- TODO: Handle multiple tests in the same line (use ID?)
--- TODO: Add timings?
 function RSpec:create_buf_command()
+  -- Mapping
   vim.keymap.set("n", "+R", ":RSpecOutput<cr>", { buffer = true, silent = true })
 
+  -- User command
   vim.api.nvim_buf_create_user_command(self.file_bufnr, "RSpecOutput", function()
     local line_number = vim.fn.line(".")
 
-    local test = self:find_failed_test_for(line_number)
+    local tests = self:failed_tests_for(line_number)
 
-    if not test then
+    if vim.tbl_isempty(tests) then
       vim.notify("No RSpec output for this line", vim.log.levels.ERROR)
       return
     end
 
+    -- Prepare window
     vim.cmd("10new")
 
     vim.bo.bufhidden = "wipe"
     vim.bo.buflisted = false
     vim.bo.buftype = "nofile"
-    vim.bo.filetype = "diff"
+    vim.bo.filetype = "ruby"
 
-    local lines = vim.tbl_flatten({
-      test.full_description,
-      "",
-      vim.fn.split(test.exception.message, "\n"),
-    })
+    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = true, silent = true })
 
+    -- Prepare body
+    local lines = {}
+    for _, test in ipairs(tests) do
+      table.insert(
+        lines,
+        vim.tbl_flatten({
+          ("╭─ rspec %s"):format(test.id),
+          ("╰─ (%.3fs)"):format(test.run_time),
+          test.full_description,
+          "",
+          vim.fn.split(test.exception.message, "\n"),
+          "",
+        })
+      )
+    end
+
+    -- Remove last separator
+    lines = vim.tbl_flatten(lines)
+    table.remove(lines)
+
+    -- Write body to buffer
     vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
   end, {})
 end
@@ -281,16 +299,20 @@ function RSpec:format_runtime_for(test)
   return run_time
 end
 
----Find failed test for current line
+---Find failed tests for the current line
 ---@private
 ---@param line_number number
----@return RSpecTest?
-function RSpec:find_failed_test_for(line_number)
+---@return RSpecTest[]
+function RSpec:failed_tests_for(line_number)
+  local tests = {}
+
   for _, test in ipairs(self.failed_tests) do
     if test.line_number == line_number then
-      return test
+      table.insert(tests, test)
     end
   end
+
+  return tests
 end
 
 return RSpec

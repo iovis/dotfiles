@@ -9,7 +9,10 @@ return {
   s("c", t('local c = require("catppuccin.palettes").get_palette()'), {
     condition = conds.line_begin,
   }),
-  -- Lua snippets
+  -- Lua
+  s("styluaignore", t("-- stylua: ignore"), {
+    condition = conds.line_begin,
+  }),
   s("as", fmt("--[[@as {}]]", { i(1, "<type>") })), -- TODO: Do alternate for `--[=[@as string[]]=]`
   s("pr", fmt("print({})", { i(1) }), {
     condition = conds.line_begin,
