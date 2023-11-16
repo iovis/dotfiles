@@ -1,6 +1,8 @@
 local M = {}
 
+local u = require("config.utils")
 local RSpec = require("config.hooks.rspec.model")
+
 local job = { id = nil }
 
 ---Run RSpec for given path
@@ -8,7 +10,7 @@ function M.run()
   local rspec = RSpec:new()
   rspec:clear()
 
-  if not vim.g.autotest or job.id then
+  if u.is_empty(vim.g.autotest) or job.id then
     return
   end
 
