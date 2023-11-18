@@ -179,6 +179,10 @@ M.on_attach = function(client, bufnr)
     buf_nmap("<leader>lo", "<cmd>Lspsaga outline<cr>")
   end
 
+  if client.server_capabilities.documentSymbolProvider and client.name ~= "solargraph" then
+    require("nvim-navic").attach(client, bufnr)
+  end
+
   ---- Codelens
   -- local status_ok, codelens_supported = pcall(function()
   --   return client.supports_method("textDocument/codeLens")
