@@ -28,7 +28,7 @@ return {
       "lua_ls",
       "marksman",
       "pyright",
-      -- "ruby_ls",
+      "ruby_ls",
       "rubocop",
       "rust_analyzer",
       "solargraph",
@@ -108,6 +108,31 @@ return {
       -- dap = {
       --   adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
       -- },
+    })
+
+    ----fuzzy ruby server
+    local configs = require("lspconfig.configs")
+
+    if not configs.fuzzy_ls then
+      configs.fuzzy_ls = {
+        default_config = {
+          cmd = { "fuzzy" },
+          filetypes = { "ruby" },
+          root_dir = function(fname)
+            return lspconfig.util.find_git_ancestor(fname)
+          end,
+          settings = {},
+          init_options = {
+            allocationType = "ram",
+            indexGems = true,
+            reportDiagnostics = false,
+          },
+        },
+      }
+    end
+
+    lspconfig.fuzzy_ls.setup({
+      on_attach = config.on_attach,
     })
   end,
 }
