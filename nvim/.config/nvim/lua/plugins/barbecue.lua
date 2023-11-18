@@ -1,3 +1,4 @@
+-- TODO: Try dropbar.nvim on v0.10
 return {
   "utilyre/barbecue.nvim",
   -- enabled = false,
@@ -23,6 +24,6 @@ return {
 
     -- require("barbecue.ui").toggle(false)
 
-    vim.keymap.set("n", "+B", require("barbecue.ui").toggle, { desc = "Toggle barbecue" })
+    vim.keymap.set("n", "yoB", require("barbecue.ui").toggle, { desc = "Toggle barbecue" })
   end,
 }
