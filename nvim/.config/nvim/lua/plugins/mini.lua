@@ -16,6 +16,7 @@ return {
   config = function()
     --- mini.ai (text objects)
     local ai = require("mini.ai")
+    local gen_ai_spec = require("mini.extra").gen_ai_spec
     ai.setup({
       search_method = "cover_or_nearest",
       custom_textobjects = {
@@ -28,29 +29,10 @@ return {
 
         -- alias 'r' to []
         r = { "%b[]", "^.().*().$" },
-        -- Number
-        n = { "%f[%d]%d+" },
-        -- Line
-        l = { "^()%s*().*()().$" },
-        -- Entire buffer
-        e = function(ai_type)
-          local n_lines = vim.fn.line("$")
-          local start_line, end_line = 1, n_lines
-
-          if ai_type == "i" then
-            -- Skip first and last blank lines for `i` textobject
-            local first_nonblank, last_nonblank = vim.fn.nextnonblank(1), vim.fn.prevnonblank(n_lines)
-            start_line = first_nonblank == 0 and 1 or first_nonblank
-            end_line = last_nonblank == 0 and n_lines or last_nonblank
-          end
-
-          local to_col = math.max(vim.fn.getline(end_line):len(), 1)
-
-          return {
-            from = { line = start_line, col = 1 },
-            to = { line = end_line, col = to_col },
-          }
-        end,
+        n = gen_ai_spec.number(),
+        l = gen_ai_spec.line(),
+        -- i = gen_ai_spec.indent(),
+        e = gen_ai_spec.buffer(),
       },
       mappings = {
         -- Next/last textobjects
