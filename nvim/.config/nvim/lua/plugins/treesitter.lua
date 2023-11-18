@@ -108,5 +108,6 @@ return {
     require("treesitter-context").setup({})
 
     vim.keymap.set("n", "+H", "<cmd>TSHighlightCapturesUnderCursor<cr>")
+    vim.keymap.set("n", "yox", "<cmd>TSContextToggle<cr>")
   end,
 }
