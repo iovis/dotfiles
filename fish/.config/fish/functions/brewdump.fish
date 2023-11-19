@@ -1,5 +1,3 @@
-function brewdump --wraps='cd; brew bundle dump --brews --casks --taps --force; cd -' --description 'alias brewdump=cd; brew bundle dump --brews --casks --taps --force; cd -'
-    cd
-    brew bundle dump --brews --casks --taps --force
-    cd - $argv
+function brewdump
+    brew bundle dump --brews --casks --taps --force --file "$HOME/Brewfile"
 end
