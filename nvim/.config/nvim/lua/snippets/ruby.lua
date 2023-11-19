@@ -1,5 +1,10 @@
 local u = require("config.utils")
 
+-- https://github.com/L3MON4D3/LuaSnip/issues/944
+local function visual_selection(_, parent)
+  return parent.snippet.env.LS_SELECT_DEDENT or {}
+end
+
 local extract_name_from = function(path)
   path = vim.split(path, "/", { trimempty = true })
 
@@ -103,20 +108,15 @@ return {
   ),
   s(
     "dep",
-    fmt(
-      [[
-        dependency{}
-      ]],
-      {
-        c(1, {
-          {
-            t(" :"),
-            i(1, "service_name"),
-          },
-          fmta("(:<>) { <> }", { i(1, "name"), i(2, "ServiceName") }),
-        }),
-      }
-    )
+    fmt("dependency{}", {
+      c(1, {
+        {
+          t(" :"),
+          i(1, "service_name"),
+        },
+        fmta("(:<>) { <> }", { i(1, "name"), i(2, "ServiceName") }),
+      }),
+    })
   ),
   parse("arg", "argument :${1:name}"),
   -- RSpec
@@ -152,122 +152,110 @@ return {
   ),
   s(
     "it",
-    fmt(
-      [[
-        it '{}' do
-          {}
-        end
-      ]],
-      {
-        i(1),
-        i(0),
-      }
-    ),
+    fmt("it {}", {
+      c(1, {
+        sn(
+          nil,
+          fmt(
+            [[
+              '{}' do
+                {}
+              end
+            ]],
+            { i(1), r(2, "block", i(1)) }
+          )
+        ),
+        sn(nil, fmta("{ <> }", { r(1, "block", i(1)) })),
+      }),
+    }),
     { condition = conds.line_begin }
   ),
   s(
     "bef",
-    fmt(
-      [[
-        before {}{space}{}
-      ]],
-      {
-        i(1),
-        space = n(1, " "),
-        c(2, {
-          sn(
-            nil,
-            fmt(
-              [[
-                do
-                  {}
-                end
-              ]],
-              { r(1, "block", i(1)) }
-            )
-          ),
-          sn(nil, fmta("{ <> }", { r(1, "block", i(1)) })),
-        }),
-      }
-    ),
+    fmt("before {}{space}{}", {
+      i(1),
+      space = n(1, " "),
+      c(2, {
+        sn(
+          nil,
+          fmt(
+            [[
+              do
+                {}
+              end
+            ]],
+            { r(1, "block", i(1)) }
+          )
+        ),
+        sn(nil, fmta("{ <> }", { r(1, "block", i(1)) })),
+      }),
+    }),
     { condition = conds.line_begin }
   ),
   s(
     "aft",
-    fmt(
-      [[
-        after {}{space}{}
-      ]],
-      {
-        i(1),
-        space = n(1, " "),
-        c(2, {
-          sn(
-            nil,
-            fmt(
-              [[
-                do
-                  {}
-                end
-              ]],
-              { r(1, "block", i(1)) }
-            )
-          ),
-          sn(nil, fmta("{ <> }", { r(1, "block", i(1)) })),
-        }),
-      }
-    ),
+    fmt("after {}{space}{}", {
+      i(1),
+      space = n(1, " "),
+      c(2, {
+        sn(
+          nil,
+          fmt(
+            [[
+              do
+                {}
+              end
+            ]],
+            { r(1, "block", i(1)) }
+          )
+        ),
+        sn(nil, fmta("{ <> }", { r(1, "block", i(1)) })),
+      }),
+    }),
     { condition = conds.line_begin }
   ),
   s(
-    "let", -- TODO: let!
-    fmt(
-      [[
-        let(:{}) {}
-      ]],
-      {
-        i(1, "object"),
-        c(2, {
-          sn(nil, fmta("{ <> }", { r(1, "block", i(1)) })),
-          sn(
-            nil,
-            fmt(
-              [[
-                do
-                  {}
-                end
-              ]],
-              { r(1, "block", i(1)) }
-            )
-          ),
-        }),
-      }
-    ),
+    "let",
+    fmt("let{} {}", {
+      c(1, {
+        sn(nil, fmt("(:{})", { r(1, "name", i(1)) })),
+        sn(nil, fmt("!(:{})", { r(1, "name", i(1)) })),
+      }),
+      c(2, {
+        sn(nil, fmta("{ <> }", { r(1, "block", i(1)) })),
+        sn(
+          nil,
+          fmt(
+            [[
+              do
+                {}
+              end
+            ]],
+            { r(1, "block", i(1)) }
+          )
+        ),
+      }),
+    }),
     { condition = conds.line_begin }
   ),
   s(
     "subj",
-    fmt(
-      [[
-        subject {}
-      ]],
-      {
-        c(2, {
-          sn(nil, fmta("{ <> }", { r(1, "block", i(1)) })),
-          sn(
-            nil,
-            fmt(
-              [[
-                do
-                  {}
-                end
-              ]],
-              { r(1, "block", i(1)) }
-            )
-          ),
-        }),
-      }
-    ),
+    fmt("subject {}", {
+      c(2, {
+        sn(nil, fmta("{ <> }", { r(1, "block", i(1)) })),
+        sn(
+          nil,
+          fmt(
+            [[
+              do
+                {}
+              end
+            ]],
+            { r(1, "block", i(1)) }
+          )
+        ),
+      }),
+    }),
     { condition = conds.line_begin }
   ),
   -- Yard
@@ -304,18 +292,19 @@ return {
   s("pry", t("require 'pry'; binding.pry"), {
     condition = conds.line_begin,
   }),
-  s("b", fmta("{ |<>| <> }", { i(1, "arg"), i(2) })),
+  s("b", fmta("{ |<>| <> }", { i(1, "args"), i(2) })),
   s(
     "do",
     fmt(
       [[
-        do |{}|
+        do {pipe}{}{pipe}
           {}
         end
       ]],
       {
-        i(1, "arg"),
+        i(1, "args"),
         i(2, "# body"),
+        pipe = n(1, "|"),
       }
     )
   ),
@@ -324,10 +313,12 @@ return {
     fmt(
       [[
         # rubocop: disable {}
+        {block}
         # rubocop: enable {}
       ]],
       {
         i(1),
+        block = f(visual_selection),
         rep(1),
       }
     ),

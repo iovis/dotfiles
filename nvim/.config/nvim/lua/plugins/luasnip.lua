@@ -19,7 +19,7 @@ return {
       ft_func = ft_functions.from_pos_or_filetype,
       history = false,
       region_check_events = "InsertEnter,CursorMoved",
-      store_selection_keys = "<c-k>", -- Mapping to visually select text to be expanded with $TM_SELECTED_TEXT
+      store_selection_keys = "<c-j>", -- Mapping to visually select text to be expanded with $TM_SELECTED_TEXT
       updateevents = "TextChanged,TextChangedI",
     })
 
