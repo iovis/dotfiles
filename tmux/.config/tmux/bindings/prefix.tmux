@@ -1,6 +1,7 @@
 unbind C-b
 set -g prefix C-Space
 unbind Space
+unbind z  # Unbind zoom
 
 # Pass-through
 bind C-l send 'C-l'
