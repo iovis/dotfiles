@@ -31,7 +31,7 @@ return {
         r = { "%b[]", "^.().*().$" },
         n = gen_ai_spec.number(),
         l = gen_ai_spec.line(),
-        -- i = gen_ai_spec.indent(),
+        i = gen_ai_spec.indent(),
         e = gen_ai_spec.buffer(),
       },
       mappings = {
@@ -60,40 +60,40 @@ return {
     end, { desc = "Bdelete!" })
 
     ---- mini.indent (indentation guides and textobjects)
-    local indent = require("mini.indentscope")
-    indent.setup({
-      draw = {
-        delay = 0,
-        animation = indent.gen_animation.none(),
-      },
-      options = {
-        try_as_border = true,
-      },
-      symbol = "│",
-    })
-
-    -- Disable in filetypes
-    local indent_augroup = vim.api.nvim_create_augroup("disable_indent_guides", { clear = true })
-    vim.api.nvim_create_autocmd("FileType", {
-      group = indent_augroup,
-      pattern = {
-        "fzf",
-        "help",
-        "lazy",
-        "lspsagafinder",
-        "lspsagaoutline",
-        "markdown",
-        "mason",
-        "noice",
-        "notify",
-        "oil",
-        "oil_preview",
-        "sagacodeaction",
-      },
-      callback = function()
-        vim.b.miniindentscope_disable = true
-      end,
-    })
+    -- local indent = require("mini.indentscope")
+    -- indent.setup({
+    --   draw = {
+    --     delay = 0,
+    --     animation = indent.gen_animation.none(),
+    --   },
+    --   options = {
+    --     try_as_border = true,
+    --   },
+    --   symbol = "│",
+    -- })
+    --
+    -- -- Disable in filetypes
+    -- local indent_augroup = vim.api.nvim_create_augroup("disable_indent_guides", { clear = true })
+    -- vim.api.nvim_create_autocmd("FileType", {
+    --   group = indent_augroup,
+    --   pattern = {
+    --     "fzf",
+    --     "help",
+    --     "lazy",
+    --     "lspsagafinder",
+    --     "lspsagaoutline",
+    --     "markdown",
+    --     "mason",
+    --     "noice",
+    --     "notify",
+    --     "oil",
+    --     "oil_preview",
+    --     "sagacodeaction",
+    --   },
+    --   callback = function()
+    --     vim.b.miniindentscope_disable = true
+    --   end,
+    -- })
 
     ---- mini.files
     -- local files = require("mini.files")
