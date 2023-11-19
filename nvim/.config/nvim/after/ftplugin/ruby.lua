@@ -1,6 +1,6 @@
 vim.cmd.compiler("ruby")
 
-vim.keymap.set("n", "s<cr>", "<cmd>Tux ruby %<cr>", { buffer = true })
+vim.keymap.set("n", "s<cr>", "<cmd>Tux ruby %:.<cr>", { buffer = true })
 vim.keymap.set("n", "m<cr>", ":SolargraphRebuild!<cr>", { buffer = true })
 
 ---- Runnables
@@ -24,8 +24,6 @@ elseif vim.fn.expand("%"):match("Gemfile") then
       require("config.hooks.dependencies").run("bundler")
     end,
   })
-elseif vim.fn.expand("%"):match("bin/console") then
-  vim.keymap.set("n", "s<cr>", "<cmd>Tux bin/console<cr>", { buffer = true })
 end
 
 ---- Quick Testing
