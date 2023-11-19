@@ -1,5 +1,12 @@
+# Unbind so they use the "root" binding
 unbind -T copy-mode-vi Enter
 unbind -T copy-mode-vi Space
+unbind -T copy-mode-vi C-h
+unbind -T copy-mode-vi C-j
+unbind -T copy-mode-vi C-k
+unbind -T copy-mode-vi C-l
+unbind -T copy-mode-vi C-down
+unbind -T copy-mode-vi C-up
 
 # Enter copy mode
 bind -n C-_ if "$is_vim" {
@@ -49,16 +56,3 @@ bind -N "Copy word" -T copy-mode-vi c {
 bind -N "Copy till end of line" -T copy-mode-vi Y {
   send Escape 'v$!'
 }
-
-# Switch panes
-bind -T copy-mode-vi C-h  select-pane -L
-bind -T copy-mode-vi C-j  select-pane -D
-bind -T copy-mode-vi C-k  select-pane -U
-bind -T copy-mode-vi C-l  select-pane -R
-bind -T copy-mode-vi C-\\ select-pane -l # c-ç
-
-# Resize panes
-bind -T copy-mode-vi C-down  resize-pane -D 5
-bind -T copy-mode-vi C-left  resize-pane -L 5
-bind -T copy-mode-vi C-right resize-pane -R 5
-bind -T copy-mode-vi C-up    resize-pane -U 5

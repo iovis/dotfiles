@@ -6,7 +6,6 @@ return {
     { "<c-j>", "<cmd>TmuxNavigateDown<cr>" },
     { "<c-k>", "<cmd>TmuxNavigateUp<cr>" },
     { "<c-l>", "<cmd>TmuxNavigateRight<cr>" },
-    { "<c-\\>", "<cmd>TmuxNavigatePrevious<cr>" }, -- c-ç
   },
   init = function()
     vim.g.tmux_navigator_save_on_switch = 2

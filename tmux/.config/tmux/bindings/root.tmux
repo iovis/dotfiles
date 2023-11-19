@@ -8,8 +8,9 @@ bind -N "Switch to last session" -n M-Space {
 }
 
 ## Window switching
-bind -n M-h previous-window
-bind -n M-l next-window
+bind -n M-h  previous-window
+bind -n M-l  next-window
+bind -n C-\\ last-window  # c-ç
 
 ## Window indexing
 bind -n M-1 select-window -t :=1
@@ -27,7 +28,6 @@ bind -n C-h  if "$is_vim" "send C-h"  "select-pane -L"
 bind -n C-j  if "$is_vim" "send C-j"  "select-pane -D"
 bind -n C-k  if "$is_vim" "send C-k"  "select-pane -U"
 bind -n C-l  if "$is_vim" "send C-l"  "select-pane -R"
-bind -n C-\\ if "$is_vim" 'send C-\\' "select-pane -l" # c-ç
 
 ##
 # In hindsight, this was a terrible idea, but it was hard enough to
