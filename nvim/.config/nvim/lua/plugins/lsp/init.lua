@@ -15,7 +15,6 @@ return {
   config = function()
     ---- Initialize servers
     local lsp_servers = {
-      -- "angularls",
       "astro",
       "bashls",
       "clangd",
@@ -32,11 +31,9 @@ return {
       "rubocop",
       "rust_analyzer",
       "solargraph",
-      -- "sorbet",
       "svelte",
       "taplo",
       "tsserver",
-      -- "vimls",
       "zls",
     }
 
@@ -131,8 +128,6 @@ return {
       }
     end
 
-    lspconfig.fuzzy_ls.setup({
-      on_attach = config.on_attach,
-    })
+    lspconfig.fuzzy_ls.setup({ on_attach = config.on_attach })
   end,
 }

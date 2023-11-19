@@ -179,7 +179,11 @@ M.on_attach = function(client, bufnr)
     buf_nmap("<leader>lo", "<cmd>Lspsaga outline<cr>")
   end
 
-  if client.server_capabilities.documentSymbolProvider and client.name ~= "solargraph" then
+  if client.name == "solargraph" then
+    client.server_capabilities.documentSymbolProvider = false
+  end
+
+  if client.server_capabilities.documentSymbolProvider then
     require("nvim-navic").attach(client, bufnr)
   end
 
