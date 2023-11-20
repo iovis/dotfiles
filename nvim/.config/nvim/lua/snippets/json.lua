@@ -1,17 +1,33 @@
 return {
   s(
-    "projectionist",
+    "rails",
     fmta(
       [[
-      {
-        "*": {
-          "start": "<>",
-          "console": "<>",
-          "dispatch": "<>"
+        {
+          "app/*.rb": {
+            "alternate": "spec/{}_spec.rb"
+          },
+          "spec/*_spec.rb": {
+            "alternate": "app/{}.rb"
+          },
+          "lib/*.rb": {
+            "alternate": "spec/lib/{}_spec.rb"
+          },
+          "spec/lib/*_spec.rb": {
+            "alternate": "lib/{}.rb"
+          },
+          "Gemfile": {
+            "alternate": "Gemfile.lock"
+          },
+          "Gemfile.lock": {
+            "alternate": "Gemfile"
+          }
         }
-      }
       ]],
-      { i(1, "npm start"), i(2, "node"), i(3, "npm test") }
+      {},
+      {
+        condition = conds.line_begin,
+      }
     )
   ),
 }
