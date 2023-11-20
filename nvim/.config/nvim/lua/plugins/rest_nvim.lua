@@ -1,7 +1,6 @@
 return {
   "rest-nvim/rest.nvim",
   dependencies = { "nvim-lua/plenary.nvim" },
-  commit = "8b62563", -- https://github.com/rest-nvim/rest.nvim/issues/246
   config = function()
     require("rest-nvim").setup({
       result_split_in_place = true,
