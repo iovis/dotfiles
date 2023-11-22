@@ -36,6 +36,9 @@ return {
             icon_style = "Title",
           }),
         },
+        view = {
+          group_separator = "",
+        },
         window = {
           winblend = 0,
         },
