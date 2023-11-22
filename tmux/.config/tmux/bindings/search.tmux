@@ -68,4 +68,5 @@ bind -N "Search command prompts" -T copy-mode-vi < {
 bind -N "Search command prompts" -T search < {
   copy-mode
   send <
+  send n
 }
