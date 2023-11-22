@@ -1,5 +1,21 @@
 return {
   s(
+    "main",
+    fmta(
+      [[
+      #include <<stdio.h>>
+
+      int main(int argc, char *argv[]) {
+        <body>
+      }
+      ]],
+      {
+        body = i(0, "// body"),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
     "f",
     fmta(
       [[
