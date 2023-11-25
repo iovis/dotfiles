@@ -1,15 +1,11 @@
 return {
   s(
-    "base",
+    "init",
     fmt(
       [[
         set dotenv-load
 
         default: {}
-
-        full:
-            tmux new-window -n backend 'just dev'
-            tmux new-window -n frontend 'just worker'
 
         # lists available tasks
         @list:
@@ -42,7 +38,7 @@ return {
       {
         i(1, "init"),
         i(2, "bundle install"),
-        i(3, "rails server -b 0.0.0.0"),
+        i(3, "rails server"),
         i(4, 'open "$PROJECT_URL" -a "Google Chrome Canary"'),
         i(5, "rails console"),
         i(6, "rspec"),
