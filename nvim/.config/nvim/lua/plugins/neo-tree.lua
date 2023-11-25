@@ -39,11 +39,21 @@ return {
             ["."] = "run_command",
             ["<s-down>"] = "next_git_modified",
             ["<s-up>"] = "prev_git_modified",
-            ["x"] = "close_node",
-            ["X"] = "cut_to_clipboard",
+            ["-"] = "close_node",
             ["h"] = "fold_left",
             ["l"] = "fold_right",
-            ["Ñ"] = "fuzzy_finder",
+
+            ["g?"] = "show_help",
+            ["?"] = "",
+
+            S = "",
+            ["<leader>h"] = "open_split",
+
+            s = "",
+            ["<leader>v"] = "open_vsplit",
+
+            t = "",
+            ["<leader>t"] = "open_tabnew",
           },
         },
         commands = {
