@@ -117,6 +117,14 @@ return {
       },
     })
 
+    vim.api.nvim_create_autocmd("User", {
+      group = vim.api.nvim_create_augroup("mini_files", { clear = true }),
+      pattern = "MiniFilesWindowOpen",
+      callback = function(args)
+        vim.api.nvim_win_set_config(args.data.win_id, { border = "rounded" })
+      end,
+    })
+
     vim.keymap.set("n", "_", files.open, { desc = "[mini.files] Current working directory" })
     vim.keymap.set("n", "-", function()
       files.open(vim.api.nvim_buf_get_name(0), false)
