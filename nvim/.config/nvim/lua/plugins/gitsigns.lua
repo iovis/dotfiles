@@ -15,7 +15,7 @@ return {
         vim.keymap.set(mode, lhs, rhs, opts)
       end
 
-      map("n", "yob", gs.toggle_current_line_blame)
+      map("n", "yob", gs.toggle_current_line_blame, { desc = "Toggle current line blame" })
       map("n", "<leader>ds", gs.preview_hunk)
       map("n", "<leader>dk", gs.reset_hunk)
       map("x", "<leader>dk", function()

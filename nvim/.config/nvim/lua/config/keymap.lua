@@ -216,12 +216,10 @@ vim.keymap.set("n", "<leader>uv", "<cmd>e! .env<cr>")
 vim.keymap.set("n", "<leader>uj", "<cmd>e! justfile<cr>")
 
 ---- Toggle Settings
-vim.keymap.set("n", "yo,", ":set number! relativenumber! cursorline!<cr>")
-
-vim.keymap.set("n", "yoc", ":set cursorline!<cr>")
+vim.keymap.set("n", "yol", ":set cursorline!<cr>")
 vim.keymap.set("n", "yod", ":<c-r>=&diff ? 'diffoff' : 'diffthis'<cr><cr>")
 vim.keymap.set("n", "yoh", ":set hlsearch!<cr>")
-vim.keymap.set("n", "yol", ":set list!<cr>")
+vim.keymap.set("n", "yoi", ":set list!<cr>")
 vim.keymap.set("n", "yon", ":set number!<cr>")
 vim.keymap.set("n", "yop", ":set paste!<cr>")
 vim.keymap.set("n", "yor", ":set relativenumber!<cr>")
@@ -236,6 +234,14 @@ vim.keymap.set("n", "yof", function()
     vim.o.foldcolumn = "1"
   end
 end, { desc = "Toggle foldcolumn" })
+
+vim.keymap.set("n", "yoc", function()
+  if vim.o.conceallevel == 2 then
+    vim.o.conceallevel = 0
+  else
+    vim.o.conceallevel = 2
+  end
+end, { desc = "Toggle conceallevel" })
 
 ---- Misc
 vim.keymap.set("n", "<Space>", "<Nop>")
