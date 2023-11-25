@@ -28,7 +28,9 @@ end
 
 u.command("RestoreSession", restore_session)
 
-vim.keymap.set("n", "yoo", restore_session, { desc = "Load or create session for the current directory" })
+vim.keymap.set("n", "<leader>S", restore_session, {
+  desc = "Load or create session for the current directory",
+})
 
 ---- Autocommands
 local persist_session = function()
