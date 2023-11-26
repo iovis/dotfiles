@@ -48,6 +48,53 @@ return {
     { condition = conds.line_begin }
   ),
   s(
+    "zig",
+    fmt(
+      [[
+        set dotenv-load
+
+        default: {}
+
+        # lists available tasks
+        @list:
+            just --list
+
+        run:
+            {}
+
+        build:
+            {}
+
+        dev:
+            {}
+
+        open:
+            gh repo view --web
+
+        clean:
+            zig build uninstall
+            rm -rf zig-cache/ zig-out/
+
+        # run tests
+        test:
+            {}
+
+        # Open the DB
+        db:
+            {}
+      ]],
+      {
+        i(1, "run"),
+        i(2, "zig build run"),
+        i(3, "zig build -Doptimize=ReleaseSafe"),
+        i(4, "watchexec -e zig just run"),
+        i(5, "zig build test"),
+        i(7, "pgcli $DATABASE_URL"),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
     "a",
     fmt("alias {} := {}", {
       i(1, "name"),
