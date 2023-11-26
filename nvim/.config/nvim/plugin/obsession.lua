@@ -1,7 +1,6 @@
----- Utils
+----Utils
 local u = require("config.utils")
 
----@return boolean
 local within_session = function()
   return not u.is_empty(vim.v.this_session)
 end
@@ -10,7 +9,32 @@ local session_loading = function()
   return vim.g.SessionLoad ~= nil
 end
 
----- Commands
+---@param buffer number: buffer ID.
+---@return boolean `true` if this buffer could be restored later on loading.
+local is_restorable = function(buffer)
+  if #vim.api.nvim_buf_get_option(buffer, "bufhidden") ~= 0 then
+    return false
+  end
+
+  local buftype = vim.api.nvim_buf_get_option(buffer, "buftype")
+  if #buftype == 0 then
+    -- Normal buffer, check if it listed.
+    if not vim.api.nvim_buf_get_option(buffer, "buflisted") then
+      return false
+    end
+    -- Check if it has a filename.
+    if #vim.api.nvim_buf_get_name(buffer) == 0 then
+      return false
+    end
+  elseif buftype ~= "terminal" and buftype ~= "help" then
+    -- Buffers other then normal, terminal and help are impossible to restore.
+    return false
+  end
+
+  return true
+end
+
+----Commands
 local restore_session = function()
   if within_session() then
     print("Already in a session!")
@@ -27,12 +51,11 @@ local restore_session = function()
 end
 
 u.command("RestoreSession", restore_session)
-
 vim.keymap.set("n", "<leader>S", restore_session, {
   desc = "Load or create session for the current directory",
 })
 
----- Autocommands
+----Autocommands
 local persist_session = function()
   if within_session() and not session_loading() then
     local ok, result = pcall(vim.cmd, "mksession!")
@@ -57,7 +80,16 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
   group = obsession_augroup,
   pattern = "*",
   callback = function()
-    require("neo-tree.sources.manager").close_all()
+    if not within_session() then
+      return
+    end
+
+    -- Remove all non-file and utility buffers because they cannot be saved.
+    for _, buffer in ipairs(vim.api.nvim_list_bufs()) do
+      if vim.api.nvim_buf_is_valid(buffer) and not is_restorable(buffer) then
+        vim.api.nvim_buf_delete(buffer, { force = true })
+      end
+    end
 
     persist_session()
   end,
