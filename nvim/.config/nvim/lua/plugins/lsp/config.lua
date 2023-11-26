@@ -108,8 +108,10 @@ M.on_attach = function(client, bufnr)
   local autoformat_filetypes = {
     "c",
     "cpp",
+    "elixir",
     "go",
     "lua",
+    "ruby",
     "rust",
     "svelte",
     -- "typescript",

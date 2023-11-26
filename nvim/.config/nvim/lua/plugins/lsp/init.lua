@@ -20,6 +20,7 @@ return {
       "clangd",
       "cssls",
       "dockerls",
+      "elixirls",
       "emmet_language_server",
       "gopls",
       "html",

@@ -17,6 +17,7 @@ return {
         "css",
         "diff", -- git diffs
         "dockerfile",
+        "elixir",
         "fish",
         "git_rebase",
         "gitattributes",
