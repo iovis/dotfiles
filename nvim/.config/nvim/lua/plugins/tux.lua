@@ -5,7 +5,6 @@ return {
     { "c<space>", ":Tux<space>" },
     { "y<space>", ":TuxBg<space>" },
     { "s<space>", ":TuxBg!<space>" },
-    { "<leader>lg", ":TuxBg lazygit<cr>", silent = true },
 
     -- Repeat command in last tmux split
     { "<leader>i", ":Tux Up<cr>", silent = true },

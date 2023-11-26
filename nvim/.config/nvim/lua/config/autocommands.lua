@@ -70,8 +70,11 @@ vim.api.nvim_create_autocmd("FileType", {
   group = config_augroup,
   pattern = {
     "checkhealth",
+    "dbout",
     "diff",
     "fugitiveblame",
+    "git",
+    "gitcommit",
     "help",
     "httpResult",
     "lspsagaoutline",
