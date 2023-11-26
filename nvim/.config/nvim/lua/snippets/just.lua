@@ -95,6 +95,64 @@ return {
     { condition = conds.line_begin }
   ),
   s(
+    "c",
+    fmt(
+      [[
+        cc_flags := "-std=c17 -Wall -fsanitize=address -Iinclude/" # -Wextra -Wpedantic
+        libs := ""
+        bin := "{}"
+
+        default: {}
+
+        run: build
+            {}
+
+        build: init
+            {}
+
+        release: init
+            cc {{cc_flags}} {{libs}} -O3 src/*.c -o bin/dbview
+
+        @init:
+            {}
+
+        clean:
+            {}
+
+        dev:
+            {}
+
+        open:
+            gh repo view --web
+
+        debug: build
+            {}
+
+        # run tests
+        test:
+            {}
+
+        # Open the DB
+        db:
+            {}
+      ]],
+      {
+        i(1, "./bin/my_program"),
+        i(2, "run"),
+        i(3, "{{bin}}"),
+        i(4, "cc {{cc_flags}} {{libs}} -g -O0 src/*.c -o {{bin}}"),
+        i(5, "cc {{cc_flags}} {{libs}} -O3 src/*.c -o {{bin}}"),
+        i(6, "mkdir -p bin/"),
+        i(7, "rm -rf bin/"),
+        i(8, "watchexec -e c,h just run"),
+        i(9, "sudo lldb -- {{bin}}"),
+        i(10, "just run"),
+        i(11, "pgcli $DATABASE_URL"),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
     "a",
     fmt("alias {} := {}", {
       i(1, "name"),
