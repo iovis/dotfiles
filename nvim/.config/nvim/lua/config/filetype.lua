@@ -1,5 +1,6 @@
 vim.filetype.add({
   extension = {
+    dbout = "dbout",
     tmux = "tmux",
     zon = "zig",
   },

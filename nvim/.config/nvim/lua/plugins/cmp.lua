@@ -51,7 +51,6 @@ return {
             nvim_lsp = "[LSP]",
             path = "[Path]",
             tags = "[TAG]",
-            ["vim-dadbod-completion"] = "[DB]",
           },
         }),
       },
@@ -104,24 +103,6 @@ return {
             ignore_cmds = { "Man" },
           },
         },
-      }),
-    })
-
-    ---- Filetypes
-    -- cmp.setup.filetype("ruby", {
-    --   sources = cmp.config.sources({
-    --     { name = "nvim_lsp" },
-    --     { name = "luasnip" },
-    --     { name = "buffer", keyword_length = 4 },
-    --     { name = "tags" },
-    --     { name = "path" },
-    --   }),
-    -- })
-
-    cmp.setup.filetype("sql", {
-      sources = cmp.config.sources({
-        { name = "vim-dadbod-completion" },
-        { name = "luasnip" },
       }),
     })
   end,
