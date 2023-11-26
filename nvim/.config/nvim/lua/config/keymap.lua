@@ -57,8 +57,8 @@ vim.keymap.set("n", "<leader>Q", "<cmd>%bdelete|e#|bd#<cr>")
 vim.keymap.set("n", "+b", "<cmd>bd!<cr>")
 
 vim.keymap.set("n", "<leader>e", ":e<space>")
-vim.keymap.set("n", "<leader>E", ":e <c-r>=fnameescape(expand('%:h')).'/'<cr>")
-vim.keymap.set("n", "<leader>W", ":saveas <c-r>=fnameescape(expand('%:h')).'/'<cr>")
+vim.keymap.set("n", "<leader>E", ":e <c-r>=fnameescape(expand('%:.:h')).'/'<cr>")
+vim.keymap.set("n", "<leader>W", ":saveas <c-r>=fnameescape(expand('%:.:h')).'/'<cr>")
 
 -- Editing
 vim.keymap.set("n", "J", "m`J``")
