@@ -1,5 +1,85 @@
 return {
   s(
+    "a",
+    fmt("alias {} := {}", {
+      i(1, "name"),
+      i(2, "task"),
+    }),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "t",
+    fmt(
+      [[
+        {}: {}
+          {}
+      ]],
+      {
+        i(1, "name"),
+        i(2),
+        i(3),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "rails",
+    fmt(
+      [[
+        set dotenv-load
+
+        default: {}
+
+        full:
+            tmux new-window -Sn dev just dev
+            tmux new-window -Sn worker just worker
+
+        # lists available tasks
+        @list:
+            just --list
+
+        # init project
+        init:
+            git pull
+            bundle install
+
+        # start the server
+        dev:
+            {}
+
+        # open the project in the browser
+        open:
+            {}
+
+        # start the worker
+        worker:
+            {}
+
+        # start a console
+        console:
+            {}
+
+        # Open the DB with pgcli
+        db:
+            {}
+
+        # run tests
+        test:
+            {}
+      ]],
+      {
+        i(1, "init"),
+        i(2, "bin/rails server"),
+        i(3, 'open "$PROJECT_URL" -a "Google Chrome Canary"'),
+        i(4, "bundle exec sidekiq -c 10"),
+        i(5, "bin/rails console"),
+        i(6, "pgcli $DATABASE_URL"),
+        i(7, "bin/spring rspec"),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
     "init",
     fmt(
       [[
@@ -111,7 +191,7 @@ return {
             {}
 
         release: init
-            cc {{cc_flags}} {{libs}} -O3 src/*.c -o bin/dbview
+            {}
 
         @init:
             {}
@@ -148,29 +228,6 @@ return {
         i(9, "sudo lldb -- {{bin}}"),
         i(10, "just run"),
         i(11, "pgcli $DATABASE_URL"),
-      }
-    ),
-    { condition = conds.line_begin }
-  ),
-  s(
-    "a",
-    fmt("alias {} := {}", {
-      i(1, "name"),
-      i(2, "task"),
-    }),
-    { condition = conds.line_begin }
-  ),
-  s(
-    "t",
-    fmt(
-      [[
-        {}: {}
-          {}
-      ]],
-      {
-        i(1, "name"),
-        i(2),
-        i(3),
       }
     ),
     { condition = conds.line_begin }
