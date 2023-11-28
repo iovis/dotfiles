@@ -16,6 +16,7 @@ return {
       },
       func_map = {
         ptoggleauto = "p",
+        split = "<c-s>",
       },
       preview = {
         winblend = 0,
