@@ -21,7 +21,7 @@ return {
         h = max_h
       end
 
-      return { winopts = { height = h, width = 0.40, row = 0.40 } }
+      return { winopts = { height = h, width = 0.50, row = 0.40 } }
     end)
 
     local function buf_tmap(lhs, rhs)
