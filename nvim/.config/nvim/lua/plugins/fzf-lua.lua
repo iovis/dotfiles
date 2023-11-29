@@ -100,12 +100,10 @@ return {
     ---- Keymaps
     vim.keymap.set("n", "+z", ":FzfLua<space>")
 
-    vim.keymap.set("n", "<leader>R", fzf_lua.tags, { desc = "fzf_lua.tags" })
     vim.keymap.set("n", "<leader>j", fzf_lua.git_status, { desc = "fzf_lua.git_status" })
     vim.keymap.set("n", "<leader>r", fzf_lua.btags, { desc = "fzf_lua.btags" })
-
+    vim.keymap.set("n", "<leader>ñ", fzf_lua.blines, { desc = "fzf_lua.blines" })
     vim.keymap.set("n", "gm", fzf_lua.buffers, { desc = "fzf_lua.buffers" })
-
     vim.keymap.set("n", "+f", fzf_lua.resume, { desc = "fzf_lua.resume" })
 
     vim.keymap.set("n", "<leader>A", function()
@@ -136,18 +134,6 @@ return {
       fzf_lua.files({ cwd = "notes/", fd_opts = fd_opts_no_ignore })
     end, { desc = "Open Project Notes" })
 
-    -- vim.keymap.set("n", "<leader>se", function()
-    --   local filetype = require("luasnip.extras.filetype_functions").from_pos_or_filetype()[1]
-    --
-    --   -- fzf_query: 'snippets 'all | '<filetype>.
-    --   local query = [["'snippets 'all | ']] .. filetype .. '."'
-    --
-    --   fzf_lua.files({
-    --     cwd = "~/.dotfiles/nvim/",
-    --     fzf_opts = { ["--query"] = query },
-    --   })
-    -- end)
-
     -- Files
     vim.keymap.set("n", "<leader>o", function()
       fzf_lua.files({ fd_opts = original_fd_opts .. [[ --exclude '.venv' ]] })
@@ -158,11 +144,10 @@ return {
     end, { desc = "fzf_lua.all_files" })
 
     -- Ripgrep search
+    vim.keymap.set("x", "<leader>f", fzf_lua.grep_visual, { silent = true, desc = "fzf_lua.grep" })
     vim.keymap.set("n", "<leader>f", function()
       fzf_lua.grep({ no_esc = true, search = "\\w" })
     end, { desc = "fzf_lua.grep" })
-
-    vim.keymap.set("x", "<leader>f", fzf_lua.grep_visual, { silent = true, desc = "fzf_lua.grep" })
 
     -- Registers
     local run_macro = function(selected)
