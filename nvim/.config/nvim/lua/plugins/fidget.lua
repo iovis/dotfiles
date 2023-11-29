@@ -8,7 +8,7 @@ return {
     ---@return string?
     local lsp_format_message = function(msg)
       -- Ignore "Diagnosing..." progress messages
-      if string.find(msg.title, "Diagnosing") then
+      if msg.title and string.find(msg.title, "Diagnosing") then
         return nil
       end
 
