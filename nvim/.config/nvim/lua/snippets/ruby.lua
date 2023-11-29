@@ -241,7 +241,7 @@ return {
   s(
     "subj",
     fmt("subject {}", {
-      c(2, {
+      c(1, {
         sn(nil, fmta("{ <> }", { r(1, "block", i(1)) })),
         sn(
           nil,
