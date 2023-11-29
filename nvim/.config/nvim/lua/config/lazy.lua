@@ -26,6 +26,4 @@ require("lazy").setup("plugins", {
 })
 
 require("lazy.view.config").keys.profile_filter = "<c-p>"
-vim.keymap.set("n", "<leader>up", "<cmd>Lazy<cr>")
-vim.keymap.set("n", "<leader>ps", "<cmd>Lazy sync<cr>")
--- vim.keymap.set("n", "<leader>pi", "<cmd>Lazy restore<cr>")
+vim.keymap.set("n", "<leader>p", "<cmd>Lazy<cr>")
