@@ -8,15 +8,15 @@ vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
 })
 
 ---- Resize splits if window got resized
-vim.api.nvim_create_autocmd("VimResized", {
-  desc = "Resize splits on window resize",
-  group = config_augroup,
-  callback = function()
-    vim.cmd("wincmd =")
-  end,
-})
+-- vim.api.nvim_create_autocmd("VimResized", {
+--   desc = "Resize splits on window resize",
+--   group = config_augroup,
+--   callback = function()
+--     vim.cmd("wincmd =")
+--   end,
+-- })
 
----- Resize splits if window got resized
+---- Autosave on focus lost
 vim.api.nvim_create_autocmd({ "FocusLost", "BufLeave" }, {
   desc = "Autosave on focus lost",
   group = config_augroup,
