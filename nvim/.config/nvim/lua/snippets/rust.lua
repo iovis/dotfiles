@@ -217,12 +217,18 @@ return {
     }
   ),
   s(
-    "epln",
-    fmta('eprintln!("<> = {<>:?}"<comma><>);', {
-      i(1),
-      dl(2, l._1, 1), -- dynamic lambda: repeat node 1 but let override
-      comma = n(3, ", "),
-      i(3),
+    "ep",
+    c(1, {
+      fmta('eprintln!("<> = {<>:?}"<comma><>);', {
+        r(1, "label", i(1)),
+        dl(2, l._1, 1), -- dynamic lambda: repeat node 1 but let override
+        comma = n(3, ", "),
+        i(3),
+      }),
+      fmta('eprintln!("<> = {:?}", <>);', {
+        r(1, "label", i(1)),
+        dl(2, l._1, 1), -- dynamic lambda: repeat node 1 but let override
+      }),
     }),
     {
       condition = conds.line_begin,
@@ -252,11 +258,19 @@ return {
   s("now", t("let now = std::time::Instant::now();"), {
     condition = conds.line_begin,
   }),
-  s("elapsed", t('println!("{:?}", now.elapsed());'), {
+  s("elapsed", fmta('println!("<>{:?}", now.elapsed());', { i(1) }), {
+    condition = conds.line_begin,
+  }),
+  s("inspect", t('.inspect(|x| println!("{x:?}"))'), {
     condition = conds.line_begin,
   }),
   s("skipfmt", t("#[rustfmt::skip]"), { condition = conds.line_begin }),
-  s("tin", fmt("#[tracing::instrument{}]", { i(1) }), {
+  s("tracinginstrument", fmt("#[tracing::instrument{}]", { i(1) }), {
     condition = conds.line_begin,
   }),
+  s(
+    "sleep",
+    fmt("std::thread::sleep(std::time::Duration::from_secs({}));", { i(1, "5") }),
+    { condition = conds.line_begin }
+  ),
 }

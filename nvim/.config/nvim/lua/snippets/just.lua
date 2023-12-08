@@ -23,6 +23,54 @@ return {
     { condition = conds.line_begin }
   ),
   s(
+    "init",
+    fmt(
+      [[
+        set dotenv-load
+
+        default: {}
+
+        # lists available tasks
+        @list:
+            just --list
+
+        # init project
+        init:
+            {}
+
+        # start the server
+        dev:
+            {}
+
+        # open the project in the browser
+        open:
+            {}
+
+        # start a console
+        console:
+            {}
+
+        # run tests
+        test:
+            {}
+
+        # Open the DB
+        db:
+            {}
+      ]],
+      {
+        i(1, "init"),
+        i(2, "bundle install"),
+        i(3, "rails server"),
+        i(4, 'open "$PROJECT_URL" -a "Google Chrome Canary"'),
+        i(5, "rails console"),
+        i(6, "rspec"),
+        i(7, "pgcli $DATABASE_URL"),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
     "rails",
     fmt(
       [[
@@ -80,7 +128,7 @@ return {
     { condition = conds.line_begin }
   ),
   s(
-    "init",
+    "rust",
     fmt(
       [[
         set dotenv-load
@@ -91,20 +139,22 @@ return {
         @list:
             just --list
 
-        # init project
-        init:
+        run:
             {}
 
-        # start the server
+        build:
+            {}
+
         dev:
             {}
 
-        # open the project in the browser
-        open:
+        console:
             {}
 
-        # start a console
-        console:
+        open:
+            gh repo view --web
+
+        clean:
             {}
 
         # run tests
@@ -116,13 +166,14 @@ return {
             {}
       ]],
       {
-        i(1, "init"),
-        i(2, "bundle install"),
-        i(3, "rails server"),
-        i(4, 'open "$PROJECT_URL" -a "Google Chrome Canary"'),
-        i(5, "rails console"),
-        i(6, "rspec"),
-        i(7, "pgcli $DATABASE_URL"),
+        i(1, "run"),
+        i(2, "cargo run"),
+        i(3, "cargo build"),
+        i(4, "cargo watch -x check -x 'nextest run'"),
+        i(5, "evcxr"),
+        i(6, "cargo clean"),
+        i(7, "cargo nextest run"),
+        i(8, "pgcli $DATABASE_URL"),
       }
     ),
     { condition = conds.line_begin }
