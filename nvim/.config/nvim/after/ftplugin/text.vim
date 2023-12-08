@@ -1,7 +1,6 @@
 " Formatting
 setlocal comments=
 setlocal commentstring=>\ %s
-setlocal wrap
 setlocal textwidth=80
 setlocal formatoptions+=tcoqnl1j
 setlocal linebreak
