@@ -5,5 +5,5 @@ cargo-outdated
 cargo-watch
 dexios
 evcxr_repl
-inferno
+flamegraph
 muxi
