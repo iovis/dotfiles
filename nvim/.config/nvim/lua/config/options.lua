@@ -1,5 +1,6 @@
 ---- Set Space as the leader key
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 ---- Global Variables
 vim.g.autoformat = true
