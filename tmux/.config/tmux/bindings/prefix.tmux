@@ -49,7 +49,7 @@ bind -N "New session" C command-prompt -p "new session name:" {
   new-session -A -s "%1" -c "#{pane_current_path}"
 }
 
-bind -N "Kill session" X confirm-before -p "Kill session #{session_name}? (y/n)" {
+bind -N "Kill session" X {
   switch-client -l
   run 'tmux kill-session -t #{client_last_session}'
 }
@@ -74,6 +74,8 @@ bind -N "Reset session" q confirm -p "reset session? (y/n)" {
 }
 
 ## Pane Management
+bind-key -N "Kill pane" x kill-pane
+
 bind -N "Horizontal pane" h {
   split-window -v  -c "#{pane_current_path}"
 }
