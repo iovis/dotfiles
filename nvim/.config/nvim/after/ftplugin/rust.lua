@@ -1,8 +1,15 @@
 local u = require("config.utils")
+local tux = require("tux")
 
 vim.cmd.compiler("cargo")
 
-vim.keymap.set("n", "c<cr>", "<cmd>Tux! irust<cr>", { buffer = true })
+vim.keymap.set("n", "c<cr>", function()
+  tux.window("evcxr", {
+    detached = false,
+    select = true,
+    name = "evcxr",
+  })
+end, { buffer = true })
 
 vim.keymap.set("n", "<leader>sn", "<cmd>TestNearest -strategy=rust_print<cr>", { buffer = true })
 vim.keymap.set("n", "<leader>sp", "<cmd>TestNearest -strategy=rust_log<cr>", { buffer = true })

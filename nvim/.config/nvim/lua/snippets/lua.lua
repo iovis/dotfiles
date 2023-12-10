@@ -3,6 +3,9 @@ return {
   s("u", t('local u = require("config.utils")'), {
     condition = conds.line_begin,
   }),
+  s("t", t('local tux = require("tux")'), {
+    condition = conds.line_begin,
+  }),
   s("hi", t('local hi = require("config.highlights").hi'), {
     condition = conds.line_begin,
   }),

@@ -32,13 +32,18 @@ vim.keymap.set("n", "<leader>sp", ":TestNearest -strategy=test_prof<cr>", { buff
 
 ---- Solargraph
 vim.api.nvim_buf_create_user_command(0, "SolargraphRebuild", function(ctx)
-  local cmd = "TuxBg! ctags && bundle exec yard gems"
+  local tux = require("tux")
+  local cmd = "ctags && bundle exec yard gems"
 
   if ctx.bang then
     cmd = cmd .. " --rebuild; pause"
   end
 
-  vim.cmd(cmd)
+  tux.window(cmd, {
+    detached = true,
+    select = false,
+    name = nil,
+  })
 end, { bang = true })
 
 ---- Load failing tests in a scratch window
