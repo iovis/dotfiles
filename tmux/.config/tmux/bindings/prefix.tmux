@@ -77,11 +77,19 @@ bind -N "Reset session" q confirm -p "reset session? (y/n)" {
 bind-key -N "Kill pane" x kill-pane
 
 bind -N "Horizontal pane" h {
-  split-window -v  -c "#{pane_current_path}"
+  split-window -v -c "#{pane_current_path}"
+}
+
+bind -N "Horizontal pane (full)" s {
+  split-window -fv -c "#{pane_current_path}"
 }
 
 bind -N "Vertical pane" v {
-  split-window -h  -c "#{pane_current_path}"
+  split-window -h -c "#{pane_current_path}"
+}
+
+bind -N "Vertical pane (full)" V {
+  split-window -fh -c "#{pane_current_path}"
 }
 
 bind -N "Resize panes equally" 0 {
