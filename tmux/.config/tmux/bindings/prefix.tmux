@@ -13,7 +13,7 @@ bind -N "Reload tmux" R {
   display "Tmux reloaded!"
 }
 
-bind -N "Toggle status line" s {
+bind -N "Toggle status line" t {
   set status
 }
 
@@ -105,7 +105,7 @@ bind -N "Promote pane to session" '"' {
 }
 
 ## Join panes
-bind -N "Join pane" t switch-client -T join_pane
+bind -N "Join pane" j switch-client -T join_pane
 
 bind -N "Join pane horizontally" -T join_pane h {
   join-pane -v
