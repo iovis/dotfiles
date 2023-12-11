@@ -63,6 +63,7 @@ config.colors = {
 }
 
 ---Fonts
+-- config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" } -- Disable ligatures
 -- wezterm ls-fonts --list-system | rg Fira
 -- wezterm ls-fonts --text "✔"
 config.font_size = 20
