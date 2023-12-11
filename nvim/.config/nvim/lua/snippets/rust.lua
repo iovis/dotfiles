@@ -261,7 +261,7 @@ return {
   s("elapsed", fmta('println!("<>{:?}", now.elapsed());', { i(1) }), {
     condition = conds.line_begin,
   }),
-  s("inspect", t('.inspect(|x| println!("{x:?}"))'), {
+  s("inspect", t('.inspect(|x| eprintln!("{x:?}"))'), {
     condition = conds.line_begin,
   }),
   s("skipfmt", t("#[rustfmt::skip]"), { condition = conds.line_begin }),
