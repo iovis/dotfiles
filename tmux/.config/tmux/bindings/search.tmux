@@ -65,7 +65,9 @@ bind -N "Search command prompts" -T copy-mode-vi < {
   send -X search-backward "(❯|❮) .+"
 }
 
-bind -N "Search command prompts" -T search < {
+bind -N "Search command prompts" -n C-s if "$is_vim" {
+  send C-s
+} {
   copy-mode
   send <
   send n
