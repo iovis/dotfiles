@@ -106,7 +106,40 @@ return {
   ),
   -- Tests
   s(
-    { trig = "tt", dscr = "Tokio test" },
+    "modtest",
+    fmta(
+      [[
+        #[cfg(test)]
+        mod tests {
+            use super::*;
+
+            test<>
+        }
+      ]],
+      {
+        i(0),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "test",
+    fmta(
+      [[
+        #[test]
+        fn <test_name>_test() {
+            <>
+        }
+      ]],
+      {
+        test_name = i(1, "test_name"),
+        i(0),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
+    { trig = "tokiotest", dscr = "Tokio test" },
     fmta(
       [[
         #[tokio::test]
@@ -121,6 +154,13 @@ return {
     ),
     { condition = conds.line_begin }
   ),
+  s("ignore", t("#[ignore]"), { condition = conds.line_begin }),
+  s("as", fmt("assert!({});", { i(1) }), {
+    condition = conds.line_begin,
+  }),
+  s("ase", fmt("assert_eq!({}, {});", { i(1, "expected"), i(2, "actual") }), {
+    condition = conds.line_begin,
+  }),
   -- Benchmarks
   s(
     "benchmain",
@@ -204,6 +244,20 @@ return {
       condition = conds.line_begin,
     }
   ),
+  -- Macros
+  s("attr", fmt("#[{}]", { i(1) }), {
+    condition = conds.line_begin,
+  }),
+  s("der", fmt("#[derive({}{})]", { i(1, "Debug"), i(2) }), {
+    condition = conds.line_begin,
+  }),
+  s("allow", fmt("#[allow({})]", { i(1) }), {
+    condition = conds.line_begin,
+  }),
+  s("tracinginstrument", fmt("#[tracing::instrument{}]", { i(1) }), {
+    condition = conds.line_begin,
+  }),
+  s("skipfmt", t("#[rustfmt::skip]"), { condition = conds.line_begin }),
   -- Misc
   s(
     "pln",
@@ -264,13 +318,43 @@ return {
   s("inspect", t('.inspect(|x| eprintln!("{x:?}"))'), {
     condition = conds.line_begin,
   }),
-  s("skipfmt", t("#[rustfmt::skip]"), { condition = conds.line_begin }),
-  s("tracinginstrument", fmt("#[tracing::instrument{}]", { i(1) }), {
-    condition = conds.line_begin,
-  }),
   s(
     "sleep",
     fmt("std::thread::sleep(std::time::Duration::from_secs({}));", { i(1, "5") }),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "aoc",
+    fmta(
+      [[
+          fn main() {
+              let input = include_str!("input.txt");
+
+              println!("p1 = {:?}", p1(input));
+              // println!("p2 = {:?}", p2(input));
+          }
+
+          fn p1(input: &str) ->> usize {
+              <>
+              todo!()
+          }
+
+          #[cfg(test)]
+          mod tests {
+              use super::*;
+
+              #[test]
+              fn p1_test() {
+                  let input = indoc::indoc! {"
+                      <>
+                  "};
+
+                  assert_eq!(p1(input), <>);
+              }
+          }
+      ]],
+      { i(1), i(2), i(0) }
+    ),
     { condition = conds.line_begin }
   ),
 }
