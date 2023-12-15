@@ -22,7 +22,7 @@ bind -N "Set session path to current pane's" b {
   display "changed path to #{pane_current_path}"
 }
 
-bind -N "Set session name and path to current pane's" 4 {
+bind -N "Set session name and path to current pane's" i {
   attach -c "#{pane_current_path}"
   display "changed path to #{pane_current_path}"
   run tmux_set_session_name
