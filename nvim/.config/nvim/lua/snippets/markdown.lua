@@ -1,9 +1,28 @@
-local u = require("config.utils")
-
 local meeting_title = function()
-  local title = u.system("icalBuddy -ea -nc -ic 'david.marchante@rubiconmd.com' -b '' -iep title eventsNow")
+  local calendar_cmd = table.concat({
+    "icalBuddy",
+    "--noCalendarNames",
+    "--excludeAllDayEvents",
+    "--includeCals 'david.marchante@rubiconmd.com'",
+    "--bullet ''",
+    "--includeEventProps 'title'",
+    "eventsNow",
+  }, " ")
+  local events = vim.fn.systemlist(calendar_cmd)
 
-  return sn(nil, i(1, title))
+  if #events == 0 then
+    return sn(nil, i(1, ""))
+  elseif #events == 1 then
+    return sn(nil, i(1, events[1]))
+  else
+    local choices = {}
+
+    for _, event in ipairs(events) do
+      table.insert(choices, i(1, event))
+    end
+
+    return sn(nil, c(1, choices))
+  end
 end
 
 return {
