@@ -7,6 +7,7 @@ function libupdate
     generate_completions
 
     rtx plugins update
+    rtx outdated
 
     npm -g outdated
 
