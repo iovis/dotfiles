@@ -1,0 +1,4 @@
+# https://numbat.dev/doc/example-numbat_syntax.html
+
+@aliases(rems)
+unit rem = 16px

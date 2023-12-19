@@ -8,12 +8,8 @@ bind -N "Open htop" -T command h {
   new-window -Sn htop htop
 }
 
-bind -N "Open nvim" -T command n {
-  if "test -f Session.vim" {
-    new-window -Sn nvim nvim -S Session.vim
-  } {
-    new-window -Sn nvim nvim
-  }
+bind -N "Open numbat" -T command n {
+  new-window -Sn numbat numbat
 }
 
 bind -N "Browse PRs for current branch" -T command p {
