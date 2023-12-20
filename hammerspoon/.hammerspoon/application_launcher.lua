@@ -12,6 +12,7 @@ bind(ctrl_alt_cmd, "g", "Tower")
 
 bind(ctrl_alt_cmd, "w", "Messages")
 bind(ctrl_alt_cmd, "e", "Mail")
+bind(ctrl_alt_cmd, "t", "TablePlus")
 
 bind(ctrl_alt_cmd, "z", "zoom.us")
 bind(ctrl_alt_cmd, "x", "Music")
