@@ -226,6 +226,52 @@ return {
     { condition = conds.line_begin }
   ),
   s(
+    "cmake",
+    fmta(
+      [[
+        bin := "build/<>"
+
+        default: <>
+
+        run: build
+            <>
+
+        build type="Debug": # or Release
+            cmake -S. -B build -DCMAKE_BUILD_TYPE={{type}}
+            cmake --build build
+
+        clean:
+            <>
+
+        dev:
+            <>
+
+        open:
+            gh repo view --web
+
+        lldb: build
+            <>
+
+        test:
+            <>
+
+        db:
+            <>
+      ]],
+      {
+        i(1, "my_program"),
+        i(2, "run"),
+        i(3, "{{bin}}"),
+        i(4, "rm -rf build/"),
+        i(5, "watchexec -e c,h just run"),
+        i(6, "sudo lldb -- {{bin}}"),
+        i(7, "just run"),
+        i(8, "pgcli $DATABASE_URL"),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
     "c",
     fmt(
       [[

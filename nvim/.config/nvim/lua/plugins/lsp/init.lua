@@ -18,6 +18,7 @@ return {
       "astro",
       "bashls",
       "clangd",
+      "cmake",
       "cssls",
       "dockerls",
       "elixirls",

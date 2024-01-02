@@ -3,13 +3,30 @@ return {
     "main",
     fmta(
       [[
-      #include <<stdio.h>>
+        #include <<stdio.h>>
 
-      int main(int argc, char *argv[]) {
-        <body>
-      }
+        int main(int argc, char *argv[]) {
+          <body>
+        }
       ]],
       {
+        body = i(0, "// body"),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "pf",
+    fmta(
+      [[
+        <ret_type> <fname>(<args>) {
+          <body>
+        }
+      ]],
+      {
+        ret_type = i(1, "void"),
+        fname = i(2, "fname"),
+        args = i(3, "void"),
         body = i(0, "// body"),
       }
     ),
@@ -19,9 +36,9 @@ return {
     "f",
     fmta(
       [[
-      <ret_type> <fname>(<args>) {
-        <body>
-      }
+        static <ret_type> <fname>(<args>) {
+          <body>
+        }
       ]],
       {
         ret_type = i(1, "void"),
@@ -37,14 +54,13 @@ return {
     c(1, {
       fmta(
         [[
-          typedef struct <> {
+          typedef struct {
             <>
           } <>;
         ]],
         {
-          r(1, "name", i(1)),
-          r(2, "body", i(2)),
-          rep(1),
+          r(1, "body", i(1)),
+          r(2, "name", i(2)),
         }
       ),
       fmta(

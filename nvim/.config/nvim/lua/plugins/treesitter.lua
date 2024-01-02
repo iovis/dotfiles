@@ -13,6 +13,7 @@ return {
         "astro",
         "bash",
         "c",
+        "cmake",
         "comment",
         "css",
         "diff", -- git diffs
