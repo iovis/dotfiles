@@ -12,7 +12,7 @@ require("lazy").setup("plugins", {
     notify = false,
   },
   dev = {
-    path = "~/Sites/vim/",
+    path = vim.fn.resolve(vim.env.PROJECT_HOME .. "/vim"),
   },
   install = {
     colorscheme = { "catppuccin" },

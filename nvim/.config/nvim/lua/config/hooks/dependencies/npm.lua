@@ -17,7 +17,7 @@ function Npm.parse_command_output(output)
   --   "wanted": "16.1.8",
   --   "latest": "16.1.8",
   --   "dependent": "rubicon-angular",
-  --   "location": "/Users/david/Sites/rubicon/rubicon-angular/node_modules/@angular/core"
+  --   "location": "/<path>/node_modules/@angular/core"
   -- },
   local dependencies = {}
   for package, metadata in pairs(json) do

@@ -16,8 +16,8 @@ local title = function(bufnr)
   elseif filetype == "fzf" then
     return "FZF"
   elseif buftype == "terminal" then
-    local _, mtch = string.match(file, "term:(.*):(%a+)")
-    return mtch ~= nil and mtch or vim.fn.fnamemodify(vim.env.SHELL, ":t")
+    local _, match = string.match(file, "term:(.*):(%a+)")
+    return match ~= nil and match or vim.fn.fnamemodify(vim.env.SHELL, ":t")
   elseif file == "" then
     return "[No Name]"
   else
@@ -54,16 +54,16 @@ local cell = function(index)
   local hl = (isSelected and "%#TabLineSel#" or "%#TabLine#")
 
   return hl
-      .. "%"
-      .. index
-      .. "T"
-      .. " "
-      .. windowCount(index)
-      .. title(bufnr)
-      .. " "
-      .. modified(bufnr)
-      .. "%T"
-      .. separator(index)
+    .. "%"
+    .. index
+    .. "T"
+    .. " "
+    .. windowCount(index)
+    .. title(bufnr)
+    .. " "
+    .. modified(bufnr)
+    .. "%T"
+    .. separator(index)
 end
 
 local tabline = function()
