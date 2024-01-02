@@ -17,7 +17,7 @@ fzf_command() {
   fzf-tmux \
     -p 80%,80% \
     --exit-0 \
-    --bind=enter:replace-query+print-query \
+    --bind=enter:accept-or-print-query \
     --reverse \
     --info hidden \
     --preview "eza -lag --git --group-directories-first $PROJECT_HOME/{}" \
