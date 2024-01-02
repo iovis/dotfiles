@@ -5,6 +5,7 @@ fd-find
 git-delta
 hexyl
 hyperfine
+just
 ripgrep
 rtx-cli
 sd
