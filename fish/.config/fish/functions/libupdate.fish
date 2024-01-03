@@ -6,8 +6,8 @@ function libupdate
     fish_update_completions
     generate_completions
 
-    rtx plugins update
-    rtx outdated
+    mise plugins update
+    mise outdated
 
     npm -g outdated
 

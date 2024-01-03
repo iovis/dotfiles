@@ -65,7 +65,7 @@ else if test -f /usr/local/bin/brew
     set -gx INFOPATH /usr/local/share/info $INFOPATH
 end
 
-rtx activate fish | source
+mise activate fish | source
 
 fish_add_path $HOME/.cargo/bin
 fish_add_path $HOME/.dotfiles/bin
