@@ -19,5 +19,5 @@ bind(ctrl_alt_cmd, "x", "Music")
 bind(ctrl_alt_cmd, "c", "Fantastical")
 bind(ctrl_alt_cmd, "b", "Obsidian")
 
+bind(ctrl_alt_cmd, "u", "Google Chrome Canary")
 bind(ctrl_alt_cmd, "i", "IINA")
-bind(ctrl_alt_cmd, "n", "Numi")
