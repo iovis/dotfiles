@@ -1,3 +1,3 @@
-function dcps --wraps='podman-compose ps' --description 'alias dcps=podman-compose ps'
-    podman-compose ps $argv
+function dcps --wraps='docker compose ps' --description 'alias dcps=docker compose ps'
+    docker compose ps $argv
 end

@@ -1,3 +1,3 @@
-function dcdn --wraps='podman-compose down' --description 'alias dcdn=podman-compose down'
-    podman-compose down $argv
+function dcdn --wraps='docker compose down' --description 'alias dcdn=docker compose down'
+    docker compose down $argv
 end
