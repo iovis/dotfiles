@@ -7,17 +7,18 @@ return {
     local ft_functions = require("luasnip.extras.filetype_functions")
 
     ---- Config
-    luasnip.config.set_config({
+    luasnip.setup({
       enable_autosnippets = true,
       ext_opts = {
         [types.choiceNode] = {
           active = {
-            virt_text = { { "●", "DiagnosticSignWarn" } },
+            virt_text = {
+              { "●", "DiagnosticSignWarn" },
+            },
           },
         },
       },
       ft_func = ft_functions.from_pos_or_filetype,
-      history = false,
       region_check_events = "InsertEnter,CursorMoved",
       store_selection_keys = "<c-j>", -- Mapping to visually select text to be expanded with $TM_SELECTED_TEXT
       updateevents = "TextChanged,TextChangedI",
@@ -35,7 +36,9 @@ return {
     ---- Load Snippets
     require("luasnip.loaders.from_vscode").lazy_load()
     require("luasnip.loaders.from_snipmate").lazy_load()
-    require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/lua/snippets" })
+    require("luasnip.loaders.from_lua").lazy_load({
+      paths = { "~/.config/nvim/lua/snippets" },
+    })
 
     ---- Keymaps
     -- Fix backspace exiting select mode
