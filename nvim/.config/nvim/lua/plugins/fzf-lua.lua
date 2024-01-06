@@ -129,9 +129,9 @@ return {
     }, " ")
 
     -- Open Project Notes
-    vim.keymap.set("n", "<leader>uo", function()
-      fzf_lua.files({ cwd = "notes/", fd_opts = fd_opts_no_ignore })
-    end, { desc = "Open Project Notes" })
+    -- vim.keymap.set("n", "<leader>uo", function()
+    --   fzf_lua.files({ cwd = "notes/", fd_opts = fd_opts_no_ignore })
+    -- end, { desc = "Open Project Notes" })
 
     -- Files
     vim.keymap.set("n", "<leader>o", function()
