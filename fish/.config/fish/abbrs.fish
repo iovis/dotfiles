@@ -17,3 +17,4 @@ abbr RET  RAILS_ENV=test
 
 ## rust
 abbr RB RUST_BACKTRACE=1
+abbr RL RUST_LOG=debug

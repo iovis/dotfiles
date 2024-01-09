@@ -44,51 +44,20 @@ return {
     }
   ),
   -- Functions
+  s("f", d(1, rust_fn), {
+    condition = conds.line_begin,
+  }),
+  s("pf", fmt("pub {}", { d(1, rust_fn) }), {
+    condition = conds.line_begin,
+  }),
+  s("af", fmt("async {}", { d(1, rust_fn) }), {
+    condition = conds.line_begin,
+  }),
+  s("paf", fmt("pub async {}", { d(1, rust_fn) }), {
+    condition = conds.line_begin,
+  }),
   s(
-    {
-      trig = "f",
-      dscr = "function",
-    },
-    d(1, rust_fn),
-    {
-      condition = conds.line_begin,
-    }
-  ),
-  s(
-    {
-      trig = "pf",
-      dscr = "pub function",
-    },
-    fmt("pub {}", { d(1, rust_fn) }),
-    {
-      condition = conds.line_begin,
-    }
-  ),
-  s(
-    {
-      trig = "af",
-      dscr = "async function",
-    },
-    fmt("async {}", { d(1, rust_fn) }),
-    {
-      condition = conds.line_begin,
-    }
-  ),
-  s(
-    {
-      trig = "paf",
-      dscr = "pub async function",
-    },
-    fmt("pub async {}", { d(1, rust_fn) }),
-    {
-      condition = conds.line_begin,
-    }
-  ),
-  s(
-    {
-      trig = "axh",
-      dscr = "axum handler",
-    },
+    "axum_handler",
     fmt(
       [[
         #[axum::debug_handler]
@@ -139,7 +108,7 @@ return {
     { condition = conds.line_begin }
   ),
   s(
-    { trig = "tokiotest", dscr = "Tokio test" },
+    "tokiotest",
     fmta(
       [[
         #[tokio::test]
@@ -161,60 +130,6 @@ return {
   s("ase", fmt("assert_eq!({}, {});", { i(1, "expected"), i(2, "actual") }), {
     condition = conds.line_begin,
   }),
-  -- Benchmarks
-  s(
-    "benchmain",
-    fmta(
-      [[
-      use criterion::{black_box, criterion_group, criterion_main, Criterion};
-
-      fn bench_fib(c: &mut Criterion) {
-          c.bench_function("fib 20", |b| b.iter(|| fib(black_box(20))));
-      }
-
-      criterion_group!(benches, bench_fib);
-      criterion_main!(benches);
-      ]],
-      {}
-    ),
-    { condition = conds.line_begin }
-  ),
-  s(
-    "bench",
-    fmta(
-      [[
-      fn bench_fib(c: &mut Criterion) {
-          c.bench_function("fib 20", |b| b.iter(|| fib(black_box(20))));
-      }
-      ]],
-      {}
-    ),
-    { condition = conds.line_begin }
-  ),
-  s(
-    "benchgroup",
-    fmta(
-      [[
-      fn bench_fibs(c: &mut Criterion) {
-          let mut group = c.benchmark_group("Fibonacci");
-
-          for i in &[5, 10, 100] {
-              group.bench_with_input(BenchmarkId::new("Recursive", i), i, |b, i| {
-                  b.iter(|| fibonacci_slow(*i));
-              });
-
-              group.bench_with_input(BenchmarkId::new("Iterative", i), i, |b, i| {
-                  b.iter(|| fibonacci_fast(*i));
-              });
-          }
-
-          group.finish();
-      }
-      ]],
-      {}
-    ),
-    { condition = conds.line_begin }
-  ),
   -- Structs
   s(
     "st",
@@ -244,6 +159,25 @@ return {
       condition = conds.line_begin,
     }
   ),
+  -- Tracing
+  s("tinit", t("tracing_subscriber::fmt::init();"), {
+    condition = conds.line_begin,
+  }),
+  s("instrument", fmt("#[tracing::instrument{}]", { i(1) }), {
+    condition = conds.line_begin,
+  }),
+  s("logd", fmt("tracing::debug!({});", { i(1, "?value") }), {
+    condition = conds.line_begin,
+  }),
+  s("loge", fmt("tracing::error!({});", { i(1, "?value") }), {
+    condition = conds.line_begin,
+  }),
+  s("logi", fmt("tracing::info!({});", { i(1, "?value") }), {
+    condition = conds.line_begin,
+  }),
+  s("logw", fmt("tracing::warn!({});", { i(1, "?value") }), {
+    condition = conds.line_begin,
+  }),
   -- Macros
   s("attr", fmt("#[{}]", { i(1) }), {
     condition = conds.line_begin,
@@ -252,9 +186,6 @@ return {
     condition = conds.line_begin,
   }),
   s("allow", fmt("#[allow({})]", { i(1) }), {
-    condition = conds.line_begin,
-  }),
-  s("tracinginstrument", fmt("#[tracing::instrument{}]", { i(1) }), {
     condition = conds.line_begin,
   }),
   s("skipfmt", t("#[rustfmt::skip]"), { condition = conds.line_begin }),
@@ -315,7 +246,7 @@ return {
   s("elapsed", fmta('println!("<>{:?}", now.elapsed());', { i(1) }), {
     condition = conds.line_begin,
   }),
-  s("inspect", t('.inspect(|x| eprintln!("{x:?}"))'), {
+  s(".ins", t('.inspect(|x| eprintln!("{x:?}"))'), {
     condition = conds.line_begin,
   }),
   s(
