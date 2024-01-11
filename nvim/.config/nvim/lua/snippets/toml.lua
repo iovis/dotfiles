@@ -27,4 +27,16 @@ return {
     ),
     { condition = conds.line_begin }
   ),
+  s(
+    "profiling",
+    fmt(
+      [=[
+        [profile.profiling]
+        inherits = "release"
+        debug = true
+      ]=],
+      {}
+    ),
+    { condition = conds.line_begin }
+  ),
 }
