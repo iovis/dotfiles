@@ -96,7 +96,7 @@ return {
     fmta(
       [[
         #[test]
-        fn <test_name>_test() {
+        fn test_<test_name>() {
             <>
         }
       ]],
