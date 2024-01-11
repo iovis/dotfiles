@@ -13,4 +13,18 @@ return {
     ),
     { condition = conds.line_begin }
   ),
+  s(
+    "workspace",
+    fmt(
+      [=[
+        [workspace]
+        resolver = "2"
+        members = ["{}"]
+      ]=],
+      {
+        i(1, "crates/*"),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
 }
