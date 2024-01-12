@@ -223,7 +223,7 @@ return {
     "fd",
     fmt("{field}: {value},", {
       field = i(1, "field"),
-      value = i(2, "value"),
+      value = i(2, "String"),
     }),
     {
       condition = conds.line_begin,
@@ -233,7 +233,7 @@ return {
     "pfd",
     fmt("pub {field}: {value},", {
       field = i(1, "field"),
-      value = i(2, "value"),
+      value = i(2, "String"),
     }),
     {
       condition = conds.line_begin,
