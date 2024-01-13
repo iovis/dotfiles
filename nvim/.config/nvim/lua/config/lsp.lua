@@ -1,5 +1,3 @@
-local M = {}
-
 local u = require("config.utils")
 
 ---- Global LSP settings
@@ -39,7 +37,7 @@ local lsp_format = function()
 end
 
 ---- On LSP attached buffers
-M.on_attach = function(client, bufnr)
+local on_attach = function(client, bufnr)
   local function buf_imap(lhs, rhs, desc)
     vim.keymap.set("i", lhs, rhs, { buffer = true, desc = desc })
   end
@@ -239,6 +237,7 @@ capabilities.textDocument.foldingRange = {
   lineFoldingOnly = true,
 }
 
-M.capabilities = capabilities
-
-return M
+return {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
