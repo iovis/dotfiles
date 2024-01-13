@@ -30,5 +30,4 @@ function! ToggleList(bufname, pfx)
 endfunction
 
 nnoremap <silent> ç :call ToggleList("Quickfix List", 'c')<cr>
-nnoremap <silent> Ç :call ToggleList("Location List", 'l')<cr>
-
+" nnoremap <silent> Ç :call ToggleList("Location List", 'l')<cr>
