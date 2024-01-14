@@ -4,7 +4,6 @@ return {
   "jparise/vim-graphql",
 
   { "dstein64/vim-startuptime", cmd = "StartupTime" },
-  { "iovis/browsers_castle", event = "VeryLazy" },
   { "iovis/substitute.vim", event = "VeryLazy" },
   { "vim-test/vim-test", event = "VeryLazy" },
 
