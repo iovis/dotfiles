@@ -215,7 +215,7 @@ end, { desc = "Open daily note" })
 vim.keymap.set("n", "<leader>uc", "<cmd>e! Cargo.toml<cr>")
 vim.keymap.set("n", "<leader>uC", "<cmd>e! CMakeLists.txt<cr>")
 vim.keymap.set("n", "<leader>uj", "<cmd>e! justfile<cr>")
-vim.keymap.set("n", "<leader>uv", "<cmd>e! .env<cr>")
+vim.keymap.set("n", "<leader>ue", "<cmd>e! .env<cr>")
 
 ---- Toggle Settings
 vim.keymap.set("n", "yol", ":set cursorline!<cr>")

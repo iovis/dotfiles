@@ -115,7 +115,7 @@ return {
     end, { desc = "fzf_lua.filetypes" })
 
     -- Edit dotfiles
-    vim.keymap.set("n", "<leader>ue", function()
+    vim.keymap.set("n", "<leader>ud", function()
       fzf_lua.files({ cwd = "~/.dotfiles/" })
     end, { desc = "Open Dotfiles" })
 
