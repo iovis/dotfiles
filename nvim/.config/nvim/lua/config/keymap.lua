@@ -219,7 +219,7 @@ vim.keymap.set("n", "<leader>uv", "<cmd>e! .env<cr>")
 
 ---- Toggle Settings
 vim.keymap.set("n", "yol", ":set cursorline!<cr>")
-vim.keymap.set("n", "yod", ":<c-r>=&diff ? 'diffoff' : 'diffthis'<cr><cr>")
+vim.keymap.set("n", "yod", ":<c-r>=&diff ? 'windo diffoff' : 'windo diffthis'<cr><cr>")
 vim.keymap.set("n", "yoh", ":set hlsearch!<cr>")
 vim.keymap.set("n", "yoi", ":set list!<cr>")
 vim.keymap.set("n", "yon", ":set number!<cr>")
