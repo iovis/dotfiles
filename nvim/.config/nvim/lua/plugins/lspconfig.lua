@@ -75,12 +75,16 @@ return {
           completion = {
             callSnippet = "Replace",
           },
-          workspace = {
-            library = vim.api.nvim_get_runtime_file("", true),
-            checkThirdParty = false,
+          diagnostics = {
+            disable = { "missing-fields" },
+            unusedLocalExclude = { "_*" }, -- Don't warn about variables that start with underscore
           },
           telemetry = {
             enable = false,
+          },
+          workspace = {
+            -- library = vim.api.nvim_get_runtime_file("", true),
+            checkThirdParty = false,
           },
         },
       },
