@@ -12,6 +12,10 @@ bind -N "Open htop" -T command h {
   new-window -Sn htop htop
 }
 
+bind -N "Open btop" -T command b {
+  new-window -Sn btop btop
+}
+
 bind -N "Open numbat" -T command n {
   new-window -Sn numbat numbat
 }
