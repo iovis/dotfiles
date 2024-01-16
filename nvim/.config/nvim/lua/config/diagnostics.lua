@@ -39,6 +39,16 @@ local config = {
 vim.diagnostic.config(config)
 
 ---- Set Diagnostics on location list
+local augroup = vim.api.nvim_create_augroup("diagnostics", { clear = true })
+vim.api.nvim_create_autocmd("DiagnosticChanged", {
+  pattern = "*",
+  callback = function()
+    vim.diagnostic.setloclist({ open = false })
+  end,
+  group = augroup,
+  desc = "Set diagnostics on location list",
+})
+
 vim.keymap.set("n", "Ç", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 ---- Toggle diagnostics
