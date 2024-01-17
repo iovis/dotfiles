@@ -79,12 +79,18 @@ return {
             disable = { "missing-fields" },
             unusedLocalExclude = { "_*" }, -- Don't warn about variables that start with underscore
           },
+          hint = {
+            enable = true,
+          },
+          runtime = {
+            version = "LuaJIT",
+          },
           telemetry = {
             enable = false,
           },
           workspace = {
-            -- library = vim.api.nvim_get_runtime_file("", true),
             checkThirdParty = false,
+            library = vim.api.nvim_get_runtime_file("", true),
           },
         },
       },

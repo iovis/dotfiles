@@ -224,7 +224,22 @@ local on_attach = function(client, bufnr)
   -- end
 
   ----Inlay hints
-  -- require("lsp-inlayhints").on_attach(client, bufnr)
+  -- vim.g.inlay_hints_visible = false
+  -- local function toggle_inlay_hints()
+  --   if vim.g.inlay_hints_visible then
+  --     vim.g.inlay_hints_visible = false
+  --     vim.lsp.inlay_hint.enable(bufnr, false)
+  --   else
+  --     if client.server_capabilities.inlayHintProvider then
+  --       vim.g.inlay_hints_visible = true
+  --       vim.lsp.inlay_hint.enable(bufnr, true)
+  --     else
+  --       print("no inlay hints available")
+  --     end
+  --   end
+  -- end
+  --
+  -- buf_nmap("<leader>ly", toggle_inlay_hints, "vim.lsp.inlay_hint")
 end
 
 ---- Additional capabilities
