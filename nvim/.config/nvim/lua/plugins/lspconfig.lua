@@ -3,8 +3,7 @@ return {
   dependencies = {
     "b0o/schemastore.nvim",
     "folke/neodev.nvim",
-    -- "lvimuser/lsp-inlayhints.nvim",
-    "simrat39/rust-tools.nvim",
+    "simrat39/rust-tools.nvim", -- TODO: Remove in nvim v0.10
     {
       "williamboman/mason.nvim",
       dependencies = {
@@ -43,7 +42,6 @@ return {
     lsp.pyright.setup(cfg)
     lsp.rubocop.setup(cfg)
     lsp.ruby_ls.setup(cfg)
-    lsp.rust_analyzer.setup(cfg)
     lsp.svelte.setup(cfg)
     lsp.taplo.setup(cfg)
     lsp.tsserver.setup(cfg)
@@ -108,6 +106,26 @@ return {
     }))
 
     ----Rust
+    -- vim.g.rustaceanvim = {
+    --   server = {
+    --     on_attach = cfg.on_attach,
+    --     settings = {
+    --       ["rust-analyzer"] = {
+    --         checkOnSave = {
+    --           command = "clippy",
+    --           extraArgs = {
+    --             "--",
+    --             "-W clippy::pedantic",
+    --             "-A clippy::missing-errors-doc",
+    --             "-A clippy::missing-panics-doc",
+    --             "-A clippy::must-use-candidate",
+    --             "-A clippy::needless_range_loop",
+    --           },
+    --         },
+    --       },
+    --     },
+    --   },
+    -- }
     require("rust-tools").setup({
       server = {
         on_attach = cfg.on_attach,

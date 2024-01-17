@@ -239,7 +239,7 @@ local on_attach = function(client, bufnr)
   --   end
   -- end
   --
-  -- buf_nmap("<leader>ly", toggle_inlay_hints, "vim.lsp.inlay_hint")
+  -- buf_nmap("<leader>lk", toggle_inlay_hints, "vim.lsp.inlay_hint")
 end
 
 ---- Additional capabilities
