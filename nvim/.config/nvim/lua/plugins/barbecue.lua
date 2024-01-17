@@ -21,7 +21,6 @@ return {
       },
       exclude_filetypes = {
         "dbui",
-        "fugitiveblame",
         "netrw",
         "toggleterm",
       },
