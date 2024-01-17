@@ -1,4 +1,5 @@
 return {
+  -- TODO: Remove in v0.10
   "ojroques/nvim-osc52",
   event = "VeryLazy",
   -- cond = function()
