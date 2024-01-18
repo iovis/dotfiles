@@ -4,15 +4,10 @@ return {
     "b0o/schemastore.nvim",
     "folke/neodev.nvim",
     "simrat39/rust-tools.nvim", -- TODO: Remove in nvim v0.10
-    {
-      "williamboman/mason.nvim",
-      dependencies = {
-        "williamboman/mason-lspconfig.nvim",
-      },
-    },
+    "williamboman/mason-lspconfig.nvim",
+    "williamboman/mason.nvim",
   },
   config = function()
-    require("neodev").setup({})
     require("mason").setup({
       ui = {
         border = "rounded",
@@ -23,6 +18,7 @@ return {
     })
 
     require("mason-lspconfig").setup({})
+    require("neodev").setup({})
 
     ---- Initialize servers
     local lsp = require("lspconfig")
