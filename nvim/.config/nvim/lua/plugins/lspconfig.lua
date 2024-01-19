@@ -71,6 +71,7 @@ return {
           },
           diagnostics = {
             disable = { "missing-fields" },
+            globals = { "hs", "muxi" },
             unusedLocalExclude = { "_*" }, -- Don't warn about variables that start with underscore
           },
           hint = {
