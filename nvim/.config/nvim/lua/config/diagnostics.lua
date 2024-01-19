@@ -78,5 +78,5 @@ local toggle_diagnostics_virtual = function()
   end
 end
 
-vim.keymap.set("n", "yoz", toggle_diagnostics, { desc = "toggle diagnostics" })
+vim.keymap.set("n", "yoD", toggle_diagnostics, { desc = "toggle diagnostics" })
 vim.keymap.set("n", "yov", toggle_diagnostics_virtual, { desc = "toggle virtual text diagnostics" })
