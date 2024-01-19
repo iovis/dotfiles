@@ -12,9 +12,8 @@ return {
       ext_opts = {
         [types.choiceNode] = {
           active = {
-            virt_text = {
-              { "●", "DiagnosticSignWarn" },
-            },
+            hl_mode = "combine",
+            virt_text = { { "∴", "DiagnosticSignWarn" } },
           },
         },
       },
