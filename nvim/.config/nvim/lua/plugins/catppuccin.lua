@@ -59,6 +59,11 @@ return {
           StatusLineNC = {},
           Visual = { bg = colors.surface0, bold = true },
 
+          -- LSP Document Highlights
+          LspReferenceRead = { bg = colors.base },
+          LspReferenceText = { bg = colors.base },
+          LspReferenceWrite = { bg = colors.base },
+
           -- lspsaga
           CodeActionNumber = { fg = colors.teal },
           CodeActionText = { fg = colors.blue },
