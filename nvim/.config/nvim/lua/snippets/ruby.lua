@@ -140,6 +140,7 @@ return {
   ),
   parse("arg", "argument :${1:name}"),
   -- RSpec
+  s("dc", t("described_class.")),
   s(
     "desc",
     fmt(
@@ -275,6 +276,34 @@ return {
           )
         ),
       }),
+    }),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "exp",
+    fmt("expect{expect}.{to} {eq} {expected}", {
+      expect = c(1, {
+        fmta("(<>)", { r(1, "expected", i(1)) }),
+        fmta("  { <> }", { r(1, "expected", i(1)) }),
+      }),
+      to = c(2, {
+        i(1, "to"),
+        i(1, "not_to"),
+      }),
+      eq = i(3, "eq"),
+      expected = i(4),
+    }),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "ise",
+    fmt("is_expected.{to} {eq} {expected}", {
+      to = c(1, {
+        i(1, "to"),
+        i(1, "not_to"),
+      }),
+      eq = i(2, "eq"),
+      expected = i(3),
     }),
     { condition = conds.line_begin }
   ),

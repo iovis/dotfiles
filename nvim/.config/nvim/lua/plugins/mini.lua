@@ -157,7 +157,7 @@ return {
         end)
 
         files.set_target_window(new_target_window)
-        files.go_in()
+        files.go_in({})
         files.close()
       end
 
