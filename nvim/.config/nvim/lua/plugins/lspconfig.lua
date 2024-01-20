@@ -117,6 +117,12 @@ return {
       --     on_attach = cfg.on_attach,
       --     settings = {
       --       ["rust-analyzer"] = {
+      --         imports = {
+      --           granularity = {
+      --             group = "module",
+      --           },
+      --           prefix = "self",
+      --         },
       --         checkOnSave = {
       --           command = "clippy",
       --           extraArgs = {
