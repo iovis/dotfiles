@@ -14,16 +14,19 @@ return {
   },
   {
     "mrcjkb/rustaceanvim",
-    enabled = false, -- TODO: nvim v0.10
+    enabled = vim.fn.has("nvim-0.10") == 1, -- TODO: nvim v0.10
     version = "^3",
     ft = { "rust" },
   },
+  {
+    "simrat39/rust-tools.nvim",
+    enabled = vim.fn.has("nvim-0.10") ~= 1,
+  }, -- TODO: Remove in nvim v0.10
   {
     "neovim/nvim-lspconfig",
     dependencies = {
       "b0o/schemastore.nvim",
       { "folke/neodev.nvim", opts = {} },
-      "simrat39/rust-tools.nvim", -- TODO: Remove in nvim v0.10
       "williamboman/mason-lspconfig.nvim",
       "williamboman/mason.nvim",
     },
@@ -112,70 +115,73 @@ return {
       }))
 
       ----Rust
-      -- vim.g.rustaceanvim = {
-      --   server = {
-      --     on_attach = cfg.on_attach,
-      --     settings = {
-      --       ["rust-analyzer"] = {
-      --         imports = {
-      --           granularity = {
-      --             group = "module",
-      --           },
-      --           prefix = "self",
-      --         },
-      --         checkOnSave = {
-      --           command = "clippy",
-      --           extraArgs = {
-      --             "--",
-      --             "-W clippy::pedantic",
-      --             "-A clippy::missing-errors-doc",
-      --             "-A clippy::missing-panics-doc",
-      --             "-A clippy::must-use-candidate",
-      --             "-A clippy::needless_range_loop",
-      --           },
-      --         },
-      --       },
-      --     },
-      --   },
-      -- }
-      require("rust-tools").setup({
-        server = {
-          on_attach = cfg.on_attach,
-          capabilities = cfg.capabilities,
-          standalone = false,
-          settings = {
-            -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-            ["rust-analyzer"] = {
-              imports = {
-                granularity = {
-                  group = "module",
+      if vim.fn.has("nvim-0.10") == 1 then
+        vim.g.rustaceanvim = {
+          server = {
+            on_attach = cfg.on_attach,
+            settings = {
+              ["rust-analyzer"] = {
+                imports = {
+                  granularity = {
+                    group = "module",
+                  },
+                  prefix = "self",
                 },
-                prefix = "self",
-              },
-              checkOnSave = {
-                command = "clippy",
-                extraArgs = {
-                  "--",
-                  "-W clippy::pedantic",
-                  "-A clippy::missing-errors-doc",
-                  "-A clippy::missing-panics-doc",
-                  "-A clippy::must-use-candidate",
-                  "-A clippy::needless_range_loop",
+                checkOnSave = {
+                  command = "clippy",
+                  extraArgs = {
+                    "--",
+                    "-W clippy::pedantic",
+                    "-A clippy::missing-errors-doc",
+                    "-A clippy::missing-panics-doc",
+                    "-A clippy::must-use-candidate",
+                    "-A clippy::needless_range_loop",
+                  },
                 },
               },
             },
           },
-          cmd = {
-            "rustup",
-            "run",
-            "stable",
-            "rust-analyzer",
+        }
+      else
+        require("rust-tools").setup({
+          server = {
+            on_attach = cfg.on_attach,
+            capabilities = cfg.capabilities,
+            standalone = false,
+            settings = {
+              -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+              ["rust-analyzer"] = {
+                imports = {
+                  granularity = {
+                    group = "module",
+                  },
+                  prefix = "self",
+                },
+                checkOnSave = {
+                  command = "clippy",
+                  extraArgs = {
+                    "--",
+                    "-W clippy::pedantic",
+                    "-A clippy::missing-errors-doc",
+                    "-A clippy::missing-panics-doc",
+                    "-A clippy::must-use-candidate",
+                    "-A clippy::needless_range_loop",
+                  },
+                },
+              },
+            },
+            cmd = {
+              "rustup",
+              "run",
+              "stable",
+              "rust-analyzer",
+            },
           },
-        },
-        -- dap = {
-        --   adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
-        -- },
-      })
+          -- dap = {
+          --   adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
+          -- },
+        })
+      end
 
       ----fuzzy ruby server
       local lsp_config = require("lspconfig.configs")

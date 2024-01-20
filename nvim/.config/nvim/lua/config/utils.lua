@@ -44,7 +44,7 @@ M.scratch = function(contents, opts)
   vim.bo.filetype = "redir"
 
   vim.api.nvim_buf_set_lines(0, 0, -1, false, contents)
-  vim.api.nvim_buf_set_option(0, "filetype", opts.filetype or "lua")
+  vim.api.nvim_set_option_value("filetype", opts.filetype or "lua", { buf = 0 })
 end
 
 M.floating_window = function(contents, opts)
@@ -73,7 +73,7 @@ M.floating_window = function(contents, opts)
 
   -- Set the contents to muxi table and the filetype to lua
   vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, contents)
-  vim.api.nvim_buf_set_option(bufnr, "filetype", win_opts.filetype)
+  vim.api.nvim_set_option_value("filetype", win_opts.filetype, { buf = bufnr })
 
   -- Map [q] to read the changes and close the popup
   vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = bufnr })

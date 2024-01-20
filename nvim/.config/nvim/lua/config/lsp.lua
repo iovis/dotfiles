@@ -3,7 +3,7 @@ local u = require("config.utils")
 ---- Global LSP settings
 u.command("LspConfigHelp", "help lspconfig-server-configurations")
 u.command("LspActiveClients", function()
-  vim.cmd("R!=vim.lsp.get_active_clients()")
+  vim.cmd("R!=vim.lsp.get_active_clients()") -- TODO: v0.10 vim.lsp.get_clients()
   vim.cmd("se ft=lua")
 end)
 
@@ -63,7 +63,9 @@ local on_attach = function(client, bufnr)
   u.command("LspTypeDef", vim.lsp.buf.type_definition)
 
   -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", {
+    buf = bufnr,
+  })
 
   ---- Signature/Definition
   buf_imap("<m-d>", vim.lsp.buf.hover, "vim.lsp.buf.hover")
@@ -179,6 +181,27 @@ local on_attach = function(client, bufnr)
     buf_nmap("<leader>lo", "<cmd>Lspsaga outline<cr>")
   end
 
+  ----Inlay hints
+  if vim.fn.has("nvim-0.10") == 1 then
+    vim.g.inlay_hints_visible = false
+
+    local function toggle_inlay_hints()
+      if vim.g.inlay_hints_visible then
+        vim.g.inlay_hints_visible = false
+        vim.lsp.inlay_hint.enable(bufnr, false)
+      else
+        if client.server_capabilities.inlayHintProvider then
+          vim.g.inlay_hints_visible = true
+          vim.lsp.inlay_hint.enable(bufnr, true)
+        else
+          print("no inlay hints available")
+        end
+      end
+    end
+
+    buf_nmap("<leader>lk", toggle_inlay_hints, "vim.lsp.inlay_hint")
+  end
+
   if client.name == "solargraph" then
     client.server_capabilities.documentSymbolProvider = false
   end
@@ -222,24 +245,6 @@ local on_attach = function(client, bufnr)
   --     callback = vim.lsp.buf.clear_references,
   --   })
   -- end
-
-  ----Inlay hints
-  -- vim.g.inlay_hints_visible = false
-  -- local function toggle_inlay_hints()
-  --   if vim.g.inlay_hints_visible then
-  --     vim.g.inlay_hints_visible = false
-  --     vim.lsp.inlay_hint.enable(bufnr, false)
-  --   else
-  --     if client.server_capabilities.inlayHintProvider then
-  --       vim.g.inlay_hints_visible = true
-  --       vim.lsp.inlay_hint.enable(bufnr, true)
-  --     else
-  --       print("no inlay hints available")
-  --     end
-  --   end
-  -- end
-  --
-  -- buf_nmap("<leader>lk", toggle_inlay_hints, "vim.lsp.inlay_hint")
 end
 
 ---- Additional capabilities

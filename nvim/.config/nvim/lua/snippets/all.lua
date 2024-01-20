@@ -26,7 +26,7 @@ local commentstr = function()
   end
 
   -- Substitute %s with one space
-  return vim.api.nvim_buf_get_option(0, "commentstring"):gsub("%s*%%s", " ")
+  return vim.api.nvim_get_option_value("commentstring", { buf = 0 }):gsub("%s*%%s", " ")
 end
 
 return {
