@@ -1,4 +1,5 @@
 cargo-audit
+cargo-dist
 cargo-edit
 cargo-nextest
 cargo-outdated
