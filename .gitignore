@@ -26,6 +26,9 @@ mpv/.config/mpv/watch_later/*
 # muxi
 muxi/.config/muxi/sessions.toml
 
+# nvim
+.repro/
+
 # encryption
 master.key
 psql/.pgpass
