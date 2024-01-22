@@ -27,6 +27,7 @@ elseif vim.fn.expand("%"):match("benches/") then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux cargo bench -q --bench %:t:r<cr>", { buffer = true })
 elseif vim.fn.expand("%"):match("ext/") then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux bundle exec rake<cr>", { buffer = true })
+  vim.keymap.set("n", "<leader>sw", "<cmd>Tux watchexec -e rs,rb -- bundle exec rake<cr>", { buffer = true })
 elseif not u.has_justfile() then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux cargo run<cr>", { buffer = true })
   vim.keymap.set("n", "m<cr>", "<cmd>Tux cargo check --all-targets && clippy<cr>", { buffer = true })
