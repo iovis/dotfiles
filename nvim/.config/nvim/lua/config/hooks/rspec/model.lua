@@ -102,7 +102,7 @@ function RSpec:parse(data)
       self.output = json
       return true
     else
-      print("Unexpected output:", line)
+      print(line)
     end
   end
 
