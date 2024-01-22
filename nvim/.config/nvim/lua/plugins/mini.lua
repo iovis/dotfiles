@@ -96,84 +96,86 @@ return {
     -- })
 
     ---- mini.files
-    local files = require("mini.files")
-    files.setup({
-      options = {
-        use_as_default_explorer = false,
-      },
+    if false then
+      local files = require("mini.files")
+      files.setup({
+        options = {
+          use_as_default_explorer = false,
+        },
 
-      mappings = {
-        close = "q",
-        go_in = "",
-        go_in_plus = "<cr>",
-        go_out = "",
-        go_out_plus = "-",
-        reset = "<bs>",
-        reveal_cwd = "_",
-        show_help = "g?",
-        synchronize = "<leader>w",
-        trim_left = "<",
-        trim_right = ">",
-      },
-    })
+        mappings = {
+          close = "q",
+          go_in = "",
+          go_in_plus = "<cr>",
+          go_out = "",
+          go_out_plus = "-",
+          reset = "<bs>",
+          reveal_cwd = "_",
+          show_help = "g?",
+          synchronize = "<leader>w",
+          trim_left = "<",
+          trim_right = ">",
+        },
+      })
 
-    -- Keymaps
-    vim.keymap.set("n", "_", files.open, { desc = "[mini.files] Current working directory" })
-    vim.keymap.set("n", "-", function()
-      files.open(vim.api.nvim_buf_get_name(0), false)
-    end, { desc = "[mini.files] Current file" })
+      -- Keymaps
+      vim.keymap.set("n", "_", files.open, { desc = "[mini.files] Current working directory" })
+      vim.keymap.set("n", "-", function()
+        files.open(vim.api.nvim_buf_get_name(0), false)
+      end, { desc = "[mini.files] Current file" })
 
-    -- Rounded borders
-    local minifiles_au = vim.api.nvim_create_augroup("mini_files", { clear = true })
-    vim.api.nvim_create_autocmd("User", {
-      group = minifiles_au,
-      pattern = "MiniFilesWindowOpen",
-      callback = function(args)
-        vim.api.nvim_win_set_config(args.data.win_id, { border = "rounded" })
-      end,
-    })
+      -- Rounded borders
+      local minifiles_au = vim.api.nvim_create_augroup("mini_files", { clear = true })
+      vim.api.nvim_create_autocmd("User", {
+        group = minifiles_au,
+        pattern = "MiniFilesWindowOpen",
+        callback = function(args)
+          vim.api.nvim_win_set_config(args.data.win_id, { border = "rounded" })
+        end,
+      })
 
-    -- Open in split bindings
-    local map_split = function(buf_id, lhs, command)
-      local rhs = function()
-        local fs_entry = files.get_fs_entry()
-        local is_at_file = fs_entry ~= nil and fs_entry.fs_type == "file"
+      -- Open in split bindings
+      local map_split = function(buf_id, lhs, command)
+        local rhs = function()
+          local fs_entry = files.get_fs_entry()
+          local is_at_file = fs_entry ~= nil and fs_entry.fs_type == "file"
 
-        if not is_at_file then
-          return
+          if not is_at_file then
+            return
+          end
+
+          -- Make new window and set it as target
+          local new_target_window
+          local current_window = files.get_target_window()
+
+          if not current_window then
+            return
+          end
+
+          vim.api.nvim_win_call(current_window, function()
+            vim.cmd(command)
+            new_target_window = vim.api.nvim_get_current_win()
+          end)
+
+          files.set_target_window(new_target_window)
+          files.go_in({})
+          files.close()
         end
 
-        -- Make new window and set it as target
-        local new_target_window
-        local current_window = files.get_target_window()
-
-        if not current_window then
-          return
-        end
-
-        vim.api.nvim_win_call(current_window, function()
-          vim.cmd(command)
-          new_target_window = vim.api.nvim_get_current_win()
-        end)
-
-        files.set_target_window(new_target_window)
-        files.go_in({})
-        files.close()
+        vim.keymap.set("n", lhs, rhs, { buffer = buf_id, desc = command })
       end
 
-      vim.keymap.set("n", lhs, rhs, { buffer = buf_id, desc = command })
+      vim.api.nvim_create_autocmd("User", {
+        group = minifiles_au,
+        pattern = "MiniFilesBufferCreate",
+        callback = function(args)
+          local buf_id = args.data.buf_id
+
+          map_split(buf_id, "<leader>h", "split")
+          map_split(buf_id, "<leader>v", "vsplit")
+          map_split(buf_id, "<leader>t", "tabnew")
+        end,
+      })
     end
-
-    vim.api.nvim_create_autocmd("User", {
-      group = minifiles_au,
-      pattern = "MiniFilesBufferCreate",
-      callback = function(args)
-        local buf_id = args.data.buf_id
-
-        map_split(buf_id, "<leader>h", "split")
-        map_split(buf_id, "<leader>v", "vsplit")
-        map_split(buf_id, "<leader>t", "tabnew")
-      end,
-    })
   end,
 }

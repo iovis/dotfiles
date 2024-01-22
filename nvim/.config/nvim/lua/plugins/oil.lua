@@ -1,10 +1,11 @@
 return {
   "stevearc/oil.nvim",
-  enabled = false,
+  -- enabled = false,
+  lazy = false,
   cmd = { "Oil" },
   keys = {
-    { "-", "<cmd>Oil --float<cr>" },
-    { "_", "<cmd>Oil --float .<cr>" },
+    { "-", "<cmd>Oil<cr>" }, -- --float
+    { "_", "<cmd>Oil .<cr>" },
   },
   dependencies = {
     "nvim-tree/nvim-web-devicons",
@@ -13,7 +14,9 @@ return {
     local oil = require("oil")
 
     oil.setup({
-      default_file_explorer = false,
+      default_file_explorer = true,
+      lsp_rename_autosave = true,
+      skip_confirm_for_simple_edits = true,
       float = {
         max_height = 20,
         max_width = 75,
@@ -22,22 +25,23 @@ return {
         },
       },
       keymaps = {
-        ["R"] = "actions.refresh",
-        ["q"] = {
-          desc = "Save and close",
-          callback = function()
-            oil.save()
-            oil.close()
-          end,
-          nowait = true,
-        },
+        q = "actions.close",
+        -- ["q"] = {
+        --   desc = "Save and close",
+        --   callback = function()
+        --     oil.save()
+        --     oil.close()
+        --   end,
+        --   nowait = true,
+        -- },
       },
       view_options = {
         show_hidden = true,
       },
       win_options = {
-        number = false,
-        relativenumber = false,
+        number = true,
+        relativenumber = true,
+        signcolumn = "yes",
       },
     })
 
