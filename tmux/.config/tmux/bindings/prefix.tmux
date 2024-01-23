@@ -13,7 +13,7 @@ bind -N "Reload tmux" R {
   display "Tmux reloaded!"
 }
 
-bind -N "Toggle status line" t {
+bind -N "Toggle status line" z {
   set status
 }
 
