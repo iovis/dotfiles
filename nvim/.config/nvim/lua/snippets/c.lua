@@ -62,7 +62,7 @@ return {
     "rf",
     fmta(
       [[
-        static VALUE <fname>(VALUE self<comma><args>) {
+        VALUE <fname>(VALUE self<comma><args>) {
           <body>
         }
       ]],
