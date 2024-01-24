@@ -33,15 +33,14 @@ return {
     luasnip.filetype_extend("typescript", { "javascript" })
 
     ---- Load Snippets
-    require("luasnip.loaders.from_vscode").lazy_load()
-    require("luasnip.loaders.from_snipmate").lazy_load()
     require("luasnip.loaders.from_lua").lazy_load({
       paths = { "~/.config/nvim/lua/snippets" },
     })
 
     ---- Keymaps
-    -- Fix backspace exiting select mode
-    vim.keymap.set("s", "<BS>", "<c-o>s")
+    vim.keymap.set("s", "<BS>", "<c-o>s", {
+      desc = "Fix backspace exiting select mode (LuaSnip)",
+    })
 
     -- Expansion
     vim.keymap.set({ "i", "s" }, "<c-j>", function()
