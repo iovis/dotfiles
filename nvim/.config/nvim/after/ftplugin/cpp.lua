@@ -1,1 +1,1 @@
-vim.keymap.set("n", "<leader>aa", "<cmd>ClangdSwitchSourceHeader<cr>", { buffer = true })
+vim.keymap.set("n", "<leader>al", "<cmd>ClangdSwitchSourceHeader<cr>", { buffer = true })

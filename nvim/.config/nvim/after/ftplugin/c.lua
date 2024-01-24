@@ -1,6 +1,6 @@
 local u = require("config.utils")
 
-vim.keymap.set("n", "<leader>aa", "<cmd>ClangdSwitchSourceHeader<cr>", { buffer = true })
+vim.keymap.set("n", "<leader>al", "<cmd>ClangdSwitchSourceHeader<cr>", { buffer = true })
 
 ---- runnables
 if vim.fn.expand("%"):match("ext/") then
