@@ -26,14 +26,19 @@ return {
       },
       keymaps = {
         q = "actions.close",
-        -- ["q"] = {
-        --   desc = "Save and close",
-        --   callback = function()
-        --     oil.save()
-        --     oil.close()
-        --   end,
-        --   nowait = true,
-        -- },
+        gt = "actions.toggle_trash",
+        ["<leader>p"] = "actions.preview",
+        -- ["<leader>v"] = "actions.select_vsplit",
+        -- ["<leader>h"] = "actions.select_split",
+        -- ["<leader>t"] = "actions.select_tab",
+        ["<C-s>"] = false,
+        ["<C-p>"] = false,
+        ["<C-h>"] = false,
+        ["<C-t>"] = false,
+        ["<C-l>"] = false,
+        ["`"] = false,
+        ["~"] = false,
+        ["g\\"] = false,
       },
       view_options = {
         show_hidden = true,
