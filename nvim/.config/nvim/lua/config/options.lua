@@ -16,6 +16,10 @@ vim.o.cursorline = true
 vim.opt.diffopt:append("hiddenoff,vertical")
 vim.o.expandtab = true
 vim.o.fillchars = [[diff:╱,eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+vim.o.foldcolumn = "0"
+vim.o.foldenable = true
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
 vim.o.ignorecase = true
 vim.o.inccommand = "split"
 vim.o.laststatus = 3
