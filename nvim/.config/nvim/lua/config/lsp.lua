@@ -69,8 +69,7 @@ local on_attach = function(client, bufnr)
 
   ---- Signature/Definition
   buf_imap("<m-d>", vim.lsp.buf.hover, "vim.lsp.buf.hover")
-  buf_imap("<m-k>", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
-  buf_imap("<c-s>", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
+  buf_imap("<c-h>", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
 
   buf_nmap("T", vim.lsp.buf.references, "vim.lsp.buf.references")
   buf_nmap("gd", vim.lsp.buf.hover, "vim.lsp.buf.hover")

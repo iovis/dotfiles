@@ -62,12 +62,6 @@ return {
       end
     end, { desc = "next choice" })
 
-    vim.keymap.set({ "i", "s" }, "<c-h>", function()
-      if luasnip.choice_active() then
-        luasnip.change_choice(-1)
-      end
-    end, { desc = "previous choice" })
-
     -- View/Edit
     vim.keymap.set("n", "<leader>us", require("luasnip.loaders").edit_snippet_files, {
       desc = "Edit snippets",
