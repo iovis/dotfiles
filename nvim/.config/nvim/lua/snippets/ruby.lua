@@ -1,10 +1,5 @@
 local u = require("config.utils")
 
--- https://github.com/L3MON4D3/LuaSnip/issues/944
-local function visual_selection(_, parent)
-  return parent.snippet.env.LS_SELECT_DEDENT or {}
-end
-
 local extract_name_from = function(path)
   path = vim.split(path, "/", { trimempty = true })
 
@@ -172,6 +167,22 @@ return {
     { condition = conds.line_begin }
   ),
   s(
+    "its",
+    fmta("it { is_expected.<to> }", {
+      to = c(1, {
+        fmt("to {eq} {expected}", {
+          eq = r(1, "eq", i(1, "eq")),
+          expected = r(2, "expected", i(2)),
+        }),
+        fmt("not_to {eq} {expected}", {
+          eq = r(1, "eq", i(1, "eq")),
+          expected = r(2, "expected", i(2)),
+        }),
+      }),
+    }),
+    { condition = conds.line_begin }
+  ),
+  s(
     "bef",
     fmt("before {}{space}{}", {
       i(1),
@@ -261,29 +272,25 @@ return {
   ),
   s(
     "exp",
-    fmt("expect{expect}.{to} {eq} {expected}", {
+    fmt("expect{expect}.{to}", {
       expect = c(1, {
-        fmta("(<>)", { r(1, "expected", i(1)) }),
-        fmta("  { <> }", { r(1, "expected", i(1)) }),
+        fmta("(<exp>)", {
+          exp = r(1, "exp", i(1)),
+        }),
+        fmta("  { <exp> }", {
+          exp = r(1, "exp", i(1)),
+        }),
       }),
       to = c(2, {
-        i(1, "to"),
-        i(1, "not_to"),
+        fmt("to {eq} {expected}", {
+          eq = r(1, "eq", i(1, "eq")),
+          expected = r(2, "expected", i(2)),
+        }),
+        fmt("not_to {eq} {expected}", {
+          eq = r(1, "eq", i(1, "eq")),
+          expected = r(2, "expected", i(2)),
+        }),
       }),
-      eq = i(3, "eq"),
-      expected = i(4),
-    }),
-    { condition = conds.line_begin }
-  ),
-  s(
-    "ise",
-    fmt("is_expected.{to} {eq} {expected}", {
-      to = c(1, {
-        i(1, "to"),
-        i(1, "not_to"),
-      }),
-      eq = i(2, "eq"),
-      expected = i(3),
     }),
     { condition = conds.line_begin }
   ),
@@ -347,7 +354,7 @@ return {
       ]],
       {
         i(1),
-        block = f(visual_selection),
+        block = f(u.visual_selection),
         rep(1),
       }
     ),

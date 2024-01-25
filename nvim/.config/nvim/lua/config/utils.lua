@@ -284,4 +284,10 @@ M.ts.replace = function(node, text)
   vim.api.nvim_buf_set_text(0, start_row, start_col, end_row, end_col, { text })
 end
 
+---LuaSnip reflect visual selection
+---https://github.com/L3MON4D3/LuaSnip/issues/944
+M.visual_selection = function(_, parent)
+  return parent.snippet.env.LS_SELECT_DEDENT or {}
+end
+
 return M
