@@ -63,5 +63,11 @@ return {
         })
       end,
     })
+
+    -- Fugitive expects netrw to exist, otherwise to define your own `:Browse`
+    vim.api.nvim_create_user_command("Browse", function(opts)
+      -- bowser's castle
+      vim.cmd.Browser(vim.fn.escape(opts.args, "%#!"))
+    end, { nargs = 1 })
   end,
 }
