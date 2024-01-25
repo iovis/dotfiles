@@ -1,12 +1,3 @@
-local ls = require("luasnip")
-local s = ls.snippet
-local i = ls.insert_node
-local c = ls.choice_node
-local r = ls.restore_node
-local n = require("luasnip.extras").nonempty
-local fmta = require("luasnip.extras.fmt").fmta
-local conds = require("luasnip.extras.conditions")
-
 return {
   s(
     "main",

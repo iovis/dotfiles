@@ -83,7 +83,30 @@ return {
             },
             diagnostics = {
               disable = { "missing-fields" },
-              globals = { "hs", "muxi" },
+              globals = {
+                -- luasnip's snip_env
+                "s",
+                "sn",
+                "t",
+                "i",
+                "f",
+                "c",
+                "d",
+                "r",
+                "l",
+                "rep",
+                "p",
+                "m",
+                "n",
+                "dl",
+                "fmt",
+                "fmta",
+                "conds",
+                "parse",
+                -- others
+                "hs",
+                "muxi",
+              },
               unusedLocalExclude = { "_*" }, -- Don't warn about variables that start with underscore
             },
             hint = {

@@ -1,8 +1,6 @@
 nnoremap <silent> <leader>si :TestNearest<cr>
 nnoremap <silent> <leader>so :TestFile<cr>
 nnoremap <silent> <leader>sa :TestSuite<cr>
-nnoremap <silent> <leader>sl :TestLast<cr>
-nnoremap <silent> <leader>sv :TestVisit<cr>
 
 function! TuxStrategy(cmd)
   execute 'Tux ' . a:cmd

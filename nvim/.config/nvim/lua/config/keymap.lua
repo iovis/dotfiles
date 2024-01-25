@@ -248,7 +248,7 @@ end, { desc = "Toggle conceallevel" })
 
 ---- Misc
 vim.keymap.set("n", "<Space>", "<Nop>")
--- vim.keymap.set("n", "q:", ":") -- If you enable this, then you have to wait when finishing macros
+vim.keymap.set("n", "+", "<Nop>")
 
 vim.keymap.set("n", "+<cr>", "<cmd>so $VIMRUNTIME/syntax/hitest.vim<cr>")
 

@@ -66,6 +66,11 @@ return {
       desc = "Edit snippets",
     })
 
+    vim.keymap.set("n", "<leader>sl", function()
+      require("luasnip.loaders.from_lua").load({ paths = { "~/.config/nvim/lua/snippets" } })
+      vim.notify("Snippets reloaded")
+    end, { desc = "Reload snippets" })
+
     -- vim.keymap.set("n", "<leader>ss", require("luasnip.extras.snippet_list").open)
 
     -- On the fly snippets (use snippet in register s). Use $word as placeholder.

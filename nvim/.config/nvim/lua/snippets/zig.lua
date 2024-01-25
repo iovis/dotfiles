@@ -1,16 +1,3 @@
-local ls = require("luasnip")
-local s = ls.snippet
-local sn = ls.snippet_node
-local t = ls.text_node
-local i = ls.insert_node
-local c = ls.choice_node
-local d = ls.dynamic_node
-local l = require("luasnip.extras").lambda
-local dl = require("luasnip.extras").dynamic_lambda
-local fmt = require("luasnip.extras.fmt").fmt
-local fmta = require("luasnip.extras.fmt").fmta
-local conds = require("luasnip.extras.conditions")
-
 local zig_fn = function()
   return sn(
     nil,
