@@ -1,3 +1,3 @@
-function pcstop --wraps='podman-compose stop' --description 'alias dcstop=podman-compose stop'
-    podman-compose stop $argv
+function dcstop --wraps='docker compose stop' --description 'alias dcstop=docker compose stop'
+    docker compose stop $argv
 end
