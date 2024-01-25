@@ -224,7 +224,6 @@ vim.keymap.set("n", "yod", ":<c-r>=&diff ? 'windo diffoff' : 'windo diffthis'<cr
 vim.keymap.set("n", "yoh", ":set hlsearch!<cr>")
 vim.keymap.set("n", "yoi", ":set list!<cr>")
 vim.keymap.set("n", "yon", ":set number!<cr>")
-vim.keymap.set("n", "yop", ":set paste!<cr>")
 vim.keymap.set("n", "yor", ":set relativenumber!<cr>")
 
 vim.keymap.set("n", "yos", ":setlocal spell! spelllang=en_us<cr>")

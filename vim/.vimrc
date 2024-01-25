@@ -158,12 +158,10 @@ xnoremap <expr> j v:count ? 'j' : 'gj'
 xnoremap <expr> k v:count ? 'k' : 'gk'
 nnoremap <leader>. @:
 nnoremap <leader>, @@
-nnoremap <leader>E :e<space><c-r>=fnameescape(expand('%:h')).'/'<cr>
+nnoremap <leader>E :e<space><c-r>=fnameescape(expand('%:.:h')).'/'<cr>
 nnoremap <leader>e :e<space>
 nnoremap <m-O> mzO<esc>`z
 nnoremap <m-o> mzo<esc>`z
-nnoremap Ø     mzO<esc>`z
-nnoremap ø     mzo<esc>`z
 nnoremap <silent> <down>  :cnext<cr>
 nnoremap <silent> <left>  :lprevious<cr>
 nnoremap <silent> <right> :lnext<cr>
@@ -172,32 +170,33 @@ nnoremap <silent> <leader><down>  :cnfile<cr>
 nnoremap <silent> <leader><left>  :lpfile<cr>
 nnoremap <silent> <leader><right> :lnfile<cr>
 nnoremap <silent> <leader><up>    :cpfile<cr>
-nnoremap <silent> <leader>= <c-w>=
-nnoremap <silent> <leader>C :tabclose<cr>
+nnoremap <silent> <leader>0 <c-w>=
 nnoremap <silent> <leader>Q :%bdelete\|e#\|bd#<cr>
-nnoremap <silent> <leader>T :tabnew<cr>
+nnoremap <silent> <leader>t :tabnew<cr>
 nnoremap <silent> <leader>X :qa!<cr>
 nnoremap <silent> <leader>\| <c-w>\|
 nnoremap <silent> <leader>_ <c-w>_
 nnoremap <silent> <leader>b gg=G
-nnoremap <silent> <leader>c :close<cr>
+nnoremap <silent> <leader>c <c-w>c
 nnoremap <silent> <leader>m <c-w>_<c-w>\|
 nnoremap <silent> <leader>q :%bdelete<cr>
 nnoremap <silent> <leader>w :w!<cr>
 nnoremap <silent> <leader>x :confirm qa<cr>
+nnoremap <silent> <leader>< :tabmove -1<cr>
+nnoremap <silent> <leader>> :tabmove +1<cr>
 nnoremap <silent> g2 :set shiftwidth=2 softtabstop=2 expandtab \| retab<cr>gg=G
 nnoremap <silent> g4 :set shiftwidth=4 softtabstop=4 expandtab \| retab<cr>gg=G
-nnoremap & g&
-nnoremap +c :cd %:p:h<cr>
+nnoremap +c :tabclose<cr>
 nnoremap +q :tabonly<cr>
 nnoremap +t <c-w>T
+nnoremap J m`J``
 nnoremap M <c-w>o
 nnoremap Q @q
 nnoremap Y y$
 nnoremap Ñ ?
 nnoremap ñ /
 noremap ' `
-noremap <silent> <leader>ñ :noh<cr>
+noremap <silent> <leader>ñ :noh<cr>:echon<cr>
 noremap H g^
 noremap L g$
 xnoremap <silent> Q :norm @q<cr>
@@ -207,6 +206,8 @@ xnoremap ñ /
 nmap U :undolist<cr>
 
 " buffer closing {{{ "
+nnoremap +b <cmd>bd!<cr>
+
 " Don't close if there are changes (toggle removing split or not)
 nnoremap <silent> º :bp\|bd #<cr>
 nnoremap <silent> <leader>º :bdelete<cr>
@@ -215,6 +216,107 @@ nnoremap <silent> <leader>º :bdelete<cr>
 nnoremap <silent> ª :bp!\|bd! #<cr>
 nnoremap <silent> <leader>ª :bdelete!<cr>
 " }}} buffer closing "
+
+" global command {{{ "
+nnoremap +g :g//<left>
+nnoremap +v :v//<left>
+
+xnoremap +g :g//<left>
+xnoremap +v :v//<left>
+" }}} global command "
+
+" pasting with indent {{{ "
+nnoremap <silent> p p:execute ":silent normal! `[v`]="<cr>
+nnoremap <silent> P P:execute ":silent normal! `[v`]="<cr>
+nnoremap gp p
+nnoremap gP P
+" }}} pasting with indent "
+
+" replace {{{ "
+nnoremap R ciw<c-r>0<esc>
+xnoremap R "0p
+" }}} replace "
+
+" repeat on visual {{{ "
+xnoremap <silent> . :normal .<cr>
+" }}} repeat on visual "
+
+" indent {{{ "
+xnoremap < <gv
+xnoremap > >gv
+" }}} indent "
+
+" star search {{{ "
+nnoremap <silent> * :let @/='\<<C-R>=expand("<cword>")<cr>\>'<bar>set hls<cr>
+nnoremap # #N
+
+" If I have a visual selection and press * I want it to show ocurrences
+xnoremap * y:let @/=escape(@@, '/\') <bar> normal! /<cr>
+xnoremap # y:let @/=escape(@@, '/\') <bar> normal! ?<cr>
+" }}} star search "
+
+" clipboard {{{ "
+nnoremap <leader>y "+y
+nnoremap <leader>Y "+y$
+xnoremap <leader>y "+y
+" }}} clipboard "
+
+" move line {{{ "
+nnoremap <silent> <M-j> :m+<cr>==
+nnoremap <silent> <M-k> :m-2<cr>==
+xnoremap <silent> <M-j> :m'>+<cr>`<my`>mzgv=gv`yo`z
+xnoremap <silent> <M-k> :m'<-2<cr>`>my`<mzgv=gv`yo`z
+" }}} move line "
+
+" buffers {{{ "
+nmap gm :ls<cr>
+
+nnoremap <BS> <C-^>
+nnoremap <silent> <leader>n :enew<cr>
+nnoremap <silent> <s-tab> :tabprevious<cr>
+nnoremap <silent> <tab> :tabnext<cr>
+" }}} buffers "
+
+" fix c-i after mapping tab {{{ "
+nnoremap <c-p> <c-i>
+" }}} fix c-i after mapping tab "
+
+" tags {{{ "
+nmap T g]
+nmap t <c-]>
+" }}} tags "
+
+" splits {{{ "
+nnoremap <leader>v <c-w>v
+nnoremap <leader>h <c-w>s
+
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+
+nnoremap <leader>H <c-w>H
+nnoremap <leader>J <c-w>J
+nnoremap <leader>K <c-w>K
+nnoremap <leader>L <c-w>L
+" }}} splits "
+
+" duplicate file {{{ "
+nnoremap <leader>W :saveas <C-R>=fnameescape(expand('%:.:h')).'/'<cr>
+" }}} duplicate file "
+
+" configuration toggles {{{ "
+nnoremap yol :set cursorline!<cr>
+nnoremap yod :<c-r>=&diff ? "windo diffoff" : "windo diffthis"<cr><cr>
+nnoremap yoh :set hlsearch!<cr>
+nnoremap yoi :set list!<cr>
+nnoremap yon :set number!<cr>
+nnoremap yop :set paste!<cr>
+nnoremap yor :set relativenumber!<cr>
+
+nnoremap yos :setlocal spell! spelllang=en_us<cr>
+nnoremap yow :setlocal wrap!<cr>
+" }}} configuration toggles "
 " }}} bindings "
 
 " text objects {{{ "
@@ -320,14 +422,6 @@ function! SubstituteOperator(type)
 endfunction
 " }}} substitute "
 
-" global command {{{ "
-nnoremap +g :g//<left>
-nnoremap +v :v//<left>
-
-xnoremap +g :g//<left>
-xnoremap +v :v//<left>
-" }}} global command "
-
 " folds {{{ "
 set nofoldenable
 
@@ -339,95 +433,6 @@ augroup folds
   autocmd BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
 augroup end
 " }}} folds "
-
-" pasting with indent {{{ "
-nnoremap <silent> p p:execute ":silent normal! `[v`]="<cr>
-nnoremap <silent> P P:execute ":silent normal! `[v`]="<cr>
-nnoremap gp p
-nnoremap gP P
-" }}} pasting with indent "
-
-" replace {{{ "
-nnoremap R ciw<c-r>0<esc>
-xnoremap R "0p
-" }}} replace "
-
-" repeat on visual {{{ "
-xnoremap <silent> . :normal .<cr>
-" }}} repeat on visual "
-
-" indent {{{ "
-xnoremap < <gv
-xnoremap > >gv
-" }}} indent "
-
-" star search {{{ "
-nnoremap <silent> * :let @/='\<<C-R>=expand("<cword>")<cr>\>'<bar>set hls<cr>
-nnoremap # #N
-
-" If I have a visual selection and press * I want it to show ocurrences
-xnoremap * y:let @/=escape(@@, '/\') <bar> normal! /<cr>
-xnoremap # y:let @/=escape(@@, '/\') <bar> normal! ?<cr>
-" }}} star search "
-
-" root {{{ "
-command! W w !sudo tee % > /dev/null
-" }}} root "
-
-" clipboard {{{ "
-nnoremap <leader>y "+y
-nnoremap <leader>Y "+y$
-xnoremap <leader>y "+y
-nnoremap <leader>d "+d
-nnoremap <leader>D "+D
-xnoremap <leader>d "+d
-" }}} clipboard "
-
-" move line {{{ "
-nnoremap <silent> <M-j> :m+<cr>==
-nnoremap <silent> <M-k> :m-2<cr>==
-xnoremap <silent> <M-j> :m'>+<cr>`<my`>mzgv=gv`yo`z
-xnoremap <silent> <M-k> :m'<-2<cr>`>my`<mzgv=gv`yo`z
-nnoremap <silent> ¶ :m+<cr>==
-nnoremap <silent> § :m-2<cr>==
-xnoremap <silent> ¶ :m'>+<cr>`<my`>mzgv=gv`yo`z
-xnoremap <silent> § :m'<-2<cr>`>my`<mzgv=gv`yo`z
-" }}} move line "
-
-" buffers {{{ "
-nmap gm :ls<cr>
-
-nnoremap <BS> <C-^>
-nnoremap <silent> <leader>t :enew<cr>
-nnoremap <silent> <s-tab> :tabprevious<cr>
-nnoremap <silent> <tab> :tabnext<cr>
-" }}} buffers "
-
-" fix c-i after mapping tab {{{ "
-nnoremap <c-e> <c-i>
-" }}} fix c-i after mapping tab "
-
-" tags {{{ "
-nmap T g]
-nmap t <c-]>
-
-nnoremap <silent> +e :!ctags<cr>
-" }}} tags "
-
-" splits {{{ "
-nnoremap <leader>v <c-w>v
-nnoremap <leader>h <c-w>s
-
-nnoremap <c-h> <c-w>h
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
-
-nnoremap <leader>H <c-w>H
-nnoremap <leader>J <c-w>J
-nnoremap <leader>K <c-w>K
-nnoremap <leader>L <c-w>L
-" }}} splits "
 
 " sorting {{{ "
 function! SortLinesOpFunc(...)
@@ -465,95 +470,6 @@ if executable('rg')
   set grepformat=%f:%l:%c:%m
 endif
 " }}} ripgrep "
-
-" config editing {{{ "
-nnoremap <leader>u <nop>
-nnoremap <leader>us :so $MYVIMRC<cr>:echo 'vimrc sourced'<cr>
-nnoremap <silent> <leader>uf :execute empty(&filetype) ? 'echo "no filetype specified"' : 'EditFtplugin'<cr>
-nnoremap <silent> <leader>uh :sp $MYVIMRC<cr>
-nnoremap <silent> <leader>ut :e! ~/.tmux.conf<cr>
-nnoremap <silent> <leader>uu :e! $MYVIMRC<cr>
-nnoremap <silent> <leader>uv :vs $MYVIMRC<cr>
-nnoremap <silent> <leader>uz :e! ~/.zshrc<cr>
-
-command! -nargs=? -complete=filetype EditFtplugin
-      \ exe 'keepjumps e! $HOME/.vim/after/ftplugin/' . (empty(<q-args>) ? &filetype : <q-args>) . '.vim'
-" }}} config editing "
-
-" duplicate file {{{ "
-nnoremap <leader>W :saveas <C-R>=fnameescape(expand('%:h')).'/'<cr>
-" }}} duplicate file "
-
-" vim-unimpaired {{{ "
-nnoremap yo, :set number! relativenumber! cursorline!<cr>
-
-nnoremap yoc :set cursorline!<cr>
-nnoremap yod :<c-r>=&diff ? "diffoff" : "diffthis"<cr><cr>
-nnoremap yoh :set hlsearch!<cr>
-nnoremap yol :set list!<cr>
-nnoremap yon :set number!<cr>
-nnoremap yop :set paste!<cr>
-nnoremap yor :set relativenumber!<cr>
-
-nnoremap yos :setlocal spell! spelllang=en_us<cr>
-nnoremap yow :setlocal wrap!<cr>
-" }}} vim-unimpaired "
-
-" open resource {{{ "
-nnoremap <silent> ¡¡  :silent execute '!open ' . escape(expand('<cWORD>'), '#')<cr>
-xnoremap <silent> ¡  y:silent execute '!open ' . escape(getreg('0'), '#')<cr>
-
-nnoremap ¡<space> :!open<space>
-" }}} open resource "
-
-" redir {{{ "
-"
-" Examples:
-"   :Redir hi
-"   :Redir !ls -al
-"
-"   :.Redir !node  " Evaluate current line in interpreter
-"
-" https://gist.github.com/romainl/eae0a260ab9c135390c30cd370c20cd7
-function! Redir(cmd, rng, start, end)
-  for win in range(1, winnr('$'))
-    if getwinvar(win, 'scratch')
-      execute win . 'windo close'
-    endif
-  endfor
-
-  if a:cmd =~? '^!'
-    let cmd = a:cmd =~? ' %'
-          \ ? matchstr(substitute(a:cmd, ' %', ' ' . expand('%:p'), ''), '^!\zs.*')
-          \ : matchstr(a:cmd, '^!\zs.*')
-
-    if a:rng == 0
-      let output = systemlist(cmd)
-    else
-      let joined_lines = join(getline(a:start, a:end), '\n')
-      let cleaned_lines = substitute(shellescape(joined_lines), "'\\\\''", "\\\\'", 'g')
-      let output = systemlist(cmd . ' <<< $' . cleaned_lines)
-    endif
-  else
-    redir => output
-    execute a:cmd
-    redir END
-    let output = split(output, "\n")
-  endif
-
-  vnew
-
-  let w:scratch = 1
-  setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
-
-  call setline(1, output)
-endfunction
-
-command! -nargs=1 -complete=command -bar -range Redir silent call Redir(<q-args>, <range>, <line1>, <line2>)
-
-nnoremap _ :Redir<space>
-xnoremap _ :Redir<space>!
-" }}} redir "
 
 " CCR {{{ "
 " Present an action for every command that returns a list
@@ -625,69 +541,8 @@ endfunction
 cnoremap <expr> <CR> CCR()
 " }}} CCR "
 
-" registers {{{ "
-nmap +r :registers<cr>
-" }}} registers "
-
-" marks {{{ "
-nmap +m :marks<cr>
-" }}} marks "
-
-" sessions {{{ "
-nnoremap yoo :call RestoreSession()<cr>
-
-function! RestoreSession()
-  if !empty(v:this_session)
-    echo 'Already in a session'
-    return
-  endif
-
-  try
-    source Session.vim
-  catch /E484:/
-    echo 'Session not found, creating one'
-    mksession!
-  endtry
-endfunction
-
-function! s:persist()
-  if exists('g:SessionLoad')
-    return ''
-  endif
-
-  if !empty(v:this_session)
-    mksession!
-  endif
-endfunction
-
-augroup obsession
-  autocmd!
-  autocmd VimLeavePre * call s:persist()
-  autocmd BufEnter * call s:persist()
-augroup END
-" }}} sessions "
-
-" dispatch {{{ "
-command! -nargs=* -complete=file Make silent! make! <args>|cwindow|redraw!
-
-nnoremap m<cr>    :Make<cr>
-nnoremap m<space> :Make<space>
-nnoremap m?       :set makeprg?<cr>
-" }}} dispatch "
-
-" tux {{{ "
-nnoremap c<space> :!
-" }}} tux "
-
-" scriptease {{{ "
-nnoremap <leader>P :echo<space>
-" }}} scriptease "
-
-" buffer autocommands {{{ "
-" }}} buffer autocommands "
-
 " Highlights {{{ "
-nnoremap <leader>ui :execute "hi " . synIDattr(synID(line("."),col("."),1),"name")<CR>
+" nnoremap <leader>ui :execute "hi " . synIDattr(synID(line("."),col("."),1),"name")<CR>
 " nnoremap +<cr> :so $VIMRUNTIME/syntax/hitest.vim<cr>
 " nnoremap +<space> :hi<space>
 
@@ -892,21 +747,13 @@ endfunction
 set tabline=%!TabLine()
 " }}} tabline "
 
-" fzf commands {{{ "
-nnoremap <leader>A :setf<space>
-nnoremap <leader>O :e **/
-nnoremap <leader>o :find *
-
-nmap <leader>H :old<cr>
-" }}} fzf commands "
-
 " netrw {{{ "
 let g:netrw_altv = 1
 let g:netrw_banner = 0
 " let g:netrw_browse_split = 4
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro rnu'
 " let g:netrw_list_hide = '^.*\.o/\=$,^.*\.obj/\=$,^.*\.bak/\=$,^.*\.exe/\=$,^.*\.py[co]/\=$,^.*\.swp/\=$,^.*\~/\=$,^.*\.pyc/\=$,^\.svn/\=$,^\.\.\=/\=$'
-let g:netrw_liststyle = 3
+" let g:netrw_liststyle = 3
 let g:netrw_silent = 1
 let g:netrw_sort_options = 'i'
 " let g:netrw_sort_sequence = '[\/]$,*,\%(\.bak\|\~\|\.o\|\.h\|\.info\|\.swp\|\.obj\)[*@]\=$'
