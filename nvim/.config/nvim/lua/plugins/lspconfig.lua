@@ -26,16 +26,15 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       "b0o/schemastore.nvim",
-      { "folke/neodev.nvim", opts = {} },
-      "williamboman/mason-lspconfig.nvim",
       "williamboman/mason.nvim",
+      { "williamboman/mason-lspconfig.nvim", opts = {} },
+      { "folke/neodev.nvim", opts = {} },
     },
     config = function()
       ---- Initialize servers
       local lsp = require("lspconfig")
       local cfg = require("config.lsp")
 
-      require("mason-lspconfig").setup({})
       lsp.astro.setup(cfg)
       lsp.bashls.setup(cfg)
       lsp.clangd.setup(cfg)
@@ -45,7 +44,6 @@ return {
       lsp.elixirls.setup(cfg)
       lsp.emmet_language_server.setup(cfg)
       lsp.gopls.setup(cfg)
-      lsp.html.setup(cfg)
       lsp.marksman.setup(cfg)
       lsp.pyright.setup(cfg)
       lsp.rubocop.setup(cfg)
@@ -54,6 +52,12 @@ return {
       lsp.taplo.setup(cfg)
       lsp.tsserver.setup(cfg)
       lsp.zls.setup(cfg)
+
+      lsp.html.setup(vim.tbl_deep_extend("force", cfg, {
+        settings = {
+          format = { enable = false },
+        },
+      }))
 
       lsp.jsonls.setup(vim.tbl_deep_extend("force", cfg, {
         settings = {

@@ -21,22 +21,12 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 
 ---- LSP Format
 local autoformat_augroup = vim.api.nvim_create_augroup("lsp_document_format", { clear = false })
-local lsp_format = function()
-  vim.lsp.buf.format({
-    timeout_ms = 2000,
-    filter = function(client)
-      local dont_format_with = {
-        "html",
-        "solargraph",
-      }
-
-      return not vim.tbl_contains(dont_format_with, client.name)
-    end,
-  })
-end
 
 ---- On LSP attached buffers
 local on_attach = function(client, bufnr)
+  -- Enable completion triggered by <c-x><c-o>
+  vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
+
   local function buf_imap(lhs, rhs, desc)
     vim.keymap.set("i", lhs, rhs, { buffer = true, desc = desc })
   end
@@ -48,23 +38,6 @@ local on_attach = function(client, bufnr)
   local function buf_xmap(lhs, rhs, desc)
     vim.keymap.set("x", lhs, rhs, { buffer = true, desc = desc })
   end
-
-  ---- Commands
-  u.command("LspDiagLine", vim.diagnostic.open_float)
-  u.command("LspDiagNext", vim.diagnostic.goto_next)
-  u.command("LspDiagPrev", vim.diagnostic.goto_prev)
-  u.command("LspDiagQuickfix", vim.diagnostic.setqflist)
-  u.command("LspFormat", vim.lsp.buf.format)
-  u.command("LspHover", vim.lsp.buf.hover)
-  u.command("LspReferences", vim.lsp.buf.references)
-  u.command("LspRename", vim.lsp.buf.rename)
-  u.command("LspSignatureHelp", vim.lsp.buf.signature_help)
-  u.command("LspTypeDef", vim.lsp.buf.type_definition)
-
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", {
-    buf = bufnr,
-  })
 
   ---- Signature/Definition
   buf_imap("<m-d>", vim.lsp.buf.hover, "vim.lsp.buf.hover")
@@ -99,33 +72,21 @@ local on_attach = function(client, bufnr)
   -- })
 
   ---- Formatting
-  buf_nmap("<leader>b", lsp_format, "vim.lsp.buf.format")
-  buf_xmap("<leader>b", lsp_format, "vim.lsp.buf.format")
+  buf_nmap("<leader>b", vim.lsp.buf.format, "vim.lsp.buf.format")
+  buf_xmap("<leader>b", vim.lsp.buf.format, "vim.lsp.buf.format")
 
   -- Autoformat on save
-  local autoformat_filetypes = {
-    "c",
-    "cpp",
-    "elixir",
-    "go",
-    "lua",
-    "ruby",
-    "rust",
-    "svelte",
-    -- "typescript",
-    "zig",
-  }
+  local no_autoformat_filetypes = {}
 
-  if vim.tbl_contains(autoformat_filetypes, vim.bo.filetype) and client.supports_method("textDocument/formatting") then
+  if client.supports_method("textDocument/formatting") and not vim.tbl_contains(no_autoformat_filetypes, vim.bo.filetype) then
     vim.api.nvim_clear_autocmds({ group = autoformat_augroup, buffer = bufnr })
-
     vim.api.nvim_create_autocmd("BufWritePre", {
       desc = "Autoformat with LSP on save",
       group = autoformat_augroup,
       buffer = bufnr,
       callback = function()
         if vim.g.autoformat then
-          lsp_format()
+          vim.lsp.buf.format()
         end
       end,
     })
