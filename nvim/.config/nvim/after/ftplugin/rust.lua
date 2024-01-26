@@ -18,8 +18,6 @@ vim.keymap.set("n", "<leader>sp", "<cmd>TestNearest -strategy=rust_log<cr>", { b
 vim.keymap.set("n", "<leader>sr", "<cmd>RustReloadWorkspace<cr>", { buffer = true })
 vim.keymap.set("n", "<leader>sw", "<cmd>Tux cargo watch --clear -x check -x 'nextest run'<cr>", { buffer = true })
 
-vim.keymap.set("n", "+R", ":RustDocs<space>", { buffer = true })
-
 if vim.fn.expand("%"):match("examples/") then
   -- if inside example, run it
   vim.keymap.set("n", "s<cr>", "<cmd>Tux cargo run -q --example %:t:r<cr>", { buffer = true })

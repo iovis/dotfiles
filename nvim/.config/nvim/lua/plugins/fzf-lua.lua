@@ -101,7 +101,6 @@ return {
     vim.keymap.set("n", "+z", ":FzfLua<space>")
 
     vim.keymap.set("n", "<leader>j", fzf_lua.git_status, { desc = "fzf_lua.git_status" })
-    vim.keymap.set("n", "<leader>r", fzf_lua.btags, { desc = "fzf_lua.btags" })
     vim.keymap.set("n", "gm", fzf_lua.buffers, { desc = "fzf_lua.buffers" })
     vim.keymap.set("n", "+f", fzf_lua.resume, { desc = "fzf_lua.resume" })
 
@@ -168,7 +167,7 @@ return {
     fzf_lua.config.set_action_helpstr(run_macro, "run-macro")
     fzf_lua.config.set_action_helpstr(delete_register, "delete-register")
 
-    vim.keymap.set("n", "+r", function()
+    vim.keymap.set("n", "<leader>r", function()
       local opts = {}
 
       opts.actions = {

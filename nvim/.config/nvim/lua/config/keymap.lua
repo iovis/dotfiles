@@ -270,7 +270,7 @@ vim.keymap.set({ "n", "x" }, "+L", function()
   -- - Joining array of strings: table.concat(<table>, "<separator>")
   return ':luado return table.concat(vim.split(line, "", { trimempty = true }), "")' .. ("<left>"):rep(29)
 end, { expr = true })
-vim.keymap.set({ "n", "x" }, "+R", ":rubydo $_")
+vim.keymap.set({ "n", "x" }, "+r", [[:rubydo $_ = "#{$_}"<left>]])
 
 ---- Tmux capture
 vim.keymap.set("n", "&", [[:10R !tmux capture-pane -Jp -S- -t\! | rg '.'<left>]], {

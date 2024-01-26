@@ -56,8 +56,8 @@ local on_attach = function(client, bufnr)
   buf_xmap("<leader>lr", vim.lsp.buf.rename, "vim.lsp.buf.rename")
 
   ---- Symbols
-  buf_nmap("<leader>r", vim.lsp.buf.document_symbol, "vim.lsp.buf.document_symbol")
-  buf_nmap("<leader>R", vim.lsp.buf.workspace_symbol, "vim.lsp.buf.workspace_symbol")
+  buf_nmap("<leader>ls", vim.lsp.buf.document_symbol, "vim.lsp.buf.document_symbol")
+  buf_nmap("<leader>lw", vim.lsp.buf.workspace_symbol, "vim.lsp.buf.workspace_symbol")
 
   ---- Diagnostics
   buf_nmap("<m-d>", vim.diagnostic.open_float, "vim.diagnostic.open_float")
@@ -78,7 +78,10 @@ local on_attach = function(client, bufnr)
   -- Autoformat on save
   local no_autoformat_filetypes = {}
 
-  if client.supports_method("textDocument/formatting") and not vim.tbl_contains(no_autoformat_filetypes, vim.bo.filetype) then
+  if
+    client.supports_method("textDocument/formatting")
+    and not vim.tbl_contains(no_autoformat_filetypes, vim.bo.filetype)
+  then
     vim.api.nvim_clear_autocmds({ group = autoformat_augroup, buffer = bufnr })
     vim.api.nvim_create_autocmd("BufWritePre", {
       desc = "Autoformat with LSP on save",
@@ -95,8 +98,8 @@ local on_attach = function(client, bufnr)
   ---- fzf-lua
   local ok_fzf, fzf_lua = pcall(require, "fzf-lua")
   if ok_fzf then
-    buf_nmap("<leader>r", fzf_lua.lsp_document_symbols, "fzf_lua.lsp_document_symbols")
-    buf_nmap("<leader>R", fzf_lua.lsp_workspace_symbols, "fzf_lua.lsp_workspace_symbols")
+    buf_nmap("<leader>ls", fzf_lua.lsp_document_symbols, "fzf_lua.lsp_document_symbols")
+    buf_nmap("<leader>lw", fzf_lua.lsp_workspace_symbols, "fzf_lua.lsp_workspace_symbols")
 
     buf_nmap("<leader>ld", fzf_lua.lsp_workspace_diagnostics, "fzf_lua.lsp_workspace_diagnostics")
   end
@@ -104,8 +107,8 @@ local on_attach = function(client, bufnr)
   ---- telescope
   local ok_telescope, telescope = pcall(require, "telescope.builtin")
   if ok_telescope then
-    buf_nmap("<leader>r", telescope.lsp_document_symbols, "telescope.lsp_document_symbols")
-    buf_nmap("<leader>R", telescope.lsp_workspace_symbols, "telescope.lsp_workspace_symbols")
+    buf_nmap("<leader>ls", telescope.lsp_document_symbols, "telescope.lsp_document_symbols")
+    buf_nmap("<leader>lw", telescope.lsp_workspace_symbols, "telescope.lsp_workspace_symbols")
 
     buf_nmap("<leader>ld", telescope.diagnostics, "telescope.lsp_workspace_diagnostics")
   end

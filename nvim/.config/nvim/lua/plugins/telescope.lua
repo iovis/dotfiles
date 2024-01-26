@@ -74,7 +74,7 @@ return {
 
     local t = require("telescope.builtin")
     -- vim.keymap.set("n", "+m", t.marks, { desc = "t.marks" })
-    -- vim.keymap.set("n", "+r", t.registers, { desc = "t.registers" })
+    -- vim.keymap.set("n", "<leader>r", t.registers, { desc = "t.registers" })
     vim.keymap.set("n", "+f", t.live_grep, { desc = "t.live_grep" })
     vim.keymap.set("n", "<c-p>", t.commands, { desc = "t.commands" })
     vim.keymap.set("n", "<leader><leader>", t.buffers, { desc = "t.buffers" })

@@ -11,4 +11,4 @@ if vim.fn.expand("%"):match("package.json") then
 end
 
 vim.keymap.set("n", "+J", ":silent %!jq ''<left>")
-vim.keymap.set("n", "+R", ":R !jq ''<left> %")
+vim.keymap.set("n", "+F", ":R !jq ''<left> %")
