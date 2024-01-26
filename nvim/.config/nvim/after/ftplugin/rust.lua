@@ -40,7 +40,7 @@ end, {})
 ----Surround debug
 require("nvim-surround").buffer_setup({
   surrounds = {
-    ["d"] = {
+    d = {
       add = { "dbg!(", ")" },
       find = "dbg!%b()",
       delete = "^(dbg!%()().-(%))()$",

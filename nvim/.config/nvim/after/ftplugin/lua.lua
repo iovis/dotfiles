@@ -36,7 +36,7 @@ end
 
 surround.buffer_setup({
   surrounds = {
-    ["d"] = {
+    d = {
       add = { "vim.print(", ")" },
       find = "vim.print%b()",
       delete = "^(vim.print%()().-(%))()$",
