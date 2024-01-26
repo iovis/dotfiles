@@ -78,50 +78,14 @@ return {
       lsp.lua_ls.setup(vim.tbl_deep_extend("force", cfg, {
         settings = {
           Lua = {
-            completion = {
-              callSnippet = "Replace",
-            },
+            completion = { callSnippet = "Replace" },
             diagnostics = {
               disable = { "missing-fields" },
-              globals = {
-                -- luasnip's snip_env
-                "s",
-                "sn",
-                "t",
-                "i",
-                "f",
-                "c",
-                "d",
-                "r",
-                "l",
-                "rep",
-                "p",
-                "m",
-                "n",
-                "dl",
-                "fmt",
-                "fmta",
-                "conds",
-                "parse",
-                -- others
-                "hs",
-                "muxi",
-              },
               unusedLocalExclude = { "_*" }, -- Don't warn about variables that start with underscore
             },
-            hint = {
-              enable = true,
-            },
-            runtime = {
-              version = "LuaJIT",
-            },
-            telemetry = {
-              enable = false,
-            },
-            workspace = {
-              checkThirdParty = false,
-              library = vim.api.nvim_get_runtime_file("", true),
-            },
+            format = { enable = false },
+            hint = { enable = true },
+            -- workspace = { checkThirdParty = false },
           },
         },
       }))

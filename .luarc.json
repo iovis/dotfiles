@@ -1,0 +1,24 @@
+{
+  "diagnostics.globals": [
+    "s",
+    "sn",
+    "t",
+    "i",
+    "f",
+    "c",
+    "d",
+    "r",
+    "l",
+    "rep",
+    "p",
+    "m",
+    "n",
+    "dl",
+    "fmt",
+    "fmta",
+    "conds",
+    "parse",
+    "hs",
+    "muxi"
+  ]
+}

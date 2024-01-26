@@ -27,7 +27,6 @@ local lsp_format = function()
     filter = function(client)
       local dont_format_with = {
         "html",
-        "lua_ls",
         "solargraph",
       }
 
