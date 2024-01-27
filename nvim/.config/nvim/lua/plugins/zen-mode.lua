@@ -13,7 +13,7 @@ return {
         options = {
           -- vim.wo options
           cursorcolumn = false,
-          cursorline = false,
+          cursorline = true,
           foldcolumn = "0",
           list = false,
           number = false,
@@ -26,21 +26,14 @@ return {
           enabled = true,
           laststatus = 0,
         },
-        twilight = {
-          enabled = false,
-        },
+        tmux = { enabled = true },
+        twilight = { enabled = false },
       },
-      on_open = function(win)
+      on_open = function()
         require("barbecue.ui").toggle(false)
-
-        -- There's a bug if cmdheight = 0 that zen-mode can't hide the statusline
-        -- https://github.com/folke/zen-mode.nvim/issues/69
-        -- require("lualine").hide({})
-        -- vim.o.statusline = " "
       end,
       on_close = function()
         require("barbecue.ui").toggle(true)
-        -- require("lualine").hide({ unhide = true })
       end,
     })
   end,

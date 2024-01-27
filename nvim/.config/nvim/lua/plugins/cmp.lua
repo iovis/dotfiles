@@ -8,7 +8,6 @@ return {
     "hrsh7th/cmp-path",
     "onsails/lspkind-nvim",
     "petertriho/cmp-git",
-    "quangnguyen30192/cmp-nvim-tags",
     "saadparwaiz1/cmp_luasnip",
   },
   config = function()
@@ -18,10 +17,6 @@ return {
     -- Autopairs
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-
-    -- Pretty LSP menu
-    local lspkind = require("lspkind")
-    lspkind.init()
 
     -- Git
     require("cmp_git").setup()
@@ -43,16 +38,7 @@ return {
         ["<Tab>"] = { i = cmp.mapping.confirm({ select = true }) },
       },
       formatting = {
-        format = lspkind.cmp_format({
-          menu = {
-            buffer = "[Buf]",
-            git = "[GIT]",
-            luasnip = "[Snip]",
-            nvim_lsp = "[LSP]",
-            path = "[Path]",
-            tags = "[TAG]",
-          },
-        }),
+        format = require("lspkind").cmp_format({}),
       },
       sources = cmp.config.sources({
         { name = "git" },

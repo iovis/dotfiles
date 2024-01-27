@@ -8,10 +8,10 @@ return {
     "DiffviewOpen",
   },
   keys = {
-    { "<leader>dv", "<cmd>DiffviewOpen<cr>", desc = "Diffview open" },
-    { "<leader>df", "<cmd>DiffviewFileHistory %<cr>", desc = "Diffview current file history" },
-    { "<leader>dh", "<cmd>DiffviewFileHistory<cr>", desc = "Diffview all commits" },
-    { "<leader>df", ":DiffviewFileHistory<cr>", silent = true, mode = "x" },
+    { "<leader>df", "<cmd>DiffviewOpen<cr>", desc = "Diffview open" },
+    { "<leader>dh", "<cmd>DiffviewFileHistory %<cr>", desc = "Diffview current file history" },
+    { "<leader>da", "<cmd>DiffviewFileHistory<cr>", desc = "Diffview all commits" },
+    { "<leader>dh", ":DiffviewFileHistory<cr>", silent = true, mode = "x" },
   },
   config = function()
     local actions = require("diffview.actions")

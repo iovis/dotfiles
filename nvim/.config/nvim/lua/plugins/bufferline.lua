@@ -1,7 +1,7 @@
 return {
   "akinsho/nvim-bufferline.lua",
   -- enabled = false,
-  event = "BufAdd",
+  event = "TabNew",
   config = function()
     require("bufferline").setup({
       -- highlights = require("catppuccin.groups.integrations.bufferline").get(),
@@ -40,12 +40,6 @@ return {
         offsets = {
           {
             filetype = "neo-tree",
-            text = "",
-            highlight = "Directory",
-            text_align = "center",
-          },
-          {
-            filetype = "NvimTree",
             text = "",
             highlight = "Directory",
             text_align = "center",
