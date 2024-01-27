@@ -71,11 +71,11 @@ bind -n M-m     resize-pane -Z
 # }
 
 ## Quick Notes
-bind -N "Notes session popup" -n M-n if -F '#{==:#{session_name},notes}' {
-  detach-client
-} {
-  display-popup -w 75% -h 75% -b rounded -d '$NOTES' -E "tmux new-session -A -s notes -c \"$NOTES\""
-}
+# bind -N "Notes session popup" -n M-n if -F '#{==:#{session_name},notes}' {
+#   detach-client
+# } {
+#   display-popup -w 75% -h 75% -b rounded -d '$NOTES' -E "tmux new-session -A -s notes -c \"$NOTES\""
+# }
 
 # bind -n M-n if -F '#{==:#{session_name},notes}' {
 #   switch-client -l
