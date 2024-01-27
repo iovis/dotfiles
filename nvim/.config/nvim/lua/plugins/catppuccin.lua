@@ -12,20 +12,17 @@ return {
         dark = "frappe",
       },
       transparent_background = true,
-      dim_inactive = {
-        enabled = false,
-      },
+      dim_inactive = { enabled = false },
+      styles = { conditionals = {} },
       integrations = {
         cmp = true,
-        fidget = false,
+        fidget = true,
         gitsigns = true,
         leap = true,
-        lsp_saga = false,
+        lsp_saga = true,
         mason = true,
         mini = true,
         neotree = true,
-        noice = false,
-        notify = false,
         treesitter = true,
         treesitter_context = true,
         which_key = true,
@@ -70,16 +67,8 @@ return {
           DiagnosticSource = { link = "Comment" },
           SagaLightBulb = { fg = colors.yellow },
 
-          -- mini
-          MiniIndentscopeSymbol = { fg = colors.surface0, nocombine = true },
-
           -- neotree
-          NeoTreeStatusLine = {},
-          NeoTreeStatusLineNC = {},
           NeoTreeCursorLine = { bold = true },
-
-          -- oil.nvim
-          OilDir = { fg = colors.blue },
 
           -- noice
           NotifyBackground = { fg = colors.text, bg = colors.base },
@@ -89,17 +78,6 @@ return {
           TreesitterContext = { bg = black, bold = true },
           TreesitterContextBottom = { style = {} }, -- Disable underline
           TreesitterContextLineNumber = { fg = colors.surface1, bg = black, bold = true },
-
-          ----Apparently semantic LSP messes everything up for `fg` colors
-          ----and I don't have the energy to look into changing priorities now
-          -- TODO: something
-          -- NOTE: something
-          -- FIXME: something
-          -- HACK: something
-          -- ["@text.todo"] = { fg = C.yellow, bg = "none" },
-          -- ["@text.note"] = { fg = C.blue, bg = "none" },
-          -- ["@text.warning"] = { fg = C.yellow, bg = "none" },
-          -- ["@text.danger"] = { fg = C.red, bg = "none" },
         }
       end,
     })
