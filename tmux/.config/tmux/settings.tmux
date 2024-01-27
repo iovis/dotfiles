@@ -13,6 +13,6 @@ set -g remain-on-exit off # failed
 set -wg mode-keys vi
 set -wg monitor-activity on
 
-set -sa terminal-features ",$TERM:RGB"
-set -sg default-terminal "screen-256color"
+set -sg default-terminal "tmux-256color"
+set -sa terminal-features ",xterm-256color:RGB"
 set -sg escape-time 0
