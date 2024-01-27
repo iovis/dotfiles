@@ -25,9 +25,9 @@ return {
         },
       },
       keymaps = {
-        q = "actions.close",
+        P = "actions.preview",
         gt = "actions.toggle_trash",
-        ["<leader>p"] = "actions.preview",
+        q = "actions.close",
         -- ["<leader>v"] = "actions.select_vsplit",
         -- ["<leader>h"] = "actions.select_split",
         -- ["<leader>t"] = "actions.select_tab",
