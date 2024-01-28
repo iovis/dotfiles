@@ -36,9 +36,18 @@ return {
         ["<C-n>"] = { i = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }) },
         ["<C-p>"] = { i = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }) },
         ["<Tab>"] = { i = cmp.mapping.confirm({ select = true }) },
+        ["<M-i>"] = {
+          i = function()
+            if cmp.visible_docs() then
+              cmp.close_docs()
+            else
+              cmp.open_docs()
+            end
+          end,
+        },
       },
       formatting = {
-        format = require("lspkind").cmp_format({}),
+        format = require("lspkind").cmp_format({ maxwidth = 25 }),
       },
       sources = cmp.config.sources({
         { name = "git" },
