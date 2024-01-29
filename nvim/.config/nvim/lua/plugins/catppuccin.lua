@@ -78,6 +78,8 @@ return {
           TreesitterContext = { bg = black, bold = true },
           TreesitterContextBottom = { style = {} }, -- Disable underline
           TreesitterContextLineNumber = { fg = colors.surface1, bg = black, bold = true },
+          ["@module"] = { style = {} },
+          ["@namespace"] = { style = {} },
         }
       end,
     })
