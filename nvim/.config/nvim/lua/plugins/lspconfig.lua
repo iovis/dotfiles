@@ -10,6 +10,8 @@ return {
           },
         },
       })
+
+      vim.keymap.set("n", "<leader>lu", "<cmd>Mason<cr>")
     end,
   },
   {
@@ -44,6 +46,7 @@ return {
       lsp.elixirls.setup(cfg)
       lsp.emmet_language_server.setup(cfg)
       lsp.gopls.setup(cfg)
+      lsp.html.setup(cfg)
       lsp.marksman.setup(cfg)
       lsp.pyright.setup(cfg)
       lsp.rubocop.setup(cfg)
@@ -52,12 +55,6 @@ return {
       lsp.taplo.setup(cfg)
       lsp.tsserver.setup(cfg)
       lsp.zls.setup(cfg)
-
-      lsp.html.setup(vim.tbl_deep_extend("force", cfg, {
-        settings = {
-          format = { enable = false },
-        },
-      }))
 
       lsp.jsonls.setup(vim.tbl_deep_extend("force", cfg, {
         settings = {
@@ -198,6 +195,14 @@ return {
       end
 
       lsp.fuzzy_ls.setup(cfg)
+
+      ---- Global LSP settings
+      vim.keymap.set("n", "<leader>lh", "<cmd>help lspconfig-server-configurations<cr>")
+      vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
+      vim.keymap.set("n", "<leader>lR", ":LspRestart<cr>")
+
+      -- TODO: v0.10 vim.lsp.get_clients()
+      vim.api.nvim_create_user_command("LspActiveClients", "R=vim.lsp.get_active_clients()", {})
     end,
   },
 }

@@ -1,17 +1,3 @@
-local u = require("config.utils")
-
----- Global LSP settings
-u.command("LspConfigHelp", "help lspconfig-server-configurations")
-u.command("LspActiveClients", function()
-  vim.cmd("R!=vim.lsp.get_active_clients()") -- TODO: v0.10 vim.lsp.get_clients()
-  vim.cmd("se ft=lua")
-end)
-
-vim.keymap.set("n", "<leader>lh", "<cmd>LspConfigHelp<cr>")
-vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
-vim.keymap.set("n", "<leader>ul", "<cmd>Mason<cr>")
-vim.keymap.set("n", "<leader>lR", ":LspRestart<cr>")
-
 ---- Floating window
 require("lspconfig.ui.windows").default_options.border = "rounded"
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
@@ -89,7 +75,18 @@ local on_attach = function(client, bufnr)
       buffer = bufnr,
       callback = function()
         if vim.g.autoformat then
-          vim.lsp.buf.format()
+          vim.lsp.buf.format({
+            filter = function(server)
+              local dont_format_with = {
+                "fuzzy_ls",
+                "html",
+                "ruby_ls",
+                "solargraph",
+              }
+
+              return not vim.tbl_contains(dont_format_with, server.name)
+            end,
+          })
         end
       end,
     })
