@@ -10,7 +10,7 @@ return {
   keys = {
     { "<leader>df", "<cmd>DiffviewOpen<cr>", desc = "Diffview open" },
     { "<leader>dh", "<cmd>DiffviewFileHistory %<cr>", desc = "Diffview current file history" },
-    { "<leader>da", "<cmd>DiffviewFileHistory<cr>", desc = "Diffview all commits" },
+    { "<leader>dc", "<cmd>DiffviewFileHistory<cr>", desc = "Diffview all commits" },
     { "<leader>dh", ":DiffviewFileHistory<cr>", silent = true, mode = "x" },
   },
   config = function()
