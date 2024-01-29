@@ -92,5 +92,9 @@ return {
 
     -- setup must be called before loading
     vim.cmd.colorscheme("catppuccin")
+
+    vim.api.nvim_create_user_command("CatppuccinPalette", function()
+      vim.cmd("R=require('catppuccin.palettes').get_palette()")
+    end, {})
   end,
 }
