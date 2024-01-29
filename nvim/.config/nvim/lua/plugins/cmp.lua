@@ -47,7 +47,16 @@ return {
         },
       },
       formatting = {
-        format = require("lspkind").cmp_format({ maxwidth = 25 }),
+        format = require("lspkind").cmp_format({
+          maxwidth = 35,
+          menu = {
+            buffer = "[Buf]",
+            git = "[Git]",
+            luasnip = "[Sni]",
+            nvim_lsp = "[LSP]",
+            path = "[Pat]",
+          },
+        }),
       },
       sources = cmp.config.sources({
         { name = "git" },
