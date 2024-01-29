@@ -13,7 +13,10 @@ return {
       },
       transparent_background = true,
       dim_inactive = { enabled = false },
-      styles = { conditionals = {} },
+      styles = {
+        comments = {},
+        conditionals = {},
+      },
       integrations = {
         cmp = true,
         fidget = true,
@@ -55,6 +58,9 @@ return {
           StatusLine = {},
           StatusLineNC = {},
           Visual = { bg = colors.surface0, bold = true },
+
+          -- Cmp
+          CmpItemMenu = { link = "Comment" },
 
           -- LSP Document Highlights
           LspReferenceRead = { bg = colors.base },
