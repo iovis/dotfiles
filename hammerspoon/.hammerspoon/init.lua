@@ -1,3 +1,6 @@
+---@alias HammerspoonBinding
+---|{ [1]: string[], [2]: string }
+
 ---Console
 hs.console.darkMode(true)
 hs.console.consoleCommandColor({ white = 0.6 })

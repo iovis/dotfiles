@@ -1,7 +1,7 @@
 ---Binds a command to run with an optional notification
----@param binding any
+---@param binding HammerspoonBinding
 ---@param command string
----@param notification? any
+---@param notification? { success_message: string, error: boolean }
 local bind_command = function(binding, command, notification)
   hs.hotkey.bind(binding[1], binding[2], function()
     print(command)
@@ -9,8 +9,8 @@ local bind_command = function(binding, command, notification)
 
     hs.task
       .new(os.getenv("SHELL"), function(code, stdout, stderr)
-        if notification.success and code == 0 then
-          notify(notification.success)
+        if notification.success_message and code == 0 then
+          notify(notification.success_message)
         elseif code ~= 0 then
           print(code)
           print(stdout)
@@ -30,7 +30,10 @@ local bind_command = function(binding, command, notification)
   end)
 end
 
-bind_command({ hyper, "r" }, "yabai --restart-service", { success = "Yabai reloaded", error = true })
+bind_command({ hyper, "r" }, "yabai --restart-service", {
+  success_message = "Yabai reloaded",
+  error = true,
+})
 
 ------------
 -- Window --
@@ -77,7 +80,7 @@ bind_command({ ctrl_alt_cmd, "ñ" }, "yabai -m window --toggle zoom-parent")
 bind_command({ ctrl_alt_cmd, "y" }, "yabai_set_no_float")
 
 ---Sidebar
-bind_command({ { "ctrl", "alt" }, "o" }, "yabai_grid 2:5:-1:0:1:1")
+bind_command({ ctrl_alt, "o" }, "yabai_grid 2:5:-1:0:1:1")
 bind_command({ ctrl_alt_cmd, "o" }, "yabai_grid 1:4:3:0:1:1")
 
 ---Halves
@@ -115,29 +118,7 @@ bind_command({ hyper, "d" }, "yabai_send_to_other_display")
 --    => Make Mission Control switch to space: ctrl+alt+cmd - 1
 for i = 1, 2 do
   -- hyper - 1 : yabai -m window --space 1
-  -- hyper - 2 : yabai -m window --space 2
-  -- hyper - 3 : yabai -m window --space 3
-  hs.hotkey.bind(hyper, tostring(i), function()
-    local command = "yabai -m window --space " .. i
-    print(command)
-
-    hs.task
-      .new(os.getenv("SHELL"), function(code, stdout, stderr)
-        if code == 0 then
-          -- Press shortcut to go to that space
-          hs.eventtap.keyStroke(ctrl_alt_cmd, i)
-        else
-          print(code)
-          print(stdout)
-          print(stderr)
-
-          if stderr:match("failed to connect to socket") then
-            notify("Yabai is not running")
-          end
-        end
-      end, { "-c", command })
-      :start()
-  end)
+  bind_command({ hyper, tostring(i) }, "yabai -m window --space " .. i)
 end
 
 -------------

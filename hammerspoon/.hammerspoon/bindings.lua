@@ -32,7 +32,6 @@ end
 
 ---Debug keystrokes in console
 local debug = false
-
 if debug then
   print(hs.inspect(hs.keycodes.map))
 
