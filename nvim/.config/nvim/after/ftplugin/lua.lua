@@ -1,6 +1,9 @@
 ----EmmyLua Annotations: https://luals.github.io/wiki/annotations/
 ----plenary.nvim test harness: https://github.com/nvim-lua/plenary.nvim/blob/master/TESTS_README.md
 
+-- Allow `---` to continue as comment
+vim.bo.comments = ":---,:--"
+
 ----Bindings
 vim.keymap.set("n", "<leader>so", ":source<cr>", { buffer = true, desc = "Source file" })
 vim.keymap.set("x", "<leader>so", ":source<cr>", { buffer = true, desc = "Evaluate lua range" })
