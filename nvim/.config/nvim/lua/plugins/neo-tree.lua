@@ -27,6 +27,7 @@ return {
         width = 33,
       },
       filesystem = {
+        use_libuv_file_watcher = true,
         filtered_items = {
           hide_dotfiles = false,
           hide_by_name = {
@@ -46,6 +47,9 @@ return {
             ["g?"] = "show_help",
             ["?"] = "",
 
+            ["g."] = "toggle_hidden",
+            H = "",
+
             S = "",
             ["<leader>h"] = "open_split",
 
@@ -57,10 +61,6 @@ return {
           },
         },
         commands = {
-          -- TODO: Open multiple
-          -- open_visual = function(state, selected_nodes)
-          --   pp(selected_nodes)
-          -- end,
           run_command = function(state)
             local node = state.tree:get_node()
             local path = node:get_id()
@@ -99,13 +99,5 @@ return {
         },
       },
     })
-
-    -- local hi = require("config.highlights").hi
-    -- local c = require("config.highlights").colors
-    --
-    -- hi.NeoTreeEndOfBuffer = { fg = c.black }
-    -- hi.NeoTreeStatusLine = { fg = c.black }
-    -- hi.NeoTreeStatusLineNC = {}
-    -- hi.NeoTreeWinSeparator = { fg = c.black }
   end,
 }
