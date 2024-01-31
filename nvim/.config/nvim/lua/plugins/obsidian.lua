@@ -14,9 +14,8 @@ return {
       disable_frontmatter = true,
       open_app_foreground = true,
       finder = "fzf-lua",
-      workspaces = {
-        { name = "personal", path = "~/vaults/io" },
-      },
+      ui = { enable = false },
+      workspaces = { { name = "personal", path = "~/vaults/io" } },
       mappings = {
         -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
         ["gf"] = {
