@@ -64,10 +64,10 @@ bind_command({ hyper, "right" }, "yabai -m window --warp east")
 bind_command({ hyper, "up" }, "yabai -m window --warp north")
 
 ---Resize windows (tmux like)
-bind_command({ ctrl_alt_cmd, "left" }, "yabai -m window --resize left:-50:0 || yabai -m window --resize right:-50:0")
-bind_command({ ctrl_alt_cmd, "down" }, "yabai -m window --resize bottom:0:50 || yabai -m window --resize top:0:50")
-bind_command({ ctrl_alt_cmd, "up" }, "yabai -m window --resize top:0:-50 || yabai -m window --resize bottom:0:-50")
-bind_command({ ctrl_alt_cmd, "right" }, "yabai -m window --resize right:50:0 || yabai -m window --resize left:50:0")
+bind_command({ ctrl_alt_cmd, "left" }, "yabai -m window --resize left:-200:0 || yabai -m window --resize right:-200:0")
+bind_command({ ctrl_alt_cmd, "down" }, "yabai -m window --resize bottom:0:200 || yabai -m window --resize top:0:200")
+bind_command({ ctrl_alt_cmd, "up" }, "yabai -m window --resize top:0:-200 || yabai -m window --resize bottom:0:-200")
+bind_command({ ctrl_alt_cmd, "right" }, "yabai -m window --resize right:200:0 || yabai -m window --resize left:200:0")
 
 ---Toggle window zoom
 bind_command({ ctrl_alt_cmd, "m" }, "yabai -m window --toggle zoom-fullscreen")
