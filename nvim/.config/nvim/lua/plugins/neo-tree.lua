@@ -77,24 +77,27 @@ return {
 
           fold_left = function(state)
             local node = state.tree:get_node()
+            local parent_id = node:get_parent_id()
 
-            if node.type == "directory" and node:is_expanded() then
-              require("neo-tree.sources.filesystem").toggle_directory(state, node)
-            else
-              require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
+            require("neo-tree.ui.renderer").focus_node(state, parent_id)
+
+            local parent = state.tree:get_node(parent_id)
+            if parent.type == "directory" and parent:is_expanded() then
+              require("neo-tree.sources.filesystem").toggle_directory(state, parent)
             end
           end,
 
           fold_right = function(state)
             local node = state.tree:get_node()
-
-            if node.type == "directory" then
-              if not node:is_expanded() then
-                require("neo-tree.sources.filesystem").toggle_directory(state, node)
-              elseif node:has_children() then
-                require("neo-tree.ui.renderer").focus_node(state, node:get_child_ids()[1])
-              end
+            if node.type ~= "directory" then
+              return
             end
+
+            if not node:is_expanded() then
+              require("neo-tree.sources.filesystem").toggle_directory(state, node)
+            end
+
+            require("neo-tree.ui.renderer").focus_node(state, node:get_child_ids()[1])
           end,
         },
       },
