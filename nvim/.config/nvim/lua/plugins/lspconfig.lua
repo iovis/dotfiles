@@ -45,6 +45,7 @@ return {
       lsp.dockerls.setup(cfg)
       lsp.elixirls.setup(cfg)
       lsp.emmet_language_server.setup(cfg)
+      lsp.eslint.setup(cfg)
       lsp.gopls.setup(cfg)
       lsp.html.setup(cfg)
       lsp.marksman.setup(cfg)

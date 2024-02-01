@@ -82,6 +82,7 @@ local on_attach = function(client, bufnr)
                 "html",
                 "ruby_ls",
                 "solargraph",
+                "tsserver",
               }
 
               return not vim.tbl_contains(dont_format_with, server.name)
@@ -161,8 +162,11 @@ local on_attach = function(client, bufnr)
     buf_nmap("<leader>lk", toggle_inlay_hints, "vim.lsp.inlay_hint")
   end
 
+  ----Custom server capabilities
   if client.name == "solargraph" then
     client.server_capabilities.documentSymbolProvider = false
+  elseif client.name == "eslint" then
+    client.server_capabilities.documentFormattingProvider = true
   end
 
   if client.server_capabilities.documentSymbolProvider then
