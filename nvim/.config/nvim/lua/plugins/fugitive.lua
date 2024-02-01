@@ -5,6 +5,7 @@ return {
     "tpope/vim-rhubarb",
   },
   config = function()
+    vim.keymap.set("n", "gi", ":Git<space>")
     vim.keymap.set("n", "<leader>G", "<cmd>Gtabedit:<cr>)", { remap = true })
     vim.keymap.set("n", "<leader>go", "<cmd>Gread<cr>")
     vim.keymap.set("n", "<leader>gb", "<cmd>Git blame<cr>")
