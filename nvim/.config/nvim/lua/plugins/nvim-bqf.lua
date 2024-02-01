@@ -2,8 +2,7 @@ return {
   "kevinhwang91/nvim-bqf",
   ft = "qf",
   dependencies = {
-    "junegunn/fzf",
-    version = "*",
+    { "junegunn/fzf", version = "*" },
   },
   config = function()
     require("bqf").setup({
