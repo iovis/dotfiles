@@ -18,6 +18,29 @@ local rust_fn = function()
   )
 end
 
+local rust_method = function()
+  return sn(
+    nil,
+    fmta(
+      [[
+        fn <fname>(<args>)<arrow><ret_type> {
+            <body>
+        }
+      ]],
+      {
+        fname = i(1, "fname"),
+        args = c(2, {
+          fmta("&self<>", { r(1, "arg", i(1)) }),
+          fmta("&mut self<>", { r(1, "arg", i(1)) }),
+        }),
+        arrow = n(3, " -> "),
+        ret_type = i(3),
+        body = i(4, "todo!()"),
+      }
+    )
+  )
+end
+
 return {
   s(
     "#!",
@@ -54,6 +77,18 @@ return {
     condition = conds.line_begin,
   }),
   s("paf", fmt("pub async {}", { d(1, rust_fn) }), {
+    condition = conds.line_begin,
+  }),
+  s("fm", d(1, rust_method), {
+    condition = conds.line_begin,
+  }),
+  s("pfm", fmt("pub {}", { d(1, rust_method) }), {
+    condition = conds.line_begin,
+  }),
+  s("afm", fmt("async {}", { d(1, rust_method) }), {
+    condition = conds.line_begin,
+  }),
+  s("pafm", fmt("pub async {}", { d(1, rust_method) }), {
     condition = conds.line_begin,
   }),
   s(

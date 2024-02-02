@@ -150,13 +150,29 @@ return {
       }
       ]],
       {
-        fname = c(1, {
-          i(1, "fname"),
-          fmt("({} {}) {}", { i(1, "receiver"), i(2, "type"), i(3, "fname") }),
-        }),
+        fname = i(1, "fname"),
         args = i(2),
         space = n(3, " "),
         ret_type = i(3),
+        body = i(0, 'panic("todo")'),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "fm",
+    fmta(
+      [[
+      func (<struct>) <fname>(<args>) <ret_type><space>{
+        <body>
+      }
+      ]],
+      {
+        struct = i(1, "r *Receiver"),
+        fname = i(2, "fname"),
+        args = i(3),
+        space = n(4, " "),
+        ret_type = i(4),
         body = i(0, 'panic("todo")'),
       }
     ),
@@ -178,6 +194,22 @@ return {
         res = i(2, "w"),
         req = i(3, "r"),
         body = i(4, 'panic("todo")'),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  -- Structs
+  s(
+    "st",
+    fmta(
+      [[
+      type <> struct {
+        <>
+      }
+      ]],
+      {
+        i(1, "Name"),
+        i(0),
       }
     ),
     { condition = conds.line_begin }

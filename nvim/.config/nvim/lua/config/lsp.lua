@@ -79,7 +79,6 @@ local on_attach = function(client, bufnr)
             filter = function(server)
               local dont_format_with = {
                 "fuzzy_ls",
-                "html",
                 "ruby_ls",
                 "solargraph",
                 "tsserver",
