@@ -1,5 +1,10 @@
 local u = require("config.utils")
 
 if not u.has_justfile() then
-  vim.keymap.set("n", "s<cr>", "<cmd>Tux go run .<cr>", { buffer = true })
+  if u.is_file("go.mod") then
+    vim.keymap.set("n", "s<cr>", "<cmd>Tux go run .<cr>", { buffer = true })
+    vim.keymap.set("n", "m<cr>", "<cmd>Tux go mod tidy<cr>", { buffer = true })
+  else
+    vim.keymap.set("n", "s<cr>", "<cmd>Tux go run %<cr>", { buffer = true })
+  end
 end
