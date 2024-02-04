@@ -7,6 +7,22 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 
 ---- LSP Format
 local autoformat_augroup = vim.api.nvim_create_augroup("lsp_document_format", { clear = false })
+local lsp_format = function()
+  if vim.g.autoformat then
+    vim.lsp.buf.format({
+      filter = function(server)
+        local dont_format_with = {
+          "fuzzy_ls",
+          "ruby_ls",
+          "solargraph",
+          "tsserver",
+        }
+
+        return not vim.tbl_contains(dont_format_with, server.name)
+      end,
+    })
+  end
+end
 
 ---- On LSP attached buffers
 local on_attach = function(client, bufnr)
@@ -58,8 +74,8 @@ local on_attach = function(client, bufnr)
   -- })
 
   ---- Formatting
-  buf_nmap("<leader>b", vim.lsp.buf.format, "vim.lsp.buf.format")
-  buf_xmap("<leader>b", vim.lsp.buf.format, "vim.lsp.buf.format")
+  buf_nmap("<leader>b", lsp_format, "vim.lsp.buf.format")
+  buf_xmap("<leader>b", lsp_format, "vim.lsp.buf.format")
 
   -- Autoformat on save
   local no_autoformat_filetypes = {}
@@ -73,22 +89,7 @@ local on_attach = function(client, bufnr)
       desc = "Autoformat with LSP on save",
       group = autoformat_augroup,
       buffer = bufnr,
-      callback = function()
-        if vim.g.autoformat then
-          vim.lsp.buf.format({
-            filter = function(server)
-              local dont_format_with = {
-                "fuzzy_ls",
-                "ruby_ls",
-                "solargraph",
-                "tsserver",
-              }
-
-              return not vim.tbl_contains(dont_format_with, server.name)
-            end,
-          })
-        end
-      end,
+      callback = lsp_format,
     })
   end
 
