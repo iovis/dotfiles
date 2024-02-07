@@ -11,7 +11,7 @@ set -gx NOTES "$ICLOUD_PATH/notes"
 
 set -gx DOTFILES "$HOME/.dotfiles"
 set -gx REVIEW_BASE master
-set -gx PROJECT_HOME "$HOME/Sites"
+set -gx PROJECT_HOME "$HOME/code"
 set -gx EDITOR nvim
 set -gx MANPAGER "$EDITOR +Man!"
 
