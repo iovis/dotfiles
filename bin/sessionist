@@ -18,6 +18,7 @@ fzf_command() {
     -p 80%,80% \
     --exit-0 \
     --bind=enter:accept-or-print-query \
+    --bind=ctrl-d:print-query \
     --reverse \
     --info hidden \
     --preview "eza -lag --git --group-directories-first $PROJECT_HOME/{}" \
