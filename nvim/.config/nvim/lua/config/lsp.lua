@@ -78,20 +78,20 @@ local on_attach = function(client, bufnr)
   buf_xmap("<leader>b", lsp_format, "vim.lsp.buf.format")
 
   -- Autoformat on save
-  local no_autoformat_filetypes = {}
-
-  if
-    client.supports_method("textDocument/formatting")
-    and not vim.tbl_contains(no_autoformat_filetypes, vim.bo.filetype)
-  then
-    vim.api.nvim_clear_autocmds({ group = autoformat_augroup, buffer = bufnr })
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      desc = "Autoformat with LSP on save",
-      group = autoformat_augroup,
-      buffer = bufnr,
-      callback = lsp_format,
-    })
-  end
+  -- local no_autoformat_filetypes = {}
+  --
+  -- if
+  --   client.supports_method("textDocument/formatting")
+  --   and not vim.tbl_contains(no_autoformat_filetypes, vim.bo.filetype)
+  -- then
+  --   vim.api.nvim_clear_autocmds({ group = autoformat_augroup, buffer = bufnr })
+  --   vim.api.nvim_create_autocmd("BufWritePre", {
+  --     desc = "Autoformat with LSP on save",
+  --     group = autoformat_augroup,
+  --     buffer = bufnr,
+  --     callback = lsp_format,
+  --   })
+  -- end
 
   ---- fzf-lua
   local ok_fzf, fzf_lua = pcall(require, "fzf-lua")
