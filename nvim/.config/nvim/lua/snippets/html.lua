@@ -15,6 +15,36 @@ return {
     { condition = conds.line_begin }
   ),
   s(
+    "if",
+    fmta(
+      [[
+        {{ if <> }}
+        <>
+        {{ end }}
+      ]],
+      {
+        i(1, "."),
+        i(2),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "range",
+    fmta(
+      [[
+        {{ range <> }}
+        <>
+        {{ end }}
+      ]],
+      {
+        i(1, "."),
+        i(2),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
     "template",
     fmta(
       [[
