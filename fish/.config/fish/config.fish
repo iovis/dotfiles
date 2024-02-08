@@ -65,7 +65,8 @@ else if test -f /usr/local/bin/brew
     set -gx INFOPATH /usr/local/share/info $INFOPATH
 end
 
-mise activate fish | source
+# Autoenabled by homebrew somehow?
+# mise activate fish | source
 
 fish_add_path $HOME/.cargo/bin
 fish_add_path $HOME/.dotfiles/bin

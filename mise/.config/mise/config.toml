@@ -1,0 +1,6 @@
+[tools]
+go = "1"
+nodejs = "20"
+python = "3.11"
+ruby = "3.2.2"
+zig = "0.11"

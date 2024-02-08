@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 mods=(
-  asdf
   fish
   git
+  mise
   muxi
   nvim
   starship
