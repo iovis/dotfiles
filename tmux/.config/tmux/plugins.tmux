@@ -3,6 +3,9 @@ set -g @continuum-restore 'on'
 set -g @continuum-save-interval '5'
 
 set -g @plugin 'tmux-plugins/tmux-cpu'
+set -g @cpu_low_fg_color "#[fg=#51576d]"
+set -g @cpu_medium_fg_color "#[fg=#e5c890]"
+set -g @cpu_high_fg_color "#[fg=#e78284]"
 
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @resurrect-capture-pane-contents 'on'

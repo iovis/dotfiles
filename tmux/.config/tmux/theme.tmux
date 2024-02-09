@@ -1,7 +1,3 @@
-## Title bar
-set -g set-titles on
-set -g set-titles-string '#S :: #W'
-
 ## Border
 set -g pane-border-style 'fg=#414559'
 set -g pane-active-border-style '#{?pane_in_mode,fg=#e5c890,#{?synchronize-panes,fg=#ea999c,fg=#8caaee}}'
@@ -18,8 +14,7 @@ set -g status-style 'bg=default,fg=white'
 ### Left
 set -g status-left-length 90
 
-set -g status-left '#[fg=blue]#S'
-set -ag status-left ' '
+set -g status-left '#[fg=#8caaee]  #S  '
 
 ### Right
 set -g status-right-length 60
@@ -29,7 +24,7 @@ set -g status-right-length 60
 #   #{!=:left_hand_side,right_hand_side} => compare left to right
 
 # Prefix indicator
-set -g status-right '#{?#{!=:#{client_key_table},root},#[fg=cyan]<#{client_key_table}>,}'
+set -g status-right '#{?#{!=:#{client_key_table},root},#[fg=#8caaee]<#{client_key_table}>,}'
 
 # Synchronized panes indicator
 set -ag status-right ' #{?pane_synchronized,#[fg=#e78284]sync,}'
@@ -38,7 +33,7 @@ set -ag status-right ' #{?pane_synchronized,#[fg=#e78284]sync,}'
 set -ag status-right ' #{cpu_fg_color}#{cpu_percentage}#{cpu_icon}'
 
 # SSH session
-set -ag status-right ' #{?#{SSH_CLIENT},#[fg=colour8]#(whoami)@#h,}'
+set -ag status-right ' #{?#{SSH_CLIENT},#[fg=#51576d]#(whoami)@#h,}'
 
 ## Window
 set -g base-index 1
@@ -49,8 +44,8 @@ set -wg automatic-rename on
 set -wg automatic-rename-format '#{b:pane_current_path}/#{pane_current_command}'
 
 set -g window-status-activity-style 'bg=default'
-set -g window-status-current-format "#[fg=colour8]:: #[fg=green]#I|#W#{?window_zoomed_flag,#[fg=cyan][+],}"
-set -g window-status-format "#[fg=colour8]:: #I|#W#{?window_zoomed_flag,[+],}"
+set -g window-status-current-format "#[fg=#81c8be]#W#{?window_zoomed_flag,#[fg=#dabeed]󰇙, }"
+set -g window-status-format "#[fg=#51576d]#W#{?window_zoomed_flag,󰇙, }"
 
 ## Pane
 # Inactive pane shaded out

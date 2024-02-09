@@ -44,7 +44,8 @@ bind -N "append selection" -T copy-mode-vi a send -X copy-pipe-no-clear "pbcopy"
 bind -T copy-mode-vi v send -X begin-selection
 
 bind -N "Copy selection and paste it directly" -T copy-mode-vi Enter {
-  send -X copy-pipe-and-cancel "tmux paste-buffer"
+  send -X select-word
+  send -X copy-pipe-and-cancel "tmux paste-buffer -p"
 }
 
 bind -N "Copy line" -T copy-mode-vi C send Escape 'V!'
