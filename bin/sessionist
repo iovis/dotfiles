@@ -21,7 +21,7 @@ fzf_command() {
     --bind=ctrl-d:print-query \
     --reverse \
     --info hidden \
-    --preview "eza -lag --git --group-directories-first $PROJECT_HOME/{}" \
+    --preview "eza --color=always -lag --git --group-directories-first $PROJECT_HOME/{}" \
     --preview-window down \
     --prompt "$PROJECT_HOME/" \
     --query "$INITIAL_QUERY"
