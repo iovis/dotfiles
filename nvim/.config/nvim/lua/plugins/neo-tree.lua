@@ -24,7 +24,7 @@ return {
       enable_diagnostics = false,
       popup_border_style = "rounded",
       window = {
-        width = 33,
+        width = 40,
       },
       filesystem = {
         use_libuv_file_watcher = true,
