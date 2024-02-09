@@ -49,8 +49,9 @@ return {
       },
       keymap = {
         builtin = {
-          ["<m-p>"] = "toggle-preview",
           ["<c-h>"] = "toggle-help",
+          ["<m-p>"] = "toggle-preview",
+          ["<m-r>"] = "toggle-preview-cw",
           -- defaults (overridden otherwise)
           ["<F1>"] = "toggle-help",
           ["<F2>"] = "toggle-fullscreen",
