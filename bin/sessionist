@@ -22,7 +22,7 @@ fzf_command() {
     --reverse \
     --info hidden \
     --preview "eza --color=always -lag --git --group-directories-first $PROJECT_HOME/{}" \
-    --preview-window down \
+    --preview-window right \
     --prompt "$PROJECT_HOME/" \
     --query "$INITIAL_QUERY"
 }
