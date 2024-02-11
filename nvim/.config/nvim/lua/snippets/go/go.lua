@@ -144,7 +144,7 @@ return {
     { condition = conds.line_begin }
   ),
   s(
-    "forl",
+    "fora",
     fmt(
       [[
         for {} := range {} {{
