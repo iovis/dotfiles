@@ -44,7 +44,7 @@ set -wg automatic-rename on
 set -wg automatic-rename-format '#{b:pane_current_path}/#{pane_current_command}'
 
 set -g window-status-activity-style 'bg=default'
-set -g window-status-current-format "#[fg=#81c8be]#W#{?window_zoomed_flag,#[fg=#dabeed]󰇙, }"
+set -g window-status-current-format "#[fg=#a6d189]#W#{?window_zoomed_flag,#[fg=#dabeed]󰇙, }"
 set -g window-status-format "#[fg=#51576d]#W#{?window_zoomed_flag,󰇙, }"
 
 ## Pane
