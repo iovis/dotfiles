@@ -6,6 +6,7 @@ return {
   },
   config = function()
     local colors = require("catppuccin.palettes").get_palette()
+    local u = require("config.utils")
 
     ----Helper functions
     --- Truncate component to `len` characters
@@ -14,11 +15,7 @@ return {
     --- @return fun(string): string
     local function truncate(len)
       return function(str)
-        if #str <= len then
-          return str
-        end
-
-        return str:sub(1, len - 3) .. "..."
+        return u.truncate(str, len)
       end
     end
 

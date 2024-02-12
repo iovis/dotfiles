@@ -154,6 +154,20 @@ M.is_empty = function(str)
   return vim.fn.empty(str) == 1
 end
 
+----Helper functions
+--- Truncate component to `len` characters
+---
+--- @param str string?
+--- @param len number
+--- @return string?
+M.truncate = function(str, len)
+  if not str or #str <= len then
+    return str
+  end
+
+  return str:sub(1, len - 1) .. "…"
+end
+
 ---Titleizes string
 ---
 ---Ex: "my title" => "My Title"

@@ -12,6 +12,7 @@ return {
   },
   config = function()
     local cmp = require("cmp")
+    local u = require("config.utils")
 
     ---- Plugins
     -- Autopairs
@@ -48,14 +49,34 @@ return {
       },
       formatting = {
         format = require("lspkind").cmp_format({
-          maxwidth = 35,
-          menu = {
-            buffer = "[Buf]",
-            git = "[Git]",
-            luasnip = "[Sni]",
-            nvim_lsp = "[LSP]",
-            path = "[Pat]",
-          },
+          -- maxwidth = 10,
+          -- ellipsis_char = "…",
+          -- menu = {
+          --   buffer = "[Buf]",
+          --   git = "[Git]",
+          --   luasnip = "[Sni]",
+          --   nvim_lsp = "[LSP]",
+          --   path = "[Pat]",
+          -- },
+          before = function(_entry, vim_item)
+            --- Example
+            -- ```lua
+            -- {
+            --   abbr = "poll_recv_many",
+            --   dup = 1,
+            --   kind = "Method",
+            --   menu = "fn(&mut self, &mut Context<'_>, &mut Vec<T, Global>, usize) -> Poll<usize>",
+            --   word = "poll_recv_many"
+            -- }
+            -- ```
+
+            -- TODO: media queries with vim.o.columns or a global toggle?
+            local max_width = 35
+            vim_item.abbr = u.truncate(vim_item.abbr, max_width)
+            vim_item.menu = u.truncate(vim_item.menu, max_width)
+
+            return vim_item
+          end,
         }),
       },
       sources = cmp.config.sources({
