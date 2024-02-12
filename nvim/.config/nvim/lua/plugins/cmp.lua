@@ -49,7 +49,7 @@ return {
       },
       formatting = {
         format = require("lspkind").cmp_format({
-          -- maxwidth = 10,
+          -- maxwidth = 35,
           -- ellipsis_char = "…",
           -- menu = {
           --   buffer = "[Buf]",
@@ -59,22 +59,22 @@ return {
           --   path = "[Pat]",
           -- },
           before = function(_entry, vim_item)
-            --- Example
-            -- ```lua
-            -- {
-            --   abbr = "poll_recv_many",
-            --   dup = 1,
-            --   kind = "Method",
-            --   menu = "fn(&mut self, &mut Context<'_>, &mut Vec<T, Global>, usize) -> Poll<usize>",
-            --   word = "poll_recv_many"
-            -- }
-            -- ```
+            -- TODO: global toggle?
+            local max_width
+            local cols = vim.o.columns
 
-            -- TODO: media queries with vim.o.columns or a global toggle?
-            local max_width = 35
+            if cols > 90 then
+              max_width = math.floor(cols * 0.4)
+            else
+              max_width = math.floor(cols * 0.3)
+            end
+
+            if vim_item.menu then
+              max_width = max_width / 2
+              vim_item.menu = u.truncate(vim_item.menu, max_width)
+            end
 
             vim_item.abbr = u.truncate(vim_item.abbr, max_width)
-            vim_item.menu = u.truncate(vim_item.menu, max_width)
 
             return vim_item
           end,
