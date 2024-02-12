@@ -42,8 +42,8 @@ local on_attach = function(client, bufnr)
   end
 
   ---- Signature/Definition
-  buf_imap("<m-d>", vim.lsp.buf.hover, "vim.lsp.buf.hover")
-  buf_imap("<c-h>", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
+  buf_imap("<c-h>", vim.lsp.buf.hover, "vim.lsp.buf.hover")
+  buf_imap("<c-s>", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
 
   buf_nmap("T", vim.lsp.buf.references, "vim.lsp.buf.references")
   buf_nmap("gd", vim.lsp.buf.hover, "vim.lsp.buf.hover")
@@ -115,7 +115,7 @@ local on_attach = function(client, bufnr)
   local ok_lspsaga, _ = pcall(require, "lspsaga")
   if ok_lspsaga then
     ---- definition
-    buf_imap("<m-d>", "<cmd>Lspsaga hover_doc<cr>")
+    buf_imap("<c-h>", "<cmd>Lspsaga hover_doc<cr>")
     buf_nmap("gd", "<cmd>Lspsaga hover_doc<cr>")
     buf_nmap("gt", "<cmd>Lspsaga goto_type_definition<cr>")
 

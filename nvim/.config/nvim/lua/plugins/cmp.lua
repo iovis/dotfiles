@@ -33,11 +33,11 @@ return {
 
     cmp.setup({
       mapping = {
-        ["<C-b>"] = { i = toggle_completion },
-        ["<C-n>"] = { i = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }) },
-        ["<C-p>"] = { i = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }) },
-        ["<Tab>"] = { i = cmp.mapping.confirm({ select = true }) },
-        ["<M-i>"] = {
+        ["<c-b>"] = { i = toggle_completion },
+        ["<c-n>"] = { i = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }) },
+        ["<c-p>"] = { i = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }) },
+        ["<tab>"] = { i = cmp.mapping.confirm({ select = true }) },
+        ["<m-d>"] = {
           i = function()
             if cmp.visible_docs() then
               cmp.close_docs()
@@ -72,6 +72,7 @@ return {
 
             -- TODO: media queries with vim.o.columns or a global toggle?
             local max_width = 35
+
             vim_item.abbr = u.truncate(vim_item.abbr, max_width)
             vim_item.menu = u.truncate(vim_item.menu, max_width)
 
@@ -104,8 +105,8 @@ return {
     -- Search
     cmp.setup.cmdline({ "/", "?" }, {
       mapping = cmp.mapping.preset.cmdline({
-        ["<C-b>"] = { c = toggle_completion },
-        ["<C-e>"] = cmp.config.disable,
+        ["<c-b>"] = { c = toggle_completion },
+        ["<c-e>"] = cmp.config.disable,
       }),
       sources = {
         { name = "buffer" },
@@ -116,8 +117,8 @@ return {
     -- NOTE: it breaks "-complete=command"
     cmp.setup.cmdline(":", {
       mapping = cmp.mapping.preset.cmdline({
-        ["<C-b>"] = { c = toggle_completion },
-        ["<C-e>"] = cmp.config.disable,
+        ["<c-b>"] = { c = toggle_completion },
+        ["<c-e>"] = cmp.config.disable,
       }),
       sources = cmp.config.sources({
         { name = "path" },
