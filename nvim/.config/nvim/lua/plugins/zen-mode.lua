@@ -26,7 +26,7 @@ return {
           enabled = true,
           laststatus = 0,
         },
-        tmux = { enabled = true },
+        -- tmux = { enabled = true },
         twilight = { enabled = false },
       },
       on_open = function()
