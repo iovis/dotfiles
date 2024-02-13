@@ -11,7 +11,6 @@ return {
         d.erb_lint,
         d.fish,
         d.shellcheck,
-        d.stylelint,
         d.yamllint,
       },
     })
