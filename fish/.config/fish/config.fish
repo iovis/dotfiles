@@ -65,11 +65,14 @@ else if test -f /usr/local/bin/brew
     set -gx INFOPATH /usr/local/share/info $INFOPATH
 end
 
-# Autoenabled by homebrew somehow?
-# mise activate fish | source
-
 fish_add_path $HOME/.cargo/bin
 fish_add_path $HOME/.dotfiles/bin
+
+if status is-interactive
+    mise activate fish | source
+else
+    mise activate fish --shims | source
+end
 
 ## Interactive mode
 status is-interactive || exit
