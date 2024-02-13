@@ -31,39 +31,21 @@ set -gx FZF_DEFAULT_OPTS "\
 --color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284"
 
 set -gx BAT_THEME base16
+set -gx MISE_FISH_AUTO_ACTIVATE 0
 
 ## PATH
-if test -f /opt/homebrew/bin/brew
-    # /opt/homebrew/bin/brew shellenv | source
-    set -gx HOMEBREW_PREFIX /opt/homebrew
-    set -gx HOMEBREW_CELLAR /opt/homebrew/Cellar
-    set -gx HOMEBREW_REPOSITORY /opt/homebrew
+# brew shellenv | source
+set -gx HOMEBREW_PREFIX /opt/homebrew
+set -gx HOMEBREW_CELLAR /opt/homebrew/Cellar
+set -gx HOMEBREW_REPOSITORY /opt/homebrew
 
-    # set -q PATH; or set PATH ''
-    # set -gx PATH /opt/homebrew/bin /opt/homebrew/sbin $PATH
-    fish_add_path /opt/homebrew/bin /opt/homebrew/sbin
+fish_add_path /opt/homebrew/bin /opt/homebrew/sbin
 
-    set -q MANPATH; or set MANPATH ''
-    set -gx MANPATH /opt/homebrew/share/man $MANPATH
+set -q MANPATH; or set MANPATH ''
+set -gx MANPATH /opt/homebrew/share/man $MANPATH
 
-    set -q INFOPATH; or set INFOPATH ''
-    set -gx INFOPATH /opt/homebrew/share/info $INFOPATH
-else if test -f /usr/local/bin/brew
-    # /usr/local/bin/brew shellenv | source
-    set -gx HOMEBREW_PREFIX /usr/local
-    set -gx HOMEBREW_CELLAR /usr/local/Cellar
-    set -gx HOMEBREW_REPOSITORY /usr/local/Homebrew
-
-    # set -q PATH; or set PATH ''
-    # set -gx PATH /usr/local/bin /usr/local/sbin $PATH
-    fish_add_path /usr/local/bin /usr/local/sbin
-
-    set -q MANPATH; or set MANPATH ''
-    set -gx MANPATH /usr/local/share/man $MANPATH
-
-    set -q INFOPATH; or set INFOPATH ''
-    set -gx INFOPATH /usr/local/share/info $INFOPATH
-end
+set -q INFOPATH; or set INFOPATH ''
+set -gx INFOPATH /opt/homebrew/share/info $INFOPATH
 
 fish_add_path $HOME/.cargo/bin
 fish_add_path $HOME/.dotfiles/bin
