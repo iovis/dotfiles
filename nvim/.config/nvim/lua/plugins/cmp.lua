@@ -6,13 +6,80 @@ return {
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-path",
-    "onsails/lspkind-nvim",
     "petertriho/cmp-git",
     "saadparwaiz1/cmp_luasnip",
   },
   config = function()
     local cmp = require("cmp")
     local u = require("config.utils")
+
+    ----Cmp Window Formatter
+    vim.g.cmp_format = true
+
+    vim.keymap.set("i", "<m-i>", function()
+      vim.g.cmp_format = not vim.g.cmp_format
+
+      if vim.g.cmp_format then
+        vim.notify("nvim-cmp formatting enabled")
+      else
+        vim.notify("nvim-cmp formatting disabled")
+      end
+    end, { desc = "Toggle nvim-cmp formatting" })
+
+    local kind_icons = {
+      Text = "󰉿",
+      Method = "󰆧",
+      Function = "󰊕",
+      Constructor = "",
+      Field = "󰜢",
+      Variable = "󰀫",
+      Class = "󰠱",
+      Interface = "",
+      Module = "",
+      Property = "󰜢",
+      Unit = "󰑭",
+      Value = "󰎠",
+      Enum = "",
+      Keyword = "󰌋",
+      Snippet = "",
+      Color = "󰏘",
+      File = "󰈙",
+      Reference = "󰈇",
+      Folder = "󰉋",
+      EnumMember = "",
+      Constant = "󰏿",
+      Struct = "󰙅",
+      Event = "",
+      Operator = "󰆕",
+      TypeParameter = "󰅲",
+    }
+
+    local cmp_formatting = function(_entry, vim_item)
+      -- vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
+      vim_item.kind = kind_icons[vim_item.kind]
+
+      if not vim.g.cmp_format then
+        return vim_item
+      end
+
+      local max_width
+      local cols = vim.o.columns
+
+      if cols > 90 then
+        max_width = math.floor(cols * 0.6)
+      else
+        max_width = math.floor(cols * 0.4)
+      end
+
+      if vim_item.menu then
+        max_width = max_width / 2
+        vim_item.menu = u.truncate(vim_item.menu, max_width)
+      end
+
+      vim_item.abbr = u.truncate(vim_item.abbr, max_width)
+
+      return vim_item
+    end
 
     ---- Plugins
     -- Autopairs
@@ -48,37 +115,8 @@ return {
         },
       },
       formatting = {
-        format = require("lspkind").cmp_format({
-          -- maxwidth = 35,
-          -- ellipsis_char = "…",
-          -- menu = {
-          --   buffer = "[Buf]",
-          --   git = "[Git]",
-          --   luasnip = "[Sni]",
-          --   nvim_lsp = "[LSP]",
-          --   path = "[Pat]",
-          -- },
-          before = function(_entry, vim_item)
-            -- TODO: global toggle?
-            local max_width
-            local cols = vim.o.columns
-
-            if cols > 90 then
-              max_width = math.floor(cols * 0.4)
-            else
-              max_width = math.floor(cols * 0.3)
-            end
-
-            if vim_item.menu then
-              max_width = max_width / 2
-              vim_item.menu = u.truncate(vim_item.menu, max_width)
-            end
-
-            vim_item.abbr = u.truncate(vim_item.abbr, max_width)
-
-            return vim_item
-          end,
-        }),
+        fields = { "kind", "abbr", "menu" },
+        format = cmp_formatting,
       },
       sources = cmp.config.sources({
         { name = "git" },
