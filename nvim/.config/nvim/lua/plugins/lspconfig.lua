@@ -48,6 +48,7 @@ return {
       lsp.eslint.setup(cfg)
       lsp.gopls.setup(cfg)
       lsp.html.setup(cfg)
+      lsp.htmx.setup(cfg)
       lsp.marksman.setup(cfg)
       lsp.pyright.setup(cfg)
       lsp.rubocop.setup(cfg)
