@@ -1,24 +1,16 @@
 #!/usr/bin/env bash
 
-if [[ -n $ZDOTDIR ]]; then
-  rustup completions zsh > "$ZDOTDIR/completions/_rustup"
-  rustup completions zsh cargo > "$ZDOTDIR/completions/_cargo"
-  muxi completions zsh > "$ZDOTDIR/completions/_muxi"
-fi
+echo "Generating completions for rustup"
+rustup completions fish > "$FDOTDIR/completions/rustup.fish"
 
-if [[ -n $FDOTDIR ]]; then
-  echo "Generating completions for rustup"
-  rustup completions fish > "$FDOTDIR/completions/rustup.fish"
+# echo "Generating completions for cargo"
+# rustup completions fish cargo > "$FDOTDIR/completions/cargo.fish"
 
-  # echo "Generating completions for cargo"
-  # rustup completions fish cargo > "$FDOTDIR/completions/cargo.fish"
+echo "Generating completions for muxi"
+muxi completions fish > "$FDOTDIR/completions/muxi.fish"
 
-  echo "Generating completions for muxi"
-  muxi completions fish > "$FDOTDIR/completions/muxi.fish"
+echo "Generating completions for wezterm"
+wezterm shell-completion --shell fish > "$FDOTDIR/completions/wezterm.fish"
 
-  echo "Generating completions for wezterm"
-  wezterm shell-completion --shell fish > "$FDOTDIR/completions/wezterm.fish"
-
-  # echo "Generating completions for ngrok"
-  # ngrok completion >  "$FDOTDIR/completions/ngrok.fish"
-fi
+# echo "Generating completions for ngrok"
+# ngrok completion >  "$FDOTDIR/completions/ngrok.fish"
