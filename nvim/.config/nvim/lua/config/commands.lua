@@ -59,9 +59,29 @@ u.command("R", function(ctx)
   -- Create new scratch buffer in a split
   u.scratch(lines, {
     lines = ctx.count,
-    type = ctx.bang and "float" or "horizontal",
+    type = ctx.bang and "vertical" or "horizontal",
   })
 end, { nargs = "+", complete = "command", bang = true, count = true })
+
+u.command("P", function(ctx)
+  -- Run command
+  local lines = vim.split(
+    vim.api.nvim_exec2(ctx.args, {
+      output = true,
+    }).output,
+    "\r?\n",
+    {}
+  )
+
+  -- Remove the first 2 lines if it's a external command (starts with `!`)
+  local is_external_command = (ctx.args:sub(1, 1) == "!")
+  if is_external_command then
+    lines = vim.list_slice(lines, 3, #lines) -- same as lines[3..]
+  end
+
+  -- Create new scratch buffer in a floating window
+  u.scratch(lines, { type = "float" })
+end, { nargs = "+", complete = "command" })
 
 ---- Quick Tmux Session
 u.command("Sessionist", function(opts)

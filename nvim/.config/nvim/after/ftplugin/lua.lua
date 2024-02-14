@@ -8,7 +8,7 @@ vim.bo.comments = ":---,:--"
 vim.keymap.set("n", "<leader>so", ":source<cr>", { buffer = true, desc = "Source file" })
 vim.keymap.set("x", "<leader>so", ":source<cr>", { buffer = true, desc = "Evaluate lua range" })
 
-vim.keymap.set("n", "s<cr>", ":R! source<cr>", { buffer = true })
+vim.keymap.set("n", "s<cr>", ":R source<cr>", { buffer = true })
 vim.keymap.set("x", "<leader>sp", ":<c-u>R! '<,'>source<cr>", { buffer = true })
 
 if vim.fn.expand("%"):match("_spec.lua") then

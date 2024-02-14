@@ -32,8 +32,11 @@ M.scratch = function(contents, opts)
 
   if opts.type == "horizontal" then
     split_cmd = split_cmd .. "new"
-  else
+  elseif opts.type == "vertical" then
     split_cmd = split_cmd .. "vnew"
+  else
+    vim.notify("Unknown option: " .. opts.type, vim.log.levels.ERROR)
+    return
   end
 
   vim.cmd(split_cmd)
