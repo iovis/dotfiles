@@ -61,8 +61,12 @@ local calendar_picker = function()
         return event
       end,
     },
-    ---@param event CalendarEvent
+    ---@param event? CalendarEvent
     function(event)
+      if not event then
+        return
+      end
+
       vim.fn.setreg("+", event.title)
 
       if event.location then
