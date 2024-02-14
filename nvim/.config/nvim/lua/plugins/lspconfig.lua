@@ -29,7 +29,6 @@ return {
     dependencies = {
       "b0o/schemastore.nvim",
       "williamboman/mason.nvim",
-      { "williamboman/mason-lspconfig.nvim", opts = {} },
       { "folke/neodev.nvim", opts = {} },
     },
     config = function()
