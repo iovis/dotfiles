@@ -41,6 +41,14 @@ bind -N "Run just dev" -T command s {
   }
 }
 
+bind -N "Run just open dev" -T command S {
+  if "test -f justfile" {
+    new-window -Sn dev just open dev
+  } {
+    display "No justfile!"
+  }
+}
+
 bind -N "Run just console" -T command c {
   if "test -f justfile" {
     new-window -Sn console just console
