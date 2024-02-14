@@ -6,7 +6,7 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 })
 
 ---- LSP Format
-local autoformat_augroup = vim.api.nvim_create_augroup("lsp_document_format", { clear = false })
+-- local autoformat_augroup = vim.api.nvim_create_augroup("lsp_document_format", { clear = false })
 local lsp_format = function()
   if vim.g.autoformat then
     vim.lsp.buf.format({
