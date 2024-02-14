@@ -160,11 +160,11 @@ end
 ----Helper functions
 --- Truncate component to `len` characters
 ---
---- @param str string?
+--- @param str string
 --- @param len number
---- @return string?
+--- @return string
 M.truncate = function(str, len)
-  if not str or #str <= len then
+  if #str <= len then
     return str
   end
 
