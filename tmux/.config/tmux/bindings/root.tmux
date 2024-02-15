@@ -58,8 +58,8 @@ bind -n C-l  if "$is_vim" "send C-l"  "select-pane -R"
 
 ## Resize panes
 bind -n C-down  resize-pane -D 5
-bind -n C-left  resize-pane -L 5
-bind -n C-right resize-pane -R 5
+bind -n C-left  resize-pane -L 20
+bind -n C-right resize-pane -R 20
 bind -n C-up    resize-pane -U 5
 bind -n M-m     resize-pane -Z
 
