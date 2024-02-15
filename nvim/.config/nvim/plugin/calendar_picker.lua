@@ -27,6 +27,11 @@ local get_today_events_for = function(calendar_name)
   local time_pattern = "^• (.*)"
   local location_pattern = "^location: (.*)"
 
+  if output[1] == "error: No calendars." then
+    vim.notify("Error: Calendar not configured", vim.log.levels.ERROR)
+    return {}
+  end
+
   for _, line in ipairs(output) do
     line = vim.trim(line)
 
@@ -45,6 +50,11 @@ end
 local calendar_picker = function()
   local calendar_name = "david.marchante@rubiconmd.com"
   local events = get_today_events_for(calendar_name)
+
+  if vim.tbl_isempty(events) then
+    vim.notify("No events!")
+    return
+  end
 
   vim.ui.select(
     events,
