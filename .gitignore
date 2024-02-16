@@ -29,6 +29,10 @@ muxi/.config/muxi/sessions.toml
 # nvim
 .repro/
 
+# pgcli
+pgcli/.config/pgcli/history
+pgcli/.config/pgcli/log
+
 # encryption
 master.key
 psql/.pgpass
