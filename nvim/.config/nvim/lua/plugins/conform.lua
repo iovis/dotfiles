@@ -3,6 +3,7 @@ return {
   event = "VeryLazy",
   config = function()
     require("conform").setup({
+      log_level = vim.log.levels.ERROR,
       format_on_save = function(_bufnr)
         if not vim.g.autoformat then
           return
