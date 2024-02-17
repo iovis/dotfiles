@@ -31,12 +31,11 @@ vim.o.laststatus = 3
 -- vim.o.lazyredraw = true
 vim.opt.listchars:append({
   -- lead = "·",
-  -- tab = ">-",
-  tab = "│ ",
+  tab = ">-",
   trail = "·",
   nbsp = "+",
   eol = " ",
-  leadmultispace = "│ ",
+  leadmultispace = "│·",
   multispace = " ",
 })
 vim.o.mouse = "a"

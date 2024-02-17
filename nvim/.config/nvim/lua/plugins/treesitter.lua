@@ -46,6 +46,7 @@ return {
         "scss",
         "sql",
         "svelte",
+        "swift",
         "toml",
         "tsx",
         "typescript",

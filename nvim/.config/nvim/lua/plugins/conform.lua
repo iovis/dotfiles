@@ -35,6 +35,7 @@ return {
         just = { "just" },
         lua = { "stylua" },
         sql = { "sql_formatter" },
+        swift = { "swift_format" },
       },
     })
   end,
