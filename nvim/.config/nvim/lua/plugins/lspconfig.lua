@@ -38,7 +38,6 @@ return {
 
       lsp.astro.setup(cfg)
       lsp.bashls.setup(cfg)
-      lsp.clangd.setup(cfg)
       lsp.cmake.setup(cfg)
       lsp.cssls.setup(cfg)
       lsp.dockerls.setup(cfg)
@@ -58,6 +57,13 @@ return {
       lsp.taplo.setup(cfg)
       lsp.tsserver.setup(cfg)
       lsp.zls.setup(cfg)
+
+      lsp.clangd.setup(vim.tbl_deep_extend("force", cfg, {
+        cmd = {
+          "clangd",
+          "--offset-encoding=utf-16",
+        },
+      }))
 
       lsp.jsonls.setup(vim.tbl_deep_extend("force", cfg, {
         settings = {
