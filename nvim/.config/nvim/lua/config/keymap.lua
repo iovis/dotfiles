@@ -5,12 +5,29 @@ vim.keymap.set("i", "KJ", "<esc>")
 vim.keymap.set("i", "Kj", "<esc>")
 
 -- Quick expansions
-vim.keymap.set("i", ",,", "<c-o>A,")
-vim.keymap.set("i", ";;", "<c-o>A;")
-
 vim.keymap.set("i", "<m-+>", "]")
 vim.keymap.set("i", "<m-ç>", "}")
 vim.keymap.set("i", "<m-ñ>", "~")
+
+vim.keymap.set("i", "<m-,>", "<c-o>A,")
+
+-- Append character and open new line
+local ft_semicolon = {
+  "c",
+  "cpp",
+  "javascript",
+  "rust",
+  "typescript",
+  "zig",
+}
+
+vim.keymap.set("i", "<m-cr>", function()
+  if vim.tbl_contains(ft_semicolon, vim.bo.filetype) then
+    return "<c-o>A;<cr>"
+  else
+    return "<c-o>A<cr>"
+  end
+end, { expr = true })
 
 -- Movement
 vim.keymap.set("i", "<m-left>", "<s-left>")
