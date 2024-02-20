@@ -14,6 +14,7 @@ return {
           lsp_fallback = "always",
           filter = function(client)
             local dont_format_with = {
+              "html",
               "fuzzy_ls",
               "ruby_ls",
               "solargraph",

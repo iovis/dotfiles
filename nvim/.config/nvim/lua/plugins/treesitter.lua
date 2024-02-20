@@ -6,8 +6,11 @@ return {
     "nvim-treesitter/nvim-treesitter-textobjects",
     "nvim-treesitter/playground",
     "rrethy/nvim-treesitter-endwise",
+    "windwp/nvim-ts-autotag",
   },
   config = function()
+    vim.keymap.set("n", "yox", "<cmd>TSContextToggle<cr>")
+
     require("nvim-treesitter.configs").setup({
       ensure_installed = {
         "astro",
@@ -55,12 +58,13 @@ return {
         "yaml",
         "zig",
       },
-      endwise = {
+      autotag = { -- windwp/nvim-ts-autotag
         enable = true,
       },
+      endwise = { enable = true }, -- rrethy/nvim-treesitter-endwise
       highlight = {
         enable = true,
-        disable = function(lang, buf)
+        disable = function(_lang, buf)
           local max_filesize = 10 * 1024 * 1024 -- 10 MB
           local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
 
@@ -107,10 +111,5 @@ return {
         },
       },
     })
-
-    require("treesitter-context").setup({})
-
-    vim.keymap.set("n", "+H", "<cmd>TSHighlightCapturesUnderCursor<cr>")
-    vim.keymap.set("n", "yox", "<cmd>TSContextToggle<cr>")
   end,
 }

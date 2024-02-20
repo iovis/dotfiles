@@ -42,10 +42,9 @@ return {
       lsp.cssls.setup(cfg)
       lsp.dockerls.setup(cfg)
       lsp.elixirls.setup(cfg)
-      lsp.emmet_language_server.setup(cfg)
+      -- lsp.emmet_language_server.setup(cfg)
       lsp.eslint.setup(cfg)
       lsp.gopls.setup(cfg)
-      lsp.html.setup(cfg)
       lsp.htmx.setup(cfg)
       lsp.marksman.setup(cfg)
       lsp.pyright.setup(cfg)
@@ -62,6 +61,17 @@ return {
         cmd = {
           "clangd",
           "--offset-encoding=utf-16",
+        },
+      }))
+
+      lsp.html.setup(vim.tbl_deep_extend("force", cfg, {
+        settings = {
+          provideFormatter = false,
+        },
+        filetypes = {
+          "eruby",
+          "html",
+          "templ",
         },
       }))
 
