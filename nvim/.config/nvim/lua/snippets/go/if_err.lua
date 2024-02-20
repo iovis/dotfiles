@@ -1,6 +1,8 @@
 local ts_locals = require("nvim-treesitter.locals")
 local ts_utils = require("nvim-treesitter.ts_utils")
 
+local get_node_text = vim.treesitter.get_node_text
+
 local transforms = {
   int = function(_, _)
     return t("0")
@@ -18,10 +20,7 @@ local transforms = {
     if info then
       info.index = info.index + 1
 
-      return c(info.index, {
-        t(info.err_name),
-        t(string.format("errors.Wrap(%s)", info.err_name)),
-      })
+      return i(info.index, info.err_name)
     else
       return t("err")
     end
@@ -56,12 +55,14 @@ end
 local handlers = {
   parameter_list = function(node, info)
     local result = {}
-
     local count = node:named_child_count()
+
     for idx = 0, count - 1 do
       local matching_node = node:named_child(idx)
       local type_node = matching_node:field("type")[1]
-      table.insert(result, transform(vim.treesitter.get_node_text(type_node, 0), info))
+
+      table.insert(result, transform(get_node_text(type_node, 0), info))
+
       if idx ~= count - 1 then
         table.insert(result, t({ ", " }))
       end
@@ -71,7 +72,7 @@ local handlers = {
   end,
 
   type_identifier = function(node, info)
-    local text = vim.treesitter.get_node_text(node, 0)
+    local text = get_node_text(node, 0)
     return { transform(text, info) }
   end,
 }
@@ -83,15 +84,7 @@ local function_node_types = {
 }
 
 local function go_result_type(info)
-  -- Get node at cursor (TreeSitter)
   local cursor_node = ts_utils.get_node_at_cursor()
-
-  -- If no cursor, return empty
-  if not cursor_node then
-    return t("")
-  end
-
-  -- Find containing function
   local scope = ts_locals.get_scope_tree(cursor_node, 0)
 
   local function_node
@@ -102,31 +95,18 @@ local function go_result_type(info)
     end
   end
 
-  -- Not inside a function, return empty
   if not function_node then
+    print("Not inside of a function")
     return t("")
   end
 
-  -- Find the return type of the function
-  local query = vim.treesitter.query.parse(
-    "go",
-    [[
-  [
-  (method_declaration result: (_) @id)
-  (function_declaration result: (_) @id)
-  (func_literal result: (_) @id)
-  ]
-  ]]
-  )
+  local query = assert(vim.treesitter.query.get("go", "return-snippet"), "query missing")
 
   for _, node in query:iter_captures(function_node, 0) do
     if handlers[node:type()] then
       return handlers[node:type()](node, info)
     end
   end
-
-  -- No return value
-  return t("")
 end
 
 local go_ret_vals = function(args)
