@@ -18,8 +18,6 @@ return {
     "MunifTanjim/nui.nvim",
   },
   config = function()
-    vim.g.neo_tree_remove_legacy_commands = true
-
     require("neo-tree").setup({
       enable_diagnostics = false,
       popup_border_style = "rounded",
