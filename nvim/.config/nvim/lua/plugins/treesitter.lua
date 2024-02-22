@@ -9,7 +9,7 @@ return {
     "windwp/nvim-ts-autotag",
   },
   config = function()
-    vim.keymap.set("n", "yox", "<cmd>TSContextToggle<cr>")
+    vim.keymap.set("n", "yot", "<cmd>TSContextToggle<cr>")
 
     require("nvim-treesitter.configs").setup({
       ensure_installed = {
