@@ -86,6 +86,13 @@ return {
           TreesitterContextLineNumber = { fg = colors.surface1, bg = black, bold = true },
           ["@module"] = { style = {} },
           ["@namespace"] = { style = {} },
+
+          -- "TODO" highlights
+          ["@lsp.type.comment"] = {}, -- Disable LSP semantic tokens
+          ["@comment.todo"] = { link = "DiagnosticWarn" },
+          ["@comment.note"] = { link = "DiagnosticInfo" },
+          ["@comment.warning"] = { link = "DiagnosticWarn" },
+          ["@comment.error"] = { link = "DiagnosticError" },
         }
       end,
     })
