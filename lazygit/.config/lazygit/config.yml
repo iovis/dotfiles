@@ -1,5 +1,6 @@
 # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
 gui:
+  border: rounded
   nerdFontsVersion: 3
   showBottomLine: false
   showCommandLog: false
