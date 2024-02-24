@@ -3,7 +3,7 @@ local tux = require("tux")
 
 vim.cmd.compiler("cargo")
 
-vim.keymap.set("i", "??", "<c-o>A?", { buffer = true })
+vim.keymap.set("i", "<m-'>", "<c-o>A?")
 
 vim.keymap.set("n", "c<cr>", function()
   tux.window("evcxr", {

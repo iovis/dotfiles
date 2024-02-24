@@ -10,23 +10,24 @@ vim.keymap.set("i", "<m-ç>", "}")
 vim.keymap.set("i", "<m-ñ>", "~")
 
 vim.keymap.set("i", "<m-,>", "<c-o>A,")
+vim.keymap.set("i", "<m-.>", "<c-o>A.")
+vim.keymap.set("i", "<m-k>", "<c-o>A;")
 
 -- Append character and open new line
-local ft_semicolon = {
-  "c",
-  "cpp",
-  "javascript",
-  "rust",
-  "typescript",
-  "zig",
+local line_ending = {
+  c = ";",
+  cpp = ";",
+  javascript = ";",
+  python = ":",
+  rust = ";",
+  typescript = ";",
+  zig = ";",
 }
 
 vim.keymap.set("i", "<m-cr>", function()
-  if vim.tbl_contains(ft_semicolon, vim.bo.filetype) then
-    return "<c-o>A;<cr>"
-  else
-    return "<c-o>A<cr>"
-  end
+  local char = line_ending[vim.bo.filetype] or ""
+
+  return ("<c-o>A%s<cr>"):format(char)
 end, { expr = true })
 
 -- Movement
@@ -43,8 +44,7 @@ vim.keymap.set("i", "<m-o>", "<esc>o")
 vim.keymap.set("t", "KJ", [[<c-\><c-n>]])
 
 ---- Command mode
--- " cnoremap <silent> %h <c-r>=fnameescape(expand('%:h')).'/'<cr>
--- " cnoremap <silent> %t <c-r>=fnameescape(expand('%:t'))<cr>
+vim.keymap.set("c", "<m-p>", "<c-r>=fnameescape(expand('%:.:h')).'/'<cr>")
 
 -- Fish's binding for edit command in editor
 vim.keymap.set("c", "<m-e>", "<c-f>")
@@ -97,11 +97,9 @@ vim.keymap.set("x", "<", "<gv")
 vim.keymap.set("x", ">", ">gv")
 
 -- Editor
--- vim.keymap.set("n", "+c", ":cd <c-r>=fnameescape(expand('%:p:h'))<cr><cr>")
 vim.keymap.set("n", "<leader>x", "<cmd>confirm qa<cr>")
 vim.keymap.set("n", "<leader>X", "<cmd>qa!<cr>")
 vim.keymap.set("n", "<leader>w", "<cmd>w!<cr>")
--- vim.keymap.set("n", "zñ", "za") -- Should have something easy here
 
 -- Macros
 vim.keymap.set("n", "Q", "@q")
@@ -192,8 +190,8 @@ vim.keymap.set("n", "R", "ciw<c-r>0<esc>")
 vim.keymap.set("x", "R", '"0p')
 
 -- Search
-vim.keymap.set({ "n", "x" }, "ñ", "/")
-vim.keymap.set({ "n", "x" }, "Ñ", "?")
+vim.keymap.set({ "n", "x", "o" }, "ñ", "/")
+vim.keymap.set({ "n", "x", "o" }, "Ñ", "?")
 
 vim.keymap.set("n", "<leader>ñ", function()
   vim.cmd.nohlsearch()
@@ -295,8 +293,6 @@ vim.keymap.set("n", "&", [[:10R !tmux capture-pane -Jp -S- -t\! | rg '.'<left>]]
 })
 
 ---- Tmux quick switching
--- vim.keymap.set("n", "++", "<cmd>Sessionist<cr>")
--- vim.keymap.set("n", "+<space>", ":Sessionist<space>")
 vim.keymap.set("n", "+V", "<cmd>VimPlugin<cr>")
 
 ---- Toggle autoformat
