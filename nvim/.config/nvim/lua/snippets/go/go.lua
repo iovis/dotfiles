@@ -155,6 +155,69 @@ return {
     ),
     { condition = conds.line_begin }
   ),
+  -- Testing
+  s(
+    "test",
+    fmta(
+      [[
+      func Test<fname>(t *testing.T) {
+        <body>
+      }
+      ]],
+      {
+        fname = i(1, "Name"),
+        body = c(2, {
+          i(1, 'panic("todo")'),
+          fmta(
+            [[
+              tests := map[string]struct{
+                input <>
+                expected <>
+              }{
+                "English": {
+                  input: "en",
+                  expected: "Hello world",
+                },
+              }
+
+              for name, test := range tests {
+                t.Run(name, func(t *testing.T) {
+                  got := greet(test.input)
+
+                  if got != test.expected {
+                    t.Errorf("Got: %q, Expected: %q", got, test.expected)
+                  }
+                })
+              }
+            ]],
+            {
+              i(1, "string"),
+              i(2, "string"),
+            }
+          ),
+        }),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "example",
+    fmta(
+      [[
+      func Example<fname>(t *testing.T) {
+        <body>
+        // Output:
+        // <output>
+      }
+      ]],
+      {
+        fname = i(1, "Name"),
+        body = i(0, 'panic("todo")'),
+        output = i(2, "Hello World!"),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
   -- Misc
   s(
     "pln",
