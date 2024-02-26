@@ -156,6 +156,8 @@ vim.keymap.set("n", "gP", "P")
 vim.keymap.set("x", "p", "P") -- don't copy selected text to unnamed register
 vim.keymap.set("x", "P", "p")
 
+vim.keymap.set("x", "D", "yP`<^") -- Duplicate visual selection
+
 vim.keymap.set({ "n", "x" }, "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>Y", '"+y$')
 vim.keymap.set("n", "<leader>d", '"+d')
