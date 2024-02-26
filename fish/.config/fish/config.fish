@@ -10,7 +10,7 @@ set -gx ICLOUD_PATH "$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 set -gx NOTES "$ICLOUD_PATH/notes"
 
 set -gx DOTFILES "$HOME/.dotfiles"
-set -gx REVIEW_BASE master
+set -gx REVIEW_BASE main
 set -gx PROJECT_HOME "$HOME/code"
 set -gx EDITOR nvim
 set -gx MANPAGER "$EDITOR +Man!"
