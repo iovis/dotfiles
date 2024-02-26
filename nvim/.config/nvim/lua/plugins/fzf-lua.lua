@@ -116,7 +116,7 @@ return {
 
     -- Edit dotfiles
     vim.keymap.set("n", "<leader>ud", function()
-      fzf_lua.files({ cwd = "~/.dotfiles/" })
+      fzf_lua.files({ cwd = "~/.dotfiles/nvim/.config/nvim/" })
     end, { desc = "Open Dotfiles" })
 
     -- Edit snippets
