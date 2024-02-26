@@ -234,6 +234,7 @@ vim.keymap.set("n", "<leader>uc", "<cmd>e! Cargo.toml<cr>")
 vim.keymap.set("n", "<leader>ue", "<cmd>e! .env<cr>")
 vim.keymap.set("n", "<leader>ug", "<cmd>e! .gitignore<cr>")
 vim.keymap.set("n", "<leader>uj", "<cmd>e! justfile<cr>")
+vim.keymap.set("n", "<leader>up", "<cmd>e! package.json<cr>")
 
 ---- Toggle Settings
 vim.keymap.set("n", "yol", ":set cursorline!<cr>")
