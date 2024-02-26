@@ -2,6 +2,7 @@ return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
   dependencies = {
+    "andymass/vim-matchup",
     "nvim-treesitter/nvim-treesitter-context",
     "nvim-treesitter/nvim-treesitter-textobjects",
     "nvim-treesitter/playground",
@@ -10,6 +11,7 @@ return {
   },
   config = function()
     vim.keymap.set("n", "yot", "<cmd>TSContextToggle<cr>")
+    vim.g.matchup_matchparen_offscreen = {}
 
     require("nvim-treesitter.configs").setup({
       ensure_installed = {
@@ -58,10 +60,13 @@ return {
         "yaml",
         "zig",
       },
-      autotag = { -- windwp/nvim-ts-autotag
+      autotag = { enable = true },
+      endwise = { enable = true },
+      matchup = {
         enable = true,
+        disable_virtual_text = true,
       },
-      endwise = { enable = true }, -- rrethy/nvim-treesitter-endwise
+      playground = { enable = true },
       highlight = {
         enable = true,
         disable = function(_lang, buf)
@@ -72,18 +77,6 @@ return {
             return true
           end
         end,
-      },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<c-n>",
-          node_incremental = "<c-n>",
-          scope_incremental = "<c-s>",
-          node_decremental = "<c-p>",
-        },
-      },
-      playground = {
-        enable = true,
       },
       textobjects = {
         select = {

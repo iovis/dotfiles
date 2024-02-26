@@ -73,6 +73,10 @@ return {
           DiagnosticSource = { link = "Comment" },
           SagaLightBulb = { fg = colors.yellow },
 
+          -- matchup
+          MatchParen = { bg = colors.mantle, fg = colors.peach, bold = true },
+          MatchWord = { bold = true },
+
           -- neotree
           NeoTreeCursorLine = { bold = true },
 
