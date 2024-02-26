@@ -1,3 +1,3 @@
-function gdm --wraps='git diff master...' --description 'alias gdm=git diff master...'
-    git diff master... $argv
+function gdm --wraps='git diff main...' --description 'alias gdm=git diff master...'
+    git diff main... $argv
 end

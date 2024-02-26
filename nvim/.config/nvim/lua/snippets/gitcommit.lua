@@ -167,10 +167,10 @@ return {
   ),
   -- Templates
   s(
-    "master",
+    "main",
     fmt(
       [[
-        master|{jira}{space}{title}
+        main|{jira}{space}{title}
         {jira_url}
         **Related PRs:**
         {qa_prs}

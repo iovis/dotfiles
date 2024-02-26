@@ -41,7 +41,7 @@
 [fetch]
   prune = true
 [init]
-  defaultBranch = master
+  defaultBranch = main
 [interactive]
   diffFilter = delta --color-only
 [filter "lfs"]

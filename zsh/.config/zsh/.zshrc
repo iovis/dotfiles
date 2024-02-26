@@ -12,7 +12,7 @@ export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export PAGER="less"
 export PROJECT_HOME="$HOME/code"
-export REVIEW_BASE="master"
+export REVIEW_BASE="main"
 export ZSH_PLUGINS="$ZDOTDIR/plugins"
 export ZSH_THEME="starship"
 
