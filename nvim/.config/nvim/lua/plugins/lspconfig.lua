@@ -42,7 +42,7 @@ return {
       lsp.cssls.setup(cfg)
       lsp.dockerls.setup(cfg)
       lsp.elixirls.setup(cfg)
-      -- lsp.emmet_language_server.setup(cfg)
+      lsp.emmet_language_server.setup(cfg)
       lsp.eslint.setup(cfg)
       lsp.gopls.setup(cfg)
       lsp.htmx.setup(cfg)
