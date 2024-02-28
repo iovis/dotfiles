@@ -8,9 +8,6 @@ return {
     { "<c-l>", "<cmd>TmuxNavigateRight<cr>" },
   },
   init = function()
-    vim.g.tmux_navigator_save_on_switch = 2
-
-    -- Otherwise they'll map in select mode and mess up snippets
     vim.g.tmux_navigator_no_mappings = 1
   end,
 }
