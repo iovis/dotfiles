@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+file=$(mktemp)
+tmux capture-pane -Jp -S- > "$file"
+tmux new-window -n nvim-capture "nvim + '+nmap <silent> q :qa!<cr>' '$file'"

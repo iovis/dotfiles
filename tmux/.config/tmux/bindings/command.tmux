@@ -4,6 +4,10 @@ bind -N "Open lazygit" -T command g {
   new-window -S -c "#{pane_current_path}" -n lazygit lazygit
 }
 
+bind -N "Open neovim with current pane contents" -T command j {
+  run -b tn
+}
+
 bind -N "Open lazydocker" -T command k {
   new-window -S -c "#{pane_current_path}" -n lazydocker lazydocker
 }

@@ -3,7 +3,7 @@ set -g detach-on-destroy off
 set -g display-panes-time 4000
 set -g display-time 4000
 set -g focus-events on
-set -g history-limit 50000
+set -g history-limit 100000
 set -g mouse on
 set -g set-clipboard on
 set -g status-keys emacs
