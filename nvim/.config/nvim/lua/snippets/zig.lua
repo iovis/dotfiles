@@ -258,10 +258,4 @@ return {
     }),
     { condition = conds.line_begin }
   ),
-  s(".", fmta(".{ <> }", { i(1) }), {
-    condition = function(line_to_cursor)
-      -- Only expand if preceded by whitespace
-      return line_to_cursor:match("^.*%s$")
-    end,
-  }),
 }
