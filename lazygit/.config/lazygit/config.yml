@@ -7,9 +7,29 @@ gui:
   showFileTree: false
   skipRewordInEditorWarning: true
   theme:
+    activeBorderColor:
+      - "#a6d189"
+      - bold
+    inactiveBorderColor:
+      - "#737994"
+    searchingActiveBorderColor:
+      - "#8caaee"
+      - bold
+    optionsTextColor:
+      - "#8caaee"
     selectedLineBgColor:
-      - '#262626'
-    selectedRangeBgColor:
+      - "#292c3c"
+      - bold
+    cherryPickedCommitBgColor:
+      - bold
+    cherryPickedCommitFgColor:
+      - "#8caaee"
+    unstagedChangesColor:
+      # - "#e78284"
+      - red
+    defaultFgColor:
+      - default
+    selectedRangeBgColor: # deprecated
       - black
       - bold
 git:
