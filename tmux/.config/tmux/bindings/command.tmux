@@ -4,6 +4,10 @@ bind -N "Open btop" -T command b {
   new-window -Sn btop btop
 }
 
+bind -N "Open neovim with current pane contents" -T command f {
+  run -b tn
+}
+
 bind -N "Open lazygit" -T command g {
   new-window -S -c "#{pane_current_path}" -n lazygit lazygit
 }
@@ -12,12 +16,8 @@ bind -N "Open htop" -T command h {
   new-window -Sn htop htop
 }
 
-bind -N "Open numbat" -T command k {
+bind -N "Open numbat" -T command n {
   new-window -Sn numbat numbat
-}
-
-bind -N "Open neovim with current pane contents" -T command n {
-  run -b tn
 }
 
 bind -N "Browse PRs for current branch" -T command p {
