@@ -2,4 +2,4 @@
 
 file=$(mktemp)
 tmux capture-pane -Jp -S- > "$file"
-tmux new-window -n nvim-capture "nvim + '+nmap <silent> q :qa!<cr>' '$file'"
+tmux new-window -kn "capture:#{window_index}.#{pane_index}" "nvim + '+nmap <silent> q :qa!<cr>' '$file'"
