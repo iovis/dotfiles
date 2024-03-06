@@ -1,6 +1,9 @@
 return {
   "stevearc/conform.nvim",
   event = "VeryLazy",
+  keys = {
+    { "<leader>lc", "<cmd>ConformInfo<cr>" },
+  },
   config = function()
     require("conform").setup({
       log_level = vim.log.levels.ERROR,
