@@ -12,14 +12,14 @@ end
 ---@param buffer number: buffer ID.
 ---@return boolean `true` if this buffer could be restored later on loading.
 local is_restorable = function(buffer)
-  if #vim.api.nvim_get_option_value("bufhidden", { buf = buffer }) ~= 0 then
+  if #vim.bo[buffer].bufhidden ~= 0 then
     return false
   end
 
-  local buftype = vim.api.nvim_get_option_value("buftype", { buf = buffer })
+  local buftype = vim.bo[buffer].buftype
   if #buftype == 0 then
     -- Normal buffer, check if it listed.
-    if not vim.api.nvim_get_option_value("buflisted", { buf = buffer }) then
+    if not vim.bo[buffer].buflisted then
       return false
     end
     -- Check if it has a filename.

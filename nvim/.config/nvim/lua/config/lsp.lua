@@ -27,7 +27,7 @@ end
 ---- On LSP attached buffers
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
+  vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 
   local function buf_imap(lhs, rhs, desc)
     vim.keymap.set("i", lhs, rhs, { buffer = true, desc = desc })
