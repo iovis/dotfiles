@@ -346,12 +346,12 @@ return {
     fmt(
       [[
         # rubocop: disable {}
-        {block}
+        {visual_selection}
         # rubocop: enable {}
       ]],
       {
         i(1),
-        block = l(l.LS_SELECT_DEDENT),
+        visual_selection = l(l.LS_SELECT_DEDENT),
         rep(1),
       }
     ),
