@@ -5,38 +5,26 @@ local commentstr = function()
     ts_comment.update_commentstring({})
   end
 
-  -- Substitute %s with one space
-  return vim.bo.commentstring:gsub("%s*%%s", " ")
+  -- Remove `%s` from commentstr
+  -- Example (lua): `-- %s`
+  return vim.bo.commentstring:gsub("%s*%%s", "")
+end
+
+local filetype = function()
+  local filetype = vim.bo.filetype
+  if filetype == "" then
+    filetype = "bash"
+  end
+  return sn(nil, i(1, filetype))
 end
 
 return {
-  s("#!", {
-    t("#!/usr/bin/env "),
-    i(1, "bash"),
-  }),
-  s("todo", {
-    p(commentstr),
-    t("TODO: "),
-    i(0),
-  }),
-  s("warn", {
-    p(commentstr),
-    t("WARN: "),
-    i(0),
-  }),
-  s("note", {
-    p(commentstr),
-    t("NOTE: "),
-    i(0),
-  }),
-  s("hack", {
-    p(commentstr),
-    t("HACK: "),
-    i(0),
-  }),
-  s("fixme", {
-    p(commentstr),
-    t("FIXME: "),
-    i(0),
+  s("todo", fmt("{} TODO: ", { p(commentstr) })),
+  s("warn", fmt("{} WARN: ", { p(commentstr) })),
+  s("note", fmt("{} NOTE: ", { p(commentstr) })),
+  s("hack", fmt("{} HACK: ", { p(commentstr) })),
+  s("fixme", fmt("{} FIXME: ", { p(commentstr) })),
+  s("#!", fmt("#!/usr/bin/env {}", { d(1, filetype) }), {
+    condition = conds.line_begin,
   }),
 }

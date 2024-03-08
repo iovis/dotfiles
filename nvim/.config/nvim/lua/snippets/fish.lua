@@ -1,5 +1,4 @@
 return {
-  s("shebang", t("#!/usr/bin/env fish"), { condition = conds.line_begin }),
   s(
     "if",
     fmt(

@@ -1,5 +1,7 @@
 local u = require("config.utils")
 
+vim.bo.commentstring = "// %s"
+
 vim.keymap.set("n", "<leader>al", "<cmd>ClangdSwitchSourceHeader<cr>", { buffer = true })
 
 ---- runnables

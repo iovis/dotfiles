@@ -313,9 +313,6 @@ return {
     { condition = conds.line_begin }
   ),
   -- Misc
-  s("#!", t("#!/usr/bin/env ruby"), {
-    condition = conds.line_begin,
-  }),
   s("r", fmt("attr_reader :{}", { i(0, "attr_name") }), {
     condition = conds.line_begin,
   }),
@@ -354,7 +351,7 @@ return {
       ]],
       {
         i(1),
-        block = f(u.visual_selection),
+        block = l(l.LS_SELECT_DEDENT),
         rep(1),
       }
     ),
