@@ -4,7 +4,7 @@ return {
   event = "VeryLazy",
   keys = {
     { "<leader>uo", "<cmd>ObsidianQuickSwitch<cr>" },
-    { "<leader>ui", "<cmd>ObsidianSearch<cr><c-g>" },
+    { "<leader>us", "<cmd>ObsidianSearch<cr><c-g>" },
   },
   dependencies = {
     "nvim-lua/plenary.nvim",

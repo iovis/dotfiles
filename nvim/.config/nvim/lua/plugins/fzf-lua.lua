@@ -101,9 +101,10 @@ return {
     ---- Keymaps
     vim.keymap.set("n", "z<space>", ":FzfLua<space>")
 
-    vim.keymap.set("n", "<leader>j", fzf_lua.git_status, { desc = "fzf_lua.git_status" })
-    vim.keymap.set("n", "gm", fzf_lua.buffers, { desc = "fzf_lua.buffers" })
     vim.keymap.set("n", "+f", fzf_lua.resume, { desc = "fzf_lua.resume" })
+    vim.keymap.set("n", "<leader>j", fzf_lua.git_status, { desc = "fzf_lua.git_status" })
+    vim.keymap.set("n", "<leader>o", fzf_lua.files, { desc = "fzf_lua.files" })
+    vim.keymap.set("n", "gm", fzf_lua.buffers, { desc = "fzf_lua.buffers" })
 
     vim.keymap.set("n", "<leader>A", function()
       fzf_lua.filetypes({
@@ -119,7 +120,24 @@ return {
       fzf_lua.files({ cwd = "~/.dotfiles/nvim/.config/nvim/" })
     end, { desc = "Open Dotfiles" })
 
-    -- Edit snippets
+    -- Obsidian
+    -- vim.keymap.set("n", "<leader>uo", function()
+    --   fzf_lua.files({
+    --     cwd = "~/vaults/io",
+    --     fd_opts = "-e md",
+    --   })
+    -- end, { desc = "Open Obsidian note" })
+    --
+    -- vim.keymap.set("n", "<leader>us", function()
+    --   fzf_lua.grep({
+    --     cwd = "~/vaults/io",
+    --     no_esc = true, -- Allow regex in search
+    --     rg_glob = true, -- Allow glob after `--` in search
+    --     search = "\\S -- *.md",
+    --   })
+    -- end, { desc = "Search Obsidian notes" })
+
+    -- Files
     local original_fd_opts = fzf_lua.config.globals.files.fd_opts
     local fd_opts_no_ignore = table.concat({
       original_fd_opts,
@@ -128,15 +146,9 @@ return {
       "--exclude 'Session.vim'",
     }, " ")
 
-    -- Open Project Notes
-    -- vim.keymap.set("n", "<leader>uo", function()
-    --   fzf_lua.files({ cwd = "notes/", fd_opts = fd_opts_no_ignore })
-    -- end, { desc = "Open Project Notes" })
-
-    -- Files
-    vim.keymap.set("n", "<leader>o", function()
-      fzf_lua.files({ fd_opts = original_fd_opts .. [[ --exclude '.venv' ]] })
-    end, { desc = "fzf_lua.files" })
+    -- vim.keymap.set("n", "<leader>o", function()
+    --   fzf_lua.files({ fd_opts = original_fd_opts .. [[ --exclude '.venv' ]] })
+    -- end, { desc = "fzf_lua.files" })
 
     vim.keymap.set("n", "<leader>O", function()
       fzf_lua.files({ fd_opts = fd_opts_no_ignore })

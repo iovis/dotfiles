@@ -1,22 +1,5 @@
 -- TODO: translate to lua
 vim.cmd([[
-" Bindings {{{ "
-" Quick open
-nnoremap <silent> <buffer> s<cr> :silent !open %<cr>
-
-" change bullet point style {{{ "
-nnoremap <buffer> <leader>* m`^r*``
-nnoremap <buffer> <leader>? m`^r?``
-nnoremap <buffer> <leader>+ m`^r+``
-nnoremap <buffer> <leader>- m`^r-``
-" }}} change bullet point style "
-
-" strike-through line {{{ "
-" nmap     <buffer> <leader>ñ mzyss~`z
-" xnoremap <buffer> <leader>ñ :norm yss~<cr>
-" }}} strike-through line "
-" }}} Bindings "
-
 " Options {{{ "
 setlocal conceallevel=0
 setlocal spelllang=en_us
