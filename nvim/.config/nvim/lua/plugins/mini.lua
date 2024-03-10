@@ -2,17 +2,6 @@ return {
   "echasnovski/mini.nvim",
   -- enabled = false,
   event = "VeryLazy",
-  keys = {
-    ----align
-    { mode = "n", "<leader>a,", "mzgaip,'z", remap = true },
-    { mode = "x", "<leader>a,", "gai,", remap = true },
-
-    { mode = "n", "<leader>a:", "mzgaipip:'z", remap = true },
-    { mode = "x", "<leader>a:", "gaip:", remap = true },
-
-    { mode = "n", "<leader>a=", "mzgaipi='z", remap = true },
-    { mode = "x", "<leader>a=", "gai=", remap = true },
-  },
   config = function()
     --- mini.ai (text objects)
     local ai = require("mini.ai")
@@ -49,6 +38,15 @@ return {
 
     ---- mini.align
     require("mini.align").setup({})
+
+    vim.keymap.set("n", "<leader>a,", "mzgaipi,'z", { remap = true })
+    vim.keymap.set("x", "<leader>a,", "gai,", { remap = true })
+
+    vim.keymap.set("n", "<leader>a:", "mzgaipip:'z", { remap = true })
+    vim.keymap.set("x", "<leader>a:", "gaip:", { remap = true })
+
+    vim.keymap.set("n", "<leader>a=", "mzgaipi='z", { remap = true })
+    vim.keymap.set("x", "<leader>a=", "gai=", { remap = true })
 
     ---- mini.bufremove (remove buffer without messing windows)
     local bufremove = require("mini.bufremove")
