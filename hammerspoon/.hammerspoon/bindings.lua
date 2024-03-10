@@ -10,26 +10,6 @@ hs.hotkey.bind({}, "`", function()
   hs.eventtap.keyStrokes("`")
 end)
 
-----Defy
-local defy = false
-if defy then
-  hs.hotkey.bind({ "alt", "shift" }, "+", function()
-    hs.eventtap.keyStrokes("]")
-  end)
-
-  hs.hotkey.bind({ "alt" }, "+", function()
-    hs.eventtap.keyStrokes("[")
-  end)
-
-  hs.hotkey.bind({ "alt", "shift" }, "return", function()
-    hs.eventtap.keyStrokes("}")
-  end)
-
-  hs.hotkey.bind({ "alt" }, "return", function()
-    hs.eventtap.keyStrokes("{")
-  end)
-end
-
 ---Debug keystrokes in console
 local debug = false
 if debug then

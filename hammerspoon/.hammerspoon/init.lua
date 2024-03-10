@@ -27,6 +27,7 @@ end
 -- hs.loadSpoon("EmmyLua") -- Generate EmmyLua annotations
 require("application_launcher")
 require("bindings")
+require("defy")
 require("yabai")
 
 notify("Configuration Reloaded")
