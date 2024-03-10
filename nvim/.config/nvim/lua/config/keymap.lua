@@ -43,6 +43,11 @@ vim.keymap.set("i", "<m-o>", "<esc>o")
 ---- Terminal mode
 vim.keymap.set("t", "KJ", [[<c-\><c-n>]])
 
+---- Operator pending mode (text objects)
+-- Whole WORD is kinda awkward to press
+vim.keymap.set({ "o", "x" }, "ao", "aW")
+vim.keymap.set({ "o", "x" }, "io", "iW")
+
 ---- Command mode
 vim.keymap.set("c", "<m-p>", "<c-r>=fnameescape(expand('%:.:h')).'/'<cr>")
 
