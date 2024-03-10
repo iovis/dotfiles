@@ -4,7 +4,7 @@ bind -N "Open btop" -T command b {
   new-window -Sn btop btop
 }
 
-bind -N "Open neovim with current pane contents" -T command f {
+bind -N "Open neovim with current pane contents" -T command k {
   run -b tn
 }
 
