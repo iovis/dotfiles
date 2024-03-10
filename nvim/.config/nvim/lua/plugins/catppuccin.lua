@@ -105,7 +105,7 @@ return {
     vim.cmd.colorscheme("catppuccin")
 
     vim.api.nvim_create_user_command("CatppuccinPalette", function()
-      vim.cmd("30R!=require('catppuccin.palettes').get_palette()")
+      vim.cmd("30R! =require('catppuccin.palettes').get_palette()")
       vim.cmd("ColorizerToggle")
     end, {})
   end,
