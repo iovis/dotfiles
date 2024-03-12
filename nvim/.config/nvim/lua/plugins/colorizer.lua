@@ -3,7 +3,7 @@ return {
   -- enabled = false,
   event = "VeryLazy",
   keys = {
-    { "+C", "<cmd>ColorizerToggle<cr>", silent = true },
+    { "yoC", "<cmd>ColorizerToggle<cr>" },
   },
   config = function()
     require("colorizer").setup({
