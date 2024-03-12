@@ -36,13 +36,23 @@ vim.api.nvim_buf_create_user_command(0, "ClippyFix", function()
   vim.cmd("silent! checktime")
 end, {})
 
-----Surround debug
+----Surround
 require("nvim-surround").buffer_setup({
   surrounds = {
     d = {
       add = { "dbg!(", ")" },
       find = "dbg!%b()",
       delete = "^(dbg!%()().-(%))()$",
+    },
+    o = {
+      add = { "Ok(", ")" },
+      find = "Ok%b()",
+      delete = "^(Ok%()().-(%))()$",
+    },
+    s = {
+      add = { "Some(", ")" },
+      find = "Some%b()",
+      delete = "^(Some%()().-(%))()$",
     },
   },
 })
