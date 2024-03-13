@@ -47,7 +47,6 @@ set -gx MANPATH /opt/homebrew/share/man $MANPATH
 set -q INFOPATH; or set INFOPATH ''
 set -gx INFOPATH /opt/homebrew/share/info $INFOPATH
 
-fish_add_path $HOME/.cargo/bin
 fish_add_path $HOME/.dotfiles/bin
 
 if status is-interactive
