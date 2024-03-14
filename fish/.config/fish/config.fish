@@ -50,24 +50,24 @@ set -gx INFOPATH /opt/homebrew/share/info $INFOPATH
 fish_add_path $HOME/.dotfiles/bin
 
 if status is-interactive
+    ulimit -n 2048
+
     mise activate fish | source
+
+    source "$FDOTDIR/abbrs.fish"
+
+    if command -q fzf
+        fzf --fish | source
+    end
+
+    if command -q starship
+        # starship init fish | source
+        starship init fish --print-full-init | source
+    end
 else
     mise activate fish --shims | source
 end
 
-## Interactive mode
-status is-interactive || exit
-
-ulimit -n 2048
-
-source "$FDOTDIR/abbrs.fish"
-
-# Remember to `stow`
 for local_override in $FDOTDIR/local/*.fish
     source $local_override
-end
-
-if command -q starship
-    # starship init fish | source
-    starship init fish --print-full-init | source
 end
