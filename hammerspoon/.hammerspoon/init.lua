@@ -24,7 +24,6 @@ function notify(message)
     :send()
 end
 
--- hs.loadSpoon("EmmyLua") -- Generate EmmyLua annotations
 require("application_launcher")
 require("bindings")
 require("defy")

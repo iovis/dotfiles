@@ -2,9 +2,6 @@
 fish/.config/fish/fish_variables
 fish/.config/fish/local/*
 
-# hammerspoon
-hammerspoon/.hammerspoon/Spoons/EmmyLua.spoon/annotations/
-
 # zsh
 *.zwc
 zsh/.config/zsh/.zcompdump
