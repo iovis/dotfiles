@@ -1,6 +1,6 @@
 return {
   s("=", fmt("<%= {} %>", { i(1) }), { condition = conds.line_begin }),
-  s("%", fmt("<% {} %>", { i(1) }), { condition = conds.line_begin }),
+  s("-", fmt("<% {} %>", { i(1) }), { condition = conds.line_begin }),
   s(
     "link_to",
     fmt("<%= link_to {}, {} %>", {
@@ -48,7 +48,7 @@ return {
     { condition = conds.line_begin }
   ),
   s(
-    "if",
+    "ife",
     fmt(
       [[
         <% if {} %>
@@ -61,6 +61,19 @@ return {
         i(1),
         i(2),
         i(3),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "else",
+    fmt(
+      [[
+        <% else %>
+          {}
+      ]],
+      {
+        i(1),
       }
     ),
     { condition = conds.line_begin }
