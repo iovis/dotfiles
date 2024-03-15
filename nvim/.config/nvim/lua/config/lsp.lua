@@ -74,8 +74,8 @@ local on_attach = function(client, bufnr)
   -- })
 
   ---- Formatting
-  buf_nmap("<leader>b", lsp_format, "vim.lsp.buf.format")
-  buf_xmap("<leader>b", lsp_format, "vim.lsp.buf.format")
+  -- buf_nmap("<leader>b", lsp_format, "vim.lsp.buf.format")
+  -- buf_xmap("<leader>b", lsp_format, "vim.lsp.buf.format")
 
   -- Autoformat on save
   -- local no_autoformat_filetypes = {}
