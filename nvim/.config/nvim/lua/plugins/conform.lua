@@ -24,8 +24,9 @@ return {
     local conform = require("conform")
     conform.setup({
       log_level = vim.log.levels.ERROR,
-      format_on_save = function(_bufnr)
-        if not vim.g.autoformat then
+      format_on_save = function(bufnr)
+        local ft = vim.bo[bufnr].filetype
+        if not vim.g.autoformat or ft == "eruby" then
           return
         end
 
