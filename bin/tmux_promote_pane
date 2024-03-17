@@ -27,3 +27,4 @@ tmux kill-pane -t "$new_session_pane_id"
 
 # Switch to new session
 tmux switch-client -t "=$new_session_name"
+tmux display "Session $new_session_name created"
