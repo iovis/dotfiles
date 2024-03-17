@@ -1,0 +1,30 @@
+{
+  "keyMappings": "map <a-π> togglePinTab\nmap F LinkHints.activateModeToOpenInNewForegroundTab\nmap ñ enterFindMode\nmap ƒ LinkHints.activateModeWithQueue\nmap <BS> visitPreviousTab\n\nunmap <a-f>\nunmap <a-p>\nunmap /\nunmap ^\nunmap B\nunmap O\nunmap T\nunmap X\nunmap b\nunmap gF\nunmap gf\nunmap o\nunmap p\nunmap r\nunmap t\nunmap v\nunmap x",
+  "settingsVersion": "2.0.5",
+  "exclusionRules": [
+    {
+      "passKeys": "",
+      "pattern": "https?://mail.google.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://calendar.google.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://www.youtube.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://www.typelit.io/*"
+    },
+    {
+      "passKeys": "t",
+      "pattern": "https?://github.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://monkeytype.com/*"
+    }
+  ]
+}
