@@ -3,7 +3,7 @@ command! -nargs=+ -complete=file Grep silent! grep! -R <args>|botright cwindow|r
 nnoremap <leader>F  :Grep ""<left>
 xmap     <leader>F *:<c-u>Grep "<c-r>""
 
-nmap <silent> K *:Grep "\b<cword>\b"<cr>
+nmap <silent> K *:Grep -w "<cword>"<cr>
 xmap <silent> K *:Grep -F "<c-r>""<cr>
 
 if executable('rg')
