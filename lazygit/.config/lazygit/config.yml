@@ -37,7 +37,7 @@ git:
     showGraph: always
   paging:
     colorArg: always
-    pager: delta --paging=never --tabs=2
+    pager: delta --dark --paging=never --tabs=2
   parseEmoji: true
 notARepository: 'quit'
 promptToReturnFromSubprocess: false
