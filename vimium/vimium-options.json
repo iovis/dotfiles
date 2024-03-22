@@ -25,6 +25,10 @@
     {
       "passKeys": "",
       "pattern": "https?://monkeytype.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://excalidraw.com/*"
     }
   ]
 }
