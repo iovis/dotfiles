@@ -157,6 +157,8 @@ vim.keymap.set("n", "p", [[p<cmd>execute ":silent normal! `[v`]="<cr>]])
 vim.keymap.set("n", "P", [[P<cmd>execute ":silent normal! `[v`]="<cr>]])
 vim.keymap.set("n", "gp", "p")
 vim.keymap.set("n", "gP", "P")
+vim.keymap.set("n", "zp", '"0p')
+vim.keymap.set("n", "zP", '"0P')
 
 vim.keymap.set("x", "p", "P") -- don't copy selected text to unnamed register
 vim.keymap.set("x", "P", "p")
