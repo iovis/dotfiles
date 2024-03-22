@@ -9,6 +9,7 @@ vim.filetype.add({
     Brewfile = "ruby",
     PULLREQ_EDITMSG = "gitcommit",
     [".clang-format"] = "yaml",
+    justfile = "just",
     pryrc = "ruby",
   },
   pattern = {
