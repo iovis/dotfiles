@@ -4,12 +4,27 @@ return {
     fmta(
       [[
         {{ block "<>" . }}
-        <>
+        <visual_selection>
         {{ end }}
       ]],
       {
         i(1, "name"),
-        i(0),
+        visual_selection = dl(2, l.LS_SELECT_DEDENT),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "define",
+    fmta(
+      [[
+        {{ define "<>" }}
+        <visual_selection>
+        {{ end }}
+      ]],
+      {
+        i(1, "layout"),
+        visual_selection = dl(2, l.LS_SELECT_DEDENT),
       }
     ),
     { condition = conds.line_begin }
@@ -19,12 +34,12 @@ return {
     fmta(
       [[
         {{ if <> }}
-        <>
+        <visual_selection>
         {{ end }}
       ]],
       {
         i(1, "."),
-        i(2),
+        visual_selection = dl(2, l.LS_SELECT_DEDENT),
       }
     ),
     { condition = conds.line_begin }
@@ -34,12 +49,12 @@ return {
     fmta(
       [[
         {{ range <> }}
-        <>
+        <visual_selection>
         {{ end }}
       ]],
       {
         i(1, "."),
-        i(2),
+        visual_selection = dl(2, l.LS_SELECT_DEDENT),
       }
     ),
     { condition = conds.line_begin }

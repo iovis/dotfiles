@@ -1,4 +1,20 @@
 return {
+  s(
+    "main",
+    fmta(
+      [[
+        package main
+
+        func main() {
+          <>
+        }
+      ]],
+      {
+        i(0, "// body"),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
   -- Functions
   s(
     "f",
@@ -82,7 +98,10 @@ return {
         <>
       }
       ]],
-      { i(1), i(2) }
+      {
+        i(1, "err != nil"),
+        i(2),
+      }
     ),
     { condition = conds.line_begin }
   ),

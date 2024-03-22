@@ -329,4 +329,38 @@ return {
     ),
     { condition = conds.line_begin }
   ),
+  s(
+    "go",
+    fmta(
+      [[
+        set dotenv-load := true
+
+        bin := <>
+
+        default: run
+
+        @list:
+            just --list
+
+        run:
+            go run {{ bin }}
+
+        build:
+            go build {{ bin }}
+
+        dev:
+            watchexec -re go,html just run
+
+        test:
+            go test
+
+        db:
+            pgcli $DATABASE_URL
+      ]],
+      {
+        i(1, "./cmd/web"),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
 }

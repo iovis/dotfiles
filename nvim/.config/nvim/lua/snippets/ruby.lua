@@ -354,7 +354,7 @@ return {
       ]],
       {
         i(1),
-        visual_selection = l(l.LS_SELECT_DEDENT),
+        visual_selection = dl(2, l.LS_SELECT_DEDENT),
         rep(1),
       }
     ),
