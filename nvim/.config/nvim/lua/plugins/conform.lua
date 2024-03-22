@@ -25,23 +25,26 @@ return {
     conform.setup({
       log_level = vim.log.levels.ERROR,
       format_on_save = function(bufnr)
-        local ft = vim.bo[bufnr].filetype
-        if not vim.g.autoformat or ft == "eruby" then
+        if not vim.g.autoformat then
           return
         end
 
         return format_options
       end,
       formatters = {
+        htmlbeautifier = {
+          prepend_args = { "--keep-blank-lines", "1" },
+        },
         sql_formatter = {
           prepend_args = { "-l", "postgresql" },
         },
       },
       formatters_by_ft = {
         ["*"] = { "injected" }, -- Treesitter based injections
+        eruby = { "htmlbeautifier" },
         fish = { "fish_indent" },
+        html = { "htmlbeautifier" },
         just = { "just" },
-        eruby = { "erb_format" },
         lua = { "stylua" },
         sql = { "sql_formatter" },
         swift = { "swift_format" },
