@@ -1,4 +1,3 @@
-cargo-audit
 cargo-dist
 cargo-edit
 cargo-nextest
@@ -7,6 +6,5 @@ cargo-update
 cargo-watch
 dexios
 evcxr_repl
-flamegraph
 muxi
 samply
