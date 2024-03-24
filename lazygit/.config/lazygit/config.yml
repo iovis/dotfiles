@@ -1,6 +1,8 @@
 # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
 gui:
   border: rounded
+  enlargedSideViewLocation: 'top'
+  # filterMode: 'fuzzy'
   nerdFontsVersion: 3
   showBottomLine: false
   showCommandLog: false
@@ -24,17 +26,9 @@ gui:
       - bold
     cherryPickedCommitFgColor:
       - "#8caaee"
-    unstagedChangesColor:
-      # - "#e78284"
-      - red
     defaultFgColor:
       - default
-    selectedRangeBgColor: # deprecated
-      - black
-      - bold
 git:
-  log:
-    showGraph: always
   paging:
     colorArg: always
     pager: delta --dark --paging=never --tabs=2
