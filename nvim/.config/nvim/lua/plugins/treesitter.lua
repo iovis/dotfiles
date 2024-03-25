@@ -63,6 +63,7 @@ return {
       },
       autotag = { enable = true },
       endwise = { enable = true },
+      indent = { enable = true },
       matchup = {
         enable = true,
         disable_virtual_text = true,

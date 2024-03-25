@@ -1,5 +1,4 @@
 return {
-  { "NoahTheDuke/vim-just", ft = "just" },
   { "chrisbra/csv.vim", ft = "csv" },
   { "dstein64/vim-startuptime", cmd = "StartupTime" },
   { "iovis/substitute.vim", event = "VeryLazy" },
