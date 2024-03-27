@@ -38,12 +38,12 @@ return {
     "fm",
     fmta(
       [[
-      func (<struct>) <fname>(<args>) <ret_type><space>{
+      func (self <struct>) <fname>(<args>) <ret_type><space>{
         <body>
       }
       ]],
       {
-        struct = i(1, "r *Receiver"),
+        struct = i(1, "*Receiver"),
         fname = i(2, "fname"),
         args = i(3),
         space = n(4, " "),
@@ -57,17 +57,15 @@ return {
     "fh",
     fmta(
       [[
-      func <fname>(<res> http.ResponseWriter, <req> *http.Request) {
+      func <fname>(w http.ResponseWriter, r *http.Request) {
         <body>
       }
       ]],
       {
         fname = c(1, {
           i(1, "fname"),
-          fmt("({} {}) {}", { i(1, "receiver"), i(2, "type"), i(3, "fname") }),
+          fmt("({} {}) {}", { i(1, "app"), i(2, "*application"), i(3, "fname") }),
         }),
-        res = i(2, "w"),
-        req = i(3, "r"),
         body = i(4, 'panic("todo")'),
       }
     ),
