@@ -1,4 +1,13 @@
 return {
+  -- Go templates
+  s(
+    "template",
+    fmta('{{ template "<>" <> }}', {
+      i(1, "name"),
+      i(2, "."),
+    }),
+    { condition = conds.line_begin }
+  ),
   s(
     "block",
     fmta(
@@ -29,6 +38,7 @@ return {
     ),
     { condition = conds.line_begin }
   ),
+  s("else", t("{{ else }}"), { condition = conds.line_begin }),
   s(
     "if",
     fmta(
@@ -60,14 +70,16 @@ return {
     { condition = conds.line_begin }
   ),
   s(
-    "template",
+    "with",
     fmta(
       [[
-        {{ template "<>" <> }}
+        {{ with <> }}
+        <visual_selection>
+        {{ end }}
       ]],
       {
-        i(1, "name"),
-        i(2, "."),
+        i(1, "."),
+        visual_selection = dl(2, l.LS_SELECT_DEDENT),
       }
     ),
     { condition = conds.line_begin }
