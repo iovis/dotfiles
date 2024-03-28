@@ -66,7 +66,7 @@ return {
           i(1, "fname"),
           fmt("({} {}) {}", { i(1, "app"), i(2, "*application"), i(3, "fname") }),
         }),
-        body = i(4, 'panic("todo")'),
+        body = i(2, 'panic("todo")'),
       }
     ),
     { condition = conds.line_begin }

@@ -1,5 +1,7 @@
 local u = require("config.utils")
 
+vim.bo.expandtab = false
+
 vim.keymap.set("n", "m<cr>", "<cmd>Tux go mod tidy<cr>", { buffer = true })
 
 ---- Runnables
