@@ -12,7 +12,7 @@ set -g status-style 'bg=default,fg=#51576d'
 set -g status-left-length 90
 # set -g status-left '#[fg=#8caaee]  #S  '
 
-set -g status-left ''
+set -g  status-left ''
 set -ag status-left '#[bg=default,fg=#232634] '
 set -ag status-left '#[bg=#232634,fg=#8caaee] #S'
 set -ag status-left '#[bg=default,fg=#232634] '
@@ -42,7 +42,7 @@ set -g window-status-activity-style 'bg=default'
 # set -g window-status-current-format "#[fg=#a6d189]#W#{?window_zoomed_flag,#[fg=#dabeed]󰇙, }"
 # set -g window-status-format "#[fg=#51576d]#W#{?window_zoomed_flag,󰇙, }"
 
-set -g window-status-current-format '#[fg=#{?window_zoomed_flag,#dabeed,#a6d189}]#W'
+set -g window-status-current-format '#[bold,fg=#{?window_zoomed_flag,#dabeed,#a6d189}]#W'
 set -g window-status-format '#[fg=#51576d]#W'
 
 ## Pane
