@@ -1,7 +1,6 @@
 unbind C-b
 set -g prefix C-Space
 unbind Space
-unbind z  # Unbind zoom
 
 # Pass-through
 bind C-l send 'C-l'
@@ -13,9 +12,9 @@ bind -N "Reload tmux" R {
   display "Tmux reloaded!"
 }
 
-bind -N "Toggle status line" z {
-  set status
-}
+bind -N "Toggle status line" z set -sg status
+bind -N "Toggle status position" t set -sg status-position
+bind -N "Show clock" T clock-mode
 
 bind -N "Set session path to current pane's" b {
   attach -c "#{pane_current_path}"
