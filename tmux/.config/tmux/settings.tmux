@@ -10,7 +10,7 @@ set -g pane-base-index 1
 set -g remain-on-exit off # failed
 set -g renumber-windows on
 set -g set-clipboard on
-set -g status-interval 3
+set -g status-interval 1
 set -g status-justify left
 set -g status-keys emacs
 set -g visual-activity off
