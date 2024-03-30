@@ -6,46 +6,44 @@ set -g pane-active-border-style '#{?pane_in_mode,fg=#e5c890,#{?synchronize-panes
 set -g message-style 'bg=default,fg=#e5c890'
 
 ## Status line
-set -g status-interval 5
-set -g status-justify left
-set -g status-position bottom
-set -g status-style 'bg=default,fg=white'
+set -g status-style 'bg=default,fg=#51576d'
 
 ### Left
 set -g status-left-length 90
+# set -g status-left '#[fg=#8caaee]  #S  '
 
-set -g status-left '#[fg=#8caaee]  #S  '
+set -g status-left ''
+set -ag status-left '#[bg=default,fg=#232634] '
+set -ag status-left '#[bg=#232634,fg=#8caaee] #S'
+set -ag status-left '#[bg=default,fg=#232634] '
 
 ### Right
 set -g status-right-length 60
+set -g status-right ''
 
 # NOTE: Tmux format (FORMAT in man page)
 #   #{?condition,positive,negative} => show positive if condition, else negative
 #   #{!=:left_hand_side,right_hand_side} => compare left to right
 
 # Prefix indicator
-set -g status-right '#{?#{!=:#{client_key_table},root},#[fg=#8caaee]<#{client_key_table}>,}'
+set -ag status-right '#[fg=#51576d]#{?#{!=:#{client_key_table},root},<#{client_key_table}>,}'
 
 # Synchronized panes indicator
-set -ag status-right ' #{?pane_synchronized,#[fg=#e78284]sync,}'
+set -ag status-right '#[fg=#e78284]#{?pane_synchronized, sync,}'
 
 # CPU
-set -ag status-right ' #{cpu_fg_color}#{cpu_percentage}#{cpu_icon}'
+set -ag status-right ' #{cpu_fg_color}#{cpu_percentage}#{cpu_icon} '
 
 # SSH session
-set -ag status-right ' #{?#{SSH_CLIENT},#[fg=#51576d]#(whoami)@#h,}'
+set -ag status-right '#[fg=#51576d]#{?#{SSH_CLIENT},#(whoami)@#h,} '
 
 ## Window
-set -g base-index 1
-set -g pane-base-index 1
-set -g renumber-windows on
-
-set -wg automatic-rename on
-set -wg automatic-rename-format '#{b:pane_current_path}/#{pane_current_command}'
-
 set -g window-status-activity-style 'bg=default'
-set -g window-status-current-format "#[fg=#a6d189]#W#{?window_zoomed_flag,#[fg=#dabeed]󰇙, }"
-set -g window-status-format "#[fg=#51576d]#W#{?window_zoomed_flag,󰇙, }"
+# set -g window-status-current-format "#[fg=#a6d189]#W#{?window_zoomed_flag,#[fg=#dabeed]󰇙, }"
+# set -g window-status-format "#[fg=#51576d]#W#{?window_zoomed_flag,󰇙, }"
+
+set -g window-status-current-format '#[fg=#{?window_zoomed_flag,#dabeed,#a6d189}]#W'
+set -g window-status-format '#[fg=#51576d]#W'
 
 ## Pane
 # Inactive pane shaded out
