@@ -13,8 +13,7 @@ bind -N "Reload tmux" R {
 }
 
 bind -N "Toggle status line" z set -sg status
-bind -N "Toggle status position" t set -sg status-position
-bind -N "Show clock" T clock-mode
+bind -N "Toggle status position" T set -sg status-position
 
 bind -N "Set session path to current pane's" b {
   attach -c "#{pane_current_path}"
