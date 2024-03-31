@@ -10,7 +10,6 @@ return {
       lsp_fallback = "always",
       filter = function(client)
         local dont_format_with = {
-          "html",
           "fuzzy_ls",
           "ruby_ls",
           "solargraph",
@@ -48,7 +47,6 @@ return {
         ["*"] = { "injected" }, -- Treesitter based injections
         eruby = { "htmlbeautifier" },
         fish = { "fish_indent" },
-        html = { "htmlbeautifier" },
         just = { "just" },
         lua = { "stylua" },
         sql = { "sql_formatter" },

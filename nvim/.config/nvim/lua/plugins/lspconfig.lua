@@ -66,7 +66,12 @@ return {
 
       lsp.html.setup(vim.tbl_deep_extend("force", cfg, {
         settings = {
-          provideFormatter = false,
+          html = {
+            format = {
+              extraLiners = "",
+              templating = true,
+            },
+          },
         },
         filetypes = {
           "eruby",
