@@ -3,7 +3,6 @@ return {
   -- enabled = false,
   event = "VeryLazy",
   dependencies = {
-    "vijaymarupudi/nvim-fzf",
     "nvim-tree/nvim-web-devicons",
   },
   config = function()
@@ -101,7 +100,7 @@ return {
     ---- Keymaps
     vim.keymap.set("n", "z<space>", ":FzfLua<space>")
 
-    vim.keymap.set("n", "+f", fzf_lua.resume, { desc = "fzf_lua.resume" })
+    vim.keymap.set("n", "<space>r", fzf_lua.resume, { desc = "fzf_lua.resume" })
     vim.keymap.set("n", "<leader>j", fzf_lua.git_status, { desc = "fzf_lua.git_status" })
     vim.keymap.set("n", "<leader>o", fzf_lua.files, { desc = "fzf_lua.files" })
     vim.keymap.set("n", "gm", fzf_lua.buffers, { desc = "fzf_lua.buffers" })
@@ -180,7 +179,7 @@ return {
     fzf_lua.config.set_action_helpstr(run_macro, "run-macro")
     fzf_lua.config.set_action_helpstr(delete_register, "delete-register")
 
-    vim.keymap.set("n", "<leader>r", function()
+    vim.keymap.set("n", "<leader>R", function()
       local opts = {}
 
       opts.actions = {
