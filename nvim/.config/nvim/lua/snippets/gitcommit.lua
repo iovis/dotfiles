@@ -166,7 +166,7 @@ return {
     { condition = conds.line_begin }
   ),
   -- Templates
-  s("plugins", t("chore(nvim.plugin): Sync plugins"), { condition = conds.line_begin }),
+  s("plugins", t("chore(nvim.plugin): sync plugins"), { condition = conds.line_begin }),
   s(
     "main",
     fmt(
