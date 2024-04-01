@@ -32,10 +32,10 @@ set -ag status-right '#[fg=#51576d]#{?#{!=:#{client_key_table},root},<#{client_k
 set -ag status-right '#[fg=#e78284]#{?pane_synchronized, sync,}'
 
 # CPU
-set -ag status-right ' #{cpu_fg_color}#{cpu_percentage}#{cpu_icon} '
+set -ag status-right ' #{cpu_fg_color}#{cpu_percentage}#{cpu_icon}'
 
 # SSH session
-set -ag status-right '#[fg=#51576d]#{?#{SSH_CLIENT},#(whoami)@#h,} '
+set -ag status-right '#[fg=#51576d]#{?#{SSH_CLIENT}, #(whoami)@#h,} '
 
 ## Window
 set -g window-status-activity-style 'bg=default'
