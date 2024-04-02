@@ -31,7 +31,7 @@ gui:
 git:
   paging:
     colorArg: always
-    pager: delta --dark --paging=never --tabs=2
+    pager: delta --dark --paging=never --tabs=2 --diff-so-fancy
   parseEmoji: true
 notARepository: 'quit'
 promptToReturnFromSubprocess: false
