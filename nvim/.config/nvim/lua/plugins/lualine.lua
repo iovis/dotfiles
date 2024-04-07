@@ -172,10 +172,12 @@ return {
       },
       tabline = {},
       extensions = {
-        -- "neo-tree",
-        -- "quickfix",
-        qf,
         "fugitive",
+        "fzf",
+        "lazy",
+        "neo-tree",
+        "oil",
+        qf,
       },
     })
   end,
