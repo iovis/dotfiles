@@ -71,6 +71,24 @@ return {
     ),
     { condition = conds.line_begin }
   ),
+  s(
+    "fmid",
+    fmta(
+      [[
+      func <fname>(next http.Handler) http.Handler {
+        return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+          <>
+          next.ServeHTTP(w, r)
+        })
+      }
+      ]],
+      {
+        fname = i(1, "middlewareName"),
+        i(0),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
   -- Structs
   s(
     "st",

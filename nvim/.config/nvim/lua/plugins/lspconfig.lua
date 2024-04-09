@@ -42,7 +42,6 @@ return {
       lsp.cssls.setup(cfg)
       lsp.dockerls.setup(cfg)
       lsp.elixirls.setup(cfg)
-      lsp.emmet_language_server.setup(cfg)
       lsp.eslint.setup(cfg)
       lsp.gopls.setup(cfg)
       lsp.htmx.setup(cfg)
@@ -50,11 +49,29 @@ return {
       lsp.pyright.setup(cfg)
       lsp.rubocop.setup(cfg)
       lsp.ruby_ls.setup(cfg)
+      -- lsp.sourcekit.setup(cfg)
       lsp.stylelint_lsp.setup(cfg)
       lsp.svelte.setup(cfg)
       lsp.taplo.setup(cfg)
+      lsp.templ.setup(cfg)
       lsp.tsserver.setup(cfg)
       lsp.zls.setup(cfg)
+
+      lsp.emmet_language_server.setup(vim.tbl_deep_extend("force", cfg, {
+        filetypes = {
+          "css",
+          "eruby",
+          "html",
+          "htmldjango",
+          "javascriptreact",
+          "less",
+          "pug",
+          "sass",
+          "scss",
+          "templ",
+          "typescriptreact",
+        },
+      }))
 
       lsp.clangd.setup(vim.tbl_deep_extend("force", cfg, {
         cmd = {

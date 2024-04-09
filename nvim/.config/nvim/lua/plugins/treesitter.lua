@@ -53,6 +53,7 @@ return {
         "sql",
         "svelte",
         "swift",
+        "templ",
         "toml",
         "tsx",
         "typescript",
