@@ -35,7 +35,7 @@ local is_restorable = function(buffer)
 end
 
 ----Commands
-local restore_session = function()
+local start_session = function()
   if within_session() then
     print("Already in a session!")
     return
@@ -50,8 +50,8 @@ local restore_session = function()
   end
 end
 
-u.command("RestoreSession", restore_session)
-vim.keymap.set("n", "yoS", restore_session, {
+u.command("SessionStart", start_session)
+vim.keymap.set("n", "yoS", start_session, {
   desc = "Load or create session for the current directory",
 })
 

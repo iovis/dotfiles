@@ -83,11 +83,6 @@ u.command("P", function(ctx)
   u.scratch(lines, { type = "float" })
 end, { nargs = "+", complete = "command" })
 
----- Quick Tmux Session
-u.command("Sessionist", function(opts)
-  vim.fn.system(("sessionist %s"):format(opts.args))
-end, { nargs = "?" })
-
 ---- Quick open vim plugin in new window
 u.command("VimPlugin", function(opts)
   local plugins_path = vim.fn.stdpath("data") .. "/lazy/"
