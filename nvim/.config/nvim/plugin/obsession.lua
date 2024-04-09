@@ -51,7 +51,7 @@ local restore_session = function()
 end
 
 u.command("RestoreSession", restore_session)
-vim.keymap.set("n", "<leader>S", restore_session, {
+vim.keymap.set("n", "yoS", restore_session, {
   desc = "Load or create session for the current directory",
 })
 

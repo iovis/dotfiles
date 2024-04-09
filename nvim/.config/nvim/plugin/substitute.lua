@@ -72,7 +72,7 @@ vim.keymap.set("n", "s", function()
   return "g@"
 end, { expr = true, desc = "Substitute motion" })
 
-vim.keymap.set("n", "ss", function()
+vim.keymap.set("n", "S", function()
   u.send_keys([[:%s/\v//g<left><left><left>]])
 end, { expr = true, desc = "Substitute in the whole document" })
 
@@ -81,5 +81,3 @@ vim.keymap.set("x", "S", function()
   -- meaning it breaks on the first one
   SubstituteMotion(vim.fn.mode())
 end, { desc = "Substitute motion" })
-
-vim.keymap.set("n", "<leader>s", "<nop>")

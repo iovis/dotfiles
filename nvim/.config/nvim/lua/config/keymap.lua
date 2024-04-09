@@ -271,8 +271,10 @@ vim.keymap.set("n", "yoc", function()
 end, { desc = "Toggle conceallevel" })
 
 ---- Misc
+-- Clear prefixes
 vim.keymap.set("n", "<Space>", "<Nop>")
 vim.keymap.set("n", "+", "<Nop>")
+vim.keymap.set("n", "<leader>s", "<nop>")
 
 vim.keymap.set("n", "+<cr>", "<cmd>so $VIMRUNTIME/syntax/hitest.vim<cr>")
 
