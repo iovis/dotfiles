@@ -28,8 +28,8 @@ set -gx FZF_DEFAULT_OPTS "\
 --bind=alt-a:select-all,alt-d:deselect-all,alt-t:toggle-all \
 --bind=home:first,end:last \
 --color=bg+:#414559,bg:-1,gutter:-1,spinner:#f2d5cf,hl:#e78284 \
---color=fg:#c6d0f5,header:#e78284,info:#babbf1,pointer:#f2d5cf \
---color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#babbf1,hl+:#e78284"
+--color=fg:#c6d0f5,header:#e78284,info:#8caaee,pointer:#f2d5cf \
+--color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#8caaee,hl+:#e78284"
 
 set -gx BAT_THEME base16
 set -gx MISE_FISH_AUTO_ACTIVATE 0
