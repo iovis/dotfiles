@@ -20,11 +20,11 @@ fzf_command() {
     --bind=enter:accept-or-print-query \
     --bind=ctrl-d:print-query \
     --bind=alt-p:toggle-preview \
-    --bind='alt-r:change-preview-window(down|right)' \
+    --bind='alt-r:change-preview-window(right|down)' \
     --reverse \
     --info=hidden \
     --preview="eza --color=always -lag --git --group-directories-first $PROJECT_HOME/{}" \
-    --preview-window=right \
+    --preview-window=down \
     --prompt="$PROJECT_HOME/" \
     --query="$INITIAL_QUERY"
 }
