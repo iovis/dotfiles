@@ -49,7 +49,6 @@ return {
       lsp.pyright.setup(cfg)
       lsp.rubocop.setup(cfg)
       lsp.ruby_ls.setup(cfg)
-      -- lsp.sourcekit.setup(cfg)
       lsp.stylelint_lsp.setup(cfg)
       lsp.svelte.setup(cfg)
       lsp.taplo.setup(cfg)
