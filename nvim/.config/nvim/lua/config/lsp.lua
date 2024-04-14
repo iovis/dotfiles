@@ -20,8 +20,9 @@ local on_attach = function(client, bufnr)
   end
 
   ---- Signature/Definition
-  imap("<c-h>", vim.lsp.buf.hover, "vim.lsp.buf.hover")
+  nmap("<c-s>", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
   imap("<c-s>", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
+  imap("<c-h>", vim.lsp.buf.hover, "vim.lsp.buf.hover")
 
   nmap("T", vim.lsp.buf.references, "vim.lsp.buf.references")
   nmap("gd", vim.lsp.buf.hover, "vim.lsp.buf.hover")
