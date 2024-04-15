@@ -177,6 +177,7 @@ return {
         "lazy",
         "neo-tree",
         "oil",
+        "toggleterm",
         qf,
       },
     })
