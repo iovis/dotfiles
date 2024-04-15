@@ -8,7 +8,6 @@ bind -N "Switch to last session" -n M-Space {
 }
 
 ## Window switching
-bind -n C-\\ last-window  # c-ç
 bind -n M--  last-window
 bind -n M-h  previous-window
 bind -n M-l  next-window
