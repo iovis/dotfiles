@@ -175,6 +175,7 @@ return {
         "fugitive",
         "fzf",
         "lazy",
+        "mason",
         "neo-tree",
         "oil",
         "toggleterm",
