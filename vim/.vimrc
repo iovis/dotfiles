@@ -176,8 +176,8 @@ nnoremap <silent> <leader>t :tabnew<cr>
 nnoremap <silent> <leader>X :qa!<cr>
 nnoremap <silent> <leader>\| <c-w>\|
 nnoremap <silent> <leader>_ <c-w>_
-nnoremap <silent> <leader>b gg=G
 nnoremap <silent> <leader>c <c-w>c
+nnoremap <silent> <leader>fo gg=G
 nnoremap <silent> <leader>m <c-w>_<c-w>\|
 nnoremap <silent> <leader>q :%bdelete<cr>
 nnoremap <silent> <leader>w :w!<cr>
@@ -452,14 +452,13 @@ xnoremap <silent> gr :sort!<cr>
 " grep {{{ "
 command! -nargs=+ -complete=file Grep silent! grep! -r <args>|botright cwindow|redraw!
 
-nnoremap <leader>f :Grep ""<left>
-nnoremap <leader>F :Grep ""<left>
+cnoreabbrev <expr> grep (getcmdtype() ==# ':' && getcmdline() ==# 'grep') ? 'Grep' : 'grep'
 
-xmap <leader>f  *:<c-u>Grep "<c-r>/"
-xmap <leader>F  *:<c-u>Grep "<c-r>""
+nnoremap <leader>fs  :Grep<space>
+xmap     <leader>fs *:Grep <c-r>=shellescape(getreg('"'), 1)<cr><space>
 
 nmap <silent> K *:Grep "\b<cword>\b"<cr>
-xmap <silent> K *:<c-u>Grep "<c-r>""<cr>
+xmap <silent> K <leader>fs<cr>
 " }}} grep "
 
 " ripgrep {{{ "
