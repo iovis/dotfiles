@@ -1,3 +1,4 @@
+-- TODO: Do I need it in nvim v0.10?
 return {
   "numToStr/Comment.nvim",
   event = "VeryLazy",
