@@ -105,7 +105,7 @@ return {
     vim.keymap.set("n", "<leader>o", fzf_lua.files, { desc = "fzf_lua.files" })
     vim.keymap.set("n", "gm", fzf_lua.buffers, { desc = "fzf_lua.buffers" })
 
-    vim.keymap.set("n", "<leader>A", function()
+    vim.keymap.set("n", "<leader>ft", function()
       fzf_lua.filetypes({
         winopts = {
           width = 0.50,
@@ -127,7 +127,7 @@ return {
     --   })
     -- end, { desc = "Open Obsidian note" })
     --
-    -- vim.keymap.set("n", "<leader>us", function()
+    -- vim.keymap.set("n", "<leader>fn", function()
     --   fzf_lua.grep({
     --     cwd = "~/vaults/io",
     --     no_esc = true, -- Allow regex in search
@@ -154,8 +154,8 @@ return {
     end, { desc = "fzf_lua.all_files" })
 
     -- Ripgrep search
-    vim.keymap.set("x", "<leader>f", fzf_lua.grep_visual, { silent = true, desc = "fzf_lua.grep" })
-    vim.keymap.set("n", "<leader>f", function()
+    vim.keymap.set("x", "<leader>fp", fzf_lua.grep_visual, { silent = true, desc = "fzf_lua.grep" })
+    vim.keymap.set("n", "<leader>fp", function()
       fzf_lua.grep({ no_esc = true, search = "\\w" })
     end, { desc = "fzf_lua.grep" })
 

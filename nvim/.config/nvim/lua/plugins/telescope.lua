@@ -78,7 +78,7 @@ return {
     vim.keymap.set("n", "+f", t.live_grep, { desc = "t.live_grep" })
     vim.keymap.set("n", "<c-p>", t.commands, { desc = "t.commands" })
     vim.keymap.set("n", "<leader><leader>", t.buffers, { desc = "t.buffers" })
-    vim.keymap.set("n", "<leader>A", t.filetypes, { desc = "t.filetypes" })
+    vim.keymap.set("n", "<leader>ft", t.filetypes, { desc = "t.filetypes" })
     vim.keymap.set("n", "<leader>gH", t.git_bcommits, { desc = "t.git_bcommits" })
     vim.keymap.set("n", "<leader>gL", t.git_commits, { desc = "t.git_commits" })
     vim.keymap.set("n", "<leader>gco", t.git_branches, { desc = "t.git_branches" })
@@ -86,7 +86,7 @@ return {
     vim.keymap.set("n", "<leader>o", t.find_files, { desc = "t.find_files" })
     vim.keymap.set("n", "<leader>ñ", t.current_buffer_fuzzy_find, { desc = "t.current_buffer_fuzzy_find" })
 
-    vim.keymap.set("n", "<leader>f", function()
+    vim.keymap.set("n", "<leader>fp", function()
       t.grep_string({ search = "\\w", use_regex = true, sort_only_text = true })
     end, { desc = "t.grep" })
 

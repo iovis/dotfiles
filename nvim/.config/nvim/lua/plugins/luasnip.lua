@@ -61,11 +61,6 @@ return {
       end
     end, { desc = "next choice" })
 
-    -- View/Edit
-    -- vim.keymap.set("n", "<leader>us", require("luasnip.loaders").edit_snippet_files, {
-    --   desc = "Edit snippets",
-    -- })
-
     vim.keymap.set("n", "<leader>sr", function()
       require("luasnip.loaders.from_lua").load({ paths = { "~/.config/nvim/lua/snippets" } })
       vim.notify("Snippets reloaded")

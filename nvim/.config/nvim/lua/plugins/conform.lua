@@ -55,7 +55,7 @@ return {
     })
 
     -- `Format` command
-    vim.keymap.set({ "n", "x" }, "<leader>b", ":Format<cr>")
+    vim.keymap.set({ "n", "x" }, "<leader>fo", ":Format<cr>")
     vim.api.nvim_create_user_command("Format", function(args)
       local range = nil
 
