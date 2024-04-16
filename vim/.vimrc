@@ -320,6 +320,12 @@ nnoremap yow :setlocal wrap!<cr>
 " }}} bindings "
 
 " text objects {{{ "
+" Whole WORD is kinda awkward to press
+onoremap ao aW
+onoremap io iW
+xnoremap ao aW
+xnoremap io iW
+
 " https://gist.github.com/romainl/c0a8b57a36aec71a986f1120e1931f20#file-text-objects-vim
 
 " 24 simple text objects
