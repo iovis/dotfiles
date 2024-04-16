@@ -119,14 +119,14 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 })
 
 ---- Set terminal mode settings
-vim.api.nvim_create_autocmd("TermOpen", {
-  desc = "Set terminal mode settings",
-  group = config_augroup,
-  pattern = "*",
-  callback = function()
-    vim.wo.number = false
-    vim.wo.relativenumber = false
-    vim.wo.signcolumn = "no"
-    vim.cmd.startinsert()
-  end,
-})
+-- vim.api.nvim_create_autocmd("TermOpen", {
+--   desc = "Set terminal mode settings",
+--   group = config_augroup,
+--   pattern = "*",
+--   callback = function()
+--     vim.wo.number = false
+--     vim.wo.relativenumber = false
+--     vim.wo.signcolumn = "no"
+--     vim.cmd.startinsert()
+--   end,
+-- })
