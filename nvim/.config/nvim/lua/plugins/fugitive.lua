@@ -5,7 +5,6 @@ return {
     "tpope/vim-rhubarb",
   },
   config = function()
-    vim.keymap.set("n", "gi", ":Git<space>")
     vim.keymap.set("n", "<leader>G", "<cmd>Gtabedit:<cr>)", { remap = true })
     vim.keymap.set("n", "<leader>go", "<cmd>Gread<cr>")
     vim.keymap.set("n", "<leader>gb", "<cmd>Git blame<cr>")
@@ -21,6 +20,8 @@ return {
       command! -nargs=0 Gpsup !git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
       command! -nargs=0 Grhh  !git reset --hard
       command! -nargs=1 Gcb   !git checkout -b <args>
+
+      cnoreabbrev <expr> git (getcmdtype() ==# ':' && getcmdline() ==# 'git') ? 'Git' : 'git'
     ]])
 
     local fugitive_augroup = vim.api.nvim_create_augroup("fugitive_augroup", { clear = true })
