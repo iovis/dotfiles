@@ -47,13 +47,18 @@ u.command("R", function(ctx)
       output = true,
     }).output,
     "\r?\n",
-    {}
+    { trimempty = true }
   )
 
   -- Remove the first 2 lines if it's a external command (starts with `!`)
   local is_external_command = (ctx.args:sub(1, 1) == "!")
   if is_external_command then
     lines = vim.list_slice(lines, 3, #lines) -- same as lines[3..]
+  end
+
+  if vim.tbl_isempty(lines) then
+    vim.notify("No output")
+    return
   end
 
   -- Create new scratch buffer in a split
@@ -70,13 +75,18 @@ u.command("P", function(ctx)
       output = true,
     }).output,
     "\r?\n",
-    {}
+    { trimempty = true }
   )
 
   -- Remove the first 2 lines if it's a external command (starts with `!`)
   local is_external_command = (ctx.args:sub(1, 1) == "!")
   if is_external_command then
     lines = vim.list_slice(lines, 3, #lines) -- same as lines[3..]
+  end
+
+  if vim.tbl_isempty(lines) then
+    vim.notify("No output")
+    return
   end
 
   -- Create new scratch buffer in a floating window
