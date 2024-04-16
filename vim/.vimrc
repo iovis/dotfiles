@@ -454,11 +454,11 @@ command! -nargs=+ -complete=file Grep silent! grep! -r <args>|botright cwindow|r
 
 cnoreabbrev <expr> grep (getcmdtype() ==# ':' && getcmdline() ==# 'grep') ? 'Grep' : 'grep'
 
-nnoremap <leader>fs  :Grep<space>
-xmap     <leader>fs *:Grep <c-r>=shellescape(getreg('"'), 1)<cr><space>
+nnoremap g<space>  :Grep<space>
+xmap     g<space> *:Grep <c-r>=shellescape(getreg('"'), 1)<cr><space>
 
 nmap <silent> K *:Grep "\b<cword>\b"<cr>
-xmap <silent> K <leader>fs<cr>
+xmap <silent> K g<space><cr>
 " }}} grep "
 
 " ripgrep {{{ "

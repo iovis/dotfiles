@@ -7,11 +7,11 @@ endif
 
 cnoreabbrev <expr> grep (getcmdtype() ==# ':' && getcmdline() ==# 'grep') ? 'Grep' : 'grep'
 
-nnoremap <leader>fs  :Grep<space>
-xmap     <leader>fs *:Grep -F <c-r>=shellescape(getreg('"'), 1)<cr><space>
+nnoremap g<space>  :Grep<space>
+xmap     g<space> *:Grep -F <c-r>=shellescape(getreg('"'), 1)<cr><space>
 
 nmap <silent> K *:Grep -w <cword><cr>
-xmap <silent> K <leader>fs<cr>
+xmap <silent> K g<space><cr>
 
 " TODO: would it make sense in nvim v0.10 to use `cgetexpr` in an async job so
 " it doesn't block the main thread?
