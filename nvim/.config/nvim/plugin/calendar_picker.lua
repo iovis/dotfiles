@@ -6,9 +6,8 @@ local u = require("config.utils")
 ---@field location? string The URL or the physical location of the event
 
 ---Get timed events for today
----@param calendar_name string
 ---@return CalendarEvent[]
-local get_today_events_for = function(calendar_name)
+local get_calendar_events = function()
   -- Run calendar command
   local calendar_cmd = table.concat({
     "icalBuddy",
@@ -17,7 +16,6 @@ local get_today_events_for = function(calendar_name)
     "--excludeAllDayEvents",
     "--propertyOrder 'datetime,title'",
     "--includeEventProps 'datetime,title,location'",
-    ("--includeCals '%s'"):format(calendar_name),
     "eventsToday",
   }, " ")
   local output = vim.fn.systemlist(calendar_cmd)
@@ -48,8 +46,7 @@ local get_today_events_for = function(calendar_name)
 end
 
 local calendar_picker = function()
-  local calendar_name = "david.marchante@rubiconmd.com"
-  local events = get_today_events_for(calendar_name)
+  local events = get_calendar_events()
 
   if vim.tbl_isempty(events) then
     vim.notify("No events!")
@@ -59,7 +56,7 @@ local calendar_picker = function()
   vim.ui.select(
     events,
     {
-      prompt = ("%s> "):format(calendar_name),
+      prompt = "events> ",
       ---@param item CalendarEvent
       format_item = function(item)
         local event = ("[%s] %s"):format(item.when, item.title)
