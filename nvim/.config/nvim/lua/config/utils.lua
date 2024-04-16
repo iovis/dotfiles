@@ -3,6 +3,18 @@
 
 local M = {}
 
+---Alias command
+---@param cmd string
+M.cabbrev = function(cmd)
+  -- TODO: There may be a `vim.keymap.set("ca", ...)` in nvim v0.10
+  -- cnoreabbrev <expr> grep (getcmdtype() ==# ':' && getcmdline() ==# 'grep') ? 'Grep' : 'grep'
+  local vim_cmd = ([[
+    cnoreabbrev <expr> %s (getcmdtype() ==# ':' && getcmdline() ==# '%s') ? '%s' : '%s'
+  ]]):format(cmd:lower(), cmd:lower(), cmd, cmd:lower())
+
+  vim.cmd(vim_cmd)
+end
+
 ---Define user command
 ---@param name string
 ---@param fn any
@@ -159,7 +171,6 @@ end
 
 ----Helper functions
 --- Truncate component to `len` characters
----
 --- @param str string
 --- @param len number
 --- @return string
@@ -172,7 +183,6 @@ M.truncate = function(str, len)
 end
 
 ---Titleizes string
----
 ---Ex: "my title" => "My Title"
 ---@param str string
 ---@return string
@@ -185,7 +195,6 @@ M.titleize = function(str)
 end
 
 ---PascalCase string
----
 ---Ex: "my string" => "MyString"
 ---@param str string
 ---@return string
@@ -198,7 +207,6 @@ M.pascal_case = function(str)
 end
 
 ---Escape Lua pattern
----
 ---@param str string
 ---@return string
 M.escape_lua_pattern = function(str)
@@ -224,7 +232,6 @@ end
 ----Buffers
 
 ---Is there only one listed buffer
----
 ---@return boolean
 M.is_only_buffer = function()
   local buffers = vim.api.nvim_list_bufs()

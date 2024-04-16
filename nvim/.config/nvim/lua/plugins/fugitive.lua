@@ -20,9 +20,10 @@ return {
       command! -nargs=0 Gpsup !git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
       command! -nargs=0 Grhh  !git reset --hard
       command! -nargs=1 Gcb   !git checkout -b <args>
-
-      cnoreabbrev <expr> git (getcmdtype() ==# ':' && getcmdline() ==# 'git') ? 'Git' : 'git'
     ]])
+
+    local u = require("config.utils")
+    u.cabbrev("Git")
 
     local fugitive_augroup = vim.api.nvim_create_augroup("fugitive_augroup", { clear = true })
     vim.api.nvim_create_autocmd("FileType", {
