@@ -84,6 +84,6 @@ local calendar_picker = function()
 end
 
 u.command("CalendarPicker", calendar_picker)
-vim.keymap.set("n", "<leader>C", calendar_picker, {
+vim.keymap.set("n", "+c", calendar_picker, {
   desc = "Calendar picker",
 })
