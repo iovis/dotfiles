@@ -227,6 +227,7 @@ vim.keymap.set("n", "<leader>u", "<nop>")
 
 -- Config files
 vim.keymap.set("n", "<leader>uf", "<cmd>EditFtplugin<cr>")
+vim.keymap.set("n", "<leader>uF", ":EditFtplugin<space>")
 
 -- Notes
 vim.keymap.set("n", "<leader>un", ":e! notes/index.md<cr>")
