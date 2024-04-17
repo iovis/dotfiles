@@ -39,7 +39,6 @@ return {
     ---- mini.align
     require("mini.align").setup({})
 
-    vim.keymap.set("n", "<leader>a", "<nop>")
     vim.keymap.set("n", "<leader>a,", "mzgaipi,'z", { remap = true })
     vim.keymap.set("x", "<leader>a,", "gai,", { remap = true })
 

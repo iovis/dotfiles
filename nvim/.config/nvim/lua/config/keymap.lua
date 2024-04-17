@@ -223,8 +223,6 @@ vim.keymap.set("n", "t", "<c-]>", { remap = true })
 vim.keymap.set("n", "T", "g]")
 
 ---- Quick File access
-vim.keymap.set("n", "<leader>u", "<nop>")
-
 -- Config files
 vim.keymap.set("n", "<leader>uf", "<cmd>EditFtplugin<cr>")
 vim.keymap.set("n", "<leader>uF", ":EditFtplugin<space>")
@@ -271,16 +269,17 @@ vim.keymap.set("n", "yoc", function()
   end
 end, { desc = "Toggle conceallevel" })
 
----- Misc
--- Clear prefixes
-vim.keymap.set("n", "<space>", "<nop>")
+---- Clear prefixes
 vim.keymap.set("n", "+", "<nop>")
+vim.keymap.set("n", "<leader>a", "<nop>")
 vim.keymap.set("n", "<leader>f", "<nop>")
 vim.keymap.set("n", "<leader>s", "<nop>")
+vim.keymap.set("n", "<leader>u", "<nop>")
+vim.keymap.set("n", "<space>", "<nop>")
 
+---- Misc
 vim.keymap.set("n", "+<cr>", "<cmd>so $VIMRUNTIME/syntax/hitest.vim<cr>")
-
-vim.keymap.set("n", "<leader>P", ":R=")
+vim.keymap.set("n", "<leader>P", ":R<space>")
 vim.keymap.set("n", "<leader>M", "<cmd>10R messages<cr>G")
 vim.keymap.set("n", "+M", function()
   print("messages cleared")
