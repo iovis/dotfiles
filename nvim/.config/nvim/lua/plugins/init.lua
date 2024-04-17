@@ -1,3 +1,5 @@
+vim.cmd.packadd("cfilter")
+
 return {
   { "chrisbra/csv.vim", ft = "csv" },
   { "dstein64/vim-startuptime", cmd = "StartupTime" },
