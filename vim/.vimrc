@@ -177,7 +177,7 @@ nnoremap <silent> <leader>X :qa!<cr>
 nnoremap <silent> <leader>\| <c-w>\|
 nnoremap <silent> <leader>_ <c-w>_
 nnoremap <silent> <leader>c <c-w>c
-nnoremap <silent> <leader>fo gg=G
+nnoremap <silent> <leader>b gg=G
 nnoremap <silent> <leader>m <c-w>_<c-w>\|
 nnoremap <silent> <leader>q :%bdelete<cr>
 nnoremap <silent> <leader>w :w!<cr>
