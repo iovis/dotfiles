@@ -154,10 +154,12 @@ return {
     end, { desc = "fzf_lua.all_files" })
 
     -- Ripgrep search
-    vim.keymap.set("x", "<leader>fp", fzf_lua.grep_visual, { silent = true, desc = "fzf_lua.grep" })
-    vim.keymap.set("n", "<leader>fp", function()
+    vim.keymap.set("x", "<leader>fk", fzf_lua.grep_visual, { silent = true, desc = "fzf_lua.grep" })
+    vim.keymap.set("n", "<leader>fk", function()
       fzf_lua.grep({ no_esc = true, search = "\\w" })
     end, { desc = "fzf_lua.grep" })
+
+    vim.keymap.set("n", "<leader>fl", fzf_lua.live_grep, { silent = true, desc = "fzf_lua.live_grep" })
 
     -- Registers
     local run_macro = function(selected)
