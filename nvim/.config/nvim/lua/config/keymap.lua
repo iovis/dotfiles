@@ -309,7 +309,7 @@ vim.keymap.set("n", "&", [[:10R !tmux capture-pane -Jp -S- -t\! | rg '.'<left>]]
 vim.keymap.set("n", "+V", "<cmd>VimPlugin<cr>")
 
 ---- Toggle autoformat
-vim.keymap.set("n", "<leader>fa", function()
+vim.keymap.set("n", "<leader>A", function()
   if vim.g.autoformat then
     vim.g.autoformat = false
     print("Autoformat disabled")
