@@ -33,6 +33,14 @@ bind -N "Tmux customization mode" -T command z {
 }
 
 ## Justfile
+bind -N "Run just console" -T command j {
+  if "test -f justfile" {
+    new-window "jf; pause"
+  } {
+    display "No justfile!"
+  }
+}
+
 bind -N "Run just console" -T command c {
   if "test -f justfile" {
     new-window -Sn console just console
