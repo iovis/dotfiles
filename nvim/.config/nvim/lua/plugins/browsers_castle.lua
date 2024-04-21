@@ -2,11 +2,11 @@ return {
   "iovis/browsers_castle",
   event = "VeryLazy",
   config = function()
-    vim.keymap.set("n", "q<space>", ":Google<space>")
-    vim.keymap.set("n", "q<cr>", ":Google <c-r><c-w><cr>")
+    vim.keymap.set("n", "go<space>", ":Google<space>")
+    vim.keymap.set("n", "go<cr>", ":Google <c-r><c-w><cr>")
 
-    vim.keymap.set("x", "q<space>", 'y:Google <c-r>"')
-    vim.keymap.set("x", "q<cr>", 'y:Google <c-r>"<cr>')
+    vim.keymap.set("x", "go<space>", 'y:Google <c-r>"')
+    vim.keymap.set("x", "go<cr>", 'y:Google <c-r>"<cr>')
 
     -- NOTE: Fugitive expects netrw to exist, otherwise to define your own `:Browse`
     --       Right now I'm using `oil.nvim` as a netrw replacement

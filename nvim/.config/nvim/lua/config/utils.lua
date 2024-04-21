@@ -91,7 +91,10 @@ M.floating_window = function(contents, opts)
   vim.bo[bufnr].filetype = win_opts.filetype
 
   -- Map [q] to read the changes and close the popup
-  vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = bufnr })
+  vim.keymap.set("n", "q", "<cmd>close<cr>", {
+    buffer = bufnr,
+    nowait = true,
+  })
 end
 
 ---Check if file exists

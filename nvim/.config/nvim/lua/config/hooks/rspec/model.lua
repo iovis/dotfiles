@@ -188,7 +188,10 @@ function RSpec:create_buf_command()
     vim.bo.buftype = "nofile"
     vim.bo.filetype = "ruby"
 
-    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = true, silent = true })
+    vim.keymap.set("n", "q", "<cmd>close<cr>", {
+      buffer = true,
+      nowait = true,
+    })
 
     -- Prepare body
     local lines = {}
