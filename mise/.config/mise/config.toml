@@ -1,7 +1,7 @@
 [tools]
-go = "1"
+go = "latest"
 nodejs = "20"
-python = "3.11"
+python = "3.12"
 ruby = "3.2.2"
-zig = "0.11"
+zig = "latest"
 usage = "latest"
