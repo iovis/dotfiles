@@ -2,6 +2,6 @@
 go = "latest"
 nodejs = "20"
 python = "3.12"
-ruby = "3.2.2"
+ruby = "3.3"
 zig = "latest"
 usage = "latest"
