@@ -87,19 +87,11 @@ local on_attach = function(client, bufnr)
 
   ----Inlay hints
   if vim.fn.has("nvim-0.10") == 1 then
-    vim.g.inlay_hints_visible = false
-
     local function toggle_inlay_hints()
-      if vim.g.inlay_hints_visible then
-        vim.g.inlay_hints_visible = false
-        vim.lsp.inlay_hint.enable(bufnr, false)
+      if client.server_capabilities.inlayHintProvider then
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
       else
-        if client.server_capabilities.inlayHintProvider then
-          vim.g.inlay_hints_visible = true
-          vim.lsp.inlay_hint.enable(bufnr, true)
-        else
-          print("no inlay hints available")
-        end
+        vim.notify("No inlay hints available", vim.log.levels.WARN)
       end
     end
 

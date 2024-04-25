@@ -1,6 +1,6 @@
 return {
-  -- TODO: Remove in v0.10
   "ojroques/nvim-osc52",
+  enabled = vim.fn.has("nvim-0.10") ~= 1, -- TODO: nvim v0.10
   event = "VeryLazy",
   -- cond = function()
   --   -- Bit awkward to share the lazy.lock this way
