@@ -1,10 +1,10 @@
 bind -N "Command mode" l switch-client -T command
 
-bind -N "Open btop" -T command b {
+bind -N "Open btop" -T command B {
   new-window -Sn btop btop
 }
 
-bind -N "Open neovim with current pane contents" -T command k {
+bind -N "Open neovim with current pane contents" -T command n {
   run -b tn
 }
 
@@ -16,7 +16,7 @@ bind -N "Open htop" -T command h {
   new-window -Sn htop htop
 }
 
-bind -N "Open numbat" -T command n {
+bind -N "Open numbat" -T command b {
   new-window -Sn numbat numbat
 }
 
