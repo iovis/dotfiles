@@ -48,7 +48,6 @@ return {
       lsp.marksman.setup(cfg)
       lsp.pyright.setup(cfg)
       lsp.rubocop.setup(cfg)
-      lsp.ruby_lsp.setup(cfg)
       lsp.stylelint_lsp.setup(cfg)
       lsp.svelte.setup(cfg)
       lsp.taplo.setup(cfg)
@@ -127,6 +126,12 @@ return {
             hint = { enable = true },
             -- workspace = { checkThirdParty = false },
           },
+        },
+      }))
+
+      lsp.ruby_lsp.setup(vim.tbl_deep_extend("force", cfg, {
+        init_options = {
+          formatter = "none",
         },
       }))
 
