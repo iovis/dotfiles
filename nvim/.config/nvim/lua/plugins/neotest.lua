@@ -21,7 +21,7 @@ return {
       adapters = {
         require("neotest-go"),
         require("neotest-plenary"),
-        -- require("rustaceanvim.neotest"), -- TODO: nvim v0.10
+        require("rustaceanvim.neotest"),
         require("neotest-zig"),
         require("neotest-rspec")({
           rspec_cmd = function()
@@ -68,7 +68,7 @@ return {
       neotest.summary.toggle()
     end, { desc = "Neotest: Summary" })
 
-    vim.keymap.set("n", "<leader>sh", function()
+    vim.keymap.set("n", "<leader>sk", function()
       neotest.output.open({ enter = true })
     end, { desc = "Neotest: Output panel" })
 
@@ -80,11 +80,11 @@ return {
       neotest.output_panel.clear()
     end, { desc = "Neotest: Clear Output panel" })
 
-    vim.keymap.set("n", "<leader>sk", function()
+    vim.keymap.set("n", "<s-left>", function()
       neotest.jump.prev()
     end, { desc = "Neotest: Previous test" })
 
-    vim.keymap.set("n", "<leader>sj", function()
+    vim.keymap.set("n", "<s-right>", function()
       neotest.jump.next()
     end, { desc = "Neotest: Next test" })
   end,
