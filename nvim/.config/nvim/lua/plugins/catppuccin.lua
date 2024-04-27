@@ -25,6 +25,7 @@ return {
         lsp_saga = true,
         mason = true,
         mini = true,
+        neotest = true,
         neotree = true,
         treesitter = true,
         treesitter_context = true,

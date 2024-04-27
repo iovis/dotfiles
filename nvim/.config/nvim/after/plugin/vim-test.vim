@@ -1,7 +1,3 @@
-nnoremap <silent> <leader>si :TestNearest<cr>
-nnoremap <silent> <leader>so :TestFile<cr>
-nnoremap <silent> <leader>sa :TestSuite<cr>
-
 function! TuxStrategy(cmd)
   execute 'Tux ' . a:cmd
 endfunction
@@ -18,6 +14,7 @@ function! TestProfStrategy(cmd)
   execute 'Tux FPROF=1 FDOC=1 ' . a:cmd
 endfunction
 
+let test#ruby#use_spring_binstub = 1
 let g:test#custom_strategies = {
       \ 'tux': function('TuxStrategy'),
       \ 'rust_log': function('RustLogStrategy'),
@@ -25,6 +22,14 @@ let g:test#custom_strategies = {
       \ 'test_prof': function('TestProfStrategy'),
       \}
 
-let g:test#strategy = 'tux'
+if g:neotest_enabled
+  nnoremap <leader>sI <cmd>TestNearest -strategy=tux<cr>
+  nnoremap <leader>sO <cmd>TestFile -strategy=tux<cr>
+  nnoremap <leader>sa <cmd>TestSuite -strategy=tux<cr>
+else
+  let g:test#strategy = 'tux'
 
-let test#ruby#use_spring_binstub = 1
+  nnoremap <leader>si <cmd>TestNearest<cr>
+  nnoremap <leader>so <cmd>TestFile<cr>
+  nnoremap <leader>sa <cmd>TestSuite<cr>
+endif
