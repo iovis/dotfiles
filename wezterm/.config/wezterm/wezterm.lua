@@ -92,9 +92,9 @@ table.insert(config.hyperlink_rules, {
 })
 
 -- JIRA cards (PE-411)
-table.insert(config.hyperlink_rules, {
-  regex = [[([A-Z]+-\d+)]],
-  format = "https://rubiconmd.atlassian.net/browse/$1",
-})
+-- table.insert(config.hyperlink_rules, {
+--   regex = [[([A-Z]+-\d+)]],
+--   format = "https://atlassian.net/browse/$1",
+-- })
 
 return config

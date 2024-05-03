@@ -3,7 +3,7 @@ local meeting_title = function()
     "icalBuddy",
     "--noCalendarNames",
     "--excludeAllDayEvents",
-    "--includeCals 'david.marchante@rubiconmd.com'",
+    -- "--includeCals ''",
     "--bullet ''",
     "--includeEventProps 'title'",
     "eventsNow",

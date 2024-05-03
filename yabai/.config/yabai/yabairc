@@ -55,7 +55,6 @@ yabai -m rule --add app="^1Password" manage=off
 yabai -m rule --add app="^Activity Monitor$" manage=off
 yabai -m rule --add app="^AppCleaner$" manage=off
 yabai -m rule --add app="^App Store$" manage=off
-# yabai -m rule --add app="^Arc$" manage=off  # Because of mini Arc
 yabai -m rule --add app="^Backblaze$" manage=off
 yabai -m rule --add app="^Bartender" manage=off
 yabai -m rule --add app="^Bazecor$" manage=off
@@ -75,7 +74,6 @@ yabai -m rule --add app="^Opal Composer$" manage=off
 yabai -m rule --add app="^Parallels" manage=off
 yabai -m rule --add app="^Path Finder$" manage=off
 yabai -m rule --add app="^Pastebot$" manage=off
-yabai -m rule --add app="^Perimeter" manage=off
 yabai -m rule --add app="^Raycast$" manage=off
 yabai -m rule --add app="^Spark$" manage=off
 yabai -m rule --add app="^Spark Desktop$" manage=off
