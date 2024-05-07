@@ -48,19 +48,5 @@ return {
         signcolumn = "yes",
       },
     })
-
-    local oil_augroup = vim.api.nvim_create_augroup("oil_augroup", { clear = true })
-    vim.api.nvim_create_autocmd("FileType", {
-      desc = "Accept changes with <CR>",
-      group = oil_augroup,
-      pattern = "oil_preview",
-      callback = function(params)
-        vim.keymap.set("n", "<cr>", "o", {
-          buffer = params.buf,
-          remap = true,
-          nowait = true,
-        })
-      end,
-    })
   end,
 }
