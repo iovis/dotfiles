@@ -4,6 +4,10 @@ vim.bo.commentstring = "// %s"
 
 vim.keymap.set("n", "<leader>al", "<cmd>ClangdSwitchSourceHeader<cr>", { buffer = true })
 
+if vim.fn.expand("%"):match("keyboards/") then
+  vim.keymap.set("n", "d<cr>", "<cmd>botright split! ../qmk_firmware/docs/keycodes.md<cr>", { buffer = true })
+end
+
 ---- runnables
 if vim.fn.expand("%"):match("ext/") then
   ---- Ruby C Extension
