@@ -71,7 +71,7 @@ bind_command({ ctrl_alt_cmd, "right" }, "yabai -m window --resize right:200:0 ||
 
 ---Toggle window zoom
 bind_command({ ctrl_alt_cmd, "m" }, "yabai -m window --toggle zoom-fullscreen")
-bind_command({ ctrl_alt_cmd, "ñ" }, "yabai -m window --toggle zoom-parent")
+bind_command({ ctrl_alt_cmd, ";" }, "yabai -m window --toggle zoom-parent")
 
 ----------------------
 -- Floating Windows --
@@ -98,9 +98,9 @@ bind_command({ ctrl_alt, "j" }, "yabai_grid 2:2:0:1:1:1")
 bind_command({ ctrl_alt, "k" }, "yabai_grid 2:2:1:1:1:1")
 
 ---Centered
-bind_command({ ctrl_alt, "-" }, "yabai_grid 20:20:3:2:14:15")
+bind_command({ ctrl_alt, "/" }, "yabai_grid 20:20:3:2:14:15")
 bind_command({ ctrl_alt, "up" }, "yabai_grid 1:1:0:0:1:1")
-bind_command({ ctrl_alt_cmd, "-" }, "yabai_grid 10:10:1:0:8:10")
+bind_command({ ctrl_alt_cmd, "/" }, "yabai_grid 10:10:1:0:8:10")
 
 --------------
 -- Displays --

@@ -64,13 +64,11 @@ endif
 if has('nvim')
   set inccommand=split
 
+  tnoremap KJ    <c-\><c-n>
   tnoremap <c-h> <c-\><c-n><C-w>h
   tnoremap <c-j> <c-\><c-n><C-w>j
   tnoremap <c-k> <c-\><c-n><C-w>k
   tnoremap <c-l> <c-\><c-n><C-w>l
-  tnoremap kj    <c-\><c-n>
-  tnoremap KJ    <c-\><c-n>
-  tnoremap Kj    <c-\><c-n>
 else
   " Mouse support
   set ttymouse=xterm2
@@ -102,12 +100,33 @@ inoremap kj <Esc>
 inoremap KJ <Esc>
 inoremap Kj <Esc>
 let mapleader = "\<Space>"
+
 nnoremap <space> <nop>
 xnoremap <space> <nop>
+nnoremap ' <nop>
+xnoremap ' <nop>
 
-" Some expansions
-inoremap ,, <c-o>A,
-inoremap ;; <c-o>A;
+" Jump to next match with TAB during a search
+set wildcharm=<c-z>
+cnoremap <expr> <tab>   getcmdtype() =~ '[?/]' ? "<c-g>" : "<c-z>"
+cnoremap <expr> <s-tab> getcmdtype() =~ '[?/]' ? "<c-t>" : "<s-tab>"
+
+" Insert mode {{{ "
+inoremap kj <Esc>
+inoremap KJ <Esc>
+inoremap Kj <Esc>
+
+inoremap <m-,> <c-o>A,
+inoremap <m-.> <c-o>A.
+inoremap <m-:> <c-o>A:
+inoremap <m-;> <c-o>A;
+
+inoremap <m-left> <s-left>
+inoremap <m-right> <s-right>
+inoremap <c-a> <home>
+inoremap <c-e> <end>
+inoremap <m-O> <esc>O
+inoremap <m-o> <esc>o
 
 inoremap (<cr> (<cr>)<esc>O
 inoremap [<cr> [<cr>]<esc>O
@@ -117,209 +136,21 @@ inoremap (,<cr> (<cr>),<esc>O
 inoremap [,<cr> [<cr>],<esc>O
 inoremap {,<cr> {<cr>},<esc>O
 
-inoremap (<space> ()<left>
+inoremap (<space> (<space><space>)<left><left>
 inoremap [<space> [<space><space>]<left><left>
 inoremap {<space> {<space><space>}<left><left>
+" }}} Insert mode "
 
-inoremap (,<space> (),<left><left>
-inoremap [,<space> [<space><space>],<left><left><left>
-inoremap {,<space> {<space><space>},<left><left><left>
-
-" Jump to next match with TAB during a search
-set wildcharm=<c-z>
-cnoremap <expr> <tab>   getcmdtype() =~ '[?/]' ? "<c-g>" : "<c-z>"
-cnoremap <expr> <s-tab> getcmdtype() =~ '[?/]' ? "<c-t>" : "<s-tab>"
-
-" QOL remappings
-" cnoremap %h <c-r>=fnameescape(expand('%:h')).'/'<cr>
-" cnoremap %t <c-r>=fnameescape(expand('%:t'))<cr>
+" Command mode {{{ "
 cnoremap <c-a> <c-b>
 cnoremap <c-j> <down>
 cnoremap <c-k> <up>
+
 cnoremap <m-left> <s-left>
 cnoremap <m-right> <s-right>
-cnoremap <m-+> ]
-cnoremap <m-ç> }
-cnoremap <m-ñ> ~
-inoremap <m-left> <s-left>
-inoremap <m-right> <s-right>
-inoremap <c-a> <home>
-inoremap <c-e> <end>
-inoremap <m-O> <esc>O
-inoremap <m-o> <esc>o
-inoremap <m-+> ]
-inoremap <m-ç> }
-inoremap <m-ñ> ~
-nnoremap <s-down> ]c
-nnoremap <s-up>   [c
-nnoremap <expr> j v:count ? 'j' : 'gj'
-nnoremap <expr> k v:count ? 'k' : 'gk'
-xnoremap <expr> j v:count ? 'j' : 'gj'
-xnoremap <expr> k v:count ? 'k' : 'gk'
-nnoremap <leader>. @:
-nnoremap <leader>, @@
-nnoremap <leader>E :e<space><c-r>=fnameescape(expand('%:.:h')).'/'<cr>
-nnoremap <leader>e :e<space>
-nnoremap <m-O> mzO<esc>`z
-nnoremap <m-o> mzo<esc>`z
-nnoremap <silent> <down>  :cnext<cr>
-nnoremap <silent> <left>  :lprevious<cr>
-nnoremap <silent> <right> :lnext<cr>
-nnoremap <silent> <up>    :cprevious<cr>
-nnoremap <silent> <leader><down>  :cnfile<cr>
-nnoremap <silent> <leader><left>  :lpfile<cr>
-nnoremap <silent> <leader><right> :lnfile<cr>
-nnoremap <silent> <leader><up>    :cpfile<cr>
-nnoremap <silent> <leader>0 <c-w>=
-nnoremap <silent> <leader>Q :%bdelete\|e#\|bd#<cr>
-nnoremap <silent> <leader>t :tabnew<cr>
-nnoremap <silent> <leader>X :qa!<cr>
-nnoremap <silent> <leader>\| <c-w>\|
-nnoremap <silent> <leader>_ <c-w>_
-nnoremap <silent> <leader>c <c-w>c
-nnoremap <silent> <leader>b gg=G
-nnoremap <silent> <leader>m <c-w>_<c-w>\|
-nnoremap <silent> <leader>q :%bdelete<cr>
-nnoremap <silent> <leader>w :w!<cr>
-nnoremap <silent> <leader>x :confirm qa<cr>
-nnoremap <silent> <leader>< :tabmove -1<cr>
-nnoremap <silent> <leader>> :tabmove +1<cr>
-nnoremap <silent> g2 :set shiftwidth=2 softtabstop=2 expandtab \| retab<cr>gg=G
-nnoremap <silent> g4 :set shiftwidth=4 softtabstop=4 expandtab \| retab<cr>gg=G
-nnoremap +c :tabclose<cr>
-nnoremap +q :tabonly<cr>
-nnoremap +t <c-w>T
-nnoremap J m`J``
-nnoremap M <c-w>o
-nnoremap Q @q
-nnoremap Y y$
-nnoremap Ñ ?
-nnoremap ñ /
-noremap ' `
-noremap <silent> <leader>ñ :noh<cr>:echon<cr>
-noremap H g^
-noremap L g$
-xnoremap <silent> Q :norm @q<cr>
-xnoremap Ñ ?
-xnoremap ñ /
+" }}} Command mode "
 
-nmap U :undolist<cr>
-
-" buffer closing {{{ "
-nnoremap +b <cmd>bd!<cr>
-
-" Don't close if there are changes (toggle removing split or not)
-nnoremap <silent> º :bp\|bd #<cr>
-nnoremap <silent> <leader>º :bdelete<cr>
-
-" Close even if there are changes (toggle removing the split)
-nnoremap <silent> ª :bp!\|bd! #<cr>
-nnoremap <silent> <leader>ª :bdelete!<cr>
-" }}} buffer closing "
-
-" global command {{{ "
-nnoremap +g :g//<left>
-nnoremap +v :v//<left>
-
-xnoremap +g :g//<left>
-xnoremap +v :v//<left>
-" }}} global command "
-
-" pasting with indent {{{ "
-nnoremap <silent> p p:execute ":silent normal! `[v`]="<cr>
-nnoremap <silent> P P:execute ":silent normal! `[v`]="<cr>
-nnoremap gp p
-nnoremap gP P
-" }}} pasting with indent "
-
-" replace {{{ "
-nnoremap R ciw<c-r>0<esc>
-xnoremap R "0p
-" }}} replace "
-
-" repeat on visual {{{ "
-xnoremap <silent> . :normal .<cr>
-" }}} repeat on visual "
-
-" indent {{{ "
-xnoremap < <gv
-xnoremap > >gv
-" }}} indent "
-
-" star search {{{ "
-nnoremap <silent> * :let @/='\<<C-R>=expand("<cword>")<cr>\>'<bar>set hls<cr>
-nnoremap # #N
-
-" If I have a visual selection and press * I want it to show ocurrences
-xnoremap * y:let @/=escape(@@, '/\') <bar> normal! /<cr>
-xnoremap # y:let @/=escape(@@, '/\') <bar> normal! ?<cr>
-" }}} star search "
-
-" clipboard {{{ "
-nnoremap <leader>y "+y
-nnoremap <leader>Y "+y$
-xnoremap <leader>y "+y
-" }}} clipboard "
-
-" move line {{{ "
-nnoremap <silent> <M-j> :m+<cr>==
-nnoremap <silent> <M-k> :m-2<cr>==
-xnoremap <silent> <M-j> :m'>+<cr>`<my`>mzgv=gv`yo`z
-xnoremap <silent> <M-k> :m'<-2<cr>`>my`<mzgv=gv`yo`z
-" }}} move line "
-
-" buffers {{{ "
-nmap gm :ls<cr>
-
-nnoremap <BS> <C-^>
-nnoremap <silent> <leader>n :enew<cr>
-nnoremap <silent> <s-tab> :tabprevious<cr>
-nnoremap <silent> <tab> :tabnext<cr>
-" }}} buffers "
-
-" fix c-i after mapping tab {{{ "
-nnoremap <c-p> <c-i>
-" }}} fix c-i after mapping tab "
-
-" tags {{{ "
-nmap T g]
-nmap t <c-]>
-" }}} tags "
-
-" splits {{{ "
-nnoremap <leader>v <c-w>v
-nnoremap <leader>h <c-w>s
-
-nnoremap <c-h> <c-w>h
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
-
-nnoremap <leader>H <c-w>H
-nnoremap <leader>J <c-w>J
-nnoremap <leader>K <c-w>K
-nnoremap <leader>L <c-w>L
-" }}} splits "
-
-" duplicate file {{{ "
-nnoremap <leader>W :saveas <C-R>=fnameescape(expand('%:.:h')).'/'<cr>
-" }}} duplicate file "
-
-" configuration toggles {{{ "
-nnoremap yol :set cursorline!<cr>
-nnoremap yod :<c-r>=&diff ? "windo diffoff" : "windo diffthis"<cr><cr>
-nnoremap yoh :set hlsearch!<cr>
-nnoremap yoi :set list!<cr>
-nnoremap yon :set number!<cr>
-nnoremap yop :set paste!<cr>
-nnoremap yor :set relativenumber!<cr>
-
-nnoremap yos :setlocal spell! spelllang=en_us<cr>
-nnoremap yow :setlocal wrap!<cr>
-" }}} configuration toggles "
-" }}} bindings "
-
-" text objects {{{ "
+" Operator pending mode {{{ "
 " Whole WORD is kinda awkward to press
 onoremap ao aW
 onoremap io iW
@@ -389,7 +220,175 @@ onoremap i? :<C-u>normal vi?V<CR>
 xnoremap ik `]o`[
 onoremap ik :<C-u>normal vik<CR>
 onoremap ak :<C-u>normal vikV<CR>
-" }}} text objects "
+" }}} Operator pending mode "
+
+" Normal mode {{{ "
+" Buffers
+nnoremap <bs> <c-^>
+
+nnoremap <leader>n <cmd>enew<cr>
+nnoremap <leader>q <cmd>%bdelete<cr>
+nnoremap <leader>Q <cmd>%bdelete\|e#\|bd#<cr>
+nnoremap <leader>b <cmd>bd!<cr>
+
+nnoremap <leader><tab> <cmd>bp\|bd #<cr>
+nnoremap <leader><s-tab> <cmd>bp!\|bd! #<cr>
+
+nnoremap gm :ls<cr>
+nnoremap <leader>E :e<space><c-r>=fnameescape(expand('%:.:h')).'/'<cr>
+nnoremap <leader>e :e<space>
+nnoremap <leader>W :saveas <C-R>=fnameescape(expand('%:.:h')).'/'<cr>
+
+" Editing
+nnoremap J m`J``
+
+nnoremap <M-j> <cmd>m+<cr>==
+nnoremap <M-k> <cmd>m-2<cr>==
+xnoremap <M-j> <cmd>m'>+<cr>`<my`>mzgv=gv`yo`z
+xnoremap <M-k> <cmd>m'<-2<cr>`>my`<mzgv=gv`yo`z
+
+nnoremap <m-o> m`o<esc>``
+nnoremap <m-O> m`O<esc>``
+
+nnoremap <leader>fo gg=G
+nnoremap <silent> g2 :set shiftwidth=2 softtabstop=2 expandtab \| retab<cr>gg=G
+nnoremap <silent> g4 :set shiftwidth=4 softtabstop=4 expandtab \| retab<cr>gg=G
+
+xnoremap < <gv
+xnoremap > >gv
+
+" Editor
+nnoremap <leader>w <cmd>w!<cr>
+nnoremap <leader>x <cmd>confirm qa<cr>
+nnoremap <leader>X <cmd>qa!<cr>
+
+" Macros
+nnoremap Q @q
+xnoremap <silent> Q :norm @q<cr>
+
+" Movement
+nnoremap <expr> j v:count ? 'j' : 'gj'
+nnoremap <expr> k v:count ? 'k' : 'gk'
+xnoremap <expr> j v:count ? 'j' : 'gj'
+xnoremap <expr> k v:count ? 'k' : 'gk'
+
+noremap H g^
+noremap L g$
+
+nnoremap <s-down> ]c
+nnoremap <s-up>   [c
+
+nnoremap <c-p> <c-i>
+
+" Panes
+nnoremap <leader>v <c-w>v
+nnoremap <leader>h <c-w>s
+
+nnoremap <leader>c <c-w>c
+nnoremap <leader>0 <c-w>=
+nnoremap <leader>= <c-w>=
+
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+
+nnoremap <leader>H <c-w>H
+nnoremap <leader>J <c-w>J
+nnoremap <leader>K <c-w>K
+nnoremap <leader>L <c-w>L
+
+nnoremap M <c-w>o
+nnoremap <leader>m <c-w>_<c-w>\|
+nnoremap <leader>_ <c-w>_
+nnoremap <leader>\| <c-w>\|
+
+" Copy/Paste
+nnoremap Y y$
+
+nnoremap <leader>y "+y
+nnoremap <leader>Y "+y$
+xnoremap <leader>y "+y
+
+nnoremap p p<cmd>execute ":silent normal! `[v`]="<cr>
+nnoremap P P<cmd>execute ":silent normal! `[v`]="<cr>
+nnoremap gp p
+nnoremap gP P
+xnoremap p P
+xnoremap P p
+
+xnoremap D yP`<^
+
+" Quickfix/Location list
+nnoremap <up>   <cmd>cprevious<cr>
+nnoremap <down> <cmd>cnext<cr>
+nnoremap <leader><up>   <cmd>cpfile<cr>
+nnoremap <leader><down> <cmd>cnfile<cr>
+
+nnoremap <left>  <cmd>lprevious<cr>
+nnoremap <right> <cmd>lnext<cr>
+nnoremap <leader><left>  <cmd>lpfile<cr>
+nnoremap <leader><right> <cmd>lnfile<cr>
+
+" Repeat
+nnoremap <leader>. @:
+nnoremap <leader>, @@
+
+xnoremap <silent> . :normal .<cr>
+
+" Replace
+nnoremap R ciw<c-r>0<esc>
+xnoremap R "0p
+
+" Search
+noremap <silent> <leader>; :noh<cr>:echon<cr>
+
+nnoremap <silent> * :let @/='\<<C-R>=expand("<cword>")<cr>\>'<bar>set hls<cr>
+nnoremap # #N
+
+xnoremap * y:let @/=escape(@@, '/\') <bar> normal! /<cr>
+xnoremap # y:let @/=escape(@@, '/\') <bar> normal! ?<cr>
+
+" Tabs
+nnoremap <tab>   <cmd>tabnext<cr>
+nnoremap <s-tab> <cmd>tabprevious<cr>
+
+nnoremap 'q <cmd>tabonly<cr>
+nnoremap 't <c-w>T
+nnoremap <leader>< <cmd>tabmove -1<cr>
+nnoremap <leader>> <cmd>tabmove +1<cr>
+nnoremap <leader>C <cmd>tabclose<cr>
+nnoremap <leader>t <cmd>tabnew<cr>
+
+" Tags
+nmap T g]
+nmap t <c-]>
+
+" Toggle settings
+nnoremap yol :set cursorline!<cr>
+nnoremap yod :<c-r>=&diff ? "windo diffoff" : "windo diffthis"<cr><cr>
+nnoremap yoh :set hlsearch!<cr>
+nnoremap yoi :set list!<cr>
+nnoremap yon :set number!<cr>
+nnoremap yop :set paste!<cr>
+nnoremap yor :set relativenumber!<cr>
+
+nnoremap yos :setlocal spell! spelllang=en_us<cr>
+nnoremap yow :setlocal wrap!<cr>
+" }}} Normal mode "
+
+" Misc {{{ "
+" Global substitutions
+nnoremap +g :g//<left>
+nnoremap +v :v//<left>
+
+xnoremap +g :g//<left>
+xnoremap +v :v//<left>
+
+" Undo
+nmap U :undolist<cr>
+" }}} Misc "
+" }}} bindings "
 
 " substitute {{{ "
 nnoremap s <Nop>
@@ -834,8 +833,8 @@ function! ToggleList(bufname, pfx)
   endif
 endfunction
 
-nnoremap <silent> ç :call ToggleList("Quickfix List", 'c')<cr>
-nnoremap <silent> Ç :call ToggleList("Location List", 'l')<cr>
+nnoremap <silent> \ :call ToggleList("Quickfix List", 'c')<cr>
+nnoremap <silent> 'd :call ToggleList("Location List", 'l')<cr>
 " }}} QuickFix toggle "
 
 " External Plugins {{{ "

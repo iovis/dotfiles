@@ -1,15 +1,6 @@
 hs.hotkey.bind(hyper, "c", hs.toggleConsole)
 hs.hotkey.bind(ctrl_alt_cmd, "r", hs.reload)
 
-----Dead Keys
-hs.hotkey.bind({ "shift" }, "`", function()
-  hs.eventtap.keyStrokes("^")
-end)
-
-hs.hotkey.bind({}, "`", function()
-  hs.eventtap.keyStrokes("`")
-end)
-
 ---Debug keystrokes in console
 local debug = false
 if debug then
@@ -21,3 +12,12 @@ if debug then
 
   tap:start()
 end
+
+----Dead Keys
+-- hs.hotkey.bind({ "shift" }, "`", function()
+--   hs.eventtap.keyStrokes("^")
+-- end)
+--
+-- hs.hotkey.bind({}, "`", function()
+--   hs.eventtap.keyStrokes("`")
+-- end)

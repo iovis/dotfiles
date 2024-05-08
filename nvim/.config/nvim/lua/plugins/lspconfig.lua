@@ -6,7 +6,7 @@ return {
         ui = {
           border = "rounded",
           keymaps = {
-            apply_language_filter = "Ñ",
+            apply_language_filter = ";",
           },
         },
       })

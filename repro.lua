@@ -40,11 +40,11 @@ vim.keymap.set("n", "<leader>h", "<c-w>s")
 vim.keymap.set("n", "<leader>v", "<c-w>v")
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr>")
 vim.keymap.set("n", "<leader>x", "<cmd>qa<cr>")
-vim.keymap.set("n", "<leader>ñ", "<cmd>noh<cr><cmd>echon<cr>")
+vim.keymap.set("n", "<leader>;", "<cmd>noh<cr><cmd>echon<cr>")
 vim.keymap.set("n", "H", "^")
 vim.keymap.set("n", "L", "$")
 vim.keymap.set("n", "M", "<c-w>o")
-vim.keymap.set("n", "ñ", "/")
+vim.keymap.set("n", ";", "/")
 
 -- install plugins
 local plugins = {

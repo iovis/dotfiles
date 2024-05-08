@@ -8,8 +8,6 @@ noremap j gj
 noremap k gk
 noremap H ^
 noremap L $
-noremap ñ /
-noremap Ñ ?
 
 unmap <Space>
 exmap workspace_split_horizontal obcommand workspace:split-horizontal
@@ -35,7 +33,7 @@ nmap <C-l> :editor_focus_right
 exmap editor_focus_top obcommand editor:focus-top
 nmap <C-k> :editor_focus_top
 
-noremap <Space>ñ :nohl
+noremap <Space>; :nohl
 
 exmap editor_swap_line_down obcommand editor:swap-line-down
 nmap ¶ :editor_swap_line_down

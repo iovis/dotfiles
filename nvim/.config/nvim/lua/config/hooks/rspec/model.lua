@@ -127,7 +127,7 @@ function RSpec:clear()
   vim.diagnostic.reset(self.namespace, self.file_bufnr)
 
   pcall(vim.api.nvim_buf_del_user_command, self.file_bufnr, "RSpecOutput")
-  pcall(vim.keymap.del, "n", "++", { buffer = true })
+  pcall(vim.keymap.del, "n", "''", { buffer = true })
 end
 
 ---Show progress popup
@@ -167,7 +167,7 @@ end
 ---Create buffer local command to show RSpec output
 function RSpec:create_buf_command()
   -- Mapping
-  vim.keymap.set("n", "++", ":RSpecOutput<cr>", { buffer = true, silent = true })
+  vim.keymap.set("n", "''", ":RSpecOutput<cr>", { buffer = true, silent = true })
 
   -- User command
   vim.api.nvim_buf_create_user_command(self.file_bufnr, "RSpecOutput", function()

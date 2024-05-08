@@ -41,9 +41,6 @@ return {
           buf_tmap("<c-k>", "<up>")
           buf_tmap("<m-left>", "<s-left>")
           buf_tmap("<m-right>", "<s-right>")
-          buf_tmap("<m-+>", "]")
-          buf_tmap("<m-ç>", "}")
-          buf_tmap("<m-ñ>", "~")
         end,
       },
       keymap = {

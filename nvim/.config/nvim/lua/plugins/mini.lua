@@ -52,8 +52,8 @@ return {
     local bufremove = require("mini.bufremove")
     bufremove.setup({})
 
-    vim.keymap.set("n", "º", bufremove.delete, { desc = "Bdelete" })
-    vim.keymap.set("n", "ª", function()
+    vim.keymap.set("n", "<leader><tab>", bufremove.delete, { desc = "Bdelete" })
+    vim.keymap.set("n", "<leader><s-tab>", function()
       bufremove.delete(0, true)
     end, { desc = "Bdelete!" })
 

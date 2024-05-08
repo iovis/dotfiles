@@ -62,7 +62,7 @@ bind -N "Close the rest of the windwos" Q confirm -p "kill the rest of the windo
   kill-window -a
 }
 
-bind -N "Kill window" º confirm -p "kill-window #W? (y/n)" {
+bind -N "Kill window" Tab confirm -p "kill-window #W? (y/n)" {
   kill-window
 }
 
@@ -94,6 +94,10 @@ bind -N "Resize panes equally" 0 {
   select-layout tiled
 }
 
+bind -N "Resize panes equally" = {
+  select-layout tiled
+}
+
 # Move panes
 bind -N "Move pane down"  -r down  swap-pane -dt "{down-of}"
 bind -N "Move pane left"  -r left  swap-pane -dt "{left-of}"
@@ -106,7 +110,7 @@ bind -N "Move pane left (full)"  J move-pane -fv -t '.{next}'
 bind -N "Move pane right (full)" K move-pane -fv -b -t '.{next}'
 bind -N "Move pane up (full)"    L move-pane -fh -t '.{next}'
 
-bind -N "Promote pane to session" '"' {
+bind -N "Promote pane to session" @ {
   run tmux_promote_pane
 }
 

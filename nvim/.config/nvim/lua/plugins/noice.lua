@@ -108,7 +108,7 @@ return {
       desc = "Noice history",
     })
 
-    vim.keymap.set("n", "<leader>ñ", function()
+    vim.keymap.set("n", "<leader>;", function()
       require("notify").dismiss({})
       vim.cmd.nohlsearch()
     end, {

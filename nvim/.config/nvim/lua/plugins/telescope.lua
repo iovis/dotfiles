@@ -84,7 +84,7 @@ return {
     vim.keymap.set("n", "<leader>gco", t.git_branches, { desc = "t.git_branches" })
     vim.keymap.set("n", "<leader>j", t.git_status, { desc = "t.git_status" })
     vim.keymap.set("n", "<leader>o", t.find_files, { desc = "t.find_files" })
-    vim.keymap.set("n", "<leader>ñ", t.current_buffer_fuzzy_find, { desc = "t.current_buffer_fuzzy_find" })
+    vim.keymap.set("n", "<leader>;", t.current_buffer_fuzzy_find, { desc = "t.current_buffer_fuzzy_find" })
 
     vim.keymap.set("n", "<leader>fp", function()
       t.grep_string({ search = "\\w", use_regex = true, sort_only_text = true })

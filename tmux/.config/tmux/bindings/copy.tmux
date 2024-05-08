@@ -15,11 +15,9 @@ bind -n C-_ if "$is_vim" {
   copy-mode
 }
 
-bind ñ if "$is_vim" {
-  send ñ
-} {
+bind / {
   copy-mode
-  send ñ
+  send /
 }
 
 # Movement
@@ -32,8 +30,8 @@ bind -T copy-mode-vi u send -X halfpage-up
 bind -T copy-mode-vi p send -X search-reverse
 
 # Search
-bind -T copy-mode-vi ñ command-prompt -i -I "#{pane_search_string}" -T search -p "(search up)" { send-keys -X search-backward-incremental "%%" }
-bind -T copy-mode-vi Ñ command-prompt -i -I "#{pane_search_string}" -T search -p "(search down)" { send-keys -X search-forward-incremental "%%" }
+bind -T copy-mode-vi / command-prompt -i -I "#{pane_search_string}" -T search -p "(search up)" { send-keys -X search-backward-incremental "%%" }
+bind -T copy-mode-vi ? command-prompt -i -I "#{pane_search_string}" -T search -p "(search down)" { send-keys -X search-forward-incremental "%%" }
 
 # Marks
 bind -T copy-mode-vi m   send -X set-mark

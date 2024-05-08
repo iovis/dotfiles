@@ -26,7 +26,6 @@ end
 
 require("application_launcher")
 require("bindings")
-require("defy")
 require("yabai")
 
 notify("Configuration Reloaded")

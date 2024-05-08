@@ -21,7 +21,7 @@ return {
       map("x", "<leader>dk", function()
         gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
       end)
-      map("n", "+h", function()
+      map("n", "'h", function()
         gs.blame_line({ full = true })
       end)
       map({ "o", "x" }, "ik", ":<C-U>Gitsigns select_hunk<CR>")

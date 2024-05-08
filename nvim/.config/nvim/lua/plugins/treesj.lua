@@ -1,8 +1,8 @@
 return {
   "Wansmer/treesj",
   keys = {
-    { "+j", ":TSJJoin<cr>", silent = true },
-    { "+s", ":TSJSplit<cr>", silent = true },
+    { "'j", ":TSJJoin<cr>", silent = true },
+    { "'s", ":TSJSplit<cr>", silent = true },
   },
   dependencies = {
     "AndrewRadev/splitjoin.vim",

@@ -43,7 +43,6 @@ keybinding:
     nextTab: 'l'
     prevTab: 'h'
     prevScreenMode: '-'
-    startSearch: 'ñ'
   commits:
     moveDownCommit: 'J'
     moveUpCommit: 'K'

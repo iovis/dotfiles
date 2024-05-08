@@ -29,7 +29,7 @@ return {
     })
 
     ----Quick maps
-    local keys = { "h", "j", "k", "l", "ñ" }
+    local keys = { "h", "j", "k", "l" }
 
     for _, key in ipairs(keys) do
       vim.keymap.set("n", "g" .. key:upper(), function()
@@ -42,14 +42,17 @@ return {
       end, { desc = "[muxi] go to session " .. key })
     end
 
-    -- ñ:upper() doesn't work great
-    vim.keymap.set("n", "gÑ", function()
-      muxi.add("ñ")
-      vim.notify("Added current file to ñ")
-    end, { desc = "[muxi] Add session to ñ" })
+    vim.keymap.set("n", "g;", function()
+      muxi.go_to(";", { go_to_cursor = false })
+    end, { desc = "[muxi] go to session ;" })
+
+    vim.keymap.set("n", "g:", function()
+      muxi.add(";")
+      vim.notify("Added current file to ;")
+    end, { desc = "[muxi] Add session to ;" })
 
     ----Mark management
-    vim.keymap.set("n", "g-", require("muxi.fzf").marks, {
+    vim.keymap.set("n", "g/", require("muxi.fzf").marks, {
       desc = "[muxi] fzf-lua marks",
     })
 

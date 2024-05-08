@@ -1,6 +1,6 @@
 {
-  "keyMappings": "map <a-π> togglePinTab\nmap F LinkHints.activateModeToOpenInNewForegroundTab\nmap ñ enterFindMode\nmap ƒ LinkHints.activateModeWithQueue\nmap <BS> visitPreviousTab\n\nunmap <a-f>\nunmap <a-p>\nunmap /\nunmap ^\nunmap B\nunmap O\nunmap T\nunmap X\nunmap b\nunmap gF\nunmap gf\nunmap o\nunmap p\nunmap r\nunmap t\nunmap v\nunmap x",
-  "settingsVersion": "2.0.5",
+  "keyMappings": "map F LinkHints.activateModeToOpenInNewForegroundTab\nmap <BS> visitPreviousTab\n\nunmap /\nunmap B\nunmap O\nunmap T\nunmap X\nunmap b\nunmap gF\nunmap gf\nunmap o\nunmap p\nunmap r\nunmap t\nunmap v\nunmap x",
+  "settingsVersion": "2.1.2",
   "exclusionRules": [
     {
       "passKeys": "",
@@ -29,6 +29,10 @@
     {
       "passKeys": "",
       "pattern": "https?://excalidraw.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://usevia.app/*"
     }
   ]
 }

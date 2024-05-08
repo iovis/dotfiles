@@ -5,13 +5,10 @@ vim.keymap.set("i", "KJ", "<esc>")
 vim.keymap.set("i", "Kj", "<esc>")
 
 -- Quick expansions
-vim.keymap.set("i", "<m-+>", "]")
-vim.keymap.set("i", "<m-ç>", "}")
-vim.keymap.set("i", "<m-ñ>", "~")
-
 vim.keymap.set("i", "<m-,>", "<c-o>A,")
 vim.keymap.set("i", "<m-.>", "<c-o>A.")
-vim.keymap.set("i", "<m-k>", "<c-o>A;")
+vim.keymap.set("i", "<m-;>", "<c-o>A;")
+vim.keymap.set("i", "<m-:>", "<c-o>A:")
 
 -- Append character and open new line
 local line_ending = {
@@ -54,11 +51,6 @@ vim.keymap.set("c", "<m-p>", "<c-r>=fnameescape(expand('%:.:h')).'/'<cr>")
 -- Fish's binding for edit command in editor
 vim.keymap.set("c", "<m-e>", "<c-f>")
 
--- Quick expansions
-vim.keymap.set("c", "<m-+>", "]")
-vim.keymap.set("c", "<m-ç>", "}")
-vim.keymap.set("c", "<m-ñ>", "~")
-
 -- Movement
 vim.keymap.set("c", "<m-left>", "<s-left>")
 vim.keymap.set("c", "<m-right>", "<s-right>")
@@ -70,13 +62,20 @@ vim.keymap.set("c", "<c-j>", "<down>")
 vim.keymap.set("c", "<c-k>", "<up>")
 
 ---- Normal mode
+vim.keymap.set("n", "'", "<nop>")
+vim.keymap.set("n", "<leader>a", "<nop>")
+vim.keymap.set("n", "<leader>f", "<nop>")
+vim.keymap.set("n", "<leader>s", "<nop>")
+vim.keymap.set("n", "<leader>u", "<nop>")
+vim.keymap.set("n", "<space>", "<nop>")
+
 -- Buffers
 vim.keymap.set("n", "<bs>", "<c-^>")
 
 vim.keymap.set("n", "<leader>n", "<cmd>enew<cr>")
 vim.keymap.set("n", "<leader>q", "<cmd>%bdelete<cr>")
 vim.keymap.set("n", "<leader>Q", "<cmd>%bdelete|e#|bd#<cr>")
-vim.keymap.set("n", "+b", "<cmd>bd!<cr>")
+vim.keymap.set("n", "<leader>b", "<cmd>bd!<cr>")
 
 vim.keymap.set("n", "<leader>e", ":e<space>")
 vim.keymap.set("n", "<leader>E", ":e <c-r>=fnameescape(expand('%:.:h')).'/'<cr>")
@@ -93,7 +92,7 @@ vim.keymap.set("x", "<m-k>", ":m'<-2<cr>`>my`<mzgv=gv`yo`z", { silent = true })
 vim.keymap.set("n", "<m-o>", "m`o<esc>``")
 vim.keymap.set("n", "<m-O>", "m`O<esc>``")
 
--- vim.keymap.set("n", "<leader>b", "gg=G")
+-- vim.keymap.set("n", "<leader>fo", "gg=G")
 
 vim.keymap.set("n", "g2", "m`:set shiftwidth=2 softtabstop=2 expandtab | retab<cr>gg=G``")
 vim.keymap.set("n", "g4", "m`:set shiftwidth=4 softtabstop=4 expandtab | retab<cr>gg=G``")
@@ -120,7 +119,6 @@ end, { expr = true })
 
 vim.keymap.set({ "n", "x", "o" }, "H", "^")
 vim.keymap.set({ "n", "x", "o" }, "L", "$")
-vim.keymap.set({ "n", "x", "o" }, "'", "`")
 
 vim.keymap.set("n", "<s-up>", "[c", { remap = true })
 vim.keymap.set("n", "<s-down>", "]c", { remap = true })
@@ -128,6 +126,7 @@ vim.keymap.set("n", "<s-down>", "]c", { remap = true })
 vim.keymap.set("n", "<c-p>", "<c-i>")
 
 -- Open Resource
+-- TODO: Use `gx` in nvim v0.10
 vim.keymap.set("n", "¡¡", "<cmd>silent execute '!open ' . escape(expand('<cWORD>'), '#')<cr>")
 vim.keymap.set("x", "¡", "y<cmd>silent execute '!open ' . escape(getreg('0'), '#')<cr>")
 
@@ -139,6 +138,7 @@ vim.keymap.set("n", "<leader>h", "<c-w>s")
 
 vim.keymap.set("n", "<leader>c", "<c-w>c")
 vim.keymap.set("n", "<leader>0", "<c-w>=")
+vim.keymap.set("n", "<leader>=", "<c-w>=")
 
 vim.keymap.set("n", "<leader>H", "<c-w>H")
 vim.keymap.set("n", "<leader>J", "<c-w>J")
@@ -199,10 +199,7 @@ vim.keymap.set("n", "R", "ciw<c-r>0<esc>")
 vim.keymap.set("x", "R", '"0p')
 
 -- Search
-vim.keymap.set({ "n", "x", "o" }, "ñ", "/")
-vim.keymap.set({ "n", "x", "o" }, "Ñ", "?")
-
-vim.keymap.set("n", "<leader>ñ", function()
+vim.keymap.set("n", "<leader>;", function()
   vim.cmd.nohlsearch()
   vim.cmd.echon()
 end, { desc = "Clear search highlights and command line output" })
@@ -211,8 +208,8 @@ vim.keymap.set("n", "*", [[:let @/= '\<' . expand('<cword>') . '\>' <bar> set hl
 vim.keymap.set("x", "*", [[y:let @/= '\V' . escape(@@, '/\') <bar> set hls <bar> normal! /<cr>]], { silent = true })
 
 -- Tabs
-vim.keymap.set("n", "+q", "<cmd>tabonly<cr>")
-vim.keymap.set("n", "+t", "<c-w>T")
+vim.keymap.set("n", "'q", "<cmd>tabonly<cr>")
+vim.keymap.set("n", "'t", "<c-w>T")
 vim.keymap.set("n", "<leader><", "<cmd>tabmove -1<cr>")
 vim.keymap.set("n", "<leader>>", "<cmd>tabmove +1<cr>")
 vim.keymap.set("n", "<leader>C", "<cmd>tabclose<cr>")
@@ -269,36 +266,28 @@ vim.keymap.set("n", "yoc", function()
   end
 end, { desc = "Toggle conceallevel" })
 
----- Clear prefixes
-vim.keymap.set("n", "+", "<nop>")
-vim.keymap.set("n", "<leader>a", "<nop>")
-vim.keymap.set("n", "<leader>f", "<nop>")
-vim.keymap.set("n", "<leader>s", "<nop>")
-vim.keymap.set("n", "<leader>u", "<nop>")
-vim.keymap.set("n", "<space>", "<nop>")
-
 ---- Misc
-vim.keymap.set("n", "+<cr>", "<cmd>so $VIMRUNTIME/syntax/hitest.vim<cr>")
+vim.keymap.set("n", "'<cr>", "<cmd>so $VIMRUNTIME/syntax/hitest.vim<cr>")
 vim.keymap.set("n", "<leader>P", ":R<space>")
 vim.keymap.set("n", "<leader>M", "<cmd>10R messages<cr>G")
-vim.keymap.set("n", "+M", function()
+vim.keymap.set("n", "'M", function()
   print("messages cleared")
   vim.cmd("messages clear")
 end, { desc = "Clear messages" })
 
 ---- Global substitutions
-vim.keymap.set({ "n", "x" }, "+g", ":g//<left>")
-vim.keymap.set({ "n", "x" }, "+v", ":v//<left>")
-vim.keymap.set({ "n", "x" }, "+l", function()
+vim.keymap.set({ "n", "x" }, "'g", ":g//<left>")
+vim.keymap.set({ "n", "x" }, "'v", ":v//<left>")
+vim.keymap.set({ "n", "x" }, "'l", function()
   return ':luado return string.format("%s", line)' .. ("<left>"):rep(10)
 end, { expr = true })
-vim.keymap.set({ "n", "x" }, "+L", function()
+vim.keymap.set({ "n", "x" }, "'L", function()
   ----Notes:
   -- - Splitting line on a separator: vim.split(line, "<separator>")
   -- - Joining array of strings: table.concat(<table>, "<separator>")
   return ':luado return table.concat(vim.split(line, "", { trimempty = true }), "")' .. ("<left>"):rep(29)
 end, { expr = true })
-vim.keymap.set({ "n", "x" }, "+r", [[:rubydo $_ = "#{$_}"<left>]])
+vim.keymap.set({ "n", "x" }, "'r", [[:rubydo $_ = "#{$_}"<left>]])
 
 ---- Tmux capture
 vim.keymap.set("n", "&", [[:10R !tmux capture-pane -Jp -S- -t\! | rg '.'<left>]], {
@@ -306,7 +295,7 @@ vim.keymap.set("n", "&", [[:10R !tmux capture-pane -Jp -S- -t\! | rg '.'<left>]]
 })
 
 ---- Tmux quick switching
-vim.keymap.set("n", "+V", "<cmd>VimPlugin<cr>")
+vim.keymap.set("n", "'V", "<cmd>VimPlugin<cr>")
 
 ---- Toggle autoformat
 vim.keymap.set("n", "<leader>A", function()
