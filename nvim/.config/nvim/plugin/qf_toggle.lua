@@ -6,4 +6,4 @@ local qf_toggle = function()
   end
 end
 
-vim.keymap.set("n", "\\", qf_toggle, { desc = "QuickFix Toggle" })
+vim.keymap.set("n", "+", qf_toggle, { desc = "QuickFix Toggle" })
