@@ -26,7 +26,7 @@ return {
     "init",
     fmt(
       [[
-        set dotenv-load
+        set dotenv-load := true
 
         default: {}
 
@@ -74,7 +74,7 @@ return {
     "rails",
     fmt(
       [[
-        set dotenv-load
+        set dotenv-load := true
 
         default: {}
 
@@ -131,7 +131,7 @@ return {
     "rust",
     fmt(
       [[
-        set dotenv-load
+        set dotenv-load := true
 
         default: {}
 
@@ -182,7 +182,7 @@ return {
     "zig",
     fmt(
       [[
-        set dotenv-load
+        set dotenv-load := true
 
         default: {}
 
