@@ -289,6 +289,15 @@ vim.keymap.set({ "n", "x" }, "'L", function()
 end, { expr = true })
 vim.keymap.set({ "n", "x" }, "'r", [[:rubydo $_ = "#{$_}"<left>]])
 
+---- Quickfic toggle
+vim.keymap.set("n", "+", function()
+  if vim.fn.getqflist({ winid = 1 }).winid == 0 then
+    vim.cmd("botright copen")
+  else
+    vim.cmd("cclose")
+  end
+end, { desc = "QuickFix Toggle" })
+
 ---- Tmux capture
 vim.keymap.set("n", "&", [[:10R !tmux capture-pane -Jp -S- -t\! | rg '.'<left>]], {
   desc = "Capture and filter tmux last pane's contents",
