@@ -62,8 +62,11 @@ if status is-interactive
     end
 
     if command -q starship
-        # starship init fish | source
-        starship init fish --print-full-init | source
+        starship init fish | source
+    end
+
+    if command -q starship
+        zoxide init fish | source
     end
 else
     mise activate fish --shims | source

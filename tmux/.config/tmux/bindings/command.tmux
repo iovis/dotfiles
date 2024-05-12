@@ -28,6 +28,10 @@ bind -N "Switch to git worktree" -T command w {
   run -b "cd #{pane_current_path} && gws"
 }
 
+bind -N "Open yazi" -T command y {
+  new-window -Sn yazi yazi
+}
+
 bind -N "Tmux customization mode" -T command z {
   customize-mode -Z
 }
