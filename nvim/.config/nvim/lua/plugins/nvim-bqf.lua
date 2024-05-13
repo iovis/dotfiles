@@ -8,6 +8,9 @@ return {
     require("bqf").setup({
       func_map = {
         split = "<c-s>",
+        pscrollup = "<m-k>",
+        pscrolldown = "<m-j>",
+        pscrollorig = "<m-;>",
       },
       preview = {
         winblend = 0,
