@@ -5,7 +5,7 @@ gui:
   # filterMode: 'fuzzy'
   nerdFontsVersion: 3
   showBottomLine: false
-  showCommandLog: true
+  showCommandLog: false
   showFileTree: false
   skipRewordInEditorWarning: true
   theme:
