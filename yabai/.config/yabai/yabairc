@@ -68,6 +68,7 @@ yabai -m rule --add app="^Logi Options" manage=off
 yabai -m rule --add app="^Mail$" manage=off
 yabai -m rule --add app="^Maps$" manage=off
 yabai -m rule --add app="^Messages$" manage=off
+yabai -m rule --add app="^Microsoft Outlook$" manage=off
 yabai -m rule --add app="^Music$" manage=off
 yabai -m rule --add app="^Numi$" manage=off
 yabai -m rule --add app="^Opal Composer$" manage=off
@@ -82,5 +83,6 @@ yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^TablePlus$" manage=off
 yabai -m rule --add app="^Things" manage=off
 yabai -m rule --add app="^Tower$" manage=off
+yabai -m rule --add app="^Webex$" manage=off
 yabai -m rule --add app="^WhatsApp$" manage=off
 yabai -m rule --add app="^zoom.us$" manage=off
