@@ -258,6 +258,8 @@ xnoremap < <gv
 xnoremap > >gv
 
 " Editor
+nnoremap ; :
+nnoremap : ;
 nnoremap <leader>w <cmd>w!<cr>
 nnoremap <leader>x <cmd>confirm qa<cr>
 nnoremap <leader>X <cmd>qa!<cr>
