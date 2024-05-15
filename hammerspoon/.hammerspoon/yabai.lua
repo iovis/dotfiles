@@ -128,7 +128,7 @@ bind_command({ hyper, "f" }, "yabai -m space --layout float")
 bind_command({ hyper, "b" }, "yabai -m space --layout bsp")
 bind_command({ ctrl_alt_cmd, "0" }, "yabai -m space --balance")
 
-bind_command({ ctrl_alt_cmd, "4" }, "yabai_set_second_display")
+bind_command({ ctrl_alt_cmd, "p" }, "yabai_set_second_display")
 
 bind_command({ hyper, "t" }, "yabai -m space --rotate 90")
 bind_command({ hyper, "e" }, "yabai -m window --toggle split")
