@@ -1,5 +1,6 @@
 return {
   "epwalsh/obsidian.nvim",
+  enabled = false,
   version = "*",
   event = "VeryLazy",
   keys = {
