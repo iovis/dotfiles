@@ -1,5 +1,3 @@
-# set -U fish_greeting # remove greeting message
-
 ## Environment
 set -gx XDG_CONFIG_HOME $HOME/.config
 set -gx XDG_DATA_HOME $XDG_CONFIG_HOME/.local/share
