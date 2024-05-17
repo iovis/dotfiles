@@ -4,15 +4,19 @@
 local M = {}
 
 ---Alias command
+---Example:
+---  alias_command("Grep") -- converts `:grep` to `:Grep`
 ---@param cmd string
-M.cabbrev = function(cmd)
-  -- TODO: There may be a `vim.keymap.set("ca", ...)` in nvim v0.10
-  -- cnoreabbrev <expr> grep (getcmdtype() ==# ':' && getcmdline() ==# 'grep') ? 'Grep' : 'grep'
-  local vim_cmd = ([[
-    cnoreabbrev <expr> %s (getcmdtype() ==# ':' && getcmdline() ==# '%s') ? '%s' : '%s'
-  ]]):format(cmd:lower(), cmd:lower(), cmd, cmd:lower())
+M.alias_command = function(cmd)
+  local cmd_lowercase = cmd:lower()
 
-  vim.cmd(vim_cmd)
+  vim.keymap.set("ca", cmd_lowercase, function()
+    if vim.fn.getcmdtype() == ":" and vim.fn.getcmdline() == cmd_lowercase then
+      return cmd
+    else
+      return cmd_lowercase
+    end
+  end, { expr = true })
 end
 
 ---Define user command

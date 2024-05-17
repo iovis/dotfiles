@@ -23,7 +23,7 @@ return {
     ]])
 
     local u = require("config.utils")
-    u.cabbrev("Git")
+    u.alias_command("Git")
 
     local fugitive_augroup = vim.api.nvim_create_augroup("fugitive_augroup", { clear = true })
     vim.api.nvim_create_autocmd("FileType", {

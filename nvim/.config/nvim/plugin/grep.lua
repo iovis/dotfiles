@@ -5,7 +5,7 @@ if u.is_executable("rg") then
   vim.o.grepformat = "%f:%l:%c:%m"
 end
 
-u.cabbrev("Grep")
+u.alias_command("Grep")
 u.command("Grep", function(opts)
   -- NOTE: I tried setting the search based on the command but it's pointless
   --    - The command could have flags, like `-F` (technically doable parsing `opts.fargs`)
