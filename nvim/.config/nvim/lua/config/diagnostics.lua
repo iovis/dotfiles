@@ -52,31 +52,6 @@ vim.api.nvim_create_autocmd("DiagnosticChanged", {
 vim.keymap.set("n", "'d", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 ---- Toggle diagnostics
-vim.g.diagnostics_visible = true
-
-local toggle_diagnostics = function()
-  if vim.g.diagnostics_visible then
-    vim.g.diagnostics_visible = false
-    vim.diagnostic.disable()
-    vim.notify("Diagnostics disabled")
-  else
-    vim.g.diagnostics_visible = true
-    vim.diagnostic.enable()
-    vim.notify("Diagnostics enabled")
-  end
-end
-
-vim.g.diagnostics_virtual = true
-local toggle_diagnostics_virtual = function()
-  vim.g.diagnostics_virtual = not vim.g.diagnostics_virtual
-  vim.diagnostic.config({ virtual_text = vim.g.diagnostics_virtual })
-
-  if vim.g.diagnostics_virtual then
-    vim.notify("Hide diagnostics virtual text")
-  else
-    vim.notify("Show diagnostics virtual text")
-  end
-end
-
-vim.keymap.set("n", "yoD", toggle_diagnostics, { desc = "toggle diagnostics" })
-vim.keymap.set("n", "yov", toggle_diagnostics_virtual, { desc = "toggle virtual text diagnostics" })
+vim.keymap.set("n", "yoD", function()
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, { desc = "toggle diagnostics" })
