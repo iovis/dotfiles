@@ -43,23 +43,23 @@ function SubstituteMotion(mode)
     if is_same_line(mode) then
       -- Something like `iw`
       local search_term = capture_motion_text(mode)
-      u.send_keys(([[:%%s/\v%s//g<left><left>]]):format(search_term))
+      u.send_keys(([[;%%s/\v%s//g<left><left>]]):format(search_term))
     else
       -- Something like `if`
-      u.send_keys([[:'[,']s/\v//g<left><left><left>]])
+      u.send_keys([[;'[,']s/\v//g<left><left><left>]])
     end
   elseif mode == "line" then
     -- Something like `2j`
-    u.send_keys([[:'[,']s/\v//g<left><left><left>]])
+    u.send_keys([[;'[,']s/\v//g<left><left><left>]])
   ---- Visual modes
   elseif mode == "V" then
-    u.send_keys([[:s/\v//g<left><left><left>]])
+    u.send_keys([[;s/\v//g<left><left><left>]])
   elseif mode == "v" then
     if is_same_line(mode) then
       local search_term = capture_motion_text(mode)
-      u.send_keys(([[:%%s/\v%s//g<left><left>]]):format(search_term))
+      u.send_keys(([[;%%s/\v%s//g<left><left>]]):format(search_term))
     else
-      u.send_keys([[:s/\v//g<left><left><left>]])
+      u.send_keys([[;s/\v//g<left><left><left>]])
     end
   else
     vim.notify("Unrecognized type: " .. mode, vim.log.levels.ERROR)
@@ -73,7 +73,7 @@ vim.keymap.set("n", "s", function()
 end, { expr = true, desc = "Substitute motion" })
 
 vim.keymap.set("n", "S", function()
-  u.send_keys([[:%s/\v//g<left><left><left>]])
+  u.send_keys([[;%s/\v//g<left><left><left>]])
 end, { expr = true, desc = "Substitute in the whole document" })
 
 vim.keymap.set("x", "S", function()
