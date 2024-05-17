@@ -77,7 +77,6 @@ vim.api.nvim_create_autocmd("FileType", {
     "gitcommit",
     "help",
     "httpResult",
-    "man",
     "neotest-output",
     "neotest-output-panel",
     "neotest-summary",
