@@ -1,6 +1,5 @@
 return {
   "epwalsh/obsidian.nvim",
-  enabled = false,
   version = "*",
   event = "VeryLazy",
   keys = {
@@ -11,6 +10,10 @@ return {
     "nvim-lua/plenary.nvim",
   },
   config = function()
+    if not vim.uv.fs_stat(vim.env.HOME .. "/vaults/io") then
+      return
+    end
+
     require("obsidian").setup({
       disable_frontmatter = true,
       open_app_foreground = true,
