@@ -127,13 +127,6 @@ vim.keymap.set("n", "<s-down>", "]c", { remap = true })
 
 vim.keymap.set("n", "<c-p>", "<c-i>")
 
--- Open Resource
--- TODO: Use `gx` in nvim v0.10
-vim.keymap.set("n", "¡¡", "<cmd>silent execute '!open ' . escape(expand('<cWORD>'), '#')<cr>")
-vim.keymap.set("x", "¡", "y<cmd>silent execute '!open ' . escape(getreg('0'), '#')<cr>")
-
-vim.keymap.set("n", "¡<space>", ":!open<space>")
-
 -- Panes
 vim.keymap.set("n", "<leader>v", "<c-w>v")
 vim.keymap.set("n", "<leader>h", "<c-w>s")
@@ -291,7 +284,7 @@ vim.keymap.set({ "n", "x" }, "'L", function()
 end, { expr = true })
 vim.keymap.set({ "n", "x" }, "'r", [[:rubydo $_ = "#{$_}"<left>]])
 
----- Quickfic toggle
+---- Quickfix toggle
 vim.keymap.set("n", "+", function()
   if vim.fn.getqflist({ winid = 1 }).winid == 0 then
     vim.cmd("botright copen")
