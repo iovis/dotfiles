@@ -197,8 +197,7 @@ return {
       vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
       vim.keymap.set("n", "<leader>lR", ":LspRestart<cr>")
 
-      -- TODO: v0.10 vim.lsp.get_clients()
-      vim.api.nvim_create_user_command("LspActiveClients", "R=vim.lsp.get_active_clients()", {})
+      vim.api.nvim_create_user_command("LspActiveClients", "R=vim.lsp.get_clients()", {})
     end,
   },
 }
