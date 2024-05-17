@@ -9,7 +9,7 @@ local u = require("config.utils")
 ---@return CalendarEvent[]
 local get_calendar_events = function()
   -- Run calendar command
-  local calendar_cmd = table.concat({
+  local output = u.system_list({
     "icalBuddy",
     "--noCalendarNames",
     "--includeOnlyEventsFromNowOn",
@@ -17,8 +17,7 @@ local get_calendar_events = function()
     "--propertyOrder 'datetime,title'",
     "--includeEventProps 'datetime,title,location'",
     "eventsToday",
-  }, " ")
-  local output = vim.fn.systemlist(calendar_cmd)
+  })
 
   -- Parse Events
   local events = {}
