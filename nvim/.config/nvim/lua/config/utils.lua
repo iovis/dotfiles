@@ -139,7 +139,7 @@ end
 M.system_async = function(cmd, args, callback)
   local handle
 
-  handle = vim.loop.spawn(cmd, {
+  handle = vim.uv.spawn(cmd, {
     args = args,
   }, function(code, signal)
     if callback then
