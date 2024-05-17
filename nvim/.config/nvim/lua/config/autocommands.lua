@@ -74,7 +74,6 @@ vim.api.nvim_create_autocmd("FileType", {
     "diff",
     "fugitiveblame",
     "git",
-    "gitcommit",
     "help",
     "httpResult",
     "neotest-output",
