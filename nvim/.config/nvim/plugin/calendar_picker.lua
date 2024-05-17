@@ -77,7 +77,7 @@ local calendar_picker = function()
       vim.fn.setreg("+", event.title)
 
       if event.location then
-        vim.fn.system(([[open "%s"]]):format(event.location))
+        vim.ui.open(event.location)
       end
     end
   )
