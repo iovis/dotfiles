@@ -36,17 +36,18 @@ M.send_keys = function(keys)
 end
 
 M.scratch = function(contents, opts)
+  opts = opts or {}
   if opts.type == "float" then
     return M.floating_window(contents, opts)
   end
 
   local split_cmd = "botright "
 
-  if opts.lines ~= 0 then
+  if opts.lines and opts.lines ~= 0 then
     split_cmd = split_cmd .. opts.lines
   end
 
-  if opts.type == "horizontal" then
+  if not opts.type or opts.type == "horizontal" then
     split_cmd = split_cmd .. "new"
   elseif opts.type == "vertical" then
     split_cmd = split_cmd .. "vnew"
@@ -114,46 +115,42 @@ M.has_justfile = function()
   return M.is_file("justfile")
 end
 
----Run system command
----TODO: Remove in v0.10 `vim.system(cmd, opts):wait()`
----@param cmd string
----@param raw boolean?
+---Run system command synchronously
+---@param cmd string[]
 ---@return string
-M.system = function(cmd, raw)
-  local f = assert(io.popen(cmd, "r"))
-  local s = assert(f:read("*a"))
-  f:close()
+M.system = function(cmd)
+  local result = vim.system(cmd, { text = true }):wait()
 
-  if raw then
-    return s
+  if result.code ~= 0 then
+    local stderr = vim.split(result.stderr, "\n")
+
+    local lines = vim
+      .iter({
+        ("Error running command: %s"):format(vim.iter(cmd):join(" ")),
+        "----------------------",
+        stderr,
+        "----------------------",
+        vim.split(vim.inspect(result), "\n"),
+      })
+      :flatten()
+      :totable()
+
+    M.scratch(lines, {
+      type = "horizontal",
+      lines = 8,
+    })
   end
 
-  s = string.gsub(s, "^%s+", "")
-  s = string.gsub(s, "%s+$", "")
-  s = string.gsub(s, "[\n\r]+", " ")
-
-  return s
+  return result.stdout
 end
 
----Run system command asynchronously
----TODO: Remove in v0.10 `vim.system(cmd, opts, on_exit)`
----@param cmd string
----@param args? string[]
----@param callback? function(code: integer, signal: integer): nil
-M.system_async = function(cmd, args, callback)
-  local handle
-
-  handle = vim.uv.spawn(cmd, {
-    args = args,
-  }, function(code, signal)
-    if callback then
-      callback(code, signal)
-    end
-
-    if handle then
-      handle:close()
-    end
-  end)
+---Run system command synchronously and return a list of lines
+---@param cmd string[]
+---@return string[]
+M.system_list = function(cmd)
+  return vim.split(M.system(cmd), "\n", {
+    trimempty = true,
+  })
 end
 
 ---Check if command is executable

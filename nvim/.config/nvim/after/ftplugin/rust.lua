@@ -32,7 +32,16 @@ end
 
 ----Clippy fix
 vim.api.nvim_buf_create_user_command(0, "ClippyFix", function()
-  require("config.utils").system("cargo clippy --fix --allow-dirty -- -W clippy::pedantic >/dev/null 2>&1")
+  u.system({
+    "cargo",
+    "clippy",
+    "--fix",
+    "--allowdirty",
+    "--",
+    "-W",
+    "clippy::pedantic",
+  })
+
   vim.cmd("silent! checktime")
 end, {})
 
