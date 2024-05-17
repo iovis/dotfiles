@@ -6,6 +6,8 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 })
 
 ---- On LSP attached buffers
+---@param client vim.lsp.Client
+---@param bufnr number
 local on_attach = function(client, bufnr)
   local imap = function(lhs, rhs, desc)
     vim.keymap.set("i", lhs, rhs, { buffer = bufnr, desc = desc })
@@ -86,17 +88,15 @@ local on_attach = function(client, bufnr)
   end
 
   ----Inlay hints
-  if vim.fn.has("nvim-0.10") == 1 then
-    local function toggle_inlay_hints()
-      if client.server_capabilities.inlayHintProvider then
-        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-      else
-        vim.notify("No inlay hints available", vim.log.levels.WARN)
-      end
+  local function toggle_inlay_hints()
+    if client.supports_method("textDocument/inlayHint") then
+      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
+    else
+      vim.notify("No inlay hints available", vim.log.levels.WARN)
     end
-
-    nmap("<leader>lk", toggle_inlay_hints, "vim.lsp.inlay_hint")
   end
+
+  nmap("<leader>lk", toggle_inlay_hints, "vim.lsp.inlay_hint")
 
   ----Custom server capabilities
   if client.name == "solargraph" then
