@@ -28,7 +28,6 @@ vim.o.foldtext = [[
 vim.o.ignorecase = true
 vim.o.inccommand = "split"
 vim.o.laststatus = 3
--- vim.o.lazyredraw = true
 vim.opt.listchars:append({
   -- lead = "·",
   tab = ">-",

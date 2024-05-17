@@ -5,13 +5,13 @@
 -- ```
 --
 
--- set stdpaths to use .repro
+-- Set stdpaths to use .repro
 local root = vim.fn.fnamemodify("./.repro", ":p")
 for _, name in ipairs({ "config", "data", "state", "runtime", "cache" }) do
   vim.env[("XDG_%s_HOME"):format(name:upper())] = root .. "/" .. name
 end
 
--- bootstrap lazy
+-- Bootstrap lazy
 local lazypath = root .. "/plugins/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
@@ -28,11 +28,19 @@ vim.opt.runtimepath:prepend(lazypath)
 
 -- Opts
 vim.g.mapleader = " "
+vim.o.cursorline = true
+vim.o.inccommand = "split"
+vim.o.mouse = "a"
 vim.o.number = true
 vim.o.relativenumber = true
+vim.o.signcolumn = "yes"
+vim.o.smartcase = true
 vim.o.splitbelow = true
 vim.o.splitright = true
+vim.o.swapfile = false
+vim.o.wrap = false
 
+-- Keymap
 vim.keymap.set("i", "kj", "<esc>")
 vim.keymap.set("n", "-", "<cmd>Ex<cr>")
 vim.keymap.set("n", "<leader>c", "<cmd>close<cr>")
@@ -51,7 +59,7 @@ vim.keymap.set({ "n", "x" }, ":", ";")
 vim.keymap.set({ "n", "x", "o" }, "H", "^")
 vim.keymap.set({ "n", "x", "o" }, "L", "$")
 
--- install plugins
+-- Install plugins
 local plugins = {
   -- {
   --   "ibhagwan/fzf-lua",
