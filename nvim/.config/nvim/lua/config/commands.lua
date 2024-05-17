@@ -1,7 +1,5 @@
 local u = require("config.utils")
 
-u.command("REMember", [[%s/\v(\s)([-+]?\d*\.?\d*px)/\1REMember(\2)/g]], { nargs = 0 })
-
 u.command("Delregisters", function(opts)
   local reg = opts.args
 
