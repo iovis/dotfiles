@@ -198,20 +198,22 @@ function RSpec:create_buf_command()
     for _, test in ipairs(tests) do
       table.insert(
         lines,
-        vim.tbl_flatten({
-          ("╭─ rspec %s"):format(test.id),
-          ("╰─ (%.3fs)"):format(test.run_time),
-          test.full_description,
-          "",
-          vim.fn.split(test.exception.message, "\n"),
-          "",
-        })
+        vim
+          .iter({
+            ("╭─ rspec %s"):format(test.id),
+            ("╰─ (%.3fs)"):format(test.run_time),
+            test.full_description,
+            "",
+            vim.fn.split(test.exception.message, "\n"),
+            "",
+          })
+          :flatten(math.huge)
+          :totable()
       )
     end
 
     -- Remove last separator
-    lines = vim.tbl_flatten(lines)
-    table.remove(lines)
+    lines = vim.iter(lines):flatten(math.huge):rskip(1):totable()
 
     -- Write body to buffer
     vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
