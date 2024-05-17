@@ -1,5 +1,4 @@
 ; extends
-
 ; taken from https://github.com/ray-x/go.nvim/blob/master/after/queries/go/injections.scm
 
 ; inject sql in single line strings
@@ -23,13 +22,13 @@
   (#offset! @injection.content 0 1 0 -1)
   (#set! injection.language "sql"))
 
-; TODO neovim nightly 0.10
-; ([
-;   (interpreted_string_literal)
-;   (raw_string_literal)
-;   ] @injection.content
-;  (#match? @injection.content "(SELECT|select|INSERT|insert|UPDATE|update|DELETE|delete).+(FROM|from|INTO|into|VALUES|values|SET|set).*(WHERE|where|GROUP BY|group by)?")
-; (#set! injection.language "sql"))
+; neovim nightly 0.10
+([
+  (interpreted_string_literal)
+  (raw_string_literal)
+  ] @injection.content
+ (#match? @injection.content "(SELECT|select|INSERT|insert|UPDATE|update|DELETE|delete).+(FROM|from|INTO|into|VALUES|values|SET|set).*(WHERE|where|GROUP BY|group by)?")
+(#set! injection.language "sql"))
 
 ; a general query injection
 ([
@@ -42,27 +41,27 @@
 ; ----------------------------------------------------------------
 ; fallback keyword and comment based injection
 
-; ([
-;   (interpreted_string_literal)
-;   (raw_string_literal)
-;  ] @sql
-;  (#contains? @sql "-- sql" "--sql" "ADD CONSTRAINT" "ALTER TABLE" "ALTER COLUMN"
-;                   "DATABASE" "FOREIGN KEY" "GROUP BY" "HAVING" "CREATE INDEX" "INSERT INTO"
-;                   "NOT NULL" "PRIMARY KEY" "UPDATE SET" "TRUNCATE TABLE" "LEFT JOIN" "add constraint" "alter table" "alter column" "database" "foreign key" "group by" "having" "create index" "insert into"
-;                   "not null" "primary key" "update set" "truncate table" "left join")
-;  (#offset! @sql 0 1 0 -1))
+([
+  (interpreted_string_literal)
+  (raw_string_literal)
+ ] @sql
+ (#contains? @sql "-- sql" "--sql" "ADD CONSTRAINT" "ALTER TABLE" "ALTER COLUMN"
+                  "DATABASE" "FOREIGN KEY" "GROUP BY" "HAVING" "CREATE INDEX" "INSERT INTO"
+                  "NOT NULL" "PRIMARY KEY" "UPDATE SET" "TRUNCATE TABLE" "LEFT JOIN" "add constraint" "alter table" "alter column" "database" "foreign key" "group by" "having" "create index" "insert into"
+                  "not null" "primary key" "update set" "truncate table" "left join")
+ (#offset! @sql 0 1 0 -1))
 
-; TODO nvim 0.10
-; ([
-;   (interpreted_string_literal)
-;   (raw_string_literal)
-;  ] @injection.content
-;  (#contains? @injection.content "-- sql" "--sql" "ADD CONSTRAINT" "ALTER TABLE" "ALTER COLUMN"
-;                   "DATABASE" "FOREIGN KEY" "GROUP BY" "HAVING" "CREATE INDEX" "INSERT INTO"
-;                   "NOT NULL" "PRIMARY KEY" "UPDATE SET" "TRUNCATE TABLE" "LEFT JOIN" "add constraint" "alter table" "alter column" "database" "foreign key" "group by" "having" "create index" "insert into"
-;                   "not null" "primary key" "update set" "truncate table" "left join")
-;  (#offset! @injection.content 0 1 0 -1)
-;  (#set! injection.language "sql"))
+; nvim 0.10
+([
+  (interpreted_string_literal)
+  (raw_string_literal)
+ ] @injection.content
+ (#contains? @injection.content "-- sql" "--sql" "ADD CONSTRAINT" "ALTER TABLE" "ALTER COLUMN"
+                  "DATABASE" "FOREIGN KEY" "GROUP BY" "HAVING" "CREATE INDEX" "INSERT INTO"
+                  "NOT NULL" "PRIMARY KEY" "UPDATE SET" "TRUNCATE TABLE" "LEFT JOIN" "add constraint" "alter table" "alter column" "database" "foreign key" "group by" "having" "create index" "insert into"
+                  "not null" "primary key" "update set" "truncate table" "left join")
+ (#offset! @injection.content 0 1 0 -1)
+ (#set! injection.language "sql"))
 
 
 ; should I use a more exhaustive list of keywords?
@@ -85,20 +84,20 @@
   (#lua-match? @_var ".*[J|j]son.*")
   (#offset! @json 0 1 0 -1))
 
-; TODO nvim 0.10
+; nvim 0.10
 
-; (const_spec
-;   name: ((identifier) @_const(#lua-match? @_const ".*[J|j]son.*"))
-;   value: (expression_list (raw_string_literal) @injection.content
-;    (#set! injection.language "json")))
-;
-; (short_var_declaration
-;     left: (expression_list (identifier) @_var (#lua-match? @_var ".*[J|j]son.*"))
-;     right: (expression_list (raw_string_literal) @injection.content)
-;   (#offset! @injection.content 0 1 0 -1)
-;   (#set! injection.language "json"))
-;
-; (var_spec
-;   name: ((identifier) @_const(#lua-match? @_const ".*[J|j]son.*"))
-;   value: (expression_list (raw_string_literal) @injection.content
-;    (#set! injection.language "json")))
+(const_spec
+  name: ((identifier) @_const(#lua-match? @_const ".*[J|j]son.*"))
+  value: (expression_list (raw_string_literal) @injection.content
+   (#set! injection.language "json")))
+
+(short_var_declaration
+    left: (expression_list (identifier) @_var (#lua-match? @_var ".*[J|j]son.*"))
+    right: (expression_list (raw_string_literal) @injection.content)
+  (#offset! @injection.content 0 1 0 -1)
+  (#set! injection.language "json"))
+
+(var_spec
+  name: ((identifier) @_const(#lua-match? @_const ".*[J|j]son.*"))
+  value: (expression_list (raw_string_literal) @injection.content
+   (#set! injection.language "json")))
