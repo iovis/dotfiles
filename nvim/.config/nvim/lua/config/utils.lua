@@ -312,4 +312,21 @@ M.ts.replace = function(node, text)
   vim.api.nvim_buf_set_text(0, start_row, start_col, end_row, end_col, { text })
 end
 
+---UI
+M.ui = {}
+
+M.ui.foldtext = function(node, text)
+  local start = vim.fn.getline(vim.v.foldstart)
+  local replace = vim.fn["repeat"](" ", vim.bo.tabstop)
+  local ret = vim.fn.substitute(start, "\\t", replace, "g")
+
+  local foldtext = ("%s ... %s  (%s) lines"):format(
+    ret,
+    vim.fn.trim(vim.fn.getline(vim.v.foldend)),
+    (vim.v.foldend - vim.v.foldstart + 1)
+  )
+
+  return foldtext
+end
+
 return M

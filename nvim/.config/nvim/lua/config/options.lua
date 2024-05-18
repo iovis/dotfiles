@@ -29,9 +29,7 @@ vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldmethod = "expr"
-vim.o.foldtext = [[
-  substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)'
-]]
+vim.o.foldtext = "v:lua.require'config.utils'.ui.foldtext()"
 vim.o.formatoptions = "jcroqlnt" -- tcqj
 vim.o.ignorecase = true
 vim.o.inccommand = "split"
