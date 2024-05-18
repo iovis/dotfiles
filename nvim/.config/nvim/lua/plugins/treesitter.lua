@@ -5,7 +5,6 @@ return {
     "andymass/vim-matchup",
     "nvim-treesitter/nvim-treesitter-context",
     "nvim-treesitter/nvim-treesitter-textobjects",
-    "nvim-treesitter/playground",
     "rrethy/nvim-treesitter-endwise",
     "windwp/nvim-ts-autotag",
   },
@@ -70,7 +69,6 @@ return {
         enable = true,
         disable_virtual_text = true,
       },
-      playground = { enable = true },
       highlight = {
         enable = true,
         disable = function(_lang, buf)
