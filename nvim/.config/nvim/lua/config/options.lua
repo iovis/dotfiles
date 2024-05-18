@@ -15,7 +15,14 @@ vim.o.completeopt = "menu,menuone,noselect"
 vim.o.cursorline = true
 vim.opt.diffopt:append("hiddenoff,vertical")
 vim.o.expandtab = true
-vim.o.fillchars = [[diff:╱,eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+vim.opt.fillchars = {
+  diff = "╱",
+  eob = " ",
+  fold = " ",
+  foldclose = "",
+  foldopen = "",
+  foldsep = " ",
+}
 vim.o.foldcolumn = "0"
 vim.o.foldenable = true
 vim.o.foldexpr = "nvim_treesitter#foldexpr()"
@@ -25,6 +32,7 @@ vim.o.foldmethod = "expr"
 vim.o.foldtext = [[
   substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)'
 ]]
+vim.o.formatoptions = "jcroqlnt" -- tcqj
 vim.o.ignorecase = true
 vim.o.inccommand = "split"
 vim.o.laststatus = 3
@@ -49,6 +57,7 @@ vim.o.showmode = false
 vim.o.sidescrolloff = 4
 vim.o.signcolumn = "yes"
 vim.o.smartcase = true
+vim.o.smoothscroll = true
 vim.o.softtabstop = 2
 vim.o.spelllang = "en_us"
 vim.o.splitbelow = true
