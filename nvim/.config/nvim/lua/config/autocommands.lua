@@ -1,5 +1,12 @@
 local config_augroup = vim.api.nvim_create_augroup("user_config", { clear = true })
 
+---Check if current buffer is in ignored filetypes
+---@param ignored_filetypes string[]
+---@return boolean
+local in_ignored_filetypes = function(ignored_filetypes)
+  return vim.bo.filetype and vim.tbl_contains(ignored_filetypes, vim.bo.filetype)
+end
+
 ---- Reload the file when changed from elsewhere
 vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
   desc = "Refresh buffer if changes detected",
@@ -21,7 +28,11 @@ vim.api.nvim_create_autocmd({ "FocusLost", "BufLeave" }, {
   desc = "Autosave on focus lost",
   group = config_augroup,
   callback = function()
-    if vim.bo.filetype == "oil" then
+    local ignored_filetypes = {
+      "oil",
+    }
+
+    if in_ignored_filetypes(ignored_filetypes) then
       return
     end
 
@@ -45,13 +56,13 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
   desc = "Go to last known position of a buffer",
   group = config_augroup,
   callback = function()
-    local ignore_filetypes = {
+    local ignored_filetypes = {
       "fugitive",
       "git",
       "gitcommit",
     }
 
-    if vim.bo.filetype and vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
+    if in_ignored_filetypes(ignored_filetypes) then
       return
     end
 
@@ -113,7 +124,11 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   group = config_augroup,
   pattern = "*",
   callback = function(ctx)
-    if vim.bo.filetype == "oil" then
+    local ignored_filetypes = {
+      "oil",
+    }
+
+    if in_ignored_filetypes(ignored_filetypes) then
       return
     end
 
@@ -122,15 +137,12 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   end,
 })
 
----- Set terminal mode settings
--- vim.api.nvim_create_autocmd("TermOpen", {
---   desc = "Set terminal mode settings",
+---- Force commentstring padding
+-- vim.api.nvim_create_autocmd({ "FileType" }, {
+--   desc = "Force commentstring to include spaces",
 --   group = config_augroup,
---   pattern = "*",
---   callback = function()
---     vim.wo.number = false
---     vim.wo.relativenumber = false
---     vim.wo.signcolumn = "no"
---     vim.cmd.startinsert()
+--   callback = function(event)
+--     local comment_string = vim.bo[event.buf].commentstring
+--     vim.bo[event.buf].commentstring = comment_string:gsub("(%S)%%s", "%1 %%s"):gsub("%%s(%S)", "%%s %1")
 --   end,
 -- })
