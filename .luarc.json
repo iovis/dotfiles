@@ -1,4 +1,5 @@
 {
+  "completion.autoRequire": false,
   "diagnostics.globals": [
     "s",
     "sn",
