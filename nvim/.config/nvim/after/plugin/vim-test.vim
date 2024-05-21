@@ -22,14 +22,8 @@ let g:test#custom_strategies = {
       \ 'test_prof': function('TestProfStrategy'),
       \}
 
-if g:neotest_enabled
-  nnoremap <leader>sI <cmd>TestNearest -strategy=tux<cr>
-  nnoremap <leader>sO <cmd>TestFile -strategy=tux<cr>
-  nnoremap <leader>sa <cmd>TestSuite -strategy=tux<cr>
-else
-  let g:test#strategy = 'tux'
+let g:test#strategy = 'tux'
 
-  nnoremap <leader>si <cmd>TestNearest<cr>
-  nnoremap <leader>so <cmd>TestFile<cr>
-  nnoremap <leader>sa <cmd>TestSuite<cr>
-endif
+nnoremap <leader>si <cmd>TestNearest<cr>
+nnoremap <leader>so <cmd>TestFile<cr>
+nnoremap <leader>sa <cmd>TestSuite<cr>
