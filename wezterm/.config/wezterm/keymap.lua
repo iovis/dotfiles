@@ -3,6 +3,8 @@ local act = wezterm.action
 
 -- wezterm show-keys --lua
 return {
+  { key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
+  { key = "Tab", mods = "SHIFT|CTRL", action = act.ActivateTabRelative(-1) },
   { key = "+", mods = "SUPER", action = act.IncreaseFontSize },
   { key = "-", mods = "SUPER", action = act.DecreaseFontSize },
   { key = "0", mods = "SUPER", action = act.ResetFontSize },
