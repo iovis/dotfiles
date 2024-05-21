@@ -44,14 +44,3 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 zstyle ':completion:*' keep-prefix true
 
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
-
-# Add local completion files
-fpath=("$ZDOTDIR/completions" "${fpath[@]}")
-
-autoload -Uz compinit
-for dump in $ZDOTDIR/.zcompdump(N.mh+24); do
-  compinit  # Regenerate zcompdump if older than 24h
-done
-
-# Initialize completions from cache
-compinit -C

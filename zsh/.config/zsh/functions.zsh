@@ -1,43 +1,30 @@
 function libupdate() {
   upgrade_libraries
-  plugins update
+  # plugins update
 
   rust_update
 
-  generate_completions
-  zshcache
+  # generate_completions
+  # zshcache
 
-  asdf_update
+  # asdf_update
 
-  npm -g outdated
+  # npm -g outdated
 
-  echo '\nOutdated gems'
-  gemo
+  # echo '\nOutdated gems'
+  # gemo
 
-  echo '\nOutdated pips'
-  pipo
+  # echo '\nOutdated pips'
+  # pipo
 
   echo '\nDone!'
 }
 
-inode_count() {
-  sudo find ${1:-.} -maxdepth 1 -type d | grep -v "^${1:-\.}$" | xargs -n1 -I{} sudo find {} -xdev -type f | sed -n "s:^${1:-\.}::p" | cut -d"/" -f2 | uniq -c | sort -rn
-}
-
-rbg() {
-  rg "$1" $(bundle list --paths)
+function upgrade_libraries() {
 }
 
 take() {
   mkdir -p $@ && cd ${@:$#}
-}
-
-csv_to_sqlite() {
-  # NOTE:
-  #   - re-running will append to table
-  #   - ${1:r} removes extension
-  #   - .import <file> <table> --csv
-  sqlite3 csv.db ".import $1 csv --csv"
 }
 
 # We wrap in a local function instead of exporting the variable directly in
@@ -58,13 +45,4 @@ git_current_branch() {
   fi
 
   echo ${ref#refs/heads/}
-}
-
-# Function to determine the need of a zcompile. If the .zwc file
-# does not exist, or the base file is newer, we need to compile.
-# These jobs are asynchronous, and will not impact the interactive shell
-zcompare() {
-  if [[ -s ${1} && ( ! -s ${1}.zwc || ${1} -nt ${1}.zwc) ]]; then
-    zcompile ${1}
-  fi
 }

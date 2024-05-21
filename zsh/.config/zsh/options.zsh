@@ -1,3 +1,4 @@
+export HISTFILE="$ZDOTDIR/.zsh_history"
 export HISTSIZE=10000  # Maximum events for internal history
 export SAVEHIST=10000  # Maximum events in history file
 
