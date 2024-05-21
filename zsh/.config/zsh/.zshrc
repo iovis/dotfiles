@@ -6,6 +6,7 @@ fi
 
 ## Environment
 export DOTFILES="$HOME/.dotfiles"
+export PROJECT_HOME="$HOME/code"
 export EDITOR="vim"
 export REVIEW_BASE="master"
 
