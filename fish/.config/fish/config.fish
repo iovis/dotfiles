@@ -63,7 +63,7 @@ if status is-interactive
         starship init fish | source
     end
 
-    if command -q starship
+    if command -q zoxide
         zoxide init fish | source
     end
 else
