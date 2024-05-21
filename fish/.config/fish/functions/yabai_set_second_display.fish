@@ -1,6 +1,6 @@
 function yabai_set_second_display
-    # Move Fantastical to display
-    open -a Fantastical
+    # Move Calendar to display
+    open -a "Microsoft Outlook"
     yabai_set_no_float
     yabai -m window --display 2
 
