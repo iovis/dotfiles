@@ -167,31 +167,6 @@ return {
         },
       }
 
-      ----fuzzy ruby server
-      local lsp_config = require("lspconfig.configs")
-
-      if not lsp_config.fuzzy_ls then
-        lsp_config.fuzzy_ls = {
-          default_config = {
-            cmd = { "fuzzy" },
-            filetypes = { "ruby" },
-            root_dir = function(fname)
-              return lsp.util.find_git_ancestor(fname)
-            end,
-            settings = {},
-            init_options = {
-              allocationType = "ram",
-              indexGems = true,
-              reportDiagnostics = false,
-            },
-          },
-        }
-      else
-        vim.notify("fuzzy_ls has a config now!!", vim.log.levels.WARN)
-      end
-
-      lsp.fuzzy_ls.setup(cfg)
-
       ---- Global LSP settings
       vim.keymap.set("n", "<leader>lh", "<cmd>help lspconfig-server-configurations<cr>")
       vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
