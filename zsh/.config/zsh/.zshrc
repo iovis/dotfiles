@@ -25,9 +25,8 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit cdreplay -q
 
-if type starship > /dev/null; then
-  eval "$(starship init zsh)"
-fi
+eval "$(starship init zsh)"
+eval "$(mise activate zsh)"
 
 ## Source config files
 source "$ZDOTDIR/aliases.zsh"
