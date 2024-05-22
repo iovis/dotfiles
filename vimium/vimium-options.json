@@ -1,5 +1,5 @@
 {
-  "keyMappings": "map F LinkHints.activateModeToOpenInNewForegroundTab\nmap <BS> visitPreviousTab\n\nunmap /\nunmap B\nunmap O\nunmap T\nunmap X\nunmap b\nunmap gF\nunmap gf\nunmap o\nunmap p\nunmap r\nunmap t\nunmap v\nunmap x",
+  "keyMappings": "map F LinkHints.activateModeToOpenInNewForegroundTab\nmap <BS> visitPreviousTab\n\nunmap B\nunmap O\nunmap T\nunmap X\nunmap b\nunmap gF\nunmap gf\nunmap o\nunmap p\nunmap r\nunmap t\nunmap v\nunmap x",
   "settingsVersion": "2.1.2",
   "exclusionRules": [
     {
@@ -33,6 +33,10 @@
     {
       "passKeys": "",
       "pattern": "https?://usevia.app/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://gerrit.ikarem.io/*"
     }
   ]
 }
