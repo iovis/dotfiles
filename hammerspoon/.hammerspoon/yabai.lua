@@ -105,11 +105,8 @@ bind_command({ ctrl_alt_cmd, "/" }, "yabai_grid 10:10:1:0:8:10")
 --------------
 -- Displays --
 --------------
----Fast focus display
--- bind_command({ ctrl_alt_cmd, "space" }, "yabai -m display --focus prev || yabai -m display --focus last")
-
 ---send window to monitor and follow focus
-bind_command({ hyper, "d" }, "yabai_send_to_other_display")
+bind_command({ ctrl_alt_cmd, "space" }, "yabai_send_to_other_display")
 
 --------------
 --  Spaces  --
