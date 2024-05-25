@@ -21,6 +21,7 @@ return {
         cmp = true,
         dap = true,
         fidget = true,
+        flash = true,
         gitsigns = true,
         leap = true,
         lsp_saga = true,

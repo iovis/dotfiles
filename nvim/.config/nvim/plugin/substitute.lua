@@ -72,11 +72,11 @@ vim.keymap.set("n", "s", function()
   return "g@"
 end, { expr = true, desc = "Substitute motion" })
 
-vim.keymap.set("n", "S", function()
+vim.keymap.set("n", "ss", function()
   u.send_keys([[;%s/\v//g<left><left><left>]])
 end, { expr = true, desc = "Substitute in the whole document" })
 
-vim.keymap.set("x", "S", function()
+vim.keymap.set("x", "'s", function()
   -- can't use vim.fn.visualmode() because it returns the "last" visual mode used,
   -- meaning it breaks on the first one
   SubstituteMotion(vim.fn.mode())
