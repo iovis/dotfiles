@@ -46,6 +46,7 @@ vim.o.foldtext = "v:lua.require'config.utils'.ui.foldtext()"
 vim.o.formatoptions = "jcroqlnt" -- tcqj
 vim.o.ignorecase = true
 vim.o.inccommand = "split"
+vim.o.jumpoptions = "stack,view"
 vim.o.laststatus = 3
 vim.opt.listchars:append({
   -- lead = "·",
