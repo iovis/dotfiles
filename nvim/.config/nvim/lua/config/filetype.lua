@@ -15,5 +15,6 @@ vim.filetype.add({
   },
   pattern = {
     [".*/yamllint/config"] = "yaml",
+    ["Gemfile.*"] = "ruby",
   },
 })
