@@ -261,6 +261,15 @@ vim.keymap.set("n", "yoc", function()
   end
 end, { desc = "Toggle conceallevel" })
 
+vim.keymap.set("n", "yoz", function()
+  if vim.o.scrolloff == vim.g.scrolloff then
+    vim.o.scrolloff = 999
+    vim.cmd.normal("zz")
+  else
+    vim.o.scrolloff = vim.g.scrolloff
+  end
+end, { desc = "Toggle scroll lock" })
+
 ---- Misc
 vim.keymap.set("n", "'<cr>", "<cmd>so $VIMRUNTIME/syntax/hitest.vim<cr>")
 vim.keymap.set("n", "<leader>P", ":R=")

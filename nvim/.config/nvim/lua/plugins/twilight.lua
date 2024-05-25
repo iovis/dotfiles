@@ -2,7 +2,7 @@ return {
   "folke/twilight.nvim",
   cmd = { "Twilight" },
   keys = {
-    { "yoz", "<cmd>Twilight<cr>", desc = "Toggle Twilight" },
+    { "yoT", "<cmd>Twilight<cr>", desc = "Toggle Twilight" },
   },
   config = function()
     require("twilight").setup({

@@ -1,6 +1,7 @@
 ---- Set Space as the leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+vim.g.scrolloff = 4
 
 ---- Global Variables
 vim.g.autoformat = true
@@ -59,7 +60,7 @@ vim.o.mouse = "a"
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.ruler = false
-vim.o.scrolloff = 4
+vim.o.scrolloff = vim.g.scrolloff
 vim.o.shiftround = true
 vim.o.shiftwidth = 2
 vim.o.showbreak = "└ "
