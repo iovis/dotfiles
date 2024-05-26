@@ -2,11 +2,11 @@
 " https://github.com/sharkdp/numbat/blob/master/assets/numbat.vim
 
 if exists("b:current_syntax")
-    finish
+  finish
 endif
 
 " Numbat Keywords
-syn keyword numbatKeywords per to let fn dimension unit use long short both none print assert assert_eq type if then else true false Bool String
+syn keyword numbatKeywords per to let fn dimension unit use struct long short both none if then else true false NaN inf print assert assert_eq type
 highlight default link numbatKeywords Keyword
 
 " Physical dimensions (every capitalized word)
