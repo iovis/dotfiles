@@ -5,12 +5,12 @@ vim.bo.commentstring = "// %s"
 vim.keymap.set("n", "<leader>al", "<cmd>ClangdSwitchSourceHeader<cr>", { buffer = true })
 
 ---- runnables
-if vim.fn.expand("%"):match("ext/") then
+if u.current_file():match("ext/") then
   ---- Ruby C Extension
   vim.keymap.set("n", "m<cr>", "<cmd>Tux bear -- rake<cr>", { buffer = true })
   vim.keymap.set("n", "s<cr>", "<cmd>Tux bear -- rake<cr>", { buffer = true })
   vim.keymap.set("n", "<leader>sw", "<cmd>Tux watchexec -e c,h,rb -c clear -- bear -- rake<cr>", { buffer = true })
-elseif vim.fn.expand("%"):match("keyboards/") then
+elseif u.current_file():match("keyboards/") then
   ---- QMK
   vim.keymap.set("n", "s<cr>", "<cmd>Tuxpopup just compile<cr>", { buffer = true })
   vim.keymap.set("n", "m<cr>", "<cmd>Tuxpopup just flash<cr>", { buffer = true })

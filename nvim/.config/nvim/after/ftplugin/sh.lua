@@ -1,10 +1,11 @@
+local u = require("config.utils")
 local tux = require("tux")
 
 vim.keymap.set("n", "s<cr>", "<cmd>Tux %<cr>", { buffer = true })
 vim.keymap.set("n", "m<cr>", "<cmd>!chmod +x %<cr>", { buffer = true })
 
 ---- yabai
-if vim.fn.expand("%"):match("yabai/") then
+if u.current_file():match("yabai/") then
   vim.keymap.set("n", "s<cr>", function()
     tux.window("yabai --restart-service", {
       detached = true,

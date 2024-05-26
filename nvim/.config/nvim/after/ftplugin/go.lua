@@ -5,7 +5,7 @@ vim.bo.expandtab = false
 vim.keymap.set("n", "m<cr>", "<cmd>Tux go mod tidy<cr>", { buffer = true })
 
 ---- Runnables
-if vim.fn.expand("%"):match("_test.go") then
+if u.current_file():match("_test.go") then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux go test<cr>", { buffer = true })
   vim.keymap.set("n", "m<cr>", "<cmd>Tux go test -v<cr>", { buffer = true })
 elseif not u.has_justfile() then

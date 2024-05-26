@@ -109,6 +109,18 @@ M.is_file = function(path)
   return vim.fn.filereadable(vim.fn.expand(path)) == 1 or false
 end
 
+---Relative path to current file
+---@return string
+M.current_file = function()
+  return vim.fn.expand("%")
+end
+
+---Path to current file from Home folder
+---@return string
+M.current_path = function()
+  return vim.fn.expand("%:~")
+end
+
 ---Check if there's a justfile
 ---@return boolean
 M.has_justfile = function()

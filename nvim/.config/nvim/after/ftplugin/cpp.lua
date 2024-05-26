@@ -1,6 +1,8 @@
+local u = require("config.utils")
+
 vim.keymap.set("n", "<leader>al", "<cmd>ClangdSwitchSourceHeader<cr>", { buffer = true })
 
-if vim.fn.expand("%"):match("keyboards/") then
+if u.current_file():match("keyboards/") then
   ---- QMK
   vim.keymap.set("n", "s<cr>", "<cmd>Tuxpopup just compile<cr>", { buffer = true })
   vim.keymap.set("n", "m<cr>", "<cmd>Tuxpopup just flash<cr>", { buffer = true })

@@ -1,5 +1,6 @@
 ----EmmyLua Annotations: https://luals.github.io/wiki/annotations/
 ----plenary.nvim test harness: https://github.com/nvim-lua/plenary.nvim/blob/master/TESTS_README.md
+local u = require("config.utils")
 
 -- Allow `---` to continue as comment
 vim.bo.comments = ":---,:--"
@@ -13,11 +14,11 @@ vim.keymap.set({ "n", "x" }, "<leader>so", ":source<cr>", {
 vim.keymap.set("n", "s<cr>", ":10R source<cr>", { buffer = true })
 vim.keymap.set("x", "<leader>sp", ":<c-u>10R '<,'>source<cr>", { buffer = true })
 
-if vim.fn.expand("%"):match("_spec.lua") then
+if u.current_file():match("_spec.lua") then
   -- vim.keymap.set("n", "<leader>so", "<cmd>Tux nvimtest %<cr>", { buffer = true, desc = "Run test" })
   -- vim.keymap.set("n", "<leader>sa", "<cmd>Tux nvimtest<cr>", { buffer = true, desc = "Run test suite" })
   -- vim.keymap.set("n", "s<cr>", "<cmd>Tux nvimtest %<cr>", { buffer = true, desc = "Run test" })
-elseif vim.fn.expand("%"):match("plugins/") then
+elseif u.current_file():match("plugins/") then
   ----Re-source `config()` for the current plugin
   vim.keymap.set("n", "<leader>so", function()
     -- Get the name of the current buffer's file

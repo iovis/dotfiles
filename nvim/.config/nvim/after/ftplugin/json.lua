@@ -1,5 +1,7 @@
+local u = require("config.utils")
+
 ---- package.json
-if vim.fn.expand("%"):match("package.json") then
+if u.current_file():match("package.json") then
   vim.api.nvim_create_autocmd({ "BufWinEnter", "BufWritePost" }, {
     desc = "Check Node dependencies",
     group = vim.api.nvim_create_augroup("node_dependencies", { clear = true }),
