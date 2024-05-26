@@ -6,7 +6,9 @@ vim.keymap.set("n", "s<cr>", "<cmd>Tux ruby %:.<cr>", { buffer = true })
 vim.keymap.set("n", "m<cr>", ":SolargraphRebuild!<cr>", { buffer = true })
 
 ---- Runnables
-if u.current_file():match("_spec.rb") then
+if u.current_path():match("/co/manage") then
+  -- TODO: set vim-test strategy
+elseif u.current_file():match("_spec.rb") then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux rspec %<cr>", { buffer = true })
 
   vim.api.nvim_create_autocmd("BufWritePost", {
@@ -17,7 +19,6 @@ if u.current_file():match("_spec.rb") then
   })
 elseif u.current_file():match("Gemfile") then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux bundle install<cr>", { buffer = true })
-  -- TODO: exclude /co/manage
 
   vim.api.nvim_create_autocmd({ "BufWinEnter", "BufWritePost" }, {
     desc = "Check bundler dependencies",
