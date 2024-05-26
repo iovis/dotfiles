@@ -116,21 +116,3 @@ u.command("VimPlugin", function(opts)
 
   vim.fn.system(cmd)
 end, { nargs = "?" })
-
----- Force OSC52
--- TODO: Not working?
-u.command("ForceOSC52", function()
-  vim.g.clipboard = {
-    name = "OSC 52",
-    copy = {
-      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-    },
-    paste = {
-      ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
-      ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
-    },
-  }
-
-  vim.notify("OSC52 enabled")
-end)

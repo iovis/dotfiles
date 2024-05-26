@@ -1,3 +1,18 @@
+---- Force OSC52
+if false then
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    },
+    paste = {
+      ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+    },
+  }
+end
+
 ---- Set Space as the leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -7,18 +22,6 @@ vim.g.scrolloff = 4
 vim.g.autoformat = true
 vim.g.autotest = nil
 vim.g.zig_fmt_autosave = 0
-
--- vim.g.clipboard = {
---   name = "OSC 52",
---   copy = {
---     ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
---     ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
---   },
---   paste = {
---     ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
---     ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
---   },
--- }
 
 ---- Nvim Options
 vim.o.autowriteall = true
