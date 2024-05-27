@@ -235,13 +235,13 @@ vim.keymap.set("n", "<leader>uj", "<cmd>e! justfile<cr>")
 vim.keymap.set("n", "<leader>up", "<cmd>e! package.json<cr>")
 
 ---- Toggle Settings
-vim.keymap.set("n", "yol", ":set cursorline!<cr>")
+vim.keymap.set("n", "yoc", ":set cursorcolumn!<cr>")
 vim.keymap.set("n", "yod", ":<c-r>=&diff ? 'windo diffoff' : 'windo diffthis'<cr><cr>")
 vim.keymap.set("n", "yoh", ":set hlsearch!<cr>")
 vim.keymap.set("n", "yoi", ":set list!<cr>")
+vim.keymap.set("n", "yol", ":set cursorline!<cr>")
 vim.keymap.set("n", "yon", ":set number!<cr>")
 vim.keymap.set("n", "yor", ":set relativenumber!<cr>")
-
 vim.keymap.set("n", "yos", ":setlocal spell! spelllang=en_us<cr>")
 vim.keymap.set("n", "yow", ":setlocal wrap!<cr>")
 
@@ -253,7 +253,7 @@ vim.keymap.set("n", "yof", function()
   end
 end, { desc = "Toggle foldcolumn" })
 
-vim.keymap.set("n", "yoc", function()
+vim.keymap.set("n", "yoC", function()
   if vim.o.conceallevel == 2 then
     vim.o.conceallevel = 0
   else
