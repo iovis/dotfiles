@@ -23,8 +23,8 @@ fzf_command() {
     --bind='alt-r:change-preview-window(right|down)' \
     --reverse \
     --info=hidden \
-    --preview="eza --color=always -lag --git --group-directories-first $PROJECT_HOME/{}" \
-    --preview-window=down \
+    --preview="eza --color=always --icons -1a --group-directories-first $PROJECT_HOME/{}" \
+    --preview-window=right \
     --prompt="$PROJECT_HOME/" \
     --query="$INITIAL_QUERY"
 }

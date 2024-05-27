@@ -6,8 +6,8 @@ fi
 
 # eza
 if type eza > /dev/null; then
-  alias l="eza -lag --git --group-directories-first"
-  alias tree="eza --group-directories-first -T"
+  alias l="eza -la --git --group-directories-first --icons"
+  alias tree="eza -T --group-directories-first --icons"
 fi
 
 # fzf
