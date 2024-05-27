@@ -106,8 +106,22 @@ local conventional_commit = function()
   return sn(
     nil,
     c(1, {
-      sn(nil, fmt("({}): {}", { r(1, "scope", i(1)), r(2, "message", i(2)) })),
-      sn(nil, fmt("({})!: {}", { r(1, "scope", i(1)), r(2, "message", i(2)) })),
+      sn(
+        nil,
+        fmt("({}): {}\n\n{}", {
+          r(1, "scope", i(1)),
+          r(2, "message", i(2)),
+          i(0),
+        })
+      ),
+      sn(
+        nil,
+        fmt("({})!: {}\n\n{}", {
+          r(1, "scope", i(1)),
+          r(2, "message", i(2)),
+          i(0),
+        })
+      ),
     })
   )
 end
