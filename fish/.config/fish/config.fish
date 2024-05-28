@@ -34,20 +34,12 @@ set -gx BAT_THEME base16
 set -gx MISE_FISH_AUTO_ACTIVATE 0
 
 ## PATH
-# brew shellenv | source
-set -gx HOMEBREW_PREFIX /opt/homebrew
-set -gx HOMEBREW_CELLAR /opt/homebrew/Cellar
-set -gx HOMEBREW_REPOSITORY /opt/homebrew
-
-fish_add_path /opt/homebrew/bin /opt/homebrew/sbin
-
-set -q MANPATH; or set MANPATH ''
-set -gx MANPATH /opt/homebrew/share/man $MANPATH
-
-set -q INFOPATH; or set INFOPATH ''
-set -gx INFOPATH /opt/homebrew/share/info $INFOPATH
-
+brew shellenv | source
 fish_add_path $HOME/.dotfiles/bin
+
+for local_override in $FDOTDIR/local/*.fish
+    source $local_override
+end
 
 if status is-interactive
     ulimit -n 2048
@@ -69,8 +61,4 @@ if status is-interactive
     end
 else
     mise activate fish --shims | source
-end
-
-for local_override in $FDOTDIR/local/*.fish
-    source $local_override
 end
