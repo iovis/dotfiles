@@ -1,10 +1,7 @@
 return {
   "NvChad/nvim-colorizer.lua",
   -- enabled = false,
-  event = "VeryLazy",
-  keys = {
-    { "yoo", "<cmd>ColorizerToggle<cr>" },
-  },
+  cmd = { "ColorizerToggle" },
   config = function()
     require("colorizer").setup({
       filetypes = {
