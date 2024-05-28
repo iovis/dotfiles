@@ -270,6 +270,16 @@ vim.keymap.set("n", "yoz", function()
   end
 end, { desc = "Toggle scroll lock" })
 
+vim.keymap.set("n", "yoa", function()
+  if vim.g.autoformat then
+    vim.g.autoformat = false
+    print("Autoformat disabled")
+  else
+    vim.g.autoformat = true
+    print("Autoformat enabled")
+  end
+end, { desc = "Toggle autoformat" })
+
 ---- Misc
 vim.keymap.set("n", "'<cr>", "<cmd>so $VIMRUNTIME/syntax/hitest.vim<cr>")
 vim.keymap.set("n", "<leader>P", ":R=")
@@ -309,17 +319,6 @@ vim.keymap.set("n", "&", [[:10R !tmux capture-pane -Jp -S- -t\! | rg '.'<left>]]
 
 ---- Tmux quick switching
 vim.keymap.set("n", "'V", "<cmd>VimPlugin<cr>")
-
----- Toggle autoformat
-vim.keymap.set("n", "<leader>A", function()
-  if vim.g.autoformat then
-    vim.g.autoformat = false
-    print("Autoformat disabled")
-  else
-    vim.g.autoformat = true
-    print("Autoformat enabled")
-  end
-end, { desc = "Toggle autoformat" })
 
 ---- Toggle autotest
 vim.keymap.set("n", "<leader>TD", function()

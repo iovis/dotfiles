@@ -25,12 +25,12 @@ return {
       log_level = vim.log.levels.ERROR,
       format_on_save = function(bufnr)
         if not vim.g.autoformat then
-          return
+          return {}
         end
 
         local ignore_filetypes = {}
         if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
-          return
+          return {}
         end
 
         return format_options
