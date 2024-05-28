@@ -83,6 +83,9 @@ bind_command({ ctrl_alt_cmd, "y" }, "yabai_set_no_float")
 bind_command({ ctrl_alt, "o" }, "yabai_grid 2:5:-1:0:1:1")
 bind_command({ ctrl_alt_cmd, "o" }, "yabai_grid 1:4:3:0:1:1")
 
+bind_command({ ctrl_alt, "q" }, "yabai_grid 2:5:0:0:1:1")
+bind_command({ ctrl_alt_cmd, "q" }, "yabai_grid 1:4:0:0:1:1")
+
 ---Halves
 bind_command({ ctrl_alt, "left" }, "yabai_grid 1:2:0:0:1:1")
 bind_command({ ctrl_alt, "right" }, "yabai_grid 1:2:1:0:1:1")
