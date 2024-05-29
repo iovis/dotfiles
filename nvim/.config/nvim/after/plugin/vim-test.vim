@@ -14,12 +14,17 @@ function! TestProfStrategy(cmd)
   execute 'Tux FPROF=1 FDOC=1 ' . a:cmd
 endfunction
 
-let test#ruby#use_spring_binstub = 1
+function! SpringStrategy(cmd)
+  execute 'Tux script/spring ' . a:cmd
+endfunction
+
+" let test#ruby#use_spring_binstub = 1
 let g:test#custom_strategies = {
       \ 'tux': function('TuxStrategy'),
       \ 'rust_log': function('RustLogStrategy'),
       \ 'rust_print': function('RustPrintStrategy'),
       \ 'test_prof': function('TestProfStrategy'),
+      \ 'script_spring': function('SpringStrategy'),
       \}
 
 let g:test#strategy = 'tux'

@@ -7,7 +7,7 @@ vim.keymap.set("n", "m<cr>", ":SolargraphRebuild!<cr>", { buffer = true })
 
 ---- Runnables
 if u.current_path():match("/co/manage") then
-  -- TODO: set vim-test strategy
+  vim.g["test#strategy"] = "script_spring"
 elseif u.current_file():match("_spec.rb") then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux rspec %<cr>", { buffer = true })
 
