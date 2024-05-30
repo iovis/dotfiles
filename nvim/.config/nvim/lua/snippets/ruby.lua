@@ -325,7 +325,7 @@ return {
   s("pry", t("require 'pry'; binding.pry"), {
     condition = conds.line_begin,
   }),
-  s({ trig = ",pry", snippetType = "autosnippet" }, t("require 'pry'; binding.pry"), {
+  s({ trig = ",pry", snippetType = "autosnippet" }, t("binding.pry"), {
     condition = conds.line_begin,
   }),
   s("b", fmta("{ |<>| <> }", { i(1, "args"), i(2) })),
