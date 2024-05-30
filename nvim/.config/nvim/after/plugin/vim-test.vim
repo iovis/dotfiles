@@ -18,7 +18,7 @@ function! SpringStrategy(cmd)
   execute 'Tux script/spring ' . a:cmd
 endfunction
 
-" let test#ruby#use_spring_binstub = 1
+let test#ruby#use_spring_binstub = 1
 let g:test#custom_strategies = {
       \ 'tux': function('TuxStrategy'),
       \ 'rust_log': function('RustLogStrategy'),
