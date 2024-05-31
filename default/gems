@@ -1,9 +1,5 @@
 awesome_print
 bundler
-htmlbeautifier
 neovim
 pry
 pry-doc
-rubocop
-ruby-lsp
-solargraph
