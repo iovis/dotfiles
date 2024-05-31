@@ -6,8 +6,7 @@ end
 
 begin
   require 'awesome_print'
-
-  AwesomePrint.pry!
+  Pry.config.print = proc { |output, value| output.puts value.ai }
 rescue LoadError
   puts "couldn't load awesome_print"
 end
@@ -29,5 +28,10 @@ end
 
 # Hit Enter to repeat last command
 Pry::Commands.command(/^$/, 'repeat last command') do
-  pry_instance.run_command Pry.history.to_a.last
+  pry_instance.input = StringIO.new(Pry.history.to_a.last)
+end
+
+# Show the code that broke when getting an exception
+Pry.config.exception_handler = proc do |_output, _exception, pry_instance|
+  pry_instance.run_command 'cat --ex'
 end
