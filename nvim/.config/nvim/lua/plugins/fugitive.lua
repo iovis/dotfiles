@@ -5,9 +5,12 @@ return {
     "tpope/vim-rhubarb",
   },
   config = function()
+    local u = require("config.utils")
+    u.alias_command("Git")
+
     vim.keymap.set("n", "<leader>G", "<cmd>Gtabedit:<cr>)", { remap = true })
     vim.keymap.set("n", "<leader>go", "<cmd>Gread<cr>")
-    vim.keymap.set("n", "<leader>gb", "<cmd>Git blame<cr>")
+    -- vim.keymap.set("n", "<leader>gb", "<cmd>Git blame<cr>")
     vim.keymap.set("n", "<leader>lg", "<cmd>Glol -500<cr>")
     vim.keymap.set({ "n", "x" }, "<leader>gg", ":GBrowse<cr>", { silent = true })
 
@@ -21,20 +24,5 @@ return {
       command! -nargs=0 Grhh  !git reset --hard
       command! -nargs=1 Gcb   !git checkout -b <args>
     ]])
-
-    local u = require("config.utils")
-    u.alias_command("Git")
-
-    local fugitive_augroup = vim.api.nvim_create_augroup("fugitive_augroup", { clear = true })
-    vim.api.nvim_create_autocmd("FileType", {
-      desc = "Fugitive keymaps",
-      group = fugitive_augroup,
-      pattern = "fugitive",
-      callback = function(params)
-        vim.keymap.set("n", "cc", "<cmd>Git commit -v<cr>", {
-          buffer = params.buf,
-        })
-      end,
-    })
   end,
 }
