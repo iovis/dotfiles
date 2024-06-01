@@ -42,6 +42,7 @@ bind -N "Paste buffer" P paste-buffer
 
 ## Session management
 bind -N "Run sessionist" c-f run sessionist
+bind -N "Kill session" X run tmux_kill_session
 
 bind -N "Rename session" . command-prompt -I "#S" {
   rename-session "%%"
@@ -49,11 +50,6 @@ bind -N "Rename session" . command-prompt -I "#S" {
 
 bind -N "New session" C command-prompt -p "new session name:" {
   new-session -A -s "%1" -c "#{pane_current_path}"
-}
-
-bind -N "Kill session" X {
-  switch-client -l
-  run 'tmux kill-session -t #{client_last_session}'
 }
 
 ## Window management
