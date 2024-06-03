@@ -121,6 +121,14 @@ return {
       lsp.ruby_lsp.setup(vim.tbl_deep_extend("force", cfg, {
         init_options = {
           formatter = "none",
+          enabledFeatures = {
+            "codeActions",
+            -- "diagnostics",
+            "documentHighlights",
+            "documentSymbols",
+            -- "formatting",
+            "inlayHint",
+          },
         },
       }))
 
