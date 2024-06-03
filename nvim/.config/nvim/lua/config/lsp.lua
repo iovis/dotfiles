@@ -104,10 +104,6 @@ local on_attach = function(client, bufnr)
   elseif client.name == "eslint" then
     client.server_capabilities.documentFormattingProvider = true
   end
-
-  if client.server_capabilities.documentSymbolProvider then
-    require("nvim-navic").attach(client, bufnr)
-  end
 end
 
 ---- Additional capabilities

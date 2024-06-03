@@ -29,12 +29,6 @@ return {
         -- tmux = { enabled = true },
         twilight = { enabled = false },
       },
-      on_open = function()
-        require("barbecue.ui").toggle(false)
-      end,
-      on_close = function()
-        require("barbecue.ui").toggle(true)
-      end,
     })
   end,
 }

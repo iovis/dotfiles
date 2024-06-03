@@ -1,3 +1,5 @@
+vim.wo.winbar = ""
+
 vim.keymap.set("n", "C", ":Cfilter<space>", {
   desc = "Filter QuickFix list",
   buffer = true,

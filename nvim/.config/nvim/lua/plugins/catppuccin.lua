@@ -94,6 +94,10 @@ return {
           ["@module"] = { style = {} },
           ["@namespace"] = { style = {} },
 
+          -- winbar
+          WinBar = { fg = colors.text, bold = true },
+          WinBarNC = { link = "Comment" },
+
           -- "TODO" highlights
           ["@lsp.type.comment"] = {}, -- Disable LSP semantic tokens
           ["@comment.todo"] = { link = "DiagnosticWarn" },
