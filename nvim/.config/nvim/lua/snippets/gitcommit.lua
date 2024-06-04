@@ -1,17 +1,17 @@
--- local u = require("config.utils")
+local u = require("config.utils")
 
 ----PR Templates
 -- Some functions get called more than once, so we store some of
 -- the expensive results
--- local ctx = {}
+local ctx = {}
 
--- local get_branch = function()
---   if not ctx.branch then
---     ctx.branch = u.system("git rev-parse --abbrev-ref HEAD")
---   end
---
---   return ctx.branch
--- end
+local get_branch = function()
+  if not ctx.branch then
+    ctx.branch = u.system({ "git", "rev-parse", "--abbrev-ref", "HEAD" })
+  end
+
+  return ctx.branch
+end
 
 ---@return table
 -- local get_qa_prs = function()
@@ -48,17 +48,21 @@
 --   return sn(nil, t(jira_card))
 -- end
 
--- local get_jira_url = function(args)
---   local jira_card = args[1][1]
---
---   if u.is_empty(jira_card) then
---     return sn(nil, t(""))
---   end
---
---   local jira_url = "[" .. jira_card .. "](https://atlassian.net/browse/" .. jira_card .. ")"
---
---   return sn(nil, t({ "", jira_url, "" }))
--- end
+local get_jira_url = function()
+  local jira_card = get_branch():match("%w+-%d+")
+
+  if jira_card then
+    jira_card = jira_card:upper()
+  end
+
+  if u.is_empty(jira_card) then
+    return sn(nil, t(""))
+  end
+
+  local jira_url = ("https://meraki.atlassian.net/browse/%s"):format(jira_card)
+
+  return sn(nil, t(jira_url))
+end
 
 -- local extract_title_from_branch = function()
 --   local branch = get_branch()
@@ -190,8 +194,13 @@ return {
     ),
     { condition = conds.line_begin }
   ),
+  s("jira", fmt("JIRA: {jira_url}", { jira_url = d(1, get_jira_url) }), {
+    condition = conds.line_begin,
+  }),
   -- Templates
-  s("plugins", t("chore(nvim.plugin): sync plugins"), { condition = conds.line_begin }),
+  s("plugins", t("chore(nvim.plugin): sync plugins"), {
+    condition = conds.line_begin,
+  }),
   -- s(
   --   "main",
   --   fmt(
