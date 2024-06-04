@@ -2,6 +2,7 @@ vim.filetype.add({
   extension = {
     dbout = "dbout",
     nbt = "numbat",
+    rbs = "ruby",
     templ = "templ",
     tmux = "tmux",
     zon = "zig",
