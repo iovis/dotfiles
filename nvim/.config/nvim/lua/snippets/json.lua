@@ -51,6 +51,31 @@ return {
     )
   ),
   s(
+    "ruby",
+    fmta(
+      [[
+        {
+          "lib/*.rb": {
+            "alternate": "spec/{}_spec.rb"
+          },
+          "spec/*_spec.rb": {
+            "alternate": "lib/{}.rb"
+          },
+          "Gemfile": {
+            "alternate": "Gemfile.lock"
+          },
+          "Gemfile.lock": {
+            "alternate": "Gemfile"
+          }
+        }
+      ]],
+      {},
+      {
+        condition = conds.line_begin,
+      }
+    )
+  ),
+  s(
     "rails",
     fmta(
       [[
