@@ -1,6 +1,6 @@
 return {
   "ramilito/winbar.nvim",
-  -- event = "VimEnter",
+  enabled = false,
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
     require("winbar").setup({

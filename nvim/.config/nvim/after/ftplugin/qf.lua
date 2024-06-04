@@ -1,3 +1,4 @@
+-- For some reason you get a flash if you don't set this
 vim.wo.winbar = ""
 
 vim.keymap.set("n", "C", ":Cfilter<space>", {
