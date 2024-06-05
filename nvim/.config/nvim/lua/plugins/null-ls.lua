@@ -10,7 +10,7 @@ return {
       sources = {
         d.erb_lint,
         d.fish,
-        d.yamllint,
+        -- d.yamllint,
       },
     })
   end,

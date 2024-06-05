@@ -147,6 +147,18 @@ return {
         filetypes = { "swift" },
       }))
 
+      lsp.yamlls.setup(vim.tbl_deep_extend("force", cfg, {
+        settings = {
+          yaml = {
+            schemas = require("schemastore").yaml.schemas(),
+            schemaStore = {
+              enable = false,
+              url = "",
+            },
+          },
+        },
+      }))
+
       vim.g.rustaceanvim = {
         server = {
           on_attach = cfg.on_attach,
