@@ -2,30 +2,30 @@
 gui:
   border: rounded
   enlargedSideViewLocation: 'top'
-  # filterMode: 'fuzzy'
-  nerdFontsVersion: 3
+  filterMode: 'fuzzy'
+  nerdFontsVersion: '3'
   showBottomLine: false
   showCommandLog: false
   showFileTree: false
   skipRewordInEditorWarning: true
   theme:
     activeBorderColor:
-      - "#a6d189"
+      - '#a6d189'
       - bold
     inactiveBorderColor:
-      - "#737994"
+      - '#737994'
     searchingActiveBorderColor:
-      - "#8caaee"
+      - '#8caaee'
       - bold
     optionsTextColor:
-      - "#8caaee"
+      - '#8caaee'
     selectedLineBgColor:
-      - "#292c3c"
+      - '#292c3c'
       - bold
     cherryPickedCommitBgColor:
       - bold
     cherryPickedCommitFgColor:
-      - "#8caaee"
+      - '#8caaee'
     defaultFgColor:
       - default
 git:
