@@ -102,7 +102,7 @@ return {
     vim.keymap.set("n", "<leader>o", fzf_lua.files, { desc = "fzf_lua.files" })
     vim.keymap.set("n", "gm", fzf_lua.buffers, { desc = "fzf_lua.buffers" })
 
-    vim.keymap.set("n", "<leader>ft", function()
+    vim.keymap.set("n", "<leader>F", function()
       fzf_lua.filetypes({
         winopts = {
           width = 0.50,
