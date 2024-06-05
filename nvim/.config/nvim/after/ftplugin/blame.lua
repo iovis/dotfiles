@@ -1,1 +1,0 @@
--- vim.wo.winbar = "%#Winbar#  git blame"
