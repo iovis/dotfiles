@@ -21,6 +21,11 @@ local winbar_per_filetype = {
     hl = "DevIconGitLogo",
     title = "git blame",
   },
+  checkhealth = {
+    icon = "󰓙",
+    hl = "DevIconCheckhealth",
+    title = "checkhealth",
+  },
   fugitive = {
     icon = "",
     hl = "DevIconGitLogo",
