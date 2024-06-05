@@ -64,6 +64,9 @@ u.command("R", function(ctx)
     lines = ctx.count,
     type = ctx.bang and "vertical" or "horizontal",
   })
+
+  -- Set custom winbar
+  vim.wo.winbar = ("    %%#WinbarNC#» %s"):format(ctx.args)
 end, { nargs = "+", complete = "command", bang = true, count = true })
 
 u.command("P", function(ctx)

@@ -97,6 +97,11 @@ local augroup = vim.api.nvim_create_augroup("user_winbar", { clear = true })
 vim.api.nvim_create_autocmd(events, {
   group = augroup,
   callback = function(args)
+    -- Ignore custom winbar
+    if vim.wo.winbar:match("»") then
+      return
+    end
+
     local win_number = vim.api.nvim_get_current_win()
     local win_config = vim.api.nvim_win_get_config(win_number)
 
