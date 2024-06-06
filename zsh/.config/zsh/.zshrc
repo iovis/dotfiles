@@ -33,7 +33,7 @@ source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/bindkey.zsh"
 source "$ZDOTDIR/functions.zsh"
 source "$ZDOTDIR/command_config.zsh"
-source "$ZDOTDIR/options.zsh"
+source "$ZDOTDIR/settings.zsh"
 source "$ZDOTDIR/completions.zsh"
 
 ## Local configuration
