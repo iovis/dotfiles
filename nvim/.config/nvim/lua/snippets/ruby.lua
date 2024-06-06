@@ -313,6 +313,9 @@ return {
     { condition = conds.line_begin }
   ),
   -- Misc
+  s("frozenstring", t("# frozen_string_literal: true"), {
+    condition = conds.line_begin,
+  }),
   s("r", fmt("attr_reader :{}", { i(0, "attr_name") }), {
     condition = conds.line_begin,
   }),
