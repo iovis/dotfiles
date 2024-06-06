@@ -1,6 +1,10 @@
 return {
   "nvimtools/none-ls.nvim",
   -- enabled = false,
+  event = "VeryLazy",
+  keys = {
+    { "<leader>ln", "<cmd>NullLsInfo<cr>" },
+  },
   config = function()
     local null_ls = require("null-ls")
     local d = null_ls.builtins.diagnostics
