@@ -11,24 +11,24 @@ rescue LoadError
   puts "couldn't load awesome_print"
 end
 
-# Use pry_instance.config.pager = true to use 'less'
 # Pry.config.pager = false
 
-# Debug shortcuts for binding.pry
-if defined?(PryByebug)
-  Pry.commands.alias_command 'c', 'continue'
-  Pry.commands.alias_command 's', 'step'
-  Pry.commands.alias_command 'n', 'next'
-  Pry.commands.alias_command 'f', 'finish'
-elsif defined?(PryNav)
-  Pry.commands.alias_command 'c', 'continue'
-  Pry.commands.alias_command 's', 'step'
-  Pry.commands.alias_command 'n', 'next'
-end
+begin
+  require 'pry-byebug'
 
-# Hit Enter to repeat last command
-Pry::Commands.command(/^$/, 'repeat last command') do
-  pry_instance.input = StringIO.new(Pry.history.to_a.last)
+  if defined?(PryByebug)
+    Pry.commands.alias_command 'c', 'continue'
+    Pry.commands.alias_command 's', 'step'
+    Pry.commands.alias_command 'n', 'next'
+    Pry.commands.alias_command 'f', 'finish'
+
+    Pry::Commands.command(/^$/, 'Hit Enter to go to next line') do
+      last_command = Pry.history.to_a.last
+      pry_instance.input = StringIO.new(last_command) if %w[n next].include? last_command
+    end
+  end
+rescue LoadError
+  puts "couldn't load pry-byebug"
 end
 
 # Show the code that broke when getting an exception
