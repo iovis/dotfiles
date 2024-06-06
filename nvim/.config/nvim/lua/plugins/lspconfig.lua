@@ -31,41 +31,19 @@ return {
       local lsp = require("lspconfig")
       local cfg = require("config.lsp")
 
-      lsp.astro.setup(cfg)
       lsp.bashls.setup(cfg)
       lsp.clangd.setup(cfg)
       lsp.cmake.setup(cfg)
       lsp.cssls.setup(cfg)
       lsp.dockerls.setup(cfg)
-      lsp.elixirls.setup(cfg)
-      lsp.eslint.setup(cfg)
+      lsp.emmet_language_server.setup(cfg)
       lsp.gopls.setup(cfg)
-      lsp.htmx.setup(cfg)
       lsp.marksman.setup(cfg)
-      lsp.pyright.setup(cfg)
       lsp.rubocop.setup(cfg)
-      lsp.stylelint_lsp.setup(cfg)
       lsp.svelte.setup(cfg)
       lsp.taplo.setup(cfg)
-      lsp.templ.setup(cfg)
       lsp.tsserver.setup(cfg)
       lsp.zls.setup(cfg)
-
-      lsp.emmet_language_server.setup(vim.tbl_deep_extend("force", cfg, {
-        filetypes = {
-          "css",
-          "eruby",
-          "html",
-          "htmldjango",
-          "javascriptreact",
-          "less",
-          "pug",
-          "sass",
-          "scss",
-          "templ",
-          "typescriptreact",
-        },
-      }))
 
       lsp.html.setup(vim.tbl_deep_extend("force", cfg, {
         settings = {
@@ -79,7 +57,6 @@ return {
         filetypes = {
           "eruby",
           "html",
-          "templ",
         },
       }))
 
@@ -121,30 +98,23 @@ return {
       lsp.ruby_lsp.setup(vim.tbl_deep_extend("force", cfg, {
         init_options = {
           enabledFeatures = {
-            -- "codeActions",
-            -- "diagnostics",
-            "documentHighlights",
-            "documentSymbols",
-            -- "formatting",
-            "inlayHint",
-          },
-        },
-      }))
-
-      lsp.solargraph.setup(vim.tbl_deep_extend("force", cfg, {
-        settings = {
-          solargraph = {
-            diagnostics = false, -- Use rubocop LSP directly
-            autoformat = false,
+            diagnostics = false,
             formatting = false,
-            useBundler = true,
+            codeActions = false,
           },
         },
       }))
 
-      lsp.sourcekit.setup(vim.tbl_deep_extend("force", cfg, {
-        filetypes = { "swift" },
-      }))
+      -- lsp.solargraph.setup(vim.tbl_deep_extend("force", cfg, {
+      --   settings = {
+      --     solargraph = {
+      --       diagnostics = false, -- Use rubocop LSP directly
+      --       autoformat = false,
+      --       formatting = false,
+      --       useBundler = true,
+      --     },
+      --   },
+      -- }))
 
       lsp.yamlls.setup(vim.tbl_deep_extend("force", cfg, {
         settings = {
