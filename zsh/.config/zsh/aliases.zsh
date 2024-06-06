@@ -10,6 +10,18 @@ alias -g ...='../..'
 alias d="dirs -v | head -n 10"
 alias md="mkdir -p"
 
+## misc
+alias ag="alias | g --"
+alias c="cat"
+alias ds="du -sh * .* | sort -rh"
+alias flushcompletions="rm -f \$ZDOTDIR/.zcompdump*"
+alias l="ls -alh"
+alias openfiles="ulimit -n 2048"
+alias path="echo \$PATH | tr ':' '\n'"
+alias so="exec zsh"
+alias t="which"
+alias tailf="tail -f"
+
 ## docker
 alias dcdn="docker compose down"
 alias dcl="docker compose logs"
@@ -57,6 +69,13 @@ alias gsta="git stash push"
 alias gstl="git stash list"
 alias gstp="git stash pop"
 
+## python
+alias pipi="pip install"
+alias pipinit="pipu pip setuptools wheel && pipr \$DOTFILES/default/pips"
+alias pipo="pip list --outdated --format=columns | grep --color -f \$DOTFILES/default/pips"
+alias pipr="pip install -r"
+alias pipu="pip install -U"
+
 ## ruby
 # alias RED="RAILS_ENV=development"
 # alias REP="RAILS_ENV=production"
@@ -81,6 +100,12 @@ alias gems="gem list"
 # alias rsb="rails server -b 0.0.0.0"
 # alias rsof="rspec --only-failures"
 # alias rtg="rails -T"
+
+## rsync
+alias rsync-copy="rsync -avz --progress -h"
+alias rsync-move="rsync -avz --progress -h --remove-source-files"
+alias rsync-synchronize="rsync -avzu --delete --progress -h"
+alias rsync-update="rsync -avzu --progress -h"
 
 ## rust
 alias cb="cargo build"
@@ -109,21 +134,3 @@ alias tksv='tmux kill-server'
 alias tl='tmux list-sessions'
 alias tm="tmux attach || tmux new-session"
 alias tmsg="tmux display-message"
-
-## rsync
-alias rsync-copy="rsync -avz --progress -h"
-alias rsync-move="rsync -avz --progress -h --remove-source-files"
-alias rsync-synchronize="rsync -avzu --delete --progress -h"
-alias rsync-update="rsync -avzu --progress -h"
-
-## misc
-alias ag="alias | g --"
-alias c="cat"
-alias ds="du -sh * .* | sort -rh"
-alias flushcompletions="rm -f \$ZDOTDIR/.zcompdump*"
-alias l="ls -alh"
-alias openfiles="ulimit -n 2048"
-alias path="echo \$PATH | tr ':' '\n'"
-alias so="exec zsh"
-alias t="which"
-alias tailf="tail -f"
