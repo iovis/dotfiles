@@ -65,6 +65,10 @@ M.scratch = function(contents, opts)
 
   vim.api.nvim_buf_set_lines(0, 0, -1, false, contents)
   vim.bo.filetype = opts.filetype or "lua"
+
+  if opts.winbar then
+    vim.wo.winbar = ("    %%#WinbarNC#» %s"):format(opts.winbar)
+  end
 end
 
 M.floating_window = function(contents, opts)
@@ -135,13 +139,13 @@ M.system = function(cmd)
 
   if result.code ~= 0 then
     local stderr = vim.split(result.stderr, "\n")
+    local command = vim.iter(cmd):join(" ")
 
     local lines = vim
       .iter({
-        ("Error running command: %s"):format(vim.iter(cmd):join(" ")),
-        "----------------------",
         stderr,
         "----------------------",
+        "",
         vim.split(vim.inspect(result), "\n"),
       })
       :flatten()
@@ -150,6 +154,7 @@ M.system = function(cmd)
     M.scratch(lines, {
       type = "horizontal",
       lines = 8,
+      winbar = command,
     })
   end
 

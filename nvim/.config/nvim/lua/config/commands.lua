@@ -63,10 +63,8 @@ u.command("R", function(ctx)
   u.scratch(lines, {
     lines = ctx.count,
     type = ctx.bang and "vertical" or "horizontal",
+    winbar = ctx.args,
   })
-
-  -- Set custom winbar
-  vim.wo.winbar = ("    %%#WinbarNC#» %s"):format(ctx.args)
 end, { nargs = "+", complete = "command", bang = true, count = true })
 
 u.command("P", function(ctx)
