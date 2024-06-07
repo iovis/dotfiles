@@ -56,10 +56,14 @@ local winbar_per_path = function(path)
   local filename = string.lower(vim.fn.fnamemodify(path, ":t"))
   local ext = vim.fn.fnamemodify(path, ":e")
 
-  local icon, highlight = devicons.get_icon(filename, ext, {
-    default = true,
-    strict = true,
-  })
+  local icon, highlight = devicons.get_icon(filename, ext)
+
+  if not icon then
+    icon, highlight = devicons.get_icon_by_filetype(vim.bo.filetype, {
+      default = true,
+      strict = true,
+    })
+  end
 
   return {
     icon = icon,
