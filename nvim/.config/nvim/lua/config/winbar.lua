@@ -36,6 +36,11 @@ local winbar_per_filetype = {
     hl = "DevIconGitLogo",
     title = "git blame",
   },
+  gitrebase = {
+    icon = "",
+    hl = "DevIconGitLogo",
+    title = "git rebase",
+  },
   oil = {
     icon = "  ",
     hl = "Directory",
