@@ -74,7 +74,7 @@ end
 
 ---Calculate winbar string
 ---@param is_active boolean
----@return string?
+---@return string
 local get_winbar = function(is_active)
   local modified = ""
   if vim.api.nvim_get_option_value("mod", {}) then
@@ -86,7 +86,7 @@ local get_winbar = function(is_active)
   if not winbar then
     winbar = winbar_per_path(vim.fn.bufname())
   elseif winbar == none then
-    return nil
+    return ""
   end
 
   local title = ""
@@ -105,8 +105,14 @@ local get_winbar = function(is_active)
   end
 end
 
-local events = { "VimEnter", "BufEnter", "BufModifiedSet", "WinEnter", "WinLeave" }
 local augroup = vim.api.nvim_create_augroup("user_winbar", { clear = true })
+local events = {
+  "VimEnter",
+  "BufEnter",
+  "BufModifiedSet",
+  "WinEnter",
+  "WinLeave",
+}
 
 vim.api.nvim_create_autocmd(events, {
   group = augroup,
@@ -116,16 +122,15 @@ vim.api.nvim_create_autocmd(events, {
       return
     end
 
-    local win_number = vim.api.nvim_get_current_win()
-    local win_config = vim.api.nvim_win_get_config(win_number)
-
     -- Ignore floating windows
+    local winnr = vim.api.nvim_get_current_win()
+    local win_config = vim.api.nvim_win_get_config(winnr)
     if win_config.relative ~= "" then
-      vim.opt_local.winbar = nil
       return
     end
 
     local is_active = args.event ~= "WinLeave"
-    vim.opt_local.winbar = get_winbar(is_active)
+
+    vim.wo.winbar = get_winbar(is_active)
   end,
 })
