@@ -1,6 +1,3 @@
--- EmmyLua annotations for lua-language-server:
--- https://github.com/sumneko/lua-language-server/wiki/Annotations
-
 local M = {}
 
 ---Alias command
