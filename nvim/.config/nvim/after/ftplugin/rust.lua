@@ -36,7 +36,7 @@ vim.api.nvim_buf_create_user_command(0, "ClippyFix", function()
     "cargo",
     "clippy",
     "--fix",
-    "--allowdirty",
+    "--allow-dirty",
     "--",
     "-W",
     "clippy::pedantic",
