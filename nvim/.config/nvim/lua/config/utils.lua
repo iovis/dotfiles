@@ -173,13 +173,8 @@ end
 ---Check if command is executable
 ---@param cmd string
 ---@return boolean
----@return string
 M.is_executable = function(cmd)
-  if cmd and vim.fn.executable(cmd) == 1 then
-    return true, ""
-  end
-
-  return false, string.format("command %s is not executable (make sure it's installed and on your $PATH)", cmd)
+  return vim.fn.executable(cmd) == 1
 end
 
 ---- Strings
