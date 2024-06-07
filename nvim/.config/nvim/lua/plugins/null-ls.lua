@@ -12,7 +12,7 @@ return {
     null_ls.setup({
       debug = false,
       sources = {
-        d.erb_lint,
+        -- d.erb_lint,
         d.fish,
         -- d.yamllint,
       },
