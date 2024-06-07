@@ -64,6 +64,7 @@ vim.o.mouse = "a"
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.ruler = false
+vim.o.scrollback = 100000
 vim.o.scrolloff = vim.g.scrolloff
 vim.o.shiftround = true
 vim.o.shiftwidth = 2

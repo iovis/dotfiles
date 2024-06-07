@@ -117,3 +117,19 @@ u.command("VimPlugin", function(opts)
 
   vim.fn.system(cmd)
 end, { nargs = "?" })
+
+---- Render ANSI code colors
+u.command("AnsiRender", function(opts)
+  local file = opts.args
+
+  if u.is_empty(opts.args) then
+    file = vim.fn.bufname()
+  end
+
+  vim.cmd("tab terminal bat -pp " .. file)
+
+  vim.keymap.set("n", "q", "<cmd>close<cr>", {
+    buffer = true,
+    nowait = true,
+  })
+end, { nargs = "?", complete = "file" })
