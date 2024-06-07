@@ -327,18 +327,20 @@ end
 ---UI
 M.ui = {}
 
-M.ui.foldtext = function(node, text)
+M.ui.foldtext = function()
   local start = vim.fn.getline(vim.v.foldstart)
   local replace = vim.fn["repeat"](" ", vim.bo.tabstop)
-  local ret = vim.fn.substitute(start, "\\t", replace, "g")
 
-  local foldtext = ("%s ... %s  (%s) lines"):format(
-    ret,
-    vim.fn.trim(vim.fn.getline(vim.v.foldend)),
-    (vim.v.foldend - vim.v.foldstart + 1)
-  )
+  local text_start = vim.fn.substitute(start, "\\t", replace, "g")
+  local text_end = vim.fn.trim(vim.fn.getline(vim.v.foldend))
+  local num_lines = (vim.v.foldend - vim.v.foldstart + 1)
 
-  return foldtext
+  return {
+    { text_start, nil },
+    { " ... ", "" },
+    { text_end, "" },
+    { ("   %d lines"):format(num_lines), "Comment" },
+  }
 end
 
 return M
