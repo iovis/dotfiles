@@ -237,38 +237,12 @@ vim.keymap.set("n", "<leader>up", "<cmd>e! package.json<cr>")
 ---- Toggle Settings
 vim.keymap.set("n", "yoc", ":set cursorcolumn!<cr>")
 vim.keymap.set("n", "yod", ":<c-r>=&diff ? 'windo diffoff' : 'windo diffthis'<cr><cr>")
-vim.keymap.set("n", "yoh", ":set hlsearch!<cr>")
 vim.keymap.set("n", "yoi", ":set list!<cr>")
 vim.keymap.set("n", "yol", ":set cursorline!<cr>")
 vim.keymap.set("n", "yon", ":set number!<cr>")
 vim.keymap.set("n", "yor", ":set relativenumber!<cr>")
 vim.keymap.set("n", "yos", ":setlocal spell! spelllang=en_us<cr>")
 vim.keymap.set("n", "yow", ":setlocal wrap!<cr>")
-
-vim.keymap.set("n", "yof", function()
-  if vim.o.foldcolumn == "1" then
-    vim.o.foldcolumn = "0"
-  else
-    vim.o.foldcolumn = "1"
-  end
-end, { desc = "Toggle foldcolumn" })
-
-vim.keymap.set("n", "yoC", function()
-  if vim.o.conceallevel == 2 then
-    vim.o.conceallevel = 0
-  else
-    vim.o.conceallevel = 2
-  end
-end, { desc = "Toggle conceallevel" })
-
-vim.keymap.set("n", "yoz", function()
-  if vim.o.scrolloff == vim.g.scrolloff then
-    vim.o.scrolloff = 999
-    vim.cmd.normal("zz")
-  else
-    vim.o.scrolloff = vim.g.scrolloff
-  end
-end, { desc = "Toggle scroll lock" })
 
 vim.keymap.set("n", "yoa", function()
   if vim.g.autoformat then
@@ -279,6 +253,41 @@ vim.keymap.set("n", "yoa", function()
     print("Autoformat enabled")
   end
 end, { desc = "Toggle autoformat" })
+
+vim.keymap.set("n", "yoC", function()
+  if vim.o.conceallevel == 2 then
+    vim.o.conceallevel = 0
+  else
+    vim.o.conceallevel = 2
+  end
+end, { desc = "Toggle conceallevel" })
+
+vim.keymap.set("n", "yof", function()
+  if vim.o.foldcolumn == "1" then
+    vim.o.foldcolumn = "0"
+  else
+    vim.o.foldcolumn = "1"
+  end
+end, { desc = "Toggle foldcolumn" })
+
+vim.keymap.set("n", "yoh", function()
+  if vim.g.hlsearch then
+    vim.g.hlsearch = false
+    print("hlsearch disabled")
+  else
+    vim.g.hlsearch = true
+    print("hlsearch enabled")
+  end
+end, { desc = "Toggle hlsearch autocmd" })
+
+vim.keymap.set("n", "yoz", function()
+  if vim.o.scrolloff == vim.g.scrolloff then
+    vim.o.scrolloff = 999
+    vim.cmd.normal("zz")
+  else
+    vim.o.scrolloff = vim.g.scrolloff
+  end
+end, { desc = "Toggle scroll lock" })
 
 ---- Misc
 vim.keymap.set("n", "'<cr>", "<cmd>so $VIMRUNTIME/syntax/hitest.vim<cr>")

@@ -21,6 +21,7 @@ vim.g.scrolloff = 4
 ---- Global Variables
 vim.g.autoformat = true
 vim.g.autotest = nil
+vim.g.hlsearch = true
 vim.g.zig_fmt_autosave = 0
 
 ---- Nvim Options
