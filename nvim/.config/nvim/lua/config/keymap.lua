@@ -102,7 +102,6 @@ vim.keymap.set("x", ">", ">gv")
 
 -- Editor
 vim.keymap.set({ "n", "x" }, ";", ":")
-vim.keymap.set({ "n", "x" }, ":", ";")
 vim.keymap.set("n", "<leader>x", "<cmd>confirm qa<cr>")
 vim.keymap.set("n", "<leader>X", "<cmd>qa!<cr>")
 vim.keymap.set("n", "<leader>w", "<cmd>w!<cr>")

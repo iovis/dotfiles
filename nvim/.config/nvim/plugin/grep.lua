@@ -18,9 +18,9 @@ u.command("Grep", function(opts)
 end, { nargs = "+", complete = "file" })
 
 vim.keymap.set("n", "g<space>", ":Grep<space>")
-vim.keymap.set("x", "g<space>", [[*;Grep -F <c-r>=shellescape(getreg('"'), 1)<cr><space>]], {
+vim.keymap.set("x", "g<space>", [[*:Grep -F <c-r>=shellescape(getreg('"'), 1)<cr><space>]], {
   remap = true,
 })
 
-vim.keymap.set("n", "K", "*;Grep -w <cword><cr>", { silent = true, remap = true })
+vim.keymap.set("n", "K", "*:Grep -w <cword><cr>", { silent = true, remap = true })
 vim.keymap.set("x", "K", "g<space><cr>", { silent = true, remap = true })
