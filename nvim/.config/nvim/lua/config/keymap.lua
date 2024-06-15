@@ -50,6 +50,14 @@ vim.keymap.set("c", "<m-p>", "<c-r>=fnameescape(expand('%:.:h')).'/'<cr>")
 
 -- Fish's binding for edit command in editor
 vim.keymap.set("c", "<m-e>", "<c-f>")
+vim.keymap.set("c", ";", function()
+  if vim.fn.getcmdpos() == 1 and vim.fn.getcmdtype() == ":" then
+    -- open the command editor on the last line
+    return "<c-f>k$"
+  end
+
+  return ";"
+end, { expr = true })
 
 -- Movement
 vim.keymap.set("c", "<m-left>", "<s-left>")
