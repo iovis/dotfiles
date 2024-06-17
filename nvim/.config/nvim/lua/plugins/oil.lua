@@ -12,6 +12,7 @@ return {
   },
   config = function()
     local oil = require("oil")
+    local show_details = false
 
     oil.setup({
       default_file_explorer = true,
@@ -35,6 +36,18 @@ return {
         ["`"] = false,
         ["~"] = false,
         ["g\\"] = false,
+        ["gd"] = {
+          desc = "Toggle file detail view",
+          callback = function()
+            show_details = not show_details
+
+            if show_details then
+              oil.set_columns({ "icon", "permissions", "size", "mtime" })
+            else
+              oil.set_columns({ "icon" })
+            end
+          end,
+        },
       },
       lsp_file_methods = {
         autosave_changes = true,
