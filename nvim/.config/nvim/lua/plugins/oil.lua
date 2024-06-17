@@ -48,6 +48,14 @@ return {
             end
           end,
         },
+        [","] = {
+          "actions.open_cmdline",
+          desc = "Open the command line with the current directory as an argument",
+          opts = {
+            shorten_path = true,
+            -- modify = ":h",
+          },
+        },
       },
       lsp_file_methods = {
         autosave_changes = true,
