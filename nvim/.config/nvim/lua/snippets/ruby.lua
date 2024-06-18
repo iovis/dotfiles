@@ -328,9 +328,7 @@ return {
   s("pry", t("require 'pry-byebug'; binding.pry"), {
     condition = conds.line_begin,
   }),
-  s({ trig = ",pry", snippetType = "autosnippet" }, t("binding.pry"), {
-    condition = conds.line_begin,
-  }),
+  s({ trig = ",pry", snippetType = "autosnippet" }, t("binding.pry")),
   s("b", fmta("{ |<>| <> }", { i(1, "args"), i(2) })),
   s(
     "do",
