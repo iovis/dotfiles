@@ -335,7 +335,7 @@ return {
       [[
         set dotenv-load := true
 
-        bin := <>
+        bin := "<>"
 
         default: run
 
@@ -352,13 +352,13 @@ return {
             watchexec -re go,html just run
 
         test:
-            go test
+            go test -v ./tests
 
         db:
             pgcli $DATABASE_URL
       ]],
       {
-        i(1, "./cmd/web"),
+        i(1, "cmd/api/main.go"),
       }
     ),
     { condition = conds.line_begin }
