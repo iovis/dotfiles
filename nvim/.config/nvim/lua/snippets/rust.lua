@@ -131,12 +131,12 @@ return {
     fmta(
       [[
         #[test]
-        fn test_<test_name>() {
+        fn <test_name>_test() {
             <>
         }
       ]],
       {
-        test_name = i(1, "test_name"),
+        test_name = i(1, "name"),
         i(0),
       }
     ),
@@ -147,12 +147,12 @@ return {
     fmta(
       [[
         #[tokio::test]
-        async fn <test_name>() {
+        async fn <test_name>_test() {
             <>
         }
       ]],
       {
-        test_name = i(1, "test_name"),
+        test_name = i(1, "name"),
         i(0),
       }
     ),
