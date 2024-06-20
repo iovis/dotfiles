@@ -336,7 +336,7 @@ M.ui.foldtext = function()
     { text_start, nil },
     { " ... ", "" },
     { text_end, "" },
-    { ("   %d lines"):format(num_lines), "Comment" },
+    { ("  󰁂 %d lines"):format(num_lines), "Comment" },
   }
 end
 
