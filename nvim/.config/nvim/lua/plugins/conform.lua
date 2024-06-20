@@ -1,5 +1,6 @@
 return {
   "stevearc/conform.nvim",
+  version = "*",
   event = "VeryLazy",
   keys = {
     { "<leader>lc", "<cmd>ConformInfo<cr>" },
