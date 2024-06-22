@@ -6,6 +6,7 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   config = function()
+    local u = require("config.utils")
     local fzf_lua = require("fzf-lua")
 
     ---- Register fzf-lua as the UI interface for vim.ui.select
@@ -173,6 +174,15 @@ return {
         end,
       })
     end, { desc = "fzf_lua.live_grep" })
+
+    local rg_opts = fzf_lua.config.globals.grep.rg_opts
+    u.alias_command("Rg")
+    vim.api.nvim_create_user_command("Rg", function(o)
+      fzf_lua.grep({
+        debug = false,
+        raw_cmd = ("rg %s %s"):format(rg_opts, o.args),
+      })
+    end, { nargs = "*" })
 
     -- Registers
     local run_macro = function(selected)
