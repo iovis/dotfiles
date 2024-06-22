@@ -156,7 +156,23 @@ return {
       fzf_lua.grep({ no_esc = true, search = "\\w" })
     end, { desc = "fzf_lua.grep" })
 
-    vim.keymap.set("n", "<leader>fl", fzf_lua.live_grep, { silent = true, desc = "fzf_lua.live_grep" })
+    vim.keymap.set("n", "<leader>fl", function()
+      fzf_lua.live_grep({
+        rg_glob = true,
+        --- @return string, string?
+        rg_glob_fn = function(query, opts)
+          -- opts.glob_separator = " --"
+          local regex, flags = query:match("^(.-)" .. opts.glob_separator .. "(.*)")
+
+          if false then
+            io.write(("[DEBUG] %s -> query: %s, flags: %s\n"):format(query, regex, flags))
+          end
+
+          -- If no separator is detected will return the original query
+          return (regex or query), flags
+        end,
+      })
+    end, { desc = "fzf_lua.live_grep" })
 
     -- Registers
     local run_macro = function(selected)
