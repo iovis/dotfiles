@@ -34,7 +34,10 @@ set -gx BAT_THEME base16
 set -gx MISE_FISH_AUTO_ACTIVATE 0
 
 ## PATH
-brew shellenv | source
+if test -e /opt/homebrew/bin/brew
+    /opt/homebrew/bin/brew shellenv | source
+end
+
 fish_add_path $HOME/.dotfiles/bin
 
 for local_override in $FDOTDIR/local/*.fish
