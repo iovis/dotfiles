@@ -8,7 +8,7 @@ return {
   config = function()
     local format_options = {
       timeout_ms = 2000,
-      lsp_fallback = "always",
+      lsp_format = "fallback",
       filter = function(client)
         local dont_format_with = {
           "tsserver",
