@@ -1,6 +1,5 @@
 # encryption
 master.key
-psql/.pgpass
 
 # fish
 fish/.config/fish/fish_variables
