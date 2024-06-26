@@ -1,6 +1,3 @@
----@alias HammerspoonBinding
----|{ [1]: string[], [2]: string }
-
 ---Console
 hs.console.darkMode(true)
 hs.console.consoleCommandColor({ white = 0.6 })
@@ -14,19 +11,11 @@ ctrl_alt = { "ctrl", "alt" }
 ctrl_alt_cmd = { "ctrl", "alt", "cmd" }
 hyper = { "ctrl", "cmd", "alt", "shift" }
 
-function notify(message)
-  hs.notify
-    .new({
-      title = "Hammerspoon",
-      informativeText = message,
-      withdrawAfter = 2,
-    })
-    :send()
-end
 
+local u = require("utils")
 require("application_launcher")
 require("bindings")
 require("yabai")
 pcall(require, "overrides")
 
-notify("Configuration Reloaded")
+u.notify("Configuration Reloaded")

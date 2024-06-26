@@ -1,24 +1,18 @@
----@param binding HammerspoonBinding
----@param application string
-local function bind(binding, application)
-  hs.hotkey.bind(binding[1], binding[2], function()
-    hs.application.launchOrFocus(application)
-  end)
-end
+local u = require("utils")
 
-bind({ ctrl_alt_cmd, "a" }, "Things3")
-bind({ ctrl_alt_cmd, "s" }, "Slack")
-bind({ ctrl_alt_cmd, "d" }, "WezTerm")
-bind({ ctrl_alt_cmd, "f" }, "Arc")
-bind({ ctrl_alt_cmd, "g" }, "Google Chrome Canary")
+u.bind.app({ ctrl_alt_cmd, "a" }, "Things3")
+u.bind.app({ ctrl_alt_cmd, "s" }, "Slack")
+u.bind.app({ ctrl_alt_cmd, "d" }, "WezTerm")
+u.bind.app({ ctrl_alt_cmd, "f" }, "Arc")
+u.bind.app({ ctrl_alt_cmd, "g" }, "Google Chrome Canary")
 
-bind({ ctrl_alt_cmd, "w" }, "Messages")
-bind({ ctrl_alt_cmd, "e" }, "Spark Desktop")
-bind({ ctrl_alt_cmd, "t" }, "TablePlus")
+u.bind.app({ ctrl_alt_cmd, "w" }, "Messages")
+u.bind.app({ ctrl_alt_cmd, "e" }, "Spark Desktop")
+u.bind.app({ ctrl_alt_cmd, "t" }, "TablePlus")
 
-bind({ ctrl_alt_cmd, "z" }, "zoom.us")
-bind({ ctrl_alt_cmd, "x" }, "Music")
-bind({ ctrl_alt_cmd, "c" }, "Fantastical")
-bind({ ctrl_alt_cmd, "b" }, "Obsidian")
+u.bind.app({ ctrl_alt_cmd, "z" }, "zoom.us")
+u.bind.app({ ctrl_alt_cmd, "x" }, "Music")
+u.bind.app({ ctrl_alt_cmd, "c" }, "Fantastical")
+u.bind.app({ ctrl_alt_cmd, "b" }, "Obsidian")
 
-bind({ ctrl_alt_cmd, "i" }, "IINA")
+u.bind.app({ ctrl_alt_cmd, "i" }, "IINA")
