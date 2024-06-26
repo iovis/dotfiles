@@ -16,7 +16,7 @@ bind({ ctrl_alt_cmd, "w" }, "Messages")
 bind({ ctrl_alt_cmd, "e" }, "Spark Desktop")
 bind({ ctrl_alt_cmd, "t" }, "TablePlus")
 
--- bind({ ctrl_alt_cmd, "z" }, "zoom.us")
+bind({ ctrl_alt_cmd, "z" }, "zoom.us")
 bind({ ctrl_alt_cmd, "x" }, "Music")
 bind({ ctrl_alt_cmd, "c" }, "Fantastical")
 bind({ ctrl_alt_cmd, "b" }, "Obsidian")

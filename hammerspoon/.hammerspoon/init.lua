@@ -27,5 +27,6 @@ end
 require("application_launcher")
 require("bindings")
 require("yabai")
+pcall(require, "overrides")
 
 notify("Configuration Reloaded")

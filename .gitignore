@@ -1,18 +1,13 @@
+# encryption
+master.key
+psql/.pgpass
+
 # fish
 fish/.config/fish/fish_variables
 fish/.config/fish/local/*
 
-# zsh
-*.zwc
-zsh/.config/zsh/.zcompdump
-zsh/.config/zsh/.zsh_history
-zsh/.config/zsh/local/*
-zsh/.config/zsh/plugins/*
-
-# tmux
-tmux/.config/tmux/local.tmux
-tmux/.config/tmux/plugins
-tmux/.config/tmux/resurrect
+# hammerspoon
+hammerspoon/.hammerspoon/overrides*
 
 # lazygit
 lazygit/.config/lazygit/state.yml
@@ -30,6 +25,14 @@ muxi/.config/muxi/sessions.toml
 pgcli/.config/pgcli/history
 pgcli/.config/pgcli/log
 
-# encryption
-master.key
-psql/.pgpass
+# tmux
+tmux/.config/tmux/local.tmux
+tmux/.config/tmux/plugins
+tmux/.config/tmux/resurrect
+
+# zsh
+*.zwc
+zsh/.config/zsh/.zcompdump
+zsh/.config/zsh/.zsh_history
+zsh/.config/zsh/local/*
+zsh/.config/zsh/plugins/*
