@@ -758,9 +758,13 @@ nnoremap <silent> <leader>k :Lexplore<cr>
 
 augroup netrw_commands
   autocmd!
+
   autocmd FileType netrw nnoremap <buffer> <c-l> <c-w>l
   autocmd FileType netrw nnoremap <buffer> <nowait> q <cmd>bd!<cr>
-  autocmd FileType netrw nmap     <buffer> <c-r> <Plug>NetrwRefresh
+
+  autocmd FileType netrw nmap     <buffer> <c-s> <Plug>NetrwRefresh
+  autocmd FileType netrw nmap     <buffer> a     <Plug>NetrwOpenFile
+  autocmd FileType netrw nmap     <buffer> g.    <Plug>NetrwHide_a
 augroup END
 " }}} netrw "
 
