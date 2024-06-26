@@ -48,6 +48,7 @@ set softtabstop=2
 set splitbelow
 set splitright
 set tabstop=2
+set termguicolors
 set updatetime=750
 set virtualedit=block
 set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn
@@ -555,37 +556,21 @@ cnoremap <expr> <CR> CCR()
 " nnoremap +<cr> :so $VIMRUNTIME/syntax/hitest.vim<cr>
 " nnoremap +<space> :hi<space>
 
-hi! def link VertSplit StatusLineNC
-hi! def link SignColumn Normal
+colorscheme habamax
+
+hi Normal guibg=NONE
+
+hi! def link VertSplit Comment
+hi! def link Tabline Comment
+hi! def link TablineFill Comment
 hi! def link ModeMsg Comment
-
-hi Normal       ctermfg=white ctermbg=none
-hi Comment      ctermfg=8
-hi NonText      ctermfg=8
-hi CursorLineNr ctermfg=blue
-hi LineNr       ctermfg=8
-hi Pmenu        ctermfg=white ctermbg=none
-hi PmenuSel     ctermfg=black ctermbg=white
-hi Search       ctermfg=0     ctermbg=11
-hi Visual       ctermfg=7     ctermbg=8     cterm=none
-hi Folded       ctermfg=8     ctermbg=none
-hi FoldColumn   ctermfg=blue  ctermbg=none
-
-hi DiffAdd      ctermfg=2     ctermbg=none  cterm=none
-hi DiffDelete   ctermfg=1     ctermbg=none  cterm=bold
-hi DiffChange   ctermfg=8     ctermbg=none  cterm=none
-hi DiffText     ctermfg=blue  ctermbg=none  cterm=bold
-
-hi TabLine      ctermfg=8     ctermbg=none  cterm=none
-hi TabLineSel   ctermfg=blue  ctermbg=none  cterm=none
-hi TabLineFill  ctermbg=none  cterm=none
-
-hi SLDirectory  ctermfg=blue
-hi SLFileType   ctermfg=2
-hi SLGitBranch  ctermfg=5
-hi SLModified   ctermfg=red
-hi StatusLine   ctermfg=white ctermbg=none  cterm=none
-hi StatusLineNC ctermfg=8     ctermbg=none  cterm=none
+hi! def link SignColumn Normal
+hi! def link StatusLine Normal
+hi! def link StatusLineNC Comment
+hi! def link SLDirectory Directory
+hi! def link SLGitBranch CursorLineNr
+hi! def link SLModified DiffDelete
+hi! def link SLFileType String
 " }}} Highlights "
 
 " statusline {{{ "
@@ -690,7 +675,7 @@ function! RenderStatuslineFor(winnum)
   let statusline .= s:CSL('SLGitBranch', '%{GitBranchName()} ') " branch
   let statusline .= s:CSL('SLFileType', '%{&filetype}') " filetype
   let statusline .= ' %3p%%'  " percentage in file
-  let statusline .= s:CSL('StatusLineNC', ' %{&fileencoding?&fileencoding:&encoding}[%{&fileformat}] ') " file encoding[file format]
+  " let statusline .= s:CSL('StatusLineNC', ' %{&fileencoding?&fileencoding:&encoding}[%{&fileformat}] ') " file encoding[file format]
 
   return statusline
 endfunction
