@@ -28,7 +28,7 @@ return {
         -- ["<leader>v"] = "actions.select_vsplit",
         -- ["<leader>h"] = "actions.select_split",
         -- ["<leader>t"] = "actions.select_tab",
-        ["<C-s>"] = false,
+        ["<C-s>"] = "actions.refresh",
         ["<C-p>"] = false,
         ["<C-h>"] = false,
         ["<C-t>"] = false,
