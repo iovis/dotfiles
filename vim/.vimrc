@@ -235,7 +235,7 @@ nnoremap <leader>b <cmd>bd!<cr>
 nnoremap <leader><tab> <cmd>bp\|bd #<cr>
 nnoremap <leader><s-tab> <cmd>bp!\|bd! #<cr>
 
-nnoremap gm :ls<cr>
+nmap gm ;ls<cr>
 nnoremap <leader>E :e<space><c-r>=fnameescape(expand('%:.:h')).'/'<cr>
 nnoremap <leader>e :e<space>
 nnoremap <leader>W :saveas <C-R>=fnameescape(expand('%:.:h')).'/'<cr>
