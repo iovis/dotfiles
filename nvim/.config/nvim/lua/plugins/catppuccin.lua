@@ -62,6 +62,9 @@ return {
           StatusLineNC = {},
           Visual = { bg = colors.surface0, bold = true },
 
+          -- Bqf
+          BqfPreviewBufLabel = { fg = colors.yellow, bold = true },
+
           -- Cmp
           CmpItemMenu = { link = "Comment" },
 
