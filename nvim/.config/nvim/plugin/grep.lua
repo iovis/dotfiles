@@ -7,12 +7,6 @@ end
 
 u.alias_command("Grep")
 u.command("Grep", function(opts)
-  -- NOTE: I tried setting the search based on the command but it's pointless
-  --    - The command could have flags, like `-F` (technically doable parsing `opts.fargs`)
-  --    - I could be passing something like `<cword>` so good luck with that
-  -- vim.fn.setreg("/", opts.args)
-  -- vim.print(vim.fn.getreg("/"))
-
   vim.cmd("silent grep! " .. opts.args)
   vim.cmd("botright cwindow")
 end, { nargs = "+", complete = "file" })
@@ -24,3 +18,39 @@ vim.keymap.set("x", "g<space>", [[*:Grep -F <c-r>=shellescape(getreg('"'), 1)<cr
 
 vim.keymap.set("n", "K", "*:Grep -w <cword><cr>", { silent = true, remap = true })
 vim.keymap.set("x", "K", "g<space><cr>", { silent = true, remap = true })
+
+vim.keymap.set("n", "<leader>fw", function()
+  local cmd = "Grep -w <cword>"
+
+  -- Filter by filetype
+  if vim.bo.filetype then
+    cmd = ("%s -t %s"):format(cmd, vim.bo.filetype)
+  end
+
+  -- Highlight word
+  vim.fn.setreg("/", vim.fn.expand("<cword>"))
+  vim.cmd("set hlsearch")
+
+  vim.cmd(cmd)
+end, { desc = "Find word in current filetype" })
+
+vim.keymap.set("x", "<leader>fw", function()
+  local saved_unnamed_register = vim.fn.getreg("@")
+
+  vim.cmd("normal! y")
+  local query = vim.fn.shellescape(vim.fn.getreg("@"))
+  local cmd = ("Grep -F %s"):format(query)
+
+  -- Filter by filetype
+  if vim.bo.filetype then
+    cmd = ("%s -t %s"):format(cmd, vim.bo.filetype)
+  end
+
+  -- Highlight word
+  vim.fn.setreg("/", vim.fn.escape(vim.fn.getreg("@"), "/\\$.*^~"))
+  vim.cmd("set hlsearch")
+
+  vim.fn.setreg("@", saved_unnamed_register)
+
+  vim.cmd(cmd)
+end, { desc = "Find word in current filetype" })
