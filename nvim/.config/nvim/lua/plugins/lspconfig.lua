@@ -24,7 +24,11 @@ return {
     dependencies = {
       "b0o/schemastore.nvim",
       "williamboman/mason.nvim",
-      { "folke/neodev.nvim", opts = {} },
+      {
+        "folke/lazydev.nvim",
+        -- ft = "lua",
+        opts = {},
+      },
     },
     config = function()
       ---- Initialize servers
