@@ -135,21 +135,21 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 })
 
 ---- Remove highlight after search
-vim.api.nvim_create_autocmd({ "CursorMoved" }, {
-  desc = "Remove highlight after search",
-  group = config_augroup,
-  callback = function()
-    if not vim.g.hlsearch then
-      return
-    end
-
-    if vim.v.hlsearch == 1 and vim.fn.searchcount().exact_match == 0 then
-      vim.schedule(function()
-        vim.cmd.nohlsearch()
-      end)
-    end
-  end,
-})
+-- vim.api.nvim_create_autocmd({ "CursorMoved" }, {
+--   desc = "Remove highlight after search",
+--   group = config_augroup,
+--   callback = function()
+--     if not vim.g.hlsearch then
+--       return
+--     end
+--
+--     if vim.v.hlsearch == 1 and vim.fn.searchcount().exact_match == 0 then
+--       vim.schedule(function()
+--         vim.cmd.nohlsearch()
+--       end)
+--     end
+--   end,
+-- })
 
 ---- Force commentstring padding
 -- vim.api.nvim_create_autocmd({ "FileType" }, {

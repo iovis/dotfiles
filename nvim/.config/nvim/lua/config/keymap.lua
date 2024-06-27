@@ -244,6 +244,7 @@ vim.keymap.set("n", "<leader>up", "<cmd>e! package.json<cr>")
 ---- Toggle Settings
 vim.keymap.set("n", "yoc", ":set cursorcolumn!<cr>")
 vim.keymap.set("n", "yod", ":<c-r>=&diff ? 'windo diffoff' : 'windo diffthis'<cr><cr>")
+vim.keymap.set("n", "yoh", ":set hlsearch!<cr>")
 vim.keymap.set("n", "yoi", ":set list!<cr>")
 vim.keymap.set("n", "yol", ":set cursorline!<cr>")
 vim.keymap.set("n", "yon", ":set number!<cr>")
@@ -276,16 +277,6 @@ vim.keymap.set("n", "yof", function()
     vim.o.foldcolumn = "1"
   end
 end, { desc = "Toggle foldcolumn" })
-
-vim.keymap.set("n", "yoh", function()
-  if vim.g.hlsearch then
-    vim.g.hlsearch = false
-    print("hlsearch disabled")
-  else
-    vim.g.hlsearch = true
-    print("hlsearch enabled")
-  end
-end, { desc = "Toggle hlsearch autocmd" })
 
 vim.keymap.set("n", "yoz", function()
   if vim.o.scrolloff == vim.g.scrolloff then
