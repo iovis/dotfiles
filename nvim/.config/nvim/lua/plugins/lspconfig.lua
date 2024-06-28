@@ -1,4 +1,18 @@
 return {
+  { "b0o/schemastore.nvim", lazy = true },
+  { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
+  { "justinsgithub/wezterm-types", lazy = true }, -- optional `wezterm` typings
+  { "mrcjkb/rustaceanvim", lazy = false, version = "*" },
+  {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    opts = {
+      library = {
+        { path = "luvit-meta/library", words = { "vim%.uv" } },
+        { path = "wezterm-types", mods = { "wezterm" } },
+      },
+    },
+  },
   {
     "williamboman/mason.nvim",
     config = function()
@@ -15,21 +29,7 @@ return {
     end,
   },
   {
-    "mrcjkb/rustaceanvim",
-    lazy = false,
-    version = "^4",
-  },
-  {
     "neovim/nvim-lspconfig",
-    dependencies = {
-      "b0o/schemastore.nvim",
-      "williamboman/mason.nvim",
-      {
-        "folke/lazydev.nvim",
-        -- ft = "lua",
-        opts = {},
-      },
-    },
     config = function()
       ---- Initialize servers
       local lsp = require("lspconfig")
