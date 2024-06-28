@@ -253,12 +253,12 @@ vim.keymap.set("n", "yos", ":setlocal spell! spelllang=en_us<cr>")
 vim.keymap.set("n", "yow", ":setlocal wrap!<cr>")
 
 vim.keymap.set("n", "yoa", function()
+  vim.g.autoformat = not vim.g.autoformat
+
   if vim.g.autoformat then
-    vim.g.autoformat = false
-    print("Autoformat disabled")
-  else
-    vim.g.autoformat = true
     print("Autoformat enabled")
+  else
+    print("Autoformat disabled")
   end
 end, { desc = "Toggle autoformat" })
 
@@ -292,8 +292,8 @@ vim.keymap.set("n", "'<cr>", "<cmd>so $VIMRUNTIME/syntax/hitest.vim<cr>")
 vim.keymap.set("n", "<leader>P", ":R=")
 vim.keymap.set("n", "<leader>M", "<cmd>10R messages<cr>G")
 vim.keymap.set("n", "'M", function()
-  print("messages cleared")
   vim.cmd("messages clear")
+  print("messages cleared")
 end, { desc = "Clear messages" })
 
 ---- Global substitutions
@@ -318,11 +318,6 @@ vim.keymap.set("n", "\\", function()
     vim.cmd("cclose")
   end
 end, { desc = "QuickFix Toggle" })
-
----- Tmux capture
-vim.keymap.set("n", "&", [[:10R !tmux capture-pane -Jp -S- -t\! | rg '.'<left>]], {
-  desc = "Capture and filter tmux last pane's contents",
-})
 
 ---- Tmux quick switching
 vim.keymap.set("n", "'V", "<cmd>VimPlugin<cr>")
