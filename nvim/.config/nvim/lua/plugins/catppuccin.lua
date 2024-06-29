@@ -107,6 +107,9 @@ return {
           ["@comment.note"] = { link = "DiagnosticInfo" },
           ["@comment.warning"] = { link = "DiagnosticWarn" },
           ["@comment.error"] = { link = "DiagnosticError" },
+
+          -- Other
+          ["@markup.quote"] = { link = "Comment" },
         }
       end,
     })
