@@ -49,9 +49,7 @@ return {
       ]],
       { i(1), i(2) }
     ),
-    {
-      condition = conds.line_begin,
-    }
+    { condition = conds.line_begin }
   ),
   -- Quick title
   s(
@@ -66,11 +64,9 @@ return {
         date = p(os.date, "%F"),
         title = i(1, "Title"),
         i(0),
-      },
-      {
-        condition = conds.line_begin,
       }
-    )
+    ),
+    { condition = conds.line_begin }
   ),
   -- Meeting notes
   s(
@@ -85,10 +81,24 @@ return {
         date = p(os.date, "%F"),
         title = d(1, meeting_title),
         i(0),
-      },
-      {
-        condition = conds.line_begin,
       }
-    )
+    ),
+    { condition = conds.line_begin }
   ),
+  -- Callouts
+  s("note", { t({ "> [!NOTE]", "> " }), i(1) }, {
+    condition = conds.line_begin,
+  }),
+  s("tip", { t({ "> [!TIP]", "> " }), i(1) }, {
+    condition = conds.line_begin,
+  }),
+  s("important", { t({ "> [!IMPORTANT]", "> " }), i(1) }, {
+    condition = conds.line_begin,
+  }),
+  s("warn", { t({ "> [!WARNING]", "> " }), i(1) }, {
+    condition = conds.line_begin,
+  }),
+  s("caution", { t({ "> [!CAUTION]", "> " }), i(1) }, {
+    condition = conds.line_begin,
+  }),
 }
