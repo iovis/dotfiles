@@ -1,13 +1,34 @@
-local commentstr = function()
-  -- Update commentstring with treesitter
-  local ok, ts_comment = pcall(require, "ts_context_commentstring.internal")
-  if ok then
-    ts_comment.update_commentstring({})
-  end
+local commentstr = function(annotation)
+  return function()
+    -- Update commentstring with treesitter
+    local ok, ts_comment = pcall(require, "ts_context_commentstring.internal")
+    if ok then
+      ts_comment.update_commentstring({})
+    end
 
-  -- Remove `%s` from commentstr
-  -- Example (lua): `-- %s`
-  return vim.bo.commentstring:gsub("%s*%%s", "")
+    -- Something like `-- %s` or `<!--%s-->`
+    local commentstr = vim.split(vim.bo.commentstring, "%s", {
+      plain = true,
+      trimempty = true,
+    })
+
+    if #commentstr == 1 then
+      -- { t("-- "), t("TODO: "), i(1) }
+      return sn(nil, {
+        t(commentstr[1]),
+        t(annotation .. " "),
+        i(1),
+      })
+    else
+      -- { t("<!--"), t(" TODO: "), i(1), t(" -->") }
+      return sn(nil, {
+        t(commentstr[1]),
+        t(" " .. annotation .. " "),
+        i(1),
+        t(" " .. commentstr[2]),
+      })
+    end
+  end
 end
 
 local filetype = function()
@@ -19,11 +40,11 @@ local filetype = function()
 end
 
 return {
-  s("todo", fmt("{} TODO: ", { p(commentstr) })),
-  s("warn", fmt("{} WARN: ", { p(commentstr) })),
-  s("note", fmt("{} NOTE: ", { p(commentstr) })),
-  s("hack", fmt("{} HACK: ", { p(commentstr) })),
-  s("fixme", fmt("{} FIXME: ", { p(commentstr) })),
+  s("todo", d(1, commentstr("TODO:"))),
+  s("warn", d(1, commentstr("WARN:"))),
+  s("note", d(1, commentstr("NOTE:"))),
+  s("hack", d(1, commentstr("HACK:"))),
+  s("fixme", d(1, commentstr("FIXME:"))),
   s("#!", fmt("#!/usr/bin/env {}", { d(1, filetype) }), {
     condition = conds.line_begin,
   }),
