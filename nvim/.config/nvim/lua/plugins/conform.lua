@@ -45,6 +45,7 @@ return {
         ["*"] = { "injected" }, -- Treesitter based injections
         eruby = { "htmlbeautifier" },
         fish = { "fish_indent" },
+        json = { "jq" },
         just = { "just" },
         lua = { "stylua" },
         sql = { "sql_formatter" },

@@ -12,5 +12,5 @@ if u.current_file():match("package.json") then
   })
 end
 
-vim.keymap.set("n", "'J", ":silent %!jq ''<left>")
-vim.keymap.set("n", "'F", ":R !jq ''<left> %")
+vim.keymap.set("n", "'J", ":silent %!jq '.'<left>")
+vim.keymap.set("n", "'f", ":R !jq '.'<left> %")

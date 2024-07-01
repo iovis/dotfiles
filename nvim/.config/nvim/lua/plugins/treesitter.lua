@@ -34,6 +34,7 @@ return {
         "graphql",
         "html",
         "http",
+        "hurl",
         "javascript",
         "jsdoc",
         "json",
