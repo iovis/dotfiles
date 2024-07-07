@@ -1,13 +1,15 @@
 return {
   "OXY2DEV/markview.nvim",
+  enabled = false,
+  ft = "markdown",
   config = function()
     require("markview").setup({
-      block_quote = {
+      block_quotes = {
         default = { border = "│" },
       },
-      checkbox = {
-        checked = { marker = "[✔]" },
-        uncheked = { marker = "[✘]" },
+      checkboxes = {
+        checked = { text = "[✔]" },
+        uncheked = { text = "[✘]" },
       },
     })
   end,
