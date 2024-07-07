@@ -14,6 +14,12 @@ return {
     vim.keymap.set("n", "<leader>lg", "<cmd>Glol -500<cr>")
     vim.keymap.set({ "n", "x" }, "<leader>gg", ":GBrowse<cr>", { silent = true })
 
+    -- NOTE: Fugitive expects netrw to exist, otherwise to define your own `:Browse`
+    --       Right now I'm using `oil.nvim` as a netrw replacement
+    vim.api.nvim_create_user_command("Browse", function(opts)
+      vim.ui.open(opts.args)
+    end, { nargs = 1, force = true })
+
     vim.cmd([[
       command! -nargs=*        Glol Git log --graph --pretty='%h -%d %s (%cr) <%an>' <args>
       command! -range -nargs=* GLogL Git log -L <line1>,<line2>:% <args>
