@@ -46,7 +46,6 @@ return {
       lsp.rubocop.setup(cfg)
       lsp.svelte.setup(cfg)
       lsp.taplo.setup(cfg)
-      lsp.tsserver.setup(cfg)
       lsp.zls.setup(cfg)
 
       lsp.html.setup(vim.tbl_deep_extend("force", cfg, {
@@ -119,6 +118,50 @@ return {
       --     },
       --   },
       -- }))
+
+      lsp.tsserver.setup(vim.tbl_deep_extend("force", cfg, {
+        commands = {
+          LspRemoveUnused = {
+            function()
+              vim.lsp.buf.code_action({
+                apply = true,
+                context = {
+                  ---@diagnostic disable-next-line: assign-type-mismatch
+                  only = { "source.removeUnused.ts" },
+                  diagnostics = {},
+                },
+              })
+            end,
+            description = "Remove unused",
+          },
+        },
+        settings = {
+          typescript = {
+            inlayHints = {
+              includeInlayEnumMemberValueHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayParameterNameHints = "all",
+              includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayVariableTypeHints = true,
+              includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+            },
+          },
+          javascript = {
+            inlayHints = {
+              includeInlayEnumMemberValueHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayParameterNameHints = "all",
+              includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayVariableTypeHints = true,
+              includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+            },
+          },
+        },
+      }))
 
       lsp.yamlls.setup(vim.tbl_deep_extend("force", cfg, {
         settings = {
