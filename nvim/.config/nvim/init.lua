@@ -12,6 +12,6 @@ vim.api.nvim_create_autocmd("User", {
     require("config.diagnostics")
     require("config.keymap")
 
-    -- pcall(dofile, ".nvimrc.lua")
+    pcall(require, "local")
   end,
 })

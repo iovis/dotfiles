@@ -19,6 +19,7 @@ muxi/.config/muxi/sessions.toml
 
 # nvim
 .repro/
+nvim/.config/nvim/lua/local*
 
 # pgcli
 pgcli/.config/pgcli/history
