@@ -7,25 +7,27 @@ local commentstr = function(annotation)
     end
 
     -- Something like `-- %s` or `<!--%s-->`
-    local commentstr = vim.split(vim.bo.commentstring, "%s", {
+    local comment_string = vim.bo.commentstring
+    comment_string = comment_string:gsub("(%S)%%s", "%1 %%s"):gsub("%%s(%S)", "%%s %1") -- add padding
+    local comment_parts = vim.split(comment_string, "%s", {
       plain = true,
       trimempty = true,
     })
 
-    if #commentstr == 1 then
-      -- { t("-- "), t("TODO: "), i(1) }
+    if #comment_parts == 1 then
+      -- { t("-- "), t("TODO:" .. " "), i(1) }
       return sn(nil, {
-        t(commentstr[1]),
+        t(comment_parts[1]),
         t(annotation .. " "),
         i(1),
       })
     else
-      -- { t("<!--"), t(" TODO: "), i(1), t(" -->") }
+      -- { t("<!-- "), t("TODO:" .. " "), i(1), t(" -->") }
       return sn(nil, {
-        t(commentstr[1]),
-        t(" " .. annotation .. " "),
+        t(comment_parts[1]),
+        t(annotation .. " "),
         i(1),
-        t(" " .. commentstr[2]),
+        t(comment_parts[2]),
       })
     end
   end
