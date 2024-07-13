@@ -2,10 +2,12 @@
 gui:
   border: rounded
   enlargedSideViewLocation: 'top'
+  expandFocusedSidePanel: true
   filterMode: 'fuzzy'
   nerdFontsVersion: '3'
   showBottomLine: false
   showCommandLog: false
+  showDivergenceFromBaseBranch: arrowAndNumber
   showFileTree: false
   skipRewordInEditorWarning: true
   theme:
