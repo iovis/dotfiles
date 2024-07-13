@@ -43,7 +43,7 @@ return {
       lsp.emmet_language_server.setup(cfg)
       lsp.gopls.setup(cfg)
       lsp.marksman.setup(cfg)
-      lsp.rubocop.setup(cfg)
+      lsp.ruby_lsp.setup(cfg)
       lsp.svelte.setup(cfg)
       lsp.taplo.setup(cfg)
       lsp.zls.setup(cfg)
@@ -98,26 +98,16 @@ return {
         },
       }))
 
-      lsp.ruby_lsp.setup(vim.tbl_deep_extend("force", cfg, {
-        init_options = {
-          enabledFeatures = {
+      lsp.solargraph.setup(vim.tbl_deep_extend("force", cfg, {
+        settings = {
+          solargraph = {
             diagnostics = false,
+            autoformat = false,
             formatting = false,
-            codeActions = false,
+            -- useBundler = true,
           },
         },
       }))
-
-      -- lsp.solargraph.setup(vim.tbl_deep_extend("force", cfg, {
-      --   settings = {
-      --     solargraph = {
-      --       diagnostics = false, -- Use rubocop LSP directly
-      --       autoformat = false,
-      --       formatting = false,
-      --       useBundler = true,
-      --     },
-      --   },
-      -- }))
 
       lsp.tsserver.setup(vim.tbl_deep_extend("force", cfg, {
         commands = {
