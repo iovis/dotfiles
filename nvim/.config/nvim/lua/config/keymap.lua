@@ -172,7 +172,7 @@ vim.keymap.set("n", "<leader>Y", '"+y$')
 vim.keymap.set("n", "<leader>d", '"+d')
 vim.keymap.set("n", "<leader>D", '"+d$')
 
-vim.keymap.set("n", "<leader>y<c-g>", function()
+vim.keymap.set("n", "<leader>yp", function()
   local path = vim.fn.expand("%")
   vim.fn.setreg("+", path)
   vim.notify('Copied "' .. path .. '" to the clipboard!')
@@ -252,16 +252,6 @@ vim.keymap.set("n", "yor", ":set relativenumber!<cr>")
 vim.keymap.set("n", "yos", ":setlocal spell! spelllang=en_us<cr>")
 vim.keymap.set("n", "yow", ":setlocal wrap!<cr>")
 
-vim.keymap.set("n", "yoa", function()
-  vim.g.autoformat = not vim.g.autoformat
-
-  if vim.g.autoformat then
-    print("Autoformat enabled")
-  else
-    print("Autoformat disabled")
-  end
-end, { desc = "Toggle autoformat" })
-
 vim.keymap.set("n", "yoC", function()
   if vim.o.conceallevel == 2 then
     vim.o.conceallevel = 0
@@ -271,6 +261,16 @@ vim.keymap.set("n", "yoC", function()
 end, { desc = "Toggle conceallevel" })
 
 vim.keymap.set("n", "yof", function()
+  vim.g.autoformat = not vim.g.autoformat
+
+  if vim.g.autoformat then
+    print("Autoformat enabled")
+  else
+    print("Autoformat disabled")
+  end
+end, { desc = "Toggle autoformat" })
+
+vim.keymap.set("n", "yoF", function()
   if vim.o.foldcolumn == "1" then
     vim.o.foldcolumn = "0"
   else
