@@ -1,18 +1,14 @@
 return {
   "folke/which-key.nvim",
-  event = "VeryLazy",
-  cmd = "WhichKey",
+  enabled = false,
   config = function()
-    require("which-key").setup({
-      triggers = {},
-      plugins = {
-        spelling = {
-          enabled = true,
-        },
-      },
-      window = {
-        border = "rounded",
-      },
+    local wk = require("which-key")
+    wk.setup({
+      preset = "modern",
     })
+
+    vim.keymap.set("n", "<leader>?", function()
+      wk.show({ global = false })
+    end, { desc = "Buffer local keymaps" })
   end,
 }
