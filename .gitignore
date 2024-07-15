@@ -17,6 +17,9 @@ mpv/.config/mpv/watch_later/*
 # muxi
 muxi/.config/muxi/sessions.toml
 
+# numbat
+numbat/Library/Application Support/numbat/history
+
 # nvim
 .repro/
 nvim/.config/nvim/lua/local*
