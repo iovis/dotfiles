@@ -6,7 +6,7 @@ function libupdate
     fish_update_completions
     generate_completions
 
-    mise plugins update
+    mise self-update
     mise outdated
 
     npm -g outdated
