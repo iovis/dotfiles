@@ -10,14 +10,14 @@ vim.api.nvim_create_user_command("PairingMode", function()
     vim.api.nvim_set_hl(0, "CursorLine", pairhl)
     vim.api.nvim_set_hl(0, "CursorColumn", pairhl)
 
-    vim.cmd("set norelativenumber")
-    vim.cmd("set cursorcolumn")
+    vim.cmd("tabdo windo set norelativenumber")
+    vim.cmd("tabdo windo set cursorcolumn")
   else
     vim.api.nvim_set_hl(0, "CursorLine", linehl)
     vim.api.nvim_set_hl(0, "CursorColumn", colhl)
 
-    vim.cmd("set relativenumber")
-    vim.cmd("set nocursorcolumn")
+    vim.cmd("tabdo windo set relativenumber")
+    vim.cmd("tabdo windo set nocursorcolumn")
   end
 end, {})
 
