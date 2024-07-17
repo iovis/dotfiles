@@ -38,15 +38,15 @@ end
 --   return ctx.prs
 -- end
 
--- local get_jira_card = function()
---   local jira_card = get_branch():match("%w+-%d+")
---
---   if jira_card then
---     jira_card = jira_card:upper()
---   end
---
---   return sn(nil, t(jira_card))
--- end
+local get_jira_card = function()
+  local jira_card = get_branch():match("%w+-%d+")
+
+  if jira_card then
+    jira_card = jira_card:upper()
+  end
+
+  return sn(nil, t(jira_card))
+end
 
 local get_jira_url = function()
   local jira_card = get_branch():match("%w+-%d+")
@@ -129,6 +129,14 @@ local conventional_commit = function()
 end
 
 return {
+  s(
+    "t",
+    fmt("{jira}: {}", {
+      jira = d(1, get_jira_card),
+      i(2),
+    }),
+    { condition = conds.line_begin }
+  ),
   -- Conventional Commits
   s(
     { trig = "build", dscr = "Changes that affect the build system or external dependencies" },
