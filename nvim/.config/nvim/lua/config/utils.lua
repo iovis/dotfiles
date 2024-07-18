@@ -64,7 +64,8 @@ M.scratch = function(contents, opts)
   vim.bo.filetype = opts.filetype or "lua"
 
   if opts.winbar then
-    vim.wo.winbar = ("    %%#WinbarNC#» %s"):format(opts.winbar)
+    local escaped_winbar = opts.winbar:gsub("%%", "%%%%") -- escape `%`
+    vim.wo.winbar = ("    %%#WinbarNC#» %s"):format(escaped_winbar)
   end
 end
 
