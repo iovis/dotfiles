@@ -14,6 +14,7 @@ return {
     vim.keymap.set({ "n", "x" }, "<leader>gg", ":GBrowse<cr>", { silent = true })
 
     vim.keymap.set("n", "<leader>lg", "<cmd>Glol -500<cr>")
+    u.alias_command("Glol")
     u.command("Glol", [[Git log --graph --pretty='%h -%d %s (%cr) <%an>' <args>]], {
       nargs = "*",
     })
