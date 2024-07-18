@@ -172,11 +172,41 @@ vim.keymap.set("n", "<leader>Y", '"+y$')
 vim.keymap.set("n", "<leader>d", '"+d')
 vim.keymap.set("n", "<leader>D", '"+d$')
 
+vim.keymap.set("n", "yp", function()
+  local path = vim.fn.expand("%:.")
+  vim.fn.setreg("0", path)
+  vim.notify('Yanked "' .. path .. '"')
+end, { desc = "Yank current buffer's path" })
+
 vim.keymap.set("n", "<leader>yp", function()
-  local path = vim.fn.expand("%")
+  local path = vim.fn.expand("%:.")
   vim.fn.setreg("+", path)
   vim.notify('Copied "' .. path .. '" to the clipboard!')
 end, { desc = "Copy current buffer's path to clipboard" })
+
+vim.keymap.set("n", "yP", function()
+  local path = vim.fn.expand("%:p")
+  vim.fn.setreg("0", path)
+  vim.notify('Yanked "' .. path .. '"')
+end, { desc = "Yank current buffer's full path" })
+
+vim.keymap.set("n", "<leader>yP", function()
+  local path = vim.fn.expand("%:p")
+  vim.fn.setreg("+", path)
+  vim.notify('Copied "' .. path .. '" to the clipboard!')
+end, { desc = "Copy current buffer's full path to clipboard" })
+
+vim.keymap.set("n", "yc", function()
+  local path = vim.fn.expand("%:.") .. ":" .. vim.fn.line(".")
+  vim.fn.setreg("0", path)
+  vim.notify('Yanked "' .. path .. '"')
+end, { desc = "Yank current buffer's path and line number" })
+
+vim.keymap.set("n", "<leader>yc", function()
+  local path = vim.fn.expand("%:.") .. ":" .. vim.fn.line(".")
+  vim.fn.setreg("+", path)
+  vim.notify('Copied "' .. path .. '" to the clipboard!')
+end, { desc = "Copy current buffer's path and line number to clipboard" })
 
 -- Quickfix/Location list
 vim.keymap.set("n", "<up>", "<cmd>cprevious<cr>")
