@@ -37,33 +37,34 @@ if test -e /opt/homebrew/bin/brew
 end
 
 fish_add_path $HOME/.dotfiles/bin
+fish_add_path $HOME/.local/bin
+
+mise activate fish | source
 
 for local_override in $FDOTDIR/local/*.fish
     source $local_override
 end
 
-if status is-interactive
-    ulimit -n 2048
+if not status is-interactive
+    return
+end
 
-    mise activate fish | source
+ulimit -n 2048
 
-    source "$FDOTDIR/abbrs.fish"
+source "$FDOTDIR/abbrs.fish"
 
-    if command -q fzf
-        fzf --fish | source
-    end
+if command -q fzf
+    fzf --fish | source
+end
 
-    if command -q starship
-        starship init fish | source
-    end
+if command -q starship
+    starship init fish | source
+end
 
-    if command -q zoxide
-        zoxide init fish | source
-    end
+if command -q zoxide
+    zoxide init fish | source
+end
 
-    if command -q atuin
-        atuin init fish --disable-up-arrow | source
-    end
-else
-    mise activate fish --shims | source
+if command -q atuin
+    atuin init fish --disable-up-arrow | source
 end
