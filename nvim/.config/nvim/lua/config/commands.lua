@@ -121,7 +121,7 @@ u.command("VimPlugin", function(opts)
 end, { nargs = "?" })
 
 ---- Render ANSI code colors
-u.command("AnsiRender", function(opts)
+u.command("RenderAscii", function(opts)
   local file = opts.args
 
   if u.is_empty(opts.args) then
