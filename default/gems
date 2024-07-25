@@ -5,4 +5,5 @@ pry
 pry-doc
 rubocop
 ruby-lsp
+ruby-lsp-rails
 solargraph
