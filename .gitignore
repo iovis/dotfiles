@@ -28,6 +28,9 @@ nvim/.config/nvim/lua/local*
 pgcli/.config/pgcli/history
 pgcli/.config/pgcli/log
 
+# ruby
+irb/.config/irb/irb_history
+
 # tmux
 tmux/.config/tmux/local.tmux
 tmux/.config/tmux/plugins
