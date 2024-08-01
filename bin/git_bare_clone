@@ -9,13 +9,13 @@ name=${2:-${basename%.*}}
 mkdir "$name"
 cd "$name"
 
-if type gh > /dev/null; then
+if type gh >/dev/null; then
   gh repo clone "$url" .bare -- --bare --single-branch
 else
   git clone --single-branch --bare "$url" .bare
 fi
 
-echo "gitdir: ./.bare" > .git
+echo "gitdir: ./.bare" >.git
 
 # Explicitly sets the remote origin fetch so we can fetch remote branches
 git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"

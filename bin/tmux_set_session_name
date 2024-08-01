@@ -3,7 +3,7 @@
 current_path=$(tmux display -p '#{pane_current_path}')
 new_session_name=$(basename "$current_path" | tr '.' '_')
 
-if tmux has-session -t "=$new_session_name" &> /dev/null; then
+if tmux has-session -t "=$new_session_name" &>/dev/null; then
   tmux display "Session $new_session_name already exists!"
   exit
 fi

@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
 
 echo "Generating completions for rustup"
-rustup completions fish > "$FDOTDIR/completions/rustup.fish"
+rustup completions fish >"$FDOTDIR/completions/rustup.fish"
 
 # echo "Generating completions for cargo"
-# rustup completions fish cargo > "$FDOTDIR/completions/cargo.fish"
+# rustup completions fish cargo >"$FDOTDIR/completions/cargo.fish"
 
 echo "Generating completions for muxi"
-muxi completions fish > "$FDOTDIR/completions/muxi.fish"
+muxi completions fish >"$FDOTDIR/completions/muxi.fish"
 
 echo "Generating completions for wezterm"
-wezterm shell-completion --shell fish > "$FDOTDIR/completions/wezterm.fish"
+wezterm shell-completion --shell fish >"$FDOTDIR/completions/wezterm.fish"
 
 echo "Generating completions for mise"
-mise completion fish > "$FDOTDIR/completions/mise.fish"
+mise completion fish >"$FDOTDIR/completions/mise.fish"
 
 # echo "Generating completions for ngrok"
-# ngrok completion >  "$FDOTDIR/completions/ngrok.fish"
+# ngrok completion >"$FDOTDIR/completions/ngrok.fish"
