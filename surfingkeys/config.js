@@ -26,10 +26,11 @@ const {
 
 settings.scrollStepSize = 100;
 
-unmap("E")
-unmap("R")
-unmap("S")
-unmap("D")
+unmap("E");
+unmap("R");
+unmap("S");
+unmap("D");
+unmap('<Ctrl-h>');
 
 mapkey("H", "#4Go back in history", function() {
   history.go(-1);
@@ -41,14 +42,14 @@ mapkey('<Backspace>', '#4Go to last used tab', function() {
   RUNTIME("goToLastTab");
 });
 
-vmap("H", "0")
-vmap("L", "$")
+vmap("H", "0");
+vmap("L", "$");
 
-imap("kj", "<Esc>")
+imap("kj", "<Esc>");
 
-aceVimMap("kj", "<Esc>", "insert")
-aceVimMap("H", "^", "normal")
-aceVimMap("L", "$", "normal")
+aceVimMap("kj", "<Esc>", "insert");
+aceVimMap("H", "^", "normal");
+aceVimMap("L", "$", "normal");
 
 // Theme
 // https://github.com/Foldex/surfingkeys-config/blob/master/themes.js
