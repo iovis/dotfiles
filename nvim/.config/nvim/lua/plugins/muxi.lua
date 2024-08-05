@@ -12,21 +12,23 @@ return {
       -- path = ".muxi.json",
     })
 
-    ----Muxi superbinding
-    vim.keymap.set("n", "<leader>g", require("muxi.ui").superbinding, {
+    ----Bindings
+    vim.keymap.set("n", "<leader>g", muxi.ui.run, {
       desc = "[muxi] Mark/go to file",
     })
 
     vim.keymap.set("n", "m", function()
-      require("muxi.ui").superbinding({ go_to_cursor = true })
+      muxi.ui.run({ go_to_cursor = true })
     end, {
       desc = "[muxi] Mark/go to file (cursor: true)",
     })
 
-    ----Arbitrary mapping
-    vim.keymap.set("n", "m<space>", require("muxi.ui").add, {
-      desc = "[muxi] Add arbitrary key",
+    vim.keymap.set("n", "dm", muxi.ui.quick_delete, {
+      desc = "[muxi] Delete mark",
     })
+
+    vim.keymap.set("n", "m<space>", ":Muxi add<space>")
+    vim.keymap.set("n", "dm<space>", ":Muxi delete<space>")
 
     ----Quick maps
     local keys = { "h", "j", "k", "l" }
@@ -52,11 +54,11 @@ return {
     end, { desc = "[muxi] Add session to ;" })
 
     ----Mark management
-    vim.keymap.set("n", "g/", require("muxi.fzf").marks, {
+    vim.keymap.set("n", "g/", muxi.fzf.marks, {
       desc = "[muxi] fzf-lua marks",
     })
 
-    vim.keymap.set("n", "m?", require("muxi.fzf").sessions, {
+    vim.keymap.set("n", "m?", muxi.fzf.sessions, {
       desc = "[muxi] fzf-lua sessions",
     })
 
@@ -65,22 +67,22 @@ return {
       vim.notify("Cleared current session")
     end, { desc = "[muxi] Clear current workspace" })
 
-    vim.keymap.set("n", "ge", require("muxi.ui").show, {
+    vim.keymap.set("n", "ge", muxi.ui.edit, {
       desc = "[muxi] Modify current workspace interactively",
     })
 
-    ----Settings toggles
-    vim.keymap.set("n", "yom", function()
-      muxi.config.go_to_cursor = not muxi.config.go_to_cursor
-
-      local message = "Muxi go to cursor "
-      message = message .. (muxi.config.go_to_cursor and "enabled" or "disabled")
-      vim.notify(message)
-    end, { desc = "[muxi] Toggle go to cursor" })
+    -- ----Settings toggles
+    -- vim.keymap.set("n", "yom", function()
+    --   muxi.config.go_to_cursor = not muxi.config.go_to_cursor
+    --
+    --   local message = "Muxi go to cursor "
+    --   message = message .. (muxi.config.go_to_cursor and "enabled" or "disabled")
+    --   vim.notify(message)
+    -- end, { desc = "[muxi] Toggle go to cursor" })
 
     ---Testing-------------------------------------
-    -- vim.keymap.set("n", "<leader>gs", require("muxi.ui").go_to_prompt, { desc = "[muxi] Interactive go to" })
-    -- vim.keymap.set("n", "<leader>gd", require("muxi.ui").delete_prompt, { desc = "[muxi] Interactive delete" })
+    -- vim.keymap.set("n", "<leader>gs", muxi.ui.go_to_prompt, { desc = "[muxi] Interactive go to" })
+    -- vim.keymap.set("n", "<leader>gd", muxi.ui.delete_prompt, { desc = "[muxi] Interactive delete" })
     --
     -- vim.keymap.set("n", "<leader>gM", function()
     --   local muxi_path = muxi.config.path

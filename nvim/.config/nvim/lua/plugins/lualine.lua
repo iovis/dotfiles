@@ -1,18 +1,15 @@
 return {
   "nvim-lualine/lualine.nvim",
   -- enabled = false,
-  dependencies = {
-    "nvim-tree/nvim-web-devicons",
-  },
+  dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
     local colors = require("catppuccin.palettes").get_palette()
     local u = require("config.utils")
 
     ----Helper functions
-    --- Truncate component to `len` characters
-    ---
-    --- @param len number
-    --- @return fun(string): string
+    ---Truncate component to `len` characters
+    ---@param len number
+    ---@return fun(string): string
     local function truncate(len)
       return function(str)
         return u.truncate(str, len)
@@ -26,9 +23,7 @@ return {
           return " "
         end,
         padding = 0,
-        color = {
-          bg = colors.mantle,
-        },
+        color = { bg = colors.mantle },
       },
     }
 
@@ -67,6 +62,7 @@ return {
         fmt = truncate(20),
       },
       {
+        -- <percentage>:<total lines> [23%:123]
         function()
           local cur = vim.fn.line(".")
           local total = vim.fn.line("$")
@@ -83,6 +79,7 @@ return {
 
     ----Extensions
     local qf = {
+      filetypes = { "qf" },
       sections = {
         lualine_a = block,
         lualine_b = {
@@ -105,8 +102,14 @@ return {
         },
         lualine_y = status,
       },
-      filetypes = { "qf" },
     }
+
+    ----Components
+    local muxi_marks = function()
+      local marks = require("muxi").marked_files[vim.fn.expand("%")]
+
+      return "[" .. vim.iter(marks):join(" ") .. "]"
+    end
 
     ----Setup
     require("lualine").setup({
@@ -114,51 +117,28 @@ return {
         globalstatus = true,
         component_separators = "",
         section_separators = { left = "", right = "" },
-        refresh = {
-          statusline = 200,
-        },
+        refresh = { statusline = 200 },
         theme = {
           normal = {
-            a = {
-              fg = colors.blue,
-              bg = colors.mantle,
-            },
-            b = {
-              fg = colors.overlay0,
-            },
+            a = { fg = colors.blue, bg = colors.mantle },
+            b = { fg = colors.overlay0 },
             c = {},
-            y = {
-              fg = colors.overlay0,
-            },
-            z = {
-              fg = colors.blue,
-              bg = colors.mantle,
-            },
+            x = { fg = colors.peach },
+            y = { fg = colors.overlay0 },
+            z = { fg = colors.blue, bg = colors.mantle },
           },
-
           inactive = {
-            a = {
-              fg = colors.text,
-              bg = colors.mantle,
-            },
-            b = {
-              fg = colors.text,
-              bg = colors.mantle,
-            },
-            c = {
-              fg = colors.mantle,
-              bg = colors.mantle,
-            },
+            a = { fg = colors.text, bg = colors.mantle },
+            b = { fg = colors.text, bg = colors.mantle },
+            c = { fg = colors.mantle, bg = colors.mantle },
           },
         },
       },
       sections = {
         lualine_a = block,
         lualine_b = filename,
-        lualine_c = {
-          "diagnostics",
-        },
-        lualine_x = {},
+        lualine_c = { "diagnostics" },
+        lualine_x = { muxi_marks },
         lualine_y = status,
         lualine_z = {},
       },
