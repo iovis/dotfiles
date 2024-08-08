@@ -90,6 +90,9 @@ return {
           NotifyBackground = { fg = colors.text, bg = colors.base },
           NoiceMini = { fg = colors.text, bg = colors.base },
 
+          -- quickfix
+          QuickFixLine = { bg = colors.base, bold = true },
+
           -- treesitter
           TreesitterContext = { bg = black, bold = true },
           TreesitterContextBottom = { style = {} }, -- Disable underline

@@ -45,6 +45,7 @@ NvimTree
 BqfPreviewBorder
 BqfPreviewScrollBar
 .muxi.json
+quickfix-*
 
 ### Npm ###
 node_modules/

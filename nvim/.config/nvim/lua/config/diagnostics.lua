@@ -49,7 +49,7 @@ vim.api.nvim_create_autocmd("DiagnosticChanged", {
   desc = "Set diagnostics on location list",
 })
 
-vim.keymap.set("n", "<leader>di", vim.diagnostic.setloclist, {
+vim.keymap.set("n", "|", vim.diagnostic.setloclist, {
   desc = "Open diagnostics list",
 })
 
