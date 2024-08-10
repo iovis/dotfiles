@@ -327,8 +327,8 @@ vim.keymap.set("n", "'M", function()
 end, { desc = "Clear messages" })
 
 ---- Global substitutions
-vim.keymap.set({ "n", "x" }, "'g", ":g//<left>")
-vim.keymap.set({ "n", "x" }, "'v", ":v//<left>")
+vim.keymap.set({ "n", "x" }, "'g", ":g/\\v")
+vim.keymap.set({ "n", "x" }, "'v", ":v/\\v")
 vim.keymap.set({ "n", "x" }, "'l", function()
   return ':luado return string.format("%s", line)' .. ("<left>"):rep(10)
 end, { expr = true })
