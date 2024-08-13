@@ -213,3 +213,6 @@ run = 'layout floating'
 [[on-window-detected]]
 if.app-id = 'com.cisco.anyconnect.gui'
 run = 'layout floating'
+[[on-window-detected]]
+if.app-id = 'Cisco-Systems.Spark'
+run = 'layout floating'
