@@ -125,9 +125,14 @@ ctrl-alt-cmd-tab = [
 
 ctrl-alt-cmd-space = 'mode prefix'
 [mode.prefix.binding]
+g = 'mode workspace'
 q = ['close-all-windows-but-current', 'mode main']
-l = 'mode workspace'
-shift-r = ['reload-config', 'mode main']
+
+shift-r = [
+  'reload-config',
+  'mode main',
+  '''exec-and-forget osascript -e 'display notification "Configuration reloaded" with title "AeroSpace"'''',
+]
 
 [mode.workspace.binding]
 enter = 'mode main'
