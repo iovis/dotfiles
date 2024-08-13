@@ -125,6 +125,9 @@ ctrl-alt-cmd-tab = [
 
 ctrl-alt-cmd-space = 'mode prefix'
 [mode.prefix.binding]
+enter = 'mode main'
+esc = 'mode main'
+
 g = 'mode workspace'
 q = ['close-all-windows-but-current', 'mode main']
 
