@@ -90,10 +90,11 @@ ctrl-alt-cmd-shift-down = 'join-with down'
 ctrl-alt-cmd-shift-up = 'join-with up'
 ctrl-alt-cmd-shift-right = 'join-with right'
 
-# reset layout/fullscreen
+# See: https://nikitabobko.github.io/AeroSpace/commands#layout
 ctrl-alt-cmd-0 = 'flatten-workspace-tree'
 ctrl-alt-cmd-m = 'fullscreen'
 ctrl-alt-cmd-y = 'layout floating tiling'
+ctrl-alt-up = ['layout tiling', 'fullscreen', 'layout floating']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 ctrl-alt-cmd-1 = 'workspace 1'
@@ -197,7 +198,7 @@ shift-x = ['move-node-to-workspace X', 'workspace X', 'mode main']
 shift-y = ['move-node-to-workspace Y', 'workspace Y', 'mode main']
 shift-z = ['move-node-to-workspace Z', 'workspace Z', 'mode main']
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#layout
+# Floating layout apps
 [[on-window-detected]]
 if.app-id = 'com.1password.1password'
 run = 'layout floating'
