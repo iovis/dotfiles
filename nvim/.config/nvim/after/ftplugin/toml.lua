@@ -14,4 +14,7 @@ elseif u.current_file():match("Cargo.toml") then
       require("config.hooks.dependencies").run("cargo")
     end,
   })
+elseif u.current_file():match("aerospace.toml") then
+  vim.keymap.set("n", "s<cr>", ":silent !aerospace reload-config<cr>", { buffer = true })
+  vim.keymap.set("n", "<leader>so", ":silent !aerospace reload-config<cr>", { buffer = true })
 end
