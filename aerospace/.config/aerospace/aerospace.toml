@@ -214,5 +214,8 @@ run = 'layout floating'
 if.app-id = 'com.cisco.anyconnect.gui'
 run = 'layout floating'
 [[on-window-detected]]
-if.app-id = 'Cisco-Systems.Spark'
+if.app-id = 'Cisco-Systems.Spark' # Webex
+run = 'layout floating'
+[[on-window-detected]]
+if.app-id = 'com.culturedcode.ThingsMac'
 run = 'layout floating'
