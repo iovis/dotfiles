@@ -24,8 +24,8 @@ outer.top = 10
 outer.right = 10
 
 [workspace-to-monitor-force-assignment]
-1 = 'main'      # Main monitor
-2 = 'secondary' # Non-main monitor in case when there are only two monitors
+J = 'main'      # Main monitor
+K = 'secondary' # Non-main monitor in case when there are only two monitors
 
 [mode.main.binding]
 # All possible keys:
@@ -52,10 +52,10 @@ ctrl-alt-cmd-f = 'exec-and-forget open -a Arc'
 ctrl-alt-cmd-g = 'exec-and-forget open -a "Google Chrome Canary"'
 
 ctrl-alt-cmd-w = 'exec-and-forget open -a Messages'
-ctrl-alt-cmd-e = 'exec-and-forget open -a "Spark Desktop"'
+ctrl-alt-cmd-e = 'exec-and-forget open -a "Microsoft Outlook"'
 ctrl-alt-cmd-t = 'exec-and-forget open -a TablePlus'
 
-ctrl-alt-cmd-z = 'exec-and-forget open -a zoom.us'
+ctrl-alt-cmd-z = 'exec-and-forget open -a Webex'
 ctrl-alt-cmd-x = 'exec-and-forget open -a Music'
 ctrl-alt-cmd-c = 'exec-and-forget open -a Calendar'
 ctrl-alt-cmd-b = 'exec-and-forget open -a Obsidian'
@@ -63,8 +63,12 @@ ctrl-alt-cmd-b = 'exec-and-forget open -a Obsidian'
 ctrl-alt-cmd-i = 'exec-and-forget open -a IINA'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-ctrl-alt-cmd-period = 'layout tiles horizontal vertical'
-ctrl-alt-cmd-comma = 'layout accordion horizontal'
+ctrl-alt-cmd-0 = 'flatten-workspace-tree'
+ctrl-alt-cmd-m = 'fullscreen'
+ctrl-alt-cmd-period = 'layout accordion horizontal'
+ctrl-alt-cmd-slash = 'layout tiles horizontal vertical'
+ctrl-alt-cmd-y = 'layout floating tiling'
+ctrl-alt-up = ['layout tiling', 'fullscreen', 'layout floating']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 ctrl-alt-cmd-h = 'focus left --boundaries all-monitors-outer-frame'
@@ -90,12 +94,6 @@ ctrl-alt-cmd-shift-down = 'join-with down'
 ctrl-alt-cmd-shift-up = 'join-with up'
 ctrl-alt-cmd-shift-right = 'join-with right'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#layout
-ctrl-alt-cmd-0 = 'flatten-workspace-tree'
-ctrl-alt-cmd-m = 'fullscreen'
-ctrl-alt-cmd-y = 'layout floating tiling'
-ctrl-alt-up = ['layout tiling', 'fullscreen', 'layout floating']
-
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 ctrl-alt-cmd-1 = 'workspace 1'
 ctrl-alt-cmd-2 = 'workspace 2'
@@ -118,7 +116,7 @@ ctrl-alt-cmd-shift-7 = ['move-node-to-workspace 7', 'workspace 7']
 ctrl-alt-cmd-shift-8 = ['move-node-to-workspace 8', 'workspace 8']
 ctrl-alt-cmd-shift-9 = ['move-node-to-workspace 9', 'workspace 9']
 
-ctrl-alt-cmd-slash = 'workspace-back-and-forth'
+ctrl-alt-cmd-comma = 'workspace-back-and-forth'
 ctrl-alt-cmd-tab = [
   'move-node-to-monitor --wrap-around next',
   'focus-monitor --wrap-around next',
@@ -126,11 +124,20 @@ ctrl-alt-cmd-tab = [
 
 ctrl-alt-cmd-space = 'mode prefix'
 [mode.prefix.binding]
-enter = 'mode main'
 esc = 'mode main'
+s = ['exec-and-forget ~/.dotfiles/bin/aerospace_secondary', 'mode main']
+q = ['close-all-windows-but-current', 'mode main']
+
 
 g = 'mode workspace'
-q = ['close-all-windows-but-current', 'mode main']
+h = ['workspace H', 'mode main']
+j = ['workspace J', 'mode main']
+k = ['workspace K', 'mode main']
+l = ['workspace L', 'mode main']
+shift-h = ['move-node-to-workspace H', 'workspace H', 'mode main']
+shift-j = ['move-node-to-workspace J', 'workspace J', 'mode main']
+shift-k = ['move-node-to-workspace K', 'workspace K', 'mode main']
+shift-l = ['move-node-to-workspace L', 'workspace L', 'mode main']
 
 shift-r = [
   'reload-config',
