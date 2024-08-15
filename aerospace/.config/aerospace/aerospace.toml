@@ -68,7 +68,7 @@ ctrl-alt-cmd-m = 'fullscreen'
 ctrl-alt-cmd-period = 'layout accordion horizontal'
 ctrl-alt-cmd-slash = 'layout tiles horizontal vertical'
 ctrl-alt-cmd-y = 'layout floating tiling'
-ctrl-alt-up = ['layout tiling', 'fullscreen', 'layout floating']
+ctrl-alt-up = 'exec-and-forget ~/.dotfiles/bin/aerospace_float_full'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 ctrl-alt-cmd-h = 'focus left --boundaries all-monitors-outer-frame'

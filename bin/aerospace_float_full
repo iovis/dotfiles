@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+aerospace layout tiling
+aerospace fullscreen
+aerospace layout floating
