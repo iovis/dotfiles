@@ -64,8 +64,8 @@ ctrl-alt-cmd-i = 'exec-and-forget open -a IINA'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 ctrl-alt-cmd-0 = 'flatten-workspace-tree'
+ctrl-alt-cmd-comma = 'layout accordion horizontal'
 ctrl-alt-cmd-m = 'fullscreen'
-ctrl-alt-cmd-period = 'layout accordion horizontal'
 ctrl-alt-cmd-slash = 'layout tiles horizontal vertical'
 ctrl-alt-cmd-y = 'layout floating tiling'
 ctrl-alt-up = 'exec-and-forget ~/.dotfiles/bin/aerospace_float_full'
@@ -116,7 +116,7 @@ ctrl-alt-cmd-shift-7 = ['move-node-to-workspace 7', 'workspace 7']
 ctrl-alt-cmd-shift-8 = ['move-node-to-workspace 8', 'workspace 8']
 ctrl-alt-cmd-shift-9 = ['move-node-to-workspace 9', 'workspace 9']
 
-ctrl-alt-cmd-comma = 'workspace-back-and-forth'
+ctrl-alt-cmd-period = 'workspace-back-and-forth'
 ctrl-alt-cmd-tab = [
   'move-node-to-monitor --wrap-around next',
   'focus-monitor --wrap-around next',
