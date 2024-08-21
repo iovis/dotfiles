@@ -241,11 +241,20 @@ vim.keymap.set("x", "*", [[y:let @/= '\V' . escape(@@, '/\') <bar> set hls <bar>
 
 -- Tabs
 vim.keymap.set("n", "'q", "<cmd>tabonly<cr>")
-vim.keymap.set("n", "'t", "<c-w>T")
 vim.keymap.set("n", "<leader><", "<cmd>tabmove -1<cr>")
 vim.keymap.set("n", "<leader>>", "<cmd>tabmove +1<cr>")
 vim.keymap.set("n", "<leader>C", "<cmd>tabclose<cr>")
 vim.keymap.set("n", "<leader>t", "<cmd>tabnew<cr>")
+vim.keymap.set("n", "<leader><tab>", function()
+  local tabnr = vim.fn.tabpagenr()
+  local number_of_windows = vim.fn.tabpagewinnr(tabnr, "$")
+
+  if number_of_windows == 1 then
+    vim.cmd("tab sbuffer")
+  else
+    require("config.utils").send_keys([[<c-w>T]])
+  end
+end, { desc = "Tab with current buffer" })
 
 -- Tags
 vim.keymap.set("n", "t", "<c-]>", { remap = true })
