@@ -31,7 +31,11 @@ vim.keymap.set("n", "<leader>fw", function()
   vim.fn.setreg("/", vim.fn.expand("<cword>"))
   vim.cmd("set hlsearch")
 
-  vim.cmd(cmd)
+  local ok, error = pcall(vim.cmd, cmd)
+
+  if not ok then
+    vim.notify(error, vim.log.levels.ERROR)
+  end
 end, { desc = "Find word in current filetype" })
 
 vim.keymap.set("x", "<leader>fw", function()
