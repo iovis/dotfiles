@@ -246,13 +246,12 @@ vim.keymap.set("n", "<leader>>", "<cmd>tabmove +1<cr>")
 vim.keymap.set("n", "<leader>C", "<cmd>tabclose<cr>")
 vim.keymap.set("n", "<leader>t", "<cmd>tabnew<cr>")
 vim.keymap.set("n", "<leader><tab>", function()
-  local tabnr = vim.fn.tabpagenr()
-  local number_of_windows = vim.fn.tabpagewinnr(tabnr, "$")
+  local number_of_windows = #vim.api.nvim_tabpage_list_wins(0)
 
   if number_of_windows == 1 then
     vim.cmd("tab sbuffer")
   else
-    require("config.utils").send_keys([[<c-w>T]])
+    vim.cmd.wincmd("T")
   end
 end, { desc = "Tab with current buffer" })
 
