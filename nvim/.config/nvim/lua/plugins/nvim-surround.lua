@@ -8,7 +8,8 @@ return {
       highlight = { duration = 5000 },
     })
 
-    vim.keymap.set("n", [[<leader>"]], [[cs'"]], { remap = true })
-    vim.keymap.set("n", [[<leader>']], [[cs"']], { remap = true })
+    vim.keymap.set("n", [[<leader>"]], [[csq"]], { remap = true })
+    vim.keymap.set("n", [[<leader>']], [[csq']], { remap = true })
+    vim.keymap.set("n", [[<leader>`]], [[csq`]], { remap = true })
   end,
 }
