@@ -37,13 +37,12 @@ vim.o.inccommand = "split"
 vim.o.jumpoptions = "stack,view"
 vim.o.laststatus = 3
 vim.opt.listchars:append({
-  -- lead = "·",
   tab = ">-",
   trail = "·",
   nbsp = "+",
   eol = " ",
   leadmultispace = "│·",
-  multispace = " ",
+  space = "·",
 })
 vim.o.mouse = "a"
 vim.o.number = true
