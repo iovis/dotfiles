@@ -12,7 +12,6 @@ set -gx BAT_THEME base16
 set -gx DOTFILES "$HOME/.dotfiles"
 set -gx EDITOR nvim
 set -gx MANPAGER "$EDITOR +Man!"
-set -gx PAGER bat
 set -gx PROJECT_HOME "$HOME/code"
 set -gx REVIEW_BASE main
 
