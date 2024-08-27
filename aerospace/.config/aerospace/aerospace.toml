@@ -52,7 +52,7 @@ ctrl-alt-cmd-f = 'exec-and-forget open -a Arc'
 ctrl-alt-cmd-g = 'exec-and-forget open -a "Google Chrome Canary"'
 
 ctrl-alt-cmd-w = 'exec-and-forget open -a Messages'
-ctrl-alt-cmd-e = 'exec-and-forget open -a "Microsoft Outlook"'
+ctrl-alt-cmd-e = 'exec-and-forget open -a Mail'
 ctrl-alt-cmd-t = 'exec-and-forget open -a TablePlus'
 
 ctrl-alt-cmd-z = 'exec-and-forget open -a Webex'

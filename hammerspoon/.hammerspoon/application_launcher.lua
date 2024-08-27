@@ -7,7 +7,7 @@ u.bind.app({ ctrl_alt_cmd, "f" }, "Arc")
 u.bind.app({ ctrl_alt_cmd, "g" }, "Google Chrome Canary")
 
 u.bind.app({ ctrl_alt_cmd, "w" }, "Messages")
-u.bind.app({ ctrl_alt_cmd, "e" }, "Spark Desktop")
+u.bind.app({ ctrl_alt_cmd, "e" }, "Mail")
 u.bind.app({ ctrl_alt_cmd, "t" }, "TablePlus")
 
 u.bind.app({ ctrl_alt_cmd, "z" }, "zoom.us")
