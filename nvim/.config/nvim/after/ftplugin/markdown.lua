@@ -4,8 +4,8 @@ vim.cmd([[
 setlocal conceallevel=0
 setlocal spelllang=en_us
 setlocal spell
-setlocal shiftwidth=2
-setlocal softtabstop=2
+setlocal shiftwidth=4
+setlocal softtabstop=4
 " }}} Options "
 
 " Formatting {{{ "
