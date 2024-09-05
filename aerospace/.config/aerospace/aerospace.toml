@@ -1,5 +1,5 @@
 start-at-login = true
-accordion-padding = 400
+accordion-padding = 350
 
 # Mouse follows focus when focused monitor changes
 # Drop it from your config, if you don't like this behavior
