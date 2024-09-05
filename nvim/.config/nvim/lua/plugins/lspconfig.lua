@@ -109,7 +109,7 @@ return {
         },
       }))
 
-      lsp.tsserver.setup(vim.tbl_deep_extend("force", cfg, {
+      lsp.ts_ls.setup(vim.tbl_deep_extend("force", cfg, {
         commands = {
           LspRemoveUnused = {
             function()
