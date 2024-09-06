@@ -79,6 +79,10 @@ return {
           DiagnosticSource = { link = "Comment" },
           SagaLightBulb = { fg = colors.yellow },
 
+          -- markdown
+          RenderMarkdownCode = { bg = black },
+          RenderMarkdownCodeInline = { link = "@markup.raw.markdown_inline" },
+
           -- matchup
           MatchParen = { bg = colors.mantle, fg = colors.peach, bold = true },
           MatchWord = { bold = true },
