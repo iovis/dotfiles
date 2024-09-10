@@ -49,6 +49,7 @@ ctrl-alt-cmd-a = 'exec-and-forget open -a Things3'
 ctrl-alt-cmd-s = 'exec-and-forget open -a Slack'
 ctrl-alt-cmd-d = 'exec-and-forget open -a WezTerm'
 ctrl-alt-cmd-f = 'exec-and-forget open -a Arc'
+ctrl-alt-cmd-shift-f = 'exec-and-forget open -a Safari'
 ctrl-alt-cmd-g = 'exec-and-forget open -a "Google Chrome Canary"'
 
 ctrl-alt-cmd-w = 'exec-and-forget open -a Messages'
