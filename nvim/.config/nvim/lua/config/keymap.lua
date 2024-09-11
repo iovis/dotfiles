@@ -227,7 +227,7 @@ vim.keymap.set("n", "<leader>,", "@@")
 vim.keymap.set("x", ".", ":normal .<cr>", { silent = true })
 
 -- Replace
-vim.keymap.set("n", "R", "ciw<c-r>0<esc>")
+vim.keymap.set("n", "R", "m`ciw<c-r>0<esc>``")
 vim.keymap.set("x", "R", '"0p')
 
 -- Search
