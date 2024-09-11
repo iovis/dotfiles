@@ -18,7 +18,7 @@ elseif u.current_file():match("unicorne/") then
   vim.keymap.set("n", "d<cr>", "<cmd>botright split! ../qmk_firmware/docs/keycodes.md<cr>", { buffer = true })
 elseif u.current_file():match("voyager/") then
   ---- QMK
-  vim.keymap.set("n", "s<cr>", "<cmd>Tuxpopup just vcompile<cr>", { buffer = true })
+  vim.keymap.set("n", "s<cr>", "<cmd>Tuxpopup just vcompile vflash<cr>", { buffer = true })
   vim.keymap.set("n", "m<cr>", "<cmd>Tuxpopup just vflash<cr>", { buffer = true })
 
   vim.keymap.set("n", "d<cr>", "<cmd>botright split! ../qmk_firmware/docs/keycodes.md<cr>", { buffer = true })
