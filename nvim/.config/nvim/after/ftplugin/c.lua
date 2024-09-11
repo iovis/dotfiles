@@ -10,10 +10,16 @@ if u.current_file():match("ext/") then
   vim.keymap.set("n", "m<cr>", "<cmd>Tux bear -- rake<cr>", { buffer = true })
   vim.keymap.set("n", "s<cr>", "<cmd>Tux bear -- rake<cr>", { buffer = true })
   vim.keymap.set("n", "<leader>sw", "<cmd>Tux watchexec -e c,h,rb -c clear -- bear -- rake<cr>", { buffer = true })
-elseif u.current_file():match("keyboards/") then
+elseif u.current_file():match("unicorne/") then
   ---- QMK
   vim.keymap.set("n", "s<cr>", "<cmd>Tuxpopup just compile<cr>", { buffer = true })
   vim.keymap.set("n", "m<cr>", "<cmd>Tuxpopup just flash<cr>", { buffer = true })
+
+  vim.keymap.set("n", "d<cr>", "<cmd>botright split! ../qmk_firmware/docs/keycodes.md<cr>", { buffer = true })
+elseif u.current_file():match("voyager/") then
+  ---- QMK
+  vim.keymap.set("n", "s<cr>", "<cmd>Tuxpopup just vcompile<cr>", { buffer = true })
+  vim.keymap.set("n", "m<cr>", "<cmd>Tuxpopup just vflash<cr>", { buffer = true })
 
   vim.keymap.set("n", "d<cr>", "<cmd>botright split! ../qmk_firmware/docs/keycodes.md<cr>", { buffer = true })
 elseif u.has_justfile() then
