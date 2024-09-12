@@ -84,8 +84,8 @@ ctrl-alt-cmd-shift-k = 'move up'
 ctrl-alt-cmd-shift-l = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
-ctrl-alt-cmd-left = 'resize width -200'
-ctrl-alt-cmd-right = 'resize width +200'
+ctrl-alt-cmd-left = 'resize width -400'
+ctrl-alt-cmd-right = 'resize width +400'
 ctrl-alt-cmd-down = 'resize height -200'
 ctrl-alt-cmd-up = 'resize height +200'
 
