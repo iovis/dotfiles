@@ -30,7 +30,7 @@ return {
     })
 
     local u = require("config.utils")
-    vim.keymap.set("n", "<leader>S", function()
+    vim.keymap.set("n", "S", function()
       if u.has_justfile() then
         tux.run("jf")
       else
