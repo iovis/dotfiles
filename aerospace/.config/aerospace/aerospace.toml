@@ -212,6 +212,7 @@ shift-y = ['move-node-to-workspace Y', 'workspace Y', 'mode main']
 shift-z = ['move-node-to-workspace Z', 'workspace Z', 'mode main']
 
 # Floating layout apps
+# $ aerospace list-apps
 [[on-window-detected]]
 if.app-id = 'com.1password.1password'
 run = 'layout floating'
