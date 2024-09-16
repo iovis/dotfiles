@@ -16,12 +16,14 @@ elseif u.current_file():match("unicorne/") then
   vim.keymap.set("n", "m<cr>", "<cmd>Tuxpopup just flash<cr>", { buffer = true })
 
   vim.keymap.set("n", "d<cr>", "<cmd>botright split! ../qmk_firmware/docs/keycodes.md<cr>", { buffer = true })
+  vim.keymap.set("n", "<leader>S", "<cmd>silent !tmux new-window -Sn qmk -c ../qmk_firmware<cr>", { buffer = true })
 elseif u.current_file():match("voyager/") then
-  ---- QMK
+  ---- ZSA
   vim.keymap.set("n", "s<cr>", "<cmd>Tuxpopup just vcompile vflash<cr>", { buffer = true })
   vim.keymap.set("n", "m<cr>", "<cmd>Tuxpopup just vflash<cr>", { buffer = true })
 
   vim.keymap.set("n", "d<cr>", "<cmd>botright split! ../qmk_firmware/docs/keycodes.md<cr>", { buffer = true })
+  vim.keymap.set("n", "<leader>S", "<cmd>silent !tmux new-window -Sn zsa -c ../zsa_firmware<cr>", { buffer = true })
 elseif u.has_justfile() then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux just run<cr>", { buffer = true })
   vim.keymap.set("n", "m<cr>", "<cmd>Tux just build<cr>", { buffer = true })
