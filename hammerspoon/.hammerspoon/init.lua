@@ -9,13 +9,14 @@ hs.console.outputBackgroundColor({ white = 0.12 })
 ---@diagnostic disable: lowercase-global
 ctrl_alt = { "ctrl", "alt" }
 ctrl_alt_cmd = { "ctrl", "alt", "cmd" }
+ctrl_shift = { "ctrl", "shift" }
+fn_ctrl = { "fn", "ctrl" }
 hyper = { "ctrl", "cmd", "alt", "shift" }
-
 
 local u = require("utils")
 require("application_launcher")
 require("bindings")
-require("yabai")
+require("aerospace")
 pcall(require, "overrides")
 
 u.notify("Configuration Reloaded")

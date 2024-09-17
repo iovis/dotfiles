@@ -43,91 +43,6 @@ K = 'secondary' # Non-main monitor in case when there are only two monitors
 
 # All possible commands: https://nikitabobko.github.io/AeroSpace/commands
 
-# Application Shortcuts
-# See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
-ctrl-alt-cmd-a = 'exec-and-forget open -a Things3'
-ctrl-alt-cmd-s = 'exec-and-forget open -a Slack'
-ctrl-alt-cmd-d = 'exec-and-forget open -a WezTerm'
-ctrl-alt-cmd-f = 'exec-and-forget open -a Arc'
-ctrl-alt-cmd-shift-f = 'exec-and-forget open -a Safari'
-ctrl-alt-cmd-g = 'exec-and-forget open -a "Google Chrome Canary"'
-
-ctrl-alt-cmd-w = 'exec-and-forget open -a Messages'
-ctrl-alt-cmd-e = 'exec-and-forget open -a Mail'
-ctrl-alt-cmd-t = 'exec-and-forget open -a TablePlus'
-
-ctrl-alt-cmd-z = 'exec-and-forget open -a Webex'
-ctrl-alt-cmd-x = 'exec-and-forget open -a Music'
-ctrl-alt-cmd-c = 'exec-and-forget open -a Calendar'
-ctrl-alt-cmd-b = 'exec-and-forget open -a Obsidian'
-
-ctrl-alt-cmd-i = 'exec-and-forget open -a IINA'
-
-# See: https://nikitabobko.github.io/AeroSpace/commands#layout
-ctrl-alt-cmd-0 = 'flatten-workspace-tree'
-ctrl-alt-cmd-comma = 'layout accordion horizontal'
-ctrl-alt-cmd-m = 'fullscreen'
-ctrl-alt-cmd-slash = 'layout tiles horizontal vertical'
-ctrl-alt-cmd-y = 'layout floating tiling'
-ctrl-alt-up = 'exec-and-forget ~/.dotfiles/bin/aerospace_float_full'
-
-# See: https://nikitabobko.github.io/AeroSpace/commands#focus
-ctrl-alt-cmd-h = 'focus left --boundaries all-monitors-outer-frame'
-ctrl-alt-cmd-j = 'focus down'
-ctrl-alt-cmd-k = 'focus up'
-ctrl-alt-cmd-l = 'focus right --boundaries all-monitors-outer-frame'
-
-# See: https://nikitabobko.github.io/AeroSpace/commands#move
-ctrl-alt-cmd-shift-h = 'move left'
-ctrl-alt-cmd-shift-j = 'move down'
-ctrl-alt-cmd-shift-k = 'move up'
-ctrl-alt-cmd-shift-l = 'move right'
-
-# See: https://nikitabobko.github.io/AeroSpace/commands#resize
-ctrl-alt-cmd-left = 'resize width -400'
-ctrl-alt-cmd-right = 'resize width +400'
-ctrl-alt-cmd-down = 'resize height -200'
-ctrl-alt-cmd-up = 'resize height +200'
-
-# See: https://nikitabobko.github.io/AeroSpace/commands#join-with
-ctrl-alt-cmd-shift-left = 'join-with left'
-ctrl-alt-cmd-shift-down = 'join-with down'
-ctrl-alt-cmd-shift-up = 'join-with up'
-ctrl-alt-cmd-shift-right = 'join-with right'
-
-# See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-ctrl-alt-cmd-1 = 'workspace 1'
-ctrl-alt-cmd-2 = 'workspace 2'
-ctrl-alt-cmd-3 = 'workspace 3'
-ctrl-alt-cmd-4 = 'workspace 4'
-ctrl-alt-cmd-5 = 'workspace 5'
-ctrl-alt-cmd-6 = 'workspace 6'
-ctrl-alt-cmd-7 = 'workspace 7'
-ctrl-alt-cmd-8 = 'workspace 8'
-ctrl-alt-cmd-9 = 'workspace 9'
-
-ctrl-shift-h = 'workspace H'
-ctrl-shift-j = 'workspace J'
-ctrl-shift-k = 'workspace K'
-ctrl-shift-l = 'workspace L'
-
-# See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-ctrl-alt-cmd-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
-ctrl-alt-cmd-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
-ctrl-alt-cmd-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
-ctrl-alt-cmd-shift-4 = ['move-node-to-workspace 4', 'workspace 4']
-ctrl-alt-cmd-shift-5 = ['move-node-to-workspace 5', 'workspace 5']
-ctrl-alt-cmd-shift-6 = ['move-node-to-workspace 6', 'workspace 6']
-ctrl-alt-cmd-shift-7 = ['move-node-to-workspace 7', 'workspace 7']
-ctrl-alt-cmd-shift-8 = ['move-node-to-workspace 8', 'workspace 8']
-ctrl-alt-cmd-shift-9 = ['move-node-to-workspace 9', 'workspace 9']
-
-ctrl-alt-cmd-period = 'workspace-back-and-forth'
-ctrl-alt-cmd-tab = [
-  'move-node-to-monitor --wrap-around next',
-  'focus-monitor --wrap-around next',
-]
-
 ctrl-alt-cmd-space = 'mode prefix'
 [mode.prefix.binding]
 esc = 'mode main'
@@ -144,12 +59,6 @@ shift-h = ['move-node-to-workspace H', 'workspace H', 'mode main']
 shift-j = ['move-node-to-workspace J', 'workspace J', 'mode main']
 shift-k = ['move-node-to-workspace K', 'workspace K', 'mode main']
 shift-l = ['move-node-to-workspace L', 'workspace L', 'mode main']
-
-shift-r = [
-  'reload-config',
-  'mode main',
-  '''exec-and-forget osascript -e 'display notification "Configuration reloaded" with title "AeroSpace"'''',
-]
 
 [mode.workspace.binding]
 enter = 'mode main'
