@@ -85,6 +85,7 @@ float_layout({ ctrl_shift, "/" }, { hyper, "p" })
 ---Centered
 float_layout({ ctrl_shift, "k" }, { fn_ctrl, "f" })
 float_layout({ ctrl_shift, "j" }, { fn_ctrl, "c" })
+float_layout({ ctrl_shift, ";" }, { fn_ctrl, "r" })
 
 --------------
 -- Displays --
