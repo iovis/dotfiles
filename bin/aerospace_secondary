@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+aerospace workspace K
+aerospace layout accordion horizontal
+aerospace flatten-workspace-tree
 open -a Slack
 aerospace move-node-to-workspace K
 open -a "Microsoft Outlook"
