@@ -1,5 +1,6 @@
 start-at-login = true
 accordion-padding = 350
+after-startup-command = ['workspace J']
 
 # Mouse follows focus when focused monitor changes
 # Drop it from your config, if you don't like this behavior
