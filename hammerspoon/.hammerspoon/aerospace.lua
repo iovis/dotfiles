@@ -77,10 +77,10 @@ float_layout({ ctrl_shift, "h" }, { hyper, "left" })
 float_layout({ ctrl_shift, "l" }, { hyper, "right" })
 
 ---Fourths
-float_layout({ ctrl_shift, "m" }, { hyper, "u" })
-float_layout({ ctrl_shift, "," }, { hyper, "i" })
-float_layout({ ctrl_shift, "." }, { hyper, "o" })
-float_layout({ ctrl_shift, "/" }, { hyper, "p" })
+float_layout({ ctrl_shift, "u" }, { hyper, "t" })
+float_layout({ ctrl_shift, "i" }, { hyper, "w" })
+float_layout({ ctrl_shift, "m" }, { hyper, "z" })
+float_layout({ ctrl_shift, "," }, { hyper, "x" })
 
 ---Centered
 float_layout({ ctrl_shift, "k" }, { fn_ctrl, "f" })
