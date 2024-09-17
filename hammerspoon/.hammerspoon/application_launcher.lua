@@ -16,4 +16,5 @@ u.bind.app({ ctrl_alt_cmd, "x" }, "Music")
 u.bind.app({ ctrl_alt_cmd, "c" }, "Calendar")
 u.bind.app({ ctrl_alt_cmd, "b" }, "Obsidian")
 
-u.bind.app({ ctrl_alt_cmd, "i" }, "IINA")
+u.bind.app({ ctrl_alt_cmd, "i" }, "iPhone Mirroring")
+u.bind.app({ hyper, "i" }, "IINA")
