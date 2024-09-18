@@ -104,8 +104,6 @@ let mapleader = "\<Space>"
 
 nnoremap <space> <nop>
 xnoremap <space> <nop>
-nnoremap ' <nop>
-xnoremap ' <nop>
 
 " Jump to next match with TAB during a search
 set wildcharm=<c-z>
@@ -230,10 +228,8 @@ nnoremap <bs> <c-^>
 nnoremap <leader>n <cmd>enew<cr>
 nnoremap <leader>q <cmd>%bdelete<cr>
 nnoremap <leader>Q <cmd>%bdelete\|e#\|bd#<cr>
-nnoremap <leader>b <cmd>bd!<cr>
-
-nnoremap <leader><tab> <cmd>bp\|bd #<cr>
-nnoremap <leader><s-tab> <cmd>bp!\|bd! #<cr>
+nnoremap <leader>b <cmd>bp\|bd #<cr>
+nnoremap <leader>B <cmd>bd!<cr>
 
 nmap gm ;ls<cr>
 nnoremap <leader>E :e<space><c-r>=fnameescape(expand('%:.:h')).'/'<cr>
@@ -359,12 +355,13 @@ xnoremap # y:let @/=escape(@@, '/\') <bar> normal! ?<cr>
 nnoremap <tab>   <cmd>tabnext<cr>
 nnoremap <s-tab> <cmd>tabprevious<cr>
 
-nnoremap 'q <cmd>tabonly<cr>
-nnoremap 't <c-w>T
+" nnoremap 'q <cmd>tabonly<cr>
 nnoremap <leader>< <cmd>tabmove -1<cr>
 nnoremap <leader>> <cmd>tabmove +1<cr>
 nnoremap <leader>C <cmd>tabclose<cr>
 nnoremap <leader>t <cmd>tabnew<cr>
+nnoremap <leader><tab> <c-w>T
+nnoremap <leader><s-tab> <cmd>tab sbuffer<cr>
 
 " Tags
 nmap T g]
@@ -827,8 +824,8 @@ function! ToggleList(bufname, pfx)
   endif
 endfunction
 
-nnoremap <silent> \ :call ToggleList("Quickfix List", 'c')<cr>
-nnoremap <silent> 'd :call ToggleList("Location List", 'l')<cr>
+nnoremap <silent>  \ :call ToggleList("Quickfix List", 'c')<cr>
+nnoremap <silent> \| :call ToggleList("Location List", 'l')<cr>
 " }}} QuickFix toggle "
 
 " External Plugins {{{ "

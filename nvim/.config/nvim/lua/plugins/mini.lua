@@ -52,7 +52,7 @@ return {
     local bufremove = require("mini.bufremove")
     bufremove.setup({})
 
-    vim.keymap.set("n", "<leader>B", function()
+    vim.keymap.set("n", "<leader>b", function()
       bufremove.delete(0, true)
     end, { desc = "Bdelete!" })
   end,

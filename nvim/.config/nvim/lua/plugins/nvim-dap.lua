@@ -21,7 +21,7 @@ return {
     dap.listeners.before.event_exited.dapui_config = dapui.close
 
     ---- Mappings
-    vim.keymap.set("n", "<leader>B", dap.toggle_breakpoint, { desc = "DAP Toggle breakpoint" })
+    vim.keymap.set("n", "yoB", dap.toggle_breakpoint, { desc = "DAP Toggle breakpoint" })
     vim.keymap.set("n", "'dl", dap.run_to_cursor, { desc = "DAP Go to line" })
 
     vim.keymap.set("n", "'db", dap.step_back, { desc = "DAP Step back" })
