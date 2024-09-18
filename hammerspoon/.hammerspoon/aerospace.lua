@@ -67,8 +67,21 @@ u.bind.cmd({ ctrl_alt_cmd, "m" }, "aerospace fullscreen")
 ---@param os_shortcut HammerspoonBinding
 local float_layout = function(binding, os_shortcut)
   hs.hotkey.bind(binding[1], binding[2], function()
-    u.task("aerospace layout floating || true"):start()
-    hs.eventtap.keyStroke(os_shortcut[1], os_shortcut[2])
+    hs.task
+      .new(os.getenv("SHELL"), function(code, stdout, stderr)
+        if code == 0 then
+          hs.eventtap.keyStroke(os_shortcut[1], os_shortcut[2])
+        else
+          print(code)
+          print(stdout)
+          print(stderr)
+
+          if stderr:match("Can't connect to AeroSpace server.") then
+            u.notify("AeroSpace is not running")
+          end
+        end
+      end, { "-c", "aerospace layout floating || true" })
+      :start()
   end)
 end
 
