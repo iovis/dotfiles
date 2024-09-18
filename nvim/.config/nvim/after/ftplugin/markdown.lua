@@ -1,3 +1,5 @@
+vim.keymap.set("n", "yoc", "<cmd>RenderMarkdown toggle<cr>", { buffer = true })
+
 -- TODO: translate to lua
 vim.cmd([[
 " Options {{{ "
