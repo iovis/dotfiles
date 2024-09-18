@@ -20,11 +20,6 @@ u.bind.cmd({ ctrl_alt_cmd, "y" }, "aerospace fullscreen off; aerospace layout ti
 ---See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 u.bind.cmd({ ctrl_shift, "delete" }, "aerospace workspace-back-and-forth")
 
-for i = 1, 5 do
-  u.bind.cmd({ ctrl_alt_cmd, tostring(i) }, ("aerospace workspace %d"):format(i))
-  u.bind.cmd({ hyper, tostring(i) }, ("aerospace move-node-to-workspace %d && aerospace workspace %d"):format(i, i))
-end
-
 ------------
 -- Window --
 ------------
