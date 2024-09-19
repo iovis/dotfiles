@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+while aerospace move-node-to-workspace $1; do :; done
+
+aerospace workspace $1

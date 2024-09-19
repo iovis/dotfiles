@@ -1,6 +1,8 @@
 start-at-login = true
 accordion-padding = 350
-after-startup-command = ['workspace J']
+after-startup-command = [
+  'exec-and-forget ~/.dotfiles/bin/aerospace_move_all_to_workspace J',
+]
 
 # Mouse follows focus when focused monitor changes
 # Drop it from your config, if you don't like this behavior
@@ -47,15 +49,21 @@ K = 'secondary' # Non-main monitor in case when there are only two monitors
 ctrl-alt-cmd-space = 'mode prefix'
 [mode.prefix.binding]
 esc = 'mode main'
-s = ['exec-and-forget ~/.dotfiles/bin/aerospace_secondary', 'mode main']
-q = ['close-all-windows-but-current', 'mode main']
-
 
 g = 'mode workspace'
+
+q = ['close-all-windows-but-current', 'mode main']
+s = ['exec-and-forget ~/.dotfiles/bin/aerospace_secondary', 'mode main']
+m = [
+  'exec-and-forget ~/.dotfiles/bin/aerospace_move_all_to_workspace J',
+  'mode main',
+]
+
 h = ['workspace H', 'mode main']
 j = ['workspace J', 'mode main']
 k = ['workspace K', 'mode main']
 l = ['workspace L', 'mode main']
+
 shift-h = ['move-node-to-workspace H', 'workspace H', 'mode main']
 shift-j = ['move-node-to-workspace J', 'workspace J', 'mode main']
 shift-k = ['move-node-to-workspace K', 'workspace K', 'mode main']
