@@ -2,6 +2,10 @@ return {
   "akinsho/nvim-bufferline.lua",
   -- enabled = false,
   event = "TabNew",
+  keys = {
+    { "<tab>", "<cmd>BufferLineCycleNext<cr>" },
+    { "<s-tab>", "<cmd>BufferLineCyclePrev<cr>" },
+  },
   config = function()
     require("bufferline").setup({
       -- highlights = require("catppuccin.groups.integrations.bufferline").get(),
@@ -53,9 +57,6 @@ return {
         },
       },
     })
-
-    vim.keymap.set("n", "<tab>", "<cmd>BufferLineCycleNext<cr>")
-    vim.keymap.set("n", "<s-tab>", "<cmd>BufferLineCyclePrev<cr>")
 
     for i = 1, 9 do
       vim.keymap.set("n", "<leader>" .. i, function()
