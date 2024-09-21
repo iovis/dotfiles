@@ -47,8 +47,8 @@ u.bind.cmd({ ctrl_alt_cmd, "right" }, "aerospace join-with right")
 ---Resize windows
 ---See: https://nikitabobko.github.io/AeroSpace/commands#resize
 u.bind.cmd({ ctrl_shift, "left" }, "aerospace resize width -400")
-u.bind.cmd({ ctrl_shift, "down" }, "aerospace resize width -200")
-u.bind.cmd({ ctrl_shift, "up" }, "aerospace resize width +200")
+u.bind.cmd({ ctrl_shift, "down" }, "aerospace resize height -200")
+u.bind.cmd({ ctrl_shift, "up" }, "aerospace resize height +200")
 u.bind.cmd({ ctrl_shift, "right" }, "aerospace resize width +400")
 
 ---Toggle window zoom
