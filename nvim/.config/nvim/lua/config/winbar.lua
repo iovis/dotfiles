@@ -65,10 +65,17 @@ local winbar_per_path = function(path)
     })
   end
 
+  local title
+  if vim.g.winbar_full_path then
+    title = path
+  else
+    title = "%t"
+  end
+
   return {
-    icon = icon,
     hl = highlight,
-    title = "%t",
+    icon = icon,
+    title = title,
   }
 end
 
@@ -134,3 +141,9 @@ vim.api.nvim_create_autocmd(events, {
     vim.wo.winbar = get_winbar(is_active)
   end,
 })
+
+vim.g.winbar_full_path = false
+vim.keymap.set("n", "yop", function()
+  vim.g.winbar_full_path = not vim.g.winbar_full_path
+  vim.cmd.windo("checktime")
+end, { desc = "Toggle full path in winbar" })
