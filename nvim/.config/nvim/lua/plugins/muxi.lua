@@ -31,27 +31,22 @@ return {
     vim.keymap.set("n", "dm<space>", ":Muxi delete<space>")
 
     ----Quick maps
-    local keys = { "h", "j", "k", "l" }
+    for lower, upper in pairs({
+      h = "H",
+      j = "J",
+      k = "K",
+      l = "L",
+      [";"] = ":",
+    }) do
+      vim.keymap.set("n", "g" .. upper, function()
+        muxi.add(lower)
+        vim.notify("Added current file to " .. lower)
+      end, { desc = "[muxi] Add session to " .. lower })
 
-    for _, key in ipairs(keys) do
-      vim.keymap.set("n", "g" .. key:upper(), function()
-        muxi.add(key)
-        vim.notify("Added current file to " .. key)
-      end, { desc = "[muxi] Add session to " .. key })
-
-      vim.keymap.set("n", "g" .. key, function()
-        muxi.go_to(key, { go_to_cursor = false })
-      end, { desc = "[muxi] go to session " .. key })
+      vim.keymap.set("n", "g" .. lower, function()
+        muxi.go_to(lower, { go_to_cursor = false })
+      end, { desc = "[muxi] go to session " .. lower })
     end
-
-    vim.keymap.set("n", "g;", function()
-      muxi.go_to(";", { go_to_cursor = false })
-    end, { desc = "[muxi] go to session ;" })
-
-    vim.keymap.set("n", "g:", function()
-      muxi.add(";")
-      vim.notify("Added current file to ;")
-    end, { desc = "[muxi] Add session to ;" })
 
     ----Mark management
     vim.keymap.set("n", "g/", muxi.fzf.marks, {
