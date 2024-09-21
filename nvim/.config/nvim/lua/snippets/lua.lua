@@ -75,7 +75,7 @@ return {
     "class",
     fmta(
       [[
-        ---@class <>
+        ---@class (exact) <>
         ---@field private my_field? string Description of `my field`
         local <> = {}
 
