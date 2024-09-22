@@ -7,6 +7,7 @@ return {
     quicker.setup({
       borders = { vert = " " },
       constrain_cursor = true,
+      highlight = { lsp = false },
       keys = {
         { "<leader>w", "<cmd>write<cr>" },
       },
