@@ -53,6 +53,10 @@ return {
       desc = "[muxi] fzf-lua marks",
     })
 
+    vim.keymap.set("n", "<leader>g/", muxi.ui.qf, {
+      desc = "[muxi] quickfix marks",
+    })
+
     vim.keymap.set("n", "m?", muxi.fzf.sessions, {
       desc = "[muxi] fzf-lua sessions",
     })
