@@ -51,13 +51,12 @@ local start_session = function()
 end
 
 u.command("SessionStart", start_session)
-vim.keymap.set("n", "yoS", start_session, {
-  desc = "Load or create session for the current directory",
-})
+vim.keymap.set("n", "yoS", "<cmd>SessionStart<cr>")
 
 ----Autocommands
 local persist_session = function()
   if within_session() and not session_loading() then
+    ---@diagnostic disable-next-line param-type-mismatch
     local ok, result = pcall(vim.cmd, "mksession!")
 
     if not ok and not result:match("E11") then
