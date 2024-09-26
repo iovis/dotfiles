@@ -1,6 +1,7 @@
 return {
   "echasnovski/mini.nvim",
   -- enabled = false,
+  version = "*",
   event = "VeryLazy",
   config = function()
     --- mini.ai (text objects)
