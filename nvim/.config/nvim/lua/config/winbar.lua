@@ -112,6 +112,29 @@ local get_winbar = function(is_active)
   end
 end
 
+local set_winbar = function(args)
+  -- Ignore custom winbar
+  if vim.wo.winbar:match("»") then
+    return
+  end
+
+  local winnr = vim.api.nvim_get_current_win()
+  local win_config = vim.api.nvim_win_get_config(winnr)
+
+  -- Ignore floating windows
+  if win_config.relative ~= "" then
+    return
+  end
+
+  local is_active = args.event ~= "WinLeave"
+
+  -- This still fails for some reason saying it doesn't have enough space
+  pcall(vim.api.nvim_set_option_value, "winbar", get_winbar(is_active), {
+    scope = "local",
+    win = winnr,
+  })
+end
+
 local augroup = vim.api.nvim_create_augroup("user_winbar", { clear = true })
 local events = {
   "VimEnter",
@@ -123,27 +146,11 @@ local events = {
 
 vim.api.nvim_create_autocmd(events, {
   group = augroup,
-  callback = function(args)
-    -- Ignore custom winbar
-    if vim.wo.winbar:match("»") then
-      return
-    end
-
-    -- Ignore floating windows
-    local winnr = vim.api.nvim_get_current_win()
-    local win_config = vim.api.nvim_win_get_config(winnr)
-    if win_config.relative ~= "" then
-      return
-    end
-
-    local is_active = args.event ~= "WinLeave"
-
-    vim.wo.winbar = get_winbar(is_active)
-  end,
+  callback = set_winbar,
 })
 
 vim.g.winbar_full_path = false
-vim.keymap.set("n", "yop", function()
+vim.keymap.set("n", "yoa", function()
   vim.g.winbar_full_path = not vim.g.winbar_full_path
-  vim.cmd.windo("checktime")
+  set_winbar({})
 end, { desc = "Toggle full path in winbar" })
