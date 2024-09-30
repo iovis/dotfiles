@@ -22,9 +22,10 @@ return {
         N = "",
         H = "",
       },
-      -- max_filename_width = function()
-      --   return math.floor(math.min(95, vim.o.columns / 4))
-      -- end,
+      max_filename_width = function()
+        -- return math.floor(math.min(95, vim.o.columns / 4))
+        return math.huge
+      end,
     })
   end,
 }
