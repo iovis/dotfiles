@@ -10,6 +10,7 @@ set autoindent
 set autoread
 set autowriteall
 set backspace=indent,eol,start
+set completeopt=menu,menuone,popup,fuzzy
 set conceallevel=0
 " set cursorline
 set diffopt+=hiddenoff
@@ -566,7 +567,7 @@ hi! def link StatusLine Normal
 hi! def link StatusLineNC Comment
 hi! def link SLDirectory Directory
 hi! def link SLGitBranch CursorLineNr
-hi! def link SLModified DiffDelete
+hi! def link SLModified Removed
 hi! def link SLFileType String
 " }}} Highlights "
 
