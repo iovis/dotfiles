@@ -14,7 +14,6 @@ return {
 
     require("nvim-treesitter.configs").setup({
       ensure_installed = {
-        "astro",
         "bash",
         "c",
         "cmake",
@@ -22,7 +21,6 @@ return {
         "css",
         "diff", -- git diffs
         "dockerfile",
-        "elixir",
         "fish",
         "git_rebase",
         "gitattributes",
@@ -52,7 +50,6 @@ return {
         "scss",
         "sql",
         "svelte",
-        "templ",
         "toml",
         "tsx",
         "typescript",
