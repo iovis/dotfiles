@@ -1,5 +1,4 @@
 [tools]
-bun = "1"
 go = "latest"
 nodejs = "20"
 python = "3.12"
