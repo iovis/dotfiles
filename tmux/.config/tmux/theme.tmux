@@ -2,8 +2,11 @@
 set -g pane-border-style 'fg=#414559'
 set -g pane-active-border-style '#{?pane_in_mode,fg=#e5c890,#{?synchronize-panes,fg=#ea999c,fg=#8caaee}}'
 
+set -g popup-border-style 'fg=#414559'
+set -g popup-border-lines rounded
+
 ## Message
-set -g message-style 'bg=default,fg=#e5c890'
+set -g message-style 'bg=default,fg=#8caaee'
 
 ## Status line
 set -g status-style 'bg=default,fg=#51576d'

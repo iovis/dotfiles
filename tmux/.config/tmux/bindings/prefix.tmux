@@ -2,6 +2,10 @@ unbind C-b
 set -g prefix C-Space
 unbind Space
 
+bind -N "Command prompt" \; {
+  command-prompt
+}
+
 # Pass-through
 bind C-l send 'C-l'
 bind C-k send 'C-k'
@@ -115,7 +119,10 @@ bind -N "Promote pane to session" @ {
 }
 
 ## Join panes
-bind -N "Join pane" j switch-client -T join_pane
+bind -N "Join pane" j {
+  switch-client -T join_pane
+  display " Join Pane: [h]-Horizontally [v]-Vertically"
+}
 
 bind -N "Join pane horizontally" -T join_pane h {
   join-pane -v

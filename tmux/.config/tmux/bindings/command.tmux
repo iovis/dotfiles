@@ -1,4 +1,6 @@
-bind -N "Command mode" l switch-client -T command
+bind -N "Command mode" l {
+  switch-client -T command
+}
 
 bind -N "Open btop" -T command B {
   new-window -Sn btop btop

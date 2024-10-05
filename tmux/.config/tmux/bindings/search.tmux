@@ -1,4 +1,7 @@
-bind -N "Search mode" f switch-client -T search
+bind -N "Search mode" f {
+  switch-client -T search
+  display " Search: [d]-Dates [f]-Numbers [i]-IPs [o]-Commits [p]-Prompt [r]-RSpec [u]-URL"
+}
 
 # URLs
 bind -N "Search URLs" -T copy-mode-vi U {
