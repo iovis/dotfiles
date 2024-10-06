@@ -80,8 +80,8 @@ return {
           SagaLightBulb = { fg = colors.yellow },
 
           -- markdown
-          RenderMarkdownCode = { bg = black },
-          RenderMarkdownCodeInline = { link = "@markup.raw.markdown_inline" },
+          ["@markup.quote"] = { link = "Comment" },
+          MarkviewInlineCode = { bg = colors.crust },
 
           -- matchup
           MatchParen = { bg = colors.mantle, fg = colors.peach, bold = true },
@@ -114,9 +114,6 @@ return {
           ["@comment.note"] = { link = "DiagnosticInfo" },
           ["@comment.warning"] = { link = "DiagnosticWarn" },
           ["@comment.error"] = { link = "DiagnosticError" },
-
-          -- Other
-          ["@markup.quote"] = { link = "Comment" },
         }
       end,
     })
