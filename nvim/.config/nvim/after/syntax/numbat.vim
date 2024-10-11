@@ -6,7 +6,7 @@ if exists("b:current_syntax")
 endif
 
 " Numbat Keywords
-syn keyword numbatKeywords per to let fn dimension unit use struct long short both none if then else true false NaN inf print assert assert_eq type
+syn keyword numbatKeywords per to let fn where and dimension unit use struct long short both none if then else true false NaN inf print assert assert_eq type
 highlight default link numbatKeywords Keyword
 
 " Physical dimensions (every capitalized word)
@@ -30,7 +30,7 @@ syn match numbatNumber '\v<([0-9]*\.[0-9]*|[0-9]*\.[0-9]+)([eE][+-]?[0-9]+)?>'
 highlight default link numbatNumber Number
 
 " Operators
-syn match numbatOperators "->\|[+*^=/\-:·×÷²³<>]"
+syn match numbatOperators "->\|[+*^=/\-:·⋅×÷²³<>]"
 highlight default link numbatOperators Operator
 
 " Unit decorators
