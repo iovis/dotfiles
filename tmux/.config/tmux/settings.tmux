@@ -21,6 +21,7 @@ set -wg monitor-activity on
 
 set -sg default-terminal "tmux-256color"
 set -sa terminal-features ",xterm-256color:RGB"
+set -sa terminal-features ",*:hyperlinks"
 set -sg escape-time 0
 set -sg status-position bottom
 
