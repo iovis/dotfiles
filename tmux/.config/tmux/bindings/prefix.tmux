@@ -38,6 +38,11 @@ bind -N "Toggle automatic window rename" w {
   set -w automatic-rename
 }
 
+bind -N "Toggle monitor activity" M {
+  set monitor-activity
+  display 'monitor-activity #{?monitor-activity,on,off}'
+}
+
 bind -N "List keys" ? list-keys
 
 ## Paste Buffers (clipboard)

@@ -17,7 +17,7 @@ set -g visual-activity off
 set -wg automatic-rename on
 set -wg automatic-rename-format '#{pane_current_command}'
 set -wg mode-keys vi
-set -wg monitor-activity on
+set -wg monitor-activity off
 
 set -sg default-terminal "tmux-256color"
 set -sa terminal-features ",xterm-256color:RGB"

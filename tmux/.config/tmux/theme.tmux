@@ -40,7 +40,7 @@ set -ag status-right ' #{cpu_fg_color}#{cpu_percentage}#{cpu_icon}'
 set -ag status-right '#[fg=#51576d]#{?#{SSH_CLIENT}, #(whoami)@#h,} '
 
 ## Window
-set -g window-status-activity-style 'bg=default'
+set -g window-status-activity-style 'underscore bold'
 
 set -g window-status-current-format '#[fg=#{?window_zoomed_flag,#dabeed,#a6d189}]#W'
 set -g window-status-format '#[fg=#51576d]#W'
