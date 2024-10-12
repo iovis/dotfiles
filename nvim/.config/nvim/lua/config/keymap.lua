@@ -298,7 +298,7 @@ vim.keymap.set("n", "yoC", function()
   end
 end, { desc = "Toggle conceallevel" })
 
-vim.keymap.set("n", "yof", function()
+vim.keymap.set("n", "yoa", function()
   vim.g.autoformat = not vim.g.autoformat
 
   if vim.g.autoformat then
@@ -308,7 +308,7 @@ vim.keymap.set("n", "yof", function()
   end
 end, { desc = "Toggle autoformat" })
 
-vim.keymap.set("n", "yoF", function()
+vim.keymap.set("n", "yof", function()
   if vim.o.foldcolumn == "1" then
     vim.o.foldcolumn = "0"
   else
