@@ -7,7 +7,6 @@ u.bind.app({ ctrl_alt_cmd, "f" }, "Arc")
 u.bind.app({ hyper, "f" }, "Safari")
 u.bind.app({ ctrl_alt_cmd, "g" }, "Google Chrome Canary")
 
-u.bind.app({ ctrl_alt_cmd, "q" }, "Obsidian")
 u.bind.app({ ctrl_alt_cmd, "w" }, "Messages")
 u.bind.app({ ctrl_alt_cmd, "e" }, "Mail")
 u.bind.app({ ctrl_alt_cmd, "t" }, "TablePlus")
@@ -18,3 +17,4 @@ u.bind.app({ ctrl_alt_cmd, "c" }, "Calendar")
 
 u.bind.app({ ctrl_alt_cmd, "i" }, "iPhone Mirroring")
 u.bind.app({ hyper, "i" }, "IINA")
+u.bind.app({ ctrl_alt_cmd, "o" }, "Obsidian")
