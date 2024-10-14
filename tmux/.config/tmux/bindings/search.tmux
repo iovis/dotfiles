@@ -1,6 +1,6 @@
 bind -N "Search mode" f {
   switch-client -T search
-  display " Search: [d]-Dates [f]-Numbers [i]-IPs [o]-Commits [p]-Prompt [r]-RSpec [u]-URL"
+  display " Search: [d]-Dates [f]-Numbers [i]-IPs [j]-JIRA [o]-Commits [p]-Prompt [r]-RSpec [u]-URL"
 }
 
 # URLs
@@ -31,6 +31,16 @@ bind -N "Search commit hashes" -T copy-mode-vi O {
 bind -N "Search commit hashes" -T search o {
   copy-mode
   send O
+}
+
+# JIRA tickets
+bind -N "Search JIRA tickets" -T copy-mode-vi J {
+  send -X search-backward "[[:alpha:]]+-[[:digit:]]+"
+}
+
+bind -N "Search JIRA tickets" -T search j {
+  copy-mode
+  send J
 }
 
 # IPs
