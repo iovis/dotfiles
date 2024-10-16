@@ -80,19 +80,19 @@ local float_layout = function(binding, os_shortcut)
   end)
 end
 
----Halves (TODO: not working with fn+ctrl+arrow)
-float_layout({ ctrl_shift, "h" }, { hyper, "left" })
+---Halves (TODO: not working with fn+ctrl+arrow, so I had to remap at OS level)
+float_layout({ ctrl_shift, "j" }, { hyper, "left" })
 float_layout({ ctrl_shift, "l" }, { hyper, "right" })
 
----Fourths
+---Fourths (no default mapping, had to give it one at OS level)
 float_layout({ ctrl_shift, "u" }, { hyper, "t" })
-float_layout({ ctrl_shift, "i" }, { hyper, "w" })
+float_layout({ ctrl_shift, "o" }, { hyper, "w" })
 float_layout({ ctrl_shift, "m" }, { hyper, "z" })
-float_layout({ ctrl_shift, "," }, { hyper, "x" })
+float_layout({ ctrl_shift, "." }, { hyper, "x" })
 
 ---Centered
 float_layout({ ctrl_shift, "k" }, { fn_ctrl, "f" })
-float_layout({ ctrl_shift, "j" }, { fn_ctrl, "c" })
+float_layout({ ctrl_shift, "," }, { fn_ctrl, "c" })
 float_layout({ ctrl_shift, ";" }, { fn_ctrl, "r" })
 
 --------------
