@@ -26,6 +26,10 @@ bind -N "Browse PRs for current branch" -T command p {
   run -b "gh pr view --web"
 }
 
+bind -N "Open Notes" -T command u {
+  new-window -Sn notes notes
+}
+
 bind -N "Switch to git worktree" -T command w {
   run -b "cd #{pane_current_path} && gws"
 }

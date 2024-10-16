@@ -6,7 +6,7 @@ set -gx XDG_STATE_HOME $HOME/.local/state
 
 set -gx FDOTDIR $XDG_CONFIG_HOME/fish
 set -gx ICLOUD_PATH "$HOME/Library/Mobile Documents/com~apple~CloudDocs"
-set -gx NOTES "$ICLOUD_PATH/notes"
+set -gx NOTES "$HOME/vaults/io/"
 
 set -gx BAT_THEME base16
 set -gx DOTFILES "$HOME/.dotfiles"
