@@ -7,6 +7,7 @@ function libupdate
     generate_completions
 
     mise self-update --yes
+    mise outdated --bump
     mise outdated
 
     npm -g outdated
