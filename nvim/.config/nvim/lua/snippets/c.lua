@@ -96,4 +96,18 @@ return {
       condition = conds.line_begin,
     }
   ),
+  s(
+    "clangformat",
+    fmt(
+      [[
+        // clang-format off
+        {visual_selection}
+        // clang-format on
+      ]],
+      {
+        visual_selection = dl(1, l.LS_SELECT_DEDENT),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
 }
