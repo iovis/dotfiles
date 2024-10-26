@@ -13,7 +13,7 @@ if u.current_file():match("ext/") then
 elseif u.current_file():match("unicorne/") then
   ---- QMK
   vim.keymap.set("n", "<leader>S", "<cmd>Tuxpopup just setup<cr>", { buffer = true })
-  vim.keymap.set("n", "s<cr>", "<cmd>Tuxpopup just compile<cr>", { buffer = true })
+  vim.keymap.set("n", "s<cr>", "<cmd>Tuxpopup just compile flash<cr>", { buffer = true })
   vim.keymap.set("n", "m<cr>", "<cmd>Tuxpopup just flash<cr>", { buffer = true })
 
   vim.keymap.set("n", "<leader>do", "<cmd>botright split! ../qmk_firmware/docs/keycodes.md<cr>", { buffer = true })
