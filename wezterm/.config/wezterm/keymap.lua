@@ -26,5 +26,5 @@ return {
   { key = "t", mods = "SUPER", action = act.SpawnTab("CurrentPaneDomain") },
   { key = "u", mods = "SUPER", action = act.EmitEvent("toggle-opacity") },
   { key = "v", mods = "SUPER", action = act.PasteFrom("Clipboard") },
-  { key = "w", mods = "SUPER", action = act.CloseCurrentTab({ confirm = true }) },
+  { key = "w", mods = "SUPER", action = act.CloseCurrentTab({ confirm = false }) },
 }
