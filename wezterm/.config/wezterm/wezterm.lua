@@ -4,6 +4,9 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
+----Local configuration
+pcall(require, "locals")
+
 ----Events
 require("events")
 
@@ -90,14 +93,25 @@ config.hyperlink_rules = wezterm.default_hyperlink_rules()
 -- as long as a full url hyperlink regex exists above this it should not match a full url to
 -- github or gitlab / bitbucket (i.e. https://gitlab.com/user/project.git is still a whole clickable url)
 table.insert(config.hyperlink_rules, {
-  regex = [[["]?([\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)["]?]],
-  format = "https://www.github.com/$1/$3",
+  regex = [[([-\w\d]+/[-\w\d\.]+)]],
+  format = "https://www.github.com/$1",
 })
 
 -- JIRA cards (PE-411)
--- table.insert(config.hyperlink_rules, {
---   regex = [[([A-Z]+-\d+)]],
---   format = "https://atlassian.net/browse/$1",
--- })
+if JIRA_URL then
+  table.insert(config.hyperlink_rules, {
+    regex = [[([A-Z]+-\d+)]],
+    format = JIRA_URL,
+  })
+end
+
+-- Deployment locks
+-- gitlab-manage-deploy-dashboard-1506038
+if DEPLOY_PIPELINE_URL then
+  table.insert(config.hyperlink_rules, {
+    regex = [[gitlab-manage-deploy-dashboard-(\d+)]],
+    format = DEPLOY_PIPELINE_URL,
+  })
+end
 
 return config

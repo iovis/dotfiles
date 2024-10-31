@@ -36,6 +36,9 @@ tmux/.config/tmux/local.tmux
 tmux/.config/tmux/plugins
 tmux/.config/tmux/resurrect
 
+# wezterm
+wezterm/.config/wezterm/locals.lua
+
 # zsh
 *.zwc
 zsh/.config/zsh/.zcompdump
