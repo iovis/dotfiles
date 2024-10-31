@@ -43,7 +43,7 @@ bind -N "Tmux customization mode" -T command z {
 }
 
 ## Justfile
-bind -N "Run just console" -T command j {
+bind -N "Run just picker" -T command j {
   if "test -f justfile" {
     new-window "jf; pause"
   } {
