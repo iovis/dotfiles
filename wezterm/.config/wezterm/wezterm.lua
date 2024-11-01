@@ -4,9 +4,6 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
-----Local configuration
-pcall(require, "locals")
-
 ----Events
 require("events")
 
@@ -97,20 +94,17 @@ table.insert(config.hyperlink_rules, {
   format = "https://www.github.com/$1",
 })
 
+----Local configuration
+local ok, locals = pcall(require, "locals")
+if ok then
+  locals.overrides(config)
+end
+
 -- JIRA cards (PE-411)
 if JIRA_URL then
   table.insert(config.hyperlink_rules, {
     regex = [[([A-Z]+-\d+)]],
     format = JIRA_URL,
-  })
-end
-
--- Deployment locks
--- gitlab-manage-deploy-dashboard-1506038
-if DEPLOY_PIPELINE_URL then
-  table.insert(config.hyperlink_rules, {
-    regex = [[gitlab-manage-deploy-dashboard-(\d+)]],
-    format = DEPLOY_PIPELINE_URL,
   })
 end
 
