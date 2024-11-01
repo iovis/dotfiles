@@ -1,7 +1,7 @@
 return {
   { "b0o/schemastore.nvim", lazy = true },
   { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
-  { "justinsgithub/wezterm-types", lazy = true }, -- optional `wezterm` typings
+  { "gonstoll/wezterm-types", lazy = true }, -- optional `wezterm` typings
   { "mrcjkb/rustaceanvim", lazy = false, version = "*" },
   {
     "folke/lazydev.nvim",
