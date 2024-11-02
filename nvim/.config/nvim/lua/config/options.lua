@@ -6,6 +6,7 @@ vim.g.scrolloff = 4
 ---- Global Variables
 vim.g.autoformat = true
 vim.g.autotest = nil
+vim.g.foldcolumn = false
 vim.g.zig_fmt_autosave = 0
 
 ---- Nvim Options
@@ -62,6 +63,7 @@ vim.o.softtabstop = 2
 vim.o.spelllang = "en_us"
 vim.o.splitbelow = true
 vim.o.splitright = true
+-- vim.o.statuscolumn = require("config.statuscol").statuscolumn()
 vim.o.swapfile = false
 vim.o.tabstop = 2
 vim.o.termguicolors = true
