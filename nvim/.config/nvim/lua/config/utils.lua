@@ -4,7 +4,7 @@ local M = {}
 ---Example:
 ---  alias_command("Grep") -- converts `:grep` to `:Grep`
 ---@param cmd string
-M.alias_command = function(cmd)
+function M.alias_command(cmd)
   local cmd_lowercase = cmd:lower()
 
   vim.keymap.set("ca", cmd_lowercase, function()
@@ -20,19 +20,19 @@ end
 ---@param name string
 ---@param fn any
 ---@param opts? table<string, any>
-M.command = function(name, fn, opts)
+function M.command(name, fn, opts)
   vim.api.nvim_create_user_command(name, fn, opts or {})
 end
 
 ---Type the string as if it were the user typing it
 ---@param keys string
-M.send_keys = function(keys)
+function M.send_keys(keys)
   local escaped_termcodes = vim.api.nvim_replace_termcodes(keys, true, false, true)
 
   vim.api.nvim_feedkeys(escaped_termcodes, "t", true)
 end
 
-M.scratch = function(contents, opts)
+function M.scratch(contents, opts)
   opts = opts or {}
   if opts.type == "float" then
     return M.floating_window(contents, opts)
@@ -69,7 +69,7 @@ M.scratch = function(contents, opts)
   end
 end
 
-M.floating_window = function(contents, opts)
+function M.floating_window(contents, opts)
   local win_opts = vim.tbl_extend("force", {
     title = nil,
     filetype = "lua",
@@ -107,32 +107,32 @@ end
 ---Check if file exists
 ---@param path string
 ---@return boolean
-M.is_file = function(path)
+function M.is_file(path)
   return vim.fn.filereadable(vim.fn.expand(path)) == 1 or false
 end
 
 ---Relative path to current file
 ---@return string
-M.current_file = function()
+function M.current_file()
   return vim.fn.expand("%")
 end
 
 ---Path to current file from Home folder
 ---@return string
-M.current_path = function()
+function M.current_path()
   return vim.fn.expand("%:~")
 end
 
 ---Check if there's a justfile
 ---@return boolean
-M.has_justfile = function()
+function M.has_justfile()
   return M.is_file("justfile")
 end
 
 ---Run system command synchronously
 ---@param cmd string[]
 ---@return string
-M.system = function(cmd)
+function M.system(cmd)
   local result = vim.system(cmd, { text = true }):wait()
 
   if result.code ~= 0 then
@@ -162,7 +162,7 @@ end
 ---Run system command synchronously and return a list of lines
 ---@param cmd string[]
 ---@return string[]
-M.system_list = function(cmd)
+function M.system_list(cmd)
   return vim.split(M.system(cmd), "\n", {
     trimempty = true,
   })
@@ -171,7 +171,7 @@ end
 ---Check if command is executable
 ---@param cmd string
 ---@return boolean
-M.is_executable = function(cmd)
+function M.is_executable(cmd)
   return vim.fn.executable(cmd) == 1
 end
 
@@ -179,7 +179,7 @@ end
 ---Check if string is empty
 ---@param str string
 ---@return boolean
-M.is_empty = function(str)
+function M.is_empty(str)
   return vim.fn.empty(str) == 1
 end
 
@@ -188,7 +188,7 @@ end
 --- @param str string
 --- @param len number
 --- @return string
-M.truncate = function(str, len)
+function M.truncate(str, len)
   if #str <= len then
     return str
   end
@@ -200,7 +200,7 @@ end
 ---Ex: "my title" => "My Title"
 ---@param str string
 ---@return string
-M.titleize = function(str)
+function M.titleize(str)
   local new_str, _ = str:gsub("(%l)(%w*)", function(a, b)
     return string.upper(a) .. b
   end)
@@ -212,7 +212,7 @@ end
 ---Ex: "my string" => "MyString"
 ---@param str string
 ---@return string
-M.pascal_case = function(str)
+function M.pascal_case(str)
   local new_str, _ = str:gsub("%s?_?-?(%l)(%w*)", function(a, b)
     return string.upper(a) .. b
   end)
@@ -223,7 +223,7 @@ end
 ---Escape Lua pattern
 ---@param str string
 ---@return string
-M.escape_lua_pattern = function(str)
+function M.escape_lua_pattern(str)
   local matches = {
     ["^"] = "%^",
     ["$"] = "%$",
@@ -243,11 +243,58 @@ M.escape_lua_pattern = function(str)
   return (str:gsub(".", matches))
 end
 
+-- From: https://neovim.discourse.group/t/how-do-you-work-with-strings-with-multibyte-characters-in-lua/2437/4
+function M.char_byte_count(s, i)
+  if not s or s == "" then
+    return 1
+  end
+
+  local char = string.byte(s, i or 1)
+
+  -- Get byte count of unicode character (RFC 3629)
+  if char > 0 and char <= 127 then
+    return 1
+  elseif char >= 194 and char <= 223 then
+    return 2
+  elseif char >= 224 and char <= 239 then
+    return 3
+  elseif char >= 240 and char <= 244 then
+    return 4
+  end
+end
+
+function M.char_on_pos(pos)
+  pos = pos or vim.fn.getpos(".")
+  return tostring(vim.fn.getline(pos[1])):sub(pos[2], pos[2])
+end
+
+function M.get_visual_range()
+  local sr, sc = unpack(vim.fn.getpos("v"), 2, 3)
+  local er, ec = unpack(vim.fn.getpos("."), 2, 3)
+
+  -- To correct work with non-single byte chars
+  local byte_c = M.char_byte_count(M.char_on_pos({ er, ec }))
+  ec = ec + (byte_c - 1)
+
+  local range = {}
+
+  if sr == er then
+    local cols = sc >= ec and { ec, sc } or { sc, ec }
+    range = { sr, cols[1] - 1, er, cols[2] }
+  elseif sr > er then
+    range = { er, ec - 1, sr, sc }
+  else
+    range = { sr, sc - 1, er, ec }
+  end
+
+  return range
+end
+
 ----Buffers
 
 ---Is there only one listed buffer
 ---@return boolean
-M.is_only_buffer = function()
+function M.is_only_buffer()
   local buffers = vim.api.nvim_list_bufs()
   local count = 0
 
@@ -264,7 +311,7 @@ end
 ---@param lines string[]
 ---@param pattern string
 ---@return number|nil line_number
-M.find_pattern_in = function(lines, pattern)
+function M.find_pattern_in(lines, pattern)
   for i, line in ipairs(lines) do
     if line:match(pattern) then
       return i - 1 -- nvim is 0 based
@@ -280,7 +327,7 @@ end
 ---@param finish T
 ---@param step number?
 ---@return fun(): T
-M.range = function(start, finish, step)
+function M.range(start, finish, step)
   step = step or 1
 
   if type(start) == "number" and type(finish) == "number" then
@@ -307,7 +354,7 @@ M.ts = {}
 ---@param lang? string
 ---@param bufnr? number
 ---@return TSNode
-M.ts.root_node = function(lang, bufnr)
+function M.ts.root_node(lang, bufnr)
   local parser = vim.treesitter.get_parser(bufnr, lang)
   local tree = parser:parse()[1]
 
@@ -317,7 +364,7 @@ end
 ---Get the Treesitter root node
 ---@param node TSNode
 ---@param text string
-M.ts.replace = function(node, text)
+function M.ts.replace(node, text)
   local start_row, start_col, end_row, end_col = node:range()
   vim.api.nvim_buf_set_text(0, start_row, start_col, end_row, end_col, { text })
 end
@@ -325,7 +372,7 @@ end
 ---UI
 M.ui = {}
 
-M.ui.foldtext = function()
+function M.ui.foldtext()
   local start = vim.fn.getline(vim.v.foldstart)
   local replace = vim.fn["repeat"](" ", vim.bo.tabstop)
 
