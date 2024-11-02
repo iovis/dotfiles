@@ -107,8 +107,14 @@ return {
     ----Components
     local muxi_marks = function()
       local marks = require("muxi").marked_files[vim.fn.expand("%")]
+      local keys = vim
+        .iter(marks)
+        :map(function(mark)
+          return mark.key
+        end)
+        :join(" ")
 
-      return "[" .. vim.iter(marks):join(" ") .. "]"
+      return "[" .. keys .. "]"
     end
 
     ----Setup
