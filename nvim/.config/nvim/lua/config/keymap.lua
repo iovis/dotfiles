@@ -309,14 +309,13 @@ vim.keymap.set("n", "yoa", function()
 end, { desc = "Toggle autoformat" })
 
 vim.keymap.set("n", "yof", function()
-  -- if vim.o.foldcolumn == "1" then
-  --   vim.o.foldcolumn = "0"
-  -- else
-  --   vim.o.foldcolumn = "1"
-  -- end
-
-  -- TODO: enable when using custom statuscol
   vim.g.foldcolumn = not vim.g.foldcolumn
+
+  -- HACK: statuscol doesn't refresh properly
+  local current_window = vim.api.nvim_get_current_win()
+  vim.cmd("tabdo windo se nu!")
+  vim.cmd("tabdo windo se nu!")
+  vim.api.nvim_set_current_win(current_window)
   vim.cmd("redraw!")
 end, { desc = "Toggle foldcolumn" })
 

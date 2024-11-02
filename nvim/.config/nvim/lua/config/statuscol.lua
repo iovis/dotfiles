@@ -69,6 +69,7 @@ function M.line_number()
   -- Apply highlights to lines in Visual mode
   local visual_highlight = ""
   local mode = vim.fn.strtrans(vim.fn.mode()):lower():gsub("%W", "")
+
   if mode == "v" then
     local v_range = get_visual_range()
     local is_in_range = vim.v.lnum >= v_range[1] and vim.v.lnum <= v_range[3]
@@ -89,7 +90,7 @@ end
 ---To display pretty fold's icons in `statuscolumn` and show it according to `fillchars`
 function M.foldcolumn()
   if not vim.g.foldcolumn then
-    return " "
+    return ""
   end
 
   local chars = vim.opt.fillchars:get()
@@ -116,8 +117,9 @@ end
 ---See :h 'statuscolumn'
 local statuscolumn = {
   { "%s" }, -- Sign column
-  { "%=", M.line_number, " " }, -- %= means "right aligned"
-  -- { M.foldcolumn, " " },
+  { "%=", M.line_number }, -- %= means "right aligned"
+  { M.foldcolumn },
+  { " " },
 }
 
 ---Join statuscolumn|statusline sections to string
