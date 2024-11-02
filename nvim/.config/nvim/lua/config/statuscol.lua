@@ -56,23 +56,23 @@ function M.line_number()
   local cur_line = vim.fn.line(".") == vim.v.lnum and vim.v.lnum or vim.v.relnum
 
   -- Repeats the behavior for `vim.opt.numberwidth`
-  local width = vim.opt.numberwidth:get()
-  local l_count_width = #tostring(vim.api.nvim_buf_line_count(0))
+  local numberwidth = vim.opt.numberwidth:get() - 1 -- `numberwidth` includes right padding
+  local line_count_width = #tostring(vim.api.nvim_buf_line_count(0))
   -- If buffer have more lines than `vim.opt.numberwidth` then use width of line count
-  width = width >= l_count_width and width or l_count_width
-
-  local visual_highlight = ""
+  local width = numberwidth >= line_count_width and numberwidth or line_count_width
 
   local function pad_start(n)
     local len = width - #tostring(n)
     return len < 1 and n or (" "):rep(len) .. n
   end
 
+  -- Apply highlights to lines in Visual mode
+  local visual_highlight = ""
   local mode = vim.fn.strtrans(vim.fn.mode()):lower():gsub("%W", "")
   if mode == "v" then
     local v_range = get_visual_range()
     local is_in_range = vim.v.lnum >= v_range[1] and vim.v.lnum <= v_range[3]
-    visual_highlight = is_in_range and "%#CursorLineNr#" or ""
+    visual_highlight = is_in_range and "%#VisualLineNr#" or ""
   end
 
   if nu and rnu then
@@ -117,18 +117,18 @@ end
 local statuscolumn = {
   { "%s" }, -- Sign column
   { "%=", M.line_number, " " }, -- %= means "right aligned"
-  { M.foldcolumn, " " },
+  -- { M.foldcolumn, " " },
 }
 
 ---Join statuscolumn|statusline sections to string
 ---@param sections table
 ---@return string
-local join_sections = function(sections)
+local function join_sections(sections)
   local res = ""
 
   for _, section in ipairs(sections) do
-    for _, comp in ipairs(section) do
-      res = type(comp) == "string" and res .. comp or res .. comp()
+    for _, component in ipairs(section) do
+      res = type(component) == "string" and res .. component or res .. component()
     end
   end
 

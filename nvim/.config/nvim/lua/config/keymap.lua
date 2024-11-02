@@ -309,15 +309,15 @@ vim.keymap.set("n", "yoa", function()
 end, { desc = "Toggle autoformat" })
 
 vim.keymap.set("n", "yof", function()
-  if vim.o.foldcolumn == "1" then
-    vim.o.foldcolumn = "0"
-  else
-    vim.o.foldcolumn = "1"
-  end
+  -- if vim.o.foldcolumn == "1" then
+  --   vim.o.foldcolumn = "0"
+  -- else
+  --   vim.o.foldcolumn = "1"
+  -- end
 
   -- TODO: enable when using custom statuscol
-  -- vim.g.foldcolumn = not vim.g.foldcolumn
-  -- vim.cmd("redraw!")
+  vim.g.foldcolumn = not vim.g.foldcolumn
+  vim.cmd("redraw!")
 end, { desc = "Toggle foldcolumn" })
 
 vim.keymap.set("n", "yoz", function()

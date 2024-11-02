@@ -97,6 +97,9 @@ return {
           -- quickfix
           QuickFixLine = { bg = colors.base, bold = true },
 
+          -- statuscolumn
+          VisualLineNr = { fg = colors.peach, bold = true },
+
           -- treesitter
           TreesitterContext = { bg = black, bold = true },
           TreesitterContextBottom = { style = {} }, -- Disable underline
