@@ -6,6 +6,8 @@ local pairhl = { bg = "#292c3d" } -- `pastel lighten 0.05 '#1f212e'`
 vim.api.nvim_create_user_command("PairingMode", function()
   pairing = not pairing
 
+  local current_window = vim.api.nvim_get_current_win()
+
   if pairing then
     vim.api.nvim_set_hl(0, "CursorLine", pairhl)
     vim.api.nvim_set_hl(0, "CursorColumn", pairhl)
@@ -19,6 +21,8 @@ vim.api.nvim_create_user_command("PairingMode", function()
     vim.cmd("tabdo windo set relativenumber")
     vim.cmd("tabdo windo set nocursorcolumn")
   end
+
+  vim.api.nvim_set_current_win(current_window)
 end, {})
 
 vim.keymap.set("n", "yoP", ":PairingMode<cr>")
