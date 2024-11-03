@@ -4,8 +4,10 @@ return {
   lazy = false,
   cmd = { "Oil" },
   keys = {
-    { "-", "<cmd>Oil<cr>" }, -- --float
+    { "-", "<cmd>Oil<cr>" },
+    { "<leader>-", "<cmd>Oil --float<cr>" },
     { "_", "<cmd>Oil .<cr>" },
+    { "<leader>_", "<cmd>Oil --float .<cr>" },
   },
   dependencies = {
     "nvim-tree/nvim-web-devicons",
@@ -13,6 +15,8 @@ return {
   config = function()
     local oil = require("oil")
     local show_details = false
+    local u = require("config.utils")
+    u.alias_command("Oil")
 
     oil.setup({
       default_file_explorer = true,
@@ -50,7 +54,7 @@ return {
         },
         [","] = {
           "actions.open_cmdline",
-          desc = "Open the command line with the current directory as an argument",
+          desc = "Open the command line with the current item as an argument",
           opts = {
             shorten_path = true,
             -- modify = ":h",
