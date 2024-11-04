@@ -13,7 +13,8 @@ end
 
 -- Bootstrap lazy
 local lazypath = root .. "/plugins/lazy.nvim"
-if not vim.uv.fs_stat(lazypath) then
+
+if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
@@ -71,4 +72,6 @@ local plugins = {
   -- },
 }
 
-require("lazy").setup(plugins, { root = root .. "/plugins" })
+require("lazy").setup(plugins, {
+  root = root .. "/plugins",
+})
