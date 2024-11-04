@@ -13,7 +13,6 @@ set -gx DOTFILES "$HOME/.dotfiles"
 set -gx EDITOR nvim
 set -gx MANPAGER "$EDITOR +Man!"
 set -gx PROJECT_HOME "$HOME/code"
-set -gx REVIEW_BASE main
 
 set -l preview_command 'bat --style=numbers --color=always {} 2> /dev/null'
 set -gx FZF_DEFAULT_COMMAND "fd -H -E '.git' -E '.keep' --type file --follow --color=always"
