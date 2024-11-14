@@ -2,6 +2,7 @@
 master.key
 
 # fish
+fish/.config/fish/completions/*
 fish/.config/fish/fish_variables
 fish/.config/fish/local/*
 
