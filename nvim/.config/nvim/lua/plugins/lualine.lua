@@ -107,6 +107,12 @@ return {
     ----Components
     local muxi_marks = function()
       local marks = require("muxi").marked_files[vim.fn.expand("%")]
+
+      -- Sort by position in the file
+      table.sort(marks, function(a, b)
+        return a.pos[1] < b.pos[1]
+      end)
+
       local keys = vim
         .iter(marks)
         :map(function(mark)
