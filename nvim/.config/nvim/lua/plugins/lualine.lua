@@ -106,7 +106,10 @@ return {
 
     ----Components
     local muxi_marks = function()
-      local marks = require("muxi").marked_files[vim.fn.expand("%")]
+      local marks = require("muxi").marks_for_current_file()
+      if vim.tbl_isempty(marks) then
+        return ""
+      end
 
       -- Sort by position in the file
       table.sort(marks, function(a, b)

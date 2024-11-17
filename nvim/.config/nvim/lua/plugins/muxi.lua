@@ -17,7 +17,7 @@ return {
       desc = "[muxi] Mark/go to file",
     })
 
-    vim.keymap.set("n", "m", function()
+    vim.keymap.set({ "n", "x" }, "m", function()
       muxi.ui.run({ go_to_cursor = true })
     end, {
       desc = "[muxi] Mark/go to file (cursor: true)",
@@ -53,7 +53,7 @@ return {
       desc = "[muxi] fzf-lua marks",
     })
 
-    vim.keymap.set("n", "<leader>g/", muxi.ui.qf, {
+    vim.keymap.set("n", "m/", muxi.ui.qf, {
       desc = "[muxi] quickfix marks",
     })
 
