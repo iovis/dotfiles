@@ -302,11 +302,23 @@ vim.keymap.set("n", "yoa", function()
   vim.g.autoformat = not vim.g.autoformat
 
   if vim.g.autoformat then
-    print("Autoformat enabled")
+    vim.notify("Autoformat enabled")
   else
-    print("Autoformat disabled")
+    vim.notify("Autoformat disabled")
   end
 end, { desc = "Toggle autoformat" })
+
+vim.keymap.set("n", "<leader>af", function()
+  if vim.bo.textwidth == 0 then
+    vim.bo.textwidth = 80
+    vim.opt_local.formatoptions:append("a")
+    vim.notify("Autowidth enabled [80]")
+  else
+    vim.bo.textwidth = 0
+    vim.opt_local.formatoptions:remove("a")
+    vim.notify("Autowidth disabled")
+  end
+end, { desc = "Toggle autowidth" })
 
 vim.keymap.set("n", "yof", function()
   vim.g.foldcolumn = not vim.g.foldcolumn
@@ -334,7 +346,7 @@ vim.keymap.set("n", "<leader>P", ":R=")
 vim.keymap.set("n", "<leader>M", "<cmd>10R messages<cr>G")
 vim.keymap.set("n", "'M", function()
   vim.cmd("messages clear")
-  print("messages cleared")
+  vim.notify("messages cleared")
 end, { desc = "Clear messages" })
 
 ---- Global substitutions
