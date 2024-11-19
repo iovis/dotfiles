@@ -3,13 +3,22 @@
 aerospace workspace K
 aerospace layout accordion horizontal
 aerospace flatten-workspace-tree
+
 open -a Slack
 aerospace move-node-to-workspace K
+
 open -a "Microsoft Outlook"
 aerospace move-node-to-workspace K
+
 open -a Music
 aerospace move-node-to-workspace K
+
 open -a Slack
 aerospace move right
+
 aerospace layout accordion horizontal
-aerospace workspace-back-and-forth
+
+open -a Music
+hs -c "hs.eventtap.keyStroke(ctrl_shift, 'm', 0)"
+
+# aerospace workspace-back-and-forth
