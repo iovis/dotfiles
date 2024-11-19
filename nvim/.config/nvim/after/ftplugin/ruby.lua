@@ -18,7 +18,7 @@ elseif u.current_file():match("_spec.rb") then
     buffer = vim.api.nvim_get_current_buf(),
     callback = require("config.hooks.rspec").run,
   })
-elseif u.current_file():match("Gemfile") then
+elseif u.current_file() == "Gemfile" then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux bundle install<cr>", { buffer = true })
 
   vim.api.nvim_create_autocmd({ "BufWinEnter", "BufWritePost" }, {

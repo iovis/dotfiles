@@ -21,11 +21,15 @@ function Npm.parse_command_output(output)
   -- },
   local dependencies = {}
   for package, metadata in pairs(json) do
-    table.insert(dependencies, {
-      name = package,
-      version = metadata.latest,
-      installed_version = metadata.current,
-    })
+    if metadata.current then
+      table.insert(dependencies, {
+        source = "npm",
+        name = package,
+        current = metadata.current,
+        latest = metadata.latest,
+        message = ("%s %s (%s installed)"):format(package, metadata.latest, metadata.current),
+      })
+    end
   end
 
   return dependencies

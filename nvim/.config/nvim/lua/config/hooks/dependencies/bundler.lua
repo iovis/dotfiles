@@ -21,17 +21,19 @@ function Bundler.parse_command_output(output)
     -- attr_encrypted (newest 3.1.0 df02ab0, installed 3.1.0 eafd77a)
     -- view_component (newest 3.5.0, installed 2.56.2)
     local regex = "([%w._-]+) %(newest ([%d. a-f]+), installed ([%d. a-f]+)"
-    local name, newer_version, installed_version = line:match(regex)
+    local name, latest, current = line:match(regex)
 
-    if not name or not newer_version then
+    if not name or not latest then
       vim.notify(string.format("Error parsing line: %s", line), vim.log.levels.ERROR)
       return
     end
 
     table.insert(dependencies, {
+      source = "bundler",
       name = name,
-      version = newer_version,
-      installed_version = installed_version,
+      current = current,
+      latest = latest,
+      message = ("%s %s (%s installed)"):format(name, latest, current),
     })
 
     ::continue::

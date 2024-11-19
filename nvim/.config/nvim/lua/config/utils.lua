@@ -318,7 +318,9 @@ function M.find_pattern_in(lines, pattern)
     end
   end
 
-  vim.notify(string.format("Couldn't find %s", pattern), vim.log.levels.ERROR)
+  if vim.g.debug then
+    vim.notify(string.format("Couldn't find %s", pattern), vim.log.levels.ERROR)
+  end
 end
 
 ---Create an iterator from a range

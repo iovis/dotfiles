@@ -1,4 +1,5 @@
 ---- Set Space as the leader key
+vim.g.debug = false
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.g.scrolloff = 4

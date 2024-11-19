@@ -46,19 +46,29 @@ function M.run(strategy)
         return
       end
 
-      local diagnostics = vim.tbl_map(function(dependency)
-        local installed_package = ("%s (%s installed)"):format(dependency.name, dependency.installed_version)
+      local diagnostics = vim
+        .iter(dependencies)
+        :map(function(dependency)
+          local line_number = runner.find_in(spec_file, dependency)
 
-        return {
-          bufnr = bufnr,
-          lnum = runner.find_in(spec_file, dependency),
-          col = 0,
-          severity = vim.diagnostic.severity.INFO,
-          source = installed_package,
-          message = dependency.version,
-          user_data = {},
-        }
-      end, dependencies)
+          if not line_number then
+            return nil
+          end
+
+          return {
+            bufnr = bufnr,
+            lnum = line_number,
+            col = 0,
+            severity = vim.diagnostic.severity.INFO,
+            source = dependency.source,
+            message = dependency.message,
+            user_data = {},
+          }
+        end)
+        :filter(function(diagnostic)
+          return diagnostic
+        end)
+        :totable()
 
       vim.diagnostic.set(ns, bufnr, diagnostics)
 

@@ -28,9 +28,11 @@ function Cargo.parse_command_output(output)
   local dependencies = {}
   for _, package in ipairs(json.dependencies) do
     table.insert(dependencies, {
+      source = "cargo",
       name = package.name,
-      version = package.latest,
-      installed_version = package.project,
+      current = package.project,
+      latest = package.latest,
+      message = ("%s %s (%s installed)"):format(package.name, package.latest, package.project),
     })
   end
 
