@@ -54,15 +54,6 @@ g = 'mode workspace'
 
 q = ['close-all-windows-but-current', 'mode main']
 s = ['exec-and-forget ~/.dotfiles/bin/aerospace_secondary', 'mode main']
-i = [
-  'exec-and-forget ~/.dotfiles/bin/aerospace_move_all_to_workspace J',
-  'workspace J',
-  'mode main',
-]
-m = [
-  'exec-and-forget ~/.dotfiles/bin/aerospace_move_all_to_workspace J',
-  'mode main',
-]
 
 h = ['workspace H', 'mode main']
 j = ['workspace J', 'mode main']
@@ -73,6 +64,23 @@ shift-h = ['move-node-to-workspace H', 'workspace H', 'mode main']
 shift-j = ['move-node-to-workspace J', 'workspace J', 'mode main']
 shift-k = ['move-node-to-workspace K', 'workspace K', 'mode main']
 shift-l = ['move-node-to-workspace L', 'workspace L', 'mode main']
+
+alt-h = [
+  'exec-and-forget ~/.dotfiles/bin/aerospace_move_all_to_workspace H',
+  'mode main',
+]
+alt-j = [
+  'exec-and-forget ~/.dotfiles/bin/aerospace_move_all_to_workspace J',
+  'mode main',
+]
+alt-k = [
+  'exec-and-forget ~/.dotfiles/bin/aerospace_move_all_to_workspace K',
+  'mode main',
+]
+alt-l = [
+  'exec-and-forget ~/.dotfiles/bin/aerospace_move_all_to_workspace L',
+  'mode main',
+]
 
 [mode.workspace.binding]
 enter = 'mode main'
