@@ -1,3 +1,7 @@
+---Enable CLI (https://www.hammerspoon.org/docs/hs.ipc.html)
+---Example: hs -c "hs.alert.show('Hello, world!')"
+require("hs.ipc")
+
 ---Console
 hs.console.darkMode(true)
 hs.console.consoleCommandColor({ white = 0.6 })

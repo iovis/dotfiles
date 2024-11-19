@@ -32,6 +32,8 @@ elseif u.current_file():match("plugins/") then
 
     print(string.format("Reloaded %s", plugin))
   end, { buffer = true })
+elseif u.current_file():match("hammerspoon/") then
+  vim.keymap.set("n", "s<cr>", "<cmd>Tux hs<cr>", { buffer = true })
 end
 
 ----Surround debug
