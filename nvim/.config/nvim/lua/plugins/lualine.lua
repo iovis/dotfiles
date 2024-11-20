@@ -105,7 +105,7 @@ return {
     }
 
     ----Components
-    local muxi_marks = function()
+    local function muxi_marks()
       local marks = require("muxi").marks_for_current_file()
       if vim.tbl_isempty(marks) then
         return ""

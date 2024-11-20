@@ -1,4 +1,4 @@
-local meeting_title = function()
+local function meeting_title()
   local calendar_cmd = table.concat({
     "icalBuddy",
     "--noCalendarNames",

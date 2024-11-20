@@ -3,7 +3,7 @@
 
 ---Show a Hammerspoon Notification
 ---@param message string
-local notify = function(message)
+local function notify(message)
   hs.notify
     .new({
       title = "Hammerspoon",
@@ -16,7 +16,7 @@ end
 ---Run a command with an optional notification
 ---@param command string
 ---@param notification? { success_message: string, error: boolean }
-local task = function(command, notification)
+local function task(command, notification)
   notification = notification or {}
 
   return hs.task.new(os.getenv("SHELL"), function(code, stdout, stderr)

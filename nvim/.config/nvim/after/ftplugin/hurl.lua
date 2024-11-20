@@ -1,6 +1,6 @@
 local u = require("config.utils")
 
-local hurl_request = function()
+local function hurl_request()
   local filename = vim.fn.expand("%:.")
 
   vim.system({ "hurl", filename }, { text = true }, function(obj)

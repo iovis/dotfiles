@@ -7,7 +7,7 @@ local u = require("config.utils")
 
 ---Get timed events for today
 ---@return CalendarEvent[]
-local get_calendar_events = function()
+local function get_calendar_events()
   -- Run calendar command
   local output = u.system_list({
     "icalBuddy",
@@ -44,7 +44,7 @@ local get_calendar_events = function()
   return events
 end
 
-local calendar_picker = function()
+local function calendar_picker()
   local events = get_calendar_events()
 
   if vim.tbl_isempty(events) then

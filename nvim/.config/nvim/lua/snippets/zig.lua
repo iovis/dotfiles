@@ -1,4 +1,4 @@
-local zig_fn = function()
+local function zig_fn()
   return sn(
     nil,
     fmta(

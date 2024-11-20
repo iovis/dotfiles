@@ -6,7 +6,7 @@ return {
 
     ---@param msg ProgressMessage
     ---@return string?
-    local lsp_format_message = function(msg)
+    local function lsp_format_message(msg)
       -- Ignore "Diagnosing..." progress messages
       if msg.title and string.find(msg.title, "Diagnosing") then
         return nil

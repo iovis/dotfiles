@@ -7,7 +7,7 @@ local u = require("config.utils")
 ---Get the text covered by the motion
 ---@param mode vim_mode
 ---@return string
-local capture_motion_text = function(mode)
+local function capture_motion_text(mode)
   local saved_unnamed_register = vim.fn.getreg("@")
 
   if mode == "char" then
@@ -25,7 +25,7 @@ end
 ---Check if the motion is within the same line
 ---@param mode vim_mode
 ---@return boolean
-local is_same_line = function(mode)
+local function is_same_line(mode)
   if mode == "char" then
     return (vim.fn.getpos("'[")[2] - vim.fn.getpos("']")[2]) == 0
   end

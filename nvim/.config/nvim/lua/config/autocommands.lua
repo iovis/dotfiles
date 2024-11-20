@@ -3,7 +3,7 @@ local config_augroup = vim.api.nvim_create_augroup("user_config", { clear = true
 ---Check if current buffer is in ignored filetypes
 ---@param ignored_filetypes string[]
 ---@return boolean
-local in_ignored_filetypes = function(ignored_filetypes)
+local function in_ignored_filetypes(ignored_filetypes)
   return vim.bo.filetype and vim.tbl_contains(ignored_filetypes, vim.bo.filetype)
 end
 

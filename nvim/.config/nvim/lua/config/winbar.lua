@@ -52,7 +52,7 @@ local winbar_per_filetype = {
 
 ---@param path string
 ---@return WinbarComponent
-local winbar_per_path = function(path)
+local function winbar_per_path(path)
   local filename = string.lower(vim.fn.fnamemodify(path, ":t"))
   local ext = vim.fn.fnamemodify(path, ":e")
 
@@ -82,7 +82,7 @@ end
 ---Calculate winbar string
 ---@param is_active boolean
 ---@return string
-local get_winbar = function(is_active)
+local function get_winbar(is_active)
   local modified = ""
   if vim.api.nvim_get_option_value("mod", {}) then
     modified = " %#diffAdded#●"
@@ -112,7 +112,7 @@ local get_winbar = function(is_active)
   end
 end
 
-local set_winbar = function(args)
+local function set_winbar(args)
   -- Ignore custom winbar
   if vim.wo.winbar:match("»") then
     return

@@ -1,4 +1,4 @@
-local title = function(bufnr)
+local function title(bufnr)
   local file = vim.fn.bufname(bufnr)
   local buftype = vim.fn.getbufvar(bufnr, "&buftype")
   local filetype = vim.fn.getbufvar(bufnr, "&filetype")
@@ -25,11 +25,11 @@ local title = function(bufnr)
   end
 end
 
-local modified = function(bufnr)
+local function modified(bufnr)
   return vim.fn.getbufvar(bufnr, "&modified") == 1 and "[+] " or ""
 end
 
-local windowCount = function(index)
+local function windowCount(index)
   local nwins = 0
   local success, wins = pcall(vim.api.nvim_tabpage_list_wins, index)
 
@@ -42,11 +42,11 @@ local windowCount = function(index)
   return nwins > 1 and "(" .. nwins .. ") " or ""
 end
 
-local separator = function(index)
+local function separator(index)
   return (index < vim.fn.tabpagenr("$") and "%#TabLine#|" or "")
 end
 
-local cell = function(index)
+local function cell(index)
   local isSelected = vim.fn.tabpagenr() == index
   local buflist = vim.fn.tabpagebuflist(index)
   local winnr = vim.fn.tabpagewinnr(index)
@@ -66,7 +66,7 @@ local cell = function(index)
     .. separator(index)
 end
 
-local tabline = function()
+local function tabline()
   local line = ""
 
   for i = 1, vim.fn.tabpagenr("$"), 1 do

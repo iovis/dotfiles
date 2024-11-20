@@ -1,17 +1,17 @@
 ----Utils
 local u = require("config.utils")
 
-local within_session = function()
+local function within_session()
   return not u.is_empty(vim.v.this_session)
 end
 
-local session_loading = function()
+local function session_loading()
   return vim.g.SessionLoad ~= nil
 end
 
 ---@param buffer number: buffer ID.
 ---@return boolean `true` if this buffer could be restored later on loading.
-local is_restorable = function(buffer)
+local function is_restorable(buffer)
   if #vim.bo[buffer].bufhidden ~= 0 then
     return false
   end
@@ -35,7 +35,7 @@ local is_restorable = function(buffer)
 end
 
 ----Commands
-local start_session = function()
+local function start_session()
   if within_session() then
     print("Already in a session!")
     return
@@ -54,7 +54,7 @@ u.command("SessionStart", start_session)
 vim.keymap.set("n", "yoS", "<cmd>SessionStart<cr>")
 
 ----Autocommands
-local persist_session = function()
+local function persist_session()
   if within_session() and not session_loading() then
     ---@diagnostic disable-next-line param-type-mismatch
     local ok, result = pcall(vim.cmd, "mksession!")

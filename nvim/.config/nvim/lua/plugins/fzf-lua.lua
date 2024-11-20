@@ -185,7 +185,7 @@ return {
     end, { nargs = "*" })
 
     -- Registers
-    local run_macro = function(selected)
+    local function run_macro(selected)
       local reg = selected[1]:match("%[(.-)%]")
       local ok, data = pcall(vim.fn.getreg, reg)
 
@@ -194,7 +194,7 @@ return {
       end
     end
 
-    local delete_register = function(selected)
+    local function delete_register(selected)
       for _, item in ipairs(selected) do
         local reg = item:match("%[(.-)%]")
         vim.fn.setreg(reg:lower(), "")

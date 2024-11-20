@@ -60,7 +60,7 @@ u.bind.cmd({ ctrl_alt_cmd, "m" }, "aerospace fullscreen")
 ---Use native window tiling
 ---@param binding HammerspoonBinding
 ---@param os_shortcut HammerspoonBinding
-local float_layout = function(binding, os_shortcut)
+local function float_layout(binding, os_shortcut)
   hs.hotkey.bind(binding[1], binding[2], function()
     hs.task
       .new(os.getenv("SHELL"), function(code, stdout, stderr)

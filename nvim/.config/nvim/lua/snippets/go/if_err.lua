@@ -34,8 +34,8 @@ local transforms = {
   end,
 }
 
-local transform = function(text, info)
-  local condition_matches = function(condition, ...)
+local function transform(text, info)
+  local function condition_matches(condition, ...)
     if type(condition) == "string" then
       return condition == text
     else
@@ -109,7 +109,7 @@ local function go_result_type(info)
   end
 end
 
-local go_ret_vals = function(args)
+local function go_ret_vals(args)
   return sn(
     nil,
     go_result_type({

@@ -8,16 +8,16 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 ---- On LSP attached buffers
 ---@param client vim.lsp.Client
 ---@param bufnr number
-local on_attach = function(client, bufnr)
-  local imap = function(lhs, rhs, desc)
+local function on_attach(client, bufnr)
+  local function imap(lhs, rhs, desc)
     vim.keymap.set("i", lhs, rhs, { buffer = bufnr, desc = desc })
   end
 
-  local nmap = function(lhs, rhs, desc)
+  local function nmap(lhs, rhs, desc)
     vim.keymap.set("n", lhs, rhs, { buffer = bufnr, desc = desc })
   end
 
-  local xmap = function(lhs, rhs, desc)
+  local function xmap(lhs, rhs, desc)
     vim.keymap.set("x", lhs, rhs, { buffer = bufnr, desc = desc })
   end
 

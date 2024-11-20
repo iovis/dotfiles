@@ -1,4 +1,4 @@
-local commentstr = function(annotation)
+local function commentstr(annotation)
   return function()
     -- Update commentstring with treesitter
     local ok, ts_comment = pcall(require, "ts_context_commentstring.internal")
@@ -33,12 +33,12 @@ local commentstr = function(annotation)
   end
 end
 
-local filetype = function()
-  local filetype = vim.bo.filetype
-  if filetype == "" then
-    filetype = "bash"
+local function filetype()
+  local ft = vim.bo.filetype
+  if ft == "" then
+    ft = "bash"
   end
-  return sn(nil, i(1, filetype))
+  return sn(nil, i(1, ft))
 end
 
 return {

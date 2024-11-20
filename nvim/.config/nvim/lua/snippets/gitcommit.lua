@@ -5,7 +5,7 @@ local u = require("config.utils")
 -- the expensive results
 local ctx = {}
 
-local get_branch = function()
+local function get_branch()
   if not ctx.branch then
     ctx.branch = u.system({ "git", "rev-parse", "--abbrev-ref", "HEAD" })
   end
@@ -38,7 +38,7 @@ end
 --   return ctx.prs
 -- end
 
-local get_jira_card = function()
+local function get_jira_card()
   local jira_card = get_branch():match("%w+-%d+")
 
   if jira_card then
@@ -48,7 +48,7 @@ local get_jira_card = function()
   return sn(nil, t(jira_card))
 end
 
-local get_jira_url = function()
+local function get_jira_url()
   local jira_card = get_branch():match("%w+-%d+")
 
   if jira_card then
@@ -106,7 +106,7 @@ end
 -- end
 
 ----Conventional Commits
-local conventional_commit = function()
+local function conventional_commit()
   return sn(
     nil,
     c(1, {

@@ -54,7 +54,7 @@ return {
       TypeParameter = "󰅲",
     }
 
-    local cmp_formatting = function(_entry, vim_item)
+    local function cmp_formatting(_entry, vim_item)
       -- vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
       vim_item.kind = kind_icons[vim_item.kind]
 
@@ -90,7 +90,7 @@ return {
     require("cmp_git").setup()
 
     ---- Setup
-    local toggle_completion = function()
+    local function toggle_completion()
       if cmp.visible() then
         cmp.close()
       else

@@ -1,6 +1,6 @@
 local u = require("config.utils")
 
-local extract_name_from = function(path)
+local function extract_name_from(path)
   path = vim.split(path, "/", { trimempty = true })
 
   -- Keep only the last two elements of the path
@@ -17,7 +17,7 @@ local extract_name_from = function(path)
   return path
 end
 
-local constant_name_choices = function()
+local function constant_name_choices()
   local path = vim.api.nvim_buf_get_name(0)
   local class_name = extract_name_from(path)
 

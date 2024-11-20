@@ -1,4 +1,4 @@
-local rust_fn = function()
+local function rust_fn()
   return sn(
     nil,
     fmta(
@@ -18,7 +18,7 @@ local rust_fn = function()
   )
 end
 
-local rust_method = function()
+local function rust_method()
   return sn(
     nil,
     fmta(
