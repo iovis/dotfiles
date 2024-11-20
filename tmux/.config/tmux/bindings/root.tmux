@@ -1,6 +1,6 @@
 ## Session picker
-bind -N "Create session from FZF" -n C-f {
-  choose-tree -Zs
+bind -N "Select or create session from FZF" -n C-f {
+  run ts
 }
 
 bind -N "Switch to last session" -n M-Space {

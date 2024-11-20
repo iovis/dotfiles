@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+tmux_sessions='tmux ls -F "#{?session_attached,#{session_name} (attached),#{session_name}}"'
+
+fzf_command() {
+  # using `reload:cmd` instead of `reload(cmd)` because otherwise fzf fails to
+  # parse a command with braces
+  fzf-tmux \
+    -p 100,20 \
+    --prompt="tmux> " \
+    --info=inline-right \
+    --reverse \
+    --bind="start:reload:$tmux_sessions" \
+    --bind=enter:accept-or-print-query \
+    --bind=ctrl-d:print-query \
+    --bind="ctrl-x:execute-silent(tmux kill-session -t {1})+reload:$tmux_sessions" \
+    --bind=alt-p:toggle-preview \
+    --preview="tmux capture-pane -ep -t '{1}:'" \
+    --preview-window="right,70%" \
+    --bind="alt-r:change-preview-window(down|right)" \
+    --select-1 \
+    --query "${*:-}" || true
+}
+
+session_name=$(fzf_command "$@")
+
+# Cancelled command
+if [[ -z "$session_name" ]]; then
+  exit 0
+fi
+
+# If currently attached session, do nothing
+grep -q " (attached)" <<<"$session_name" && exit 0
+
+# Escape special tmux characters
+session_name=$(echo "$session_name" | tr '=:.' '_')
+
+tmux has-session -t "=$session_name" >/dev/null 2>&1 || tmux new-session -d -s "$session_name" && tmux switch-client -t "=$session_name"
