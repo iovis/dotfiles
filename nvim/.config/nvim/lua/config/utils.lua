@@ -363,12 +363,28 @@ function M.ts.root_node(lang, bufnr)
   return tree:root()
 end
 
----Get the Treesitter root node
+---Replace text in node
 ---@param node TSNode
 ---@param text string
 function M.ts.replace(node, text)
   local start_row, start_col, end_row, end_col = node:range()
   vim.api.nvim_buf_set_text(0, start_row, start_col, end_row, end_col, { text })
+end
+
+---Returns the first ancestor that matches one of these types
+---@param node? TSNode
+---@param types string[]
+---@return TSNode?
+function M.ts.find_ancestor(node, types)
+  if not node then
+    return nil
+  end
+
+  if vim.tbl_contains(types, node:type()) then
+    return node
+  end
+
+  return M.ts.find_ancestor(node:parent(), types)
 end
 
 ---UI
