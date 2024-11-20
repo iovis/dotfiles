@@ -1,4 +1,30 @@
+local function lua_fn()
+  return sn(
+    nil,
+    fmta(
+      [[
+        function<space><fname>(<args>)
+          <body>
+        end
+      ]],
+      {
+        fname = i(1, "fname"),
+        space = n(1, " "),
+        args = i(2),
+        body = i(3, "-- TODO"),
+      }
+    )
+  )
+end
+
 return {
+  -- Functions
+  s("f", d(1, lua_fn), {
+    condition = conds.line_begin,
+  }),
+  s("lf", fmt("local {}", { d(1, lua_fn) }), {
+    condition = conds.line_begin,
+  }),
   -- Quick imports
   s("u", t('local u = require("config.utils")'), {
     condition = conds.line_begin,
