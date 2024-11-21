@@ -43,7 +43,7 @@ wezterm/.config/wezterm/locals.lua
 
 # zsh
 *.zwc
-zsh/.config/zsh/.zcompdump
+zsh/.config/zsh/.zcompdump*
 zsh/.config/zsh/.zsh_history
 zsh/.config/zsh/local/*
 zsh/.config/zsh/plugins/*
