@@ -1,16 +1,14 @@
 #!/usr/bin/env bash
 
-tmux_sessions='tmux ls -F "#{?session_attached,#{session_name} (attached),#{session_name}}"'
+tmux_sessions='tmux ls -F "#{?session_attached,#{session_name} <-,#{session_name}}"'
 
 fzf_command() {
   # using `reload:cmd` instead of `reload(cmd)` because otherwise fzf fails to
   # parse a command with braces
-  fzf-tmux \
-    -p 100,20 \
-    --prompt="tmux> " \
+  fzf \
+    --prompt="❯ " \
     --info=inline-right \
     --reverse \
-    --bind="start:reload:$tmux_sessions" \
     --bind=enter:accept-or-print-query \
     --bind=ctrl-d:print-query \
     --bind="ctrl-x:execute-silent(tmux kill-session -t {1})+reload:$tmux_sessions" \
@@ -22,7 +20,7 @@ fzf_command() {
     --query "${*:-}" || true
 }
 
-session_name=$(fzf_command "$@")
+session_name=$(eval "$tmux_sessions" | fzf_command "$@")
 
 # Cancelled command
 if [[ -z "$session_name" ]]; then
@@ -30,7 +28,7 @@ if [[ -z "$session_name" ]]; then
 fi
 
 # If currently attached session, do nothing
-grep -q " (attached)" <<<"$session_name" && exit 0
+grep -q " <-" <<<"$session_name" && exit 0
 
 # Escape special tmux characters
 session_name=$(echo "$session_name" | tr '=:.' '_')
