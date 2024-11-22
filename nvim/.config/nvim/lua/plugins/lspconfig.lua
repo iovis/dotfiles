@@ -109,6 +109,10 @@ return {
         },
       }))
 
+      lsp.sourcekit.setup(vim.tbl_deep_extend("force", cfg, {
+        filetypes = { "swift" },
+      }))
+
       lsp.ts_ls.setup(vim.tbl_deep_extend("force", cfg, {
         commands = {
           LspRemoveUnused = {
