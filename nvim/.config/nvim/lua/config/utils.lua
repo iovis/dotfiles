@@ -156,7 +156,7 @@ function M.system(cmd)
     })
   end
 
-  return result.stdout
+  return vim.trim(result.stdout or "")
 end
 
 ---Run system command synchronously and return a list of lines
