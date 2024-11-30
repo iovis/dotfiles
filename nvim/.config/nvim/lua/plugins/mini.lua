@@ -4,7 +4,7 @@ return {
   version = "*",
   event = "VeryLazy",
   config = function()
-    --- mini.ai (text objects)
+    ---- mini.ai (text objects)
     local ai = require("mini.ai")
     local gen_ai_spec = require("mini.extra").gen_ai_spec
     ai.setup({
@@ -56,5 +56,97 @@ return {
     vim.keymap.set("n", "<leader>b", function()
       bufremove.delete(0, true)
     end, { desc = "Bdelete!" })
+
+    ---- mini.files
+    -- require("mini.files").setup({
+    --   mappings = {
+    --     close = "q",
+    --     go_in = "",
+    --     go_in_plus = "<cr>",
+    --     go_out = "",
+    --     go_out_plus = "_",
+    --     reset = "<bs>",
+    --     reveal_cwd = "@",
+    --     show_help = "g?",
+    --     synchronize = "<leader>w",
+    --   },
+    --   windows = {
+    --     width_preview = 50,
+    --   },
+    -- })
+    --
+    -- --- Toggle explorer
+    -- vim.keymap.set("n", "_", function()
+    --   if not MiniFiles.close() then
+    --     MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
+    --   end
+    -- end)
+    --
+    -- --- Toggle dotfiles
+    -- local show_dotfiles = true
+    -- local function filter_show(_fs_entry)
+    --   return true
+    -- end
+    --
+    -- local function filter_hide(fs_entry)
+    --   return not vim.startswith(fs_entry.name, ".")
+    -- end
+    --
+    -- local function toggle_dotfiles()
+    --   show_dotfiles = not show_dotfiles
+    --   local new_filter = show_dotfiles and filter_show or filter_hide
+    --
+    --   MiniFiles.refresh({
+    --     content = {
+    --       filter = new_filter,
+    --     },
+    --   })
+    -- end
+    --
+    -- --- Toggle preview
+    -- local show_preview = false
+    -- local function toggle_preview()
+    --   show_preview = not show_preview
+    --
+    --   MiniFiles.refresh({
+    --     windows = {
+    --       preview = show_preview,
+    --       width_preview = 50,
+    --     },
+    --   })
+    -- end
+    --
+    -- --- Open in split
+    -- local map_split = function(buf_id, lhs, direction)
+    --   local rhs = function()
+    --     -- Make new window and set it as target
+    --     local cur_target = MiniFiles.get_explorer_state().target_window
+    --     local new_target = vim.api.nvim_win_call(cur_target, function()
+    --       vim.cmd(direction .. " split")
+    --       return vim.api.nvim_get_current_win()
+    --     end)
+    --
+    --     MiniFiles.set_target_window(new_target)
+    --     MiniFiles.go_in({ close_on_file = true })
+    --   end
+    --
+    --   vim.keymap.set("n", lhs, rhs, {
+    --     buffer = buf_id,
+    --     desc = "Split " .. direction,
+    --   })
+    -- end
+    --
+    -- vim.api.nvim_create_autocmd("User", {
+    --   pattern = "MiniFilesBufferCreate",
+    --   callback = function(args)
+    --     local buf_id = args.data.buf_id
+    --
+    --     vim.keymap.set("n", "g.", toggle_dotfiles, { buffer = buf_id })
+    --     vim.keymap.set("n", "<M-p>", toggle_preview, { buffer = buf_id })
+    --
+    --     map_split(buf_id, "<leader>h", "belowright horizontal")
+    --     map_split(buf_id, "<leader>v", "belowright vertical")
+    --   end,
+    -- })
   end,
 }
