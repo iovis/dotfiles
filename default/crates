@@ -1,3 +1,4 @@
+cargo-binstall
 cargo-dist
 cargo-edit
 cargo-nextest
