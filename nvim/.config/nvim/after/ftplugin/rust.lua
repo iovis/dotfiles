@@ -19,14 +19,16 @@ vim.keymap.set("n", "<leader>sw", "<cmd>Tux cargo watch --clear -x check -x 'nex
 
 if u.current_file():match("examples/") then
   -- if inside example, run it
-  vim.keymap.set("n", "s<cr>", "<cmd>Tux cargo run -q --example %:t:r<cr>", { buffer = true })
+  vim.keymap.set("n", "s<cr>", "<cmd>Tux cargo run -q --example --release %:t:r<cr>", { buffer = true })
+elseif u.current_file():match("src/bin/") then
+  vim.keymap.set("n", "s<cr>", "<cmd>Tux cargo run -q --release --bin %:t:r<cr>", { buffer = true })
 elseif u.current_file():match("benches/") then
-  vim.keymap.set("n", "s<cr>", "<cmd>Tux cargo bench -q --bench %:t:r<cr>", { buffer = true })
+  vim.keymap.set("n", "s<cr>", "<cmd>Tux cargo bench -q<cr>", { buffer = true })
 elseif u.current_file():match("ext/") then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux bundle exec rake<cr>", { buffer = true })
   vim.keymap.set("n", "<leader>sw", "<cmd>Tux watchexec -e rs,rb -- bundle exec rake<cr>", { buffer = true })
 elseif not u.has_justfile() then
-  vim.keymap.set("n", "s<cr>", "<cmd>Tux cargo run<cr>", { buffer = true })
+  vim.keymap.set("n", "s<cr>", "<cmd>Tux cargo run --release<cr>", { buffer = true })
   vim.keymap.set("n", "m<cr>", "<cmd>Tux cargo check --all-targets && clippy<cr>", { buffer = true })
 end
 

@@ -280,12 +280,15 @@ return {
               let input = include_str!("input.txt");
 
               println!("p1 = {:?}", p1(input));
-              // println!("p2 = {:?}", p2(input));
+              println!("p2 = {:?}", p2(input));
           }
 
           fn p1(input: &str) ->> usize {
-              <>
-              todo!()
+              <p1>
+          }
+
+          fn p2(input: &str) ->> usize {
+              123
           }
 
           #[cfg(test)]
@@ -295,14 +298,27 @@ return {
               #[test]
               fn p1_test() {
                   let input = indoc::indoc! {"
-                      <>
+                      <input>
                   "};
 
-                  assert_eq!(p1(input), <>);
+                  assert_eq!(p1(input), <output>);
+              }
+
+              #[test]
+              fn p2_test() {
+                  let input = indoc::indoc! {"
+                      something
+                  "};
+
+                  // assert_eq!(p2(input), 23);
               }
           }
       ]],
-      { i(1), i(2), i(0) }
+      {
+        input = i(1),
+        output = i(2, "123"),
+        p1 = i(0, "123"),
+      }
     ),
     { condition = conds.line_begin }
   ),
