@@ -178,10 +178,10 @@ return {
     }
   ),
   -- Tracing
-  s("tinit", t("tracing_subscriber::fmt::init();"), {
+  s("tracinginit", t("tracing_subscriber::fmt::init();"), {
     condition = conds.line_begin,
   }),
-  s("instrument", fmt("#[tracing::instrument{}]", { i(1) }), {
+  s("tracinginstrument", fmt("#[tracing::instrument{}]", { i(1) }), {
     condition = conds.line_begin,
   }),
   s("logd", fmt("tracing::debug!({});", { i(1, "?value") }), {

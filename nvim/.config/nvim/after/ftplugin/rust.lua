@@ -13,8 +13,7 @@ vim.keymap.set("n", "c<cr>", function()
   })
 end, { buffer = true })
 
-vim.keymap.set("n", "<leader>sn", "<cmd>TestNearest -strategy=rust_print<cr>", { buffer = true })
-vim.keymap.set("n", "<leader>sp", "<cmd>TestNearest -strategy=rust_log<cr>", { buffer = true })
+vim.keymap.set("n", "<leader>sp", "<cmd>TestNearest -strategy=rust_print<cr>", { buffer = true })
 vim.keymap.set("n", "<leader>sw", "<cmd>Tux cargo watch --clear -x check -x 'nextest run'<cr>", { buffer = true })
 
 if u.current_file():match("examples/") then
