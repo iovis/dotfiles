@@ -48,7 +48,6 @@ return {
         "ruby",
         "rust",
         "scss",
-        "swift",
         "sql",
         "svelte",
         "toml",

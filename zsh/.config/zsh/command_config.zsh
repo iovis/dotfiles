@@ -34,7 +34,7 @@ fi
 # nvim
 if type nvim > /dev/null; then
   export EDITOR="nvim"
-  export MANPAGER="$EDITOR +Man!"
+  # export MANPAGER="$EDITOR +Man!"
   alias ni="nvim"
   alias nis="nvim -S Session.vim"
 fi
