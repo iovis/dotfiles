@@ -1,21 +1,22 @@
 return {
   "stevearc/oil.nvim",
   -- enabled = false,
+  -- dev = true,
   lazy = false,
   cmd = { "Oil" },
   keys = {
-    { "-", "<cmd>Oil<cr>" },
-    { "<leader>-", "<cmd>Oil --float<cr>" },
-    { "_", "<cmd>Oil .<cr>" },
-    { "<leader>_", "<cmd>Oil --float .<cr>" },
+    { "-", "<cmd>Oil --float<cr>" },
+    { "_", "<cmd>Oil<cr>" },
   },
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
   config = function()
     local oil = require("oil")
-    local show_details = false
+    local actions = require("oil.actions")
     local u = require("config.utils")
+
+    local show_details = false
     u.alias_command("Oil")
 
     oil.setup({
@@ -25,28 +26,53 @@ return {
         max_height = 20,
         max_width = 75,
       },
+      use_default_keymaps = false,
       keymaps = {
-        P = "actions.preview",
-        gt = "actions.toggle_trash",
+        -- Defaults
+        ["g?"] = "actions.show_help",
+        ["<CR>"] = "actions.select",
+        ["-"] = "actions.parent",
+        ["_"] = "actions.open_cwd",
+        ["gs"] = "actions.change_sort",
+        ["gx"] = "actions.open_external",
+        ["g."] = "actions.toggle_hidden",
+        -- Custom
         q = "actions.close",
-        -- ["<leader>v"] = "actions.select_vsplit",
-        -- ["<leader>h"] = "actions.select_split",
-        -- ["<leader>t"] = "actions.select_tab",
-        ["<C-s>"] = "actions.refresh",
-        ["<C-p>"] = false,
-        ["<C-h>"] = false,
-        ["<C-t>"] = false,
-        ["<C-l>"] = false,
-        ["`"] = false,
-        ["~"] = false,
-        ["g\\"] = false,
+        gt = "actions.toggle_trash",
+        ["<m-p>"] = "actions.preview",
+        ["<bs>"] = "actions.refresh",
+        ["<leader>v"] = {
+          desc = "Open the entry in a vertical split",
+          callback = function()
+            if vim.w.is_oil_win then
+              actions.select.callback({ vertical = true })
+            else
+              vim.cmd.wincmd("v")
+            end
+          end,
+        },
+        ["<leader>h"] = {
+          desc = "Open the entry in a horizontal split",
+          callback = function()
+            if vim.w.is_oil_win then
+              actions.select.callback({ horizontal = true })
+            else
+              vim.cmd.wincmd("s")
+            end
+          end,
+        },
+        ["<leader>t"] = {
+          "actions.select",
+          opts = { tab = true },
+          desc = "Open the entry in new tab",
+        },
         ["gd"] = {
           desc = "Toggle file detail view",
           callback = function()
             show_details = not show_details
 
             if show_details then
-              oil.set_columns({ "icon", "permissions", "size", "mtime" })
+              oil.set_columns({ "permissions", "size", "mtime", "icon" })
             else
               oil.set_columns({ "icon" })
             end
