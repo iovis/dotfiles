@@ -11,6 +11,11 @@ vim.keymap.set({ "n", "x" }, "<leader>so", ":source<cr>", {
   buffer = true,
 })
 
+vim.keymap.set("n", "<leader>si", ":.lua<cr>", {
+  desc = "Execute line",
+  buffer = true,
+})
+
 vim.keymap.set("n", "s<cr>", ":10R source<cr>", { buffer = true })
 vim.keymap.set("x", "<leader>sp", ":<c-u>10R '<,'>source<cr>", { buffer = true })
 
