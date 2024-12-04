@@ -124,6 +124,13 @@ return {
         { name = "luasnip" },
         { name = "buffer", keyword_length = 3 },
         { name = "path" },
+        -- {
+        --   name = "nvim_lsp",
+        --   entry_filter = function(entry)
+        --     -- show only snippets
+        --     return cmp.lsp.CompletionItemKind.Snippet == entry:get_kind()
+        --   end,
+        -- },
       }),
       snippet = {
         expand = function(args)

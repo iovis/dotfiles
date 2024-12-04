@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 number_of_panes=$(tmux list-panes -s | wc -l | tr -d ' ')
 
 if [[ $number_of_panes == 1 ]]; then

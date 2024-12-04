@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 fd_command() {
   fd \
     --type d \
@@ -26,7 +28,7 @@ fzf_command() {
     --preview="eza --color=always --icons -1a --group-directories-first $PROJECT_HOME/{}" \
     --preview-window=right \
     --prompt="$PROJECT_HOME/" \
-    --query="$INITIAL_QUERY"
+    --query="$INITIAL_QUERY" || true
 }
 
 session_path=$(fd_command | fzf_command)

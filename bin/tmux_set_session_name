@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 current_path=$(tmux display -p '#{pane_current_path}')
 new_session_name=$(basename "$current_path" | tr '.' '_')
 

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 file=$(mktemp)
 tmux capture-pane -Jp -S- >"$file"
 tmux new-window -kn "capture:#{window_index}.#{pane_index}" "nvim + '+nmap <silent> q :qa!<cr>' '$file'"

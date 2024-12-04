@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 switch_to_next_session() {
   tmux switch-client -n
 }

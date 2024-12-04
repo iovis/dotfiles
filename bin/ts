@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 tmux_sessions='tmux ls -F "#{?session_attached,#{session_name} <-,#{session_name}}"'
 
 fzf_command() {
