@@ -21,7 +21,7 @@ set -g status-left-length 90
 set -g  status-left ''
 set -ag status-left '#[bg=default,fg=#232634] '
 set -ag status-left '#[bg=#232634,fg=#8caaee] #S'
-set -ag status-left '#[bg=default,fg=#232634] '
+set -ag status-left '#[bg=default,fg=#232634]'
 
 ### Right
 set -g status-right-length 60
@@ -46,8 +46,8 @@ set -ag status-right '#[fg=#51576d]#{?#{SSH_CLIENT}, #(whoami)@#h,} '
 ## Window
 set -g window-status-activity-style 'underscore bold'
 
-set -g window-status-current-format '#[fg=#{?window_zoomed_flag,#dabeed,#a6d189}]#W'
-set -g window-status-format '#[fg=#51576d]#W'
+set -g window-status-current-format '#[bg=default,fg=#232634]#[bg=#232634,fg=#{?window_zoomed_flag,#dabeed,#a6d189}] #W #[bg=default,fg=#232634]'
+set -g window-status-format ' #[fg=#51576d] #W  '
 
 ## Pane
 # Inactive pane shaded out
