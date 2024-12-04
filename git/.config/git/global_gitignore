@@ -66,5 +66,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+### Ruby ###
+.ruby-lsp/
+
 ### Visual Studio Code ###
 .vscode/
