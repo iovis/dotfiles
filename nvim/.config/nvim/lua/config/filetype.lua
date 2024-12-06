@@ -16,6 +16,10 @@ vim.filetype.add({
   },
   pattern = {
     [".*/yamllint/config"] = "yaml",
-    ["Gemfile.*"] = "ruby",
+    ["Gemfile.*"] = function(path)
+      if not path:match(".lock") then
+        return "ruby"
+      end
+    end,
   },
 })
