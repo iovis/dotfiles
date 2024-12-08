@@ -110,4 +110,44 @@ return {
     ),
     { condition = conds.line_begin }
   ),
+  s(
+    "unitymain",
+    fmta(
+      [[
+        #include "unity.h"
+
+        void setUp(void) {}
+        void tearDown(void) {}
+
+        void test_does_something(void) {
+          TEST_ASSERT_EQUAL(1, 2);
+        }
+
+        int main(void) {
+          UNITY_BEGIN();
+
+          RUN_TEST(test_does_something);
+
+          return UNITY_END();
+        }
+      ]],
+      {}
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "test",
+    fmta(
+      [[
+        static void test_<test_name>(void) {
+          <>
+        }
+      ]],
+      {
+        test_name = i(1, "name"),
+        i(0),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
 }

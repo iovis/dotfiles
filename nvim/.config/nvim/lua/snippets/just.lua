@@ -275,9 +275,11 @@ return {
     "c",
     fmt(
       [[
-        cc_flags := "-std=c17 -Wall -fsanitize=address -Iinclude/" # -Wextra -Wpedantic
-        libs := ""
-        bin := "{}"
+        cc_flags := "-std=c2x -Wall" # -Wextra -Wpedantic -fsanitize=address
+        libs := "-Iinclude/ -Isrc/"
+        build_folder := "./build"
+        program_name := "{}"
+        bin := build_folder / program_name
 
         default: {}
 
@@ -305,26 +307,20 @@ return {
         debug: build
             {}
 
-        # run tests
-        test:
-            {}
-
-        # Open the DB
-        db:
+        @test:
             {}
       ]],
       {
-        i(1, "./bin/my_program"),
+        i(1, "my_program"),
         i(2, "run"),
-        i(3, "{{bin}}"),
-        i(4, "cc {{cc_flags}} {{libs}} -g -O0 src/*.c -o {{bin}}"),
-        i(5, "cc {{cc_flags}} {{libs}} -O3 src/*.c -o {{bin}}"),
-        i(6, "mkdir -p bin/"),
-        i(7, "rm -rf bin/"),
+        i(3, "{{ bin }}"),
+        i(4, "cc {{ cc_flags }} {{ libs }} -g -O0 src/*.c -o {{ bin }}"),
+        i(5, "cc {{ cc_flags }} {{ libs }} -O3 src/*.c -o {{ bin }}"),
+        i(6, "mkdir -p build/"),
+        i(7, "rm -rf build/"),
         i(8, "watchexec -e c,h just run"),
-        i(9, "sudo lldb -- {{bin}}"),
-        i(10, "just run"),
-        i(11, "pgcli $DATABASE_URL"),
+        i(9, "sudo lldb -- {{ bin }}"),
+        i(10, "cc {{ cc_flags }} {{ libs }} src/*.c test/*.c -o build/tests && build/tests"),
       }
     ),
     { condition = conds.line_begin }
