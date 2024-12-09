@@ -98,9 +98,10 @@ return {
     ---- Keymaps
     vim.keymap.set("n", "z<space>", ":FzfLua<space>")
 
-    vim.keymap.set("n", "<space>r", fzf_lua.resume, { desc = "fzf_lua.resume" })
+    vim.keymap.set("n", "<leader>r", fzf_lua.resume, { desc = "fzf_lua.resume" })
     vim.keymap.set("n", "<leader>j", fzf_lua.git_status, { desc = "fzf_lua.git_status" })
     vim.keymap.set("n", "<leader>o", fzf_lua.files, { desc = "fzf_lua.files" })
+    vim.keymap.set("n", "<leader>f/", fzf_lua.lines, { desc = "fzf_lua.lines" })
     vim.keymap.set("n", "gm", fzf_lua.buffers, { desc = "fzf_lua.buffers" })
 
     vim.keymap.set("n", "<leader>F", function()
