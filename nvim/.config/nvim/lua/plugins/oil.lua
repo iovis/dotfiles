@@ -40,6 +40,8 @@ return {
         q = "actions.close",
         gt = "actions.toggle_trash",
         ["<m-p>"] = "actions.preview",
+        ["<m-j>"] = "actions.preview_scroll_down",
+        ["<m-k>"] = "actions.preview_scroll_up",
         ["<bs>"] = "actions.refresh",
         ["<leader>v"] = {
           desc = "Open the entry in a vertical split",
