@@ -198,7 +198,7 @@ return {
       }
 
       ---- Global LSP settings
-      vim.keymap.set("n", "<leader>lh", "<cmd>help lspconfig-server-configurations<cr>")
+      vim.keymap.set("n", "<leader>lh", "<cmd>help lspconfig-all<cr>")
       vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
       vim.keymap.set("n", "<leader>lR", ":LspRestart<cr>")
 
