@@ -54,6 +54,7 @@ g = 'mode workspace'
 
 q = ['close-all-windows-but-current', 'mode main']
 s = ['exec-and-forget ~/.dotfiles/bin/aerospace_secondary', 'mode main']
+w = ['exec-and-forget ~/.dotfiles/bin/aerospace_swap', 'mode main']
 
 h = ['workspace H', 'mode main']
 j = ['workspace J', 'mode main']

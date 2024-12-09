@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+aerospace move-node-to-monitor --wrap-around next
+aerospace focus-monitor --wrap-around next
+aerospace focus left
+aerospace move-node-to-monitor --wrap-around next
+aerospace focus-monitor --wrap-around next
