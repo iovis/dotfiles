@@ -96,12 +96,14 @@ return {
     })
 
     ---- Keymaps
-    vim.keymap.set("n", "z<space>", ":FzfLua<space>")
+    vim.keymap.set("n", "z<space>", fzf_lua.builtin, { desc = "fzf_lua.builtin" })
 
     vim.keymap.set("n", "<leader>r", fzf_lua.resume, { desc = "fzf_lua.resume" })
     vim.keymap.set("n", "<leader>j", fzf_lua.git_status, { desc = "fzf_lua.git_status" })
     vim.keymap.set("n", "<leader>o", fzf_lua.files, { desc = "fzf_lua.files" })
-    vim.keymap.set("n", "<leader>f/", fzf_lua.lines, { desc = "fzf_lua.lines" })
+    vim.keymap.set("n", "<leader>f/", fzf_lua.blines, { desc = "fzf_lua.blines" })
+    vim.keymap.set("n", "<leader>fh", fzf_lua.helptags, { desc = "fzf_lua.helptags" })
+    vim.keymap.set("n", "<leader>fm", fzf_lua.manpages, { desc = "fzf_lua.manpages" })
     vim.keymap.set("n", "gm", fzf_lua.buffers, { desc = "fzf_lua.buffers" })
 
     vim.keymap.set("n", "<leader>F", function()
