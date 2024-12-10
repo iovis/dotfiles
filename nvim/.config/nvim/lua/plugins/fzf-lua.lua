@@ -115,8 +115,8 @@ return {
 
     -- Edit dotfiles
     vim.keymap.set("n", "<leader>ud", function()
-      fzf_lua.files({ cwd = "~/.dotfiles/nvim/.config/nvim/" })
-    end, { desc = "Open Dotfiles" })
+      fzf_lua.files({ cwd = vim.fn.stdpath("config") })
+    end, { desc = "Open Neovim config" })
 
     -- Obsidian
     -- vim.keymap.set("n", "<leader>uo", function()
