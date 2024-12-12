@@ -48,8 +48,6 @@ elseif u.has_justfile() then
 
   vim.keymap.set("n", "<leader>sw", "<cmd>Tux w -e c,h -c clear just run<cr>", { buffer = true })
 else
-  vim.keymap.set("n", "s<cr>", "<cmd>Tux bear -- make run<cr>", { buffer = true })
-  vim.keymap.set("n", "m<cr>", "<cmd>Tux bear -- make<cr>", { buffer = true })
-
-  vim.keymap.set("n", "<leader>sw", "<cmd>Tux w -e c -c clear make<cr>", { buffer = true })
+  vim.keymap.set("n", "s<cr>", "<cmd>Tux c23 -o %:.:r %:. && ./%:.:r && rm %:.:r<cr>", { buffer = true })
+  vim.keymap.set("n", "m<cr>", "<cmd>Tux c23 -o %:.:r %:.<cr>", { buffer = true })
 end

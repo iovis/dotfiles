@@ -275,7 +275,7 @@ return {
     "c",
     fmt(
       [[
-        cc_flags := "-std=c2x -Wall" # -Wextra -Wpedantic -fsanitize=address
+        cc_flags := "-std=c2x"
         libs := "-Iinclude/ -Isrc/"
         build_folder := "./build"
         program_name := "{}"
@@ -290,6 +290,9 @@ return {
             {}
 
         release: init
+            {}
+
+        build_tests: init
             {}
 
         @init:
@@ -314,13 +317,14 @@ return {
         i(1, "my_program"),
         i(2, "run"),
         i(3, "{{ bin }}"),
-        i(4, "cc {{ cc_flags }} {{ libs }} -g -O0 src/*.c -o {{ bin }}"),
+        i(4, "cc {{ cc_flags }} {{ libs }} -g -Wall -Wextra -Wpedantic -O0 src/*.c -o {{ bin }}"),
         i(5, "cc {{ cc_flags }} {{ libs }} -O3 src/*.c -o {{ bin }}"),
-        i(6, "mkdir -p build/"),
-        i(7, "rm -rf build/"),
-        i(8, "watchexec -e c,h just run"),
-        i(9, "sudo lldb -- {{ bin }}"),
-        i(10, "cc {{ cc_flags }} {{ libs }} src/*.c test/*.c -o build/tests && build/tests"),
+        i(6, 'cc {{ cc_flags }} {{ libs }} src/*.c test/*.c -o {{ build_folder / "tests" }}'),
+        i(7, "mkdir -p build/"),
+        i(8, "rm -rf build/"),
+        i(9, "watchexec -e c,h just run"),
+        i(10, "sudo lldb -- {{ bin }}"),
+        i(11, '{{ build_folder / "tests" }}'),
       }
     ),
     { condition = conds.line_begin }
