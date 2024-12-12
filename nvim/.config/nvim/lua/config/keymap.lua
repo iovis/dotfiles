@@ -59,6 +59,14 @@ vim.keymap.set("c", ";", function()
   return ";"
 end, { expr = true })
 
+vim.keymap.set("c", "/", function()
+  if vim.fn.getcmdpos() == 1 and vim.fn.getcmdtype() == "/" then
+    return "<c-f>k$"
+  end
+
+  return "/"
+end, { expr = true })
+
 -- Movement
 vim.keymap.set("c", "<m-left>", "<s-left>")
 vim.keymap.set("c", "<m-right>", "<s-right>")
