@@ -96,7 +96,7 @@ end, { nargs = "+", complete = "command" })
 
 ---- Quick open vim plugin in new window
 u.command("VimPlugin", function(opts)
-  local plugins_path = vim.fn.stdpath("data") .. "/lazy/"
+  local plugins_path = vim.fs.joinpath(vim.fn.stdpath("data") --[[@as string]], "lazy")
 
   local command = string.format(
     [[fd -td -d1 --base-directory %s | fzf-tmux -p60%%,60%% --select-1 --exit-0 --reverse --info inline --prompt "plugin> "]],

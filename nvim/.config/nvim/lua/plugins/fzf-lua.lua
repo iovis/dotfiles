@@ -104,6 +104,7 @@ return {
     vim.keymap.set("n", "<leader>f/", fzf_lua.blines, { desc = "fzf_lua.blines" })
     vim.keymap.set("n", "<leader>fh", fzf_lua.helptags, { desc = "fzf_lua.helptags" })
     vim.keymap.set("n", "<leader>fm", fzf_lua.manpages, { desc = "fzf_lua.manpages" })
+    vim.keymap.set("n", "<leader>fq", fzf_lua.quickfix, { desc = "fzf_lua.quickfix" })
     vim.keymap.set("n", "gm", fzf_lua.buffers, { desc = "fzf_lua.buffers" })
 
     vim.keymap.set("n", "<leader>F", function()
