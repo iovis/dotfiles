@@ -134,6 +134,18 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   end,
 })
 
+---- Terminal mode settings
+vim.api.nvim_create_autocmd("TermOpen", {
+  desc = "Terminal settings",
+  group = config_augroup,
+  pattern = "*",
+  callback = function()
+    vim.cmd.startinsert()
+    vim.wo.number = false
+    vim.wo.relativenumber = false
+  end,
+})
+
 ---- Remove highlight after search
 -- vim.api.nvim_create_autocmd({ "CursorMoved" }, {
 --   desc = "Remove highlight after search",

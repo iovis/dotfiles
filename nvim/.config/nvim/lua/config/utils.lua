@@ -104,6 +104,29 @@ function M.floating_window(contents, opts)
   })
 end
 
+function M.floating_term()
+  local win_opts = {
+    width = 0.75,
+    height = 0.66,
+  }
+
+  local bufnr = vim.api.nvim_create_buf(false, true)
+  local width = math.floor(vim.o.columns * win_opts.width)
+  local height = math.floor(vim.o.lines * win_opts.height)
+
+  vim.api.nvim_open_win(0, true, {
+    relative = "editor",
+    width = width,
+    height = height,
+    col = math.floor(vim.o.columns / 2 - width / 2 - 3),
+    row = math.floor(vim.o.lines / 2 - height / 2 - 2),
+    style = "minimal",
+    border = "rounded",
+  })
+
+  vim.cmd.terminal()
+end
+
 ---Check if file exists
 ---@param path string
 ---@return boolean
