@@ -3,6 +3,7 @@ return {
   lazy = false,
   config = function()
     require("markview").setup({
+      initial_state = false,
       modes = { "n", "i", "nc", "c" },
       hybrid_modes = { "i" },
       block_quotes = {
