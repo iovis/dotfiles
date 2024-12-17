@@ -35,6 +35,8 @@ return {
       local lsp = require("lspconfig")
       local cfg = require("config.lsp")
 
+      -- vim.lsp.set_log_level("debug")
+
       lsp.bashls.setup(cfg)
       lsp.clangd.setup(cfg)
       lsp.cmake.setup(cfg)
