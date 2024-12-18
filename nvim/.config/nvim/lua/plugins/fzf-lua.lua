@@ -31,13 +31,13 @@ return {
     ---- Config
     fzf_lua.setup({
       winopts = {
-        hl = {
+        hls = {
           border = "FloatBorder",
         },
         preview = {
           scrollbar = false,
         },
-        window_on_create = function()
+        on_create = function()
           buf_tmap("<c-j>", "<down>")
           buf_tmap("<c-k>", "<up>")
           buf_tmap("<m-left>", "<s-left>")
