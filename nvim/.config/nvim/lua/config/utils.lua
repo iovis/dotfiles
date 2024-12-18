@@ -104,17 +104,24 @@ function M.floating_window(contents, opts)
   })
 end
 
-function M.floating_term()
+---Open Floating Terminal
+---@param bufnr? integer
+function M.floating_term(bufnr)
   local win_opts = {
     width = 0.75,
     height = 0.66,
   }
 
-  local bufnr = vim.api.nvim_create_buf(false, true)
+  local is_valid_buffer = bufnr and vim.api.nvim_buf_is_valid(bufnr)
+
+  if not is_valid_buffer then
+    bufnr = vim.api.nvim_create_buf(true, false)
+  end
+
   local width = math.floor(vim.o.columns * win_opts.width)
   local height = math.floor(vim.o.lines * win_opts.height)
 
-  vim.api.nvim_open_win(0, true, {
+  vim.api.nvim_open_win(bufnr --[[@as integer]], true, {
     relative = "editor",
     width = width,
     height = height,
@@ -124,7 +131,13 @@ function M.floating_term()
     border = "rounded",
   })
 
-  vim.cmd.terminal()
+  if is_valid_buffer then
+    vim.cmd.startinsert()
+  else
+    vim.cmd.terminal()
+  end
+
+  return bufnr
 end
 
 ---Check if file exists
