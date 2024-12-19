@@ -23,7 +23,7 @@ local function on_attach(client, bufnr)
 
   ---- Signature/Definition
   nmap("<c-s>", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
-  imap("<c-s>", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
+  -- imap("<c-s>", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
   imap("<c-h>", vim.lsp.buf.hover, "vim.lsp.buf.hover")
 
   nmap("T", vim.lsp.buf.references, "vim.lsp.buf.references")
@@ -122,6 +122,7 @@ end
 -- nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+-- local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 return {
   capabilities = capabilities,
