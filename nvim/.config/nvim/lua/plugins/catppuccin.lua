@@ -18,20 +18,17 @@ return {
         conditionals = {},
       },
       integrations = {
+        blink_cmp = true,
         cmp = true,
-        dap = true,
         fidget = true,
-        flash = true,
         gitsigns = true,
         leap = true,
         lsp_saga = true,
         mason = true,
         mini = true,
-        neotest = true,
         neotree = true,
         treesitter = true,
         treesitter_context = true,
-        which_key = true,
         native_lsp = {
           enabled = true,
           virtual_text = {
@@ -61,6 +58,10 @@ return {
           StatusLine = {},
           StatusLineNC = {},
           Visual = { bg = colors.surface0, bold = true },
+
+          -- Blink.cmp
+          BlinkCmpMenuSelection = { bg = colors.base },
+          BlinkCmpItemIdx = { fg = colors.peach, bold = true },
 
           -- Bqf
           BqfPreviewBufLabel = { fg = colors.yellow, bold = true },
