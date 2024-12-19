@@ -40,18 +40,6 @@ vim.keymap.set("i", "<m-o>", "<esc>o")
 ---- Terminal mode
 vim.keymap.set("t", "KJ", [[<c-\><c-n>]])
 
--- Terminal popup
-local terminal_popup_win = nil
-vim.keymap.set({ "t", "n" }, [[<c-_>]], function()
-  local current = vim.api.nvim_buf_get_name(0)
-
-  if current:match([[^term://]]) then
-    vim.cmd.fclose()
-  else
-    terminal_popup_win = require("config.utils").floating_term(terminal_popup_win)
-  end
-end, { desc = "Open floating term" })
-
 ---- Operator pending mode (text objects)
 -- Whole WORD is kinda awkward to press
 vim.keymap.set({ "o", "x" }, "ao", "aW")
