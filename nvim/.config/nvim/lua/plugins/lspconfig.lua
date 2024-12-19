@@ -171,6 +171,8 @@ return {
         },
       }))
 
+      ---@module "rustaceanvim"
+      ---@type rustaceanvim.Opts
       vim.g.rustaceanvim = {
         server = {
           on_attach = cfg.on_attach,
