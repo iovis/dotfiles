@@ -1,6 +1,6 @@
 return {
   "saghen/blink.cmp",
-  -- enabled = false,
+  enabled = false,
   -- version = "*",
   build = "cargo build --release",
   dependencies = { "L3MON4D3/LuaSnip" },
