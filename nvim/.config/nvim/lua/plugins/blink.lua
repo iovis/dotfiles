@@ -1,8 +1,8 @@
 return {
   "saghen/blink.cmp",
-  enabled = false,
-  -- version = "*",
-  build = "cargo build --release",
+  -- enabled = false,
+  version = "*",
+  -- build = "cargo build --release",
   dependencies = { "L3MON4D3/LuaSnip" },
   config = function()
     require("blink.cmp").setup({
@@ -176,8 +176,15 @@ return {
       },
 
       sources = {
-        default = { "lsp", "path", "luasnip", "buffer" },
+        default = { "lazydev", "lsp", "path", "luasnip", "buffer" },
         -- cmdline = {},
+        providers = {
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            score_offset = 100,
+          },
+        },
       },
 
       snippets = {
