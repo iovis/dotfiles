@@ -42,30 +42,6 @@ local function rust_method()
 end
 
 return {
-  s(
-    "#!",
-    fmta(
-      [[
-        #!/usr/bin/env -S cargo +nightly -Zscript -q
-
-        //! ```cargo
-        //! [dependencies]
-        //! <>
-        //! ```
-
-        fn main() {
-            <>
-        }
-      ]],
-      {
-        i(1, 'clap = { version = "4.2", features = ["derive"] }'),
-        i(2, "todo!();"),
-      }
-    ),
-    {
-      condition = conds.line_begin,
-    }
-  ),
   -- Functions
   s("f", d(1, rust_fn), {
     condition = conds.line_begin,

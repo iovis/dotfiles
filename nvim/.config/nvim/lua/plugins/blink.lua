@@ -68,68 +68,66 @@ return {
           end,
         },
 
-        -- cmdline = {
-        --   -- TODO:
-        --   --   - <c-b> not mappable?
-        --   --   - <esc> executes the command (neovim issue)
-        --   ["<C-y>"] = { "select_and_accept" },
-        --   ["<Tab>"] = { "select_next", "fallback" },
-        --   ["<S-Tab>"] = { "select_prev", "fallback" },
-        --   ["<C-n>"] = { "select_next", "fallback" },
-        --   ["<C-p>"] = { "select_prev", "fallback" },
-        --   ["<C-s>"] = { "cancel", "fallback" },
-        --   ["<M-1>"] = {
-        --     function(cmp)
-        --       cmp.accept({ index = 1 })
-        --     end,
-        --   },
-        --   ["<M-2>"] = {
-        --     function(cmp)
-        --       cmp.accept({ index = 2 })
-        --     end,
-        --   },
-        --   ["<M-3>"] = {
-        --     function(cmp)
-        --       cmp.accept({ index = 3 })
-        --     end,
-        --   },
-        --   ["<M-4>"] = {
-        --     function(cmp)
-        --       cmp.accept({ index = 4 })
-        --     end,
-        --   },
-        --   ["<M-5>"] = {
-        --     function(cmp)
-        --       cmp.accept({ index = 5 })
-        --     end,
-        --   },
-        --   ["<M-6>"] = {
-        --     function(cmp)
-        --       cmp.accept({ index = 6 })
-        --     end,
-        --   },
-        --   ["<M-7>"] = {
-        --     function(cmp)
-        --       cmp.accept({ index = 7 })
-        --     end,
-        --   },
-        --   ["<M-8>"] = {
-        --     function(cmp)
-        --       cmp.accept({ index = 8 })
-        --     end,
-        --   },
-        --   ["<M-9>"] = {
-        --     function(cmp)
-        --       cmp.accept({ index = 9 })
-        --     end,
-        --   },
-        -- },
+        cmdline = {
+          -- TODO:
+          --   - <c-b> not mappable?
+          --   - <esc> executes the command (neovim issue)
+          ["<C-y>"] = { "select_and_accept" },
+          ["<Tab>"] = { "select_next", "fallback" },
+          ["<S-Tab>"] = { "select_prev", "fallback" },
+          ["<C-n>"] = { "select_next", "fallback" },
+          ["<C-p>"] = { "select_prev", "fallback" },
+          ["<C-s>"] = { "cancel", "fallback" },
+          ["<M-1>"] = {
+            function(cmp)
+              cmp.accept({ index = 1 })
+            end,
+          },
+          ["<M-2>"] = {
+            function(cmp)
+              cmp.accept({ index = 2 })
+            end,
+          },
+          ["<M-3>"] = {
+            function(cmp)
+              cmp.accept({ index = 3 })
+            end,
+          },
+          ["<M-4>"] = {
+            function(cmp)
+              cmp.accept({ index = 4 })
+            end,
+          },
+          ["<M-5>"] = {
+            function(cmp)
+              cmp.accept({ index = 5 })
+            end,
+          },
+          ["<M-6>"] = {
+            function(cmp)
+              cmp.accept({ index = 6 })
+            end,
+          },
+          ["<M-7>"] = {
+            function(cmp)
+              cmp.accept({ index = 7 })
+            end,
+          },
+          ["<M-8>"] = {
+            function(cmp)
+              cmp.accept({ index = 8 })
+            end,
+          },
+          ["<M-9>"] = {
+            function(cmp)
+              cmp.accept({ index = 9 })
+            end,
+          },
+        },
       },
 
       completion = {
-        list = {
-          selection = "auto_insert",
-        },
+        list = { selection = "auto_insert" },
 
         menu = {
           border = "rounded",
