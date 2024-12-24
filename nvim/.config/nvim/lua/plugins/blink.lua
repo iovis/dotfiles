@@ -127,7 +127,11 @@ return {
       },
 
       completion = {
-        list = { selection = "auto_insert" },
+        list = {
+          selection = function(ctx)
+            return ctx.mode == "cmdline" and "auto_insert" or "preselect"
+          end,
+        },
 
         menu = {
           border = "rounded",
