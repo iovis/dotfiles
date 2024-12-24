@@ -22,7 +22,7 @@
   "markview.nvim": { "branch": "main", "commit": "72cd34279e94ee96ee33bdf30a87b00e6d45319d" },
   "mason.nvim": { "branch": "main", "commit": "e2f7f9044ec30067bc11800a9e266664b88cda22" },
   "mini.nvim": { "branch": "main", "commit": "64e95aa77587d04f97a5579b2106a82a08a7d968" },
-  "muxi.nvim": { "branch": "main", "commit": "f4b96d64d3128370cf5b6042ec87ead47c806660" },
+  "muxi.nvim": { "branch": "main", "commit": "caa865b8caeb3fa1f23ba8fee85b46c67087106a" },
   "neo-tree.nvim": { "branch": "v2.x", "commit": "a77af2e764c5ed4038d27d1c463fa49cd4794e07" },
   "neogen": { "branch": "main", "commit": "37dd095892e3f846418c465852f7b21f81d0f46c" },
   "none-ls.nvim": { "branch": "main", "commit": "40dc2e983560acaea29d6312b33fafba37b0c272" },
