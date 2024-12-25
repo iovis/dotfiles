@@ -7,10 +7,7 @@ return {
     ----Setup
     local muxi = require("muxi")
 
-    muxi.setup({
-      go_to_cursor = false,
-      -- path = ".muxi.json",
-    })
+    muxi.setup({})
 
     ----Bindings
     vim.keymap.set("n", "<leader>g", muxi.ui.run, {
