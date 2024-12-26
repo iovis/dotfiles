@@ -4,7 +4,6 @@ cargo-edit
 cargo-nextest
 cargo-outdated
 cargo-update
-cargo-watch
 dexios
 evcxr_repl
 muxi
