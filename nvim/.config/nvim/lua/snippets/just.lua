@@ -129,51 +129,58 @@ return {
   ),
   s(
     "rust",
-    fmt(
+    fmta(
       [[
         set dotenv-load := true
+        bin := <>
 
-        default: {}
+        default: <>
 
-        # lists available tasks
         @list:
             just --list
 
         run:
-            {}
+            <>
 
         build:
-            {}
+            <>
 
         dev:
-            {}
+            <>
 
         console:
-            {}
+            <>
 
         open:
             gh repo view --web
 
         clean:
-            {}
+            <>
 
-        # run tests
         test:
-            {}
+            <>
 
-        # Open the DB
+        profile *args:
+            cargo build --profile profiling
+            samply record target/profiling/{{ bin }} {{ args }}
+
+        debug *args:
+            cargo build
+            rust-lldb -Q -- target/debug/{{ bin }} {{ args }}
+
         db:
-            {}
+            <>
       ]],
       {
-        i(1, "run"),
-        i(2, "cargo run"),
-        i(3, "cargo build"),
-        i(4, "cargo watch -x check -x 'nextest run'"),
-        i(5, "evcxr"),
-        i(6, "cargo clean"),
-        i(7, "cargo nextest run"),
-        i(8, "pgcli $DATABASE_URL"),
+        i(1, "file_name(justfile_directory())"),
+        i(2, "run"),
+        i(3, "cargo run"),
+        i(4, "cargo build --release"),
+        i(5, "watchexec -re rs,toml -- just run"),
+        i(6, "evcxr"),
+        i(7, "cargo clean"),
+        i(8, "cargo nextest run"),
+        i(9, "pgcli $DATABASE_URL"),
       }
     ),
     { condition = conds.line_begin }
