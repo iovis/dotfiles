@@ -305,4 +305,37 @@ return {
     ),
     { condition = conds.line_begin }
   ),
+  -- xmake
+  s(
+    "xmake",
+    fmta(
+      [[
+        set_rundir(os.projectdir())
+
+        add_rules("mode.debug", "mode.release")
+
+        set_languages("clatest")
+
+        target("<>")
+        set_kind("binary")
+        add_files("src/*.c")
+        add_includedirs("include")
+
+        target("tests")
+        set_kind("binary")
+        add_files("src/*.c")
+        add_includedirs("include")
+        for _, testfile in ipairs(os.files("tests/*_test.c")) do
+          add_tests(path.basename(testfile), {
+            files = testfile,
+            remove_files = "src/main.c",
+          })
+        end
+      ]],
+      {
+        i(1, "my_program"), -- TODO: name of folder
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
 }
