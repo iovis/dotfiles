@@ -179,7 +179,6 @@ return {
 
       sources = {
         default = { "lazydev", "lsp", "path", "luasnip", "buffer" },
-        -- cmdline = {},
         providers = {
           lazydev = {
             name = "LazyDev",
