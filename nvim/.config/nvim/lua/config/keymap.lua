@@ -286,6 +286,7 @@ vim.keymap.set("n", "<leader>ue", "<cmd>e! .env<cr>")
 vim.keymap.set("n", "<leader>ug", "<cmd>e! .gitignore<cr>")
 vim.keymap.set("n", "<leader>uj", "<cmd>e! justfile<cr>")
 vim.keymap.set("n", "<leader>up", "<cmd>e! package.json<cr>")
+vim.keymap.set("n", "<leader>ux", "<cmd>e! xmake.lua<cr>")
 
 ---- Toggle Settings
 vim.keymap.set("n", "yoc", ":set cursorcolumn!<cr>")
