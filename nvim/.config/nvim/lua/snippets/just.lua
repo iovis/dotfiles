@@ -233,6 +233,108 @@ return {
     { condition = conds.line_begin }
   ),
   s(
+    "xmake",
+    fmta(
+      [[
+        bin := "<>"
+
+        default: run
+
+        run *args: build
+            xmake run {{ bin }} {{ args }}
+
+        build:
+            xmake f -m debug
+            xmake build {{ bin }}
+            xmake project -k compile_commands
+
+        release:
+            xmake f -m release
+            xmake build {{ bin }}
+
+        clean:
+            xmake clean
+
+        dev *args:
+            watchexec -e c,h just run {{ args }}
+
+        open:
+            gh repo view --web
+
+        debug *args: build
+            xmake run -d {{ bin }} {{ args }}
+
+        build_tests:
+            xmake build tests
+
+        @test *args: build_tests
+            xmake run tests {{ args }}
+      ]],
+      {
+        i(1, "my_program"),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "c",
+    fmt(
+      [[
+        cc_flags := "-std=c2x"
+        libs := "-Iinclude/ -Isrc/"
+        build_folder := "./build"
+        program_name := "{}"
+        bin := build_folder / program_name
+
+        default: {}
+
+        run: build
+            {}
+
+        build: init
+            {}
+
+        release: init
+            {}
+
+        build_tests: init
+            {}
+
+        @init:
+            {}
+
+        clean:
+            {}
+
+        dev:
+            {}
+
+        open:
+            gh repo view --web
+
+        debug: build
+            {}
+
+        @test:
+            {}
+      ]],
+      {
+        i(1, "my_program"),
+        i(2, "run"),
+        i(3, "{{ bin }}"),
+        i(4, "cc {{ cc_flags }} {{ libs }} -g -Wall -Wextra -Wpedantic -O0 src/*.c -o {{ bin }}"),
+        i(5, "cc {{ cc_flags }} {{ libs }} -O3 src/*.c -o {{ bin }}"),
+        i(6, 'cc {{ cc_flags }} {{ libs }} src/*.c test/*.c -o {{ build_folder / "tests" }}'),
+        i(7, "mkdir -p build/"),
+        i(8, "rm -rf build/"),
+        i(9, "watchexec -e c,h just run"),
+        i(10, "sudo lldb -- {{ bin }}"),
+        i(11, '{{ build_folder / "tests" }}'),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
     "cmake",
     fmta(
       [[

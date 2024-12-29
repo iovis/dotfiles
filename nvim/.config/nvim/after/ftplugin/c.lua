@@ -13,6 +13,16 @@ if u.current_file():match("ext/") then
   vim.keymap.set("n", "m<cr>", "<cmd>Tux bear -- rake<cr>", { buffer = true })
   vim.keymap.set("n", "s<cr>", "<cmd>Tux bear -- rake<cr>", { buffer = true })
   vim.keymap.set("n", "<leader>sw", "<cmd>Tux watchexec -e c,h,rb -c clear -- bear -- rake<cr>", { buffer = true })
+elseif u.current_file():match("_test.c$") then
+  vim.keymap.set("n", "<leader>sa", "<cmd>Tux just test<cr>", { buffer = true })
+  vim.keymap.set("n", "m<cr>", "<cmd>Tux just test<cr>", { buffer = true })
+
+  local suite_name = u.current_file():match("(%w+)_test.c$")
+  vim.keymap.set("n", "<leader>so", ("<cmd>Tux just test --filter '%s/*'<cr>"):format(suite_name), { buffer = true })
+  vim.keymap.set("n", "s<cr>", ("<cmd>Tux just test --filter '%s/*'<cr>"):format(suite_name), { buffer = true })
+
+  -- TODO: use treesitter to extract the suite_name/test_name
+  vim.keymap.set("n", "<leader>si", "<cmd>Tux just test --filter " .. "<cr>", { buffer = true })
 elseif vim.uv.cwd():match("qmk_userspace") then
   vim.keymap.set("n", "<leader>S", function()
     local firmware = "qmk"

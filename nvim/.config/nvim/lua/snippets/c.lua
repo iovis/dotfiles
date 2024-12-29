@@ -111,37 +111,15 @@ return {
     { condition = conds.line_begin }
   ),
   s(
-    "munit",
-    fmta(
+    "criterion",
+    fmt(
       [[
-        #include "unity.h"
+        #include <criterion/criterion.h>
+        #include <criterion/new/assert.h>
 
-        #include "<>"
-
-        test<>
-
-        const MunitTest munit_null_test = {NULL, NULL, NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL};
-        MunitTest test_suite_tests[] = {
-          {"/test_name", test_name, NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL},
-          munit_null_test,
-        };
-
-        const MunitSuite test_suite = {
-          "suite_name",
-          test_suite_tests,
-          NULL,
-          1,
-          MUNIT_SUITE_OPTION_NONE
-        };
-
-        int main(int argc, char *argv[]) {
-          return munit_suite_main(&test_suite, NULL, argc, argv);
-        }
+        test
       ]],
-      {
-        i(1, "my_library.h"),
-        i(0),
-      }
+      {}
     ),
     { condition = conds.line_begin }
   ),
@@ -149,17 +127,28 @@ return {
     "test",
     fmta(
       [[
-        static MunitResult test_<test_name>(const MunitParameter params[], void *data) {
+        Test(<>, <>) {
           <>
-
-          return MUNIT_OK;
         }
       ]],
       {
-        test_name = i(1, "name"),
-        i(0),
+        i(1, "suite_name"),
+        i(2, "test_name"),
+        i(3, "// TODO"),
       }
     ),
     { condition = conds.line_begin }
   ),
+  s("as", fmt("cr_assert({});", { i(1) }), {
+    condition = conds.line_begin,
+  }),
+  s("ase", fmt("cr_assert(eq({}, {}, {}));", { i(1, "int"), i(2, "expected"), i(3, "actual") }), {
+    condition = conds.line_begin,
+  }),
+  s("exp", fmt("cr_expect({});", { i(1) }), {
+    condition = conds.line_begin,
+  }),
+  s("expe", fmt("cr_expect(eq({}, {}, {}));", { i(1, "int"), i(2, "expected"), i(3, "actual") }), {
+    condition = conds.line_begin,
+  }),
 }

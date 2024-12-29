@@ -322,15 +322,15 @@ return {
         add_includedirs("include")
 
         target("tests")
+        set_default(false)
         set_kind("binary")
         add_files("src/*.c")
-        add_includedirs("include")
-        for _, testfile in ipairs(os.files("tests/*_test.c")) do
-          add_tests(path.basename(testfile), {
-            files = testfile,
-            remove_files = "src/main.c",
-          })
-        end
+        remove_files("src/main.c")
+        add_includedirs("src")
+        add_files("test/*.c")
+        add_links("criterion")
+        add_linkdirs("/opt/homebrew/lib")
+        add_includedirs("/opt/homebrew/include")
       ]],
       {
         i(1, "my_program"), -- TODO: name of folder
