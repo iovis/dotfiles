@@ -185,6 +185,9 @@ return {
             module = "lazydev.integrations.blink",
             score_offset = 100,
           },
+          buffer = {
+            score_offset = -10,
+          },
         },
       },
 
