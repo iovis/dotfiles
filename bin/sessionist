@@ -16,18 +16,17 @@ fd_command() {
 INITIAL_QUERY="${*:-}"
 fzf_command() {
   # if no match, return query string
-  fzf-tmux \
-    -p 80%,80% \
-    --exit-0 \
+  fzf \
+    --prompt="$PROJECT_HOME/" \
+    --info=hidden \
+    --reverse \
     --bind=enter:accept-or-print-query \
     --bind=ctrl-d:print-query \
     --bind=alt-p:toggle-preview \
     --bind='alt-r:change-preview-window(right|down)' \
-    --reverse \
-    --info=hidden \
     --preview="eza --color=always --icons -1a --group-directories-first $PROJECT_HOME/{}" \
     --preview-window=right \
-    --prompt="$PROJECT_HOME/" \
+    --exit-0 \
     --query="$INITIAL_QUERY" || true
 }
 

@@ -50,8 +50,10 @@ bind -N "Choose paste buffer" C-p choose-buffer
 bind -N "Paste buffer" P paste-buffer
 
 ## Session management
-bind -N "Run sessionist" c-f run sessionist
 bind -N "Kill session" X run tmux_kill_session
+bind -N "Run sessionist" C-f {
+  display-popup -w 50% -h 60% -b rounded -E sessionist
+}
 
 bind -N "Rename session" . command-prompt -I "#S" {
   rename-session "%%"
