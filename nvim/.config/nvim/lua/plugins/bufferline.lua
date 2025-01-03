@@ -58,10 +58,10 @@ return {
       },
     })
 
-    for i = 1, 9 do
-      vim.keymap.set("n", "<leader>" .. i, function()
+    for i = 1, 5 do
+      vim.keymap.set("n", ("<M-%s>"):format(i), function()
         require("bufferline").go_to(i, true)
-      end, { desc = "Go to buffer " .. i })
+      end, { desc = "Go to tab " .. i })
     end
   end,
 }
