@@ -5,19 +5,28 @@ completions_dir="$FDOTDIR/completions"
 mkdir -p "$completions_dir"
 
 echo "Generating completions for rustup"
-rustup completions fish >"$completions_dir/rustup.fish"
+rustup completions fish > "$completions_dir/rustup.fish"
 
 # echo "Generating completions for cargo"
-# rustup completions fish cargo >"$completions_dir/cargo.fish"
+# rustup completions fish cargo > "$completions_dir/cargo.fish"
 
 echo "Generating completions for muxi"
-muxi completions fish >"$completions_dir/muxi.fish"
-
-echo "Generating completions for wezterm"
-wezterm shell-completion --shell fish >"$completions_dir/wezterm.fish"
+muxi completions fish > "$completions_dir/muxi.fish"
 
 echo "Generating completions for mise"
-mise completion fish >"$completions_dir/mise.fish"
+mise completion fish > "$completions_dir/mise.fish"
 
-# echo "Generating completions for ngrok"
-# ngrok completion >"$completions_dir/ngrok.fish"
+if type wezterm &> /dev/null; then
+  echo "Generating completions for wezterm"
+  wezterm shell-completion --shell fish > "$completions_dir/wezterm.fish"
+fi
+
+if type bob &> /dev/null; then
+  echo "Generating completions for bob"
+  bob complete fish > "$completions_dir/bob.fish"
+fi
+
+if type ngrok &> /dev/null; then
+  echo "Generating completions for ngrok"
+  ngrok completion > "$completions_dir/ngrok.fish"
+fi
