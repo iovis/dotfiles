@@ -63,7 +63,7 @@ return {
       vim.notify("Cleared current session")
     end, { desc = "[muxi] Clear current workspace" })
 
-    vim.keymap.set("n", "ge", muxi.ui.edit, {
+    vim.keymap.set("n", "'e", muxi.ui.edit, {
       desc = "[muxi] Modify current workspace interactively",
     })
 

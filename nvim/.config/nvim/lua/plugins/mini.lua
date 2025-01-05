@@ -149,6 +149,26 @@ return {
     --   end,
     -- })
 
+    ---- mini.operators
+    local operators = require("mini.operators")
+
+    operators.setup({
+      evaluate = { prefix = "g=" },
+      exchange = { prefix = "ge" }, -- Default `gx`
+      multiply = { prefix = "" }, -- Default `gm`
+      replace = { prefix = "gr" },
+      sort = { prefix = "gs" },
+    })
+
+    operators.make_mappings("multiply", {
+      textobject = "",
+      line = "",
+      selection = "D",
+    })
+
+    vim.keymap.set("n", "R", "griw", { remap = true })
+    vim.keymap.set("x", "R", "gr", { remap = true })
+
     ---- mini.surround
     require("mini.surround").setup({
       search_method = "cover_or_nearest",
