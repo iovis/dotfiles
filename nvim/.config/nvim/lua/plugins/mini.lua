@@ -169,6 +169,9 @@ return {
     vim.keymap.set("n", "R", "griw", { remap = true })
     vim.keymap.set("x", "R", "gr", { remap = true })
 
+    vim.keymap.set("n", "S", "geiw", { remap = true })
+    vim.keymap.set("x", "S", "ge", { remap = true })
+
     ---- mini.surround
     require("mini.surround").setup({
       search_method = "cover_or_nearest",
