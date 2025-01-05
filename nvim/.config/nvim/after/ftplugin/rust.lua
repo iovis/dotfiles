@@ -47,22 +47,19 @@ vim.api.nvim_buf_create_user_command(0, "ClippyFix", function()
 end, {})
 
 ----Surround
-require("nvim-surround").buffer_setup({
-  surrounds = {
+vim.b.minisurround_config = {
+  custom_surroundings = {
     d = {
-      add = { "dbg!(", ")" },
-      find = "dbg!%b()",
-      delete = "^(dbg!%()().-(%))()$",
+      input = { "dbg!%(().-()%)" },
+      output = { left = "dbg!(", right = ")" },
     },
     o = {
-      add = { "Ok(", ")" },
-      find = "Ok%b()",
-      delete = "^(Ok%()().-(%))()$",
+      input = { "Ok%(().-()%)" },
+      output = { left = "Ok(", right = ")" },
     },
     s = {
-      add = { "Some(", ")" },
-      find = "Some%b()",
-      delete = "^(Some%()().-(%))()$",
+      input = { "Some%(().-()%)" },
+      output = { left = "Some(", right = ")" },
     },
   },
-})
+}

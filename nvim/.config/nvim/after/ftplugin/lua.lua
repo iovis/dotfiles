@@ -42,17 +42,15 @@ elseif u.current_file():match("hammerspoon/") then
 end
 
 ----Surround debug
-local ok, surround = pcall(require, "nvim-surround") -- To not break plenary.test_harness
-if not ok then
-  return
-end
-
-surround.buffer_setup({
-  surrounds = {
+vim.b.minisurround_config = {
+  custom_surroundings = {
     d = {
-      add = { "vim.print(", ")" },
-      find = "vim.print%b()",
-      delete = "^(vim.print%()().-(%))()$",
+      input = { "vim.print%(().-()%)" },
+      output = { left = "vim.print(", right = ")" },
+    },
+    s = {
+      input = { "%[%[().-()%]%]" },
+      output = { left = "[[", right = "]]" },
     },
   },
-})
+}

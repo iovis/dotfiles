@@ -148,5 +148,29 @@ return {
     --     map_split(buf_id, "<leader>v", "belowright vertical")
     --   end,
     -- })
+
+    ---- mini.surround
+    require("mini.surround").setup({
+      search_method = "cover_or_nearest",
+      custom_surroundings = {
+        r = {
+          input = { "%b[]", "^.().*().$" },
+          output = { left = "[", right = "]" },
+        },
+        B = {
+          input = { "%b{}", "^.().*().$" },
+          output = { left = "{", right = "}" },
+        },
+      },
+    })
+
+    vim.keymap.set("n", "sl", "sa_", { remap = true })
+
+    vim.keymap.del("x", "sa")
+    vim.keymap.set("x", "s", [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
+
+    vim.keymap.set("n", [[<leader>"]], [[srq"]], { remap = true })
+    vim.keymap.set("n", [[<leader>']], [[srq']], { remap = true })
+    vim.keymap.set("n", [[<leader>`]], [[srq`]], { remap = true })
   end,
 }

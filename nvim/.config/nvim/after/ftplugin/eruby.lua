@@ -1,20 +1,17 @@
 ----Surround
-require("nvim-surround").buffer_setup({
-  surrounds = {
+vim.b.minisurround_config = {
+  custom_surroundings = {
     ["="] = {
-      add = { "<%= ", " %>" },
-      find = "<%%= .- %%>",
-      delete = "^(<%%= )().-( %%>)()$",
+      input = { "<%%= ().-() %%>" },
+      output = { left = "<%= ", right = " %>" },
     },
     ["#"] = {
-      add = { "<%# ", " %>" },
-      find = "<%%# .- %%>",
-      delete = "^(<%%# )().-( %%>)()$",
+      input = { "<%%# ().-() %%>" },
+      output = { left = "<%# ", right = " %>" },
     },
     ["-"] = {
-      add = { "<% ", " %>" },
-      find = "<%% .- %%>",
-      delete = "^(<%% )().-( %%>)()$",
+      input = { "<%% ().-() %%>" },
+      output = { left = "<% ", right = " %>" },
     },
   },
-})
+}
