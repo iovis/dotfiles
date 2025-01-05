@@ -1,27 +1,29 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-# Run with: /bin/bash -c "$(curl https://raw.githubusercontent.com/iovis/dotfiles/master/scripts/mac_bootstrap.sh)"
+# curl --proto '=https' --tlsv1.2 -LsSf https://raw.githubusercontent.com/iovis/dotfiles/master/scripts/mac_bootstrap.sh | sh
 
-# Homebrew
+echo "[$(date '+%Y-%m-%d %H:%M')] Installing Dotfiles"
+git clone https://github.com/iovis/dotfiles ~/.dotfiles
+
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing Homebrew"
 export NONINTERACTIVE=1
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 brew bundle --file ~/.dotfiles/brew/Brewfile
 
-# Dotfiles
-echo "[$(date '+%Y-%m-%d %H:%M')] Installing Dotfiles"
-git clone https://github.com/iovis/dotfiles ~/.dotfiles
-
-# mise
+echo "[$(date '+%Y-%m-%d %H:%M')] Installing mise"
+curl https://mise.run | sh
 cd ~/.dotfiles
 stow mise
-mise upgrade
+mise install -y
 
-# rust
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing rust"
-curl https://sh.rustup.rs -sSf | sh -s -- -y
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 . $HOME/.cargo/env
-cargo install $(cat ~/.dotfiles/default/crates)
+cargo install cargo-binstall
+cargo binstall -y $(cat $DOTFILES/default/crates)
+
+echo "[$(date '+%Y-%m-%d %H:%M')] Stow"
+stow aerospace brew fish git hammerspoon iina lazygit mise muxi nvim obsidian starship stylua tmux vim wezterm
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installation ended"
