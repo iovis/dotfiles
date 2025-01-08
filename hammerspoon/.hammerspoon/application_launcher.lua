@@ -12,7 +12,7 @@ u.bind.app({ ctrl_alt_cmd, "w" }, "Messages")
 u.bind.app({ ctrl_alt_cmd, "e" }, "Mail")
 u.bind.app({ ctrl_alt_cmd, "t" }, "TablePlus")
 
-u.bind.app({ ctrl_alt_cmd, "z" }, "Webex")
+u.bind.app({ ctrl_alt_cmd, "z" }, "zoom.us")
 u.bind.app({ ctrl_alt_cmd, "x" }, "Music")
 u.bind.app({ ctrl_alt_cmd, "c" }, "Calendar")
 
