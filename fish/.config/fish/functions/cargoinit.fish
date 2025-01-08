@@ -6,6 +6,6 @@ function cargoinit
     cargo binstall -y $(cat $DOTFILES/default/crates)
 
     if test -n "$RUST_EXTRA"
-        cargo install -y $(cat $DOTFILES/default/crates_extra)
+        cargo binstall -y $(cat $DOTFILES/default/crates_extra)
     end
 end
