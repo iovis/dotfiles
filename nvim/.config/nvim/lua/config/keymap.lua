@@ -296,7 +296,7 @@ vim.keymap.set("n", "yoi", ":set list!<cr>")
 vim.keymap.set("n", "yol", ":set cursorline!<cr>")
 vim.keymap.set("n", "yon", ":set number!<cr>")
 vim.keymap.set("n", "yor", ":set relativenumber!<cr>")
-vim.keymap.set("n", "yos", ":setlocal spell! spelllang=en_us<cr>")
+vim.keymap.set("n", "yoS", ":setlocal spell! spelllang=en_us<cr>")
 vim.keymap.set("n", "yow", ":setlocal wrap!<cr>")
 
 vim.keymap.set("n", "yoC", function()
