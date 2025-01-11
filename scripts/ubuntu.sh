@@ -9,7 +9,7 @@ sudo apt upgrade -y
 sudo apt-add-repository -y ppa:fish-shell/release-3
 sudo apt update
 
-sudo apt install -y build-essential fish gh stow tmux libffi-dev libz-dev libyaml-dev
+sudo apt install -y build-essential fish gh jq libffi-dev libyaml-dev libz-dev stow tmux
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing Dotfiles"
 git clone https://github.com/iovis/dotfiles ~/.dotfiles
