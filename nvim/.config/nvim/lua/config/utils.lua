@@ -69,6 +69,14 @@ function M.scratch(contents, opts)
   end
 end
 
+---Is current window floating
+---@return boolean
+function M.is_win_floating()
+  local winnr = vim.api.nvim_get_current_win()
+
+  return vim.api.nvim_win_get_config(winnr).zindex ~= nil
+end
+
 function M.floating_window(contents, opts)
   local win_opts = vim.tbl_extend("force", {
     title = nil,
