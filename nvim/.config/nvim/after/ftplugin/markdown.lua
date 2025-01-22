@@ -1,6 +1,3 @@
-vim.keymap.set("n", "yoc", ":Markview<cr>", { buffer = true })
-vim.keymap.set("n", "s<cr>", ":Markview splitToggle<cr>", { buffer = true })
-
 -- TODO: translate to lua
 vim.cmd([[
 " Options {{{ "
