@@ -55,6 +55,10 @@ if command -q fzf
     fzf --fish | source
 end
 
+# if command -q tv
+#     tv init fish | source
+# end
+
 if command -q starship
     starship init fish | source
 end
