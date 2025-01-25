@@ -64,7 +64,7 @@ bind -N "New session" C command-prompt -p "new session name:" {
 }
 
 ## Window management
-bind -N "New window" c new-window -c "#{pane_current_path}"
+bind -N "New window" c new-window
 
 bind -N "Move window to the left"  -r < swap-window -dt -1
 bind -N "Move window to the right" -r > swap-window -dt +1
