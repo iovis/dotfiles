@@ -29,8 +29,8 @@ echo "[$(date '+%Y-%m-%d %H:%M')] Installing rust"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 . "$HOME/.cargo/env"
 cargo install cargo-binstall
-cargo binstall -y "$(cat "$DOTFILES/default/crates")"
-cargo binstall -y "$(cat "$DOTFILES/default/crates_extra")"
+cargo binstall -y $(cat "$DOTFILES/default/crates")
+cargo binstall -y $(cat "$DOTFILES/default/crates_extra")
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing Lazygit"
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')

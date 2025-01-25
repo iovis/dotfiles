@@ -15,7 +15,7 @@ brew bundle --file "$DOTFILES/brew/Brewfile"
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Stow"
 cd "$DOTFILES" || exit
-stow aerospace brew fish fzf git hammerspoon lazygit mise muxi nvim obsidian starship stylua tmux vim wezterm
+stow aerospace brew fish fzf git hammerspoon lazygit mise muxi nvim obsidian pry qmk starship stylua tmux vim wezterm
 cd || exit
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing mise"
@@ -26,6 +26,6 @@ echo "[$(date '+%Y-%m-%d %H:%M')] Installing rust"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 . "$HOME/.cargo/env"
 cargo install cargo-binstall
-cargo binstall -y "$(cat "$DOTFILES/default/crates")"
+cargo binstall -y $(cat "$DOTFILES/default/crates")
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installation ended"
