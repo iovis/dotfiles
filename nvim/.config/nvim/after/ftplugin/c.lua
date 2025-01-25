@@ -34,11 +34,11 @@ elseif vim.uv.cwd():match("qmk_userspace") then
     tux.popup("just setup " .. firmware)
   end, { buffer = true })
 
-  vim.keymap.set("n", "s<cr>", "<cmd>Tuxpopup just compile flash<cr>", { buffer = true })
+  vim.keymap.set("n", "s<cr>", "<cmd>Tuxpopup just run<cr>", { buffer = true })
   vim.keymap.set("n", "m<cr>", "<cmd>Tuxpopup just flash<cr>", { buffer = true })
 
   vim.keymap.set("n", "<leader>do", "<cmd>botright split! ../qmk_firmware/docs/keycodes.md<cr>", { buffer = true })
-  vim.keymap.set("n", "<leader>dS", "<cmd>15sp keymap.md<cr>", { buffer = true })
+  vim.keymap.set("n", "<leader>dS", "<cmd>60vs keymap.md<cr>", { buffer = true })
 
   vim.keymap.set("n", "d?", function()
     vim.notify(u.system({
