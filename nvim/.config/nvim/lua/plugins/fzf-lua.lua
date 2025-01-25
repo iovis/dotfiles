@@ -76,6 +76,10 @@ return {
           pager = "delta --width $FZF_PREVIEW_COLUMNS --file-style omit --hunk-header-style omit",
         },
       },
+      files = {
+        rg_opts = [[--color=never --files --hidden --follow -g "!.git"]],
+        fd_opts = [[--color=never --type f --hidden --follow --exclude .git]],
+      },
       git = {
         icons = {
           ["?"] = { icon = "?", color = "magenta" },
