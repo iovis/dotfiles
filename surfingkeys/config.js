@@ -30,7 +30,6 @@ unmap("E");
 unmap("R");
 unmap("S");
 unmap("D");
-unmap('<Ctrl-h>');
 
 mapkey("H", "#4Go back in history", function() {
   history.go(-1);
