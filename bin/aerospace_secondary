@@ -18,7 +18,7 @@ aerospace move right
 
 aerospace layout accordion horizontal
 
-open -a Music
-hs -c "hs.eventtap.keyStroke(ctrl_shift, 'm', 0)"
+# open -a Music
+# hs -c "hs.eventtap.keyStroke(ctrl_shift, 'm', 0)"
 
 # aerospace workspace-back-and-forth
