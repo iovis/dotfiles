@@ -44,9 +44,6 @@ mapkey('<Backspace>', '#4Go to last used tab', function() {
 vmap("H", "0");
 vmap("L", "$");
 
-imap("kj", "<Esc>");
-
-aceVimMap("kj", "<Esc>", "insert");
 aceVimMap("H", "^", "normal");
 aceVimMap("L", "$", "normal");
 
