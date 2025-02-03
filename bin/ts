@@ -12,9 +12,9 @@ fzf_command() {
     --info=inline-right \
     --reverse \
     --no-input \
-    --bind 'j:down,k:up,q:abort,i:show-input+unbind(j,k,q,i)' \
+    --bind 'j:down,k:up,q:abort,i,/:show-input+unbind(j,k,q,i,/,x)' \
     --bind=ctrl-n:print-query \
-    --bind="ctrl-x:execute-silent(tmux kill-session -t {1})+reload:$tmux_sessions" \
+    --bind="x,ctrl-x:execute-silent(tmux kill-session -t {1})+reload:$tmux_sessions" \
     --bind=alt-p:toggle-preview \
     --preview="tmux capture-pane -ep -t '{1}:'" \
     --preview-window="right,80%" \
