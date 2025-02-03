@@ -3,6 +3,7 @@
 # curl --proto '=https' --tlsv1.2 -LsSf https://raw.githubusercontent.com/iovis/dotfiles/master/scripts/ubuntu.sh | sh
 
 export DOTFILES="$HOME/.dotfiles"
+export LOCAL_BIN="$HOME/.local/bin"
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Updating Libraries"
 sudo apt update
@@ -36,14 +37,14 @@ echo "[$(date '+%Y-%m-%d %H:%M')] Installing Lazygit"
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 tar xf lazygit.tar.gz lazygit
-sudo install lazygit -D -t /usr/local/bin/
+sudo install lazygit -D -t "$LOCAL_BIN"
 rm -rf lazygit.tar.gz
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing FZF"
 FZF_VERSION=$(curl -s "https://api.github.com/repos/junegunn/fzf/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
 curl -Lo fzf.tar.gz "https://github.com/junegunn/fzf/releases/download/v${FZF_VERSION}/fzf-${FZF_VERSION}-linux_amd64.tar.gz"
 tar xf fzf.tar.gz fzf
-sudo install fzf -D -t /usr/local/bin/
+sudo install fzf -D -t "$LOCAL_BIN"
 rm -rf fzf.tar.gz fzf
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installation ended"
