@@ -11,14 +11,15 @@ fzf_command() {
     --prompt="❯ " \
     --info=inline-right \
     --reverse \
-    --bind=ctrl-l:print-query \
+    --no-input \
+    --bind 'j:down,k:up,q:abort,i:show-input+unbind(j,k,q,i)' \
+    --bind=ctrl-n:print-query \
     --bind="ctrl-x:execute-silent(tmux kill-session -t {1})+reload:$tmux_sessions" \
     --bind=alt-p:toggle-preview \
     --preview="tmux capture-pane -ep -t '{1}:'" \
-    --preview-window="right,70%" \
+    --preview-window="right,80%" \
     --bind="alt-r:change-preview-window(down|right)" \
     --exit-0 \
-    --select-1 \
     --query "${*:-}" || true
 }
 
