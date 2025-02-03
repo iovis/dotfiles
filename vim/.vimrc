@@ -229,8 +229,8 @@ nnoremap <bs> <c-^>
 nnoremap <leader>n <cmd>enew<cr>
 nnoremap <leader>q <cmd>%bdelete<cr>
 nnoremap <leader>Q <cmd>%bdelete\|e#\|bd#<cr>
-nnoremap <leader>b <cmd>bp\|bd #<cr>
-nnoremap <leader>B <cmd>bd!<cr>
+nnoremap <tab>     <cmd>bp\|bd #<cr>
+nnoremap <leader>b <cmd>bd!<cr>
 
 nmap gm ;ls<cr>
 nnoremap <leader>E :e<space><c-r>=fnameescape(expand('%:.:h')).'/'<cr>

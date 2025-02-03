@@ -53,8 +53,12 @@ return {
     local bufremove = require("mini.bufremove")
     bufremove.setup({})
 
-    vim.keymap.set("n", "<leader>b", function()
-      bufremove.delete(0, true)
+    vim.keymap.set("n", "<tab>", function()
+      bufremove.delete(0, false)
+    end, { desc = "Bdelete" })
+
+    vim.keymap.set("n", "<s-tab>", function()
+      bufremove.delete(0, false)
     end, { desc = "Bdelete!" })
 
     ---- mini.files
