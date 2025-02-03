@@ -3,8 +3,8 @@ return {
   -- enabled = false,
   event = "TabNew",
   keys = {
-    { "<tab>", "<cmd>BufferLineCycleNext<cr>" },
-    { "<s-tab>", "<cmd>BufferLineCyclePrev<cr>" },
+    { "<m-l>", "<cmd>BufferLineCycleNext<cr>" },
+    { "<m-h>", "<cmd>BufferLineCyclePrev<cr>" },
   },
   config = function()
     require("bufferline").setup({

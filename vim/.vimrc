@@ -353,8 +353,8 @@ xnoremap * y:let @/=escape(@@, '/\') <bar> normal! /<cr>
 xnoremap # y:let @/=escape(@@, '/\') <bar> normal! ?<cr>
 
 " Tabs
-nnoremap <tab>   <cmd>tabnext<cr>
-nnoremap <s-tab> <cmd>tabprevious<cr>
+nnoremap <m-l> <cmd>tabnext<cr>
+nnoremap <m-h> <cmd>tabprevious<cr>
 
 " nnoremap 'q <cmd>tabonly<cr>
 nnoremap <leader>< <cmd>tabmove -1<cr>
