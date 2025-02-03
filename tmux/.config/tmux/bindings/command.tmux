@@ -7,7 +7,7 @@ bind -N "Open btop" -T command B {
 }
 
 bind -N "Open neovim with current pane contents" -T command n {
-  run -b tn
+  run -b tmux-capture
 }
 
 bind -N "Open lazygit" -T command g {
