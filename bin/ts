@@ -17,7 +17,7 @@ fzf_command() {
     --bind="x,ctrl-x:execute-silent(tmux kill-session -t {1})+reload:$tmux_sessions" \
     --bind=alt-p:toggle-preview \
     --preview="tmux capture-pane -ep -t '{1}:'" \
-    --preview-window="right,80%" \
+    --preview-window="right,75%" \
     --bind="alt-r:change-preview-window(down|right)" \
     --exit-0 \
     --query "${*:-}" || true
