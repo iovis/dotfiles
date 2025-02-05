@@ -28,6 +28,28 @@ return {
       vim.keymap.set("t", lhs, rhs, { buffer = true })
     end
 
+    ---- Actions
+    local function run_macro(selected)
+      local reg = selected[1]:match("%[(.-)%]")
+      local ok, data = pcall(vim.fn.getreg, reg)
+
+      if ok and #data > 0 then
+        vim.cmd.normal("@" .. reg)
+      end
+    end
+
+    local function delete_register(selected)
+      for _, item in ipairs(selected) do
+        local reg = item:match("%[(.-)%]")
+        vim.fn.setreg(reg:lower(), "")
+      end
+
+      fzf_lua.registers()
+    end
+
+    fzf_lua.config.set_action_helpstr(run_macro, "run-macro")
+    fzf_lua.config.set_action_helpstr(delete_register, "delete-register")
+
     ---- Config
     fzf_lua.setup({
       winopts = {
@@ -97,14 +119,21 @@ return {
         },
         rg_opts = [[--hidden --column --line-number --no-heading --color=always --smart-case -g '!Session.vim' -g '!.venv' -g '!.git']],
       },
+      registers = {
+        actions = {
+          ["@"] = run_macro,
+          ["ctrl-x"] = delete_register,
+        },
+      },
     })
 
     ---- Keymaps
     vim.keymap.set("n", "z<space>", fzf_lua.builtin, { desc = "fzf_lua.builtin" })
 
-    vim.keymap.set("n", "<leader>r", fzf_lua.resume, { desc = "fzf_lua.resume" })
+    vim.keymap.set("n", "<leader>R", fzf_lua.registers, { desc = "fzf_lua.registers" })
     vim.keymap.set("n", "<leader>j", fzf_lua.git_status, { desc = "fzf_lua.git_status" })
     vim.keymap.set("n", "<leader>o", fzf_lua.files, { desc = "fzf_lua.files" })
+    vim.keymap.set("n", "<leader>r", fzf_lua.resume, { desc = "fzf_lua.resume" })
     vim.keymap.set("n", "<leader>f/", fzf_lua.blines, { desc = "fzf_lua.blines" })
     vim.keymap.set("n", "<leader>fh", fzf_lua.helptags, { desc = "fzf_lua.helptags" })
     vim.keymap.set("n", "<leader>fm", fzf_lua.manpages, { desc = "fzf_lua.manpages" })
@@ -191,36 +220,5 @@ return {
         raw_cmd = ("rg %s %s"):format(rg_opts, o.args),
       })
     end, { nargs = "*" })
-
-    -- Registers
-    local function run_macro(selected)
-      local reg = selected[1]:match("%[(.-)%]")
-      local ok, data = pcall(vim.fn.getreg, reg)
-
-      if ok and #data > 0 then
-        vim.cmd.normal("@" .. reg)
-      end
-    end
-
-    local function delete_register(selected)
-      for _, item in ipairs(selected) do
-        local reg = item:match("%[(.-)%]")
-        vim.fn.setreg(reg:lower(), "")
-      end
-    end
-
-    fzf_lua.config.set_action_helpstr(run_macro, "run-macro")
-    fzf_lua.config.set_action_helpstr(delete_register, "delete-register")
-
-    vim.keymap.set("n", "<leader>R", function()
-      local opts = {}
-
-      opts.actions = {
-        ["@"] = run_macro,
-        ["ctrl-x"] = delete_register,
-      }
-
-      fzf_lua.registers(opts)
-    end, { desc = "fzf_lua.registers" })
   end,
 }
