@@ -11,6 +11,7 @@ fzf_command() {
     --prompt="❯ " \
     --info=inline-right \
     --reverse \
+    --header="" \
     --no-input \
     --bind 'j:down,k:up,q:abort,i,/:show-input+unbind(j,k,q,i,/,x)' \
     --bind=ctrl-n:print-query \
