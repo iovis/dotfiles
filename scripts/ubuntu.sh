@@ -4,6 +4,7 @@
 
 export DOTFILES="$HOME/.dotfiles"
 export LOCAL_BIN="$HOME/.local/bin"
+export INSTALLATION_DIR="/tmp/install/"
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Updating Libraries"
 sudo apt update
@@ -33,18 +34,21 @@ cargo install cargo-binstall
 cargo binstall -y $(cat "$DOTFILES/default/crates")
 cargo binstall -y $(cat "$DOTFILES/default/crates_extra")
 
+mkdir -p "$INSTALLATION_DIR"
+cd "$INSTALLATION_DIR" || exit
+
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing Lazygit"
-LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -oP '"tag_name": *"v\K[^"]*')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 tar xf lazygit.tar.gz lazygit
-sudo install lazygit -D -t "$LOCAL_BIN"
-rm -rf lazygit.tar.gz
+install lazygit -D -t "$LOCAL_BIN"
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing FZF"
-FZF_VERSION=$(curl -s "https://api.github.com/repos/junegunn/fzf/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
+FZF_VERSION=$(curl -s "https://api.github.com/repos/junegunn/fzf/releases/latest" | grep -oP '"tag_name": *"v\K[^"]*')
 curl -Lo fzf.tar.gz "https://github.com/junegunn/fzf/releases/download/v${FZF_VERSION}/fzf-${FZF_VERSION}-linux_amd64.tar.gz"
 tar xf fzf.tar.gz fzf
-sudo install fzf -D -t "$LOCAL_BIN"
-rm -rf fzf.tar.gz fzf
+install fzf -D -t "$LOCAL_BIN"
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installation ended"
+cd - || exit
+rm -rf "$INSTALLATION_DIR"
