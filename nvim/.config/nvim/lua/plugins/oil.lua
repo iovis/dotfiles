@@ -24,8 +24,8 @@ return {
       default_file_explorer = true,
       skip_confirm_for_simple_edits = true,
       float = {
-        max_height = 20,
-        max_width = 75,
+        max_height = 30,
+        max_width = 120,
       },
       use_default_keymaps = false,
       keymaps = {
