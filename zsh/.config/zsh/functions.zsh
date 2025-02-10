@@ -1,21 +1,20 @@
 function libupdate() {
   upgrade_libraries
-  # plugins update
+
+  zinit update --all
 
   rust_update
 
-  # generate_completions
-  # zshcache
+  mise self-update --yes
+  mise outdated
 
-  # asdf_update
+  npm -g outdated
 
-  # npm -g outdated
+  echo '\nOutdated gems'
+  gemo
 
-  # echo '\nOutdated gems'
-  # gemo
-
-  # echo '\nOutdated pips'
-  # pipo
+  echo '\nOutdated pips'
+  pipo
 
   echo '\nDone!'
 }

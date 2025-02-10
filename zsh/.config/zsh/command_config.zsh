@@ -53,7 +53,14 @@ if type rustc > /dev/null; then
 
   function rust_update() {
     rustup update
-    cargo install-update --all -j2
+    cargo install-update --all
+  }
+
+  function cargo_init() {
+    (cargo binstall --help &> /dev/null) || cargo install cargo-binstall
+    cargo binstall -y $(cat $DOTFILES/default/crates)
+
+    [[ -v RUST_EXTRA ]] && cargo binstall -y $(cat $DOTFILES/default/crates_extra)
   }
 else
   function rust_update() {
