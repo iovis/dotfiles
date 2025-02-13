@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-tmux_sessions='tmux ls -F "#{?session_attached,#{session_name} <-,#{session_name}}"'
+tmux_sessions='tmux ls -F "#{?session_attached,  #{session_name} <-,  #{session_name}}"'
 
 fzf_command() {
   # using `reload:cmd` instead of `reload(cmd)` because otherwise fzf fails to
@@ -13,11 +13,12 @@ fzf_command() {
     --reverse \
     --header="" \
     --no-input \
+    --accept-nth 2 \
     --bind 'j:down,k:up,q:abort,i,/:show-input+unbind(j,k,q,i,/,x)' \
     --bind=ctrl-n:print-query \
-    --bind="x,ctrl-x:execute-silent(tmux kill-session -t {1})+reload:$tmux_sessions" \
+    --bind="x,ctrl-x:execute-silent(tmux kill-session -t {2})+reload:$tmux_sessions" \
     --bind=alt-p:toggle-preview \
-    --preview="tmux capture-pane -ep -t '{1}:'" \
+    --preview="tmux capture-pane -ep -t '{2}:'" \
     --preview-window="right,75%" \
     --bind="alt-r:change-preview-window(down|right)" \
     --exit-0 \
@@ -31,10 +32,7 @@ if [[ -z "$session_name" ]]; then
   exit 0
 fi
 
-# If currently attached session, do nothing
-grep -q " <-" <<<"$session_name" && exit 0
-
-# Escape special tmux characters
+# Escape special tmux characters (if creating a new session)
 session_name=$(echo "$session_name" | tr '=:.' '_')
 
 tmux has-session -t "=$session_name" >/dev/null 2>&1 || tmux new-session -d -s "$session_name" && tmux switch-client -t "=$session_name"
