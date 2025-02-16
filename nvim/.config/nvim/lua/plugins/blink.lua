@@ -67,8 +67,68 @@ return {
             cmp.accept({ index = 9 })
           end,
         },
+      },
+      completion = {
+        list = {
+          selection = {
+            preselect = function(ctx)
+              return ctx.mode ~= "cmdline" and not require("blink.cmp").snippet_active({ direction = 1 })
+            end,
+          },
+        },
 
-        cmdline = {
+        menu = {
+          border = "rounded",
+          scrollbar = false,
+          draw = {
+            columns = {
+              { "item_idx" }, -- Show index of completion
+              { "kind_icon" },
+              { "label", "label_description", gap = 1 },
+              { "source_name" },
+            },
+            components = {
+              item_idx = {
+                highlight = "BlinkCmpItemIdx",
+                text = function(ctx)
+                  return ctx.idx >= 10 and " " or tostring(ctx.idx)
+                end,
+              },
+
+              source_name = {
+                width = { max = 4 },
+                ellipsis = false,
+              },
+            },
+          },
+        },
+
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 100,
+          window = {
+            border = "rounded",
+            scrollbar = false,
+          },
+        },
+
+        ghost_text = { enabled = true },
+      },
+
+      sources = {
+        default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+        providers = {
+          buffer = { score_offset = -10 },
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            score_offset = 100,
+          },
+        },
+      },
+
+      cmdline = {
+        keymap = {
           -- TODO:
           --   - <c-b> not mappable?
           --   - <esc> executes the command (neovim issue)
@@ -124,74 +184,23 @@ return {
             end,
           },
         },
-      },
 
-      completion = {
-        list = {
-          selection = {
-            preselect = function(ctx)
-              return ctx.mode ~= "cmdline" and not require("blink.cmp").snippet_active({ direction = 1 })
-            end,
-            -- auto_insert = function(ctx) return ctx.mode ~= 'cmdline' end,
-          },
-        },
-
-        menu = {
-          border = "rounded",
-          scrollbar = false,
-          draw = {
-            columns = {
-              { "item_idx" }, -- Show index of completion
-              { "kind_icon" },
-              { "label", "label_description", gap = 1 },
-              { "source_name" },
-            },
-            components = {
-              item_idx = {
-                highlight = "BlinkCmpItemIdx",
-                text = function(ctx)
-                  return ctx.idx >= 10 and " " or tostring(ctx.idx)
-                end,
-              },
-
-              source_name = {
-                width = { max = 4 },
-                ellipsis = false,
+        completion = {
+          menu = {
+            draw = {
+              columns = {
+                { "item_idx" }, -- Show index of completion
+                { "label", "label_description", gap = 1 },
               },
             },
           },
         },
-
-        documentation = {
-          auto_show = true,
-          auto_show_delay_ms = 100,
-          window = {
-            border = "rounded",
-            scrollbar = false,
-          },
-        },
-
-        ghost_text = { enabled = true },
       },
 
       -- Experimental
       signature = {
         enabled = true,
         window = { border = "rounded" },
-      },
-
-      sources = {
-        default = { "lazydev", "lsp", "path", "snippets", "buffer" },
-        providers = {
-          lazydev = {
-            name = "LazyDev",
-            module = "lazydev.integrations.blink",
-            score_offset = 100,
-          },
-          buffer = {
-            score_offset = -10,
-          },
-        },
       },
 
       snippets = { preset = "luasnip" },
