@@ -36,7 +36,7 @@ return {
         ["_"] = "actions.open_cwd",
         ["gs"] = "actions.change_sort",
         ["gx"] = "actions.open_external",
-        ["g."] = "actions.toggle_hidden",
+        ["gh"] = "actions.toggle_hidden",
         -- Custom
         q = "actions.close",
         gt = "actions.toggle_trash",
