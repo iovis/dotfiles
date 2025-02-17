@@ -30,6 +30,8 @@ end, { expr = true })
 -- Movement
 vim.keymap.set("i", "<m-left>", "<s-left>")
 vim.keymap.set("i", "<m-right>", "<s-right>")
+vim.keymap.set("i", "<m-h>", "<s-left>")
+vim.keymap.set("i", "<m-l>", "<s-right>")
 
 vim.keymap.set("i", "<c-a>", "<home>")
 vim.keymap.set("i", "<c-e>", "<end>")
@@ -70,6 +72,8 @@ end, { expr = true })
 -- Movement
 vim.keymap.set("c", "<m-left>", "<s-left>")
 vim.keymap.set("c", "<m-right>", "<s-right>")
+vim.keymap.set("c", "<m-h>", "<s-left>")
+vim.keymap.set("c", "<m-l>", "<s-right>")
 
 vim.keymap.set("c", "<c-a>", "<c-b>")
 vim.keymap.set("c", "<c-b>", "<nop>")
