@@ -190,6 +190,7 @@ return {
             draw = {
               columns = {
                 { "item_idx" }, -- Show index of completion
+                { "kind_icon" },
                 { "label", "label_description", gap = 1 },
               },
             },
