@@ -36,6 +36,11 @@ local winbar_per_filetype = {
     hl = "DevIconGitLogo",
     title = "git blame",
   },
+  ["gitsigns-blame"] = {
+    icon = "",
+    hl = "DevIconGitLogo",
+    title = "git blame",
+  },
   gitrebase = {
     icon = "",
     hl = "DevIconGitLogo",
