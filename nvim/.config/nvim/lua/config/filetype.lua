@@ -1,6 +1,7 @@
 vim.filetype.add({
   extension = {
     dbout = "dbout",
+    http = "http",
     nbt = "numbat",
     rbs = "ruby",
     templ = "templ",
