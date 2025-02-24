@@ -11,7 +11,8 @@ rescue LoadError
   puts "couldn't load awesome_print"
 end
 
-# Pry.config.pager = false
+Pry.config.color = true
+Pry.config.pager = false
 
 begin
   require 'pry-byebug'
