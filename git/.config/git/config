@@ -2,16 +2,21 @@
   bare-clone = !git_bare_clone
   branch-name = !git rev-parse --abbrev-ref HEAD
   default-branch = !awk -F'/' '{print $NF}' .git/refs/remotes/origin/HEAD
-  files = !git diff --name-only $(git merge-base HEAD $(git default-branch))
-  hidden = !git ls-files -v | grep \"^[a-z]\"
-  hide = update-index --assume-unchanged
+
+  exclude = !$EDITOR .git/info/exclude
+  ; hidden = !git ls-files -v | grep \"^[a-z]\"
+  ; hide = update-index --assume-unchanged
   ignored = !git status -s --ignored | grep \"^!!\"
+  ; unhide = update-index --no-assume-unchanged
+  ; unhide-all = update-index --really-refresh
+
   publish = !git push -u origin $(git branch-name)
-  review = "!f() { $EDITOR ${@:-$(git files)}; }; f"
-  stat = !git diff --stat $(git merge-base HEAD $(git default-branch))
-  unhide = update-index --no-assume-unchanged
-  unhide-all = update-index --really-refresh
   unpublish = !git push origin :$(git branch-name)
+
+  files-changed = !git diff --name-only $(git merge-base HEAD $(git default-branch))
+  diff-main = !git diff $(git merge-base HEAD $(git default-branch))
+  review = "!f() { $EDITOR ${@:-$(git files-changed)}; }; f"
+  stat = !git diff --stat $(git merge-base HEAD $(git default-branch))
 [color]
   ui = auto
 [commit]
