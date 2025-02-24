@@ -2,8 +2,8 @@ local u = require("utils")
 
 u.bind.app({ ctrl_alt_cmd, "a" }, "zoom.us")
 u.bind.app({ ctrl_alt_cmd, "s" }, "Slack")
-u.bind.app({ ctrl_alt_cmd, "d" }, "Arc")
-u.bind.app({ ctrl_alt_cmd, "f" }, "WezTerm")
+u.bind.app({ ctrl_alt_cmd, "d" }, "WezTerm")
+u.bind.app({ ctrl_alt_cmd, "f" }, "Arc")
 u.bind.app({ hyper, "f" }, "Safari")
 u.bind.app({ ctrl_alt_cmd, "g" }, "Google Chrome Canary")
 
