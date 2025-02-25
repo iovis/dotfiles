@@ -24,15 +24,13 @@ elseif u.current_file():match("_test.c$") then
   -- TODO: use treesitter to extract the suite_name/test_name
   vim.keymap.set("n", "<leader>si", "<cmd>Tux just test --filter " .. "<cr>", { buffer = true })
 elseif vim.uv.cwd():match("qmk_userspace") then
-  vim.keymap.set("n", "<leader>S", function()
-    local firmware = "qmk"
-
-    if u.current_file():match("zsa/") then
-      firmware = "zsa"
-    end
-
-    tux.popup("just setup " .. firmware)
-  end, { buffer = true })
+  if u.current_file():match("keyboards/") then
+    vim.keymap.set("n", "<leader>S", function()
+      -- keyboards/(boardsource/unicorne)/keymaps/...
+      local keyboard = u.current_file():match([[keyboards/(.*)/keymaps]])
+      tux.popup("just setup " .. keyboard)
+    end, { buffer = true })
+  end
 
   vim.keymap.set("n", "s<cr>", "<cmd>Tuxpopup just run<cr>", { buffer = true })
   vim.keymap.set("n", "m<cr>", "<cmd>Tuxpopup just flash<cr>", { buffer = true })
