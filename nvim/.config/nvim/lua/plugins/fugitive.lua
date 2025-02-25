@@ -10,7 +10,7 @@ return {
 
     vim.keymap.set("n", "<leader>G", "<cmd>Gtabedit:<cr>)", { remap = true })
     vim.keymap.set("n", "<leader>go", "<cmd>Gread<cr>")
-    -- vim.keymap.set("n", "<leader>gb", "<cmd>Git blame<cr>")
+    vim.keymap.set("n", "<leader>gb", "<cmd>Git blame<cr>")
     vim.keymap.set({ "n", "x" }, "<leader>gg", ":GBrowse<cr>", { silent = true })
 
     vim.keymap.set("n", "<leader>lg", "<cmd>Glol -500<cr>")

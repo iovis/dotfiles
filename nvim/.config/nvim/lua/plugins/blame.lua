@@ -2,7 +2,7 @@ return {
   "FabijanZulj/blame.nvim",
   cmd = { "BlameToggle" },
   keys = {
-    { "<leader>gb", "<cmd>BlameToggle window<cr>" },
+    -- { "<leader>gb", "<cmd>BlameToggle window<cr>" },
     { "yob", "<cmd>BlameToggle virtual<cr>" },
   },
   config = function()
