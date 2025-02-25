@@ -30,8 +30,8 @@
   excludesfile = ~/.config/git/global_gitignore
   pager = delta
   # For big repositories
-  # fsmonitor = true
-  # untrackedCache = true
+  ; fsmonitor = true
+  ; untrackedCache = true
 [delta]
   light = false
   navigate = true  # use n and N to move between diff sections
