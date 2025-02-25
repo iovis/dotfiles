@@ -17,7 +17,11 @@
   diff-main = !git diff $(git merge-base HEAD $(git default-branch))
   review = "!f() { $EDITOR ${@:-$(git files-changed)}; }; f"
   stat = !git diff --stat $(git merge-base HEAD $(git default-branch))
+[branch]
+  sort = -committerdate
 [color]
+  ui = auto
+[column]
   ui = auto
 [commit]
   verbose = true
@@ -25,6 +29,9 @@
   autocrlf = input
   excludesfile = ~/.config/git/global_gitignore
   pager = delta
+  # For big repositories
+  # fsmonitor = true
+  # untrackedCache = true
 [delta]
   light = false
   navigate = true  # use n and N to move between diff sections
@@ -32,8 +39,11 @@
   line-numbers = true
   syntax-theme = base16
 [diff]
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
   tool = nvim
-  colorMoved = default
 [difftool]
   prompt = false
   keepBackup = false
@@ -42,7 +52,11 @@
 [difftool "nvim"]
   cmd = nvim -c DiffviewOpen
 [fetch]
+  all = true
   prune = true
+  pruneTags = true
+[help]
+  autocorrect = prompt
 [init]
   defaultBranch = main
 [interactive]
@@ -68,8 +82,14 @@
   rebase = true
 [push]
   default = simple
+  autoSetupRemote = true
+  followTags = true
 [rebase]
-  autosquash = true
+  autoSquash = true
+  autoStash = true
+  updateRefs = true
+[tag]
+  sort = version:refname
 [user]
   name = David Marchante
   email = davidmarchan@gmail.com
