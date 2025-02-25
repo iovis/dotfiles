@@ -1,12 +1,17 @@
 return {
-  "akinsho/nvim-bufferline.lua",
+  "akinsho/bufferline.nvim",
   -- enabled = false,
+  -- dev = true,
   event = "TabNew",
   keys = {
     { "<m-l>", "<cmd>BufferLineCycleNext<cr>" },
     { "<m-h>", "<cmd>BufferLineCyclePrev<cr>" },
   },
   config = function()
+    -- Remove certain strings from de-duplicated buffers
+    require("bufferline.constants").ELLIPSIS = ""
+    require("bufferline.constants").DUPLICATED = ""
+
     require("bufferline").setup({
       -- highlights = require("catppuccin.groups.integrations.bufferline").get(),
       highlights = {
@@ -38,7 +43,8 @@ return {
         -- end,
         show_buffer_close_icons = false,
         show_close_icon = false,
-        show_duplicate_prefix = false,
+        max_prefix_length = 10,
+        show_duplicate_prefix = true,
         separator_style = { "", "" },
         always_show_bufferline = false,
         offsets = {
