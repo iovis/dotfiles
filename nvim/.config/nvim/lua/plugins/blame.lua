@@ -12,9 +12,9 @@ return {
       commit_detail_view = "split",
       mappings = {
         commit_info = "i",
-        stack_push = "-",
-        stack_pop = "_",
-        show_commit = "<CR>",
+        stack_push = "<tab>",
+        stack_pop = "<s-tab>",
+        show_commit = "<cr>",
         close = { "<esc>", "q" },
       },
     })

@@ -19,16 +19,12 @@ return {
     require("diffview").setup({
       keymaps = {
         view = {
-          ["<tab>"] = false,
-          ["<s-tab>"] = false,
           { "n", "<down>", actions.select_next_entry, { desc = "Open the diff for the next file" } },
           { "n", "<up>", actions.select_prev_entry, { desc = "Open the diff for the previous file" } },
           { "n", "<leader>k", actions.toggle_files, { desc = "Toggle the file panel." } },
           { "n", "q", "<cmd>DiffviewClose<cr>", { desc = "Close Diffview" } },
         },
         file_panel = {
-          ["<tab>"] = false,
-          ["<s-tab>"] = false,
           { "n", "<down>", actions.select_next_entry, { desc = "Open the diff for the next file" } },
           { "n", "<up>", actions.select_prev_entry, { desc = "Open the diff for the previous file" } },
           { "n", "<leader>k", actions.toggle_files, { desc = "Toggle the file panel." } },
@@ -36,8 +32,6 @@ return {
           { "n", "q", "<cmd>DiffviewClose<cr>", { desc = "Close Diffview" } },
         },
         file_history_panel = {
-          ["<tab>"] = false,
-          ["<s-tab>"] = false,
           { "n", "<down>", actions.select_next_entry, { desc = "Open the diff for the next file" } },
           { "n", "<up>", actions.select_prev_entry, { desc = "Open the diff for the previous file" } },
           { "n", "<leader>k", actions.toggle_files, { desc = "Toggle the file panel." } },
