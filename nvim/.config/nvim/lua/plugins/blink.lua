@@ -187,6 +187,7 @@ return {
 
         completion = {
           menu = {
+            auto_show = true,
             draw = {
               columns = {
                 { "item_idx" }, -- Show index of completion
