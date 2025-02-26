@@ -199,9 +199,10 @@ return {
       }
 
       ---- Global LSP settings
+      vim.keymap.set("n", "<leader>lR", ":LspRestart<cr>")
       vim.keymap.set("n", "<leader>lh", "<cmd>help lspconfig-all<cr>")
       vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
-      vim.keymap.set("n", "<leader>lR", ":LspRestart<cr>")
+      vim.keymap.set("n", "<leader>ll", "<cmd>LspLog<cr>")
 
       vim.api.nvim_create_user_command("LspActiveClients", "R=vim.lsp.get_clients()", {})
     end,
