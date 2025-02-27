@@ -7,6 +7,7 @@ return {
   config = function()
     require("blink.cmp").setup({
       keymap = {
+        preset = "none",
         ["<Tab>"] = { "select_and_accept", "fallback" },
         ["<C-j>"] = { "snippet_forward", "fallback" },
         ["<C-k>"] = { "snippet_backward", "fallback" },
@@ -69,14 +70,6 @@ return {
         },
       },
       completion = {
-        list = {
-          selection = {
-            preselect = function(ctx)
-              return ctx.mode ~= "cmdline" and not require("blink.cmp").snippet_active({ direction = 1 })
-            end,
-          },
-        },
-
         menu = {
           border = "rounded",
           scrollbar = false,
@@ -129,15 +122,16 @@ return {
 
       cmdline = {
         keymap = {
+          preset = "none",
           -- TODO:
           --   - <c-b> not mappable?
           --   - <esc> executes the command (neovim issue)
           ["<C-y>"] = { "select_and_accept" },
           ["<Tab>"] = { "select_next", "fallback" },
-          ["<S-Tab>"] = { "select_prev", "fallback" },
-          ["<C-n>"] = { "select_next", "fallback" },
-          ["<C-p>"] = { "select_prev", "fallback" },
-          ["<C-s>"] = { "cancel", "fallback" },
+          ["<S-Tab>"] = { "select_prev" },
+          ["<C-n>"] = { "select_next" },
+          ["<C-p>"] = { "select_prev" },
+          ["<C-b>"] = { "show", "hide" },
           ["<M-1>"] = {
             function(cmp)
               cmp.accept({ index = 1 })
@@ -186,6 +180,12 @@ return {
         },
 
         completion = {
+          list = {
+            selection = {
+              preselect = false,
+              auto_insert = true,
+            },
+          },
           menu = {
             auto_show = true,
             draw = {
