@@ -79,7 +79,7 @@ return {
     { condition = conds.line_begin }
   ),
   s({ trig = ",pry", snippetType = "autosnippet" }, t("binding.pry")),
-  s("pry", t("<% require 'pry-byebug'; binding.pry %>"), {
+  s("pry", t("<% require 'pry'; binding.pry %>"), {
     condition = conds.line_begin,
   }),
 }

@@ -325,7 +325,7 @@ return {
   s("rw", fmt("attr_accessor :{}", { i(0, "attr_name") }), {
     condition = conds.line_begin,
   }),
-  s("pry", t("require 'pry-byebug'; binding.pry"), {
+  s("pry", t("require 'pry'; binding.pry"), {
     condition = conds.line_begin,
   }),
   s({ trig = ",pry", snippetType = "autosnippet" }, t("binding.pry")),
