@@ -129,8 +129,8 @@ return {
           ["<C-y>"] = { "select_and_accept" },
           ["<Tab>"] = { "select_next", "fallback" },
           ["<S-Tab>"] = { "select_prev" },
-          ["<C-n>"] = { "select_next" },
-          ["<C-p>"] = { "select_prev" },
+          ["<C-n>"] = { "select_next", "fallback" },
+          ["<C-p>"] = { "select_prev", "fallback" },
           ["<C-b>"] = { "show", "hide" },
           ["<M-1>"] = {
             function(cmp)
