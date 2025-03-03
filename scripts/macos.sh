@@ -28,4 +28,14 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 cargo install cargo-binstall
 cargo binstall -y $(cat "$DOTFILES/default/crates")
 
+echo "[$(date '+%Y-%m-%d %H:%M')] macOS Settings"
+defaults write -g NSUseSpellCheckerForCompletions -bool false
+defaults write -g NSAllowContinuousSpellChecking -bool false
+defaults write -g ApplePressAndHoldEnabled -bool false   # Enable key repeat
+defaults write -g NSWindowShouldDragOnGesture -bool true # Drag windows from anywhere with ctrl+cmd+click
+defaults write -g com.apple.Dock showhidden -bool true   # Translucent hidden apps in Dock
+
+killall Finder
+killall Dock
+
 echo "[$(date '+%Y-%m-%d %H:%M')] Installation ended"
