@@ -4,6 +4,7 @@
   default-branch = !awk -F'/' '{print $NF}' .git/refs/remotes/origin/HEAD
 
   exclude = !$EDITOR .git/info/exclude
+  excluded = ls-files --ignored --others --exclude-from=.git/info/exclude
   ; hidden = !git ls-files -v | grep \"^[a-z]\"
   ; hide = update-index --assume-unchanged
   ignored = !git status -s --ignored | grep \"^!!\"
