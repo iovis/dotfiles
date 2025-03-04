@@ -378,7 +378,7 @@ end, { expr = true })
 vim.keymap.set({ "n", "x" }, "'r", [[:rubydo $_ = "#{$_}"<left>]])
 
 ---- Quickfix toggle
-vim.keymap.set("n", "\\", function()
+vim.keymap.set("n", "+", function()
   if vim.fn.getqflist({ winid = 1 }).winid == 0 then
     vim.cmd("botright copen")
   else
