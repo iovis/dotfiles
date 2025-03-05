@@ -53,6 +53,11 @@ local winbar_per_filetype = {
       return vim.fn.fnamemodify(require("oil").get_current_dir() or "", ":~")
     end,
   },
+  undotree = {
+    icon = "󰁯",
+    hl = "DevIconBackup",
+    title = "undotree",
+  },
 }
 
 ---@param path string
