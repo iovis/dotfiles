@@ -29,7 +29,7 @@
 [core]
   autocrlf = input
   excludesfile = ~/.config/git/global_gitignore
-  pager = delta
+  ; pager = delta
   # For big repositories
   ; fsmonitor = true
   ; untrackedCache = true
