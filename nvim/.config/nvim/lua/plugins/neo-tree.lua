@@ -15,12 +15,11 @@ return {
     require("neo-tree").setup({
       enable_diagnostics = false,
       popup_border_style = "rounded",
-      window = {
-        width = 40,
-      },
+      window = { width = 40 },
       filesystem = {
         use_libuv_file_watcher = true,
         filtered_items = {
+          visible = true,
           hide_dotfiles = false,
           hide_by_name = {
             "Session.vim",
