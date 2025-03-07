@@ -226,6 +226,8 @@ vim.keymap.set("n", "<down>", "<cmd>cnext<cr>")
 
 vim.keymap.set("n", "<leader><up>", "<cmd>cpfile<cr>")
 vim.keymap.set("n", "<leader><down>", "<cmd>cnfile<cr>")
+vim.keymap.set("n", "<s-left>", "<cmd>cpfile<cr>")
+vim.keymap.set("n", "<s-right>", "<cmd>cnfile<cr>")
 
 vim.keymap.set("n", "<left>", "<cmd>lprevious<cr>")
 vim.keymap.set("n", "<right>", "<cmd>lnext<cr>")
