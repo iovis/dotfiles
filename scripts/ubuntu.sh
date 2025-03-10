@@ -10,7 +10,7 @@ echo "[$(date '+%Y-%m-%d %H:%M')] Updating Libraries"
 sudo apt-add-repository ppa:fish-shell/release-4
 sudo apt update
 sudo apt upgrade -y
-sudo apt install -y build-essential fish gh jq libffi-dev libyaml-dev libz-dev stow tmux
+sudo apt install -y build-essential fish jq libffi-dev libfuse2 libyaml-dev libz-dev stow tmux
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing Dotfiles"
 git clone https://github.com/iovis/dotfiles "$DOTFILES"
@@ -51,6 +51,11 @@ GH_VERSION=$(curl -s "https://api.github.com/repos/cli/cli/releases/latest" | gr
 curl -Lo gh.tar.gz "https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_amd64.tar.gz"
 tar xf gh.tar.gz
 install gh_${GH_VERSION}_linux_amd64/bin/gh -D -t "$LOCAL_BIN"
+
+echo "[$(date '+%Y-%m-%d %H:%M')] Installing neovim"
+NVIM_VERSION=$(curl -s "https://api.github.com/repos/cli/cli/releases/latest" | grep -oP '"tag_name": *"v\K[^"]*')
+curl -Lo nvim "https://github.com/neovim/neovim/releases/download/v${NVIM_VERSION}/nvim-linux-x86_64.appimage"
+install nvim -D -t "$LOCAL_BIN"
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installation ended"
 cd - || exit
