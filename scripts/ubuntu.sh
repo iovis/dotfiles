@@ -46,6 +46,12 @@ curl -Lo fzf.tar.gz "https://github.com/junegunn/fzf/releases/download/v${FZF_VE
 tar xf fzf.tar.gz fzf
 install fzf -D -t "$LOCAL_BIN"
 
+echo "[$(date '+%Y-%m-%d %H:%M')] Installing gh"
+GH_VERSION=$(curl -s "https://api.github.com/repos/cli/cli/releases/latest" | grep -oP '"tag_name": *"v\K[^"]*')
+curl -Lo gh.tar.gz "https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_amd64.tar.gz"
+tar xf gh.tar.gz
+install gh_${GH_VERSION}_linux_amd64/bin/gh -D -t "$LOCAL_BIN"
+
 echo "[$(date '+%Y-%m-%d %H:%M')] Installation ended"
 cd - || exit
 rm -rf "$INSTALLATION_DIR"
