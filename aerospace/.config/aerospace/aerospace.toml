@@ -161,8 +161,9 @@ run = 'layout floating'
 if.app-id = 'com.cisco.secureclient.gui'
 run = 'layout floating'
 [[on-window-detected]]
-if.app-id = 'Cisco-Systems.Spark' # Webex
-run = 'layout floating'
+# Webex
+if.app-id = 'Cisco-Systems.Spark'
+run = ['layout floating', 'move-node-to-workspace J']
 [[on-window-detected]]
 if.app-id = 'com.culturedcode.ThingsMac'
 run = 'layout floating'
