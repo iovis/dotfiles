@@ -158,7 +158,7 @@ run = 'layout floating'
 if.app-id = 'com.colliderli.iina'
 run = 'layout floating'
 [[on-window-detected]]
-if.app-id = 'com.cisco.anyconnect.gui'
+if.app-id = 'com.cisco.secureclient.gui'
 run = 'layout floating'
 [[on-window-detected]]
 if.app-id = 'Cisco-Systems.Spark' # Webex
