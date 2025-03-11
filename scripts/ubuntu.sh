@@ -35,28 +35,28 @@ mkdir -p "$INSTALLATION_DIR"
 cd "$INSTALLATION_DIR" || exit
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing Lazygit"
-lazygit_version=$(curl -LsSf "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | jq -r '.assets.[].browser_download_url | select(endswith("_Linux_x86_64.tar.gz"))')
+lazygit_version=$(curl -LsSf "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | jq -r '.assets[].browser_download_url | select(endswith("_Linux_x86_64.tar.gz"))')
 curl -Lo lazygit.tar.gz "$lazygit_version"
 tar xf lazygit.tar.gz lazygit
 install lazygit -D -t "$LOCAL_BIN"
 lazygit --version
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing FZF"
-fzf_version=$(curl -LsSf "https://api.github.com/repos/junegunn/fzf/releases/latest" | jq -r '.assets.[].browser_download_url | select(endswith("-linux_amd64.tar.gz"))')
+fzf_version=$(curl -LsSf "https://api.github.com/repos/junegunn/fzf/releases/latest" | jq -r '.assets[].browser_download_url | select(endswith("-linux_amd64.tar.gz"))')
 curl -Lo fzf.tar.gz "$fzf_version"
 tar xf fzf.tar.gz fzf
 install fzf -D -t "$LOCAL_BIN"
 fzf --version
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing gh"
-gh_version=$(curl -LsSf "https://api.github.com/repos/cli/cli/releases/latest" | jq -r '.assets.[].browser_download_url | select(endswith("_linux_amd64.tar.gz"))')
+gh_version=$(curl -LsSf "https://api.github.com/repos/cli/cli/releases/latest" | jq -r '.assets[].browser_download_url | select(endswith("_linux_amd64.tar.gz"))')
 curl -Lo gh.tar.gz "$gh_version"
 tar xf gh.tar.gz
 install gh_*_linux_amd64/bin/gh -D -t "$LOCAL_BIN"
 gh --version
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing neovim"
-nvim_version=$(curl -LsSf "https://api.github.com/repos/neovim/neovim/releases/latest" | jq -r '.assets.[].browser_download_url | select(endswith("-linux-x86_64.appimage"))')
+nvim_version=$(curl -LsSf "https://api.github.com/repos/neovim/neovim/releases/latest" | jq -r '.assets[].browser_download_url | select(endswith("-linux-x86_64.appimage"))')
 curl -Lo nvim "$nvim_version"
 install nvim -D -t "$LOCAL_BIN"
 nvim --version
