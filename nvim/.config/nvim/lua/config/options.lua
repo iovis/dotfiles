@@ -1,13 +1,11 @@
----- Set Space as the leader key
-vim.g.debug = false
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-vim.g.scrolloff = 4
-
 ---- Global Variables
 vim.g.autoformat = true
 vim.g.autotest = nil
+vim.g.debug = false
 vim.g.foldcolumn = false
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+vim.g.scrolloff = 4
 vim.g.zig_fmt_autosave = 0
 
 ---- Nvim Options
@@ -18,6 +16,7 @@ vim.o.completeopt = "menu,menuone,noselect"
 vim.o.cursorline = true
 vim.opt.diffopt:append("hiddenoff,vertical")
 vim.o.expandtab = true
+vim.o.exrc = true
 vim.opt.fillchars = {
   diff = "╱",
   eob = " ",
