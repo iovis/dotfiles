@@ -14,7 +14,18 @@ vim.o.breakindent = true
 -- vim.o.cmdheight = 2
 vim.o.completeopt = "menu,menuone,noselect"
 vim.o.cursorline = true
-vim.opt.diffopt:append("hiddenoff,vertical")
+vim.opt.diffopt = {
+  "internal",
+  "filler",
+  "closeoff",
+  "context:12",
+  "algorithm:histogram",
+  "linematch:200",
+  "indent-heuristic",
+  "hiddenoff",
+  "vertical",
+  -- "iwhite",
+}
 vim.o.expandtab = true
 vim.o.exrc = true
 vim.opt.fillchars = {
