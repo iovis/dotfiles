@@ -1,20 +1,38 @@
 return {
   "sindrets/diffview.nvim",
-  dependencies = {
-    "nvim-tree/nvim-web-devicons",
-  },
-  cmd = {
-    "DiffviewFileHistory",
-    "DiffviewOpen",
-  },
-  keys = {
-    { "<leader>df", "<cmd>DiffviewOpen<cr>", desc = "Diffview open" },
-    { "<leader>dh", "<cmd>DiffviewFileHistory %<cr>", desc = "Diffview current file history" },
-    { "<leader>dc", "<cmd>DiffviewFileHistory<cr>", desc = "Diffview all commits" },
-    { "<leader>dh", ":DiffviewFileHistory<cr>", silent = true, mode = "x" },
-  },
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+  event = "VeryLazy",
   config = function()
     local actions = require("diffview.actions")
+
+    local function toggle_diffview(cmd)
+      if next(require("diffview.lib").views) == nil then
+        vim.cmd(cmd)
+      else
+        vim.cmd("DiffviewClose")
+      end
+    end
+
+    vim.keymap.set("n", "<leader>di", function()
+      toggle_diffview("DiffviewOpen")
+    end, { desc = "Diffview open" })
+
+    vim.keymap.set("n", "<leader>dm", function()
+      toggle_diffview("DiffviewOpen master..HEAD")
+    end, { desc = "Diffview current with master" })
+
+    vim.keymap.set("n", "<leader>dh", function()
+      toggle_diffview("DiffviewFileHistory %")
+    end, { desc = "Diffview current file history" })
+
+    vim.keymap.set("x", "<leader>dh", ":DiffviewFileHistory<cr>", {
+      silent = true,
+      desc = "Diffview current file history",
+    })
+
+    vim.keymap.set("n", "<leader>dl", function()
+      toggle_diffview("DiffviewFileHistory")
+    end, { desc = "Diffview all commits" })
 
     require("diffview").setup({
       keymaps = {
