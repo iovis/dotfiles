@@ -38,11 +38,11 @@ return {
       vim.keymap.set("n", "g" .. upper, function()
         muxi.add(lower)
         vim.notify("Added current file to " .. lower)
-      end, { desc = "[muxi] Add session to " .. lower })
+      end, { desc = "[muxi] Add file to " .. lower })
 
       vim.keymap.set("n", "g" .. lower, function()
         muxi.go_to(lower, { go_to_cursor = false })
-      end, { desc = "[muxi] go to session " .. lower })
+      end, { desc = "[muxi] go to file " .. lower })
     end
 
     ----Mark management
@@ -60,7 +60,7 @@ return {
 
     vim.keymap.set("n", "m!", function()
       muxi.clear_all()
-      vim.notify("Cleared current session")
+      vim.notify("Cleared current marks")
     end, { desc = "[muxi] Clear current workspace" })
 
     vim.keymap.set("n", "'e", muxi.ui.edit, {
