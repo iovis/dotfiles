@@ -20,7 +20,7 @@ return {
         ["<M-j>"] = { "scroll_documentation_down", "fallback" },
         ["<C-s>"] = {
           function(cmp)
-            cmp.show({ providers = { "luasnip" } })
+            cmp.show({ providers = { "snippets" } })
           end,
         },
         ["<M-1>"] = {
