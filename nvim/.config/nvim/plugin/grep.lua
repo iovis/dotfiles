@@ -1,7 +1,8 @@
 local u = require("config.utils")
 
 if u.is_executable("rg") then
-  vim.o.grepprg = "rg --hidden --vimgrep --smart-case -g '!Session.vim' -g '!.git' -g '!.gitattributes'"
+  vim.o.grepprg =
+    "rg --hidden --vimgrep --smart-case -g '!Session.vim' -g '!.git' -g '!.gitattributes' -g '!node_modules'"
   vim.o.grepformat = "%f:%l:%c:%m"
 end
 

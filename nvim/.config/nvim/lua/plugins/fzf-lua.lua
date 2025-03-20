@@ -117,7 +117,7 @@ return {
           ["--delimiter"] = ":",
           ["--nth"] = "4..",
         },
-        rg_opts = [[--hidden --column --line-number --no-heading --color=always --smart-case -g '!Session.vim' -g '!.venv' -g '!.git' -g '!.gitattributes']],
+        rg_opts = [[--hidden --column --line-number --no-heading --color=always --smart-case -g '!Session.vim' -g '!.venv' -g '!.git' -g '!.gitattributes' -g '!node_modules']],
       },
       registers = {
         actions = {
