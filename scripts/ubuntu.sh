@@ -11,7 +11,7 @@ echo "[$(date '+%Y-%m-%d %H:%M')] Updating Libraries"
 sudo apt-add-repository -y ppa:fish-shell/release-4
 sudo apt update
 sudo apt upgrade -y
-sudo apt install -y build-essential fish jq libffi-dev libfuse2 libyaml-dev libz-dev stow tmux unzip
+sudo apt install -y build-essential curl fish git htop jq libffi-dev libfuse2 libyaml-dev libz-dev stow tmux unzip wget
 sudo apt remove --autoremove -y snapd
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing Dotfiles"
