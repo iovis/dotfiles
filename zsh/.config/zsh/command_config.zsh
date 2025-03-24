@@ -37,6 +37,16 @@ if type nvim > /dev/null; then
   # export MANPAGER="$EDITOR +Man!"
   alias ni="nvim"
   alias nis="nvim -S Session.vim"
+
+  function n() {
+    if [[ $# -gt 0 ]]; then
+      nvim $@
+    elif [[ -f "Session.vim" ]]; then
+      nvim -S Session.vim
+    else
+      nvim
+    fi
+  }
 fi
 
 # ripgrep
