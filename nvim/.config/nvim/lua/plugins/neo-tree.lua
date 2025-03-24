@@ -38,7 +38,7 @@ return {
             ["g?"] = "show_help",
             ["?"] = "",
 
-            ["g."] = "toggle_hidden",
+            ["gh"] = "toggle_hidden",
             H = "",
 
             S = "",
