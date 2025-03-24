@@ -20,6 +20,8 @@ return {
       desc = "[muxi] Mark/go to file (cursor: true)",
     })
 
+    vim.keymap.set("n", "'m", "m", { desc = "Original marks" })
+
     vim.keymap.set("n", "dm", muxi.ui.quick_delete, {
       desc = "[muxi] Delete mark",
     })

@@ -166,10 +166,10 @@ return {
 
     vim.keymap.set("x", "D", "g.", { remap = true })
 
-    vim.keymap.set("n", "R", "griw", { remap = true })
+    vim.keymap.set("n", "R", "'m`griw``", { remap = true })
     vim.keymap.set("x", "R", "gr", { remap = true })
 
-    vim.keymap.set("n", "S", "geiw", { remap = true })
+    vim.keymap.set("n", "S", "'m`geiw``", { remap = true })
     vim.keymap.set("x", "S", "ge", { remap = true })
 
     ---- mini.surround
