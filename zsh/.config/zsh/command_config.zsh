@@ -35,8 +35,6 @@ fi
 if type nvim > /dev/null; then
   export EDITOR="nvim"
   # export MANPAGER="$EDITOR +Man!"
-  alias ni="nvim"
-  alias nis="nvim -S Session.vim"
 
   function n() {
     if [[ $# -gt 0 ]]; then
