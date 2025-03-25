@@ -2,7 +2,7 @@
 
 return {
   "mistweaverco/kulala.nvim",
-  version = "*",
+  -- version = "*",
   ft = "http",
   config = function()
     local kulala = require("kulala")
