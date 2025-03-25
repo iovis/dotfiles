@@ -134,9 +134,16 @@ local function get_winbar(is_active)
   end
 end
 
+local ignored_filetypes = {
+  "html.kulala_ui",
+  "json.kulala_ui",
+  "kulala_verbose_result.kulala_ui",
+  "text.kulala_ui",
+}
+
 local function set_winbar(args)
-  -- Ignore custom winbar
-  if vim.wo.winbar:match("»") then
+  -- Ignore custom winbar or certain filetypes
+  if vim.wo.winbar:match("»") or vim.tbl_contains(ignored_filetypes, vim.bo.filetype) then
     return
   end
 
