@@ -1,0 +1,66 @@
+#!/usr/bin/env sh
+
+# curl --proto '=https' --tlsv1.2 -LsSf https://raw.githubusercontent.com/iovis/dotfiles/master/scripts/ubuntu.sh | sh
+
+# TODO:
+# - Hyprland
+# - Gnome settings (dconf?)
+# - Wezterm config for Arch
+
+export DOTFILES="$HOME/.dotfiles"
+export LOCAL_BIN="$HOME/.local/bin"
+export PROJECT_HOME="$HOME/code/"
+export PATH="$LOCAL_BIN:$PATH"
+
+echo "[$(date '+%Y-%m-%d %H:%M')] Updating Libraries"
+sudo pacman -Syu
+sudo pacman -S --needed base-devel bat bear clang curl dkms dua-cli eza fastfetch fd ffmpeg firefox fish fzf git git-delta github-cli gnome-disk-utility gopls hexyl htop hurl hyperfine imagemagick jq just lazygit less lib32-libvdpau lib32-nvidia-utils lib32-nvidia-utils libvdpau linux-headers llvm man-db mpv mtr neovim nmap nvidia nvidia-utils nvidia-utils obsidian parallel qmk ripgrep rsync sd shellcheck shfmt starship steam stow stylua tldr tmux ttf-firacode-nerd unzip watchexec wezterm xh xsel yt-dlp zoxide
+
+# For nvidia driver
+sudo mkinitcpio -P
+
+if type yay >/dev/null; then
+  echo "[$(date '+%Y-%m-%d %H:%M')] Installing yay"
+
+  mkdir "$PROJECT_HOME"
+  cd "$PROJECT_HOME"
+
+  git clone https://aur.archlinux.org/yay.git
+  cd yay
+
+  makepkg -si
+
+  cd
+  rm -rf "$PROJECT_HOME/yay/"
+fi
+
+yay -S --needed 1password
+
+# If using an SSD
+sudo systemctl enable fstrim.timer
+sudo systemctl start fstrim.timer
+
+sudo systemctl enable bluetooth
+sudo systemctl start bluetooth
+
+echo "[$(date '+%Y-%m-%d %H:%M')] Installing Dotfiles"
+git clone https://github.com/iovis/dotfiles "$DOTFILES"
+
+echo "[$(date '+%Y-%m-%d %H:%M')] Stow"
+cd "$DOTFILES" || exit
+stow fish fzf git lazygit mise muxi nvim starship stylua tmux vim wezterm_arch
+
+echo "[$(date '+%Y-%m-%d %H:%M')] Installing mise"
+curl https://mise.run | sh
+mise install -y
+
+echo "[$(date '+%Y-%m-%d %H:%M')] Installing rust"
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+. "$HOME/.cargo/env"
+cargo install cargo-binstall
+cargo binstall -y $(cat "$DOTFILES/default/crates")
+
+echo "[$(date '+%Y-%m-%d %H:%M')] Installation ended"
+cd - || exit
+
+# chsh -s /usr/bin/fish
