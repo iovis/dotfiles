@@ -16,7 +16,7 @@ sudo pacman -Syu
 
 sudo pacman -S --needed base-devel dkms gamemode gnome-disk-utility lib32-gamemode lib32-libvdpau lib32-nvidia-utils lib32-nvidia-utils libvdpau linux-headers man-db nvidia nvidia-utils
 
-sudo pacman -S --needed bat bear clang curl dua-cli eza fastfetch fd ffmpeg firefox fish fzf git git-delta github-cli gopls hexyl htop hurl hyperfine imagemagick jq just lazygit less llvm mpv mtr neovim nmap obsidian parallel qmk ripgrep rsync sd shellcheck shfmt starship steam stow stylua tldr tmux ttf-firacode-nerd unzip watchexec wezterm xh xsel yt-dlp zoxide
+sudo pacman -S --needed bat bear clang curl dua-cli eza fastfetch fd ffmpeg fish fzf git git-delta github-cli gopls hexyl htop hurl hyperfine imagemagick jq just lazygit less llvm mpv mtr neovim nmap obsidian parallel qmk ripgrep rsync sd shellcheck shfmt starship steam stow stylua tldr tmux ttf-firacode-nerd unzip watchexec wezterm xh xsel yt-dlp zoxide
 
 # For nvidia driver
 sudo mkinitcpio -P
@@ -36,7 +36,7 @@ if ! command -v yay >/dev/null 2>&1; then
   rm -rf "$PROJECT_HOME/yay/"
 fi
 
-yay -S --needed 1password zen-browser-bin
+yay -S --needed 1password zen-browser-bin extension-manager
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Starting services"
 sudo systemctl enable --now bluetooth fstrim.timer sshd
