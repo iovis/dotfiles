@@ -5,7 +5,6 @@
 # TODO:
 # - Hyprland
 # - Gnome settings (dconf?)
-# - Wezterm config for Arch
 
 export DOTFILES="$HOME/.dotfiles"
 export LOCAL_BIN="$HOME/.local/bin"
