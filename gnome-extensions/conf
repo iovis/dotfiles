@@ -1,0 +1,15 @@
+[clipboard-history]
+display-mode=3
+ignore-password-mimes=true
+toggle-menu=['<Super>v']
+toggle-private-mode=@as []
+
+[just-perfection]
+animation=2
+support-notifier-showed-version=34
+support-notifier-type=0
+
+[tactile]
+col-1=1
+col-2=1
+show-tiles=['<Super>semicolon']
