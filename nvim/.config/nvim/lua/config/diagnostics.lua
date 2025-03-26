@@ -7,6 +7,7 @@ local signs = {
 }
 
 for _, sign in ipairs(signs) do
+  -- TODO: deprecated
   vim.fn.sign_define(sign.name, {
     texthl = sign.name,
     text = sign.text,

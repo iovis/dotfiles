@@ -44,6 +44,7 @@ vim.o.foldlevelstart = 99
 vim.o.foldmethod = "expr"
 vim.o.foldtext = "v:lua.require'config.utils'.ui.foldtext()"
 vim.o.formatoptions = "jcroqlnt" -- tcqj
+vim.o.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 vim.o.ignorecase = true
 vim.o.inccommand = "split"
 vim.o.jumpoptions = "stack,view"
