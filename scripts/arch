@@ -12,7 +12,7 @@ export LOCAL_BIN="$HOME/.local/bin"
 export PROJECT_HOME="$HOME/code/"
 export PATH="$LOCAL_BIN:$PATH"
 
-echo "[$(date '+%Y-%m-%d %H:%M')] Updating Libraries"
+echo "[$(date '+%Y-%m-%d %H:%M')] Installing Libraries"
 sudo pacman -Syu
 
 sudo pacman -S --needed base-devel dkms gamemode gnome-disk-utility lib32-gamemode lib32-libvdpau lib32-nvidia-utils lib32-nvidia-utils libvdpau linux-headers man-db nvidia nvidia-utils
@@ -22,7 +22,7 @@ sudo pacman -S --needed bat bear clang curl dua-cli eza fastfetch fd ffmpeg fire
 # For nvidia driver
 sudo mkinitcpio -P
 
-if type yay >/dev/null; then
+if ! command -v yay >/dev/null 2>&1; then
   echo "[$(date '+%Y-%m-%d %H:%M')] Installing yay"
 
   mkdir "$PROJECT_HOME"
@@ -37,14 +37,10 @@ if type yay >/dev/null; then
   rm -rf "$PROJECT_HOME/yay/"
 fi
 
-yay -S --needed 1password
+yay -S --needed 1password zen-browser-bin
 
-# If using an SSD
-sudo systemctl enable fstrim.timer
-sudo systemctl start fstrim.timer
-
-sudo systemctl enable bluetooth
-sudo systemctl start bluetooth
+echo "[$(date '+%Y-%m-%d %H:%M')] Starting services"
+sudo systemctl enable --now bluetooth fstrim.timer sshd
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing Dotfiles"
 git clone https://github.com/iovis/dotfiles "$DOTFILES"
@@ -54,11 +50,17 @@ cd "$DOTFILES" || exit
 stow fish fzf git lazygit mise muxi nvim starship stylua tmux vim wezterm
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing mise"
-curl https://mise.run | sh
+if ! command -v mise >/dev/null 2>&1; then
+  curl https://mise.run | sh
+fi
+
 mise install -y
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing rust"
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+if ! command -v cargo >/dev/null 2>&1; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+fi
+
 . "$HOME/.cargo/env"
 cargo install cargo-binstall
 cargo binstall -y $(cat "$DOTFILES/default/crates")
@@ -66,4 +68,9 @@ cargo binstall -y $(cat "$DOTFILES/default/crates")
 echo "[$(date '+%Y-%m-%d %H:%M')] Installation ended"
 cd - || exit
 
-# chsh -s /usr/bin/fish
+shell=$(basename "$SHELL")
+if [ "$shell" != "fish" ]; then
+  echo "**************"
+  echo "$shell detected."
+  echo "Run chsh -s $(which fish)"
+fi
