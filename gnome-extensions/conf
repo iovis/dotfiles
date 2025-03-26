@@ -4,6 +4,32 @@ ignore-password-mimes=true
 toggle-menu=['<Super>v']
 toggle-private-mode=@as []
 
+[dash-to-dock]
+animation-time=0.19999999999999968
+apply-custom-theme=true
+background-opacity=0.80000000000000004
+custom-theme-shrink=true
+dash-max-icon-size=32
+dock-fixed=false
+dock-position='RIGHT'
+height-fraction=0.90000000000000002
+hide-tooltip=true
+hotkeys-overlay=false
+hotkeys-show-dock=false
+icon-size-fixed=false
+intellihide-mode='ALL_WINDOWS'
+middle-click-action='launch'
+preferred-monitor=-2
+preferred-monitor-by-connector='DP-1'
+preview-size-scale=0.0
+shift-click-action='minimize'
+shift-middle-click-action='launch'
+shortcut=@as []
+shortcut-text=''
+show-mounts-network=false
+show-show-apps-button=false
+show-windows-preview=false
+
 [just-perfection]
 animation=2
 support-notifier-showed-version=34
