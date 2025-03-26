@@ -14,7 +14,10 @@ export PATH="$LOCAL_BIN:$PATH"
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Updating Libraries"
 sudo pacman -Syu
-sudo pacman -S --needed base-devel bat bear clang curl dkms dua-cli eza fastfetch fd ffmpeg firefox fish fzf gamemode git git-delta github-cli gnome-disk-utility gopls hexyl htop hurl hyperfine imagemagick jq just lazygit less lib32-gamemode lib32-libvdpau lib32-nvidia-utils lib32-nvidia-utils libvdpau linux-headers llvm man-db mpv mtr neovim nmap nvidia nvidia-utils nvidia-utils obsidian parallel qmk ripgrep rsync sd shellcheck shfmt starship steam stow stylua tldr tmux ttf-firacode-nerd unzip watchexec wezterm xh xsel yt-dlp zoxide
+
+sudo pacman -S --needed base-devel dkms gamemode gnome-disk-utility lib32-gamemode lib32-libvdpau lib32-nvidia-utils lib32-nvidia-utils libvdpau linux-headers man-db nvidia nvidia-utils
+
+sudo pacman -S --needed bat bear clang curl dua-cli eza fastfetch fd ffmpeg firefox fish fzf git git-delta github-cli gopls hexyl htop hurl hyperfine imagemagick jq just lazygit less llvm mpv mtr neovim nmap obsidian parallel qmk ripgrep rsync sd shellcheck shfmt starship steam stow stylua tldr tmux ttf-firacode-nerd unzip watchexec wezterm xh xsel yt-dlp zoxide
 
 # For nvidia driver
 sudo mkinitcpio -P
@@ -48,7 +51,7 @@ git clone https://github.com/iovis/dotfiles "$DOTFILES"
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Stow"
 cd "$DOTFILES" || exit
-stow fish fzf git lazygit mise muxi nvim starship stylua tmux vim wezterm_arch
+stow fish fzf git lazygit mise muxi nvim starship stylua tmux vim wezterm
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing mise"
 curl https://mise.run | sh

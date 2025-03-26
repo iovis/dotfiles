@@ -70,7 +70,12 @@ config.colors = {
 -- config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" } -- Disable ligatures
 -- wezterm ls-fonts --list-system | rg Fira
 -- wezterm ls-fonts --text "✔"
-config.font_size = 20
+if wezterm.target_triple == "aarch64-apple-darwin" then
+  config.font_size = 20
+else
+  config.font_size = 18
+end
+
 config.font = wezterm.font_with_fallback({
   { family = "FiraCode Nerd Font", weight = 450 }, -- Retina
   "Menlo", -- This has the check mark and cross symbols
@@ -80,8 +85,12 @@ config.font = wezterm.font_with_fallback({
 ---Keymaps
 -- wezterm show-keys --lua
 config.disable_default_key_bindings = true
--- config.use_dead_keys = false
-config.keys = require("keymap")
+
+if wezterm.target_triple == "aarch64-apple-darwin" then
+  config.keys = require("keymap.macos")
+else
+  config.keys = require("keymap.linux")
+end
 
 ---Hyperlinks
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
