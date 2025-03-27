@@ -18,7 +18,7 @@ bind -N "Search numbers" -T copy-mode-vi F {
   send -X search-backward "[[:digit:]]+(\\.[[:digit:]]+)?"
 }
 
-bind -N "Search numbers" -T search f {
+bind -N "Search numbers" -T search n {
   copy-mode
   send F
 }
@@ -61,6 +61,16 @@ bind -N "Search dates" -T copy-mode-vi D {
 bind -N "Search dates" -T search d {
   copy-mode
   send D
+}
+
+# Times
+bind -N "Search times" -T copy-mode-vi T {
+  send -X search-backward "[[:digit:]]{1,2}:[[:digit:]]{1,2}(:[[:digit:]]{1,2}(\\.[[:digit:]]+)?)?"
+}
+
+bind -N "Search times" -T search t {
+  copy-mode
+  send T
 }
 
 # Failed RSpec examples
