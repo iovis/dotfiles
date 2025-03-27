@@ -1,3 +1,4 @@
+local tux = require("tux")
 local u = require("config.utils")
 
 vim.keymap.set("n", "<leader>al", "<cmd>ClangdSwitchSourceHeader<cr>", { buffer = true })

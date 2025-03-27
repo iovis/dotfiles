@@ -352,9 +352,9 @@ function M.range(start, finish, step)
         coroutine.yield(string.char(charCode))
       end
     end)
-  else
-    vim.notify("Invalid range", vim.log.levels.ERROR)
   end
+
+  error(("Invalid range: %s, %s, %s"):format(tostring(start), tostring(finish), tostring(step)))
 end
 
 ---Treesitter utils
@@ -365,7 +365,7 @@ M.ts = {}
 ---@param bufnr? number
 ---@return TSNode
 function M.ts.root_node(lang, bufnr)
-  local parser = vim.treesitter.get_parser(bufnr, lang)
+  local parser = assert(vim.treesitter.get_parser(bufnr, lang))
   local tree = parser:parse()[1]
 
   return tree:root()
