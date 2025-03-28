@@ -31,6 +31,7 @@ gui:
     defaultFgColor:
       - default
 git:
+  autoFetch: true
   paging:
     colorArg: always
     pager: delta --dark --paging=never --tabs=2
