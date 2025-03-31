@@ -1,5 +1,6 @@
 return {
   "MagicDuck/grug-far.nvim",
+  version = "*",
   event = "VeryLazy",
   config = function()
     require("grug-far").setup({
