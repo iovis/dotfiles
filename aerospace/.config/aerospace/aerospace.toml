@@ -9,6 +9,9 @@ after-startup-command = ['exec-and-forget aerospace_move_all_to_workspace J']
 # on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 on-focused-monitor-changed = []
 
+[exec.env-vars]
+PATH = '${HOME}/.dotfiles/bin/:${PATH}'
+
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
 # - Constant:     gaps.outer.top = 8
