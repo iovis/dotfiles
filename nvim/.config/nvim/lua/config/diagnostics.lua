@@ -1,3 +1,6 @@
+local multiline_diagnostics = false
+local virtual_text = true
+
 local config = {
   float = {
     focusable = true,
@@ -21,7 +24,8 @@ local config = {
       vim.diagnostic.severity.ERROR,
     },
   },
-  virtual_text = { current_line = false },
+  virtual_lines = multiline_diagnostics,
+  virtual_text = virtual_text, -- { current_line = true },
 }
 
 vim.diagnostic.config(config)
@@ -44,4 +48,21 @@ vim.keymap.set("n", "|", vim.diagnostic.setloclist, {
 ---- Toggle diagnostics
 vim.keymap.set("n", "yoD", function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-end, { desc = "toggle diagnostics" })
+end, { desc = "Toggle diagnostics" })
+
+---- Toggle multiline diagnostics
+vim.keymap.set("n", "yoe", function()
+  multiline_diagnostics = not multiline_diagnostics
+
+  vim.diagnostic.config({
+    virtual_lines = multiline_diagnostics,
+    virtual_text = not multiline_diagnostics,
+  })
+end, { desc = "Toggle multiline diagnostics" })
+
+---- Toggle virtual text diagnostics
+vim.keymap.set("n", "yov", function()
+  virtual_text = not virtual_text
+
+  vim.diagnostic.config({ virtual_text = virtual_text })
+end, { desc = "Toggle diagnostics on current line" })

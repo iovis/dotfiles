@@ -336,7 +336,7 @@ vim.keymap.set("n", "<leader>af", function()
   end
 end, { desc = "Toggle autowidth" })
 
-vim.keymap.set("n", "yof", function()
+vim.keymap.set("n", "yoF", function()
   vim.g.foldcolumn = not vim.g.foldcolumn
 
   -- HACK: statuscol doesn't refresh properly
