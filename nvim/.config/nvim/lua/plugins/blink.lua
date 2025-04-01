@@ -127,7 +127,7 @@ return {
           --   - <c-b> not mappable?
           --   - <esc> executes the command (neovim issue)
           ["<C-y>"] = { "select_and_accept" },
-          ["<Tab>"] = { "select_next", "fallback" },
+          ["<Tab>"] = { "select_next" },
           ["<S-Tab>"] = { "select_prev" },
           ["<C-n>"] = { "select_next", "fallback" },
           ["<C-p>"] = { "select_prev", "fallback" },

@@ -1,9 +1,5 @@
 ---- Floating window
 require("lspconfig.ui.windows").default_options.border = "rounded"
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = "rounded",
-})
 
 ---- On LSP attached buffers
 ---@param client vim.lsp.Client
@@ -45,8 +41,20 @@ local function on_attach(client, bufnr)
   ---- Diagnostics
   nmap("<m-d>", vim.diagnostic.open_float, "vim.diagnostic.open_float")
   nmap("∂", vim.diagnostic.open_float, "vim.diagnostic.open_float") -- alt+d
-  nmap("<left>", vim.diagnostic.goto_prev, "vim.diagnostic.goto_prev")
-  nmap("<right>", vim.diagnostic.goto_next, "vim.diagnostic.goto_next")
+
+  nmap("<left>", function()
+    vim.diagnostic.jump({
+      count = -1,
+      float = true,
+    })
+  end, "vim.diagnostic.goto_prev")
+
+  nmap("<right>", function()
+    vim.diagnostic.jump({
+      count = 1,
+      float = true,
+    })
+  end, "vim.diagnostic.goto_next")
 
   ---- fzf-lua
   local ok_fzf, fzf_lua = pcall(require, "fzf-lua")
@@ -89,7 +97,7 @@ local function on_attach(client, bufnr)
 
   ----Inlay hints
   local function toggle_inlay_hints()
-    if client.supports_method("textDocument/inlayHint") then
+    if client:supports_method("textDocument/inlayHint") then
       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
     else
       vim.notify("No inlay hints available", vim.log.levels.WARN)

@@ -3,6 +3,7 @@ vim.g.autoformat = true
 vim.g.autotest = nil
 vim.g.debug = false
 vim.g.foldcolumn = false
+-- vim.g.health = { style = "float" }
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.g.scrolloff = 4
@@ -57,6 +58,7 @@ vim.opt.listchars:append({
   leadmultispace = "│·",
   space = "·",
 })
+vim.o.messagesopt = "wait:2000,history:2000"
 vim.o.mouse = "a"
 vim.o.number = true
 vim.o.relativenumber = true
@@ -77,6 +79,7 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.statuscolumn = require("config.statuscol").statuscolumn()
 vim.o.swapfile = false
+vim.o.tabclose = "uselast"
 vim.o.tabstop = 2
 vim.o.termguicolors = true
 vim.o.undofile = true
@@ -84,6 +87,7 @@ vim.o.updatetime = 200
 vim.o.virtualedit = "block"
 vim.o.wildignore = "*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn"
 vim.o.wildignorecase = true
+vim.o.winborder = "rounded"
 vim.o.wrap = false
 
 ---- Session Options
@@ -92,6 +96,7 @@ vim.o.wrap = false
 -- vim.opt.sessionoptions:append("localoptions")
 
 ---- Disable legacy providers
+vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_python3_provider = 0
-vim.g.loaded_node_provider = 0
+vim.g.loaded_ruby_provider = 0
