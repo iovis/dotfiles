@@ -14,9 +14,9 @@ fzf_command() {
     --header="" \
     --no-input \
     --accept-nth 2 \
-    --bind 'j:down,k:up,q:abort,i,/:show-input+unbind(j,k,q,i,/,x)' \
+    --bind 'j:down,k:up,q:abort,i,/:show-input+unbind(j,k,q,i,/,x,d)' \
     --bind=ctrl-n:print-query \
-    --bind="x,ctrl-x:execute-silent(tmux kill-session -t {2})+reload:$tmux_sessions" \
+    --bind="x,d,ctrl-x:execute-silent(tmux kill-session -t {2})+reload:$tmux_sessions" \
     --bind=alt-p:toggle-preview \
     --preview="tmux capture-pane -ep -t '{2}:'" \
     --preview-window="right,75%" \
