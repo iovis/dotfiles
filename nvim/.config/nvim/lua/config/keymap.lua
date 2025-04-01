@@ -314,7 +314,7 @@ vim.keymap.set("n", "yoc", function()
   end
 end, { desc = "Toggle conceallevel" })
 
-vim.keymap.set("n", "yoa", function()
+vim.keymap.set("n", "yof", function()
   vim.g.autoformat = not vim.g.autoformat
 
   if vim.g.autoformat then

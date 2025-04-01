@@ -179,7 +179,7 @@ vim.api.nvim_create_autocmd(events, {
 })
 
 vim.g.winbar_full_path = false
-vim.keymap.set("n", "yof", function()
+vim.keymap.set("n", "yop", function()
   vim.g.winbar_full_path = not vim.g.winbar_full_path
   set_winbar({})
 end, { desc = "Toggle full path in winbar" })

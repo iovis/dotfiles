@@ -25,4 +25,4 @@ vim.api.nvim_create_user_command("PairingMode", function()
   vim.api.nvim_set_current_win(current_window)
 end, {})
 
-vim.keymap.set("n", "yop", ":PairingMode<cr>")
+vim.keymap.set("n", "yoP", ":PairingMode<cr>")
