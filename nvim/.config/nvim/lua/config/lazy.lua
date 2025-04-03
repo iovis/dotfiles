@@ -19,6 +19,8 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
+local projects_path = vim.env.PROJECT_HOME or "~/code"
+
 require("lazy").setup({
   spec = {
     { import = "plugins" },
@@ -27,7 +29,7 @@ require("lazy").setup({
     notify = false,
   },
   dev = {
-    path = vim.fn.resolve(vim.env.PROJECT_HOME .. "/vim"),
+    path = vim.fn.resolve(projects_path .. "/vim"),
   },
   install = {
     colorscheme = { "catppuccin" },
