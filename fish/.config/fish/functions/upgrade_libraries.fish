@@ -6,7 +6,12 @@ function upgrade_libraries
         brewdump
     else if command -q pacman
         sudo pacman -Syu
-        gnome-extensions-dump
+        pacmandump
+
+        if command -q yay
+            yay -Sua
+            yaydump
+        end
     else if command -q apt
         sudo apt update
         sudo apt upgrade -y

@@ -1,3 +1,3 @@
-function pas --wraps='pacman -Ss' --description 'alias pas pacman -Ss'
-    pacman -Ss $argv
+function pas --wraps='sudo pacman -S --needed' --description 'alias pas sudo pacman -S --needed'
+    sudo pacman -S --needed $argv && pacmandump
 end

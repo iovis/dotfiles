@@ -1,3 +1,3 @@
-function yas --wraps='yay -Ss' --description 'alias yas yay -Ss'
-    yay -Ss $argv
+function yas --wraps='sudo yay -S --needed' --description 'alias yas sudo yay -S --needed'
+    yay -S --needed $argv && yaydump
 end
