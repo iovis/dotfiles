@@ -8,24 +8,24 @@ vim.keymap.set("n", "<leader>ll", "<cmd>LspLog<cr>")
 
 vim.api.nvim_create_user_command("LspActiveClients", "R=vim.lsp.get_clients()", {})
 
-vim.lsp.enable({
-  "bashls",
-  "clangd",
-  "cssls",
-  "emmet_language_server",
-  "fish_lsp",
-  "gopls",
-  "html",
-  "hyprls",
-  "jsonls",
-  "just",
-  "lua_ls",
-  "ruby_lsp",
-  "rust_analyzer",
-  "taplo",
-  "ts_ls",
-  "yamlls",
-})
+-- vim.lsp.enable({
+--   "bashls",
+--   "clangd",
+--   "cssls",
+--   "emmet_language_server",
+--   "fish_lsp",
+--   "gopls",
+--   "html",
+--   "hyprls",
+--   "jsonls",
+--   "just",
+--   "lua_ls",
+--   "ruby_lsp",
+--   "rust_analyzer",
+--   "taplo",
+--   "ts_ls",
+--   "yamlls",
+-- })
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(event)
