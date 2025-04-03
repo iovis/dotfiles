@@ -59,7 +59,7 @@ vim.opt.listchars:append({
   leadmultispace = "│·",
   space = "·",
 })
-vim.o.messagesopt = "wait:500,history:2000"
+-- vim.o.messagesopt = "wait:2000,history:2000"
 vim.o.mouse = "a"
 vim.o.number = true
 vim.o.relativenumber = true
@@ -80,7 +80,7 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.statuscolumn = require("config.statuscol").statuscolumn()
 vim.o.swapfile = false
-vim.o.tabclose = "uselast"
+-- vim.o.tabclose = "uselast"
 vim.o.tabstop = 2
 vim.o.termguicolors = true
 vim.o.undofile = true
@@ -88,7 +88,7 @@ vim.o.updatetime = 200
 vim.o.virtualedit = "block"
 vim.o.wildignore = "*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn"
 vim.o.wildignorecase = true
-vim.o.winborder = "rounded"
+-- vim.o.winborder = "rounded"
 vim.o.wrap = false
 
 ---- Session Options
