@@ -35,7 +35,7 @@ git clone https://github.com/iovis/dotfiles "$DOTFILES"
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Stow"
 cd "$DOTFILES" || exit
-stow fish fzf git lazygit mise muxi nvim starship stylua tmux vim wezterm
+stow fish fzf git hyprland lazygit mise muxi nvim starship stylua tmux vim wezterm
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing mise"
 if ! command -v mise >/dev/null 2>&1; then
