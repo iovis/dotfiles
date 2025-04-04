@@ -8,7 +8,7 @@ export PATH="$LOCAL_BIN:$PATH"
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing Libraries"
 sudo pacman -Syu
-sudo pacman -S --needed bat bear clang curl dconf dua-cli eza fastfetch fd ffmpeg fish fzf git git-delta github-cli gopls hexyl htop hurl hyperfine imagemagick jq just lazygit less llvm mpv mtr neovim nmap nss-mdns obsidian parallel qmk ripgrep rsync sd shellcheck shfmt starship steam stow stylua tldr tmux ttf-firacode-nerd unzip watchexec wezterm wl-clipboard xh yt-dlp zoxide
+sudo pacman -S --needed bat bear clang curl dconf dua-cli eza fastfetch fd ffmpeg fish fzf git git-delta github-cli gopls hexyl htop hurl hyperfine imagemagick jq just lazygit less llvm man-db mpv mtr neovim nmap noto-fonts-cjk noto-fonts-emoji noto-fonts nss-mdns obsidian parallel qmk ripgrep rsync sd shellcheck shfmt starship steam stow stylua tldr tmux ttf-firacode-nerd unzip watchexec wezterm wl-clipboard xh yt-dlp zoxide
 
 if ! command -v yay >/dev/null 2>&1; then
   echo "[$(date '+%Y-%m-%d %H:%M')] Installing yay"
