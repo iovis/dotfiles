@@ -12,7 +12,7 @@ vim.g.zig_fmt_autosave = 0
 ---- Nvim Options
 vim.o.autowriteall = true
 vim.o.breakindent = true
--- vim.o.cmdheight = 2
+-- vim.o.cmdheight = 0
 vim.o.completeopt = "menu,menuone,noselect"
 vim.o.cursorline = true
 vim.opt.diffopt = {

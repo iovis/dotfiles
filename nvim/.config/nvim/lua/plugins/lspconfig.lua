@@ -28,26 +28,26 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      ---- Initialize servers
+      require("config.lsp")
       local lsp = require("lspconfig")
-      local cfg = require("config.lsp")
 
       -- vim.lsp.set_log_level("debug")
 
-      lsp.bashls.setup(cfg)
-      lsp.clangd.setup(cfg)
-      lsp.cmake.setup(cfg)
-      lsp.cssls.setup(cfg)
-      lsp.dockerls.setup(cfg)
-      lsp.emmet_language_server.setup(cfg)
-      lsp.gopls.setup(cfg)
-      lsp.marksman.setup(cfg)
-      lsp.ruby_lsp.setup(cfg)
-      lsp.svelte.setup(cfg)
-      lsp.taplo.setup(cfg)
-      lsp.zls.setup(cfg)
+      lsp.bashls.setup({})
+      lsp.clangd.setup({})
+      lsp.cmake.setup({})
+      lsp.cssls.setup({})
+      lsp.dockerls.setup({})
+      lsp.emmet_language_server.setup({})
+      lsp.gopls.setup({})
+      lsp.marksman.setup({})
+      lsp.ruby_lsp.setup({})
+      lsp.sourcekit.setup({ filetypes = { "swift" } })
+      lsp.svelte.setup({})
+      lsp.taplo.setup({})
+      lsp.zls.setup({})
 
-      lsp.html.setup(vim.tbl_deep_extend("force", cfg, {
+      lsp.html.setup({
         settings = {
           html = {
             format = {
@@ -60,9 +60,9 @@ return {
           "eruby",
           "html",
         },
-      }))
+      })
 
-      lsp.jsonls.setup(vim.tbl_deep_extend("force", cfg, {
+      lsp.jsonls.setup({
         settings = {
           json = {
             -- https://www.schemastore.org/json/
@@ -80,9 +80,9 @@ return {
             },
           },
         },
-      }))
+      })
 
-      lsp.lua_ls.setup(vim.tbl_deep_extend("force", cfg, {
+      lsp.lua_ls.setup({
         settings = {
           Lua = {
             completion = { callSnippet = "Replace" },
@@ -95,9 +95,9 @@ return {
             -- workspace = { checkThirdParty = false },
           },
         },
-      }))
+      })
 
-      lsp.solargraph.setup(vim.tbl_deep_extend("force", cfg, {
+      lsp.solargraph.setup({
         settings = {
           solargraph = {
             diagnostics = false,
@@ -106,13 +106,9 @@ return {
             -- useBundler = true,
           },
         },
-      }))
+      })
 
-      lsp.sourcekit.setup(vim.tbl_deep_extend("force", cfg, {
-        filetypes = { "swift" },
-      }))
-
-      lsp.ts_ls.setup(vim.tbl_deep_extend("force", cfg, {
+      lsp.ts_ls.setup({
         commands = {
           LspRemoveUnused = {
             function()
@@ -154,9 +150,9 @@ return {
             },
           },
         },
-      }))
+      })
 
-      lsp.yamlls.setup(vim.tbl_deep_extend("force", cfg, {
+      lsp.yamlls.setup({
         settings = {
           yaml = {
             schemas = require("schemastore").yaml.schemas(),
@@ -166,14 +162,12 @@ return {
             },
           },
         },
-      }))
+      })
 
       ---@module "rustaceanvim"
       ---@type rustaceanvim.Opts
       vim.g.rustaceanvim = {
         server = {
-          on_attach = cfg.on_attach,
-          capabilities = cfg.capabilities,
           settings = {
             ["rust-analyzer"] = {
               imports = {
