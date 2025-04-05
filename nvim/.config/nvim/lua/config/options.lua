@@ -58,7 +58,7 @@ vim.opt.listchars:append({
   leadmultispace = "│·",
   space = "·",
 })
-vim.o.messagesopt = "wait:2000,history:2000"
+vim.o.messagesopt = "wait:500,history:2000"
 vim.o.mouse = "a"
 vim.o.number = true
 vim.o.relativenumber = true
