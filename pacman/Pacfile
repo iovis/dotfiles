@@ -130,6 +130,7 @@ wget
 wireless_tools
 wireplumber
 wl-clipboard
+wofi
 xdg-desktop-portal-gnome
 xdg-user-dirs-gtk
 xdg-utils
