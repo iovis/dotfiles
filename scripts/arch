@@ -8,7 +8,14 @@ export PATH="$LOCAL_BIN:$PATH"
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing Libraries"
 sudo pacman -Syu
-sudo pacman -S --needed bat bear clang curl dconf dua-cli eza fastfetch fd ffmpeg fish fzf git git-delta github-cli gopls hexyl htop hurl hyperfine imagemagick jq just lazygit less llvm man-db mpv mtr neovim nmap noto-fonts-cjk noto-fonts-emoji noto-fonts nss-mdns obsidian parallel qmk ripgrep rsync sd shellcheck shfmt starship steam stow stylua tldr tmux ttf-firacode-nerd unzip watchexec wezterm wl-clipboard xh yt-dlp zoxide
+sudo pacman -S --needed git
+
+if [ ! -d "$DOTFILES" ]; then
+  echo "[$(date '+%Y-%m-%d %H:%M')] Installing Dotfiles"
+  git clone https://github.com/iovis/dotfiles "$DOTFILES"
+fi
+
+sudo pacman -S --needed $(cat $DOTFILES/pacman/Pacfile)
 
 if ! command -v yay >/dev/null 2>&1; then
   echo "[$(date '+%Y-%m-%d %H:%M')] Installing yay"
@@ -25,17 +32,14 @@ if ! command -v yay >/dev/null 2>&1; then
   rm -rf "$PROJECT_HOME/yay/"
 fi
 
-yay -S --needed 1password zen-browser-bin extension-manager
+yay -S --needed $(cat $DOTFILES/pacman/Yayfile)
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Starting services"
 sudo systemctl enable --now avahi-daemon bluetooth fstrim.timer sshd
 
-echo "[$(date '+%Y-%m-%d %H:%M')] Installing Dotfiles"
-git clone https://github.com/iovis/dotfiles "$DOTFILES"
-
 echo "[$(date '+%Y-%m-%d %H:%M')] Stow"
 cd "$DOTFILES" || exit
-stow fish fzf git hyprland lazygit mise muxi nvim starship stylua tmux vim wezterm
+stow fish fzf git hyprland kitty lazygit mise muxi nvim starship stylua tmux vim wezterm
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing mise"
 if ! command -v mise >/dev/null 2>&1; then
