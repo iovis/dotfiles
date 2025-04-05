@@ -125,6 +125,7 @@ totem
 ttf-firacode-nerd
 vim
 watchexec
+waybar
 wezterm
 wget
 wireless_tools
