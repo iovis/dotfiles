@@ -1,6 +1,7 @@
 * {
-  font-family: Fira Code Nerd Font;
-  font-size: 12px;
+  font-family: "FiraCode Nerd Font";
+  font-size: 14px;
+  font-weight: bold;
 }
 
 window#waybar {

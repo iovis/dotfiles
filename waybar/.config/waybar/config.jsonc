@@ -12,54 +12,23 @@
   ],
   "modules-right": [
     "group/expand",
-    "bluetooth",
-    "network",
-    "battery"
+    "pulseaudio",
+    "cpu",
+    "memory"
   ],
-  "hyprland/workspaces": {
-    "format": "{icon}",
-    "format-icons": {
-      "active": "",
-      "default": "",
-      "empty": ""
+  "group/expand": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 600,
+      "transition-to-left": true,
+      "click-to-reveal": true
     },
-    "persistent-workspaces": {
-      "*": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ]
-    }
-  },
-  "custom/notification": {
-    "tooltip": false,
-    "format": "",
-    "on-click": "swaync-client -t -sw",
-    "escape": true
-  },
-  "clock": {
-    "interval": 1,
-    "tooltip-format": "<tt>{calendar}</tt>",
-    "calendar": {
-      "format": {
-        "today": "<span color='#fAfBfC'><b>{}</b></span>"
-      }
-    },
-    "actions": {
-      "on-click-right": "shift_down",
-      "on-click": "shift_up"
-    }
-  },
-  "network": {
-    "format-wifi": "",
-    "format-ethernet": "",
-    "format-disconnected": "",
-    "tooltip-format-disconnected": "Error",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
-    "tooltip-format-ethernet": "{ifname} 🖧 ",
-    "on-click": "kitty nmtui"
+    "modules": [
+      "custom/expand",
+      "bluetooth",
+      "network",
+      "custom/endpoint"
+    ]
   },
   "bluetooth": {
     "format-on": "󰂯",
@@ -81,31 +50,69 @@
     "format": "|",
     "tooltip": false
   },
-  "group/expand": {
-    "orientation": "horizontal",
-    "drawer": {
-      "transition-duration": 600,
-      "transition-to-left": true,
-      "click-to-reveal": true
+  "custom/notification": {
+    "tooltip": false,
+    "format": " ",
+    "on-click": "swaync-client -t -sw",
+    "escape": true
+  },
+  "clock": {
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%Y-%m-%d}"
+  },
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "active": "",
+      "default": "",
+      "empty": ""
     },
-    "modules": [
-      "custom/expand",
-      "cpu",
-      "memory",
-      "temperature",
-      "custom/endpoint"
-    ]
+    "persistent-workspaces": {
+      "*": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  "network": {
+    "format-wifi": " ",
+    "format-ethernet": "🖧",
+    "format-disconnected": "",
+    "tooltip-format-disconnected": "Error",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)  ",
+    "tooltip-format-ethernet": "{ifname} 🖧 ",
+    "on-click": "XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
+  },
+  "pulseaudio": {
+    // "scroll-step": 1, // %, can be a float
+    "format": " {volume}% {icon} ",
+    "format-bluetooth": " {volume}% {icon} ",
+    "format-bluetooth-muted": "    {icon} ",
+    "format-muted": "  {format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": " ",
+    "format-icons": {
+      "headphone": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    }
   },
   "cpu": {
-    "format": "󰻠",
+    "format": " {usage}% ",
     "tooltip": true
   },
   "memory": {
-    "format": ""
+    "format": " {}% "
   },
   "temperature": {
     "critical-threshold": 80,
-    "format": ""
+    "format": "{temperatureC}°C {icon}"
   },
   "tray": {
     "icon-size": 14,
