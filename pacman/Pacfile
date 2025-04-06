@@ -3,6 +3,7 @@ base
 base-devel
 bat
 bear
+blueman
 btrfs-progs
 clang
 cliphist
@@ -47,7 +48,6 @@ gnome-software
 gnome-system-monitor
 gnome-text-editor
 gnome-tour
-gnome-tweaks
 gnome-user-docs
 gnome-user-share
 gnome-weather
@@ -71,6 +71,7 @@ hurl
 hyperfine
 hyprland
 hyprpaper
+hyprpolkitagent
 intel-ucode
 iwd
 jq
@@ -137,6 +138,7 @@ wireplumber
 wl-clipboard
 wofi
 xdg-desktop-portal-gnome
+xdg-desktop-portal-hyprland
 xdg-user-dirs-gtk
 xdg-utils
 xh
