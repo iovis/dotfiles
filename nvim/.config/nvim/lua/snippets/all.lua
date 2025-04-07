@@ -47,7 +47,7 @@ return {
   s("note", d(1, commentstr("NOTE:"))),
   s("hack", d(1, commentstr("HACK:"))),
   s("fixme", d(1, commentstr("FIXME:"))),
-  s("#!", fmt("#!/usr/bin/env {}", { d(1, filetype) }), {
+  s("shebang", fmt("#!/usr/bin/env {}", { d(1, filetype) }), {
     condition = conds.line_begin,
   }),
 }
