@@ -13,8 +13,8 @@
   "modules-right": [
     "group/expand",
     "pulseaudio",
-    "cpu",
-    "memory"
+    "bluetooth",
+    "network"
   ],
   "group/expand": {
     "orientation": "horizontal",
@@ -25,16 +25,16 @@
     },
     "modules": [
       "custom/expand",
-      "bluetooth",
-      "network",
+      "cpu",
+      "memory",
       "custom/endpoint"
     ]
   },
   "bluetooth": {
-    "format-on": "󰂯",
+    "format-on": " 󰂯",
     "format-off": "BT-off",
-    "format-disabled": "󰂲",
-    "format-connected-battery": "{device_battery_percentage}% 󰂯",
+    "format-disabled": " 󰂲",
+    "format-connected-battery": " {device_battery_percentage}% 󰂯",
     "format-alt": "{device_alias} 󰂯",
     "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
@@ -47,7 +47,7 @@
     "tooltip": false
   },
   "custom/endpoint": {
-    "format": "|",
+    "format": " ",
     "tooltip": false
   },
   "custom/notification": {
@@ -57,8 +57,8 @@
     "escape": true
   },
   "clock": {
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format-alt": "{:%Y-%m-%d}"
+    "format-alt": "{:%Y-%m-%d}",
+    "tooltip-format": "{calendar}"
   },
   "hyprland/workspaces": {
     "format": "{icon}",
@@ -105,10 +105,12 @@
   },
   "cpu": {
     "format": " {usage}% ",
-    "tooltip": true
+    "tooltip": false,
+    "on-click": "gnome-system-monitor"
   },
   "memory": {
-    "format": " {}% "
+    "format": " {}% ",
+    "on-click": "gnome-system-monitor"
   },
   "temperature": {
     "critical-threshold": 80,
