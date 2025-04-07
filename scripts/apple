@@ -1,16 +1,22 @@
 #!/usr/bin/env sh
 
-# curl --proto '=https' --tlsv1.2 -LsSf https://raw.githubusercontent.com/iovis/dotfiles/master/scripts/macos.sh | sh
+# curl --proto '=https' --tlsv1.2 -LsSf https://raw.githubusercontent.com/iovis/dotfiles/master/scripts/apple | sh
 
 export DOTFILES="$HOME/.dotfiles"
 
-echo "[$(date '+%Y-%m-%d %H:%M')] Installing Dotfiles"
-git clone https://github.com/iovis/dotfiles "$DOTFILES"
+if [ ! -d "$DOTFILES" ]; then
+  echo "[$(date '+%Y-%m-%d %H:%M')] Installing Dotfiles"
+  git clone https://github.com/iovis/dotfiles "$DOTFILES"
+fi
 
-echo "[$(date '+%Y-%m-%d %H:%M')] Installing Homebrew"
-export NONINTERACTIVE=1
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-eval "$(/opt/homebrew/bin/brew shellenv)"
+echo "[$(date '+%Y-%m-%d %H:%M')] Installing Libraries"
+if ! command -v yay >/dev/null 2>&1; then
+  echo "[$(date '+%Y-%m-%d %H:%M')] Installing Homebrew"
+  export NONINTERACTIVE=1
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 brew bundle --file "$DOTFILES/brew/Brewfile"
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Stow"
@@ -19,11 +25,17 @@ stow aerospace brew fish fzf git hammerspoon lazygit mise muxi nvim obsidian pry
 cd || exit
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing mise"
-curl https://mise.run | sh
+if ! command -v mise >/dev/null 2>&1; then
+  curl https://mise.run | sh
+fi
+
 mise install -y
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing rust"
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+if ! command -v cargo >/dev/null 2>&1; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+fi
+
 . "$HOME/.cargo/env"
 cargo install cargo-binstall
 cargo binstall -y $(cat "$DOTFILES/default/crates")
@@ -39,3 +51,10 @@ killall Finder
 killall Dock
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installation ended"
+
+shell=$(basename "$SHELL")
+if [ "$shell" != "fish" ]; then
+  echo "**************"
+  echo "$shell detected."
+  echo "Run chsh -s $(which fish)"
+fi
