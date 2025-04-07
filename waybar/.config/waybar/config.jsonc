@@ -58,7 +58,8 @@
   },
   "clock": {
     "format-alt": "{:%Y-%m-%d}",
-    "tooltip-format": "{calendar}"
+    "tooltip-format": "{calendar}",
+    "on-click-right": "gnome-calendar"
   },
   "hyprland/workspaces": {
     "format": "{icon}",
