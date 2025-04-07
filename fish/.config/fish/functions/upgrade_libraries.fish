@@ -12,6 +12,9 @@ function upgrade_libraries
             yay -Sua
             yaydump
         end
+
+        gnome-dump-keybindings
+        gnome-dump-extensions
     else if command -q apt
         sudo apt update
         sudo apt upgrade -y
