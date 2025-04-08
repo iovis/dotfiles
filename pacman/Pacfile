@@ -108,6 +108,7 @@ pipewire-jack
 pipewire-pulse
 qmk
 ripgrep
+rofi-wayland
 rsync
 rygel
 sd
@@ -137,7 +138,6 @@ wget
 wireless_tools
 wireplumber
 wl-clipboard
-wofi
 xdg-desktop-portal-gnome
 xdg-desktop-portal-hyprland
 xdg-user-dirs-gtk

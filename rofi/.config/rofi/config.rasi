@@ -1,0 +1,116 @@
+// https://github.com/newmanls/rofi-themes-collection/blob/master/themes/rounded-blue-dark.rasi
+
+// TODO: configure key-bindings
+// rofi -dump-config | nvim -
+
+* {
+  bg0: #212121f2;
+  bg1: #2a2a2a;
+  bg2: #3d3d3d80;
+  bg3: #8caaeff2;
+  fg0: #e6e6e6;
+  fg1: #ffffff;
+  fg2: #969696;
+  fg3: #3d3d3d;
+}
+
+* {
+  background-color: transparent;
+  font: "Fira Code Nerd Font Bold 14";
+  margin: 0px;
+  padding: 0px;
+  spacing: 0px;
+  text-color: @fg0;
+}
+
+window {
+  background-color: @bg0;
+  border-radius: 18px;
+  border: none;
+  location: north;
+  width: 600;
+  y-offset: calc(50% - 176px);
+}
+
+mainbox {
+  padding: 12px;
+}
+
+inputbar {
+  background-color: @bg1;
+  border-radius: 16px;
+  border: none;
+  children: [ prompt, entry ];
+  padding: 8px 16px;
+  spacing: 8px;
+}
+
+prompt {
+  text-color: @fg2;
+}
+
+entry {
+  placeholder: "Search";
+  placeholder-color: @fg3;
+  text-color: @fg0;
+}
+
+message {
+  margin: 12px 0 0;
+  border-radius: 16px;
+  border-color: @bg2;
+  background-color: @bg2;
+  text-color: @fg0;
+}
+
+textbox {
+  padding: 8px 24px;
+}
+
+listview {
+  background-color: transparent;
+  border: none;
+  columns: 1;
+  fixed-height: false;
+  lines: 8;
+  margin: 12px 0 0;
+  scrollbar: false;
+}
+
+element {
+  padding: 8px 16px;
+  spacing: 8px;
+  border-radius: 16px;
+  background-color: transparent;
+}
+
+element.normal.normal, element.alternate.normal {
+  background-color: transparent;
+  text-color: @fg2;
+}
+
+element.normal.active {
+  background-color: transparent;
+  text-color: @bg3;
+}
+
+element alternate active {
+  background-color: transparent;
+  text-color: @bg3;
+}
+
+element.selected.normal, element.selected.active {
+  background-color: transparent;
+  text-color: @bg3;
+}
+
+element-icon {
+  background-color: transparent;
+  size: 1em;
+  vertical-align: 0.5;
+}
+
+element-text {
+  background-color: transparent;
+  text-color: inherit;
+}
