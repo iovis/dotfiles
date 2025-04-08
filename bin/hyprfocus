@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+command=$1
+result=$(hyprctl dispatch focuswindow "$command")
+
+[[ $result == "ok" ]] || exit 1
