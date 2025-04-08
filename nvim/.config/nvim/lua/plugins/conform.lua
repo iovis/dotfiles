@@ -43,7 +43,6 @@ return {
         fish = { "fish_indent" },
         hurl = { "hurlfmt" },
         json = { "jq" },
-        just = { "just" },
         lua = { "stylua" },
         sql = { "sql_formatter" },
         swift = { "swift_format" },

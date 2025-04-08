@@ -40,6 +40,7 @@ return {
       lsp.dockerls.setup({})
       lsp.emmet_language_server.setup({})
       lsp.gopls.setup({})
+      lsp.just.setup({})
       lsp.marksman.setup({})
       lsp.ruby_lsp.setup({})
       lsp.sourcekit.setup({ filetypes = { "swift" } })

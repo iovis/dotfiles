@@ -6,6 +6,7 @@ cargo-outdated
 cargo-update
 dexios
 evcxr_repl
+just-lsp
 miniserve
 muxi
 presenterm
