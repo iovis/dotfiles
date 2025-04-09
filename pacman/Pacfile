@@ -53,6 +53,7 @@ gnome-user-share
 gnome-weather
 gopls
 grilo-plugins
+grim
 gst-plugin-pipewire
 gvfs
 gvfs-afc
@@ -117,6 +118,7 @@ sd
 shellcheck
 shfmt
 simple-scan
+slurp
 smartmontools
 snapshot
 sof-firmware
