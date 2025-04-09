@@ -7,15 +7,15 @@ export PROJECT_HOME="$HOME/code/"
 export PATH="$LOCAL_BIN:$PATH"
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing Libraries"
-sudo pacman -Syu
-sudo pacman -S --needed git
+sudo pacman -Syu --noconfirm
+sudo pacman -S --needed --noconfirm git
 
 if [ ! -d "$DOTFILES" ]; then
   echo "[$(date '+%Y-%m-%d %H:%M')] Installing Dotfiles"
   git clone https://github.com/iovis/dotfiles "$DOTFILES"
 fi
 
-sudo pacman -S --needed $(cat $DOTFILES/pacman/Pacfile)
+sudo pacman -S --needed --noconfirm $(cat $DOTFILES/pacman/Pacfile)
 
 if ! command -v yay >/dev/null 2>&1; then
   echo "[$(date '+%Y-%m-%d %H:%M')] Installing yay"
@@ -32,7 +32,7 @@ if ! command -v yay >/dev/null 2>&1; then
   rm -rf "$PROJECT_HOME/yay/"
 fi
 
-yay -S --needed $(cat $DOTFILES/pacman/Yayfile)
+yay -S --needed --noconfirm $(cat $DOTFILES/pacman/Yayfile)
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Starting services"
 sudo systemctl enable --now avahi-daemon bluetooth fstrim.timer sshd

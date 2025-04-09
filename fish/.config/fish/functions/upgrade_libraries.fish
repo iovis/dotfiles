@@ -5,11 +5,11 @@ function upgrade_libraries
         brew autoremove
         brewdump
     else if command -q pacman
-        sudo pacman -Syu
+        sudo pacman -Syu --noconfirm
         pacmandump
 
         if command -q yay
-            yay -Sua
+            yay -Sua --noconfirm
             yaydump
         end
 
