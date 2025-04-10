@@ -23,13 +23,13 @@ if ! command -v yay >/dev/null 2>&1; then
   mkdir "$PROJECT_HOME"
   cd "$PROJECT_HOME"
 
-  git clone https://aur.archlinux.org/yay.git
-  cd yay
+  git clone https://aur.archlinux.org/yay-bin.git
+  cd yay-bin/
 
   makepkg -si
 
   cd
-  rm -rf "$PROJECT_HOME/yay/"
+  rm -rf "$PROJECT_HOME/yay-bin/"
 fi
 
 yay -S --needed --noconfirm $(cat $DOTFILES/pacman/Yayfile)
