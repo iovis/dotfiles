@@ -39,6 +39,7 @@ return {
       lsp.cssls.setup({})
       lsp.dockerls.setup({})
       lsp.emmet_language_server.setup({})
+      lsp.fish_lsp.setup({})
       lsp.gopls.setup({})
       lsp.just.setup({})
       lsp.marksman.setup({})

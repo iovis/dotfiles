@@ -1,6 +1,6 @@
 return {
   "nvimtools/none-ls.nvim",
-  -- enabled = false,
+  enabled = false,
   event = "VeryLazy",
   keys = {
     { "<leader>ln", "<cmd>NullLsInfo<cr>" },
@@ -13,7 +13,7 @@ return {
       debug = false,
       sources = {
         -- d.erb_lint,
-        d.fish,
+        -- d.fish,
         -- d.yamllint,
       },
     })
