@@ -42,7 +42,7 @@ return {
       lsp.fish_lsp.setup({})
       lsp.gopls.setup({})
       lsp.just.setup({})
-      lsp.marksman.setup({})
+      -- lsp.marksman.setup({})
       lsp.ruby_lsp.setup({})
       lsp.sourcekit.setup({ filetypes = { "swift" } })
       lsp.svelte.setup({})
