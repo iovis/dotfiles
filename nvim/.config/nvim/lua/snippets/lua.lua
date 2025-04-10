@@ -1,3 +1,22 @@
+-- s(
+--   "sh",
+--   fmt(
+--     [[
+--       package.path = ("%s/.dotfiles/bin/?.lua;%s/.dotfiles/bin/?/init.lua;%s"):format(
+--         os.getenv("HOME"),
+--         os.getenv("HOME"),
+--         package.path
+--       )
+--
+--       local sh = require("sh")
+--     ]],
+--     {}
+--   ),
+--   {
+--     condition = conds.line_begin,
+--   }
+-- ),
+
 local function lua_fn()
   return sn(
     nil,
