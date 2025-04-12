@@ -40,9 +40,7 @@ return {
       formatters_by_ft = {
         ["*"] = { "injected" }, -- Treesitter based injections
         eruby = { "htmlbeautifier" },
-        fish = { "fish_indent" },
         hurl = { "hurlfmt" },
-        json = { "jq" },
         lua = { "stylua" },
         sql = { "sql_formatter" },
         swift = { "swift_format" },
