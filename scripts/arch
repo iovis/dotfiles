@@ -21,14 +21,13 @@ if ! command -v yay >/dev/null 2>&1; then
   echo "[$(date '+%Y-%m-%d %H:%M')] Installing yay"
 
   mkdir "$PROJECT_HOME"
-  cd "$PROJECT_HOME"
 
-  git clone https://aur.archlinux.org/yay-bin.git
-  cd yay-bin/
+  git clone https://aur.archlinux.org/yay-bin.git "$PROJECT_HOME/yay-bin/"
 
+  cd "$PROJECT_HOME/yay-bin/" || exit
   makepkg -si
+  cd - || exit
 
-  cd
   rm -rf "$PROJECT_HOME/yay-bin/"
 fi
 
@@ -40,6 +39,7 @@ sudo systemctl enable --now avahi-daemon bluetooth fstrim.timer sshd
 echo "[$(date '+%Y-%m-%d %H:%M')] Stow"
 cd "$DOTFILES" || exit
 stow fish fzf git hyprland kitty lazygit mise mpv muxi nvim rofi starship stylua swaync tmux vim waybar wezterm
+cd - || exit
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing mise"
 if ! command -v mise >/dev/null 2>&1; then
@@ -57,8 +57,13 @@ fi
 cargo install cargo-binstall
 cargo binstall -y $(cat "$DOTFILES/default/crates")
 
+if [ ! -f "/usr/lib/systemd/system-sleep/disable-some-wake" ]; then
+  echo "[$(date '+%Y-%m-%d %H:%M')] Fix for not being able to suspend"
+  sudo cp "$DOTFILES/scripts/extra/disable-some-wake" /usr/lib/systemd/system-sleep
+  sudo chmod 755 /usr/lib/systemd/system-sleep/disable-some-wake
+fi
+
 echo "[$(date '+%Y-%m-%d %H:%M')] Installation ended"
-cd - || exit
 
 shell=$(basename "$SHELL")
 if [ "$shell" != "fish" ]; then
