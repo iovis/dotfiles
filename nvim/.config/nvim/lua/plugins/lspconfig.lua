@@ -33,6 +33,10 @@ return {
 
       -- vim.lsp.set_log_level("debug")
 
+      -- TODO: migrate to v0.11
+      -- vim.lsp.enable("bashls")
+      -- vim.lsp.config("bashls", { settings = ... })
+      --   or just put it in lsp/bashls.lua
       lsp.bashls.setup({})
       lsp.clangd.setup({})
       lsp.cmake.setup({})
