@@ -12,9 +12,10 @@
   ],
   "modules-right": [
     "group/expand",
-    "pulseaudio",
+    "network",
     "bluetooth",
-    "network"
+    "pulseaudio",
+    "custom/power"
   ],
   "group/expand": {
     "orientation": "horizontal",
@@ -52,13 +53,26 @@
   },
   "custom/notification": {
     "tooltip": false,
-    "format": " ",
+    "format": "󰣇",
     "on-click": "swaync-client -t -sw",
     "escape": true
   },
+  "custom/power": {
+    "format": " ⏻ ",
+    "tooltip": false,
+    "menu": "on-click",
+    "menu-file": "$HOME/.config/waybar/power_menu.xml",
+    "menu-actions": {
+      "logout": "loginctl terminate-user david",
+      "suspend": "systemctl suspend",
+      "reboot": "systemctl reboot",
+      "hibernate": "systemctl hibernate",
+      "shutdown": "systemctl poweroff"
+    }
+  },
   "clock": {
     "format-alt": "{:%Y-%m-%d}",
-    "tooltip-format": "{calendar}",
+    "tooltip": false,
     "on-click-right": "gnome-calendar"
   },
   "hyprland/workspaces": {
@@ -80,8 +94,8 @@
   },
   "network": {
     "format-wifi": " ",
-    "format-ethernet": "🖧",
-    "format-disconnected": "",
+    "format-ethernet": "🖧 ",
+    "format-disconnected": " ",
     "tooltip-format-disconnected": "Error",
     "tooltip-format-wifi": "{essid} ({signalStrength}%)  ",
     "tooltip-format-ethernet": "{ifname} 🖧 ",
@@ -91,10 +105,8 @@
     // "scroll-step": 1, // %, can be a float
     "format": " {volume}% {icon} ",
     "format-bluetooth": " {volume}% {icon} ",
-    "format-bluetooth-muted": "    {icon} ",
-    "format-muted": "  {format_source}",
-    "format-source": "{volume}% ",
-    "format-source-muted": " ",
+    "format-bluetooth-muted": "   ",
+    "format-muted": "   ",
     "format-icons": {
       "headphone": "",
       "default": [
@@ -111,7 +123,7 @@
     "on-click": "gnome-system-monitor"
   },
   "memory": {
-    "format": " {}% ",
+    "format": " {}%  ",
     "on-click": "gnome-system-monitor"
   },
   "temperature": {

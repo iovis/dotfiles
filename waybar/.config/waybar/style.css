@@ -177,12 +177,21 @@ tooltip {
 
 }
 
-#tray menu * {
-  padding: 0px 5px;
-  transition: all .3s ease;
+menu {
+  background: #222;
+  border-radius: 15px;
+  padding: 0;
 }
 
-#tray menu separator {
-  padding: 0px 5px;
-  transition: all .3s ease;
+menuitem {
+  color: #eee;
+  padding: 10px 0;
+}
+
+menuitem:first-child {
+  border-radius: 15px 15px 0 0;
+}
+
+menuitem:last-child {
+  border-radius: 0 0 15px 15px;
 }
