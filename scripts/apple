@@ -21,7 +21,7 @@ brew bundle --file "$DOTFILES/brew/Brewfile"
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Stow"
 cd "$DOTFILES" || exit
-stow aerospace brew fish fzf git hammerspoon lazygit mise muxi nvim obsidian pry qmk starship stylua tmux vim wezterm
+stow aerospace brew fish fzf git hammerspoon lazygit mise muxi nvim obsidian pry starship stylua tmux vim wezterm
 cd || exit
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing mise"
