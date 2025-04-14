@@ -27,10 +27,11 @@ Session.vim
 .netrwhist
 *~
 .projections.json
+.muxi.json
+.nvim.lua
 NvimTree
 BqfPreviewBorder
 BqfPreviewScrollBar
-.muxi.json
 quickfix-*
 
 ### Npm ###
