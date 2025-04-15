@@ -141,6 +141,11 @@ vim.api.nvim_create_autocmd("TermOpen", {
   pattern = "*",
   callback = function()
     vim.cmd.startinsert()
+
+    vim.keymap.set("n", "<down>", "i<down>", { buffer = true })
+    vim.keymap.set("n", "<left>", "i<left>", { buffer = true })
+    vim.keymap.set("n", "<right>", "i<right>", { buffer = true })
+    vim.keymap.set("n", "<up>", "i<up>", { buffer = true })
   end,
 })
 
