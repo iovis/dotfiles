@@ -24,8 +24,10 @@ return {
       },
       plugins = {
         options = {
+          -- vim.o options
           enabled = true,
           laststatus = 0,
+          winborder = "none",
         },
         -- tmux = { enabled = true },
         twilight = { enabled = false },
