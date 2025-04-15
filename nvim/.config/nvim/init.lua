@@ -4,7 +4,9 @@ require("config.autocommands")
 require("config.keymap")
 
 require("config.lazy") -- load plugins
+
 require("config.winbar")
+require("config.lsp")
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",

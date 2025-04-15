@@ -1,5 +1,179 @@
----- Floating window
-require("lspconfig.ui.windows").default_options.border = "rounded"
+-- vim.lsp.set_log_level("debug")
+
+vim.keymap.set("n", "<leader>lR", ":LspRestart<cr>")
+vim.keymap.set("n", "<leader>lh", "<cmd>help lspconfig-all<cr>")
+vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
+vim.keymap.set("n", "<leader>ll", "<cmd>LspLog<cr>")
+
+vim.api.nvim_create_user_command("LspActiveClients", "R=vim.lsp.get_clients()", {})
+
+vim.lsp.enable({
+  "bashls",
+  "clangd",
+  "cmake",
+  "cssls",
+  "dockerls",
+  "emmet_language_server",
+  "fish_lsp",
+  "gopls",
+  "html",
+  "jsonls",
+  "just",
+  "lua_ls",
+  -- "marksman",
+  "ruby_lsp",
+  "rust_analyzer",
+  "solargraph",
+  "sourcekit",
+  "svelte",
+  "taplo",
+  "ts_ls",
+  "yamlls",
+  "zls",
+})
+
+vim.lsp.config("html", {
+  settings = {
+    html = {
+      format = {
+        extraLiners = "",
+        templating = true,
+      },
+    },
+  },
+  filetypes = {
+    "eruby",
+    "html",
+  },
+})
+
+vim.lsp.config("jsonls", {
+  settings = {
+    json = {
+      -- https://www.schemastore.org/json/
+      -- https://github.com/b0o/schemastore.nvim
+      schemas = require("schemastore").json.schemas(),
+      validate = { enable = true },
+    },
+  },
+  setup = {
+    commands = {
+      Format = {
+        function()
+          vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), 0 })
+        end,
+      },
+    },
+  },
+})
+
+vim.lsp.config("lua_ls", {
+  settings = {
+    Lua = {
+      completion = { callSnippet = "Replace" },
+      diagnostics = {
+        disable = { "missing-fields" },
+        unusedLocalExclude = { "_*" }, -- Don't warn about variables that start with underscore
+      },
+      format = { enable = false },
+      hint = { enable = true },
+      -- workspace = { checkThirdParty = false },
+    },
+  },
+})
+
+vim.lsp.config("rust_analyzer", {
+  settings = {
+    ["rust-analyzer"] = {
+      imports = {
+        granularity = {
+          group = "module",
+        },
+        prefix = "self",
+      },
+      checkOnSave = {
+        command = "clippy",
+        extraArgs = {
+          "--",
+          "-Wclippy::pedantic",
+          "-Aclippy::missing-errors-doc",
+          "-Aclippy::missing-panics-doc",
+          "-Aclippy::must-use-candidate",
+          "-Aclippy::needless_range_loop",
+        },
+      },
+    },
+  },
+})
+
+vim.lsp.config("solargraph", {
+  settings = {
+    solargraph = {
+      diagnostics = false,
+      autoformat = false,
+      formatting = false,
+      -- useBundler = true,
+    },
+  },
+})
+
+vim.lsp.config("sourcekit", { filetypes = { "swift" } })
+
+vim.lsp.config("ts_ls", {
+  commands = {
+    LspRemoveUnused = {
+      function()
+        vim.lsp.buf.code_action({
+          apply = true,
+          context = {
+            ---@diagnostic disable-next-line: assign-type-mismatch
+            only = { "source.removeUnused.ts" },
+            diagnostics = {},
+          },
+        })
+      end,
+      description = "Remove unused",
+    },
+  },
+  settings = {
+    typescript = {
+      inlayHints = {
+        includeInlayEnumMemberValueHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayParameterNameHints = "all",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+      },
+    },
+    javascript = {
+      inlayHints = {
+        includeInlayEnumMemberValueHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayParameterNameHints = "all",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+      },
+    },
+  },
+})
+
+vim.lsp.config("yamlls", {
+  settings = {
+    yaml = {
+      schemas = require("schemastore").yaml.schemas(),
+      schemaStore = {
+        enable = false,
+        url = "",
+      },
+    },
+  },
+})
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(event)
