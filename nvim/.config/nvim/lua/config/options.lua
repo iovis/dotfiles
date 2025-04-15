@@ -91,8 +91,8 @@ vim.o.winborder = "rounded"
 vim.o.wrap = false
 
 ---- Session Options
+vim.opt.sessionoptions:remove("folds")
 -- vim.opt.sessionoptions:remove("blank")
--- vim.opt.sessionoptions:remove("folds")
 -- vim.opt.sessionoptions:append("localoptions")
 
 ---- Disable legacy providers
