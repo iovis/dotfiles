@@ -324,18 +324,6 @@ vim.keymap.set("n", "yof", function()
   end
 end, { desc = "Toggle autoformat" })
 
-vim.keymap.set("n", "<leader>af", function()
-  if vim.bo.textwidth == 0 then
-    vim.bo.textwidth = 80
-    vim.opt_local.formatoptions:append("a")
-    vim.notify("Autowidth enabled [80]")
-  else
-    vim.bo.textwidth = 0
-    vim.opt_local.formatoptions:remove("a")
-    vim.notify("Autowidth disabled")
-  end
-end, { desc = "Toggle autowidth" })
-
 vim.keymap.set("n", "yoF", function()
   vim.g.foldcolumn = not vim.g.foldcolumn
 
@@ -346,6 +334,30 @@ vim.keymap.set("n", "yoF", function()
   vim.api.nvim_set_current_win(current_window)
   vim.cmd("redraw!")
 end, { desc = "Toggle foldcolumn" })
+
+vim.keymap.set("n", "yom", function()
+  vim.g.messages_persistent = not vim.g.messages_persistent
+
+  if vim.g.messages_persistent then
+    vim.o.messagesopt = "hit-enter,history:2000"
+    vim.notify("Persistent messages")
+  else
+    vim.o.messagesopt = "wait:500,history:2000"
+    vim.notify("Temporary messages")
+  end
+end, { desc = "Toggle message dismissal" })
+
+vim.keymap.set("n", "yoW", function()
+  if vim.bo.textwidth == 0 then
+    vim.bo.textwidth = 80
+    vim.opt_local.formatoptions:append("a")
+    vim.notify("Autowidth enabled [80]")
+  else
+    vim.bo.textwidth = 0
+    vim.opt_local.formatoptions:remove("a")
+    vim.notify("Autowidth disabled")
+  end
+end, { desc = "Toggle autowidth" })
 
 vim.keymap.set("n", "yoz", function()
   if vim.o.scrolloff == vim.g.scrolloff then

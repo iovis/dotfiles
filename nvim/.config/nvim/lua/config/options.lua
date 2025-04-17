@@ -6,6 +6,7 @@ vim.g.foldcolumn = false
 -- vim.g.health = { style = "float" }
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+vim.g.messages_persistent = false
 vim.g.scrolloff = 4
 vim.g.zig_fmt_autosave = 0
 
