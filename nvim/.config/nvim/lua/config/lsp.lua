@@ -1,5 +1,6 @@
 -- vim.lsp.set_log_level("debug")
 
+vim.keymap.set("n", "<leader>lC", "<cmd>LspActiveClients<cr>")
 vim.keymap.set("n", "<leader>lR", ":LspRestart<cr>")
 vim.keymap.set("n", "<leader>lh", "<cmd>help lspconfig-all<cr>")
 vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
