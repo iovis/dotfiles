@@ -12,9 +12,9 @@
   ],
   "modules-right": [
     "group/expand",
+    "pulseaudio",
     "network",
     "bluetooth",
-    "pulseaudio",
     "custom/power"
   ],
   "group/expand": {
@@ -43,17 +43,22 @@
     "tooltip-format-enumerate-connected-battery": "{device_alias}\n{device_address}\n{device_battery_percentage}%",
     "on-click": "blueman-manager"
   },
+  "cpu": {
+    "format": " {usage}% ",
+    "tooltip": false,
+    "on-click": "gnome-system-monitor"
+  },
   "custom/expand": {
     "format": "",
     "tooltip": false
   },
   "custom/endpoint": {
-    "format": " ",
+    "format": "",
     "tooltip": false
   },
   "custom/notification": {
     "tooltip": false,
-    "format": "󰣇 ",
+    "format": " 󰣇 ",
     "on-click": "swaync-client -t -sw",
     "escape": true
   },
@@ -71,6 +76,7 @@
     }
   },
   "clock": {
+    "format": "{:%H:%M} ",
     "format-alt": "{:%Y-%m-%d}",
     "tooltip": false,
     "on-click-right": "gnome-calendar"
@@ -95,8 +101,19 @@
       ]
     }
   },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "memory": {
+    "format": "{}%  ",
+    "on-click": "gnome-system-monitor"
+  },
   "network": {
-    "format-wifi": " ",
+    "format-wifi": "",
     "format-ethernet": "🖧 ",
     "format-disconnected": " ",
     "tooltip-format-disconnected": "Error",
@@ -120,21 +137,12 @@
     },
     "on-click": "XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
   },
-  "cpu": {
-    "format": " {usage}% ",
-    "tooltip": false,
-    "on-click": "gnome-system-monitor"
-  },
-  "memory": {
-    "format": " {}%  ",
-    "on-click": "gnome-system-monitor"
-  },
   "temperature": {
     "critical-threshold": 80,
     "format": "{temperatureC}°C {icon}"
   },
   "tray": {
-    "icon-size": 14,
-    "spacing": 10
+    "icon-size": 16,
+    "spacing": 12
   }
 }
