@@ -42,6 +42,7 @@ config.window_frame = {
 
 -- R=require("catppuccin.palettes").get_palette()
 config.colors = {
+  background = "black",
   tab_bar = {
     active_tab = {
       bg_color = "#181818",
