@@ -1,6 +1,10 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
+config.enable_wayland = false
+config.front_end = "WebGpu" -- OpenGL, Software, WebGpu
+config.window_background_opacity = 0.7
+
 -- wezterm show-keys --lua
 return {
   { key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },

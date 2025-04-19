@@ -2,7 +2,9 @@
 
 ---@type Wezterm
 local wezterm = require("wezterm")
-local config = wezterm.config_builder()
+
+-- Global so it can be mutated
+config = wezterm.config_builder()
 
 ----Events
 require("events")
