@@ -51,13 +51,16 @@
   "cpu": {
     "format": "  {usage}% ",
     "tooltip": false,
-    "on-click": "gnome-system-monitor"
+    "on-click": "kitty -e btop",
+    "on-click-right": "gnome-system-monitor"
   },
   "disk": {
     "interval": 30,
     "format": "  {percentage_used}%  ",
     "tooltip-format": "Free Space: {specific_free:0.2f} GB. Total Space: {specific_total:0.2f} GB",
-    "unit": "GB"
+    "unit": "GB",
+    "on-click": "kitty -e btop",
+    "on-click-right": "gnome-system-monitor"
   },
   "custom/expand": {
     "format": " ",
@@ -156,7 +159,8 @@
   },
   "memory": {
     "format": "󰾆 {percentage}%",
-    "on-click": "gnome-system-monitor"
+    "on-click": "kitty -e btop",
+    "on-click-right": "gnome-system-monitor"
   },
   "network": {
     "tooltip": true,
