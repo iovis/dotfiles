@@ -11,3 +11,9 @@ wezterm.on("toggle-opacity", function(window, _pane)
 
   window:set_config_overrides(overrides)
 end)
+
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+  return {
+    { Text = " " .. tab.active_pane.title .. " " },
+  }
+end)

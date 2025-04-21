@@ -34,11 +34,12 @@ config.window_padding = {
 }
 
 config.window_frame = {
+  active_titlebar_bg = "#000",
+  inactive_titlebar_bg = "#000",
   font_size = 15,
-  active_titlebar_bg = "#1f212e",
   font = wezterm.font({
     family = "FiraCode Nerd Font",
-    weight = "Regular",
+    weight = "Bold",
   }),
 }
 
@@ -46,25 +47,26 @@ config.window_frame = {
 config.colors = {
   background = "black",
   tab_bar = {
+    inactive_tab_edge = "#000",
     active_tab = {
-      bg_color = "#181818",
-      fg_color = "#8caaee",
+      bg_color = "#000",
+      fg_color = "#fff",
     },
     inactive_tab = {
-      bg_color = "#1f212e",
-      fg_color = "#51576d",
+      bg_color = "#000",
+      fg_color = "#555",
     },
     new_tab = {
-      bg_color = "#1f212e",
-      fg_color = "#8caaee",
+      bg_color = "#000",
+      fg_color = "#555",
     },
     new_tab_hover = {
-      bg_color = "#8caaee",
-      fg_color = "#1f212e",
+      bg_color = "#000",
+      fg_color = "#fff",
     },
     inactive_tab_hover = {
-      bg_color = "#1f212e",
-      fg_color = "#8caaee",
+      bg_color = "#222",
+      fg_color = "#fff",
     },
   },
 }
