@@ -1,7 +1,7 @@
 return {
   "MagicDuck/grug-far.nvim",
   version = "*",
-  event = "VeryLazy",
+  cmd = { "GrugFar" },
   config = function()
     require("grug-far").setup({
       engines = {
