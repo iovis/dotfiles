@@ -8,3 +8,4 @@ zig = "latest"
 
 [settings]
 disable_hints = ["outdated_bump"]
+idiomatic_version_file_enable_tools = ["node", "ruby"]
