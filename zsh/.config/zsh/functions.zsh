@@ -13,9 +13,6 @@ function libupdate() {
   echo '\nOutdated gems'
   gemo
 
-  echo '\nOutdated pips'
-  pipo
-
   echo '\nDone!'
 }
 

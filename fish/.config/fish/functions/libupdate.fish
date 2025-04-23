@@ -23,8 +23,5 @@ function libupdate
     log_step $(green gem) outdated
     gemo
 
-    log_step $(green pip) outdated
-    pipo
-
     log_step Done!
 end
