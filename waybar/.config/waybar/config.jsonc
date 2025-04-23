@@ -95,7 +95,7 @@
     "escape": true
   },
   "custom/power": {
-    "format": "  ",
+    "format": "   ",
     "tooltip": false,
     "menu": "on-click",
     "menu-file": "$HOME/.config/waybar/power_menu.xml",
@@ -112,6 +112,7 @@
     "format": "{:%H:%M}",
     "interval": 1,
     "tooltip-format": "<span>{calendar}</span>",
+    "on-click": "gnome-calendar",
     "calendar": {
       "mode": "month",
       "mode-mon-col": 3,
@@ -124,7 +125,6 @@
       }
     },
     "actions": {
-      "on-click": "gnome-calendar",
       "on-click-right": "mode",
       "on-scroll-up": "shift_up",
       "on-scroll-down": "shift_down"
