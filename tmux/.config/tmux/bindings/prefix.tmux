@@ -90,11 +90,19 @@ bind -N "Horizontal pane" h {
   split-window -v -c "#{pane_current_path}"
 }
 
+bind -N "Horizontal pane" C-h {
+  split-window -v -c "#{pane_current_path}"
+}
+
 bind -N "Horizontal pane (full)" s {
   split-window -fv -c "#{pane_current_path}"
 }
 
 bind -N "Vertical pane" v {
+  split-window -h -c "#{pane_current_path}"
+}
+
+bind -N "Vertical pane" C-v {
   split-window -h -c "#{pane_current_path}"
 }
 
