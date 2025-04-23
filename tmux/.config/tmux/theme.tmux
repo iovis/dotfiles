@@ -18,8 +18,8 @@ set -g status-style 'bg=default,fg=#51576d'
 set -g status-left-length 90
 
 set -g  status-left ''
-set -ag status-left '#[bg=default,fg=#232634] '
-set -ag status-left '#[bg=#232634,fg=#8caaee] #S'
+set -ag status-left '#[bg=default,fg=#232634]'
+set -ag status-left '#[bg=#232634,fg=#8caaee]  #S '
 set -ag status-left '#[bg=default,fg=#232634]'
 set -ag status-left '#[bg=default,fg=#a6d189,bold] #{?window_zoomed_flag,[+],}'
 
