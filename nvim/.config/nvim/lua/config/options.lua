@@ -27,7 +27,6 @@ vim.opt.diffopt = {
   "indent-heuristic",
   "hiddenoff",
   "vertical",
-  -- "iwhite",
 }
 vim.o.expandtab = true
 vim.o.exrc = true

@@ -348,16 +348,28 @@ vim.keymap.set("n", "yom", function()
 end, { desc = "Toggle message dismissal" })
 
 vim.keymap.set("n", "yoW", function()
-  if vim.bo.textwidth == 0 then
-    vim.bo.textwidth = 80
-    vim.opt_local.formatoptions:append("a")
-    vim.notify("Autowidth enabled [80]")
+  if vim.opt.diff:get() then
+    -- Toggle ignore whitespace in diff
+    if vim.iter(vim.opt.diffopt:get()):find("iwhite") then
+      vim.opt.diffopt:remove("iwhite")
+      vim.notify("Ignore whitespace off")
+    else
+      vim.opt.diffopt:append("iwhite")
+      vim.notify("Ignore whitespace on")
+    end
   else
-    vim.bo.textwidth = 0
-    vim.opt_local.formatoptions:remove("a")
-    vim.notify("Autowidth disabled")
+    -- Toggle autowidth
+    if vim.bo.textwidth == 0 then
+      vim.bo.textwidth = 80
+      vim.opt_local.formatoptions:append("a")
+      vim.notify("Autowidth enabled [80]")
+    else
+      vim.bo.textwidth = 0
+      vim.opt_local.formatoptions:remove("a")
+      vim.notify("Autowidth disabled")
+    end
   end
-end, { desc = "Toggle autowidth" })
+end, { desc = "Toggle autowidth/ignore whitespace in diff" })
 
 vim.keymap.set("n", "yoz", function()
   if vim.o.scrolloff == vim.g.scrolloff then
