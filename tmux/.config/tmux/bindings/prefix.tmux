@@ -65,6 +65,7 @@ bind -N "New session" C command-prompt -p "new session name:" {
 
 ## Window management
 bind -N "New window" c new-window
+bind -N "New window" C-c new-window
 bind -N "New window (current path)" Tab new-window -c "#{pane_current_path}"
 
 bind -N "Last window" k last-window
