@@ -6,7 +6,7 @@ vim.g.foldcolumn = false
 -- vim.g.health = { style = "float" }
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-vim.g.messages_persistent = false
+vim.g.messages_persistent = true
 vim.g.scrolloff = 4
 vim.g.winbar_full_path = false
 vim.g.zig_fmt_autosave = 0
@@ -59,7 +59,7 @@ vim.opt.listchars:append({
   leadmultispace = "│·",
   space = "·",
 })
-vim.o.messagesopt = "wait:500,history:2000"
+vim.o.messagesopt = "hit-enter,history:2000"
 vim.o.mouse = "a"
 vim.o.number = true
 vim.o.relativenumber = true
