@@ -18,6 +18,7 @@ vim.lsp.enable({
   "fish_lsp",
   "gopls",
   "html",
+  "hyprls",
   "jsonls",
   "just",
   "lua_ls",
