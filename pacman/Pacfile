@@ -11,10 +11,12 @@ clang
 cliphist
 decibels
 dkms
+dosfstools
 dua-cli
 efibootmgr
 epiphany
 evince
+exfat-utils
 eza
 fastfetch
 fd
@@ -102,6 +104,7 @@ networkmanager
 nmap
 noto-fonts-cjk
 nss-mdns
+ntfs-3g
 nvidia-dkms
 obsidian
 orca
