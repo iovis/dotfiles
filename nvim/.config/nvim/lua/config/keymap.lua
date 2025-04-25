@@ -82,7 +82,7 @@ vim.keymap.set("c", "<c-b>", "<nop>")
 vim.keymap.set("c", "<c-j>", "<down>")
 vim.keymap.set("c", "<c-k>", "<up>")
 
----- Normal mode
+---- Normal/Visual modes
 vim.keymap.set("n", "'", "<nop>")
 vim.keymap.set("n", "<leader>a", "<nop>")
 vim.keymap.set("n", "<leader>f", "<nop>")
@@ -113,7 +113,8 @@ vim.keymap.set("x", "<m-k>", ":m'<-2<cr>`>my`<mzgv=gv`yo`z", { silent = true })
 vim.keymap.set("n", "<m-o>", "m`o<esc>``")
 vim.keymap.set("n", "<m-O>", "m`O<esc>``")
 
--- vim.keymap.set("n", "<leader>fo", "gg=G")
+vim.keymap.set("n", "<leader>fo", "gg=G")
+vim.keymap.set("x", "<leader>c", ":!column -t<cr>", { desc = "Format as columns" })
 
 vim.keymap.set("n", "g2", "m`:set shiftwidth=2 softtabstop=2 expandtab | retab<cr>gg=G``")
 vim.keymap.set("n", "g4", "m`:set shiftwidth=4 softtabstop=4 expandtab | retab<cr>gg=G``")
