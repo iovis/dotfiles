@@ -18,6 +18,43 @@ elseif u.current_file():match("_spec.rb") then
     buffer = vim.api.nvim_get_current_buf(),
     callback = require("config.hooks.rspec").run,
   })
+
+  ---- Toggle autotest
+  vim.keymap.set("n", "<leader>TD", function()
+    vim.g.autotest = nil
+    vim.notify("Autotest disabled")
+  end, { buffer = true, desc = "Autotest disable" })
+
+  vim.keymap.set("n", "<leader>TL", function()
+    vim.g.autotest = "line"
+    vim.notify("Autotest line")
+  end, { buffer = true, desc = "Autotest line" })
+
+  vim.keymap.set("n", "<leader>TF", function()
+    vim.g.autotest = "file"
+    vim.notify("Autotest file")
+  end, { buffer = true, desc = "Autotest file" })
+
+  vim.keymap.set("n", "<leader>TT", function()
+    vim.ui.select({ "file", "line", "disable" }, {
+      prompt = "RSpec> ",
+      format_item = function(item)
+        local is_current = ""
+
+        if vim.g.autotest == item or (vim.g.autotest == nil and item == "disable") then
+          is_current = " (current)"
+        end
+
+        return item .. is_current
+      end,
+    }, function(choice)
+      if choice == "disable" then
+        vim.g.autotest = nil
+      else
+        vim.g.autotest = choice
+      end
+    end)
+  end, { buffer = true, desc = "Toggle autotest" })
 elseif u.current_file() == "Gemfile" then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux bundle install<cr>", { buffer = true })
 
