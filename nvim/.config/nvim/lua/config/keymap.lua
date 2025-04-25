@@ -49,6 +49,7 @@ vim.keymap.set({ "o", "x" }, "io", "iW")
 
 ---- Command mode
 vim.keymap.set("c", "<m-p>", "<c-r>=fnameescape(expand('%:.:h')).'/'<cr>")
+vim.keymap.set("c", "<m-r>", "<c-b>R <c-e>")
 
 -- Fish's binding for edit command in editor
 vim.keymap.set("c", "<m-e>", "<c-f>")
