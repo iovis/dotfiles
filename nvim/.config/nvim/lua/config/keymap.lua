@@ -237,6 +237,14 @@ vim.keymap.set("n", "<right>", "<cmd>lnext<cr>")
 vim.keymap.set("n", "<leader><left>", "<cmd>lpfile<cr>")
 vim.keymap.set("n", "<leader><right>", "<cmd>lnfile<cr>")
 
+vim.keymap.set("n", "+", function()
+  if vim.fn.getqflist({ winid = 1 }).winid == 0 then
+    vim.cmd("botright copen")
+  else
+    vim.cmd("cclose")
+  end
+end, { desc = "QuickFix Toggle" })
+
 -- Repeat
 vim.keymap.set("n", "<leader>.", "@:")
 vim.keymap.set("n", "<leader>,", "@@")
@@ -404,15 +412,6 @@ vim.keymap.set({ "n", "x" }, "'L", function()
   return ':luado return table.concat(vim.split(line, "", { trimempty = true }), "")' .. ("<left>"):rep(29)
 end, { expr = true })
 vim.keymap.set({ "n", "x" }, "'r", [[:rubydo $_ = "#{$_}"<left>]])
-
----- Quickfix toggle
-vim.keymap.set("n", "+", function()
-  if vim.fn.getqflist({ winid = 1 }).winid == 0 then
-    vim.cmd("botright copen")
-  else
-    vim.cmd("cclose")
-  end
-end, { desc = "QuickFix Toggle" })
 
 ---- Tmux quick switching
 vim.keymap.set("n", "'V", "<cmd>VimPlugin<cr>")
