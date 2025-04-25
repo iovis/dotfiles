@@ -2,9 +2,7 @@
 
 ---@type Wezterm
 local wezterm = require("wezterm")
-
--- Global so it can be mutated
-config = wezterm.config_builder()
+local config = wezterm.config_builder()
 
 ----Events
 require("events")
@@ -15,7 +13,7 @@ config:set_strict_mode(true)
 ---UI
 config.adjust_window_size_when_changing_font_size = false
 config.audible_bell = "Disabled"
-config.color_scheme = "Default Dark (base16)"
+config.color_scheme = "Catppuccin Mocha"
 config.enable_kitty_keyboard = true
 config.exit_behavior = "Close"
 config.hide_tab_bar_if_only_one_tab = true
@@ -75,12 +73,7 @@ config.colors = {
 -- config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" } -- Disable ligatures
 -- wezterm ls-fonts --list-system | rg Fira
 -- wezterm ls-fonts --text "✔"
-if wezterm.target_triple == "aarch64-apple-darwin" then
-  config.font_size = 20
-else
-  config.font_size = 18
-end
-
+config.font_size = 20
 config.font = wezterm.font_with_fallback({
   { family = "FiraCode Nerd Font", weight = 450 }, -- Retina
   "Menlo", -- This has the check mark and cross symbols
@@ -108,6 +101,14 @@ table.insert(config.hyperlink_rules, {
   regex = [[([-\w\d]+/[-\w\d\.]+)]],
   format = "https://www.github.com/$1",
 })
+
+----Linux
+if wezterm.target_triple ~= "aarch64-apple-darwin" then
+  config.font_size = 16
+  config.enable_wayland = false
+  config.front_end = "WebGpu" -- OpenGL, Software, WebGpu
+  config.window_background_opacity = 0.7
+end
 
 ----Local configuration
 local ok, locals = pcall(require, "locals")
