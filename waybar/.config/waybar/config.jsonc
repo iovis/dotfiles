@@ -13,27 +13,30 @@
     "hyprland/workspaces"
   ],
   "modules-right": [
-    "group/expand",
+    // "group/expand",
+    "idle_inhibitor",
     "custom/notification",
+    "network",
+    "bluetooth",
     "pulseaudio",
     "clock",
     "custom/power"
   ],
-  "group/expand": {
-    "orientation": "horizontal",
-    "drawer": {
-      "transition-duration": 600,
-      "transition-to-left": true,
-      "click-to-reveal": true
-    },
-    "modules": [
-      "custom/expand",
-      "bluetooth",
-      "idle_inhibitor",
-      "network",
-      "custom/endpoint"
-    ]
-  },
+  // "group/expand": {
+  //   "orientation": "horizontal",
+  //   "drawer": {
+  //     "transition-duration": 600,
+  //     "transition-to-left": true,
+  //     "click-to-reveal": true
+  //   },
+  //   "modules": [
+  //     "custom/expand",
+  //     "bluetooth",
+  //     "idle_inhibitor",
+  //     "network",
+  //     "custom/endpoint"
+  //   ]
+  // },
   "bluetooth": {
     "tooltip": true,
     "rotate": 0,
@@ -164,11 +167,11 @@
   },
   "network": {
     "tooltip": true,
-    "format-wifi": " ",
-    "format-ethernet": " ",
+    "format-wifi": "",
+    "format-ethernet": "",
     "tooltip-format-wifi": "Network: {essid}\nSignal strength: {signaldBm}dBm ({signalStrength}%)\nFrequency: {frequency}MHz\nIP: {ipaddr}/{cidr}\nGateway: {gwaddr}\nNetmask: {netmask}",
     "tooltip-format-ethernet": "Wired Network\nIP: {ipaddr}/{cidr}\nGateway: {gwaddr}\nNetmask: {netmask}",
-    "format-disconnected": " ",
+    "format-disconnected": "",
     "tooltip-format-disconnected": "Disconnected",
     "interval": 2,
     "on-click": "XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
