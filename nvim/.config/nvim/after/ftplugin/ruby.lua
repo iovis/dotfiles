@@ -3,14 +3,17 @@ local u = require("config.utils")
 vim.cmd.compiler("ruby")
 
 vim.keymap.set("n", "s<cr>", "<cmd>Tux ruby %:.<cr>", { buffer = true })
-vim.keymap.set("n", "m<cr>", ":SolargraphRebuild!<cr>", { buffer = true })
 
 ---- Runnables
 if u.current_path():match("/co/manage") then
   vim.g["test#strategy"] = "script_spring"
   vim.g["test#ruby#bundle_exec"] = 0
+elseif u.current_file():match("exe/") then
+  vim.keymap.set("n", "s<cr>", "<cmd>Tux bundle exec %:.<cr>", { buffer = true })
 elseif u.current_file():match("_spec.rb") then
-  vim.keymap.set("n", "s<cr>", "<cmd>Tux rspec %<cr>", { buffer = true })
+  vim.keymap.set("n", "s<cr>", "<cmd>Tux rspec %:.<cr>", { buffer = true })
+  vim.keymap.set("n", "<leader>sd", ":TestFile --format documentation<cr>", { buffer = true, silent = true })
+  vim.keymap.set("n", "<leader>sp", ":TestNearest -strategy=test_prof<cr>", { buffer = true, silent = true })
 
   vim.api.nvim_create_autocmd("BufWritePost", {
     desc = "Run RSpec on save",
@@ -55,6 +58,25 @@ elseif u.current_file():match("_spec.rb") then
       end
     end)
   end, { buffer = true, desc = "Toggle autotest" })
+
+  ---- Load failing tests in a scratch window
+  vim.api.nvim_buf_create_user_command(0, "FailedRSpecTests", function()
+    vim.cmd("R .")
+    vim.cmd("r tmp/rspec-failures.txt")
+    vim.cmd([[v/| failed/d]])
+
+    local ok, _ = pcall(vim.cmd, [[%s/\v[\d.*]])
+    vim.cmd.nohlsearch()
+
+    if not ok then
+      vim.cmd("norm! Ino failed tests!")
+      return
+    end
+
+    vim.cmd("sort u")
+    vim.cmd("%norm! Irspec ")
+    vim.cmd("se ft=sh")
+  end, {})
 elseif u.current_file() == "Gemfile" then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux bundle install<cr>", { buffer = true })
 
@@ -67,10 +89,6 @@ elseif u.current_file() == "Gemfile" then
     end,
   })
 end
-
----- Quick Testing
-vim.keymap.set("n", "<leader>sd", ":TestFile --format documentation<cr>", { buffer = true, silent = true })
-vim.keymap.set("n", "<leader>sp", ":TestNearest -strategy=test_prof<cr>", { buffer = true, silent = true })
 
 ---- Solargraph
 vim.api.nvim_buf_create_user_command(0, "SolargraphRebuild", function(ctx)
@@ -87,25 +105,6 @@ vim.api.nvim_buf_create_user_command(0, "SolargraphRebuild", function(ctx)
     name = nil,
   })
 end, { bang = true })
-
----- Load failing tests in a scratch window
-vim.api.nvim_buf_create_user_command(0, "FailedRSpecTests", function()
-  vim.cmd("R .")
-  vim.cmd("r tmp/rspec-failures.txt")
-  vim.cmd([[v/| failed/d]])
-
-  local ok, _ = pcall(vim.cmd, [[%s/\v[\d.*]])
-  vim.cmd.nohlsearch()
-
-  if not ok then
-    vim.cmd("norm! Ino failed tests!")
-    return
-  end
-
-  vim.cmd("sort u")
-  vim.cmd("%norm! Irspec ")
-  vim.cmd("se ft=sh")
-end, {})
 
 ---- Regenerate Rubocop TODO
 vim.api.nvim_buf_create_user_command(0, "RubocopRegenerateTodo", function()
