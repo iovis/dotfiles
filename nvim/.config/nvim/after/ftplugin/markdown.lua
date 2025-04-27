@@ -12,7 +12,7 @@ setlocal softtabstop=4
 setlocal formatoptions+=tcroqnl1jp
 
 " Allow *, -, +, ?, > to auto create the character on line change
-setlocal comments=b:*,b:-,b:+,b:?,n:>
+setlocal comments=b:*,b:-\ [\ ],b:-\ [\x],b:-,n:>
 
 " Better indention/hierarchy (:h fo-n)
 "
