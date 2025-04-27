@@ -1,2 +1,1 @@
-vim.keymap.set("n", "s<cr>", "<cmd>Tuxw tw %:.<cr>", { buffer = true })
-vim.keymap.set("n", "yoc", ":CsvViewToggle<cr>", { buffer = true })
+vim.keymap.set("n", "yoc", ":CsvViewToggle header_lnum=1<cr>", { buffer = true })
