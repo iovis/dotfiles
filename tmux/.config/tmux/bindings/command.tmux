@@ -2,7 +2,7 @@ bind -N "Command mode" l {
   switch-client -T command
 }
 
-bind -N "Open btop" -T command B {
+bind -N "Open btop" -T command b {
   new-window -Sn btop btop
 }
 
