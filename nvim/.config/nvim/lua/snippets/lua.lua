@@ -37,6 +37,38 @@ local function lua_fn()
 end
 
 return {
+  -- Neovim
+  s(
+    "augroup",
+    fmta(
+      [[
+        local augroup = vim.api.nvim_create_augroup("<>", { clear = true })
+      ]],
+      {
+        i(1),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "autocmd",
+    fmta(
+      [[
+        vim.api.nvim_create_autocmd("User", {
+          group = <>,
+          pattern = "VeryLazy",
+          callback = function()
+            <>
+          end,
+        })
+      ]],
+      {
+        i(1, "augroup"),
+        i(2, "-- TODO"),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
   -- Functions
   s("f", d(1, lua_fn), {
     condition = conds.line_begin,
