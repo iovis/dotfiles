@@ -40,7 +40,7 @@ end
 
 ulimit -n 2048
 
-source "$FDOTDIR/abbrs.fish"
+source $FDOTDIR/abbrs.fish
 
 if command -q fzf
     fzf --fish | source
