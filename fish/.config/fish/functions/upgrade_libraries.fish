@@ -7,8 +7,8 @@ function upgrade_libraries
     else if command -q pacman
         pacupdate
 
-        if command -q yay
-            yayupdate
+        if command -q paru
+            parupdate
         end
 
         gnome-dump-keybindings

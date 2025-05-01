@@ -10,7 +10,7 @@ if [ ! -d "$DOTFILES" ]; then
 fi
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing Libraries"
-if ! command -v yay >/dev/null 2>&1; then
+if ! command -v brew >/dev/null 2>&1; then
   echo "[$(date '+%Y-%m-%d %H:%M')] Installing Homebrew"
   export NONINTERACTIVE=1
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"

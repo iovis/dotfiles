@@ -17,21 +17,21 @@ fi
 
 sudo pacman -S --needed --noconfirm $(cat $DOTFILES/pacman/Pacfile)
 
-if ! command -v yay >/dev/null 2>&1; then
-  echo "[$(date '+%Y-%m-%d %H:%M')] Installing yay"
+if ! command -v paru >/dev/null 2>&1; then
+  echo "[$(date '+%Y-%m-%d %H:%M')] Installing paru"
 
   mkdir "$PROJECT_HOME"
 
-  git clone https://aur.archlinux.org/yay-bin.git "$PROJECT_HOME/yay-bin/"
+  git clone https://aur.archlinux.org/paru.git "$PROJECT_HOME/paru/"
 
-  cd "$PROJECT_HOME/yay-bin/" || exit
+  cd "$PROJECT_HOME/paru/" || exit
   makepkg -si
   cd - || exit
 
-  rm -rf "$PROJECT_HOME/yay-bin/"
+  rm -rf "$PROJECT_HOME/paru/"
 fi
 
-yay -S --needed --noconfirm $(cat $DOTFILES/pacman/Yayfile)
+paru -S --needed --noconfirm $(cat $DOTFILES/pacman/Parufile)
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Starting services"
 sudo systemctl enable --now avahi-daemon bluetooth fstrim.timer sshd
