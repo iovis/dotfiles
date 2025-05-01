@@ -5,12 +5,10 @@ function upgrade_libraries
         brew autoremove
         brewdump
     else if command -q pacman
-        sudo pacman -Syu
-        pacmandump
+        pacupdate
 
         if command -q yay
-            yay -Sua --noconfirm
-            yaydump
+            yayupdate
         end
 
         gnome-dump-keybindings
