@@ -63,6 +63,10 @@ if [ ! -f "/usr/lib/systemd/system-sleep/disable-some-wake" ]; then
   sudo chmod 755 /usr/lib/systemd/system-sleep/disable-some-wake
 fi
 
+echo "[$(date '+%Y-%m-%d %H:%M')] Setting dark theme"
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
+
 echo "[$(date '+%Y-%m-%d %H:%M')] Installation ended"
 
 shell=$(basename "$SHELL")
