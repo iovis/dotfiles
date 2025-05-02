@@ -1,6 +1,6 @@
 [tools]
 go = "latest"
-nodejs = "22"
+nodejs = "23"
 ruby = "3.4"
 usage = "latest"
 zig = "latest"
