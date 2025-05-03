@@ -48,11 +48,10 @@ vim.keymap.set({ "o", "x" }, "ao", "aW")
 vim.keymap.set({ "o", "x" }, "io", "iW")
 
 ---- Command mode
+vim.keymap.set("c", "kj", "<c-f>")
 vim.keymap.set("c", "<m-p>", "<c-r>=fnameescape(expand('%:.:h')).'/'<cr>")
 vim.keymap.set("c", "<m-r>", "<c-b>R <c-e>")
 
--- Fish's binding for edit command in editor
-vim.keymap.set("c", "<m-e>", "<c-f>")
 vim.keymap.set("c", ";", function()
   if vim.fn.getcmdpos() == 1 and vim.fn.getcmdtype() == ":" then
     -- open the command editor on the last line
