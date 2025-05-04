@@ -32,6 +32,7 @@ gui:
       - default
 git:
   autoFetch: true
+  autoForwardBranches: onlyMainBranches
   paging:
     colorArg: always
     pager: delta --dark --paging=never --tabs=2
