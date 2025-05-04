@@ -40,13 +40,13 @@ return {
     ---- mini.align
     require("mini.align").setup({})
 
-    vim.keymap.set("n", "<leader>a,", "mzgaipi,'z", { remap = true })
+    vim.keymap.set("n", "<leader>a,", "'mzgaipi,`z", { remap = true })
     vim.keymap.set("x", "<leader>a,", "gai,", { remap = true })
 
-    vim.keymap.set("n", "<leader>a:", "mzgaipip:'z", { remap = true })
+    vim.keymap.set("n", "<leader>a:", "'mzgaipip:`z", { remap = true })
     vim.keymap.set("x", "<leader>a:", "gaip:", { remap = true })
 
-    vim.keymap.set("n", "<leader>a=", "mzgaipi='z", { remap = true })
+    vim.keymap.set("n", "<leader>a=", "'mzgaipi=`z", { remap = true })
     vim.keymap.set("x", "<leader>a=", "gai=", { remap = true })
 
     ---- mini.bufremove (remove buffer without messing windows)
