@@ -11,9 +11,7 @@ vim.api.nvim_create_user_command("LspActiveClients", "R=vim.lsp.get_clients()", 
 vim.lsp.enable({
   "bashls",
   "clangd",
-  "cmake",
   "cssls",
-  "dockerls",
   "emmet_language_server",
   "fish_lsp",
   "gopls",
@@ -22,16 +20,11 @@ vim.lsp.enable({
   "jsonls",
   "just",
   "lua_ls",
-  -- "marksman",
   "ruby_lsp",
   "rust_analyzer",
-  "solargraph",
-  "sourcekit",
-  "svelte",
   "taplo",
   "ts_ls",
   "yamlls",
-  "zls",
 })
 
 vim.lsp.config("html", {
