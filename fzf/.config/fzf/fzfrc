@@ -1,5 +1,3 @@
-# https://github.com/catppuccin/fzf
-# bg:-1,gutter:-1 => transparent
 --ansi
 --bind=ctrl-n:page-down,ctrl-p:page-up
 --bind=alt-a:select-all,alt-d:deselect-all,alt-t:toggle-all
