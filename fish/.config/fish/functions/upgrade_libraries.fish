@@ -5,11 +5,16 @@ function upgrade_libraries
         brew autoremove
         brewdump
     else if command -q pacman
+        log_step $(green pacman) update
         pacupdate
 
         if command -q paru
+            log_step $(green paru) update
             parupdate
         end
+
+        log_step $(green pacman) orpaned
+        pacorphan
 
         gnome-dump-keybindings
         gnome-dump-extensions
