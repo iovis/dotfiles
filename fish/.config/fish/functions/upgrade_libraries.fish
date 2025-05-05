@@ -15,9 +15,6 @@ function upgrade_libraries
 
         log_step $(green pacman) orpaned
         pacorphan
-
-        gnome-dump-keybindings
-        gnome-dump-extensions
     else if command -q apt
         sudo apt update
         sudo apt upgrade -y
