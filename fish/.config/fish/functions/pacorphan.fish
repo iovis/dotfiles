@@ -1,3 +1,3 @@
 function pacorphan
-    pacman -Qtdq
+    pacman -Qtdq || echo 'No orphan packages'
 end
