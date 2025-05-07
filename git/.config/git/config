@@ -82,9 +82,10 @@
 [pull]
   rebase = true
 [push]
-  default = simple
   autoSetupRemote = true
+  default = simple
   followTags = true
+  recurseSubmodules = on-demand
 [rebase]
   autoSquash = true
   autoStash = true
@@ -94,3 +95,5 @@
 [user]
   name = David Marchante
   email = davidmarchan@gmail.com
+[submodule]
+  recurse = true
