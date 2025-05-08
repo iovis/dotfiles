@@ -45,7 +45,7 @@
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
   "quicker.nvim": { "branch": "master", "commit": "76bfadd8f29895e79429fe0d30f0b3df82cd466a" },
   "resize.vim": { "branch": "master", "commit": "52e8b539acb1938595555c8f5d7cbd7b7d84f060" },
-  "schemastore.nvim": { "branch": "main", "commit": "0cd099d94b1d61565ee1d44c4afad42f9a170ad1" },
+  "schemastore.nvim": { "branch": "main", "commit": "ea5687d7e8af3ce6678dd03d3a1bd109b5c618b7" },
   "splitjoin.vim": { "branch": "main", "commit": "6af1cdcae4b46a90dbcd59ce0ca3543f34c7732c" },
   "treesj": { "branch": "main", "commit": "3b4a2bc42738a63de17e7485d4cc5e49970ddbcc" },
   "tux.nvim": { "branch": "master", "commit": "e7ba76b3fe13cb453d9b3548f09cac9957222526" },
