@@ -281,16 +281,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
     nmap("<leader>lk", toggle_inlay_hints, "vim.lsp.inlay_hint")
 
     ----Code Actions
-    nmap("<leader>lI", ":LspOrganizeImports<cr>")
-    vim.api.nvim_buf_create_user_command(0, "LspOrganizeImports", function()
-      vim.lsp.buf.code_action({
-        apply = true,
-        context = {
-          only = { "source.organizeImports" },
-          diagnostics = {},
-        },
-      })
-    end, {})
+    -- nmap("<leader>lI", ":LspOrganizeImports<cr>")
+    -- vim.api.nvim_buf_create_user_command(0, "LspOrganizeImports", function()
+    --   vim.lsp.buf.code_action({
+    --     apply = true,
+    --     context = {
+    --       only = { "source.organizeImports" },
+    --       diagnostics = {},
+    --     },
+    --   })
+    -- end, {})
 
     ----Custom server capabilities
     if client.name == "solargraph" then
