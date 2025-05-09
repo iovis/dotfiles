@@ -6,8 +6,9 @@ return {
   lazy = false,
   cmd = { "Oil" },
   keys = {
-    { "-", "<cmd>Oil --float<cr>" },
-    { "_", "<cmd>Oil<cr>" },
+    { ",", "<cmd>Oil --float<cr>" },
+    { "-", "<cmd>Oil<cr>" },
+    { "_", "<cmd>Oil .<cr>" },
   },
   dependencies = {
     "nvim-tree/nvim-web-devicons",
