@@ -68,9 +68,11 @@ return {
       },
       keymap = {
         builtin = {
-          ["<c-_>"] = "toggle-help",
           ["<m-p>"] = "toggle-preview",
           ["<m-r>"] = "toggle-preview-cw",
+          ["<m-j>"] = "preview-page-down",
+          ["<m-k>"] = "preview-page-up",
+          ["<m-;>"] = "preview-reset",
           -- defaults (overridden otherwise)
           ["<F1>"] = "toggle-help",
           ["<F2>"] = "toggle-fullscreen",
@@ -78,9 +80,14 @@ return {
           ["<F4>"] = "toggle-preview",
           ["<F5>"] = "toggle-preview-ccw",
           ["<F6>"] = "toggle-preview-cw",
-          ["<m-j>"] = "preview-page-down",
-          ["<m-k>"] = "preview-page-up",
-          ["<m-;>"] = "preview-page-reset",
+          ["<F7>"] = "toggle-preview-ts-ctx",
+          ["<F8>"] = "preview-ts-ctx-dec",
+          ["<F9>"] = "preview-ts-ctx-inc",
+          -- ["<S-Left>"] = "preview-reset",
+          -- ["<S-down>"] = "preview-page-down",
+          -- ["<S-up>"] = "preview-page-up",
+          -- ["<M-S-down>"] = "preview-down",
+          -- ["<M-S-up>"] = "preview-up",
         },
       },
       actions = {
