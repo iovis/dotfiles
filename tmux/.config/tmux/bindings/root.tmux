@@ -7,11 +7,14 @@ bind -N "Switch to last session" -n M-Space {
   switch-client -l
 }
 
+bind -N "muxi picker" -n M-/ {
+  run "muxi fzf"
+}
+
 ## Window switching
 bind -n M-H previous-window
 bind -n M-L next-window
 bind -n M-K last-window
-bind -n M-/ last-window
 
 ## Switch panes
 bind -n C-h  if "$is_vim" "send C-h"  "select-pane -L"
