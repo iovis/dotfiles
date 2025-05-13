@@ -14,7 +14,7 @@ return {
   { key = "4", mods = "CTRL", action = act.ActivateTab(3) },
   { key = "5", mods = "CTRL", action = act.ActivateTab(4) },
   { key = "6", mods = "CTRL", action = act.ActivateTab(5) },
-  { key = "L", mods = "CTRL|SHIFT", action = act.ShowDebugOverlay }, -- window:effective_config()
+  { key = "l", mods = "CTRL|SHIFT", action = act.ShowDebugOverlay }, -- window:effective_config()
   { key = "c", mods = "CTRL|SHIFT", action = act.CopyTo("Clipboard") },
   { key = "n", mods = "CTRL|SHIFT", action = act.SpawnWindow },
   -- { key = "q", mods = "SUPER", action = act.QuitApplication },

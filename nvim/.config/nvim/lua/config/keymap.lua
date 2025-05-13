@@ -390,7 +390,6 @@ vim.keymap.set("n", "yoz", function()
 end, { desc = "Toggle scroll lock" })
 
 ---- Misc
-vim.keymap.set("n", "'<cr>", "<cmd>so $VIMRUNTIME/syntax/hitest.vim<cr>")
 vim.keymap.set("n", "<leader>P", ":R=")
 vim.keymap.set("n", "<leader>M", "<cmd>10R messages<cr>G")
 vim.keymap.set("n", "'M", function()
@@ -403,14 +402,4 @@ vim.keymap.set({ "n", "x" }, "'g", ":g/\\v")
 vim.keymap.set({ "n", "x" }, "'v", ":v/\\v")
 vim.keymap.set({ "n", "x" }, "'l", function()
   return ':luado return string.format("%s", line)' .. ("<left>"):rep(10)
-end, { expr = true })
-vim.keymap.set({ "n", "x" }, "'L", function()
-  ----Notes:
-  -- - Splitting line on a separator: vim.split(line, "<separator>")
-  -- - Joining array of strings: table.concat(<table>, "<separator>")
-  return ':luado return table.concat(vim.split(line, "", { trimempty = true }), "")' .. ("<left>"):rep(29)
-end, { expr = true })
-vim.keymap.set({ "n", "x" }, "'r", [[:rubydo $_ = "#{$_}"<left>]])
-
----- Tmux quick switching
-vim.keymap.set("n", "'V", "<cmd>VimPlugin<cr>")
+end, { expr = true, desc = "luado modify line" })

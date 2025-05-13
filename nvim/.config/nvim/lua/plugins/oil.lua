@@ -34,6 +34,7 @@ return {
         ["g?"] = "actions.show_help",
         ["<CR>"] = "actions.select",
         ["-"] = "actions.parent",
+        [","] = "actions.parent",
         ["_"] = "actions.open_cwd",
         ["gs"] = "actions.change_sort",
         ["gx"] = "actions.open_external",
@@ -82,9 +83,10 @@ return {
             end
           end,
         },
-        [","] = {
+        ["'"] = {
           "actions.open_cmdline",
           desc = "Open the command line with the current item as an argument",
+          nowait = true,
           opts = {
             shorten_path = true,
             -- modify = ":h",

@@ -14,7 +14,7 @@ return {
   { key = "4", mods = "SUPER", action = act.ActivateTab(3) },
   { key = "5", mods = "SUPER", action = act.ActivateTab(4) },
   { key = "6", mods = "SUPER", action = act.ActivateTab(5) },
-  { key = "L", mods = "SUPER", action = act.ShowDebugOverlay }, -- window:effective_config()
+  { key = "l", mods = "SUPER", action = act.ShowDebugOverlay }, -- window:effective_config()
   { key = "c", mods = "SUPER", action = act.CopyTo("Clipboard") },
   { key = "f", mods = "SUPER", action = act.Search("CurrentSelectionOrEmptyString") },
   { key = "h", mods = "SUPER", action = act.HideApplication },

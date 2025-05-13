@@ -94,31 +94,9 @@ u.command("P", function(ctx)
   u.scratch(lines, { type = "float" })
 end, { nargs = "+", complete = "command" })
 
----- Quick open vim plugin in new window
-u.command("VimPlugin", function(opts)
-  local plugins_path = vim.fs.joinpath(vim.fn.stdpath("data") --[[@as string]], "lazy")
-
-  local command = string.format(
-    [[fd -td -d1 --base-directory %s | fzf-tmux -p60%%,60%% --select-1 --exit-0 --reverse --info inline --prompt "plugin> "]],
-    plugins_path
-  )
-
-  -- Add query if provided
-  if not u.is_empty(opts.args) then
-    command = command .. string.format([[ --query="%s"]], opts.args)
-  end
-
-  local plugin = vim.trim(vim.fn.system(command))
-  if u.is_empty(plugin) then
-    return
-  end
-
-  local directory = ("%s/%s"):format(plugins_path, plugin)
-
-  local cmd = string.format([[tmux new-window -c "%s"]], directory)
-
-  vim.fn.system(cmd)
-end, { nargs = "?" })
+u.command("Hitest", function()
+  vim.cmd.source(vim.env.VIMRUNTIME .. "/syntax/hitest.vim")
+end, {})
 
 ---- Render ANSI code colors
 u.command("RenderAscii", function(opts)

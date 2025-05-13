@@ -20,10 +20,10 @@ return {
         map("n", "<leader>dk", gitsigns.reset_hunk, { desc = "[gitsigns] Reset hunk" })
         map("x", "<leader>dk", function()
           gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-        end)
+        end, { desc = "[gitsigns] reset lines" })
         map("n", "'c", function()
           gitsigns.blame_line({ full = true })
-        end)
+        end, { desc = "[gitsigns] show commit details for current line" })
 
         map("n", "]c", function()
           if vim.wo.diff then
