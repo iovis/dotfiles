@@ -84,6 +84,10 @@ bind -N "Reset session" q confirm -p "reset session? (y/n)" {
   kill-window -a
 }
 
+bind -N "Open Vim plugin" C-p {
+  display-popup -w 50% -h 60% -b rounded -E vim_plugins
+}
+
 ## Pane Management
 bind-key -N "Kill pane" x kill-pane
 
