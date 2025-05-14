@@ -2,11 +2,13 @@
 
 set -euo pipefail
 
+PLUGIN_DIR="$XDG_DATA_HOME/nvim/lazy"
+
 fd_command() {
   fd \
     --type d \
     --max-depth 1 \
-    --base-directory "$XDG_DATA_HOME/nvim/lazy/"
+    --base-directory "$PLUGIN_DIR"
 }
 
 INITIAL_QUERY="${*:-}"
@@ -17,7 +19,7 @@ fzf_command() {
     --reverse \
     --bind=alt-p:toggle-preview \
     --bind='alt-r:change-preview-window(right|down)' \
-    --preview="eza --color=always --icons -1a --group-directories-first $XDG_DATA_HOME/nvim/lazy/{}" \
+    --preview="eza --color=always --icons -1a --group-directories-first $PLUGIN_DIR/{}" \
     --preview-window=right \
     --query="$INITIAL_QUERY" || true
 }
@@ -29,4 +31,4 @@ if [[ -z "$plugin_path" || -z "$window_name" ]]; then
   exit 0
 fi
 
-tmux new-window -Sn "$window_name" -c "$plugin_path" n
+tmux new-window -Sn "$window_name" -c "$PLUGIN_DIR/$plugin_path" n
