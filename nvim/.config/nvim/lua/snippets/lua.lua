@@ -54,17 +54,19 @@ return {
     "autocmd",
     fmta(
       [[
-        vim.api.nvim_create_autocmd("User", {
+        vim.api.nvim_create_autocmd(<>, {
           group = <>,
-          pattern = "VeryLazy",
+          pattern = <>,
           callback = function()
             <>
           end,
         })
       ]],
       {
-        i(1, "augroup"),
-        i(2, "-- TODO"),
+        i(1, '"User"'),
+        i(2, "augroup"),
+        i(3, '"VeryLazy"'),
+        i(0, "-- TODO"),
       }
     ),
     { condition = conds.line_begin }
