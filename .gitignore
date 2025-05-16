@@ -30,6 +30,10 @@ nvim/.config/nvim/lua/local*
 pgcli/.config/pgcli/history
 pgcli/.config/pgcli/log
 
+# qutebrowser
+qutebrowser/.config/qutebrowser/bookmarks
+qutebrowser/.config/qutebrowser/quickmarks
+
 # ruby
 irb/.config/irb/irb_history
 
