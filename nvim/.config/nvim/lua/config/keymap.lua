@@ -123,6 +123,8 @@ vim.keymap.set("n", "g4", "m`:set shiftwidth=4 softtabstop=4 expandtab | retab<c
 vim.keymap.set("x", "<", "<gv")
 vim.keymap.set("x", ">", ">gv")
 
+vim.keymap.set("n", "gy", "`[v`]", { desc = "Select last inserted text (clobbered after save!)" })
+
 -- Editor
 vim.keymap.set({ "n", "x" }, ";", ":")
 vim.keymap.set("n", "<leader>x", "<cmd>confirm qa<cr>")
