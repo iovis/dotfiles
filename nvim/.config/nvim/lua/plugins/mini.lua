@@ -183,7 +183,9 @@ return {
       },
     })
 
+    vim.keymap.set("n", "sk", "saiw", { remap = true })
     vim.keymap.set("n", "sl", "sa_", { remap = true })
+    vim.keymap.set("n", "so", "saio", { remap = true })
 
     vim.keymap.del("x", "sa")
     vim.keymap.set("x", "s", [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
