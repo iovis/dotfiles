@@ -57,10 +57,6 @@ return {
       bufremove.delete(0, false)
     end, { desc = "Bdelete" })
 
-    vim.keymap.set("n", "<s-tab>", function()
-      bufremove.delete(0, false)
-    end, { desc = "Bdelete!" })
-
     ---- mini.files
     -- require("mini.files").setup({
     --   mappings = {
