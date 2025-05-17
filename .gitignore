@@ -31,8 +31,6 @@ pgcli/.config/pgcli/history
 pgcli/.config/pgcli/log
 
 # qutebrowser
-qutebrowser/.config/qutebrowser/bookmarks
-qutebrowser/.config/qutebrowser/quickmarks
 qutebrowser/.config/qutebrowser/autoconfig.yml
 
 # ruby
