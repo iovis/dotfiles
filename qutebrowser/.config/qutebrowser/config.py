@@ -2,11 +2,12 @@
 c = c  # noqa: F821 pylint: disable=E0602,C0103
 config = config  # noqa: F821 pylint: disable=E0602,C0103
 
-config.load_autoconfig()
+config.load_autoconfig(False)
 
 c.auto_save.session = False
 c.input.insert_mode.auto_load = True
 c.statusbar.show = "always"  # always, in-mode, never
+c.tabs.position = "right"
 c.tabs.show = "multiple"
 c.tabs.title.format = "{audio} {current_title}"
 c.tabs.title.format_pinned = " {audio} {current_title}"
@@ -18,6 +19,15 @@ c.url.searchengines = {
     "!aw": "https://wiki.archlinux.org/?search={}",
     "!apkg": "https://archlinux.org/packages/?sort=&q={}&maintainer=&flagged=",
     "!gh": "https://github.com/search?o=desc&q={}&s=stars",
+}
+
+c.aliases = {
+    "h": "help",
+    "w": "session-save",
+    "q": "close",
+    "qa": "quit",
+    "wq": "quit --save",
+    "wqa": "quit --save",
 }
 
 ## Bindings
@@ -42,11 +52,12 @@ config.bind("'y", "hint links yank")
 
 
 config.bind("sh", "history -t")
-config.bind("sr", "cmd-set-text -s :config-source")
+config.bind("sr", "config-source ;; message-info 'config reloaded'")
 config.bind("st", "config-cycle tabs.show multiple never")
 config.bind("ss", "config-cycle statusbar.show always never")
-config.bind("sl", "config-cycle tabs.position top left")
+config.bind("sl", "config-cycle tabs.position top right")
 config.bind("td", "config-cycle colors.webpage.darkmode.enabled True False")
+config.bind("<alt-b>", "config-cycle tabs.width '25%' 38")
 
 # Tabs
 config.bind("<alt-h>", "tab-prev")
@@ -75,7 +86,7 @@ config.set("colors.webpage.darkmode.enabled", False, "file://*")
 c.tabs.padding = {"top": 5, "bottom": 5, "left": 9, "right": 9}
 c.tabs.indicator.width = 0
 # c.window.transparent = True  # apparently not needed
-c.tabs.width = "25%"
+c.tabs.width = 38
 
 ## Fonts
 c.fonts.default_family = []
@@ -191,13 +202,13 @@ c.colors.downloads.system.bg = "none"
 # hints {{{
 ## Background color for hints. Note that you can use a `rgba(...)` value
 ## for transparency.
-c.colors.hints.bg = palette["mantle"]
+c.colors.hints.bg = palette["crust"]
 
 ## Font color for hints.
 c.colors.hints.fg = palette["green"]
 
 ## Hints
-c.hints.border = "1px solid " + palette["surface1"]
+c.hints.border = "1px solid " + palette["surface0"]
 
 ## Font color for the matched part of hints.
 c.colors.hints.match.fg = palette["subtext1"]
@@ -205,7 +216,7 @@ c.colors.hints.match.fg = palette["subtext1"]
 
 # keyhints {{{
 ## Background color of the keyhint widget.
-c.colors.keyhint.bg = palette["mantle"]
+c.colors.keyhint.bg = palette["crust"]
 
 ## Text color for the keyhint widget.
 c.colors.keyhint.fg = palette["text"]
@@ -216,33 +227,33 @@ c.colors.keyhint.suffix.fg = palette["subtext1"]
 
 # messages {{{
 ## Background color of an error message.
-c.colors.messages.error.bg = palette["mantle"]
+c.colors.messages.error.bg = palette["crust"]
 ## Background color of an info message.
-c.colors.messages.info.bg = palette["mantle"]
+c.colors.messages.info.bg = palette["crust"]
 ## Background color of a warning message.
-c.colors.messages.warning.bg = palette["mantle"]
+c.colors.messages.warning.bg = palette["crust"]
 
 ## Border color of an error message.
-c.colors.messages.error.border = palette["overlay0"]
+c.colors.messages.error.border = palette["surface0"]
 ## Border color of an info message.
-c.colors.messages.info.border = palette["overlay0"]
+c.colors.messages.info.border = palette["surface0"]
 ## Border color of a warning message.
-c.colors.messages.warning.border = palette["overlay0"]
+c.colors.messages.warning.border = palette["surface0"]
 
 ## Foreground color of an error message.
 c.colors.messages.error.fg = palette["red"]
 ## Foreground color an info message.
-c.colors.messages.info.fg = palette["text"]
+c.colors.messages.info.fg = palette["blue"]
 ## Foreground color a warning message.
-c.colors.messages.warning.fg = palette["peach"]
+c.colors.messages.warning.fg = palette["yellow"]
 # }}}
 
 # prompts {{{
 ## Background color for prompts.
-c.colors.prompts.bg = palette["mantle"]
+c.colors.prompts.bg = palette["crust"]
 
 # ## Border used around UI elements in prompts.
-c.colors.prompts.border = "1px solid " + palette["overlay0"]
+c.colors.prompts.border = "1px solid " + palette["surface0"]
 
 ## Foreground color for prompts.
 c.colors.prompts.fg = palette["text"]
@@ -256,20 +267,20 @@ c.colors.prompts.selected.fg = palette["rosewater"]
 
 # statusbar {{{
 ## Background color of the statusbar.
-c.colors.statusbar.normal.bg = palette["base"]
+c.colors.statusbar.normal.bg = palette["crust"]
 ## Background color of the statusbar in insert mode.
 c.colors.statusbar.insert.bg = palette["crust"]
 ## Background color of the statusbar in command mode.
-c.colors.statusbar.command.bg = palette["base"]
+c.colors.statusbar.command.bg = palette["crust"]
 ## Background color of the statusbar in caret mode.
-c.colors.statusbar.caret.bg = palette["base"]
+c.colors.statusbar.caret.bg = palette["crust"]
 ## Background color of the statusbar in caret mode with a selection.
-c.colors.statusbar.caret.selection.bg = palette["base"]
+c.colors.statusbar.caret.selection.bg = palette["crust"]
 
 ## Background color of the progress bar.
-c.colors.statusbar.progress.bg = palette["base"]
+c.colors.statusbar.progress.bg = palette["crust"]
 ## Background color of the statusbar in passthrough mode.
-c.colors.statusbar.passthrough.bg = palette["base"]
+c.colors.statusbar.passthrough.bg = palette["crust"]
 
 ## Foreground color of the statusbar.
 c.colors.statusbar.normal.fg = palette["text"]
@@ -304,7 +315,7 @@ c.colors.statusbar.url.warn.fg = palette["yellow"]
 
 ## PRIVATE MODE COLORS
 ## Background color of the statusbar in private browsing mode.
-c.colors.statusbar.private.bg = palette["mantle"]
+c.colors.statusbar.private.bg = "#000000"
 ## Foreground color of the statusbar in private browsing mode.
 c.colors.statusbar.private.fg = palette["subtext1"]
 ## Background color of the statusbar in private browsing + command mode.
@@ -318,11 +329,11 @@ c.colors.statusbar.command.private.fg = palette["subtext1"]
 ## Background color of the tab bar.
 c.colors.tabs.bar.bg = palette["crust"]
 ## Background color of unselected even tabs.
-c.colors.tabs.even.bg = palette["mantle"]
-c.colors.tabs.pinned.even.bg = palette["mantle"]
+c.colors.tabs.even.bg = palette["crust"]
+c.colors.tabs.pinned.even.bg = palette["crust"]
 ## Background color of unselected odd tabs.
-c.colors.tabs.odd.bg = palette["mantle"]
-c.colors.tabs.pinned.odd.bg = palette["mantle"]
+c.colors.tabs.odd.bg = palette["crust"]
+c.colors.tabs.pinned.odd.bg = palette["crust"]
 
 ## Foreground color of unselected even tabs.
 c.colors.tabs.even.fg = palette["overlay2"]
