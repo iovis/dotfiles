@@ -266,8 +266,8 @@ vim.keymap.set("x", "*", [[y:let @/= '\V' . escape(@@, '/\') <bar> set hls <bar>
 
 -- Tabs
 vim.keymap.set("n", "'q", "<cmd>tabonly<cr>")
-vim.keymap.set("n", "<leader><", "<cmd>tabmove -1<cr>")
-vim.keymap.set("n", "<leader>>", "<cmd>tabmove +1<cr>")
+vim.keymap.set("n", "<m-,>", "<cmd>tabmove -1<cr>")
+vim.keymap.set("n", "<m-.>", "<cmd>tabmove +1<cr>")
 vim.keymap.set("n", "<s-tab>", "<cmd>tabclose<cr>")
 vim.keymap.set("n", "<leader>t", "<cmd>tabnew<cr>")
 vim.keymap.set("n", "<leader><tab>", function()
