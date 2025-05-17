@@ -7,7 +7,7 @@ config = config  # noqa: F821 pylint: disable=E0602,C0103
 
 config.load_autoconfig(True)
 
-c.auto_save.session = True
+c.auto_save.session = False
 c.input.insert_mode.auto_load = True
 c.statusbar.show = "always"  # always, in-mode, never
 c.tabs.position = "right"
@@ -19,9 +19,11 @@ c.url.start_pages = "about:blank"
 
 c.url.searchengines = {
     "DEFAULT": "https://www.google.com/search?q={}",
-    "!aw": "https://wiki.archlinux.org/?search={}",
     "!apkg": "https://archlinux.org/packages/?sort=&q={}&maintainer=&flagged=",
+    "!aw": "https://wiki.archlinux.org/?search={}",
+    "!cr": "https://docs.rs/releases/search?query={}",
     "!gh": "https://github.com/search?o=desc&q={}&s=stars",
+    "!rs": "https://doc.rust-lang.org/stable/std/index.html?search={}",
 }
 
 c.aliases = {
@@ -46,6 +48,7 @@ config.bind("d", "scroll-page 0 0.5")
 config.bind("u", "scroll-page 0 -0.5")
 config.bind("<backspace>", "tab-focus last")
 config.bind("U", "undo")
+config.bind("PP", "open -t -- {clipboard}")
 
 config.bind("<ctrl-space>", "mode-enter passthrough")
 config.bind("<ctrl-space>", "mode-leave", mode="passthrough")
@@ -60,19 +63,19 @@ config.bind(
 )
 
 config.bind(";", "cmd-set-text :")
-config.bind("'I", "hint images tab")
-config.bind("'O", "hint links fill :open -t -r {hint-url}")
-config.bind("'R", "hint --rapid links window")
-config.bind("'Y", "hint links yank-primary")
 config.bind("'b", "hint all tab-bg")
 config.bind("'d", "hint links download")
 config.bind("'f", "hint all tab-fg")
 config.bind("'h", "hint all hover")
 config.bind("'i", "hint images")
+config.bind("'I", "hint images tab")
 config.bind("'o", "hint links fill :open {hint-url}")
+config.bind("'O", "hint links fill :open -t -r {hint-url}")
 config.bind("'r", "hint --rapid links tab-bg")
+config.bind("'R", "hint --rapid links window")
 config.bind("'t", "hint inputs")
 config.bind("'y", "hint links yank")
+config.bind("'Y", "hint links yank-primary")
 
 config.bind("D", "bookmark-add")
 config.bind("M", "quickmark-save")
@@ -120,6 +123,9 @@ config.bind("<ctrl-j>", "tab-next")
 config.bind("<ctrl-j>", "tab-next", mode="passthrough")
 config.bind("<ctrl-k>", "tab-prev")
 config.bind("<ctrl-k>", "tab-prev", mode="passthrough")
+
+# Passthrough
+config.bind("<ctrl-w>", "tab-close", mode="passthrough")
 
 ## Dark Mode
 c.colors.webpage.darkmode.enabled = True
