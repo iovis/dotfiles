@@ -34,6 +34,14 @@ c.aliases = {
 c.bindings.key_mappings = {}
 config.unbind("'")
 config.unbind("<ctrl-h>")
+config.unbind("<ctrl-v>")
+
+config.bind("<ctrl-space>", "mode-enter passthrough")
+config.bind("<ctrl-space>", "mode-leave", mode="passthrough")
+
+config.bind("<ctrl-p>", "spawn --detach mpv {url}")
+config.bind("<ctrl-p>", "spawn --detach mpv {url}", mode="insert")
+config.bind("<ctrl-p>", "spawn --detach mpv {url}", mode="passthrough")
 
 config.bind(
     "<Escape>", "clear-keychain ;; search ;; fullscreen --leave ;; fake-key <Escape>"
@@ -68,6 +76,7 @@ config.bind("td", "config-cycle colors.webpage.darkmode.enabled True False")
 config.bind("<alt-b>", "config-cycle tabs.width '25%' 38")
 
 # Tabs
+config.bind("<alt-p>", "tab-pin")
 config.bind("<alt-h>", "tab-prev")
 config.bind("<alt-l>", "tab-next")
 config.bind("<alt-j>", "tab-move +")
