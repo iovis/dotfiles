@@ -118,6 +118,7 @@ pipewire-alsa
 pipewire-jack
 pipewire-pulse
 qmk
+qutebrowser
 ripgrep
 rofi-wayland
 rsync

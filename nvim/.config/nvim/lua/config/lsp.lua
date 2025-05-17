@@ -21,6 +21,7 @@ vim.lsp.enable({
   "just",
   "lua_ls",
   "ruby_lsp",
+  "ruff",
   "rust_analyzer",
   "taplo",
   "ts_ls",
