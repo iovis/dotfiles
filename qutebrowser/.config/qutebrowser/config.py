@@ -2,6 +2,9 @@
 c = c  # noqa: F821 pylint: disable=E0602,C0103
 config = config  # noqa: F821 pylint: disable=E0602,C0103
 
+# Set as default
+# xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
+
 config.load_autoconfig(True)
 
 c.auto_save.session = True
@@ -10,7 +13,7 @@ c.statusbar.show = "always"  # always, in-mode, never
 c.tabs.position = "right"
 c.tabs.show = "multiple"
 c.tabs.title.format = "{audio} {current_title}"
-c.tabs.title.format_pinned = "  {audio}{current_title}"
+c.tabs.title.format_pinned = ""
 c.url.default_page = "about:blank"
 c.url.start_pages = "about:blank"
 
@@ -37,6 +40,12 @@ config.unbind("<ctrl-h>")
 config.unbind("<ctrl-v>")
 config.unbind("<Escape>", mode="insert")
 config.unbind("<Shift-Escape>", mode="insert")
+
+config.bind("x", "tab-close")
+config.bind("d", "scroll-page 0 0.5")
+config.bind("u", "scroll-page 0 -0.5")
+config.bind("<backspace>", "tab-focus last")
+config.bind("U", "undo")
 
 config.bind("<ctrl-space>", "mode-enter passthrough")
 config.bind("<ctrl-space>", "mode-leave", mode="passthrough")
@@ -115,6 +124,7 @@ config.bind("<ctrl-k>", "tab-prev", mode="passthrough")
 ## Dark Mode
 c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.preferred_color_scheme = "dark"
+c.colors.webpage.darkmode.policy.images = "never"
 config.set("colors.webpage.darkmode.enabled", False, "file://*")
 config.set("colors.webpage.darkmode.enabled", False, "www.youtube.com")
 config.set("colors.webpage.darkmode.enabled", False, "www.google.com")
@@ -393,7 +403,7 @@ c.colors.tabs.selected.even.bg = palette["surface0"]
 c.colors.tabs.pinned.selected.even.bg = palette["surface0"]
 # ## Background color of selected odd tabs.
 c.colors.tabs.selected.odd.bg = palette["surface0"]
-c.colors.tabs.pinned.selected.odd.fg = palette["surface0"]
+c.colors.tabs.pinned.selected.odd.bg = palette["surface0"]
 
 # ## Foreground color of selected even tabs.
 c.colors.tabs.selected.even.fg = palette["text"]
