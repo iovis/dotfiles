@@ -2,15 +2,15 @@
 c = c  # noqa: F821 pylint: disable=E0602,C0103
 config = config  # noqa: F821 pylint: disable=E0602,C0103
 
-config.load_autoconfig(False)
+config.load_autoconfig(True)
 
-c.auto_save.session = False
+c.auto_save.session = True
 c.input.insert_mode.auto_load = True
 c.statusbar.show = "always"  # always, in-mode, never
 c.tabs.position = "right"
 c.tabs.show = "multiple"
 c.tabs.title.format = "{audio} {current_title}"
-c.tabs.title.format_pinned = " {audio} {current_title}"
+c.tabs.title.format_pinned = "  {audio}{current_title}"
 c.url.default_page = "about:blank"
 c.url.start_pages = "about:blank"
 
@@ -35,9 +35,12 @@ c.bindings.key_mappings = {}
 config.unbind("'")
 config.unbind("<ctrl-h>")
 config.unbind("<ctrl-v>")
+config.unbind("<Escape>", mode="insert")
+config.unbind("<Shift-Escape>", mode="insert")
 
 config.bind("<ctrl-space>", "mode-enter passthrough")
 config.bind("<ctrl-space>", "mode-leave", mode="passthrough")
+config.bind("<ctrl-space>", "mode-leave", mode="insert")
 
 config.bind("<ctrl-p>", "spawn --detach mpv {url}")
 config.bind("<ctrl-p>", "spawn --detach mpv {url}", mode="insert")
@@ -73,25 +76,41 @@ config.bind("st", "config-cycle tabs.show multiple never")
 config.bind("ss", "config-cycle statusbar.show always never")
 config.bind("sl", "config-cycle tabs.position top right")
 config.bind("td", "config-cycle colors.webpage.darkmode.enabled True False")
-config.bind("<alt-b>", "config-cycle tabs.width '25%' 38")
+config.bind("<alt-b>", "config-cycle tabs.width 300 38")
+config.bind("<alt-b>", "config-cycle tabs.width 300 38", mode="passthrough")
 
 # Tabs
-config.bind("<alt-p>", "tab-pin")
 config.bind("<alt-h>", "tab-prev")
-config.bind("<alt-l>", "tab-next")
+config.bind("<alt-h>", "tab-prev", mode="passthrough")
 config.bind("<alt-j>", "tab-move +")
+config.bind("<alt-j>", "tab-move +", mode="passthrough")
 config.bind("<alt-k>", "tab-move -")
-config.bind("<ctrl-j>", "tab-next")
-config.bind("<ctrl-k>", "tab-prev")
+config.bind("<alt-k>", "tab-move -", mode="passthrough")
+config.bind("<alt-l>", "tab-next")
+config.bind("<alt-l>", "tab-next", mode="passthrough")
+config.bind("<alt-p>", "tab-pin")
 config.bind("<ctrl-1>", "tab-focus 1")
+config.bind("<ctrl-1>", "tab-focus 1", mode="passthrough")
 config.bind("<ctrl-2>", "tab-focus 2")
+config.bind("<ctrl-2>", "tab-focus 2", mode="passthrough")
 config.bind("<ctrl-3>", "tab-focus 3")
+config.bind("<ctrl-3>", "tab-focus 3", mode="passthrough")
 config.bind("<ctrl-4>", "tab-focus 4")
+config.bind("<ctrl-4>", "tab-focus 4", mode="passthrough")
 config.bind("<ctrl-5>", "tab-focus 5")
+config.bind("<ctrl-5>", "tab-focus 5", mode="passthrough")
 config.bind("<ctrl-6>", "tab-focus 6")
+config.bind("<ctrl-6>", "tab-focus 6", mode="passthrough")
 config.bind("<ctrl-7>", "tab-focus 7")
+config.bind("<ctrl-7>", "tab-focus 7", mode="passthrough")
 config.bind("<ctrl-8>", "tab-focus 8")
+config.bind("<ctrl-8>", "tab-focus 8", mode="passthrough")
 config.bind("<ctrl-9>", "tab-focus -1")
+config.bind("<ctrl-9>", "tab-focus -1", mode="passthrough")
+config.bind("<ctrl-j>", "tab-next")
+config.bind("<ctrl-j>", "tab-next", mode="passthrough")
+config.bind("<ctrl-k>", "tab-prev")
+config.bind("<ctrl-k>", "tab-prev", mode="passthrough")
 
 ## Dark Mode
 c.colors.webpage.darkmode.enabled = True
@@ -104,8 +123,8 @@ config.set("colors.webpage.darkmode.enabled", False, "github.com")
 config.set("colors.webpage.darkmode.enabled", False, "www.reddit.com")
 
 ## Pass-through mode per site
-config.set("input.mode_override", "passthrough", "www.youtube.com")
 config.set("input.mode_override", "passthrough", "monkeytype.com")
+config.set("input.mode_override", "passthrough", "www.youtube.com")
 
 ## UI
 # c.content.user_stylesheets = ["~/.config/qutebrowser/styles/youtube-tweaks.css"]
