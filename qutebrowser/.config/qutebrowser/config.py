@@ -35,6 +35,10 @@ c.bindings.key_mappings = {}
 config.unbind("'")
 config.unbind("<ctrl-h>")
 
+config.bind(
+    "<Escape>", "clear-keychain ;; search ;; fullscreen --leave ;; fake-key <Escape>"
+)
+
 config.bind(";", "cmd-set-text :")
 config.bind("'I", "hint images tab")
 config.bind("'O", "hint links fill :open -t -r {hint-url}")
@@ -50,6 +54,10 @@ config.bind("'r", "hint --rapid links tab-bg")
 config.bind("'t", "hint inputs")
 config.bind("'y", "hint links yank")
 
+config.bind("D", "bookmark-add")
+config.bind("M", "quickmark-save")
+config.bind("m", "cmd-set-text -s :quickmark-load")
+config.bind("b", "cmd-set-text -s :quickmark-load -t")
 
 config.bind("sh", "history -t")
 config.bind("sr", "config-source ;; message-info 'config reloaded'")
@@ -80,6 +88,15 @@ config.bind("<ctrl-9>", "tab-focus -1")
 c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.preferred_color_scheme = "dark"
 config.set("colors.webpage.darkmode.enabled", False, "file://*")
+config.set("colors.webpage.darkmode.enabled", False, "www.youtube.com")
+config.set("colors.webpage.darkmode.enabled", False, "www.google.com")
+config.set("colors.webpage.darkmode.enabled", False, "monkeytype.com")
+config.set("colors.webpage.darkmode.enabled", False, "github.com")
+config.set("colors.webpage.darkmode.enabled", False, "www.reddit.com")
+
+## Pass-through mode per site
+config.set("input.mode_override", "passthrough", "www.youtube.com")
+config.set("input.mode_override", "passthrough", "monkeytype.com")
 
 ## UI
 # c.content.user_stylesheets = ["~/.config/qutebrowser/styles/youtube-tweaks.css"]
@@ -87,15 +104,6 @@ c.tabs.padding = {"top": 5, "bottom": 5, "left": 9, "right": 9}
 c.tabs.indicator.width = 0
 # c.window.transparent = True  # apparently not needed
 c.tabs.width = 38
-
-## Fonts
-c.fonts.default_family = []
-c.fonts.default_size = "13pt"
-c.fonts.web.family.fixed = "monospace"
-c.fonts.web.family.sans_serif = "monospace"
-c.fonts.web.family.serif = "monospace"
-c.fonts.web.family.standard = "monospace"
-c.fonts.web.size.default = 20
 
 ## Adblock
 c.content.blocking.enabled = True
