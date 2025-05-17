@@ -83,7 +83,6 @@ vim.api.nvim_create_autocmd("FileType", {
     "dbout",
     "diff",
     "fugitiveblame",
-    "git",
     "gitsigns-blame",
     "help",
     "httpResult",
