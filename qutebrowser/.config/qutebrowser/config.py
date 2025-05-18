@@ -31,7 +31,9 @@ c.url.searchengines = {
     "!aw": "https://wiki.archlinux.org/?search={}",
     "!cr": "https://docs.rs/releases/search?query={}",
     "!gh": "https://github.com/search?o=desc&q={}&s=stars",
+    "!pr": "https://www.protondb.com/search?q={}",
     "!rs": "https://doc.rust-lang.org/stable/std/index.html?search={}",
+    "!yt": "https://www.youtube.com/results?search_query={}",
 }
 
 c.aliases = {
