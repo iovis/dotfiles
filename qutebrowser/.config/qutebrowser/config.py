@@ -76,10 +76,11 @@ config.bind("<ctrl-p>", "spawn --detach mpv {url}", mode="passthrough")
 
 # Normal
 config.bind(";", "cmd-set-text :")
-config.bind("PP", "open -t -- {clipboard}")
-config.bind("U", "undo")
 config.bind("d", "scroll-page 0 0.5")
+config.bind("PP", "open -t -- {clipboard}")
+config.bind("Q", "open -t ;; tab-only")
 config.bind("u", "scroll-page 0 -0.5")
+config.bind("U", "undo")
 config.bind(
     "wa", "open -t https://web.archive.org/web/{url}"
 )  # web archive of current page
