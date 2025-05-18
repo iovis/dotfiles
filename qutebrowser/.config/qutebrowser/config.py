@@ -101,7 +101,6 @@ config.bind(
     "sb",
     "config-cycle --print -u {url:host} content.blocking.enabled false true ;; reload",
 )
-config.bind("sr", "config-cycle tabs.show multiple never")
 config.bind(
     "sd",
     "config-cycle --print -u {url:host} colors.webpage.darkmode.enabled false true ;; reload",
@@ -112,8 +111,9 @@ config.bind("sl", "config-cycle tabs.width 300 38")
 config.bind("sp", "set --print -u {url:host} input.mode_override passthrough")
 config.bind("sP", "config-unset --print -u {url:host} input.mode_override")
 config.bind("so", "config-source ;; message-info 'config reloaded'")
+config.bind("sr", "config-cycle tabs.position top right")
 config.bind("ss", "config-cycle statusbar.show always never")
-config.bind("st", "config-cycle tabs.position top right")
+config.bind("st", "config-cycle tabs.show multiple never")
 config.bind("sy", "history -t")
 config.bind("<alt-b>", "config-cycle tabs.width 300 38")
 config.bind("<alt-b>", "config-cycle tabs.width 300 38", mode="passthrough")
