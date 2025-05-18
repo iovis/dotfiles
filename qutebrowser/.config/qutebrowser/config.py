@@ -17,6 +17,14 @@ c.tabs.title.format_pinned = ""
 c.url.default_page = "about:blank"
 c.url.start_pages = "about:blank"
 
+c.completion.open_categories = [
+    "bookmarks",
+    "history",
+    "quickmarks",
+    "filesystem",
+    "searchengines",
+]
+
 c.url.searchengines = {
     "DEFAULT": "https://www.google.com/search?q={}",
     "!apkg": "https://archlinux.org/packages/?sort=&q={}&maintainer=&flagged=",
@@ -42,8 +50,15 @@ config.unbind("<ctrl-h>")
 config.unbind("<ctrl-v>")
 config.unbind("<Escape>", mode="insert")
 config.unbind("<Shift-Escape>", mode="insert")
+config.unbind("ad")
 
 config.bind("x", "tab-close")
+config.bind("a", "cmd-set-text :open !")
+config.bind("A", "cmd-set-text :open -t !")
+
+config.bind("cd", "download-cancel")
+config.bind("cl", "download-clear")
+
 config.bind("d", "scroll-page 0 0.5")
 config.bind("u", "scroll-page 0 -0.5")
 config.bind("<backspace>", "tab-focus last")
