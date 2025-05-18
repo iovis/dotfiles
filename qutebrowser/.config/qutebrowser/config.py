@@ -4,16 +4,11 @@ config = config  # noqa: F821 pylint: disable=E0602,C0103
 
 # Set as default
 # xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
-
 config.load_autoconfig(True)
 
 c.auto_save.session = True
+c.content.autoplay = False
 c.input.insert_mode.auto_load = True
-c.statusbar.show = "always"  # always, in-mode, never
-c.tabs.position = "right"
-c.tabs.show = "multiple"
-c.tabs.title.format = "{audio} {current_title}"
-c.tabs.title.format_pinned = ""
 c.url.default_page = "about:blank"
 c.url.start_pages = "about:blank"
 
@@ -44,6 +39,7 @@ c.aliases = {
     "wq": "quit --save",
     "wqa": "quit --save",
 }
+
 
 ## Bindings
 c.bindings.key_mappings = {}
@@ -97,7 +93,6 @@ config.bind("m", "cmd-set-text -s :quickmark-load")
 config.bind("M", "quickmark-save")
 
 # Settings
-config.bind("sa", "adblock-update ;; reload")
 config.bind(
     "sb",
     "config-cycle --print -u {url:host} content.blocking.enabled false true ;; reload",
@@ -115,6 +110,7 @@ config.bind("so", "config-source ;; message-info 'config reloaded'")
 config.bind("sr", "config-cycle tabs.position top right")
 config.bind("ss", "config-cycle statusbar.show always never")
 config.bind("st", "config-cycle tabs.show multiple never")
+config.bind("su", "adblock-update")
 config.bind("sy", "history -t")
 config.bind("<alt-b>", "config-cycle tabs.width 300 38")
 config.bind("<alt-b>", "config-cycle tabs.width 300 38", mode="passthrough")
@@ -174,41 +170,55 @@ config.bind("'Y", "hint links yank-primary")
 config.bind("cd", "download-cancel")
 config.bind("cl", "download-clear")
 
+
 ## Dark Mode
 c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.preferred_color_scheme = "dark"
 c.colors.webpage.darkmode.policy.images = "never"
 config.set("colors.webpage.darkmode.enabled", False, "file://*")
 
+
 ## UI
-# c.content.user_stylesheets = ["~/.config/qutebrowser/styles/youtube-tweaks.css"]
-c.tabs.padding = {"top": 5, "bottom": 5, "left": 9, "right": 9}
+c.content.user_stylesheets = []
+c.statusbar.show = "always"  # always, in-mode, never
 c.tabs.indicator.width = 0
-# c.window.transparent = True  # apparently not needed
+c.tabs.padding = {"top": 5, "bottom": 5, "left": 9, "right": 9}
+c.tabs.position = "right"
+c.tabs.show = "multiple"
+c.tabs.title.format = "{audio} {current_title}"
+c.tabs.title.format_pinned = ""
 c.tabs.width = 38
+c.window.transparent = False
+
 
 ## Adblock
 c.content.blocking.enabled = True
-# c.content.blocking.method = 'adblock' # uncomment this if you install python-adblock
-# c.content.blocking.adblock.lists = [
-#         "https://github.com/ewpratten/youtube_ad_blocklist/blob/master/blocklist.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/legacy.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2020.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2021.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2022.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2023.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2024.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/badware.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/badlists.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/annoyances.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/annoyances-cookies.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/annoyances-others.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/badlists.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/quick-fixes.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/resource-abuse.txt",
-#         "https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt"]
+c.content.blocking.method = "both"  # python-adblock
+c.content.blocking.hosts.lists = [
+    "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
+]
+c.content.blocking.adblock.lists = [
+    "https://easylist.to/easylist/easylist.txt",
+    "https://easylist.to/easylist/easyprivacy.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/refs/heads/master/filters/badlists.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/refs/heads/master/filters/badware.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/refs/heads/master/filters/filters-2020.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/refs/heads/master/filters/filters-2021.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/refs/heads/master/filters/filters-2022.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/refs/heads/master/filters/filters-2023.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/refs/heads/master/filters/filters-2024.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/refs/heads/master/filters/filters-2025.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/refs/heads/master/filters/filters-general.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/refs/heads/master/filters/filters.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/refs/heads/master/filters/legacy.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/refs/heads/master/filters/privacy.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/refs/heads/master/filters/quick-fixes.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/refs/heads/master/filters/resource-abuse.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/refs/heads/master/filters/ubol-filters.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/refs/heads/master/filters/unbreak.txt",
+    "https://raw.githubusercontent.com/brave/adblock-lists//master/brave-lists/brave-firstparty-cname.txt",
+    "https://raw.githubusercontent.com/brave/adblock-lists//master/brave-lists/brave-firstparty.txt",
+]
 
 
 ## Colors
