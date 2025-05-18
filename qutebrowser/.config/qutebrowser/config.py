@@ -84,6 +84,8 @@ config.bind(
     "wa", "open -t https://web.archive.org/web/{url}"
 )  # web archive of current page
 
+# Passthrough/Insert
+config.bind("<Escape>", "fullscreen --leave ;; fake-key <Escape>", mode="passthrough")
 
 # Bookmarks
 config.bind("a", "cmd-set-text :open !")
