@@ -204,6 +204,9 @@ return {
     condition = conds.line_begin,
   }),
   -- Templates
+  s("bookmarks", t("chore(qutebrowser): sync bookmarks"), {
+    condition = conds.line_begin,
+  }),
   s("plugins", t("chore(nvim.plugin): sync plugins"), {
     condition = conds.line_begin,
   }),
