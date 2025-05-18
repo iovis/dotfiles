@@ -117,6 +117,7 @@ pipewire
 pipewire-alsa
 pipewire-jack
 pipewire-pulse
+python-adblock
 qmk
 qutebrowser
 ripgrep
@@ -143,6 +144,7 @@ timeshift
 tmux
 totem
 ttf-firacode-nerd
+ttf-liberation
 udiskie
 vim
 virtualbox
