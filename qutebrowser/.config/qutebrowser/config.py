@@ -7,7 +7,7 @@ config = config  # noqa: F821 pylint: disable=E0602,C0103
 
 config.load_autoconfig(True)
 
-c.auto_save.session = False
+c.auto_save.session = True
 c.input.insert_mode.auto_load = True
 c.statusbar.show = "always"  # always, in-mode, never
 c.tabs.position = "right"
@@ -52,64 +52,57 @@ config.unbind("<ctrl-h>")
 config.unbind("<ctrl-v>")
 config.unbind("ad")
 
-config.bind("a", "cmd-set-text :open !")
-config.bind("A", "cmd-set-text :open -t !")
-
-config.bind("cd", "download-cancel")
-config.bind("cl", "download-clear")
-
-config.bind("PP", "open -t -- {clipboard}")
-config.bind("U", "undo")
-config.bind("d", "scroll-page 0 0.5")
-config.bind("u", "scroll-page 0 -0.5")
+# Modes
+config.bind(
+    "<Escape>", "clear-keychain ;; search ;; fullscreen --leave ;; fake-key <Escape>"
+)
 
 config.bind("<ctrl-space>", "mode-enter passthrough")
 config.bind("<ctrl-space>", "mode-leave", mode="passthrough")
 config.bind("<ctrl-space>", "mode-leave", mode="insert")
 
+# Open in mpv
 config.bind("<ctrl-p>", "spawn --detach mpv {url}")
 config.bind("<ctrl-p>", "spawn --detach mpv {url}", mode="insert")
 config.bind("<ctrl-p>", "spawn --detach mpv {url}", mode="passthrough")
 
-config.bind(
-    "<Escape>", "clear-keychain ;; search ;; fullscreen --leave ;; fake-key <Escape>"
-)
-
+# Normal
 config.bind(";", "cmd-set-text :")
-config.bind("'b", "hint all tab-bg")
-config.bind("'d", "hint links download")
-config.bind("'f", "hint all tab-fg")
-config.bind("'h", "hint all hover")
-config.bind("'i", "hint images")
-config.bind("'I", "hint images tab")
-config.bind("'o", "hint links fill :open {hint-url}")
-config.bind("'O", "hint links fill :open -t -r {hint-url}")
-config.bind("'r", "hint --rapid links tab-bg")
-config.bind("'R", "hint --rapid links window")
-config.bind("'t", "hint inputs")
-config.bind("'y", "hint links yank")
-config.bind("'Y", "hint links yank-primary")
+config.bind("PP", "open -t -- {clipboard}")
+config.bind("U", "undo")
+config.bind("d", "scroll-page 0 0.5")
+config.bind("u", "scroll-page 0 -0.5")
 
-config.bind("D", "bookmark-add")
-config.bind("M", "quickmark-save")
-config.bind("m", "cmd-set-text -s :quickmark-load")
+# Passthrough
+config.bind("<ctrl-w>", "tab-close", mode="passthrough")
+
+# Bookmarks
+config.bind("a", "cmd-set-text :open !")
+config.bind("A", "cmd-set-text :open -t !")
 config.bind("b", "cmd-set-text -s :quickmark-load -t")
+config.bind("D", "bookmark-add")
+config.bind("m", "cmd-set-text -s :quickmark-load")
+config.bind("M", "quickmark-save")
 
-config.bind("td", "config-cycle colors.webpage.darkmode.enabled True False")
-config.bind("sd", "set -u {url:host} colors.webpage.darkmode.enabled false ;; reload")
-config.bind("sh", "history -t")
-config.bind("sl", "config-cycle tabs.position top right")
+# Settings
 config.bind(
-    "sp",
-    "set -u {url:host} input.mode_override passthrough ;; message-info 'passthrough enabled for site' ;; reload",
+    "sb",
+    "config-cycle --print -u {url:host} content.blocking.enabled false true ;; reload",
 )
+config.bind("sr", "config-cycle tabs.show multiple never")
 config.bind(
-    "sP",
-    "config-unset -u {url:host} input.mode_override ;; message-info 'passthrough disabled for site' ;; reload",
+    "sd",
+    "config-cycle --print -u {url:host} colors.webpage.darkmode.enabled false true ;; reload",
 )
-config.bind("sr", "config-source ;; message-info 'config reloaded'")
+config.bind("td", "config-cycle --print colors.webpage.darkmode.enabled")
+config.bind("sh", "cmd-set-text -s :help -t")
+config.bind("sl", "config-cycle tabs.width 300 38")
+config.bind("sp", "set --print -u {url:host} input.mode_override passthrough")
+config.bind("sP", "config-unset --print -u {url:host} input.mode_override")
+config.bind("so", "config-source ;; message-info 'config reloaded'")
 config.bind("ss", "config-cycle statusbar.show always never")
-config.bind("st", "config-cycle tabs.show multiple never")
+config.bind("st", "config-cycle tabs.position top right")
+config.bind("sy", "history -t")
 config.bind("<alt-b>", "config-cycle tabs.width 300 38")
 config.bind("<alt-b>", "config-cycle tabs.width 300 38", mode="passthrough")
 
@@ -149,8 +142,24 @@ config.bind("<ctrl-j>", "tab-next", mode="passthrough")
 config.bind("<ctrl-k>", "tab-prev")
 config.bind("<ctrl-k>", "tab-prev", mode="passthrough")
 
-# Passthrough
-config.bind("<ctrl-w>", "tab-close", mode="passthrough")
+# Hints
+config.bind("'b", "hint all tab-bg")
+config.bind("'d", "hint links download")
+config.bind("'f", "hint all tab-fg")
+config.bind("'h", "hint all hover")
+config.bind("'i", "hint images")
+config.bind("'I", "hint images tab")
+config.bind("'o", "hint links fill :open {hint-url}")
+config.bind("'O", "hint links fill :open -t -r {hint-url}")
+config.bind("'r", "hint --rapid links tab-bg")
+config.bind("'R", "hint --rapid links window")
+config.bind("'t", "hint inputs")
+config.bind("'y", "hint links yank")
+config.bind("'Y", "hint links yank-primary")
+
+# Misc
+config.bind("cd", "download-cancel")
+config.bind("cl", "download-clear")
 
 ## Dark Mode
 c.colors.webpage.darkmode.enabled = True
