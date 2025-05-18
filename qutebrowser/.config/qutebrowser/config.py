@@ -96,6 +96,7 @@ config.bind("m", "cmd-set-text -s :quickmark-load")
 config.bind("M", "quickmark-save")
 
 # Settings
+config.bind("sa", "adblock-update ;; reload")
 config.bind(
     "sb",
     "config-cycle --print -u {url:host} content.blocking.enabled false true ;; reload",
