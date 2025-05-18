@@ -82,12 +82,15 @@ config.bind("M", "quickmark-save")
 config.bind("m", "cmd-set-text -s :quickmark-load")
 config.bind("b", "cmd-set-text -s :quickmark-load -t")
 
+config.bind("sd", "set -u {url:host} colors.webpage.darkmode.enabled false ;; reload")
+config.bind("sD", "config-cycle colors.webpage.darkmode.enabled True False")
 config.bind("sh", "history -t")
-config.bind("sr", "config-source ;; message-info 'config reloaded'")
-config.bind("st", "config-cycle tabs.show multiple never")
-config.bind("ss", "config-cycle statusbar.show always never")
 config.bind("sl", "config-cycle tabs.position top right")
-config.bind("td", "config-cycle colors.webpage.darkmode.enabled True False")
+config.bind("sp", "set -u {url:host} input.mode_override passthrough ;; reload")
+config.bind("sP", "config-unset -u {url:host} input.mode_override ;; reload")
+config.bind("sr", "config-source ;; message-info 'config reloaded'")
+config.bind("ss", "config-cycle statusbar.show always never")
+config.bind("st", "config-cycle tabs.show multiple never")
 config.bind("<alt-b>", "config-cycle tabs.width 300 38")
 config.bind("<alt-b>", "config-cycle tabs.width 300 38", mode="passthrough")
 
@@ -132,15 +135,6 @@ c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.preferred_color_scheme = "dark"
 c.colors.webpage.darkmode.policy.images = "never"
 config.set("colors.webpage.darkmode.enabled", False, "file://*")
-config.set("colors.webpage.darkmode.enabled", False, "www.youtube.com")
-config.set("colors.webpage.darkmode.enabled", False, "www.google.com")
-config.set("colors.webpage.darkmode.enabled", False, "monkeytype.com")
-config.set("colors.webpage.darkmode.enabled", False, "github.com")
-config.set("colors.webpage.darkmode.enabled", False, "www.reddit.com")
-
-## Pass-through mode per site
-config.set("input.mode_override", "passthrough", "monkeytype.com")
-config.set("input.mode_override", "passthrough", "www.youtube.com")
 
 ## UI
 # c.content.user_stylesheets = ["~/.config/qutebrowser/styles/youtube-tweaks.css"]
