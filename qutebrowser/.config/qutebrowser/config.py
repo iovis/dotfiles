@@ -80,6 +80,9 @@ config.bind("PP", "open -t -- {clipboard}")
 config.bind("U", "undo")
 config.bind("d", "scroll-page 0 0.5")
 config.bind("u", "scroll-page 0 -0.5")
+config.bind(
+    "wa", "open -t https://web.archive.org/web/{url}"
+)  # web archive of current page
 
 
 # Bookmarks
