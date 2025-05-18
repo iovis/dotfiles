@@ -52,6 +52,14 @@ config.unbind("<ctrl-h>")
 config.unbind("<ctrl-v>")
 config.unbind("ad")
 
+# Global mappings
+config.bind("<ctrl-r>", "reload")
+config.bind("<ctrl-r>", "reload", mode="insert")
+config.bind("<ctrl-r>", "reload", mode="passthrough")
+config.bind("<ctrl-w>", "tab-close")
+config.bind("<ctrl-w>", "tab-close", mode="insert")
+config.bind("<ctrl-w>", "tab-close", mode="passthrough")
+
 # Modes
 config.bind(
     "<Escape>", "clear-keychain ;; search ;; fullscreen --leave ;; fake-key <Escape>"
@@ -73,8 +81,6 @@ config.bind("U", "undo")
 config.bind("d", "scroll-page 0 0.5")
 config.bind("u", "scroll-page 0 -0.5")
 
-# Passthrough
-config.bind("<ctrl-w>", "tab-close", mode="passthrough")
 
 # Bookmarks
 config.bind("a", "cmd-set-text :open !")
