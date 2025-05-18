@@ -50,22 +50,18 @@ c.bindings.key_mappings = {}
 config.unbind("'")
 config.unbind("<ctrl-h>")
 config.unbind("<ctrl-v>")
-config.unbind("<Escape>", mode="insert")
-config.unbind("<Shift-Escape>", mode="insert")
 config.unbind("ad")
 
-config.bind("x", "tab-close")
 config.bind("a", "cmd-set-text :open !")
 config.bind("A", "cmd-set-text :open -t !")
 
 config.bind("cd", "download-cancel")
 config.bind("cl", "download-clear")
 
+config.bind("PP", "open -t -- {clipboard}")
+config.bind("U", "undo")
 config.bind("d", "scroll-page 0 0.5")
 config.bind("u", "scroll-page 0 -0.5")
-config.bind("<backspace>", "tab-focus last")
-config.bind("U", "undo")
-config.bind("PP", "open -t -- {clipboard}")
 
 config.bind("<ctrl-space>", "mode-enter passthrough")
 config.bind("<ctrl-space>", "mode-leave", mode="passthrough")
@@ -99,12 +95,18 @@ config.bind("M", "quickmark-save")
 config.bind("m", "cmd-set-text -s :quickmark-load")
 config.bind("b", "cmd-set-text -s :quickmark-load -t")
 
+config.bind("td", "config-cycle colors.webpage.darkmode.enabled True False")
 config.bind("sd", "set -u {url:host} colors.webpage.darkmode.enabled false ;; reload")
-config.bind("sD", "config-cycle colors.webpage.darkmode.enabled True False")
 config.bind("sh", "history -t")
 config.bind("sl", "config-cycle tabs.position top right")
-config.bind("sp", "set -u {url:host} input.mode_override passthrough ;; reload")
-config.bind("sP", "config-unset -u {url:host} input.mode_override ;; reload")
+config.bind(
+    "sp",
+    "set -u {url:host} input.mode_override passthrough ;; message-info 'passthrough enabled for site' ;; reload",
+)
+config.bind(
+    "sP",
+    "config-unset -u {url:host} input.mode_override ;; message-info 'passthrough disabled for site' ;; reload",
+)
 config.bind("sr", "config-source ;; message-info 'config reloaded'")
 config.bind("ss", "config-cycle statusbar.show always never")
 config.bind("st", "config-cycle tabs.show multiple never")
@@ -112,6 +114,9 @@ config.bind("<alt-b>", "config-cycle tabs.width 300 38")
 config.bind("<alt-b>", "config-cycle tabs.width 300 38", mode="passthrough")
 
 # Tabs
+config.bind("cc", "tab-clone")
+config.bind("x", "tab-close")
+config.bind("<backspace>", "tab-focus last")
 config.bind("<alt-h>", "tab-prev")
 config.bind("<alt-h>", "tab-prev", mode="passthrough")
 config.bind("<alt-j>", "tab-move +")
