@@ -1,6 +1,7 @@
-# pylint: disable=C0111
-c = c  # noqa: F821 pylint: disable=E0602,C0103
-config = config  # noqa: F821 pylint: disable=E0602,C0103
+from qutebrowser.mainwindow import tabwidget
+
+c = c  # noqa: F821
+config = config  # noqa: F821
 
 # Set as default
 # xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
@@ -190,6 +191,10 @@ c.tabs.title.format = "{audio} {current_title}"
 c.tabs.title.format_pinned = ""
 c.tabs.width = 38
 c.window.transparent = False
+
+# Hack to change the audio indicators
+tabwidget.TabWidget.MUTE_STRING = "  "
+tabwidget.TabWidget.AUDIBLE_STRING = " 󰕾 "
 
 
 ## Adblock
