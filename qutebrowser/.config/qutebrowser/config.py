@@ -48,6 +48,7 @@ config.unbind("'")
 config.unbind("<ctrl-h>")
 config.unbind("<ctrl-v>")
 config.unbind("ad")
+config.unbind("<Ctrl-E>", mode="insert")
 
 # Global mappings
 config.bind("<ctrl-r>", "reload")
@@ -159,6 +160,7 @@ config.bind("'f", "hint all tab-fg")
 config.bind("'h", "hint all hover")
 config.bind("'i", "hint images")
 config.bind("'I", "hint images tab")
+config.bind("'m", "hint links spawn --detach mpv {hint-url}")
 config.bind("'o", "hint links fill :open {hint-url}")
 config.bind("'O", "hint links fill :open -t -r {hint-url}")
 config.bind("'r", "hint --rapid links tab-bg")
@@ -180,6 +182,8 @@ config.set("colors.webpage.darkmode.enabled", False, "file://*")
 
 
 ## UI
+c.completion.scrollbar.width = 8
+c.content.fullscreen.overlay_timeout = 0
 c.content.user_stylesheets = []
 c.statusbar.padding = {"top": 5, "bottom": 5, "left": 9, "right": 9}
 c.statusbar.show = "always"  # always, in-mode, never
