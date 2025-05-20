@@ -180,6 +180,7 @@ config.set("colors.webpage.darkmode.enabled", False, "file://*")
 
 ## UI
 c.content.user_stylesheets = []
+c.statusbar.padding = {"top": 5, "bottom": 5, "left": 9, "right": 9}
 c.statusbar.show = "always"  # always, in-mode, never
 c.tabs.indicator.width = 0
 c.tabs.padding = {"top": 5, "bottom": 5, "left": 9, "right": 9}
