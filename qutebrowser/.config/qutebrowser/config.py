@@ -7,6 +7,7 @@ config = config  # noqa: F821
 # xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
 config.load_autoconfig(True)
 
+c.qt.highdpi = True
 c.auto_save.session = True
 c.content.autoplay = False
 c.input.insert_mode.auto_load = True
@@ -113,7 +114,7 @@ config.bind("sp", "set --print -u {url:host} input.mode_override passthrough")
 config.bind("sP", "config-unset --print -u {url:host} input.mode_override")
 config.bind("so", "config-source ;; message-info 'config reloaded'")
 config.bind("sr", "config-cycle tabs.position top right")
-config.bind("ss", "config-cycle statusbar.show always never")
+config.bind("ss", "config-cycle statusbar.show always in-mode")
 config.bind("st", "config-cycle tabs.show multiple never")
 config.bind("su", "adblock-update")
 config.bind("sy", "history -t")
