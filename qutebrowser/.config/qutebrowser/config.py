@@ -178,6 +178,7 @@ config.bind("cl", "download-clear")
 
 
 ## Dark Mode
+c.colors.webpage.bg = "#121212"
 c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.preferred_color_scheme = "dark"
 c.colors.webpage.darkmode.policy.images = "never"
