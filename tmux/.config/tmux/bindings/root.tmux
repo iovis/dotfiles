@@ -12,15 +12,17 @@ bind -N "muxi picker" -n M-/ {
 }
 
 ## Window switching
-bind -n M-H previous-window
-bind -n M-L next-window
-bind -n M-K last-window
+bind -n M-\; last-window
+bind -n C-M-h previous-window
+bind -n C-M-l next-window
+bind -n C-M-j swap-window -dt -1
+bind -n C-M-k swap-window -dt +1
 
 ## Switch panes
-bind -n C-h  if "$is_vim" "send C-h"  "select-pane -L"
-bind -n C-j  if "$is_vim" "send C-j"  "select-pane -D"
-bind -n C-k  if "$is_vim" "send C-k"  "select-pane -U"
-bind -n C-l  if "$is_vim" "send C-l"  "select-pane -R"
+bind -n C-h if "$is_vim" "send C-h"  "select-pane -L"
+bind -n C-j if "$is_vim" "send C-j"  "select-pane -D"
+bind -n C-k if "$is_vim" "send C-k"  "select-pane -U"
+bind -n C-l if "$is_vim" "send C-l"  "select-pane -R"
 
 ##
 # In hindsight, this was a terrible idea, but it was hard enough to

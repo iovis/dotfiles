@@ -68,13 +68,6 @@ bind -N "New window" c new-window
 bind -N "New window" C-c new-window
 bind -N "New window (current path)" Tab new-window -c "#{pane_current_path}"
 
-bind -N "Last window" k last-window
-bind -N "Next window" -r n next-window
-bind -N "Previous window" -r p previous-window
-
-bind -N "Move window to the left"  -r < swap-window -dt -1
-bind -N "Move window to the right" -r > swap-window -dt +1
-
 bind -N "Close the rest of the windows" Q confirm -p "kill the rest of the windows? (y/n)" {
   kill-window -a
 }
