@@ -1,3 +1,3 @@
 function parinit
-    paru -S --needed $(cat $DOTFILES/pacman/Parufile)
+    paru -S --needed --skipreview $(cat $DOTFILES/pacman/Parufile)
 end

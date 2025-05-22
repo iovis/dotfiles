@@ -1,3 +1,3 @@
 function parupdate
-    paru -Sua --noconfirm && parudump
+    paru -Sua --skipreview && parudump
 end
