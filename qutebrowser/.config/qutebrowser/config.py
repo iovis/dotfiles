@@ -84,7 +84,7 @@ config.bind("Q", "open -t ;; tab-only")
 config.bind("u", "scroll-page 0 -0.5")
 config.bind("U", "undo")
 config.bind(
-    "wa", "open -t https://web.archive.org/web/{url}"
+    "ga", "open -t https://web.archive.org/web/{url}"
 )  # web archive of current page
 
 # Passthrough/Insert
