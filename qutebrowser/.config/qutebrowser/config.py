@@ -7,10 +7,11 @@ config = config  # noqa: F821
 # xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
 config.load_autoconfig(True)
 
-c.qt.highdpi = True
 c.auto_save.session = True
 c.content.autoplay = False
 c.input.insert_mode.auto_load = True
+c.qt.highdpi = True
+c.session.lazy_restore = True
 c.url.default_page = "about:blank"
 c.url.start_pages = "about:blank"
 
@@ -190,7 +191,7 @@ config.set("colors.webpage.darkmode.enabled", False, "file://*")
 c.completion.scrollbar.width = 8
 c.content.fullscreen.overlay_timeout = 0
 c.content.user_stylesheets = []
-c.statusbar.padding = {"top": 5, "bottom": 5, "left": 9, "right": 9}
+c.statusbar.padding = {"top": 8, "bottom": 8, "left": 0, "right": 8}
 c.statusbar.show = "always"  # always, in-mode, never
 c.tabs.indicator.width = 0
 c.tabs.padding = {"top": 5, "bottom": 5, "left": 9, "right": 9}
