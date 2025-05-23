@@ -39,6 +39,8 @@ elseif u.current_file():match("plugins/") then
   end, { buffer = true })
 elseif u.current_file():match("hammerspoon/") then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux hs<cr>", { buffer = true })
+elseif u.current_file():match("muxi/") then
+  vim.keymap.set("n", "s<cr>", "<cmd>Tux muxi init<cr>", { buffer = true })
 end
 
 ----Surround debug
