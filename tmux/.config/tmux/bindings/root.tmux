@@ -12,7 +12,7 @@ bind -N "muxi picker" -n M-/ {
 }
 
 ## Window switching
-bind -n M-\; last-window
+bind -n C-M-Space last-window
 bind -n C-M-h previous-window
 bind -n C-M-l next-window
 bind -n C-M-j swap-window -dt -1
