@@ -7,7 +7,7 @@ config = config  # noqa: F821
 # xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
 config.load_autoconfig(True)
 
-c.auto_save.session = True
+c.auto_save.session = False
 c.content.autoplay = False
 c.input.insert_mode.auto_load = True
 c.qt.highdpi = True
