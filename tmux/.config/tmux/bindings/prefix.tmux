@@ -38,16 +38,12 @@ bind -N "Toggle automatic window rename" w {
   set -w automatic-rename
 }
 
-bind -N "Toggle monitor activity" M {
-  set monitor-activity
+bind -N "Toggle monitor activity" a {
+  set -wg monitor-activity
   display 'monitor-activity #{?monitor-activity,on,off}'
 }
 
 bind -N "List keys" ? list-keys
-
-## Paste Buffers (clipboard)
-bind -N "Choose paste buffer" C-p choose-buffer
-bind -N "Paste buffer" P paste-buffer
 
 ## Session management
 bind -N "Kill session" X run tmux_kill_session
