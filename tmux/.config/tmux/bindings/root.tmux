@@ -57,20 +57,9 @@ bind -n C-right resize-pane -R 20
 bind -n C-up    resize-pane -U 5
 bind -n M-m     resize-pane -Z
 
-## Scratch Session popup
-# bind -N "Scratch session popup" -n M-- if -F '#{==:#{session_name},·}' {
-#   detach-client
-# } {
-#   display-popup -w 75% -h 75% -b rounded -d '#{pane_current_path}' -E "tmux new-session -A -s ·"
-# }
-
-## Quick Notes
-bind -N "Notes session popup" -n M-u {
-  display-popup -w 75% -h 75% -b rounded -T " notes " -E notes
+## Quick Notes popup
+bind -N "Notes popup" -n M-u if -F '#{==:#{session_name},notes}' {
+  detach-client
+} {
+  display-popup -w 75% -h 75% -b rounded -T " notes " -E "tmux new-session -A -s notes notes"
 }
-
-# bind -n M-n if -F '#{==:#{session_name},notes}' {
-#   switch-client -l
-# } {
-#   new-session -A -s notes -c "$NOTES"
-# }
