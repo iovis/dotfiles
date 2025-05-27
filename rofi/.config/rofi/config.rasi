@@ -3,10 +3,18 @@
 // TODO: configure key-bindings
 // rofi -dump-config | nvim -
 
+configuration {
+  kb-move-word-back: "Alt+Left,Control+Left";
+  kb-move-word-forward: "Alt+Right,Control+Right";
+  kb-accept-entry: "Return,KP_Enter";
+  kb-row-up: "Up,Control+k";
+  kb-row-down: "Down,Control+j";
+  kb-remove-to-eol: "";
+}
+
 * {
   active-fg: #eeeeee;
   background: #000000cc;
-  message-bg: #3d3d3d80;
   placeholder: #3d3d3d;
   prompt-bg: #111111aa;
   text-fg: #888888;
@@ -54,8 +62,7 @@ entry {
 }
 
 message {
-  background-color: @message-bg;
-  border-color: @message-bg;
+  background-color: @prompt-bg;
   border-radius: 16px;
   margin: 12px 0 0;
   text-color: @active-fg;
