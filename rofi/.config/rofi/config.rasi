@@ -4,14 +4,12 @@
 // rofi -dump-config | nvim -
 
 * {
-  bg0: #212121f2;
-  bg1: #2a2a2a;
-  bg2: #3d3d3d80;
-  bg3: #8caaeff2;
-  fg0: #e6e6e6;
-  fg1: #ffffff;
-  fg2: #969696;
-  fg3: #3d3d3d;
+  active-fg: #eeeeee;
+  background: #000000cc;
+  message-bg: #3d3d3d80;
+  placeholder: #3d3d3d;
+  prompt-bg: #111111aa;
+  text-fg: #888888;
 }
 
 * {
@@ -20,16 +18,16 @@
   margin: 0px;
   padding: 0px;
   spacing: 0px;
-  text-color: @fg0;
+  text-color: @active-fg;
 }
 
 window {
-  background-color: @bg0;
-  border-radius: 18px;
+  background-color: @background;
+  border-radius: 12px;
   border: none;
   location: north;
   width: 600;
-  y-offset: calc(50% - 176px);
+  y-offset: calc(26%);
 }
 
 mainbox {
@@ -37,8 +35,8 @@ mainbox {
 }
 
 inputbar {
-  background-color: @bg1;
-  border-radius: 16px;
+  background-color: @prompt-bg;
+  border-radius: 8px;
   border: none;
   children: [ prompt, entry ];
   padding: 8px 16px;
@@ -46,21 +44,21 @@ inputbar {
 }
 
 prompt {
-  text-color: @fg2;
+  text-color: @text-fg;
 }
 
 entry {
-  placeholder: "Search";
-  placeholder-color: @fg3;
-  text-color: @fg0;
+  placeholder-color: @placeholder;
+  placeholder: "";
+  text-color: @active-fg;
 }
 
 message {
-  margin: 12px 0 0;
+  background-color: @message-bg;
+  border-color: @message-bg;
   border-radius: 16px;
-  border-color: @bg2;
-  background-color: @bg2;
-  text-color: @fg0;
+  margin: 12px 0 0;
+  text-color: @active-fg;
 }
 
 textbox {
@@ -78,30 +76,30 @@ listview {
 }
 
 element {
+  background-color: transparent;
+  border-radius: 16px;
   padding: 8px 16px;
   spacing: 8px;
-  border-radius: 16px;
-  background-color: transparent;
 }
 
 element.normal.normal, element.alternate.normal {
   background-color: transparent;
-  text-color: @fg2;
+  text-color: @text-fg;
 }
 
 element.normal.active {
   background-color: transparent;
-  text-color: @bg3;
+  text-color: @active-fg;
 }
 
 element alternate active {
   background-color: transparent;
-  text-color: @bg3;
+  text-color: @active-fg;
 }
 
 element.selected.normal, element.selected.active {
   background-color: transparent;
-  text-color: @bg3;
+  text-color: @active-fg;
 }
 
 element-icon {
