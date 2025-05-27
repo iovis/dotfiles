@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+action=$(printf "suspend\nshutdown\nreboot\nlogout\nhibernate" | rofi -dmenu -p " ") || exit 0
+
+case $action in
+"hibernate") systemctl hibernate ;;
+"logout") loginctl terminate-user david ;;
+"reboot") systemctl reboot ;;
+"shutdown") systemctl poweroff ;;
+"suspend") systemctl suspend ;;
+esac
