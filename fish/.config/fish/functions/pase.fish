@@ -1,3 +1,3 @@
-function pase --wraps='pacman -Ss' --description 'alias pase pacman -Ss'
+function pase --wraps='pacman -Ss'
     pacman -Ss $argv
 end

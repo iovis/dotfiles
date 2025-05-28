@@ -1,3 +1,3 @@
-function gf --wraps='git fetch' --description 'alias gf=git fetch'
+function gf --wraps='git fetch'
     git fetch $argv
 end

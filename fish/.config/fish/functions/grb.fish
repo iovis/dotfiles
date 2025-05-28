@@ -1,3 +1,3 @@
-function grb --wraps='git rebase' --description 'alias grb=git rebase'
+function grb --wraps='git rebase'
     git rebase $argv
 end

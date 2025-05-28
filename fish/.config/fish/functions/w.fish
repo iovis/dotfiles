@@ -1,3 +1,3 @@
-function w --wraps=watchexec --description 'alias w watchexec'
+function w --wraps=watchexec
     watchexec $argv
 end

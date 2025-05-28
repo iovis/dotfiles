@@ -1,3 +1,3 @@
-function gprss --wraps='gh pr status' --description 'alias gprss=gh pr status'
+function gprss --wraps='gh pr status'
     gh pr status $argv
 end

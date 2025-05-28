@@ -1,3 +1,3 @@
-function irs --wraps=evcxr --description 'alias irs=evcxr'
+function irs --wraps=evcxr
     evcxr $argv
 end

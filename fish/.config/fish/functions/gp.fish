@@ -1,3 +1,3 @@
-function gp --wraps='git push' --description 'alias gp=git push'
+function gp --wraps='git push'
     git push $argv
 end

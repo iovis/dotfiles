@@ -1,3 +1,3 @@
-function rrg --wraps='rails routes | g' --description 'alias rrg=rails routes | g'
+function rrg --wraps='rails routes | rg'
     rails routes | g $argv
 end

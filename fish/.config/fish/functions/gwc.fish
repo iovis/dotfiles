@@ -1,3 +1,3 @@
-function gwc --wraps='git worktree add' --description 'Git worktree checkout'
+function gwc --wraps='git worktree add'
     git worktree add $argv[1] $argv
 end

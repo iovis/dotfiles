@@ -1,3 +1,3 @@
-function cb --wraps='cargo build' --description 'alias cb=cargo build'
+function cb --wraps='cargo build'
     cargo build $argv
 end

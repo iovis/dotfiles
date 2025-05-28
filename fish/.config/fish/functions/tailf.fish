@@ -1,3 +1,3 @@
-function tailf --wraps='tail -f' --description 'alias tailf=tail -f'
+function tailf --wraps='tail -f'
     tail -f $argv
 end

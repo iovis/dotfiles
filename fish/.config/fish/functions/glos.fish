@@ -1,3 +1,3 @@
-function glos --wraps=glol\ --stat --description alias\ glol=glol\ --stat
+function glos --wraps="git log"
     glol --stat $argv
 end

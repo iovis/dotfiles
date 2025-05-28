@@ -1,3 +1,3 @@
-function gpr
-    gh pr create --editor
+function gpr --wraps='gh pr create --editor'
+    gh pr create --editor $argv
 end

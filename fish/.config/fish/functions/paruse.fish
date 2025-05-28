@@ -1,3 +1,3 @@
-function paruse --wraps='paru -Ss' --description 'alias paruse paru -Ss'
+function paruse --wraps='paru -Ss'
     paru -Ss $argv
 end

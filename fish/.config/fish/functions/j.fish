@@ -1,3 +1,3 @@
-function j --wraps=just --description 'alias j=just'
+function j --wraps=just
     just $argv
 end

@@ -1,3 +1,3 @@
-function gd --wraps='git diff' --description 'alias gd=git diff'
+function gd --wraps='git diff'
     git diff $argv
 end

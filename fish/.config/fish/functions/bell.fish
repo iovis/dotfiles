@@ -1,3 +1,3 @@
-function bell --wraps='say ding' --description 'alias bell=say ding'
-    say ding $argv
+function bell
+    say ding
 end

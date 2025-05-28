@@ -1,3 +1,3 @@
-function y --wraps=yazi --description 'alias y yazi'
+function y --wraps=yazi
     yazi $argv
 end

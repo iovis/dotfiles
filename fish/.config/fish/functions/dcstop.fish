@@ -1,3 +1,3 @@
-function dcstop --wraps='docker compose stop' --description 'alias dcstop=docker compose stop'
+function dcstop --wraps='docker compose stop'
     docker compose stop $argv
 end

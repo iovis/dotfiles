@@ -1,3 +1,3 @@
-function parus --wraps='sudo paru -S --needed' --description 'alias yas sudo paru -S --needed'
+function parus --wraps='paru -S'
     paru -S --needed --skipreview $argv && parudump
 end

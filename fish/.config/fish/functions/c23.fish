@@ -1,3 +1,3 @@
-function c23 --wraps=clang --description 'alias c23=clang -std=c23'
+function c23 --wraps=clang
     /opt/homebrew/opt/llvm/bin/clang -std=c23 $argv
 end

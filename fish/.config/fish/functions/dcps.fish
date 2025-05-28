@@ -1,3 +1,3 @@
-function dcps --wraps='docker compose ps' --description 'alias dcps=docker compose ps'
+function dcps --wraps='docker compose ps'
     docker compose ps $argv
 end

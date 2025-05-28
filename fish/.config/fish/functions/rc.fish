@@ -1,3 +1,3 @@
-function rc --wraps='rails console' --description 'alias rc=rails console'
+function rc --wraps='rails console'
     rails console $argv
 end

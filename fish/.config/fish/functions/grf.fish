@@ -1,3 +1,3 @@
-function grf --wraps='git reflog' --description 'alias grf=git reflog'
+function grf --wraps='git reflog'
     git reflog $argv
 end

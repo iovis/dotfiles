@@ -1,3 +1,3 @@
-function cr --wraps='cargo run --' --description 'alias cr=cargo run --'
+function cr --wraps='cargo run --'
     cargo run -- $argv
 end

@@ -1,3 +1,3 @@
-function gems --wraps='gem list' --description 'alias gems=gem list'
+function gems --wraps='gem list'
     gem list $argv
 end

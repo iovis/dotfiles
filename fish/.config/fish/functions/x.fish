@@ -1,3 +1,3 @@
-function x --wraps=xmake --description 'alias x=xmake'
+function x --wraps=xmake
     xmake $argv
 end

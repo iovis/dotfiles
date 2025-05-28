@@ -1,3 +1,3 @@
-function nb --wraps=numbat --description 'alias nb numbat'
+function nb --wraps=numbat
     numbat $argv
 end

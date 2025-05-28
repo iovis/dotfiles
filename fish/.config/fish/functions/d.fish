@@ -1,3 +1,3 @@
-function d --wraps=cdh --description 'alias d=cdh'
+function d --wraps=cdh
     cdh $argv
 end

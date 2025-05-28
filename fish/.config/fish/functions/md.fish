@@ -1,3 +1,3 @@
-function md --wraps='mkdir -p' --description 'alias md=mkdir -p'
+function md --wraps='mkdir -p'
     mkdir -p $argv
 end

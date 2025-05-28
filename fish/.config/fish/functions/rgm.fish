@@ -1,3 +1,3 @@
-function rgm --wraps='rails generate migration' --description 'alias rgm=rails generate migration'
+function rgm --wraps='rails generate migration'
     rails generate migration $argv
 end

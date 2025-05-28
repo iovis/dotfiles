@@ -1,3 +1,3 @@
-function pipi --wraps='pip install' --description 'alias pipi=pip install'
+function pipi --wraps='pip install'
     pip install $argv
 end

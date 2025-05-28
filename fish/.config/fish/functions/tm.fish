@@ -1,4 +1,4 @@
-function tm --wraps='tmux' --description 'tmux'
+function tm --wraps='tmux'
     if set -q argv[1]
         tmux $argv
     else

@@ -1,3 +1,3 @@
-function c --wraps=bat --description 'alias c=bat'
+function c --wraps=bat
     bat $argv
 end

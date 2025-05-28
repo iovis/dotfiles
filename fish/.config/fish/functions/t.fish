@@ -1,3 +1,3 @@
-function t --wraps=type --description 'alias t type'
+function t --wraps=type
     type $argv
 end
