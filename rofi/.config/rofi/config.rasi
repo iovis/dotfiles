@@ -1,15 +1,19 @@
-// https://github.com/newmanls/rofi-themes-collection/blob/master/themes/rounded-blue-dark.rasi
-
-// TODO: configure key-bindings
-// rofi -dump-config | nvim -
+// calc history: $HOME/.local/share/rofi/rofi_calc_history
+// rofi -dump-config
+// rofi -dump-theme
 
 configuration {
+  kb-accept-entry: "Return,KP_Enter";
+  kb-mode-complete: "";
+  kb-mode-next: "Shift+Right,Control+Tab,Control+h";
+  kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab,Control+l";
   kb-move-word-back: "Alt+Left,Control+Left";
   kb-move-word-forward: "Alt+Right,Control+Right";
-  kb-accept-entry: "Return,KP_Enter";
-  kb-row-up: "Up,Control+k";
-  kb-row-down: "Down,Control+j";
+  kb-remove-char-back: "BackSpace,Shift+BackSpace";
   kb-remove-to-eol: "";
+  kb-row-down: "Down,Control+j";
+  kb-row-up: "Up,Control+k";
+  modes: "drun,calc";
 }
 
 * {
@@ -62,14 +66,15 @@ entry {
 }
 
 message {
-  background-color: @prompt-bg;
-  border-radius: 16px;
+  background-color: transparent;
+  border: none;
   margin: 12px 0 0;
   text-color: @active-fg;
 }
 
 textbox {
   padding: 8px 24px;
+  text-color: @text-fg;
 }
 
 listview {
