@@ -87,6 +87,7 @@ config.bind("U", "undo")
 config.bind(
     "ga", "open -t https://web.archive.org/web/{url}"
 )  # web archive of current page
+config.bind("gh", "history -t")
 
 # Passthrough/Insert
 config.bind("<Escape>", "fullscreen --leave ;; fake-key <Escape>", mode="passthrough")
@@ -118,7 +119,6 @@ config.bind("sr", "config-cycle tabs.position top right")
 config.bind("ss", "config-cycle statusbar.show always in-mode")
 config.bind("st", "config-cycle tabs.show multiple never")
 config.bind("su", "adblock-update")
-config.bind("sy", "history -t")
 config.bind("<alt-b>", "config-cycle tabs.width 300 38")
 config.bind("<alt-b>", "config-cycle tabs.width 300 38", mode="passthrough")
 
