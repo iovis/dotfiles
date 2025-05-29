@@ -28,7 +28,7 @@ elseif vim.uv.cwd():match("qmk_userspace") then
     vim.keymap.set("n", "<leader>S", function()
       -- keyboards/(boardsource/unicorne)/keymaps/...
       local keyboard = u.current_file():match([[keyboards/(.*)/keymaps]])
-      tux.popup("just setup " .. keyboard)
+      tux.popup("just choose " .. keyboard)
     end, { buffer = true })
   end
 
