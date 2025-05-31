@@ -166,6 +166,7 @@ xdg-user-dirs-gtk
 xdg-utils
 xh
 xorg-server
+xorg-xhost
 xorg-xinit
 yelp
 yt-dlp
