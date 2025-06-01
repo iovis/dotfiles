@@ -1,7 +1,7 @@
 [tools]
 go = "latest"
 nodejs = "23"
-ruby = "3.4"
+ruby = "latest"
 usage = "latest"
 zig = "latest"
 
