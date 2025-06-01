@@ -3,6 +3,7 @@
 // rofi -dump-theme
 
 configuration {
+  drun-display-format: "{name}";
   kb-accept-entry: "Return,KP_Enter";
   kb-mode-complete: "";
   kb-mode-next: "Shift+Right,Control+Tab,Control+h";
