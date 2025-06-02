@@ -3,7 +3,7 @@ return {
   cmd = { "BlameToggle" },
   keys = {
     -- { "<leader>gb", "<cmd>BlameToggle window<cr>" },
-    { "yob", "<cmd>BlameToggle virtual<cr>" },
+    { "yob", "<cmd>BlameToggle virtual<cr>", desc = "Git blame (virtual text)" },
   },
   config = function()
     local blame = require("blame")
