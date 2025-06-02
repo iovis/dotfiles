@@ -9,6 +9,7 @@ config.load_autoconfig(True)
 
 c.auto_save.session = False
 c.content.autoplay = False
+c.content.pdfjs = True
 c.input.insert_mode.auto_load = True
 c.qt.highdpi = True
 c.session.lazy_restore = True
