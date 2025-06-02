@@ -9,8 +9,10 @@ return {
     "windwp/nvim-ts-autotag",
   },
   config = function()
-    vim.keymap.set("n", "yot", "<cmd>TSContextToggle<cr>")
     vim.g.matchup_matchparen_offscreen = {}
+
+    vim.keymap.set("n", "yot", "<cmd>TSContext toggle<cr>")
+    require("treesitter-context").setup({ enable = true })
 
     require("nvim-treesitter.configs").setup({
       ensure_installed = {
@@ -70,7 +72,7 @@ return {
       textobjects = {
         select = {
           enable = true,
-          lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+          lookahead = true,
           keymaps = {
             ["af"] = "@function.outer",
             ["if"] = "@function.inner",
@@ -84,12 +86,8 @@ return {
         },
         swap = {
           enable = true,
-          swap_next = {
-            ["g>"] = "@parameter.inner",
-          },
-          swap_previous = {
-            ["g<"] = "@parameter.inner",
-          },
+          swap_next = { ["g>"] = "@parameter.inner" },
+          swap_previous = { ["g<"] = "@parameter.inner" },
         },
       },
     })
