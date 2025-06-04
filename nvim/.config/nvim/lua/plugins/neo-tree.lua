@@ -38,8 +38,13 @@ return {
             ["g?"] = "show_help",
             ["?"] = "",
 
-            ["gh"] = "toggle_hidden",
             H = "",
+            ["gh"] = "toggle_hidden",
+
+            -- P = "",
+            ["<m-p>"] = { "toggle_preview", config = { use_float = true } },
+            ["<m-j>"] = { "scroll_preview", config = { direction = -10 } },
+            ["<m-k>"] = { "scroll_preview", config = { direction = 10 } },
 
             S = "",
             ["<leader>h"] = "open_split",
