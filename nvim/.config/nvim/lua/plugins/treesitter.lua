@@ -82,6 +82,10 @@ return {
             ["id"] = "@block.inner",
             ["aa"] = "@parameter.outer",
             ["ia"] = "@parameter.inner",
+
+            -- custom
+            ["au"] = "@list-item.outer",
+            ["iu"] = "@list-item.inner",
           },
         },
         swap = {
