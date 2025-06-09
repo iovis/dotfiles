@@ -77,7 +77,7 @@ local function winbar_per_path(path)
 
   local title
   if vim.g.winbar_full_path then
-    title = path
+    title = vim.fn.fnamemodify(path, ":.")
   else
     title = "%t"
   end
