@@ -177,7 +177,7 @@
     "on-click": "XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
   },
   "pulseaudio": {
-    // "scroll-step": 1, // %, can be a float
+    "scroll-step": 5, // %, can be a float
     "format": " {volume}% {icon} ",
     "format-bluetooth": " {volume}% {icon} ",
     "format-bluetooth-muted": "  ",
