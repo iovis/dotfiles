@@ -40,11 +40,10 @@ u.command("EditFtplugin", function(opts)
 end, { nargs = "?", complete = "filetype" })
 
 ---- Redir
-u.ex.abbrev("r", "R")
-u.command("R", function(ctx)
+local function run_command(cmd)
   -- Run command
   local lines = vim.split(
-    vim.api.nvim_exec2(ctx.args, {
+    vim.api.nvim_exec2(cmd, {
       output = true,
     }).output,
     "\r?\n",
@@ -52,17 +51,22 @@ u.command("R", function(ctx)
   )
 
   -- Remove the first 2 lines if it's a external command (starts with `!`)
-  local is_external_command = (ctx.args:sub(1, 1) == "!")
+  local is_external_command = (cmd:sub(1, 1) == "!")
   if is_external_command then
     lines = vim.list_slice(lines, 3, #lines) -- same as lines[3..]
   end
 
+  return lines
+end
+
+u.ex.abbrev("r", "R")
+u.command("R", function(ctx)
+  local lines = run_command(ctx.args)
   if vim.tbl_isempty(lines) then
     vim.notify("No output")
     return
   end
 
-  -- Create new scratch buffer in a split
   u.scratch(lines, {
     lines = ctx.count,
     type = ctx.bang and "vertical" or "horizontal",
@@ -71,27 +75,12 @@ u.command("R", function(ctx)
 end, { nargs = "+", complete = "command", bang = true, count = true })
 
 u.command("P", function(ctx)
-  -- Run command
-  local lines = vim.split(
-    vim.api.nvim_exec2(ctx.args, {
-      output = true,
-    }).output,
-    "\r?\n",
-    { trimempty = true }
-  )
-
-  -- Remove the first 2 lines if it's a external command (starts with `!`)
-  local is_external_command = (ctx.args:sub(1, 1) == "!")
-  if is_external_command then
-    lines = vim.list_slice(lines, 3, #lines) -- same as lines[3..]
-  end
-
+  local lines = run_command(ctx.args)
   if vim.tbl_isempty(lines) then
     vim.notify("No output")
     return
   end
 
-  -- Create new scratch buffer in a floating window
   u.scratch(lines, { type = "float" })
 end, { nargs = "+", complete = "command" })
 
