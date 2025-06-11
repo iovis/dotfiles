@@ -59,7 +59,7 @@ local function run_command(cmd)
   return lines
 end
 
-u.ex.abbrev("r", "R")
+u.ex.abbrev("r", "R =")
 u.command("R", function(ctx)
   local lines = run_command(ctx.args)
   if vim.tbl_isempty(lines) then
