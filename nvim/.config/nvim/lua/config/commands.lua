@@ -40,6 +40,7 @@ u.command("EditFtplugin", function(opts)
 end, { nargs = "?", complete = "filetype" })
 
 ---- Redir
+u.ex.abbrev("r", "R")
 u.command("R", function(ctx)
   -- Run command
   local lines = vim.split(
