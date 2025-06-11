@@ -1,6 +1,6 @@
 local u = require("config.utils")
 
-u.alias_command("Man")
+u.ex.abbrev("man", "Man")
 
 u.command("Delregisters", function(opts)
   local reg = opts.args

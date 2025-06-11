@@ -1,12 +1,10 @@
 return {
   "tpope/vim-fugitive",
   event = "VeryLazy",
-  dependencies = {
-    "tpope/vim-rhubarb",
-  },
+  dependencies = { "tpope/vim-rhubarb" },
   config = function()
     local u = require("config.utils")
-    u.alias_command("Git")
+    u.ex.abbrev("g", "Git")
 
     vim.keymap.set("n", "<leader>G", "<cmd>Gtabedit:<cr>)", { remap = true })
     vim.keymap.set("n", "<leader>go", "<cmd>Gread<cr>")
@@ -14,7 +12,7 @@ return {
     vim.keymap.set({ "n", "x" }, "<leader>gg", ":GBrowse<cr>", { silent = true })
 
     vim.keymap.set("n", "<leader>lg", "<cmd>Glol -500<cr>")
-    u.alias_command("Glol")
+    u.ex.abbrev("glol", "Glol")
     u.command("Glol", [[Git log --graph --pretty='%h -%d %s (%cr) <%an>' <args>]], {
       nargs = "*",
     })

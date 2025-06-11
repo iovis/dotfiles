@@ -220,7 +220,7 @@ return {
     end, { desc = "fzf_lua.live_grep" })
 
     local rg_opts = fzf_lua.config.globals.grep.rg_opts
-    u.alias_command("Rg")
+    u.ex.abbrev("rg", "Rg")
     vim.api.nvim_create_user_command("Rg", function(o)
       fzf_lua.grep({
         debug = false,

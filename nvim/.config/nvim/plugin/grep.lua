@@ -6,7 +6,6 @@ if u.is_executable("rg") then
   vim.o.grepformat = "%f:%l:%c:%m"
 end
 
-u.alias_command("Grep")
 u.command("Grep", function(opts)
   vim.cmd("silent grep! " .. opts.args)
   vim.cmd("botright cwindow")

@@ -1,21 +1,5 @@
 local M = {}
 
----Alias command
----Example:
----  alias_command("Grep") -- converts `:grep` to `:Grep`
----@param cmd string
-function M.alias_command(cmd)
-  local cmd_lowercase = cmd:lower()
-
-  vim.keymap.set("ca", cmd_lowercase, function()
-    if vim.fn.getcmdtype() == ":" and vim.fn.getcmdline() == cmd_lowercase then
-      return cmd
-    else
-      return cmd_lowercase
-    end
-  end, { expr = true })
-end
-
 ---Define user command
 ---@param name string
 ---@param fn any
@@ -412,6 +396,24 @@ function M.ui.foldtext()
     { text_end, "" },
     { ("  󰁂 %d lines"):format(num_lines), "Comment" },
   }
+end
+
+----Ex commands
+M.ex = {}
+
+---Abbreviate command
+---Example:
+---  abbrev("g", "Git") -- converts `:g ` to `:Git `
+---@param alias string
+---@param cmd string
+function M.ex.abbrev(alias, cmd)
+  vim.keymap.set("ca", alias, function()
+    if vim.fn.getcmdtype() == ":" and vim.fn.getcmdpos() == #alias + 1 then
+      return cmd
+    else
+      return alias
+    end
+  end, { expr = true })
 end
 
 return M

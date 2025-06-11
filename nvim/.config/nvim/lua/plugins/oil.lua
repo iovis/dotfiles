@@ -19,7 +19,7 @@ return {
     local u = require("config.utils")
 
     local show_details = false
-    u.alias_command("Oil")
+    u.ex.abbrev("o", "Oil")
 
     oil.setup({
       default_file_explorer = true,
