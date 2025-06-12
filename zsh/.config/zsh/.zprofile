@@ -6,3 +6,4 @@ typeset -U fpath
 # dotfiles scripts
 export PATH="$HOME/.dotfiles/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
