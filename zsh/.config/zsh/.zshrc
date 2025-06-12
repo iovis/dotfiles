@@ -34,6 +34,7 @@ source "$ZDOTDIR/functions.zsh"
 source "$ZDOTDIR/command_config.zsh"
 source "$ZDOTDIR/settings.zsh"
 source "$ZDOTDIR/completions.zsh"
+source "$ZDOTDIR/work.zsh"
 
 ## Local configuration
 # (N.) is so it doesn't error out if it doesn't find anything
