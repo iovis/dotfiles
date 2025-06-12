@@ -1,6 +1,7 @@
 return {
   "github/copilot.vim",
   init = function()
+    vim.g.copilot_node_command = "~/.local/share/mise/installs/node/24.9.0/bin/node"
     vim.g.copilot_no_tab_map = true
     vim.g.copilot_filetypes = {
       gitcommit = true,
