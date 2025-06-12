@@ -85,6 +85,6 @@
   sort = version:refname
 [user]
   name = David Marchante
-  email = davidmarchan@gmail.com
+  email = notdavid@meraki.com
 [submodule]
   recurse = true
