@@ -21,7 +21,7 @@ return {
         animate = { enabled = false },
       },
       explorer = {},
-      image = {},
+      -- image = {},  -- caught leaving zombie processes at 100%
       input = { enabled = true },
       picker = {
         formatters = {
