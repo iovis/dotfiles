@@ -1,14 +1,17 @@
-url := "https://github.com/iovis/dotfiles"
-
 default: init
 
 @list:
     just --list
 
-init:
+init: update_skills update_dotfiles
+
+update_dotfiles:
     git stash push
+    git checkout master
     git pull
+    git checkout -
+    git rebase -
     git stash pop || true
 
-open:
-    open {{ url }} || xdg-open {{ url }}
+update_skills:
+    cd ~/co/skills/meraki-skills/ && git pull
