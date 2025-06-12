@@ -42,6 +42,7 @@ return {
         ["*"] = { "injected" }, -- Treesitter based injections
         eruby = { "htmlbeautifier" },
         hurl = { "hurlfmt" },
+        just = { "just" },
         lua = { "stylua" },
         sql = { "sql_formatter" },
         swift = { "swift_format" },
