@@ -1,13 +1,5 @@
 local M = {}
 
----Define user command
----@param name string
----@param fn any
----@param opts? table<string, any>
-function M.command(name, fn, opts)
-  vim.api.nvim_create_user_command(name, fn, opts or {})
-end
-
 ---Type the string as if it were the user typing it
 ---@param keys string
 function M.send_keys(keys)

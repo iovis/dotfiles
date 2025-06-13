@@ -82,7 +82,7 @@ local function calendar_picker()
   )
 end
 
-u.command("CalendarPicker", calendar_picker)
+vim.api.nvim_create_user_command("CalendarPicker", calendar_picker, {})
 -- vim.keymap.set("n", "'c", calendar_picker, {
 --   desc = "Calendar picker",
 -- })

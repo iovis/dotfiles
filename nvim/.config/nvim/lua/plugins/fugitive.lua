@@ -13,18 +13,18 @@ return {
 
     vim.keymap.set("n", "<leader>lg", "<cmd>Glol -500<cr>")
     u.ex.abbrev("glol", "Glol")
-    u.command("Glol", [[Git log --graph --pretty='%h -%d %s (%cr) <%an>' <args>]], {
+    vim.api.nvim_create_user_command("Glol", [[Git log --graph --pretty='%h -%d %s (%cr) <%an>' <args>]], {
       nargs = "*",
     })
 
     vim.keymap.set("x", "<leader>lg", ":GLogL<cr>", { silent = true })
-    u.command("GLogL", [[Git log -L <line1>,<line2>:% <args>]], {
+    vim.api.nvim_create_user_command("GLogL", [[Git log -L <line1>,<line2>:% <args>]], {
       range = true,
       nargs = "*",
     })
 
     -- NOTE: Fugitive expects netrw to exist, or to define your own `:Browse`
-    u.command("Browse", function(opts)
+    vim.api.nvim_create_user_command("Browse", function(opts)
       vim.ui.open(opts.args)
     end, { force = true, nargs = 1 })
   end,

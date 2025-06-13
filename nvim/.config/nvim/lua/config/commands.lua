@@ -2,7 +2,7 @@ local u = require("config.utils")
 
 u.ex.abbrev("man", "Man")
 
-u.command("Delregisters", function(opts)
+vim.api.nvim_create_user_command("Delregisters", function(opts)
   local reg = opts.args
 
   if #reg == 1 then
@@ -15,7 +15,7 @@ u.command("Delregisters", function(opts)
 end, { nargs = "?" })
 
 ---- Quick Ftplugin
-u.command("EditFtplugin", function(opts)
+vim.api.nvim_create_user_command("EditFtplugin", function(opts)
   -- Filetype detection
   local filetype = opts.args
 
@@ -60,7 +60,7 @@ local function run_command(cmd)
 end
 
 u.ex.abbrev("r", "R =")
-u.command("R", function(ctx)
+vim.api.nvim_create_user_command("R", function(ctx)
   local lines = run_command(ctx.args)
   if vim.tbl_isempty(lines) then
     vim.notify("No output")
@@ -74,7 +74,7 @@ u.command("R", function(ctx)
   })
 end, { nargs = "+", complete = "command", bang = true, count = true })
 
-u.command("P", function(ctx)
+vim.api.nvim_create_user_command("P", function(ctx)
   local lines = run_command(ctx.args)
   if vim.tbl_isempty(lines) then
     vim.notify("No output")
@@ -84,12 +84,12 @@ u.command("P", function(ctx)
   u.scratch(lines, { type = "float" })
 end, { nargs = "+", complete = "command" })
 
-u.command("Hitest", function()
+vim.api.nvim_create_user_command("Hitest", function()
   vim.cmd.source(vim.env.VIMRUNTIME .. "/syntax/hitest.vim")
 end, {})
 
 ---- Render ANSI code colors
-u.command("RenderAscii", function(opts)
+vim.api.nvim_create_user_command("RenderAscii", function(opts)
   local file = opts.args
 
   if u.is_empty(opts.args) then

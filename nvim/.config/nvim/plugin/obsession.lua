@@ -50,7 +50,7 @@ local function start_session()
   end
 end
 
-u.command("SessionStart", start_session)
+vim.api.nvim_create_user_command("SessionStart", start_session, {})
 vim.keymap.set("n", "yos", "<cmd>SessionStart<cr>")
 
 ----Autocommands

@@ -6,7 +6,7 @@ if u.is_executable("rg") then
   vim.o.grepformat = "%f:%l:%c:%m"
 end
 
-u.command("Grep", function(opts)
+vim.api.nvim_create_user_command("Grep", function(opts)
   vim.cmd("silent grep! " .. opts.args)
   vim.cmd("botright cwindow")
 end, { nargs = "+", complete = "file" })
