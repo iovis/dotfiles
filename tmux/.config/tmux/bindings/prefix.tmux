@@ -46,6 +46,7 @@ bind -N "Toggle monitor activity" a {
 bind -N "List keys" ? list-keys
 
 ## Session management
+bind -N "Detach session" C-d detach-client
 bind -N "Kill session" X run tmux_kill_session
 bind -N "Run sessionist" C-f {
   display-popup -w 50% -h 60% -b rounded -E sessionist
@@ -78,6 +79,7 @@ bind -N "Open Vim plugin" C-p {
 }
 
 ## Pane Management
+bind-key -N "Kill pane" C-x kill-pane
 bind-key -N "Kill pane" x kill-pane
 
 bind -N "Horizontal pane" h {
