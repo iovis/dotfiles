@@ -2,6 +2,10 @@ bind -N "Command mode" l {
   switch-client -T command
 }
 
+bind -N "Go to main window" -T command k {
+  select-window -t :=1
+}
+
 bind -N "Open btop" -T command b {
   new-window -Sn btop btop
 }
