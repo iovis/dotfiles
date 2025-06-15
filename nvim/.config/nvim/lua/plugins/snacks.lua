@@ -64,17 +64,24 @@ return {
         win = {
           input = {
             keys = {
-              ["<F2>"] = { "toggle_maximize", mode = { "i", "n" } },
+              ["<F2>"] = { "toggle_maximize", mode = { "n", "i" } },
               ["<c-a>"] = "",
               ["<c-u>"] = "list_scroll_up",
               ["<esc>"] = { "close", mode = { "n", "i" } },
               ["<m-a>"] = { "select_all", mode = { "n", "i" } },
-              ["<m-j>"] = { "preview_scroll_down", mode = { "i", "n" } },
-              ["<m-k>"] = { "preview_scroll_up", mode = { "i", "n" } },
-              ["<m-q>"] = { "qflist", mode = { "i", "n" } },
+              ["<m-j>"] = { "preview_scroll_down", mode = { "n", "i" } },
+              ["<m-k>"] = { "preview_scroll_up", mode = { "n", "i" } },
+              ["<m-q>"] = { "qflist", mode = { "n", "i" } },
               ---@diagnostic disable-next-line: assign-type-mismatch
               ["<m-cr>"] = { { "pick_win", "jump" }, mode = { "n", "i" } },
             },
+          },
+        },
+      },
+      styles = {
+        input = {
+          keys = {
+            i_esc = { "<esc>", { "cancel" }, mode = "i", expr = true },
           },
         },
       },
