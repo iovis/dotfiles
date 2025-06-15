@@ -27,8 +27,13 @@ return {
       desc = "[muxi] Delete mark",
     })
 
-    vim.keymap.set("n", "m<space>", ":Muxi add<space>")
     vim.keymap.set("n", "dm<space>", ":Muxi delete<space>")
+    vim.keymap.set("n", "m<space>", function()
+      vim.ui.input({ prompt = "key" }, function(input)
+        local key = vim.trim(input or "")
+        muxi.add(key)
+      end)
+    end)
 
     ----Quick maps
     for lower, upper in pairs({
@@ -49,10 +54,10 @@ return {
     end
 
     ----Mark management
-    -- TODO: use snacks.picker
-    -- vim.keymap.set("n", "g/", muxi.fzf.marks, {
-    --   desc = "[muxi] fzf-lua marks",
-    -- })
+    vim.keymap.set("n", "g/", function()
+      ---@diagnostic disable-next-line: undefined-field
+      Snacks.picker.muxi_marks()
+    end, { desc = "snacks.picker.muxi_marks" })
 
     vim.keymap.set("n", "m/", muxi.ui.qf, {
       desc = "[muxi] quickfix marks",
