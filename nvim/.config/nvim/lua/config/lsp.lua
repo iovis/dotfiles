@@ -88,15 +88,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
       })
     end, "vim.diagnostic.goto_next")
 
-    ---- fzf-lua
-    local ok_fzf, fzf_lua = pcall(require, "fzf-lua")
-    if ok_fzf then
-      nmap("<leader>ls", fzf_lua.lsp_document_symbols, "fzf_lua.lsp_document_symbols")
-      nmap("<leader>lw", fzf_lua.lsp_workspace_symbols, "fzf_lua.lsp_workspace_symbols")
-
-      nmap("<leader>ld", fzf_lua.lsp_workspace_diagnostics, "fzf_lua.lsp_workspace_diagnostics")
-    end
-
     ---- lspsaga
     local ok_lspsaga, _ = pcall(require, "lspsaga")
     if ok_lspsaga then
