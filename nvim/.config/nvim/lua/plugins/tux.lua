@@ -4,7 +4,6 @@ return {
   event = "VeryLazy",
   keys = {
     { "c<space>", ":Tux<space>" },
-    { "s<space>", ":Tuxw<space>" },
     { "y<space>", ":Tuxpop<space>" },
 
     -- Repeat command in last tmux split

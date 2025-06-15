@@ -49,17 +49,18 @@ return {
     end
 
     ----Mark management
-    vim.keymap.set("n", "g/", muxi.fzf.marks, {
-      desc = "[muxi] fzf-lua marks",
-    })
+    -- TODO: use snacks.picker
+    -- vim.keymap.set("n", "g/", muxi.fzf.marks, {
+    --   desc = "[muxi] fzf-lua marks",
+    -- })
 
     vim.keymap.set("n", "m/", muxi.ui.qf, {
       desc = "[muxi] quickfix marks",
     })
 
-    vim.keymap.set("n", "m?", muxi.fzf.sessions, {
-      desc = "[muxi] fzf-lua sessions",
-    })
+    -- vim.keymap.set("n", "m?", muxi.fzf.sessions, {
+    --   desc = "[muxi] fzf-lua sessions",
+    -- })
 
     vim.keymap.set("n", "m!", function()
       muxi.clear_all()

@@ -67,8 +67,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     xmap("<leader>lr", vim.lsp.buf.rename, "vim.lsp.buf.rename")
 
     ---- Symbols
-    nmap("<leader>ls", vim.lsp.buf.document_symbol, "vim.lsp.buf.document_symbol")
-    nmap("<leader>lw", vim.lsp.buf.workspace_symbol, "vim.lsp.buf.workspace_symbol")
+    -- nmap("<leader>ls", vim.lsp.buf.document_symbol, "vim.lsp.buf.document_symbol")
+    -- nmap("<leader>lw", vim.lsp.buf.workspace_symbol, "vim.lsp.buf.workspace_symbol")
 
     ---- Diagnostics
     nmap("<m-d>", vim.diagnostic.open_float, "vim.diagnostic.open_float")

@@ -12,6 +12,7 @@ return {
       disable_filetype = {
         "TelescopePrompt",
         "fzf",
+        "snacks_picker_input",
       },
       disable_in_macro = true,
     })
