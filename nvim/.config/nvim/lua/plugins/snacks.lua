@@ -6,12 +6,12 @@ return {
     -- TODO:
     -- - dim -> twilight
     -- - gitbrowse -> vim-rhubarb
-    -- - input -> vim.ui.input
     -- - zen -> zen-mode
     local snacks = require("snacks")
 
     snacks.setup({
       explorer = {},
+      input = { enabled = true },
       picker = {
         previewers = {
           -- TODO: fails with mnemonicPrefix
