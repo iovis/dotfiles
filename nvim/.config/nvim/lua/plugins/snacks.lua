@@ -5,7 +5,6 @@ return {
   config = function()
     -- TODO:
     -- - dim -> twilight
-    -- - gitbrowse -> vim-rhubarb
     -- - zen -> zen-mode
     local snacks = require("snacks")
 
@@ -80,6 +79,9 @@ return {
         },
       },
     })
+
+    ----Gitbrowse
+    vim.keymap.set({ "n", "x" }, "<leader>gg", snacks.gitbrowse.open, { desc = "snacks.gitbrowse.open" })
 
     ----Explorer
     vim.keymap.set("n", "<leader>k", function()
