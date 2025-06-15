@@ -5,6 +5,10 @@ return {
 
     snacks.setup({
       picker = {
+        previewers = {
+          -- TODO: fails with mnemonicPrefix
+          diff = { cmd = { "delta" } },
+        },
         sources = {
           filetypes = {
             name = "filetypes",
