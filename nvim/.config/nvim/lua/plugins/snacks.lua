@@ -54,12 +54,13 @@ return {
     end, { desc = "snacks.picker" })
 
     vim.keymap.set("n", "<leader>R", snacks.picker.registers, { desc = "snacks.picker.registers" })
-    vim.keymap.set("n", "<leader>j", snacks.picker.git_status, { desc = "snacks.picker.git_status" })
-    vim.keymap.set("n", "<leader>r", snacks.picker.resume, { desc = "snacks.picker.resume" })
     vim.keymap.set("n", "<leader>f/", snacks.picker.lines, { desc = "snacks.picker.lines" })
     vim.keymap.set("n", "<leader>fh", snacks.picker.help, { desc = "snacks.picker.help" })
     vim.keymap.set("n", "<leader>fm", snacks.picker.man, { desc = "snacks.picker.man" })
     vim.keymap.set("n", "<leader>fq", snacks.picker.qflist, { desc = "snacks.picker.qflist" })
+    vim.keymap.set("n", "<leader>j", snacks.picker.git_status, { desc = "snacks.picker.git_status" })
+    vim.keymap.set("n", "<leader>r", snacks.picker.resume, { desc = "snacks.picker.resume" })
+    vim.keymap.set("n", "U", snacks.picker.undo, { desc = "snacks.picker.undo" })
     vim.keymap.set("n", "gm", snacks.picker.buffers, { desc = "snacks.picker.buffers" })
 
     ---@diagnostic disable-next-line: undefined-field
@@ -108,6 +109,5 @@ return {
     vim.keymap.set("n", "<leader>ld", snacks.picker.diagnostics, { desc = "snacks.picker.diagnostics" })
 
     -- { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
-    -- { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo History" },
   end,
 }
