@@ -11,14 +11,14 @@ return {
     vim.keymap.set("n", "<leader>gb", "<cmd>Git blame<cr>")
     vim.keymap.set({ "n", "x" }, "<leader>gg", ":GBrowse<cr>", { silent = true })
 
-    vim.keymap.set("n", "<leader>lg", "<cmd>Glol -500<cr>")
-    u.ex.abbrev("glol", "Glol")
-    vim.api.nvim_create_user_command("Glol", [[Git log --graph --pretty='%h -%d %s (%cr) <%an>' <args>]], {
+    vim.keymap.set("n", "<leader>lg", "<cmd>Glg -500<cr>")
+    u.ex.abbrev("glg", "Glg")
+    vim.api.nvim_create_user_command("Glg", [[Git log --graph --pretty='%h -%d %s (%cr) <%an>' <args>]], {
       nargs = "*",
     })
 
-    vim.keymap.set("x", "<leader>lg", ":GLogL<cr>", { silent = true })
-    vim.api.nvim_create_user_command("GLogL", [[Git log -L <line1>,<line2>:% <args>]], {
+    vim.keymap.set("x", "<leader>lg", ":GitLogLines<cr>", { silent = true })
+    vim.api.nvim_create_user_command("GitLogLines", [[Git log -L <line1>,<line2>:% <args>]], {
       range = true,
       nargs = "*",
     })

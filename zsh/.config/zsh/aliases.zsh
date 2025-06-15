@@ -51,9 +51,9 @@ alias gf="git fetch"
 alias gi="git ignored"
 alias gitconfig="\$EDITOR ~/.config/git/config"
 alias gl="git pull"
-alias glol='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'\'
-alias glola='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'\'' --all'
-alias glos="glol --stat"
+alias glg='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'\'
+alias glga='glg --all'
+alias glgs="glg --stat"
 alias gls="git log -S"
 alias gm="git merge"
 alias gp="git push"
