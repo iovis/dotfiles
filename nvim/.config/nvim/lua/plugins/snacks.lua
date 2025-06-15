@@ -1,6 +1,13 @@
 return {
   "folke/snacks.nvim",
+  version = "*",
+  priority = 1000,
   config = function()
+    -- TODO:
+    -- - dim -> twilight
+    -- - gitbrowse -> vim-rhubarb
+    -- - input -> vim.ui.input
+    -- - zen -> zen-mode
     local snacks = require("snacks")
 
     snacks.setup({
