@@ -89,6 +89,9 @@ return {
 
     ----Gitbrowse
     vim.keymap.set({ "n", "x" }, "<leader>gg", snacks.gitbrowse.open, { desc = "snacks.gitbrowse.open" })
+    vim.keymap.set({ "n", "x" }, "<leader>gG", function()
+      snacks.gitbrowse.open({ what = "permalink" })
+    end, { desc = "snacks.gitbrowse.open permalink" })
 
     ----Explorer
     vim.keymap.set("n", "<leader>k", function()
