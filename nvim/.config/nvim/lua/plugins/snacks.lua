@@ -7,6 +7,12 @@ return {
     -- - dim -> twilight
     -- - zen -> zen-mode
     local snacks = require("snacks")
+    local grep_exclude = {
+      ".git/",
+      ".gitattributes",
+      ".venv/",
+      "node_modules/",
+    }
 
     snacks.setup({
       explorer = {},
@@ -61,12 +67,7 @@ return {
             end,
           },
           grep = {
-            exclude = {
-              ".git/",
-              ".gitattributes",
-              ".venv/",
-              "node_modules/",
-            },
+            exclude = grep_exclude,
           },
         },
         win = {
@@ -132,7 +133,7 @@ return {
 
     -- Grep
     vim.keymap.set({ "n", "x" }, "<leader>fi", function()
-      snacks.picker.grep_word({ hidden = true })
+      snacks.picker.grep_word({ hidden = true, exclude = grep_exclude })
     end, { desc = "snacks.picker.grep_word" })
 
     vim.keymap.set("n", "<leader>fk", function()
@@ -140,11 +141,12 @@ return {
         search = "\\w",
         live = false,
         hidden = true,
+        exclude = grep_exclude,
       })
     end, { desc = "snacks.picker.grep" })
 
     vim.keymap.set("n", "<leader>fl", function()
-      snacks.picker.grep({ hidden = true })
+      snacks.picker.grep({ hidden = true, exclude = grep_exclude })
     end, { desc = "snacks.picker.grep" })
 
     -- LSP
