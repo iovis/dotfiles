@@ -19,7 +19,7 @@ vim.lsp.enable({
   "hyprls",
   "jsonls",
   "just",
-  "kulala_ls",
+  -- "kulala_ls",
   "lua_ls",
   "ruby_lsp",
   "rust_analyzer",

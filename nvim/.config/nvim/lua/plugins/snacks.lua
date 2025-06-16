@@ -60,6 +60,14 @@ return {
               return items
             end,
           },
+          grep = {
+            exclude = {
+              ".git/",
+              ".gitattributes",
+              ".venv/",
+              "node_modules/",
+            },
+          },
         },
         win = {
           input = {
@@ -123,7 +131,7 @@ return {
     end, { desc = "Open Neovim config" })
 
     -- Grep
-    vim.keymap.set({ "n", "x" }, "<leader>fl", function()
+    vim.keymap.set({ "n", "x" }, "<leader>fi", function()
       snacks.picker.grep_word({ hidden = true })
     end, { desc = "snacks.picker.grep_word" })
 
@@ -135,7 +143,7 @@ return {
       })
     end, { desc = "snacks.picker.grep" })
 
-    vim.keymap.set("n", "<leader>fg", function()
+    vim.keymap.set("n", "<leader>fl", function()
       snacks.picker.grep({ hidden = true })
     end, { desc = "snacks.picker.grep" })
 
