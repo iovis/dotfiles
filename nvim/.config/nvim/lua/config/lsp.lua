@@ -67,8 +67,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     xmap("<leader>lr", vim.lsp.buf.rename, "vim.lsp.buf.rename")
 
     ---- Symbols
-    nmap("<leader>ls", vim.lsp.buf.document_symbol, "vim.lsp.buf.document_symbol")
-    nmap("<leader>lw", vim.lsp.buf.workspace_symbol, "vim.lsp.buf.workspace_symbol")
+    -- nmap("<leader>ls", vim.lsp.buf.document_symbol, "vim.lsp.buf.document_symbol")
+    -- nmap("<leader>lw", vim.lsp.buf.workspace_symbol, "vim.lsp.buf.workspace_symbol")
 
     ---- Diagnostics
     nmap("<m-d>", vim.diagnostic.open_float, "vim.diagnostic.open_float")
@@ -87,15 +87,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         float = true,
       })
     end, "vim.diagnostic.goto_next")
-
-    ---- fzf-lua
-    local ok_fzf, fzf_lua = pcall(require, "fzf-lua")
-    if ok_fzf then
-      nmap("<leader>ls", fzf_lua.lsp_document_symbols, "fzf_lua.lsp_document_symbols")
-      nmap("<leader>lw", fzf_lua.lsp_workspace_symbols, "fzf_lua.lsp_workspace_symbols")
-
-      nmap("<leader>ld", fzf_lua.lsp_workspace_diagnostics, "fzf_lua.lsp_workspace_diagnostics")
-    end
 
     ---- lspsaga
     local ok_lspsaga, _ = pcall(require, "lspsaga")
