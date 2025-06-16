@@ -138,6 +138,9 @@ local ignored_filetypes = {
   "html.kulala_ui",
   "json.kulala_ui",
   "kulala_verbose_result.kulala_ui",
+  "snacks_layout_box",
+  "snacks_picker_input",
+  "snacks_picker_list",
   "text.kulala_ui",
 }
 
