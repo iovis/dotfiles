@@ -45,7 +45,6 @@
   "splitjoin.vim": { "branch": "main", "commit": "451c70158aaccf806d29be69a0d4482734a4f9ee" },
   "treesj": { "branch": "main", "commit": "3b4a2bc42738a63de17e7485d4cc5e49970ddbcc" },
   "tux.nvim": { "branch": "master", "commit": "e7ba76b3fe13cb453d9b3548f09cac9957222526" },
-  "twilight.nvim": { "branch": "main", "commit": "1584c0b0a979b71fd86b18d302ba84e9aba85b1b" },
   "vim-dadbod": { "branch": "master", "commit": "e95afed23712f969f83b4857a24cf9d59114c2e6" },
   "vim-dotenv": { "branch": "master", "commit": "5c51cfcf8d87280d6414e03cd6b253eb70ecb800" },
   "vim-eunuch": { "branch": "master", "commit": "e86bb794a1c10a2edac130feb0ea590a00d03f1e" },

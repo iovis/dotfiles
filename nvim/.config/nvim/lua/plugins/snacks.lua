@@ -4,7 +4,6 @@ return {
   priority = 1000,
   config = function()
     -- TODO:
-    -- - dim -> twilight
     -- - gitblame -> blame.nvim
     local snacks = require("snacks")
     local grep_exclude = {
@@ -15,6 +14,14 @@ return {
     }
 
     snacks.setup({
+      dim = {
+        scope = {
+          min_size = 3,
+          -- max_size = 20,
+          siblings = false,
+        },
+        animate = { enabled = false },
+      },
       explorer = {},
       input = { enabled = true },
       picker = {
@@ -49,6 +56,7 @@ return {
             layout = { preset = "vscode" },
             confirm = function(picker, item)
               picker:close()
+
               if item then
                 vim.schedule(function()
                   vim.cmd("setfiletype " .. item.text)
@@ -93,13 +101,7 @@ return {
           vim.cmd.nohlsearch()
           vim.cmd.echon()
         end,
-        toggles = {
-          dim = false,
-          -- git_signs = false,
-          -- mini_diff_signs = false,
-          -- diagnostics = false,
-          -- inlay_hints = false,
-        },
+        toggles = { dim = false },
         win = {
           height = 0.9,
           wo = {
@@ -187,6 +189,17 @@ return {
     vim.keymap.set("n", "<leader>z", snacks.zen.zen, { desc = "snacks.zen.zen" })
     vim.api.nvim_create_user_command("ZenMode", function()
       snacks.zen.zen()
+    end, {})
+
+    ----Dim
+    vim.keymap.set("n", "yoT", "<cmd>Dim<cr>")
+    vim.api.nvim_create_user_command("Dim", function()
+      -- Doesn't support toggling yet
+      if snacks.dim.enabled then
+        snacks.dim.disable()
+      else
+        snacks.dim.enable()
+      end
     end, {})
   end,
 }
