@@ -16,6 +16,7 @@ return {
   { key = "6", mods = "SUPER", action = act.ActivateTab(5) },
   { key = "l", mods = "SUPER", action = act.ShowDebugOverlay }, -- window:effective_config()
   { key = "c", mods = "SUPER", action = act.CopyTo("Clipboard") },
+  { key = "c", mods = "SHIFT|CTRL", action = act.CopyTo("Clipboard") },
   { key = "f", mods = "SUPER", action = act.Search("CurrentSelectionOrEmptyString") },
   { key = "h", mods = "SUPER", action = act.HideApplication },
   { key = "k", mods = "SUPER", action = act.ClearScrollback("ScrollbackOnly") },
@@ -26,5 +27,6 @@ return {
   { key = "t", mods = "SUPER", action = act.SpawnTab("CurrentPaneDomain") },
   { key = "u", mods = "SUPER", action = act.EmitEvent("toggle-opacity") },
   { key = "v", mods = "SUPER", action = act.PasteFrom("Clipboard") },
+  { key = "v", mods = "SHIFT|CTRL", action = act.PasteFrom("Clipboard") },
   { key = "w", mods = "SUPER", action = act.CloseCurrentTab({ confirm = false }) },
 }
