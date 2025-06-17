@@ -5,7 +5,7 @@ return {
   config = function()
     -- TODO:
     -- - dim -> twilight
-    -- - zen -> zen-mode
+    -- - gitblame -> blame.nvim
     local snacks = require("snacks")
     local grep_exclude = {
       ".git/",
@@ -87,6 +87,33 @@ return {
           },
         },
       },
+      zen = {
+        on_open = function(_win)
+          -- clear messages on open
+          vim.cmd.nohlsearch()
+          vim.cmd.echon()
+        end,
+        toggles = {
+          dim = false,
+          -- git_signs = false,
+          -- mini_diff_signs = false,
+          -- diagnostics = false,
+          -- inlay_hints = false,
+        },
+        win = {
+          height = 0.9,
+          wo = {
+            cursorcolumn = false,
+            cursorline = false,
+            foldcolumn = "0",
+            list = false,
+            number = false,
+            relativenumber = false,
+            signcolumn = "no",
+            winbar = "",
+          },
+        },
+      },
       styles = {
         input = {
           keys = {
@@ -155,5 +182,11 @@ return {
     vim.keymap.set("n", "<leader>lw", snacks.picker.lsp_workspace_symbols, {
       desc = "snacks.picker.lsp_workspace_symbols",
     })
+
+    ----Zen
+    vim.keymap.set("n", "<leader>z", snacks.zen.zen, { desc = "snacks.zen.zen" })
+    vim.api.nvim_create_user_command("ZenMode", function()
+      snacks.zen.zen()
+    end, {})
   end,
 }
