@@ -25,10 +25,6 @@ return {
       explorer = {},
       input = { enabled = true },
       picker = {
-        previewers = {
-          -- TODO: fails with mnemonicPrefix
-          diff = { cmd = { "delta" } },
-        },
         sources = {
           explorer = {
             hidden = true,
@@ -143,11 +139,20 @@ return {
     vim.keymap.set("n", "<leader>fh", snacks.picker.help, { desc = "snacks.picker.help" })
     vim.keymap.set("n", "<leader>fm", snacks.picker.man, { desc = "snacks.picker.man" })
     vim.keymap.set("n", "<leader>fq", snacks.picker.qflist, { desc = "snacks.picker.qflist" })
-    vim.keymap.set("n", "<leader>j", snacks.picker.git_status, { desc = "snacks.picker.git_status" })
     vim.keymap.set("n", "<leader>o", snacks.picker.files, { desc = "snacks.picker.files" })
     vim.keymap.set("n", "<leader>r", snacks.picker.resume, { desc = "snacks.picker.resume" })
-    vim.keymap.set("n", "U", snacks.picker.undo, { desc = "snacks.picker.undo" })
     vim.keymap.set("n", "gm", snacks.picker.buffers, { desc = "snacks.picker.buffers" })
+
+    vim.keymap.set("n", "<leader>j", function()
+      snacks.picker.git_status({ focus = "list" })
+    end, { desc = "snacks.picker.git_status" })
+
+    vim.keymap.set("n", "U", function()
+      snacks.picker.undo({
+        focus = "list",
+        layout = { preset = "bottom" },
+      })
+    end, { desc = "snacks.picker.undo" })
 
     ---@diagnostic disable-next-line: undefined-field
     vim.keymap.set("n", "<leader>F", snacks.picker.filetypes, { desc = "snacks.picker.filetypes" })
@@ -176,11 +181,14 @@ return {
     end, { desc = "snacks.picker.grep" })
 
     -- LSP
-    vim.keymap.set("n", "<leader>ld", snacks.picker.diagnostics, { desc = "snacks.picker.diagnostics" })
     vim.keymap.set("n", "<leader>ls", snacks.picker.lsp_symbols, { desc = "snacks.picker.lsp_symbols" })
     vim.keymap.set("n", "<leader>lw", snacks.picker.lsp_workspace_symbols, {
       desc = "snacks.picker.lsp_workspace_symbols",
     })
+
+    vim.keymap.set("n", "<leader>ld", function()
+      snacks.picker.diagnostics({ focus = "list" })
+    end, { desc = "snacks.picker.diagnostics" })
 
     ----Zen
     vim.keymap.set("n", "<leader>z", snacks.zen.zen, { desc = "snacks.zen.zen" })
