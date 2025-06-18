@@ -143,7 +143,7 @@ return {
     vim.keymap.set("n", "<leader>r", snacks.picker.resume, { desc = "snacks.picker.resume" })
     vim.keymap.set("n", "gm", snacks.picker.buffers, { desc = "snacks.picker.buffers" })
 
-    vim.keymap.set("n", "<leader>gs", function()
+    vim.keymap.set("n", "<leader>j", function()
       snacks.picker.git_status({ focus = "list" })
     end, { desc = "snacks.picker.git_status" })
 

@@ -7,7 +7,7 @@ return {
     u.ex.abbrev("g", "Git")
 
     vim.keymap.set("n", "<leader>G", "<cmd>Gtabedit:<cr>)", { remap = true })
-    vim.keymap.set("n", "<leader>j", function()
+    vim.keymap.set("n", "<leader>gs", function()
       Snacks.win({
         width = 0.6,
         height = 0.6,
