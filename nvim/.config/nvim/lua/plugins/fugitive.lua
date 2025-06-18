@@ -7,6 +7,29 @@ return {
     u.ex.abbrev("g", "Git")
 
     vim.keymap.set("n", "<leader>G", "<cmd>Gtabedit:<cr>)", { remap = true })
+    vim.keymap.set("n", "<leader>j", function()
+      Snacks.win({
+        width = 0.6,
+        height = 0.6,
+        border = "rounded",
+        wo = {
+          spell = false,
+          wrap = false,
+          signcolumn = "yes",
+          statuscolumn = " ",
+          conceallevel = 3,
+        },
+        on_win = function(win)
+          vim.cmd("Gedit:")
+          vim.cmd.normal(")") -- go to first file
+
+          win:on("BufLeave", function()
+            win:close()
+          end)
+        end,
+      })
+    end)
+
     vim.keymap.set("n", "<leader>go", "<cmd>Gread<cr>")
     vim.keymap.set("n", "<leader>gb", "<cmd>Git blame<cr>")
     vim.keymap.set({ "n", "x" }, "<leader>gg", ":GBrowse<cr>", { silent = true })
