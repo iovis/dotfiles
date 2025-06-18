@@ -12,7 +12,6 @@ set -gx PROJECT_HOME "$HOME/code"
 
 set -gx BAT_THEME base16
 set -gx EDITOR nvim
-set -gx MANPAGER "$EDITOR +Man!"
 set -gx PODMAN_COMPOSE_WARNING_LOGS false
 set -gx RUBY_YJIT_ENABLE true
 
