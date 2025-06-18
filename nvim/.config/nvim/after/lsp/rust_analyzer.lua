@@ -1,6 +1,9 @@
 return {
   settings = {
     ["rust-analyzer"] = {
+      cargo = {
+        targetDir = true,
+      },
       imports = {
         granularity = {
           group = "module",
