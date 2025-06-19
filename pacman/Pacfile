@@ -153,6 +153,7 @@ totem
 ttf-firacode-nerd
 ttf-liberation
 udiskie
+valgrind
 vim
 watchexec
 waybar
