@@ -84,6 +84,7 @@ vim.o.tabclose = "uselast"
 vim.o.tabstop = 2
 vim.o.termguicolors = true
 vim.o.undofile = true
+vim.o.undolevels = 10000
 vim.o.updatetime = 200
 vim.o.virtualedit = "block"
 vim.o.wildignore = "*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn"

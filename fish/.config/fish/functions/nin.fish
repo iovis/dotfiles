@@ -1,3 +1,3 @@
-function nin --wraps='nvim -u $DOTFILES/repro.lua'
-    nvim -u $DOTFILES/repro.lua $argv
+function nin --wraps=nvim
+    nvim -u $DOTFILES/minimal.lua $argv
 end
