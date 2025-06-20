@@ -164,7 +164,11 @@ return {
 
     -- Grep
     vim.keymap.set({ "n", "x" }, "<leader>fi", function()
-      snacks.picker.grep_word({ hidden = true, exclude = grep_exclude })
+      snacks.picker.grep_word({
+        exclude = grep_exclude,
+        focus = "list",
+        hidden = true,
+      })
     end, { desc = "snacks.picker.grep_word" })
 
     vim.keymap.set("n", "<leader>fk", function()
