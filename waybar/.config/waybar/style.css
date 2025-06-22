@@ -9,24 +9,15 @@ window#waybar {
 }
 
 .modules-left {
-  padding: 5px 7px;
-  /* margin: 10px 0px 5px 10px; */
-  /* border-radius: 10px; */
-  /* background: alpha(#222, .6); */
-  /* box-shadow: 0px 0px 2px rgba(0, 0, 0, .6); */
+  /* padding: 5px 7px; */
 }
 
 .modules-center {
-  padding: 5px 7px;
-  /* margin: 10px 0px 5px 0px; */
+  /* padding: 5px 7px; */
 }
 
 .modules-right {
-  padding: 5px 7px;
-  /* margin: 10px 10px 5px 0px; */
-  /* border-radius: 10px; */
-  /* background: alpha(#222, .6); */
-  /* box-shadow: 0px 0px 2px rgba(0, 0, 0, .6); */
+  /* padding: 5px 7px; */
 }
 
 tooltip {
@@ -54,7 +45,7 @@ tooltip {
 }
 
 #workspaces {
-  padding: 0px 5px;
+  padding: 5px 5px 5px;
 }
 
 #workspaces button {
