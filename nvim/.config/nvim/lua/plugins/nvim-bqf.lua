@@ -4,10 +4,13 @@ return {
   config = function()
     require("bqf").setup({
       func_map = {
-        split = "<c-s>",
-        pscrollup = "<m-k>",
         pscrolldown = "<m-j>",
         pscrollorig = "<m-;>",
+        pscrollup = "<m-k>",
+        ptoggleauto = "<m-p>",
+        ptoggleitem = "",
+        split = "<c-s>",
+        tab = "<c-t>",
       },
       preview = {
         winblend = 0,
