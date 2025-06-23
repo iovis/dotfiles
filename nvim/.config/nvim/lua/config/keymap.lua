@@ -327,7 +327,7 @@ vim.keymap.set("n", "yoc", function()
   end
 end, { desc = "Toggle conceallevel" })
 
-vim.keymap.set("n", "yof", function()
+vim.keymap.set("n", "yoa", function()
   vim.g.autoformat = not vim.g.autoformat
 
   if vim.g.autoformat then
@@ -337,7 +337,7 @@ vim.keymap.set("n", "yof", function()
   end
 end, { desc = "Toggle autoformat" })
 
-vim.keymap.set("n", "yoF", function()
+vim.keymap.set("n", "yof", function()
   vim.g.foldcolumn = not vim.g.foldcolumn
 
   -- HACK: statuscol doesn't refresh properly
