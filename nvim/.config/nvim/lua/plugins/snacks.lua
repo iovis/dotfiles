@@ -40,6 +40,8 @@ return {
                   ["<leader>h"] = "edit_split",
                   ["<leader>t"] = "tab",
                   ["<leader>v"] = "edit_vsplit",
+                  ["<c-j>"] = false,
+                  ["<c-k>"] = false,
                 },
               },
             },
