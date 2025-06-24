@@ -12,6 +12,7 @@ return {
         width = 0.6,
         height = 0.6,
         border = "rounded",
+        title = "   git status  ",
         wo = {
           spell = false,
           wrap = false,
