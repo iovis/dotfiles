@@ -395,6 +395,7 @@ end, { desc = "Toggle scroll lock" })
 
 ---- Misc
 vim.keymap.set("n", "<leader>fp", ":se ft?<cr>")
+vim.keymap.set("n", "<leader>P", ":R=")
 vim.keymap.set("n", "<leader>!", ":R! !")
 vim.keymap.set("n", "<leader>M", "<cmd>10R messages<cr>G")
 vim.keymap.set("x", "<leader>i", "y:R! !<c-r>0<cr>")
