@@ -73,6 +73,48 @@ return {
             end,
           },
           grep = { exclude = grep_exclude },
+          registers = {
+            actions = {
+              delete = function(picker)
+                local items = picker:selected({ fallback = true })
+
+                for _, item in ipairs(items) do
+                  vim.fn.setreg(item.reg, "")
+                end
+
+                -- refresh list
+                picker.list:set_selected()
+                picker.list:set_target()
+                picker:find()
+              end,
+              edit = function(picker)
+                local item = picker:selected({ fallback = true })[1]
+
+                if item.data:match("\n") then
+                  vim.print("TODO: multiline")
+                else
+                  vim.ui.input({ prompt = item.reg, default = item.data }, function(input)
+                    vim.fn.setreg(item.reg, input)
+
+                    -- refresh list
+                    picker.list:set_selected()
+                    picker.list:set_target()
+                    picker:find()
+                  end)
+                end
+              end,
+              -- execute_macro
+            },
+            win = {
+              input = {
+                keys = {
+                  ["<c-x>"] = { "delete", mode = { "n", "i" } },
+                  d = "delete",
+                  e = "edit",
+                },
+              },
+            },
+          },
         },
         win = {
           input = {
