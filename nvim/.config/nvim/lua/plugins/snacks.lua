@@ -64,17 +64,15 @@ return {
             finder = function()
               local items = {}
               local filetypes = vim.fn.getcompletion("", "filetype")
+
               for _, type in ipairs(filetypes) do
-                items[#items + 1] = {
-                  text = type,
-                }
+                items[#items + 1] = { text = type }
               end
+
               return items
             end,
           },
-          grep = {
-            exclude = grep_exclude,
-          },
+          grep = { exclude = grep_exclude },
         },
         win = {
           input = {
@@ -123,13 +121,13 @@ return {
       },
     })
 
-    ----Gitbrowse
-    vim.keymap.set({ "n", "x" }, "<leader>gG", snacks.gitbrowse.open, { desc = "snacks.gitbrowse.open" })
-
     ----Explorer
     vim.keymap.set("n", "<leader>k", function()
       snacks.explorer()
     end, { desc = "snacks.explorer" })
+
+    ----Gitbrowse
+    vim.keymap.set({ "n", "x" }, "<leader>gG", snacks.gitbrowse.open, { desc = "snacks.gitbrowse.open" })
 
     ----Picker
     vim.keymap.set("n", "s<space>", function()
@@ -195,6 +193,16 @@ return {
     vim.keymap.set("n", "<leader>ld", function()
       snacks.picker.diagnostics({ focus = "list" })
     end, { desc = "snacks.picker.diagnostics" })
+
+    ----Rename
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "OilActionsPost",
+      callback = function(event)
+        if event.data.actions.type == "move" then
+          Snacks.rename.on_rename_file(event.data.actions.src_url, event.data.actions.dest_url)
+        end
+      end,
+    })
 
     ----Zen
     vim.keymap.set("n", "<leader>z", snacks.zen.zen, { desc = "snacks.zen.zen" })
