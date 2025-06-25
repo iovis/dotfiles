@@ -91,7 +91,25 @@ return {
                 local item = picker:selected({ fallback = true })[1]
 
                 if item.data:match("\n") then
-                  vim.print("TODO: multiline")
+                  Snacks.win({
+                    width = 0.6,
+                    height = 0.6,
+                    border = "rounded",
+                    title = ("  [%s] register  "):format(item.reg),
+                    fixbuf = true,
+                    text = vim.split(item.data, "\n"),
+                    keys = { q = "close" },
+                    zindex = 1000,
+                    on_close = function(_win)
+                      local new_value = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
+                      vim.fn.setreg(item.reg, new_value)
+
+                      -- refresh list
+                      picker.list:set_selected()
+                      picker.list:set_target()
+                      picker:find()
+                    end,
+                  })
                 else
                   vim.ui.input({ prompt = item.reg, default = item.data }, function(input)
                     vim.fn.setreg(item.reg, input)
