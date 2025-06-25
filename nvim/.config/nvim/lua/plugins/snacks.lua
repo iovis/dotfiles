@@ -3,8 +3,6 @@ return {
   version = "*",
   priority = 1000,
   config = function()
-    -- TODO:
-    -- - gitblame -> blame.nvim
     local snacks = require("snacks")
     local grep_exclude = {
       ".git/",
@@ -121,12 +119,20 @@ return {
                   end)
                 end
               end,
-              -- execute_macro
+              execute_macro = function(picker)
+                local item = picker:selected({ fallback = true })[1]
+
+                if #item.data > 0 then
+                  picker:close()
+                  vim.cmd.normal("@" .. item.reg)
+                end
+              end,
             },
             win = {
               input = {
                 keys = {
                   ["<c-x>"] = { "delete", mode = { "n", "i" } },
+                  ["<m-cr>"] = { "execute_macro", mode = { "n", "i" } },
                   d = "delete",
                   e = "edit",
                 },
