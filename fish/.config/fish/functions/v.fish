@@ -1,4 +1,4 @@
-function n --wraps=nvim
+function v --wraps=nvim
     if set -q argv[1]
         nvim $argv
     else if test -f Session.vim
