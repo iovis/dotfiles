@@ -51,6 +51,9 @@ bind -N "Kill session" X run tmux_kill_session
 bind -N "Run sessionist" C-f {
   display-popup -w 50% -h 60% -b rounded -E sessionist
 }
+bind -N "Run zoxide_sessionist" C-o {
+  display-popup -w 50% -h 60% -b rounded -E zoxide_sessionist
+}
 
 bind -N "Rename session" . command-prompt -I "#S" {
   rename-session "%%"

@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+INITIAL_QUERY="${*:-}"
+fzf_command() {
+  # if no match, return query string
+  fzf \
+    --info=hidden \
+    --reverse \
+    --bind=alt-enter:print-query \
+    --bind=alt-p:toggle-preview \
+    --bind='alt-r:change-preview-window(right|down)' \
+    --preview="eza --color=always --icons -1a --group-directories-first {}" \
+    --preview-window=right \
+    --exit-0 \
+    --query="$INITIAL_QUERY" || true
+}
+
+session_path=$(zoxide query --list | fzf_command)
+session_name=$(basename "$session_path" | tr '.' '_')
+
+if [[ -z "$session_path" || -z "$session_name" ]]; then
+  exit 0
+fi
+
+tmux has-session -t "=$session_name" || tmux new-session -d -s "$session_name" -c "$session_path" && tmux switch-client -t "=$session_name"
