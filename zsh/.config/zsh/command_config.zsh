@@ -36,7 +36,7 @@ if type nvim > /dev/null; then
   export EDITOR="nvim"
   # export MANPAGER="$EDITOR +Man!"
 
-  function n() {
+  function v() {
     if [[ $# -gt 0 ]]; then
       nvim $@
     elif [[ -f "Session.vim" ]]; then
