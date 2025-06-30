@@ -31,4 +31,4 @@ if [[ -z "$plugin_path" || -z "$window_name" ]]; then
   exit 0
 fi
 
-tmux new-window -Sn "$window_name" -c "$PLUGIN_DIR/$plugin_path" n
+tmux new-window -Sn "$window_name" -c "$PLUGIN_DIR/$plugin_path" v
