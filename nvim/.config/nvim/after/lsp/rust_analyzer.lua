@@ -1,16 +1,14 @@
 return {
   settings = {
     ["rust-analyzer"] = {
-      cargo = {
-        targetDir = true,
-      },
+      cargo = { targetDir = true },
       imports = {
         granularity = {
           group = "module",
         },
         prefix = "self",
       },
-      checkOnSave = {
+      check = {
         command = "clippy",
         extraArgs = {
           "--",
