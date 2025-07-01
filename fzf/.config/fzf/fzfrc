@@ -3,7 +3,7 @@
 --bind=alt-a:select-all,alt-d:deselect-all,alt-t:toggle-all
 --bind=home:first,end:last
 --bind=alt-p:toggle-preview
---bind=alt-j:preview-down,alt-k:preview-up
+--bind=alt-j:preview-page-down,alt-k:preview-page-up
 --bind=alt-down:preview-bottom,alt-up:preview-top
 --bind=alt-left:backward-word,alt-right:forward-word
 --bind=alt-h:backward-word,alt-l:forward-word
