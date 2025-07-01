@@ -3,7 +3,10 @@
 --bind=alt-a:select-all,alt-d:deselect-all,alt-t:toggle-all
 --bind=home:first,end:last
 --bind=alt-p:toggle-preview
---preview 'bat --style=numbers --color=always {} 2> /dev/null'
+--bind=alt-j:preview-down,alt-k:preview-up
+--bind=alt-left:backward-word,alt-right:forward-word
+--bind=alt-h:backward-word,alt-l:forward-word
+--preview='bat --style=numbers --color=always {} 2> /dev/null'
 --color=current-bg:#414559
 --color=bg:-1
 --color=current-fg:#c6d0f5
