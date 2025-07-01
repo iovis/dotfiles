@@ -4,6 +4,7 @@
 --bind=home:first,end:last
 --bind=alt-p:toggle-preview
 --bind=alt-j:preview-down,alt-k:preview-up
+--bind=alt-down:preview-bottom,alt-up:preview-top
 --bind=alt-left:backward-word,alt-right:forward-word
 --bind=alt-h:backward-word,alt-l:forward-word
 --preview='bat --style=numbers --color=always {} 2> /dev/null'
