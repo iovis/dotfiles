@@ -1,6 +1,6 @@
 ## Session picker
 bind -N "Select or create session from FZF" -n C-f {
-  display-popup -w 80% -h 80% -b rounded -E ts
+  display-popup -w 80% -h 80% -b none -E ts
 }
 
 bind -N "Switch to last session" -n M-Space {

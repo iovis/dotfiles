@@ -3,7 +3,23 @@
 --bind=alt-a:select-all,alt-d:deselect-all,alt-t:toggle-all
 --bind=home:first,end:last
 --bind=alt-p:toggle-preview
---color=bg+:#414559,bg:-1,gutter:-1,spinner:#f2d5cf,hl:#e78284
---color=fg:#c6d0f5,header:#e78284,info:#8caaee,pointer:#f2d5cf
---color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#8caaee,hl+:#e78284
 --preview 'bat --style=numbers --color=always {} 2> /dev/null'
+--color=current-bg:#414559
+--color=bg:-1
+--color=current-fg:#c6d0f5
+--color=fg:#c6d0f5
+--color=gutter:-1
+--color=header:#e78284
+--color=current-hl:#e78284
+--color=hl:#e78284
+--color=info:#8caaee
+--color=input-border:#eebebe
+--color=input-label:#eebebe
+--color=list-border:#8caaee
+--color=list-label:#8caaee
+--color=marker:#f2d5cf
+--color=pointer:red
+--color=preview-border:#8caaee
+--color=preview-label:#8caaee
+--color=prompt:#8caaee
+--color=spinner:#f2d5cf

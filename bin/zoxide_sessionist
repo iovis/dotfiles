@@ -6,6 +6,11 @@ INITIAL_QUERY="${*:-}"
 fzf_command() {
   # if no match, return query string
   fzf \
+    --prompt="❯ " \
+    --ghost="zoxide folders" \
+    --header-border \
+    --input-border \
+    --list-border \
     --info=hidden \
     --reverse \
     --bind=alt-enter:print-query \
@@ -13,6 +18,7 @@ fzf_command() {
     --bind='alt-r:change-preview-window(right|down)' \
     --preview="eza --color=always --icons -1a --group-directories-first {}" \
     --preview-window=right \
+    --color=input-border:cyan \
     --exit-0 \
     --query="$INITIAL_QUERY" || true
 }

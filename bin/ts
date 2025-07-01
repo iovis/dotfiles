@@ -2,27 +2,32 @@
 
 set -euo pipefail
 
-tmux_sessions='tmux ls -F "#{?session_attached,  #{session_name} <-,  #{session_name}}"'
+tmux_sessions='tmux ls -F "  #{session_name}"'
 
 fzf_command() {
   # using `reload:cmd` instead of `reload(cmd)` because otherwise fzf fails to
   # parse a command with braces
   fzf \
     --prompt="❯ " \
+    --header-border \
+    --input-border \
+    --list-border \
     --info=inline-right \
+    --list-label " sessions " \
+    --ghost="Tmux sessions" \
     --reverse \
-    --header="" \
     --no-input \
-    --accept-nth 2 \
-    --bind "j:down,k:up,q:abort,i,/:show-input+unbind(j,k,q,i,/,x,d)" \
+    --accept-nth=2 \
+    --bind="j:down,k:up,q:abort,i,/:show-input+unbind(j,k,q,i,/,x,d)" \
     --bind="x,d,ctrl-x:execute-silent(tmux kill-session -t {2})+reload:$tmux_sessions" \
     --bind=alt-enter:print-query \
     --bind=alt-p:toggle-preview \
     --bind="alt-r:change-preview-window(down|right)" \
+    --bind="focus:transform-preview-label:echo '  {1..2}  '" \
     --preview="tmux capture-pane -ep -t '{2}:'" \
     --preview-window="right,75%" \
     --exit-0 \
-    --query "${*:-}" || true
+    --query="${*:-}" || true
 }
 
 session_name=$(eval "$tmux_sessions" | fzf_command "$@")

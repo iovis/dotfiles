@@ -15,12 +15,17 @@ INITIAL_QUERY="${*:-}"
 fzf_command() {
   fzf \
     --prompt="❯ " \
+    --header-border \
+    --input-border \
+    --list-border \
+    --ghost="Neovim plugins" \
     --info=hidden \
     --reverse \
     --bind=alt-p:toggle-preview \
     --bind='alt-r:change-preview-window(right|down)' \
     --preview="eza --color=always --icons -1a --group-directories-first $PLUGIN_DIR/{}" \
     --preview-window=right \
+    --color=input-border:green \
     --query="$INITIAL_QUERY" || true
 }
 

@@ -18,6 +18,9 @@ fzf_command() {
   # if no match, return query string
   fzf \
     --prompt="$PROJECT_HOME/" \
+    --header-border \
+    --input-border \
+    --list-border \
     --info=hidden \
     --reverse \
     --bind=enter:accept-or-print-query \
@@ -26,6 +29,7 @@ fzf_command() {
     --bind='alt-r:change-preview-window(right|down)' \
     --preview="eza --color=always --icons -1a --group-directories-first $PROJECT_HOME/{}" \
     --preview-window=right \
+    --color=input-border:blue \
     --exit-0 \
     --query="$INITIAL_QUERY" || true
 }

@@ -49,10 +49,10 @@ bind -N "List keys" ? list-keys
 bind -N "Detach session" C-d detach-client
 bind -N "Kill session" X run tmux_kill_session
 bind -N "Run sessionist" C-f {
-  display-popup -w 50% -h 60% -b rounded -E sessionist
+  display-popup -w 50% -h 60% -b none -E sessionist
 }
 bind -N "Run zoxide_sessionist" C-o {
-  display-popup -w 50% -h 60% -b rounded -E zoxide_sessionist
+  display-popup -w 50% -h 60% -b none -E zoxide_sessionist
 }
 
 bind -N "Rename session" . command-prompt -I "#S" {
@@ -78,7 +78,7 @@ bind -N "Reset session" q confirm -p "reset session? (y/n)" {
 }
 
 bind -N "Open Vim plugin" C-p {
-  display-popup -w 50% -h 60% -b rounded -E vim_plugins
+  display-popup -w 50% -h 60% -b none -E vim_plugins
 }
 
 ## Pane Management
