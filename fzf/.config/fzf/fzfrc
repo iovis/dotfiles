@@ -17,13 +17,13 @@
 --color=current-hl:#e78284
 --color=hl:#e78284
 --color=info:#414559
---color=input-border:#eebebe
+--color=input-border:black
 --color=input-label:#eebebe
---color=list-border:#8caaee
+--color=list-border:black
 --color=list-label:#8caaee
 --color=marker:#f2d5cf
 --color=pointer:#e78284
---color=preview-border:#8caaee
+--color=preview-border:black
 --color=preview-label:#8caaee
 --color=prompt:#8caaee
 --color=spinner:#f2d5cf
