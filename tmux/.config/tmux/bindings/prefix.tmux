@@ -7,8 +7,10 @@ bind -N "Command prompt" \; {
 }
 
 # Pass-through
-bind C-l send 'C-l'
+bind -r C-f send 'C-f'
+bind C-j send 'C-j'
 bind C-k send 'C-k'
+bind C-l send 'C-l'
 
 ## Quick settings
 bind -N "Reload tmux" R {
@@ -48,7 +50,7 @@ bind -N "List keys" ? list-keys
 ## Session management
 bind -N "Detach session" C-d detach-client
 bind -N "Kill session" X run tmux_kill_session
-bind -N "Run sessionist" C-f {
+bind -N "Run sessionist" C-n {
   display-popup -w 50% -h 60% -b none -E sessionist
 }
 bind -N "Run zoxide_sessionist" C-o {
