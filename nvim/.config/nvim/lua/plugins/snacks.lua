@@ -241,13 +241,6 @@ return {
       snacks.picker.git_status({ focus = "list" })
     end, { desc = "snacks.picker.git_status" })
 
-    vim.keymap.set("n", "U", function()
-      snacks.picker.undo({
-        focus = "list",
-        layout = { preset = "bottom" },
-      })
-    end, { desc = "snacks.picker.undo" })
-
     ---@diagnostic disable-next-line: undefined-field
     vim.keymap.set("n", "<leader>F", snacks.picker.filetypes, { desc = "snacks.picker.filetypes" })
 
