@@ -76,7 +76,7 @@ bind -N "Search numbers" -T search n {
 
 # Paths
 bind -N "Search paths" -T copy-mode-vi , {
-  send -X search-backward "(~/|/)?([-~a-zA-Z0-9_+-,.]+/[^[:space:]|:\"'\$%&)>\]*)"
+  send -X search-backward "\b(~/|/)?([-~a-zA-Z0-9_+-,.]+/[^[:space:]|:\"'`\$%&)>\]*)"
 }
 
 bind -N "Search paths" -T search , {
