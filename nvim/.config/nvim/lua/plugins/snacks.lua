@@ -100,7 +100,7 @@ return {
                     zindex = 1000,
                     on_close = function(_win)
                       local new_value = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
-                      vim.fn.setreg(item.reg, new_value)
+                      vim.fn.setreg(item.reg, new_value or "")
 
                       -- refresh list
                       picker.list:set_selected()
@@ -110,7 +110,7 @@ return {
                   })
                 else
                   vim.ui.input({ prompt = item.reg, default = item.data }, function(input)
-                    vim.fn.setreg(item.reg, input)
+                    vim.fn.setreg(item.reg, input or "")
 
                     -- refresh list
                     picker.list:set_selected()
@@ -137,6 +137,14 @@ return {
                   e = "edit",
                 },
               },
+              list = {
+                keys = {
+                  ["<c-x>"] = "delete",
+                  ["<m-cr>"] = "execute_macro",
+                  d = "delete",
+                  e = "edit",
+                },
+              },
             },
           },
         },
@@ -147,12 +155,32 @@ return {
               ["<c-a>"] = "",
               ["<c-u>"] = "list_scroll_up",
               ["<esc>"] = { "close", mode = { "n", "i" } },
+              ["<leader>H"] = "layout_left",
+              ["<leader>J"] = "layout_bottom",
+              ["<leader>K"] = "layout_top",
+              ["<leader>L"] = "layout_right",
+              ["<m-.>"] = { "toggle_hidden", mode = { "i", "n" } },
               ["<m-a>"] = { "select_all", mode = { "n", "i" } },
+              ["<m-h>"] = "",
               ["<m-j>"] = { "preview_scroll_down", mode = { "n", "i" } },
               ["<m-k>"] = { "preview_scroll_up", mode = { "n", "i" } },
               ["<m-q>"] = { "qflist", mode = { "n", "i" } },
               ---@diagnostic disable-next-line: assign-type-mismatch
               ["<m-cr>"] = { { "pick_win", "jump" }, mode = { "n", "i" } },
+            },
+          },
+          list = {
+            keys = {
+              ["<leader>H"] = "layout_left",
+              ["<leader>J"] = "layout_bottom",
+              ["<leader>K"] = "layout_top",
+              ["<leader>L"] = "layout_right",
+              ["<m-.>"] = "toggle_hidden",
+              ["<m-a>"] = "select_all",
+              ["<m-cr>"] = { "pick_win", "jump" },
+              ["<m-j>"] = "preview_scroll_down",
+              ["<m-k>"] = "preview_scroll_up",
+              ["<m-q>"] = "qflist",
             },
           },
         },
