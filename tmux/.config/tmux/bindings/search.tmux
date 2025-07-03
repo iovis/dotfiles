@@ -65,7 +65,7 @@ bind -N "Search commit hashes" -T search o {
 
 # Command Prompts
 bind -N "Search command prompts" -T copy-mode-vi < {
-  send -X search-backward "(❯|❮) .+"
+  send -X search-backward "(❯|❮)(.*[^[:space:]])?"
 }
 
 bind -N "Search command prompts" -T search p {
