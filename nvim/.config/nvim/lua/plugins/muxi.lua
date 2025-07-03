@@ -41,7 +41,6 @@ return {
       j = "J",
       k = "K",
       l = "L",
-      [";"] = ":",
     }) do
       vim.keymap.set("n", "g" .. upper, function()
         muxi.add(lower)
