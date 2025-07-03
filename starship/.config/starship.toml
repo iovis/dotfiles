@@ -11,15 +11,22 @@ $git_state\
 $git_status\
 $git_commit\
 $status\
-$line_break\
-$jobs\
-$python\
-$character"""
 
-right_format = """
+$fill\
+
 $cmd_duration\
 $username\
-$hostname"""
+$hostname\
+
+$line_break\
+
+$jobs\
+$python\
+$character
+"""
+
+[fill]
+symbol = " "
 
 [directory]
 style = "blue"
