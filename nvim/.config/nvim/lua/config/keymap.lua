@@ -227,18 +227,14 @@ end, { desc = "Copy current buffer's path and line number to clipboard" })
 
 -- Quickfix/Location list
 vim.keymap.set("n", "<up>", "<cmd>cprevious<cr>")
+vim.keymap.set("n", "<c-s-up>", "<cmd>cpfile<cr>")
 vim.keymap.set("n", "<down>", "<cmd>cnext<cr>")
-
-vim.keymap.set("n", "<leader><up>", "<cmd>cpfile<cr>")
-vim.keymap.set("n", "<leader><down>", "<cmd>cnfile<cr>")
-vim.keymap.set("n", "<s-left>", "<cmd>cpfile<cr>")
-vim.keymap.set("n", "<s-right>", "<cmd>cnfile<cr>")
+vim.keymap.set("n", "<c-s-down>", "<cmd>cnfile<cr>")
 
 vim.keymap.set("n", "<left>", "<cmd>lprevious<cr>")
+vim.keymap.set("n", "<c-s-left>", "<cmd>lpfile<cr>")
 vim.keymap.set("n", "<right>", "<cmd>lnext<cr>")
-
-vim.keymap.set("n", "<leader><left>", "<cmd>lpfile<cr>")
-vim.keymap.set("n", "<leader><right>", "<cmd>lnfile<cr>")
+vim.keymap.set("n", "<c-s-right>", "<cmd>lnfile<cr>")
 
 vim.keymap.set("n", "+", function()
   if vim.fn.getqflist({ winid = 1 }).winid == 0 then
