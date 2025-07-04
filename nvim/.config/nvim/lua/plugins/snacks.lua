@@ -224,11 +224,8 @@ return {
     vim.keymap.set({ "n", "x" }, "<leader>gG", snacks.gitbrowse.open, { desc = "snacks.gitbrowse.open" })
 
     ----Picker
-    vim.keymap.set("n", "s<space>", function()
-      snacks.picker()
-    end, { desc = "snacks.picker" })
-
-    vim.keymap.set("n", "<leader>R", snacks.picker.registers, { desc = "snacks.picker.registers" })
+    ---@diagnostic disable-next-line: undefined-field
+    vim.keymap.set("n", "<leader>F", snacks.picker.filetypes, { desc = "snacks.picker.filetypes" })
     vim.keymap.set("n", "<leader>/", snacks.picker.lines, { desc = "snacks.picker.lines" })
     vim.keymap.set("n", "<leader>fh", snacks.picker.help, { desc = "snacks.picker.help" })
     vim.keymap.set("n", "<leader>fm", snacks.picker.man, { desc = "snacks.picker.man" })
@@ -236,13 +233,15 @@ return {
     vim.keymap.set("n", "<leader>o", snacks.picker.files, { desc = "snacks.picker.files" })
     vim.keymap.set("n", "<leader>r", snacks.picker.resume, { desc = "snacks.picker.resume" })
     vim.keymap.set("n", "gm", snacks.picker.buffers, { desc = "snacks.picker.buffers" })
+    vim.keymap.set("n", "s<space>", snacks.picker.pick, { desc = "snacks.picker.pick" })
 
     vim.keymap.set("n", "<leader>j", function()
       snacks.picker.git_status({ focus = "list" })
     end, { desc = "snacks.picker.git_status" })
 
-    ---@diagnostic disable-next-line: undefined-field
-    vim.keymap.set("n", "<leader>F", snacks.picker.filetypes, { desc = "snacks.picker.filetypes" })
+    vim.keymap.set("n", "<leader>R", function()
+      snacks.picker.registers({ pattern = "label:" })
+    end, { desc = "snacks.picker.registers" })
 
     -- Files
     vim.keymap.set("n", "<leader>ud", function()
