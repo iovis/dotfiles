@@ -9,7 +9,9 @@ gui:
   showCommandLog: false
   showDivergenceFromBaseBranch: arrowAndNumber
   showFileTree: false
+  skipAmendWarning: true
   skipRewordInEditorWarning: true
+  useHunkModeInStagingView: true
   theme:
     activeBorderColor:
       - '#a6d189'
