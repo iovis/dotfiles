@@ -20,12 +20,6 @@ bind / {
   send /
 }
 
-# Cancel copy mode
-bind -N "Cancel copy-mode and clear screen" -T copy-mode-vi C-l {
-  send -X cancel
-  send 'C-l'
-}
-
 # Movement
 bind -T copy-mode-vi H send -X back-to-indentation
 bind -T copy-mode-vi L send -X end-of-line
