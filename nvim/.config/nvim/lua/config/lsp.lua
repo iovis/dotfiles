@@ -4,7 +4,7 @@ vim.keymap.set("n", "<leader>lC", "<cmd>LspActiveClients<cr>")
 vim.keymap.set("n", "<leader>lR", ":LspRestart<cr>")
 vim.keymap.set("n", "<leader>lh", "<cmd>help lspconfig-all<cr>")
 vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
-vim.keymap.set("n", "<leader>ll", "<cmd>LspLog<cr>")
+vim.keymap.set("n", "<leader>lo", "<cmd>LspLog<cr>")
 
 vim.api.nvim_create_user_command("LspActiveClients", "R=vim.lsp.get_clients()", {})
 
@@ -115,7 +115,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       nmap("<right>", "<cmd>Lspsaga diagnostic_jump_next<cr>")
 
       ---- outline
-      nmap("<leader>lo", "<cmd>Lspsaga outline<cr>")
+      nmap("<leader>lm", "<cmd>Lspsaga outline<cr>")
     end
 
     ----Inlay hints
