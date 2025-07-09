@@ -47,19 +47,11 @@ bind -N "Tmux customization mode" -T command z {
 }
 
 ## Justfile
-bind -N "Run just picker" -T command j {
-  if "test -f justfile" {
-    new-window "jf; pause"
-  } {
-    display "No justfile!"
-  }
-}
-
 bind -N "Run just console" -T command c {
   if "test -f justfile" {
     new-window -Sn console just console
   } {
-    display "No justfile!"
+    display-message "No justfile!"
   }
 }
 
@@ -67,7 +59,7 @@ bind -N "Run just db" -T command d {
   if "test -f justfile" {
     new-window -Sn db just db
   } {
-    display "No justfile!"
+    display-message "No justfile!"
   }
 }
 
@@ -75,7 +67,7 @@ bind -N "Run just open" -T command o {
   if "test -f justfile" {
     new-window -Sd just open
   } {
-    display "No justfile!"
+    display-message "No justfile!"
   }
 }
 
@@ -83,7 +75,7 @@ bind -N "Run just dev" -T command s {
   if "test -f justfile" {
     new-window -Sn dev just dev
   } {
-    display "No justfile!"
+    display-message "No justfile!"
   }
 }
 
@@ -91,7 +83,7 @@ bind -N "Run just open dev" -T command S {
   if "test -f justfile" {
     new-window -Sn dev just open dev
   } {
-    display "No justfile!"
+    display-message "No justfile!"
   }
 }
 
@@ -99,6 +91,6 @@ bind -N "Run just test" -T command t {
   if "test -f justfile" {
     new-window -n test -d just test
   } {
-    display "No justfile!"
+    display-message "No justfile!"
   }
 }

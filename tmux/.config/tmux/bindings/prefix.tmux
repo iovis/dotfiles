@@ -8,7 +8,6 @@ bind -N "Command prompt" \; {
 
 # Pass-through
 bind -r C-f send 'C-f'
-bind C-j send 'C-j'
 bind C-k send 'C-k'
 bind C-l send 'C-l'
 
@@ -148,3 +147,13 @@ bind -N "Join pane horizontally" -T join_pane h {
 bind -N "Join pane vertically" -T join_pane v {
   join-pane -h
 }
+
+## Just picker
+bind -N "Run just picker" C-j {
+  if "test -f justfile" {
+    display-popup -w 75% -h 50% -T ' just ' -b rounded "just --choose"
+  } {
+    display-message "No justfile!"
+  }
+}
+
