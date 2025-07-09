@@ -23,7 +23,7 @@ vim.lsp.enable({
   "lua_ls",
   "ruby_lsp",
   "rust_analyzer",
-  "taplo",
+  "tombi",
   "ts_ls",
   "yamlls",
 })
