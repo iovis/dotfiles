@@ -9,6 +9,7 @@ rustup completions fish >"$completions_dir/rustup.fish"
 
 # echo "Generating completions for cargo"
 # rustup completions fish cargo > "$completions_dir/cargo.fish"
+# CARGO_COMPLETE=fish cargo +nightly >"$completions_dir/cargo.fish"
 
 echo "Generating completions for muxi"
 muxi completions fish >"$completions_dir/muxi.fish"
