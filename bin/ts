@@ -18,11 +18,12 @@ fzf_command() {
     --reverse \
     --no-input \
     --accept-nth=2 \
-    --bind="j:down,k:up,q:abort,i,/:show-input+unbind(j,k,q,i,/,x,d)" \
-    --bind="x,d,ctrl-x:execute-silent(tmux kill-session -t {2})+reload:$tmux_sessions" \
     --bind=alt-enter:print-query \
-    --bind=alt-p:toggle-preview \
-    --bind="alt-r:change-preview-window(down|right)" \
+    --bind="j:down,k:up,q:abort" \
+    --bind="p,alt-p:toggle-preview" \
+    --bind="r,alt-r:change-preview-window(down|right)" \
+    --bind="d,x,ctrl-x:execute-silent(tmux kill-session -t {2})+reload:$tmux_sessions" \
+    --bind="i,/:show-input+unbind(j,k,q,d,x,p,r,i,/)" \
     --bind="focus:transform-preview-label:echo '  {1..2}  '" \
     --preview="tmux capture-pane -ep -t '{2}:'" \
     --preview-window="right,75%" \
