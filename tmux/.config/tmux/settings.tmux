@@ -18,6 +18,7 @@ set -wg mode-keys vi
 set -wg monitor-activity on
 
 set -sg default-terminal "tmux-256color"
+set -s terminal-features "xterm*:clipboard:ccolour:cstyle:focus:title"
 set -sa terminal-features ",xterm-256color:RGB"
 set -sa terminal-features ",*:hyperlinks"
 set -sg escape-time 0
