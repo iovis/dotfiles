@@ -1,3 +1,7 @@
+# copyq
+copyq/.config/copyq/*
+!copyq/.config/copyq/copyq.conf
+
 # encryption
 master.key
 
