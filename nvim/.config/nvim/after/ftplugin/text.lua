@@ -1,3 +1,10 @@
+local u = require("config.utils")
+
+if u.current_path():match("urls.txt") then
+  vim.keymap.set("n", "s<cr>", "<cmd>Tux yt-dlp -a %<cr>", { buffer = true })
+end
+
+vim.cmd([[
 " Formatting
 setlocal comments=
 setlocal commentstring=>\ %s
@@ -26,3 +33,4 @@ setlocal formatlistpat+=[\\]:.)}                " |  Closing punctuation
 setlocal formatlistpat+=]                       " End class
 setlocal formatlistpat+=\\s\\+                  " One or more spaces
 setlocal formatlistpat+=\\\|^\\s*[-–+o*]\\s\\+  " Or ASCII style bullet points
+]])
