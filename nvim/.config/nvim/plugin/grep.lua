@@ -11,7 +11,7 @@ vim.api.nvim_create_user_command("Grep", function(opts)
   vim.cmd("botright cwindow")
 end, { nargs = "+", complete = "file" })
 
-vim.keymap.set("n", "g<space>", ":Grep<space>")
+vim.keymap.set("n", "g<space>", ":Grep -F<space>")
 vim.keymap.set("x", "g<space>", [[*:Grep -F <c-r>=shellescape(getreg('"'), 1)<cr><space>]], {
   remap = true,
 })
