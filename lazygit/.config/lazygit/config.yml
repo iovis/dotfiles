@@ -46,12 +46,12 @@ keybinding:
     # return: 'q'
     prevBlock-alt: '<c-k>'
     nextBlock-alt: '<c-j>'
-    nextTab: 'l'
-    prevTab: 'h'
-    prevScreenMode: '-'
+    nextTab: '<c-l>'
+    prevTab: '<backspace>' # '<c-h>'
   commits:
     moveDownCommit: 'J'
     moveUpCommit: 'K'
+    openLogMenu: '<c-g>'
   files:
     commitChanges: 'C'
     commitChangesWithEditor: 'c'
