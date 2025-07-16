@@ -22,7 +22,10 @@ return {
     conform.setup({
       log_level = vim.log.levels.ERROR,
       format_on_save = function(bufnr)
-        local ignore_filetypes = {}
+        local ignore_filetypes = {
+          "just", -- There's a bug when you format on save
+        }
+
         if not vim.g.autoformat or vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
           return
         end
