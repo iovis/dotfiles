@@ -1,16 +1,16 @@
 bind -N "Search mode" f {
   switch-client -T search
-  display " Search: [d]-Dates [f]-Floats [i]-IPs [j]-JIRA [n]-Numbers [o]-Commits [p]-Prompts [r]-RSpec [t]-Time [u]-URLs [,]-Paths"
+  display " Search: [d]-Dates [f]-Floats [i]-IPs [j]-JIRA [n]-Numbers [o]-Commits [p]-Paths [r]-RSpec [t]-Time [u]-URLs [,]-Prompts"
 }
 
 # Command Prompts
-bind -N "Search command prompts" -T copy-mode-vi P {
+bind -N "Search command prompts" -T copy-mode-vi , {
   send -X search-backward "(❯|❮)(.*[^[:space:]])?"
 }
 
-bind -N "Search command prompts" -T search p {
+bind -N "Search command prompts" -T search , {
   copy-mode
-  send P
+  send ,
   send n
 }
 
@@ -75,13 +75,13 @@ bind -N "Search numbers" -T search n {
 }
 
 # Paths
-bind -N "Search paths" -T copy-mode-vi , {
+bind -N "Search paths" -T copy-mode-vi P {
   send -X search-backward "\b(~/|/)?([-~a-zA-Z0-9_+-,.]+/[^[:space:]|:\"'`\$%&)>\]*)"
 }
 
-bind -N "Search paths" -T search , {
+bind -N "Search paths" -T search p {
   copy-mode
-  send ,
+  send P
 }
 
 # RSpec failed examples
