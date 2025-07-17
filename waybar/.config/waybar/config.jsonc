@@ -7,6 +7,7 @@
     "cpu",
     "memory",
     "disk",
+    "disk#secondary",
     "tray"
   ],
   "modules-center": [
@@ -58,12 +59,22 @@
     "on-click-right": "gnome-system-monitor"
   },
   "disk": {
+    "format": "  {percentage_used}%",
     "interval": 30,
-    "format": "  {percentage_used}%  ",
-    "tooltip-format": "Free Space: {specific_free:0.2f} GB. Total Space: {specific_total:0.2f} GB",
-    "unit": "GB",
-    "on-click": "kitty -e btop",
-    "on-click-right": "gnome-system-monitor"
+    "on-click": "baobab",
+    "on-click-right": "gnome-disks",
+    "path": "/",
+    "tooltip-format": "{specific_used:0.2f}/{specific_total:0.2f} GB",
+    "unit": "GB"
+  },
+  "disk#secondary": {
+    "format": "  {percentage_used}%  ",
+    "interval": 30,
+    "on-click": "baobab",
+    "on-click-right": "gnome-disks",
+    "path": "/mnt/HDD/",
+    "tooltip-format": "{specific_used:0.2f}/{specific_total:0.2f} GB",
+    "unit": "GB"
   },
   "custom/expand": {
     "format": " ",
