@@ -10,7 +10,7 @@ set autoindent
 set autoread
 set autowriteall
 set backspace=indent,eol,start
-set completeopt=menu,menuone,popup,fuzzy
+set completeopt=menu,menuone,popup ",fuzzy
 set conceallevel=0
 " set cursorline
 set diffopt+=hiddenoff
