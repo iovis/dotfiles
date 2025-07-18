@@ -16,7 +16,7 @@ set conceallevel=0
 set diffopt+=hiddenoff
 set diffopt+=vertical
 set expandtab
-set fillchars+=vert:│,diff:╱
+set fillchars=diff:╱,eob:\ ,fold:\ ,foldclose:,foldopen:,foldsep:\ ,stl:─,stlnc:─,vert:│
 set formatoptions-=ro  " Don't insert comment leader on new line
 set hidden
 set hlsearch
