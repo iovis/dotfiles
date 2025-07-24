@@ -16,7 +16,7 @@ bind -N "Search command prompts" -T search , {
 
 # Commit Hashes
 bind -N "Search commit hashes" -T copy-mode-vi O {
-  send -X search-backward "\b([0-9a-f]{7,40}|[[:alnum:]]{52}|[0-9a-f]{64})\b"
+  send -X search-backward "\b(I?[0-9a-f]{7,40}|[[:alnum:]]{52}|[0-9a-f]{64})\b"
 }
 
 bind -N "Search commit hashes" -T search o {
