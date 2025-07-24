@@ -9,6 +9,7 @@ endif
 set autoindent
 set autoread
 set autowriteall
+set background=dark
 set backspace=indent,eol,start
 set completeopt=menu,menuone,popup ",fuzzy
 set conceallevel=0
@@ -233,8 +234,8 @@ nnoremap <tab>     <cmd>bp\|bd #<cr>
 nnoremap <leader>b <cmd>bd!<cr>
 
 nmap gm ;ls<cr>
-nnoremap <leader>E :e<space><c-r>=fnameescape(expand('%:.:h')).'/'<cr>
-nnoremap <leader>e :e<space>
+nnoremap <leader>E :e <c-r>=fnameescape(expand('%:.:h')).'/'<cr>
+nnoremap <leader>e :e!<space>
 nnoremap <leader>W :saveas <C-R>=fnameescape(expand('%:.:h')).'/'<cr>
 
 " Editing
@@ -750,7 +751,8 @@ let g:netrw_sort_options = 'i'
 let g:netrw_special_syntax = 1
 let g:netrw_winsize = 25
 
-nnoremap <silent> <leader>k :Lexplore<cr>
+nnoremap <leader>k <cmd>Lexplore<cr>
+nnoremap , <cmd>Ex<cr>
 
 augroup netrw_commands
   autocmd!

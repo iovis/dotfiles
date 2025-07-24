@@ -1,6 +1,5 @@
 -- Keymap
 vim.g.mapleader = vim.keycode("<space>")
-vim.g.maplocalleader = vim.keycode("<cr>")
 
 vim.keymap.set("i", "kj", "<esc>")
 vim.keymap.set("n", ",", "<cmd>Ex<cr>")
@@ -20,13 +19,13 @@ vim.keymap.set("n", "<c-l>", "<c-w>l")
 vim.keymap.set("n", "M", "<c-w>o")
 vim.keymap.set("n", "<bs>", "<c-^>")
 vim.keymap.set({ "n", "x" }, ";", ":")
-vim.keymap.set({ "n", "x" }, ":", ";")
 vim.keymap.set({ "n", "x", "o" }, "H", "^")
 vim.keymap.set({ "n", "x", "o" }, "L", "$")
 
 -- Options
 vim.g.netrw_banner = 0
 
+vim.o.background = "dark"
 vim.o.completeopt = "menu,menuone,popup,fuzzy"
 vim.o.cursorline = true
 vim.opt.diffopt = {
@@ -47,6 +46,8 @@ vim.opt.fillchars = {
   foldclose = "",
   foldopen = "",
   foldsep = " ",
+	stl = "─",
+	stlnc = "─",
 }
 vim.o.foldenable = true
 vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
@@ -84,6 +85,9 @@ vim.o.virtualedit = "block"
 vim.o.wrap = false
 
 vim.api.nvim_set_hl(0, "Normal", { bg = nil })
+vim.api.nvim_set_hl(0, "StatusLine", { link = "LineNr" })
+vim.api.nvim_set_hl(0, "StatusLineNC", { link = "LineNr" })
+vim.api.nvim_set_hl(0, "WinSeparator", { link = "LineNr" })
 
 -- Treesitter
 vim.api.nvim_create_autocmd("FileType", {
