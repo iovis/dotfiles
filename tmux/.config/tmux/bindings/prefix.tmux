@@ -124,6 +124,12 @@ bind -N "Move pane left"  -r left  swap-pane -dt "{left-of}"
 bind -N "Move pane right" -r right swap-pane -dt "{right-of}"
 bind -N "Move pane up"    -r up    swap-pane -dt "{up-of}"
 
+## Switch panes
+bind C-down select-pane -D
+bind C-left select-pane -L
+bind C-right select-pane -R
+bind C-up select-pane -U
+
 # Make pane full split
 bind -N "Move pane down (full)"  H move-pane -fh -b -t '.{next}'
 bind -N "Move pane left (full)"  J move-pane -fv -t '.{next}'
