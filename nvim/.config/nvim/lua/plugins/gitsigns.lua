@@ -6,6 +6,10 @@ return {
     local gitsigns = require("gitsigns")
 
     gitsigns.setup({
+      signs = {
+        delete = { show_count = true },
+        topdelete = { show_count = true },
+      },
       current_line_blame_opts = { delay = 100 },
       on_attach = function(bufnr)
         local function map(mode, lhs, rhs, opts)
