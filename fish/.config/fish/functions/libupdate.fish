@@ -5,7 +5,7 @@ function libupdate
     rust_update
 
     log_step Refreshing $(green fish) completions
-    fish_update_completions
+    fish -c "fish_update_completions >/dev/null 2>&1" &
     generate_completions
 
     log_step $(green mise) self-update
