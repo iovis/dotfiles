@@ -10,8 +10,8 @@ u.bind.cmd({ hyper, "r" }, "aerospace reload-config", {
 -------------
 ---See: https://nikitabobko.github.io/AeroSpace/commands#layout
 u.bind.cmd({ ctrl_alt_cmd, "," }, "aerospace layout accordion horizontal")
-u.bind.cmd({ ctrl_alt_cmd, "." }, "aerospace layout tiles horizontal vertical")
-u.bind.cmd({ ctrl_alt_cmd, "/" }, "aerospace flatten-workspace-tree")
+u.bind.cmd({ ctrl_alt_cmd, "." }, "aerospace flatten-workspace-tree")
+u.bind.cmd({ ctrl_alt_cmd, "/" }, "aerospace layout tiles horizontal vertical")
 u.bind.cmd({ ctrl_alt_cmd, "y" }, "aerospace fullscreen off; aerospace layout tiling")
 
 ----------------
