@@ -176,3 +176,10 @@ name = "dmenu"
 placeholder = "Dmenu"
 switcher_only = true
 show_icon_when_single = true
+
+[[plugins]]
+name = "calc"
+prefix = "="
+src = "NO_COLOR='true' rink"
+cmd = "wl-copy"
+matching = 1
