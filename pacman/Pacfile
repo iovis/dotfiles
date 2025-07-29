@@ -63,7 +63,6 @@ gparted
 grilo-plugins
 grim
 gst-plugin-pipewire
-gtk4-layer-shell
 gvfs
 gvfs-afc
 gvfs-dnssd
@@ -93,6 +92,7 @@ kitty
 lazygit
 less
 libpulse
+libqalculate
 linux
 linux-firmware
 linux-headers
