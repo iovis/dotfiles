@@ -2,7 +2,7 @@ app_launch_prefix = ""
 terminal_title_flag = ""
 locale = ""
 close_when_open = false
-theme = "default"
+theme = "iovis"
 monitor = ""
 hotreload_theme = false
 as_window = false
@@ -12,26 +12,29 @@ force_keyboard_focus = false
 theme_location = []
 plugin_location = []
 js_runtime = "node"
+disabled = [
+  "ai",
+  "bookmarks",
+  "finder",
+  "hyprland_keybinds",
+  "translation",
+  "windows",
+  "xdph_picker",
+]
 
 [keys]
 accept_typeahead = ["tab"]
 trigger_labels = "lalt"
-next = ["down"]
-prev = ["up"]
+next = ["ctrl j"]
+prev = ["ctrl k"]
 close = ["esc"]
 remove_from_history = ["shift backspace"]
 resume_query = ["ctrl r"]
-toggle_exact_search = ["ctrl m"]
+toggle_exact_search = ["ctrl g"]
 
 [keys.activation_modifiers]
 keep_open = "shift"
 alternate = "alt"
-
-[keys.ai]
-clear_session = ["ctrl x"]
-copy_last_response = ["ctrl c"]
-resume_session = ["ctrl r"]
-run_last_response = ["ctrl e"]
 
 [events]
 on_activate = ""
@@ -58,13 +61,6 @@ resume_last_query = false
 [activation_mode]
 labels = "jkl;asdf"
 
-[builtins.hyprland_keybinds]
-show_sub_when_single = true
-weight = 5
-name = "hyprland_keybinds"
-placeholder = "Hyprland Keybinds"
-switcher_only = true
-
 [builtins.applications]
 weight = 5
 name = "applications"
@@ -84,41 +80,6 @@ enabled = true
 hide_category = false
 hide_without_query = true
 
-[builtins.bookmarks]
-weight = 5
-placeholder = "Bookmarks"
-name = "bookmarks"
-icon = "bookmark"
-switcher_only = true
-
-[[builtins.bookmarks.entries]]
-label = "Walker"
-url = "https://github.com/abenz1267/walker"
-keywords = ["walker", "github"]
-
-[builtins.xdph_picker]
-hidden = true
-weight = 5
-placeholder = "Screen/Window Picker"
-show_sub_when_single = true
-name = "xdphpicker"
-switcher_only = true
-
-[builtins.ai]
-weight = 5
-placeholder = "AI"
-name = "ai"
-icon = "help-browser"
-switcher_only = true
-show_sub_when_single = true
-
-[[builtins.ai.anthropic.prompts]]
-model = "claude-3-7-sonnet-20250219"
-temperature = 1
-max_tokens = 1_000
-label = "General Assistant"
-prompt = "You are a helpful general assistant. Keep your answers short and precise."
-
 [builtins.calc]
 require_number = true
 weight = 5
@@ -126,13 +87,6 @@ name = "calc"
 icon = "accessories-calculator"
 placeholder = "Calculator"
 min_chars = 4
-
-[builtins.windows]
-weight = 5
-icon = "view-restore"
-name = "windows"
-placeholder = "Windows"
-show_icon_when_single = true
 
 [builtins.clipboard]
 always_put_new_on_top = true
@@ -142,7 +96,7 @@ name = "clipboard"
 avoid_line_breaks = true
 placeholder = "Clipboard"
 image_height = 300
-max_entries = 10
+max_entries = 1_000
 switcher_only = true
 
 [builtins.commands]
@@ -176,21 +130,6 @@ placeholder = "Symbols"
 switcher_only = true
 history = true
 typeahead = true
-
-[builtins.finder]
-use_fd = false
-fd_flags = "--ignore-vcs --type file --type directory"
-cmd_alt = "xdg-open $(dirname ~/%RESULT%)"
-weight = 5
-icon = "file"
-name = "finder"
-placeholder = "Finder"
-switcher_only = true
-ignore_gitignore = true
-refresh = true
-concurrency = 8
-show_icon_when_single = true
-preview_images = false
 
 [builtins.runner]
 eager_loading = true
@@ -230,21 +169,6 @@ placeholder = "Websearch"
 name = "Google"
 url = "https://www.google.com/search?q=%TERM%"
 
-[[builtins.websearch.entries]]
-name = "DuckDuckGo"
-url = "https://duckduckgo.com/?q=%TERM%"
-switcher_only = true
-
-[[builtins.websearch.entries]]
-name = "Ecosia"
-url = "https://www.ecosia.org/search?q=%TERM%"
-switcher_only = true
-
-[[builtins.websearch.entries]]
-name = "Yandex"
-url = "https://yandex.com/search/?text=%TERM%"
-switcher_only = true
-
 [builtins.dmenu]
 hidden = true
 weight = 5
@@ -252,12 +176,3 @@ name = "dmenu"
 placeholder = "Dmenu"
 switcher_only = true
 show_icon_when_single = true
-
-[builtins.translation]
-delay = 1000
-weight = 5
-name = "translation"
-icon = "accessories-dictionary"
-placeholder = "Translation"
-switcher_only = true
-provider = "googlefree"
