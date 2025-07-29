@@ -9,7 +9,6 @@ btop
 btrfs-progs
 caligula
 clang
-copyq
 decibels
 dkms
 dosfstools
@@ -128,7 +127,6 @@ python-adblock
 qmk
 qutebrowser
 ripgrep
-rofi-wayland
 rsync
 rygel
 sd
