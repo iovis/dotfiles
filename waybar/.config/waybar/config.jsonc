@@ -50,7 +50,7 @@
     "tooltip-format-on": "Bluetooth On",
     "tooltip-format-disabled": "Bluetooth Off",
     "tooltip-format-connected": "Device: {device_alias}\nMAC: {device_address}\nBattery: {device_battery_percentage}%",
-    "on-click": "blueman-manager"
+    "on-click": "GTK_THEME=Adwaita:dark blueberry"
   },
   "cpu": {
     "format": "  {usage}% ",
