@@ -31,9 +31,11 @@ config.window_padding = {
   bottom = "0.5cell",
 }
 
+local transparent_black = "rgba(0, 0, 0, 0.85)"
+
 config.window_frame = {
-  active_titlebar_bg = "#000",
-  inactive_titlebar_bg = "#000",
+  active_titlebar_bg = transparent_black,
+  inactive_titlebar_bg = transparent_black,
   font_size = 15,
   font = wezterm.font({
     family = "FiraCode Nerd Font",
