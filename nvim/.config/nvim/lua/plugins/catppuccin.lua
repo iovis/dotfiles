@@ -1,6 +1,5 @@
 return {
   "catppuccin/nvim",
-  -- enabled = false,
   name = "catppuccin",
   lazy = false,
   priority = 1000,
@@ -12,6 +11,9 @@ return {
         dark = "frappe",
       },
       transparent_background = true,
+      float = {
+        transparent = true,
+      },
       dim_inactive = { enabled = false },
       styles = {
         comments = {},
