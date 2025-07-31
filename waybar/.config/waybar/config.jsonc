@@ -17,8 +17,8 @@
     // "group/expand",
     "idle_inhibitor",
     "custom/notification",
-    "network",
     "bluetooth",
+    "network",
     "pulseaudio",
     "clock",
     "custom/power"
@@ -177,14 +177,22 @@
     "on-click-right": "gnome-system-monitor"
   },
   "network": {
-    "tooltip": true,
-    "format-wifi": "",
-    "format-ethernet": "",
-    "tooltip-format-wifi": "Network: {essid}\nSignal strength: {signaldBm}dBm ({signalStrength}%)\nFrequency: {frequency}MHz\nIP: {ipaddr}/{cidr}\nGateway: {gwaddr}\nNetmask: {netmask}",
-    "tooltip-format-ethernet": "Wired Network\nIP: {ipaddr}/{cidr}\nGateway: {gwaddr}\nNetmask: {netmask}",
-    "format-disconnected": "",
+    "format-icons": [
+      "󰤯",
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨"
+    ],
+    "format": "{icon}",
+    "format-wifi": "{icon}",
+    "format-ethernet": "󰀂",
+    "format-disconnected": "󰖪",
+    "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-disconnected": "Disconnected",
-    "interval": 2,
+    "interval": 3,
+    "nospacing": 1,
     "on-click": "XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
   },
   "pulseaudio": {
@@ -202,7 +210,7 @@
         ""
       ]
     },
-    "on-click": "XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
+    "on-click": "kitty -e wiremix"
   },
   "temperature": {
     "critical-threshold": 80,

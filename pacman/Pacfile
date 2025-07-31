@@ -83,6 +83,7 @@ hyprlock
 hyprpaper
 hyprpicker
 hyprpolkitagent
+impala
 intel-ucode
 iwd
 jq
@@ -161,6 +162,7 @@ wev
 wezterm
 wget
 wireless_tools
+wiremix
 wireplumber
 wl-clipboard
 wtype
