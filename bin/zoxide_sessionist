@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+zoxide_folders="zoxide query --list"
+
 INITIAL_QUERY="${*:-}"
 fzf_command() {
   # if no match, return query string
@@ -15,6 +17,7 @@ fzf_command() {
     --reverse \
     --bind=alt-enter:print-query \
     --bind=alt-p:toggle-preview \
+    --bind="ctrl-x:execute-silent(zoxide remove {})+reload:$zoxide_folders" \
     --bind='alt-r:change-preview-window(right|down)' \
     --preview="eza --color=always --icons -1a --group-directories-first {}" \
     --preview-window=right \
@@ -23,7 +26,7 @@ fzf_command() {
     --query="$INITIAL_QUERY" || true
 }
 
-session_path=$(zoxide query --list | fzf_command)
+session_path=$(eval "$zoxide_folders" | fzf_command)
 session_name=$(basename "$session_path" | tr '.' '_')
 
 if [[ -z "$session_path" || -z "$session_name" ]]; then
