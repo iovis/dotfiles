@@ -25,8 +25,8 @@ disabled = [
 [keys]
 accept_typeahead = ["tab"]
 trigger_labels = "lalt"
-next = ["ctrl j"]
-prev = ["ctrl k"]
+next = ["ctrl j", "down"]
+prev = ["ctrl k", "up"]
 close = ["esc"]
 remove_from_history = ["shift backspace"]
 resume_query = ["ctrl r"]
