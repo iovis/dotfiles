@@ -239,6 +239,10 @@ return {
       snacks.picker.git_status({ focus = "list" })
     end, { desc = "snacks.picker.git_status" })
 
+    vim.keymap.set("n", "<leader>O", function()
+      snacks.picker.files({ ignored = true })
+    end, { desc = "snacks.picker.files (no gitignore)" })
+
     vim.keymap.set("n", "<leader>R", function()
       snacks.picker.registers({ pattern = "label:" })
     end, { desc = "snacks.picker.registers" })
