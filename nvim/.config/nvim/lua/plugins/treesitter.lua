@@ -85,8 +85,8 @@ return {
 
             -- custom
             -- markdown list items
-            ["au"] = "@list-item.outer",
-            ["iu"] = "@list-item.inner",
+            ["au"] = "@list_item.outer",
+            ["iu"] = "@list_item.inner",
           },
         },
         swap = {
