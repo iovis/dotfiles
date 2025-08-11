@@ -78,12 +78,13 @@ return {
             ["if"] = "@function.inner",
             ["ac"] = "@class.outer",
             ["ic"] = "@class.inner",
-            ["ad"] = "@block.outer",
-            ["id"] = "@block.inner",
+            ["aj"] = "@block.outer",
+            ["ij"] = "@block.inner",
             ["aa"] = "@parameter.outer",
             ["ia"] = "@parameter.inner",
 
             -- custom
+            -- markdown list items
             ["au"] = "@list-item.outer",
             ["iu"] = "@list-item.inner",
           },
