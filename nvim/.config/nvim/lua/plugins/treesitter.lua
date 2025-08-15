@@ -51,8 +51,10 @@ return {
       "zig",
     })
 
+    local augroup = vim.api.nvim_create_augroup("treesitter.config", { clear = true })
     vim.api.nvim_create_autocmd("FileType", {
-      desc = "User: enable treesitter highlighting",
+      desc = "treesitter.config",
+      group = augroup,
       callback = function()
         if not pcall(vim.treesitter.start) then
           return
