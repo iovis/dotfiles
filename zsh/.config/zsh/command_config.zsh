@@ -5,7 +5,7 @@ if type bat > /dev/null; then
 fi
 
 # difftastic
-if type difftastic > /dev/null; then
+if type difft > /dev/null; then
   alias gd="git -c diff.external=difft diff"
   alias gdd="git diff"
   alias gdl="git -c diff.external=difft log -p --ext-diff"
