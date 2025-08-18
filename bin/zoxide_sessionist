@@ -18,7 +18,7 @@ fzf_command() {
     --bind=alt-enter:print-query \
     --bind=alt-p:toggle-preview \
     --bind="ctrl-x:execute-silent(zoxide remove {})+reload:$zoxide_folders" \
-    --bind='alt-r:change-preview-window(right|down)' \
+    --bind='ctrl-r,alt-r:change-preview-window(down|right)' \
     --preview="eza --color=always --icons -1a --group-directories-first {}" \
     --preview-window=right \
     --color=input-border:cyan \
