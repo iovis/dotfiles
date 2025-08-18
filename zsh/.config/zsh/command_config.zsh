@@ -4,6 +4,13 @@ if type bat > /dev/null; then
   alias c="bat"
 fi
 
+# difftastic
+if type difftastic > /dev/null; then
+  alias gd="git -c diff.external=difft diff"
+  alias gdd="git diff"
+  alias gdl="git -c diff.external=difft log -p --ext-diff"
+fi
+
 # eza
 if type eza > /dev/null; then
   alias l="eza -la --git --group-directories-first --icons"
