@@ -29,20 +29,13 @@
 [core]
   autocrlf = input
   excludesfile = ~/.config/git/global_gitignore
-  ; pager = delta
   # For big repositories
   ; fsmonitor = true
   ; untrackedCache = true
-[delta]
-  light = false
-  navigate = true  # use n and N to move between diff sections
-  side-by-side = false
-  line-numbers = true
-  syntax-theme = base16
 [diff]
   algorithm = histogram
   colorMoved = plain
-  mnemonicPrefix = true
+  ; mnemonicPrefix = true
   renames = true
   tool = nvim
 [difftool]
@@ -60,8 +53,6 @@
   autocorrect = prompt
 [init]
   defaultBranch = main
-[interactive]
-  diffFilter = delta --color-only
 [filter "lfs"]
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f

@@ -1,3 +1,3 @@
 function gd --wraps='git diff'
-    git diff $argv
+    git -c diff.external=difft diff $argv
 end

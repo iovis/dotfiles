@@ -1,9 +1,9 @@
 ast-grep
 bat
+difftastic
 dua-cli
 eza
 fd-find
-git-delta
 hexyl
 hyperfine
 just

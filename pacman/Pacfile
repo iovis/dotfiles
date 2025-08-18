@@ -10,6 +10,7 @@ btrfs-progs
 caligula
 clang
 decibels
+difftastic
 dkms
 dosfstools
 dua-cli
@@ -25,7 +26,6 @@ fish
 fzf
 gdm
 git
-git-delta
 github-cli
 gnome-backgrounds
 gnome-calculator
