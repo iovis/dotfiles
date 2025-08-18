@@ -75,3 +75,8 @@ else
     echo 'No Rust installation detected'
   }
 fi
+
+# zoxide
+if type zoxide > /dev/null; then
+  eval "$(zoxide init zsh)"
+fi
