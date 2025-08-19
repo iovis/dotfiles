@@ -31,17 +31,12 @@ fzf_command() {
     --preview-window=right \
     --color=input-border:blue \
     --exit-0 \
-    --query="$INITIAL_QUERY" || true
+    --query="$INITIAL_QUERY"
 }
 
-session_path=$(fd_command | fzf_command)
+session_path="$PROJECT_HOME/$(fd_command | fzf_command)"
 session_name=$(basename "$session_path" | tr '.' '_')
 
-if [[ -z "$session_path" || -z "$session_name" ]]; then
-  exit 0
-fi
-
-session_path="$PROJECT_HOME/$session_path"
 mkdir -p "$session_path"
 
 tmux has-session -t "=$session_name" || tmux new-session -d -s "$session_name" -c "$session_path" && tmux switch-client -t "=$session_name"
