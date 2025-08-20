@@ -12,9 +12,7 @@ muxi.editor = {
 muxi.fzf = {
   input = false,
   bind_sessions = false,
-  args = {
-    "--bind=alt-/:abort",
-  },
+  args = {},
 }
 
 -- muxi.bindings = {
