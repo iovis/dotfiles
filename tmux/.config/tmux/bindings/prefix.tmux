@@ -54,7 +54,7 @@ bind -N "muxi picker" C-_ {
   run "muxi fzf"
 }
 
-bind -N "Run sessionist" C-n {
+bind -N "Run sessionist" C-k {
   display-popup -w 50% -h 60% -b none -E sessionist
 }
 bind -N "Run zoxide_sessionist" C-o {
@@ -67,6 +67,14 @@ bind -N "Rename session" . command-prompt -I "#S" {
 
 bind -N "New session" C command-prompt -p "new session name:" {
   new-session -A -s "%1" -c "#{pane_current_path}"
+}
+
+bind -N "Run just picker" C-j {
+  if "test -f justfile" {
+    display-popup -w 75% -h 50% -T ' just ' -b rounded "just --choose"
+  } {
+    display-message "No justfile!"
+  }
 }
 
 ## Window management
@@ -158,13 +166,3 @@ bind -N "Join pane horizontally" -T join_pane h {
 bind -N "Join pane vertically" -T join_pane v {
   join-pane -h
 }
-
-## Just picker
-bind -N "Run just picker" C-j {
-  if "test -f justfile" {
-    display-popup -w 75% -h 50% -T ' just ' -b rounded "just --choose"
-  } {
-    display-message "No justfile!"
-  }
-}
-
