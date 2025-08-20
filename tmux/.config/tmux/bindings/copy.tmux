@@ -15,11 +15,6 @@ bind -n C-_ if "$is_vim" {
   copy-mode
 }
 
-bind / {
-  copy-mode
-  send /
-}
-
 # Movement
 bind -T copy-mode-vi H send -X back-to-indentation
 bind -T copy-mode-vi L send -X end-of-line

@@ -49,6 +49,11 @@ bind -N "List keys" ? list-keys
 ## Session management
 bind -N "Detach session" C-d detach-client
 bind -N "Kill session" X run tmux_kill_session
+
+bind -N "muxi picker" C-_ {
+  run "muxi fzf"
+}
+
 bind -N "Run sessionist" C-n {
   display-popup -w 50% -h 60% -b none -E sessionist
 }

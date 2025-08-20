@@ -7,10 +7,6 @@ bind -N "Switch to last session" -n M-Space {
   switch-client -l
 }
 
-bind -N "muxi picker" -n M-/ {
-  run "muxi fzf"
-}
-
 ## Window switching
 bind -n C-M-Space last-window
 bind -n C-M-h previous-window
