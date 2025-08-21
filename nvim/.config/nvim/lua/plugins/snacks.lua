@@ -70,6 +70,42 @@ return {
               return items
             end,
           },
+          git_status = {
+            actions = {
+              file_checkout = function(picker)
+                local items = picker:selected({ fallback = true })
+                local cmd = { "git", "checkout", "--" }
+
+                for _, item in ipairs(items) do
+                  table.insert(cmd, item.file)
+                end
+
+                vim.system(cmd):wait()
+                vim.cmd.checktime()
+
+                -- refresh list
+                picker.list:set_selected()
+                picker.list:set_target()
+                picker:find()
+              end,
+            },
+            win = {
+              input = {
+                keys = {
+                  ["<c-x>"] = { "file_checkout", mode = { "n", "i" } },
+                  d = "file_checkout",
+                  x = "file_checkout",
+                },
+              },
+              list = {
+                keys = {
+                  ["<c-x>"] = "file_checkout",
+                  d = "file_checkout",
+                  x = "file_checkout",
+                },
+              },
+            },
+          },
           grep = { exclude = grep_exclude },
           registers = {
             actions = {
