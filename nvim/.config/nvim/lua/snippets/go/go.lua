@@ -38,17 +38,17 @@ return {
     "fm",
     fmta(
       [[
-      func (self <struct>) <fname>(<args>) <ret_type><space>{
+      func (self *<struct>) <fname>(<args>) <ret_type><space>{
         <body>
       }
       ]],
       {
-        struct = i(1, "*Receiver"),
+        struct = i(1, "Receiver"),
         fname = i(2, "fname"),
         args = i(3),
         space = n(4, " "),
         ret_type = i(4),
-        body = i(0, 'panic("todo")'),
+        body = i(0, "// TODO: body"),
       }
     ),
     { condition = conds.line_begin }
