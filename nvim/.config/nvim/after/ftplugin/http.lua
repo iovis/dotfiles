@@ -3,6 +3,7 @@ local kulala = require("kulala")
 vim.keymap.set("n", "<leader>si", kulala.run, { buffer = true })
 vim.keymap.set("n", "<leader>so", kulala.run_all, { buffer = true })
 vim.keymap.set("n", "s<cr>", kulala.run, { buffer = true })
+vim.keymap.set("n", "<cr>", kulala.run, { buffer = true })
 
 vim.keymap.set("n", "gd", kulala.inspect, { buffer = true })
 vim.keymap.set("n", "<left>", kulala.jump_prev, { buffer = true })
