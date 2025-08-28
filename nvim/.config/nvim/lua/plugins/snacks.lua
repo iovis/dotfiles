@@ -23,6 +23,9 @@ return {
       explorer = {},
       input = { enabled = true },
       picker = {
+        formatters = {
+          file = { truncate = 80 },
+        },
         sources = {
           explorer = {
             hidden = true,
