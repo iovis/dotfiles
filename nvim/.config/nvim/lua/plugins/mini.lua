@@ -7,6 +7,8 @@ return {
     ---- mini.ai (text objects)
     local ai = require("mini.ai")
     local gen_ai_spec = require("mini.extra").gen_ai_spec
+    local gen_spec = require("mini.ai").gen_spec
+
     ai.setup({
       search_method = "cover_or_nearest",
       custom_textobjects = {
@@ -16,13 +18,19 @@ return {
         --   - ()x()x()x() => define limits of 'a' and 'i'
         --       - a: xxx
         --       - i:  x
-
-        -- alias 'r' to []
-        r = { "%b[]", "^.().*().$" },
+        r = { "%b[]", "^.().*().$" }, -- alias 'r' to []
         n = gen_ai_spec.number(),
         l = gen_ai_spec.line(),
         i = gen_ai_spec.indent(),
         e = gen_ai_spec.buffer(),
+
+        -- treesitter
+        a = gen_spec.treesitter({ a = "@parameter.outer", i = "@parameter.inner" }),
+        u = gen_spec.treesitter({ a = "@list_item.outer", i = "@list_item.inner" }),
+        j = gen_spec.treesitter({
+          a = { "@block.outer", "@loop.outer" },
+          i = { "@block.inner", "@loop.inner" },
+        }),
       },
       mappings = {
         -- Next/last textobjects

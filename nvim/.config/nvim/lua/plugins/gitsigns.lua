@@ -43,6 +43,8 @@ return {
             gitsigns.nav_hunk("prev")
           end
         end)
+
+        map({ "o", "x" }, "ih", gitsigns.select_hunk)
       end,
     })
   end,

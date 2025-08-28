@@ -9,15 +9,6 @@ return {
       ["if"] = "@function.inner",
       ["ac"] = "@class.outer",
       ["ic"] = "@class.inner",
-      ["aj"] = "@block.outer",
-      ["ij"] = "@block.inner",
-      ["aa"] = "@parameter.outer",
-      ["ia"] = "@parameter.inner",
-
-      -- custom
-      -- markdown list items
-      ["au"] = "@list_item.outer",
-      ["iu"] = "@list_item.inner",
     }
 
     for key, selector in pairs(keymaps) do
