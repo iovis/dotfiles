@@ -268,7 +268,6 @@ return {
     vim.keymap.set("n", "<leader>/", snacks.picker.lines, { desc = "snacks.picker.lines" })
     vim.keymap.set("n", "<leader>fh", snacks.picker.help, { desc = "snacks.picker.help" })
     vim.keymap.set("n", "<leader>fm", snacks.picker.man, { desc = "snacks.picker.man" })
-    vim.keymap.set("n", "<leader>fq", snacks.picker.qflist, { desc = "snacks.picker.qflist" })
     vim.keymap.set("n", "<leader>o", snacks.picker.files, { desc = "snacks.picker.files" })
     vim.keymap.set("n", "<leader>r", snacks.picker.resume, { desc = "snacks.picker.resume" })
     vim.keymap.set("n", "gm", snacks.picker.buffers, { desc = "snacks.picker.buffers" })
@@ -316,6 +315,11 @@ return {
     vim.keymap.set("n", "<leader>fl", function()
       snacks.picker.grep({ hidden = true, exclude = grep_exclude })
     end, { desc = "snacks.picker.grep" })
+
+    vim.keymap.set("n", "<leader>fq", function()
+      vim.cmd.cclose()
+      snacks.picker.qflist({ focus = "list" })
+    end, { desc = "snacks.picker.qflist" })
 
     -- LSP
     vim.keymap.set("n", "<leader>ls", snacks.picker.lsp_symbols, { desc = "snacks.picker.lsp_symbols" })
