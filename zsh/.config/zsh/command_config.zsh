@@ -2,6 +2,7 @@
 if type bat > /dev/null; then
   alias b="bat"
   alias c="bat -pp"
+  alias cf="bat -pp -l conf"
 fi
 
 # difftastic
