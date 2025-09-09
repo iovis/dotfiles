@@ -7,7 +7,7 @@
 --bind=alt-down:preview-bottom,alt-up:preview-top
 --bind=alt-left:backward-word,alt-right:forward-word
 --bind=alt-h:backward-word,alt-l:forward-word
---preview='bat --style=numbers --color=always {} 2> /dev/null'
+--preview='bat --style=numbers,changes --color=always {} 2> /dev/null'
 --color=current-bg:#414559
 --color=bg:-1
 --color=current-fg:#c6d0f5

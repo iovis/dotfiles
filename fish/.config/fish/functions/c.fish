@@ -1,3 +1,3 @@
 function c --wraps=bat
-    bat $argv
+    bat -pp $argv
 end

@@ -1,7 +1,7 @@
 # bat
 if type bat > /dev/null; then
-  export BAT_THEME="base16"
-  alias c="bat"
+  alias b="bat"
+  alias c="bat -pp"
 fi
 
 # difftastic
@@ -21,7 +21,7 @@ fi
 [[ ! -f "~/.fzf.zsh" ]] || source "~/.fzf.zsh"
 
 if type fzf > /dev/null; then
-  preview_command='bat --style=numbers --color=always {} 2> /dev/null'
+  preview_command='bat --style=numbers,changes --color=always {} 2> /dev/null'
   export FZF_CTRL_T_OPTS="--select-1 --exit-0 --preview '$preview_command' --bind=alt-p:toggle-preview"
   export FZF_DEFAULT_COMMAND="fd -H -E '.git' -E '.keep' --type file --follow --color=always"
   export FZF_DEFAULT_OPTS_FILE="$HOME/.config/fzf/fzfrc"

@@ -19,7 +19,7 @@ git clone https://github.com/iovis/dotfiles "$DOTFILES"
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Stow"
 cd "$DOTFILES" || exit
-stow fish fzf git lazygit mise muxi nvim starship stylua tmux vim
+stow bat fish fzf git lazygit mise muxi nvim starship stylua tmux vim
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing mise"
 curl https://mise.run | sh

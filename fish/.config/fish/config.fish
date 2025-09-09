@@ -10,11 +10,10 @@ set -gx ICLOUD_PATH "$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 set -gx NOTES "$HOME/vaults/io/"
 set -gx PROJECT_HOME "$HOME/code"
 
-set -gx BAT_THEME base16
 set -gx EDITOR nvim
 set -gx PODMAN_COMPOSE_WARNING_LOGS false
 
-set -l preview_command 'bat --style=numbers --color=always {} 2> /dev/null'
+set -l preview_command 'bat --style=numbers,changes --color=always {} 2> /dev/null'
 set -gx FZF_CTRL_T_OPTS "--select-1 --exit-0 --preview '$preview_command' --bind=alt-p:toggle-preview"
 set -gx FZF_DEFAULT_COMMAND "fd -H -E '.git' -E '.keep' --type file --follow --color=always"
 set -gx FZF_DEFAULT_OPTS_FILE "$HOME/.config/fzf/fzfrc"
