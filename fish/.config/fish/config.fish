@@ -12,6 +12,7 @@ set -gx PROJECT_HOME "$HOME/code"
 
 set -gx EDITOR nvim
 set -gx PODMAN_COMPOSE_WARNING_LOGS false
+set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
 set -l preview_command 'bat --style=numbers,changes --color=always {} 2> /dev/null'
 set -gx FZF_CTRL_T_OPTS "--select-1 --exit-0 --preview '$preview_command' --bind=alt-p:toggle-preview"

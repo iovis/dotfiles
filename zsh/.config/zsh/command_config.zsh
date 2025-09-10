@@ -1,5 +1,6 @@
 # bat
 if type bat > /dev/null; then
+  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
   alias b="bat"
   alias c="bat -pp"
   alias cf="bat -pp -l conf"
