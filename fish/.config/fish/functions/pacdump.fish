@@ -1,3 +1,3 @@
 function pacdump
-    pacman -Qnqe >$DOTFILES/pacman/Pacfile
+    pacman -Qnqe >$HOME/.config/pacman/Pacfile
 end

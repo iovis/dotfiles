@@ -38,7 +38,7 @@ sudo systemctl enable --now avahi-daemon bluetooth fstrim.timer sshd
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Stow"
 cd "$DOTFILES" || exit
-stow bat fish fzf git hyprland kitty lazygit mise mpv muxi nvim qutebrowser starship stylua swaync tldr tmux vim walker waybar wezterm
+stow bat fish fzf git hyprland kitty lazygit mise mpv muxi nvim pacman qutebrowser starship stylua swaync tldr tmux vim walker waybar wezterm
 cd - || exit
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing mise"

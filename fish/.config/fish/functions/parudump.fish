@@ -1,3 +1,3 @@
 function parudump
-    pacman -Qmqe >$DOTFILES/pacman/Parufile
+    pacman -Qmqe >$HOME/.config/pacman/Parufile
 end
