@@ -57,15 +57,15 @@ fi
 cargo install cargo-binstall
 cargo binstall -y $(cat "$DOTFILES/default/crates")
 
-if [ ! -f "/usr/lib/systemd/system-sleep/disable-some-wake" ]; then
-  echo "[$(date '+%Y-%m-%d %H:%M')] Fix for not being able to suspend"
-  sudo cp "$DOTFILES/scripts/extra/disable-some-wake" /usr/lib/systemd/system-sleep
-  sudo chmod 755 /usr/lib/systemd/system-sleep/disable-some-wake
-fi
+# if [ ! -f "/usr/lib/systemd/system-sleep/disable-some-wake" ]; then
+#   echo "[$(date '+%Y-%m-%d %H:%M')] Fix for not being able to suspend"
+#   sudo cp "$DOTFILES/scripts/extra/disable-some-wake" /usr/lib/systemd/system-sleep
+#   sudo chmod 755 /usr/lib/systemd/system-sleep/disable-some-wake
+# fi
 
-echo "[$(date '+%Y-%m-%d %H:%M')] Setting dark theme"
-gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
+# echo "[$(date '+%Y-%m-%d %H:%M')] Setting dark theme"
+# gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+# gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installation ended"
 
