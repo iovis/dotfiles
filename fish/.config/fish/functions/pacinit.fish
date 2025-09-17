@@ -1,3 +1,3 @@
 function pacinit
-    sudo pacman -S --needed $(cat $DOTFILES/pacman/Pacfile)
+    sudo pacman -S --needed $(cat $HOME/.config/pacman/Pacfile)
 end
