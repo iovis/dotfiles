@@ -69,12 +69,13 @@ bind -N "New session" C command-prompt -p "new session name:" {
   new-session -A -s "%1" -c "#{pane_current_path}"
 }
 
-bind -N "Run just picker" C-j {
-  if "test -f justfile" {
-    display-popup -w 75% -h 50% -T ' just ' -b rounded "just --choose"
-  } {
-    display-message "No justfile!"
-  }
+bind -N "New session" C-n command-prompt -p "new session name:" {
+  new-session -A -s "%1" -c "#{pane_current_path}"
+}
+
+bind -N "Reset session" q confirm -p "reset session? (y/n)" {
+  new-window -c "#{pane_current_path}"
+  kill-window -a
 }
 
 ## Window management
@@ -86,9 +87,8 @@ bind -N "Close the rest of the windows" Q confirm -p "kill the rest of the windo
   kill-window -a
 }
 
-bind -N "Reset session" q confirm -p "reset session? (y/n)" {
-  new-window -c "#{pane_current_path}"
-  kill-window -a
+bind -N "Open lazygit" C-j {
+  new-window -S -c "#{pane_current_path}" -n lazygit lazygit
 }
 
 bind -N "Open Vim plugin" C-p {

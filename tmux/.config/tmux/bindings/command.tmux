@@ -47,6 +47,14 @@ bind -N "Tmux customization mode" -T command z {
 }
 
 ## Justfile
+bind -N "Run just picker" -T command j {
+  if "test -f justfile" {
+    display-popup -w 75% -h 50% -T ' just ' -b rounded "just --choose"
+  } {
+    display-message "No justfile!"
+  }
+}
+
 bind -N "Run just console" -T command c {
   if "test -f justfile" {
     new-window -Sn console just console
