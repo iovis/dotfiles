@@ -33,6 +33,8 @@ nmap
 nss-mdns
 openssh
 parallel
+python-pip
+qmk
 ripgrep
 rsync
 sd
