@@ -55,6 +55,7 @@ vim.o.foldlevel = 99
 vim.o.foldmethod = "expr"
 vim.o.ignorecase = true
 vim.o.list = true
+vim.o.laststatus = 3
 vim.opt.listchars = {
   tab = "▏ ",
   trail = "·",
