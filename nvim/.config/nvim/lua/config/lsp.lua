@@ -7,6 +7,8 @@ vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
 vim.keymap.set("n", "<leader>lo", "<cmd>LspLog<cr>")
 
 vim.api.nvim_create_user_command("LspActiveClients", "R=vim.lsp.get_clients()", {})
+vim.api.nvim_create_user_command("LspServerCapabilities", "R=vim.lsp.get_clients()[1].server_capabilities", {})
+vim.api.nvim_create_user_command("LspServerHandlers", "R=vim.tbl_keys(vim.lsp.handlers)", {})
 
 vim.lsp.enable({
   "bashls",

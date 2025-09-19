@@ -26,26 +26,26 @@ vim.keymap.set({ "n", "x", "o" }, "L", "$")
 vim.g.netrw_banner = 0
 
 vim.o.background = "dark"
-vim.o.completeopt = "menu,menuone,popup,fuzzy"
+vim.o.completeopt = "menu,menuone,noselect,popup,fuzzy"
 vim.o.cursorline = true
 vim.opt.diffopt = {
-  "internal",
-  "filler",
-  "closeoff",
-  "context:12",
-  "algorithm:histogram",
-  "linematch:200",
-  "indent-heuristic",
-  "hiddenoff",
-  "vertical",
+	"internal",
+	"filler",
+	"closeoff",
+	"context:12",
+	"algorithm:histogram",
+	"linematch:200",
+	"indent-heuristic",
+	"hiddenoff",
+	"vertical",
 }
 vim.opt.fillchars = {
-  diff = "╱",
-  eob = " ",
-  fold = " ",
-  foldclose = "",
-  foldopen = "",
-  foldsep = " ",
+	diff = "╱",
+	eob = " ",
+	fold = " ",
+	foldclose = "",
+	foldopen = "",
+	foldsep = " ",
 	stl = "─",
 	stlnc = "─",
 }
@@ -57,10 +57,10 @@ vim.o.ignorecase = true
 vim.o.list = true
 vim.o.laststatus = 3
 vim.opt.listchars = {
-  tab = "▏ ",
-  trail = "·",
-  extends = "»",
-  precedes = "«",
+	tab = "▏ ",
+	trail = "·",
+	extends = "»",
+	precedes = "«",
 }
 vim.o.number = true
 vim.o.pumheight = 10
@@ -83,6 +83,7 @@ vim.o.undofile = true
 vim.o.undolevels = 10000
 vim.o.updatetime = 200
 vim.o.virtualedit = "block"
+vim.o.winborder = "rounded"
 vim.o.wrap = false
 
 vim.api.nvim_set_hl(0, "Normal", { bg = nil })
@@ -92,28 +93,52 @@ vim.api.nvim_set_hl(0, "WinSeparator", { link = "LineNr" })
 
 -- Treesitter
 vim.api.nvim_create_autocmd("FileType", {
-  callback = function()
-    pcall(vim.treesitter.start)
-  end,
+	callback = function()
+		pcall(vim.treesitter.start)
+	end,
 })
 
 -- LSP
 vim.env.PATH = vim.env.HOME .. "/.local/share/nvim/mason/bin" .. ":" .. vim.env.PATH
 vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("UserLspAttach", { clear = true }),
-  callback = function(ev)
-    vim.lsp.completion.enable(true, ev.data.client_id, ev.buf)
-  end,
+	group = vim.api.nvim_create_augroup("my.lsp", {}),
+	callback = function(args)
+		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+
+		if client:supports_method('textDocument/completion') then
+			vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+
+			vim.keymap.set('i', '<c-b>', function()
+				vim.lsp.completion.get()
+			end, { buffer = args.buf })
+		end
+
+		if not client:supports_method('textDocument/willSaveWaitUntil') and client:supports_method('textDocument/formatting') then
+			vim.api.nvim_create_autocmd('BufWritePre', {
+				group = vim.api.nvim_create_augroup("my.lsp", { clear = false }),
+				buffer = args.buf,
+				callback = function()
+					vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 1000 })
+				end,
+			})
+		end
+	end,
 })
 
 vim.lsp.enable({
-  "gopls",
-  "lua_ls",
-  "ts_ls",
+	"gopls",
+	"lua_ls",
+	"ts_ls",
 })
 
 vim.lsp.config("lua_ls", {
-  cmd = { "lua-language-server" },
-  filetypes = { "lua" },
-  root_markers = { ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", ".git" },
+	cmd = { "lua-language-server" },
+	filetypes = { "lua" },
+	root_markers = { ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", ".git" },
+})
+
+vim.lsp.config("gopls", {
+	cmd = { 'gopls' },
+	filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
+	root_markers = { "go.work", "go.mod", ".git" },
 })
