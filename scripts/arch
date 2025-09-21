@@ -2,6 +2,7 @@
 
 # curl --proto '=https' --tlsv1.2 -LsSf https://raw.githubusercontent.com/iovis/dotfiles/master/scripts/arch | sh
 export DOTFILES="$HOME/.dotfiles"
+export PACMAN_PATH="$DOTFILES/pacman/.config/pacman"
 export LOCAL_BIN="$HOME/.local/bin"
 export PROJECT_HOME="$HOME/code/"
 export PATH="$LOCAL_BIN:$PATH"
@@ -15,7 +16,7 @@ if [ ! -d "$DOTFILES" ]; then
   git clone https://github.com/iovis/dotfiles "$DOTFILES"
 fi
 
-sudo pacman -S --needed --noconfirm $(cat $DOTFILES/pacman/Pacfile)
+sudo pacman -S --needed --noconfirm $(cat $PACMAN_PATH/Pacfile)
 
 if ! command -v paru >/dev/null 2>&1; then
   echo "[$(date '+%Y-%m-%d %H:%M')] Installing paru"
@@ -25,16 +26,16 @@ if ! command -v paru >/dev/null 2>&1; then
   git clone https://aur.archlinux.org/paru-bin.git "$PROJECT_HOME/paru/"
 
   cd "$PROJECT_HOME/paru/" || exit
-  makepkg -si
+  makepkg -si --noconfirm
   cd - || exit
 
   rm -rf "$PROJECT_HOME/paru/"
 fi
 
-paru -S --needed --noconfirm $(cat $DOTFILES/pacman/Parufile)
+paru -S --needed --noconfirm $(cat $PACMAN_PATH/Parufile)
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Starting services"
-sudo systemctl enable --now avahi-daemon bluetooth fstrim.timer sshd
+sudo systemctl enable --now avahi-daemon bluetooth gdm fstrim.timer sshd
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Stow"
 cd "$DOTFILES" || exit
