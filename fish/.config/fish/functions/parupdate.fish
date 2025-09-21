@@ -1,3 +1,3 @@
 function parupdate
-    paru -Sua --skipreview && parudump
+    paru -Sua --skipreview && pacdump
 end
