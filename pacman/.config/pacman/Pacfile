@@ -95,6 +95,7 @@ lazygit
 less
 libpulse
 libqalculate
+libva-nvidia-driver
 linux
 linux-firmware
 linux-headers
@@ -115,7 +116,7 @@ nmap
 noto-fonts-cjk
 nss-mdns
 ntfs-3g
-nvidia-open
+nvidia-open-dkms
 obsidian
 orca
 parallel
