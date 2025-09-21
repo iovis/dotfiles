@@ -1,10 +1,13 @@
 7zip
+amd-ucode
 baobab
 base
 base-devel
 bat
 bear
 blueberry
+bluez
+bluez-utils
 btop
 btrfs-progs
 caligula
@@ -112,7 +115,7 @@ nmap
 noto-fonts-cjk
 nss-mdns
 ntfs-3g
-nvidia-dkms
+nvidia-open
 obsidian
 orca
 parallel
