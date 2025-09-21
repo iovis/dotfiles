@@ -59,7 +59,7 @@
     "on-click-right": "gnome-system-monitor"
   },
   "disk": {
-    "format": "  {percentage_used}%",
+    "format": "  {percentage_used}%  ",
     "interval": 30,
     "on-click": "baobab",
     "on-click-right": "gnome-disks",
@@ -68,7 +68,7 @@
     "unit": "GB"
   },
   "disk#secondary": {
-    "format": "  {percentage_used}%  ",
+    "format": " {percentage_used}%  ",
     "interval": 30,
     "on-click": "baobab",
     "on-click-right": "gnome-disks",
