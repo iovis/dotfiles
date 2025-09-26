@@ -7,8 +7,4 @@ return {
       },
     },
   },
-  filetypes = {
-    "eruby",
-    "html",
-  },
 }

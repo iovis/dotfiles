@@ -17,6 +17,7 @@ vim.lsp.enable({
   "emmet_language_server",
   "fish_lsp",
   "gopls",
+  -- "herb_ls",
   "html",
   "hyprls",
   "jsonls",

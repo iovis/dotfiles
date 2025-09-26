@@ -40,7 +40,7 @@ return {
       },
       formatters_by_ft = {
         ["*"] = { "injected" }, -- Treesitter based injections
-        eruby = { "htmlbeautifier" },
+        -- eruby = { "htmlbeautifier" },
         hurl = { "hurlfmt" },
         lua = { "stylua" },
         sql = { "sql_formatter" },
