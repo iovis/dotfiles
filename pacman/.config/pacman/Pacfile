@@ -63,7 +63,6 @@ gnome-weather
 gopls
 gparted
 grilo-plugins
-grim
 gst-plugin-pipewire
 gum
 gvfs
@@ -87,6 +86,7 @@ hyprlock
 hyprpaper
 hyprpicker
 hyprpolkitagent
+hyprshot
 impala
 intel-ucode
 iwd
@@ -136,11 +136,11 @@ rink
 ripgrep
 rsync
 rygel
+satty
 sd
 shellcheck
 shfmt
 simple-scan
-slurp
 smartmontools
 snapshot
 sof-firmware
