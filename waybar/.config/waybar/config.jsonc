@@ -55,7 +55,7 @@
   "cpu": {
     "format": "  {usage}% ",
     "tooltip": false,
-    "on-click": "kitty --class=widget.kitty -e btop",
+    "on-click": "kitty --class=widget.btop -e btop",
     "on-click-right": "gnome-system-monitor"
   },
   "disk": {
@@ -173,7 +173,7 @@
   },
   "memory": {
     "format": "󰾆 {percentage}%",
-    "on-click": "kitty --class=widget.kitty -e htop",
+    "on-click": "kitty --class=widget.btop -e htop",
     "on-click-right": "gnome-system-monitor"
   },
   "network": {
@@ -210,7 +210,7 @@
         ""
       ]
     },
-    "on-click": "kitty --class=widget.kitty -e wiremix",
+    "on-click": "kitty --class=widget.wiremix -e wiremix",
     "on-click-right": "pavucontrol"
   },
   "temperature": {
