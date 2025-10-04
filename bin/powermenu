@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-action=$(printf "suspend\nshutdown\nreboot\nlogout\nhibernate" | walker --dmenu) || exit 0
+action=$(printf "suspend\nshutdown\nreboot\nlogout\nhibernate" | vicinae dmenu) || exit 0
 
 case $action in
 "hibernate") systemctl hibernate ;;
