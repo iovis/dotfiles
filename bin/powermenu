@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-action=$(printf "suspend\nshutdown\nreboot\nlogout\nhibernate" | vicinae dmenu) || exit 0
+action=$(printf "suspend\nshutdown\nreboot\nlogout" | vicinae dmenu) || exit 0
 
 case $action in
-"hibernate") systemctl hibernate ;;
 "logout") loginctl terminate-user david ;;
 "reboot") systemctl reboot ;;
 "shutdown") systemctl poweroff ;;
