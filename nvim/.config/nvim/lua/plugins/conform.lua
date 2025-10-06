@@ -9,13 +9,6 @@ return {
     local format_options = {
       timeout_ms = 2000,
       lsp_format = "fallback",
-      filter = function(client)
-        local dont_format_with = {
-          "tsserver",
-        }
-
-        return not vim.tbl_contains(dont_format_with, client.name)
-      end,
     }
 
     local conform = require("conform")
@@ -25,6 +18,12 @@ return {
         local ignore_filetypes = {}
 
         if not vim.g.autoformat or vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
+          return
+        end
+
+        -- Disable autoformat for files in a certain path
+        local bufname = vim.api.nvim_buf_get_name(bufnr)
+        if bufname:match("/node_modules/") then
           return
         end
 
@@ -43,6 +42,7 @@ return {
         -- eruby = { "htmlbeautifier" },
         hurl = { "hurlfmt" },
         lua = { "stylua" },
+        rust = { "rustfmt", lsp_format = "fallback" },
         sql = { "sql_formatter" },
         swift = { "swift_format" },
       },
@@ -62,7 +62,7 @@ return {
         }
       end
 
-      conform.format(vim.tbl_deep_extend("force", format_options, { range = range }))
+      require("conform").format({ async = true, lsp_format = "fallback", range = range })
     end, { range = true })
   end,
 }
