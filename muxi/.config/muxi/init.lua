@@ -1,4 +1,4 @@
--- print(require("inspect")(muxi))
+-- muxi.print(muxi)
 
 return {
   uppercase_overrides = true,
