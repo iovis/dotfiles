@@ -2,10 +2,6 @@ bind -N "Command mode" l {
   switch-client -T command
 }
 
-bind -N "Go to main window" -T command k {
-  select-window -t :=1
-}
-
 bind -N "Open btop" -T command b {
   new-window -Sn btop btop
 }
@@ -20,6 +16,10 @@ bind -N "Open lazygit" -T command g {
 
 bind -N "Open htop" -T command h {
   new-window -Sn htop htop
+}
+
+bind -N "Open Copilot" -T command k {
+  new-window -Sn copilot copilot
 }
 
 bind -N "Open numbat" -T command m {
