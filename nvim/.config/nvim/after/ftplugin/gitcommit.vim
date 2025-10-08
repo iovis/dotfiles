@@ -2,7 +2,7 @@ nnoremap <silent> <buffer> <nowait> q :wq<cr>
 
 setlocal spell
 setlocal spelllang=en_us
-setlocal formatoptions=oqrn1j
+setlocal formatoptions=toqrn1j
 setlocal comments+=b:-,b:*
 
 " Better indention/hierarchy
