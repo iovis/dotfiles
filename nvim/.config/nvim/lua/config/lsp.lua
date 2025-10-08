@@ -121,15 +121,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     ----Inlay hints
-    local function toggle_inlay_hints()
-      if client:supports_method("textDocument/inlayHint") then
+    if client:supports_method("textDocument/inlayHint") then
+      local function toggle_inlay_hints()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
-      else
-        vim.notify("No inlay hints available", vim.log.levels.WARN)
+        vim.notify("Inlay hints: " .. tostring(vim.lsp.inlay_hint.is_enabled()), vim.log.levels.WARN)
       end
-    end
 
-    nmap("<leader>lk", toggle_inlay_hints, "vim.lsp.inlay_hint")
+      nmap("<leader>lk", toggle_inlay_hints, "vim.lsp.inlay_hint")
+    end
 
     ----Code Actions
     -- nmap("<leader>lI", ":LspOrganizeImports<cr>")
@@ -142,6 +141,35 @@ vim.api.nvim_create_autocmd("LspAttach", {
     --     },
     --   })
     -- end, {})
+
+    ----Copilot completions
+    if
+      vim.lsp.inline_completion
+      and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion, bufnr)
+    then
+      vim.lsp.inline_completion.enable(true, { bufnr = bufnr })
+
+      vim.keymap.set("i", "<c-h>", vim.lsp.inline_completion.get, {
+        desc = "LSP: accept inline completion",
+        buffer = bufnr,
+      })
+
+      vim.keymap.set("i", "<c-s>", vim.lsp.inline_completion.select, {
+        desc = "LSP: switch inline completion",
+        buffer = bufnr,
+      })
+
+      local function toggle_inline_completion()
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion) then
+          vim.lsp.inline_completion.enable(not vim.lsp.inline_completion.is_enabled())
+          vim.notify("Inline completion: " .. tostring(vim.lsp.inline_completion.is_enabled()), vim.log.levels.WARN)
+        else
+          vim.notify("No inline completion available", vim.log.levels.WARN)
+        end
+      end
+
+      nmap("<leader>lq", toggle_inline_completion, "vim.lsp.inline_completion")
+    end
 
     ----Custom server capabilities
     if client.name == "solargraph" then
