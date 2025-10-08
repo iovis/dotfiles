@@ -27,6 +27,22 @@ return {
           file = { truncate = 80 },
         },
         sources = {
+          buffers = {
+            sort_lastused = false,
+            win = {
+              input = {
+                keys = {
+                  ["<c-x>"] = { "bufdelete", mode = { "n", "i" } },
+                  d = "bufdelete",
+                },
+              },
+              list = {
+                keys = {
+                  d = "bufdelete",
+                },
+              },
+            },
+          },
           explorer = {
             hidden = true,
             win = {
