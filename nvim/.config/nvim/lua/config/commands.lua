@@ -1,6 +1,7 @@
 local u = require("config.utils")
 
 u.ex.abbrev("man", "Man")
+u.ex.abbrev("h", "vertical botright help")
 
 vim.api.nvim_create_user_command("Delregisters", function(opts)
   local reg = opts.args
