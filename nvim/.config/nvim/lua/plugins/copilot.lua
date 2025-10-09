@@ -30,7 +30,7 @@ return {
     vim.keymap.set("i", "<m-down>", "<Plug>(copilot-next)")
     vim.keymap.set("i", "<m-up>", "<Plug>(copilot-previous)")
 
-    vim.keymap.set("i", "<m-left>", "<Plug>(copilot-dismiss)")
-    vim.keymap.set("i", "<m-right>", "<Plug>(copilot-accept-line)")
+    vim.keymap.set("i", "<m-h>", "<Plug>(copilot-dismiss)")
+    vim.keymap.set("i", "<m-l>", "<Plug>(copilot-accept-line)")
   end,
 }
