@@ -286,8 +286,11 @@ return {
     vim.keymap.set("n", "<leader>fm", snacks.picker.man, { desc = "snacks.picker.man" })
     vim.keymap.set("n", "<leader>o", snacks.picker.files, { desc = "snacks.picker.files" })
     vim.keymap.set("n", "<leader>r", snacks.picker.resume, { desc = "snacks.picker.resume" })
-    vim.keymap.set("n", "gm", snacks.picker.buffers, { desc = "snacks.picker.buffers" })
     vim.keymap.set("n", "s<space>", snacks.picker.pick, { desc = "snacks.picker.pick" })
+
+    vim.keymap.set("n", "gm", function()
+      snacks.picker.buffers({ focus = "list" })
+    end, { desc = "snacks.picker.buffers" })
 
     vim.keymap.set("n", "<leader>j", function()
       snacks.picker.git_status({ focus = "list" })
