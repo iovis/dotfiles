@@ -2,6 +2,9 @@ return {
   "github/copilot.vim",
   init = function()
     vim.g.copilot_no_tab_map = true
+    vim.g.copilot_filetypes = {
+      gitcommit = true,
+    }
 
     vim.keymap.set("n", "yoq", function()
       if vim.fn["copilot#Enabled"]() == 1 then
