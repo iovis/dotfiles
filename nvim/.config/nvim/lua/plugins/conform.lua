@@ -2,9 +2,6 @@ return {
   "stevearc/conform.nvim",
   version = "*",
   event = "VeryLazy",
-  keys = {
-    { "<leader>lc", "<cmd>ConformInfo<cr>" },
-  },
   config = function()
     local format_options = {
       timeout_ms = 2000,

@@ -53,7 +53,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     ---- Signature/Definition
     nmap("<c-s>", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
-    -- imap("<c-s>", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
+    imap("<c-s>", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
     imap("<c-h>", vim.lsp.buf.hover, "vim.lsp.buf.hover")
 
     nmap("T", vim.lsp.buf.references, "vim.lsp.buf.references")
@@ -74,7 +74,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     ---- Diagnostics
     nmap("<m-d>", vim.diagnostic.open_float, "vim.diagnostic.open_float")
-    nmap("∂", vim.diagnostic.open_float, "vim.diagnostic.open_float") -- alt+d
 
     nmap("<left>", function()
       vim.diagnostic.jump({
@@ -149,12 +148,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
     then
       vim.lsp.inline_completion.enable(true, { bufnr = bufnr })
 
-      vim.keymap.set("i", "<c-h>", vim.lsp.inline_completion.get, {
+      vim.keymap.set("i", "<m-cr>", vim.lsp.inline_completion.get, {
         desc = "LSP: accept inline completion",
         buffer = bufnr,
       })
 
-      vim.keymap.set("i", "<c-s>", vim.lsp.inline_completion.select, {
+      vim.keymap.set("i", "<m-down>", vim.lsp.inline_completion.select, {
         desc = "LSP: switch inline completion",
         buffer = bufnr,
       })
@@ -168,7 +167,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
       end
 
-      nmap("<leader>lq", toggle_inline_completion, "vim.lsp.inline_completion")
+      nmap("yoq", toggle_inline_completion, "vim.lsp.inline_completion")
     end
 
     ----Custom server capabilities

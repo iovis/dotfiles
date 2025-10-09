@@ -80,6 +80,7 @@ vim.api.nvim_create_autocmd("FileType", {
   desc = "Close with [q]",
   group = config_augroup,
   pattern = {
+    "copilotpanel",
     "dbout",
     "diff",
     "fugitiveblame",
