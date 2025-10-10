@@ -34,11 +34,13 @@ return {
                 keys = {
                   ["<c-x>"] = { "bufdelete", mode = { "n", "i" } },
                   d = "bufdelete",
+                  dd = false,
                 },
               },
               list = {
                 keys = {
                   d = "bufdelete",
+                  dd = false,
                 },
               },
             },
