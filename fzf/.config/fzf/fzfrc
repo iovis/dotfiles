@@ -1,4 +1,5 @@
 --ansi
+--gutter ' '
 --bind=ctrl-n:page-down,ctrl-p:page-up
 --bind=alt-a:select-all,alt-d:deselect-all,alt-t:toggle-all
 --bind=home:first,end:last
@@ -12,7 +13,6 @@
 --color=bg:-1
 --color=current-fg:#c6d0f5
 --color=fg:#c6d0f5
---color=gutter:-1
 --color=header:#e78284
 --color=current-hl:#e78284
 --color=hl:#e78284
