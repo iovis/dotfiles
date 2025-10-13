@@ -26,7 +26,7 @@ fzf_command() {
     --bind=enter:accept-or-print-query \
     --bind=alt-enter,ctrl-d:print-query \
     --bind=alt-p:toggle-preview \
-    --bind='ctrl-r,alt-r:change-preview-window(down|right)' \
+    --bind='alt-r:change-preview-window(down|right)' \
     --preview="eza --color=always --icons -1a --group-directories-first $PROJECT_HOME/{}" \
     --preview-window=right \
     --color=input-border:blue \

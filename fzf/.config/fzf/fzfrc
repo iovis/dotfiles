@@ -1,11 +1,12 @@
 --ansi
 --gutter ' '
+--gutter-raw ▎
 --bind=ctrl-n:page-down,ctrl-p:page-up
 --bind=alt-a:select-all,alt-d:deselect-all,alt-t:toggle-all
+--bind=ctrl-r:toggle-raw
 --bind=home:first,end:last
 --bind=alt-p:toggle-preview
 --bind=alt-j:preview-page-down,alt-k:preview-page-up
---bind=alt-down:preview-bottom,alt-up:preview-top
 --bind=alt-left:backward-word,alt-right:forward-word
 --bind=alt-h:backward-word,alt-l:forward-word
 --preview='bat --style=numbers,changes --color=always {} 2> /dev/null'

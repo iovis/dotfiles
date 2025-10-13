@@ -21,7 +21,7 @@ fzf_command() {
     --bind=alt-enter:print-query \
     --bind="j:down,k:up,q:abort" \
     --bind="p,alt-p:toggle-preview" \
-    --bind="r,ctrl-r,alt-r:change-preview-window(down|right)" \
+    --bind="r,alt-r:change-preview-window(down|right)" \
     --bind="d,x,ctrl-x:execute-silent(tmux kill-session -t {2})+reload:$tmux_sessions" \
     --bind="i,/:show-input+unbind(j,k,q,d,x,p,r,i,/)" \
     --bind="focus:transform-preview-label:echo '  {1..2}  '" \
