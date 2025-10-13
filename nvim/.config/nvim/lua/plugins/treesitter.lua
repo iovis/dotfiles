@@ -41,6 +41,7 @@ return {
       "scss",
       "sql",
       "svelte",
+      "tmux",
       "toml",
       "tsx",
       "typescript",
