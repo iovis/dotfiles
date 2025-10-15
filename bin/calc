@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+NUMBAT_CMD="numbat -e"
+INITIAL_QUERY="${*:-}"
+
+fzf \
+  --prompt="❯ " \
+  --disabled \
+  --wrap \
+  --ansi \
+  --info=hidden \
+  --reverse \
+  --bind="start:reload:$NUMBAT_CMD {q} 2>&1" \
+  --bind="change:reload:sleep 0.1; $NUMBAT_CMD {q} 2>&1" \
+  --bind="enter:execute-silent(wl-copy {})+abort" \
+  --color=current-bg:-1 \
+  --no-preview \
+  --query="$INITIAL_QUERY"
