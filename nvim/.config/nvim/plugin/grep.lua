@@ -11,13 +11,50 @@ vim.api.nvim_create_user_command("Grep", function(opts)
   vim.cmd("botright cwindow")
 end, { nargs = "+", complete = "file" })
 
+local function escape_for_rg(text)
+  -- test string: ();[!]{}/\@<>&#$%?+.*=^~
+  -- # and % need to be escaped twice
+  return vim.fn.escape(vim.fn.escape(vim.fn.trim(vim.fn.getreg('"')), "%#'\\"), "%#")
+end
+
+local function capture_visual_selection()
+  local saved_unnamed_register = vim.fn.getreg("@")
+
+  vim.cmd("normal *")
+  local search_term = escape_for_rg(vim.fn.getreg("@"))
+  vim.fn.setreg("@", saved_unnamed_register)
+
+  return search_term
+end
+
 vim.keymap.set("n", "g<space>", ":Grep -F<space>")
-vim.keymap.set("x", "g<space>", [[*:Grep -F <c-r>=shellescape(getreg('"'), 1)<cr><space>]], {
-  remap = true,
-})
+vim.keymap.set("x", "g<space>", function()
+  if vim.fn.mode() ~= "v" then
+    return
+  end
+
+  local search_term = capture_visual_selection()
+  if search_term == "" then
+    return
+  end
+
+  u.send_keys(([[:Grep -Fe '%s'<space>]]):format(search_term))
+end)
 
 vim.keymap.set("n", "K", "*:Grep -w <cword><cr>", { silent = true, remap = true })
-vim.keymap.set("x", "K", "g<space><cr>", { silent = true, remap = true })
+vim.keymap.set("x", "K", function()
+  if vim.fn.mode() ~= "v" then
+    u.send_keys("k")
+    return
+  end
+
+  local search_term = capture_visual_selection()
+  if search_term == "" then
+    return
+  end
+
+  vim.cmd.Grep(([[-Fe '%s']]):format(search_term))
+end)
 
 vim.keymap.set("n", "<leader>fw", function()
   local cmd = "Grep -w <cword>"
@@ -39,22 +76,14 @@ vim.keymap.set("n", "<leader>fw", function()
 end, { desc = "Find word in current filetype" })
 
 vim.keymap.set("x", "<leader>fw", function()
-  local saved_unnamed_register = vim.fn.getreg("@")
+  local search_term = capture_visual_selection()
 
-  vim.cmd("normal! y")
-  local query = vim.fn.shellescape(vim.fn.getreg("@"))
-  local cmd = ("Grep -F %s"):format(query)
+  local cmd = ("Grep -Fe '%s'"):format(search_term)
 
   -- Filter by filetype
   if vim.bo.filetype then
     cmd = ("%s -t %s"):format(cmd, vim.bo.filetype)
   end
-
-  -- Highlight word
-  vim.fn.setreg("/", vim.fn.escape(vim.fn.getreg("@"), "/\\$.*^~"))
-  vim.cmd("set hlsearch")
-
-  vim.fn.setreg("@", saved_unnamed_register)
 
   vim.cmd(cmd)
 end, { desc = "Find word in current filetype" })
