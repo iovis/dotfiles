@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 
-action=$(printf "suspend\nshutdown\nreboot\nlogout" | vicinae dmenu) || exit 0
+fzf_command() {
+  fzf \
+    --prompt="❯ " \
+    --info=hidden \
+    --reverse \
+    --bind="j:down,k:up,q:abort" \
+    --no-preview
+}
+
+action=$(printf "suspend\nshutdown\nreboot\nlogout" | fzf_command) || exit 0
 
 case $action in
 "logout") loginctl terminate-user david ;;
