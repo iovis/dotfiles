@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
-
 fd_command() {
   fd \
     --type d \
@@ -21,11 +19,13 @@ fzf_command() {
     --prompt="❯ " \
     --header-border \
     --input-border \
+    --input-label " folders " \
     --list-border \
     --info=hidden \
     --reverse \
     --multi \
-    --bind='enter:become(setsid -f nautilus {+})' \
+    --bind='enter:execute-silent(setsid -f nautilus {+})+abort' \
+    --bind='alt-m:execute-silent(setsid -f fd -tf . {+} -X mpv --shuffle --loop-playlist=inf)+abort' \
     --bind=alt-p:toggle-preview \
     --bind='alt-r:change-preview-window(down|right)' \
     --preview="fzf-preview {}" \
