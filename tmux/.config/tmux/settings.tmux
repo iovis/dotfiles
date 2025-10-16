@@ -2,6 +2,7 @@ set -g base-index 1
 set -g detach-on-destroy off
 set -g display-panes-time 4000
 set -g display-time 100000
+set -g extended-keys on
 set -g focus-events on
 set -g history-limit 100000
 set -g mouse on
@@ -17,10 +18,8 @@ set -wg automatic-rename-format '#{pane_current_command}'
 set -wg mode-keys vi
 set -wg monitor-activity on
 
+set -s terminal-features "xterm*:clipboard:ccolour:cstyle:focus:title:extkeys:RGB:hyperlinks"
 set -sg default-terminal "tmux-256color"
-set -s terminal-features "xterm*:clipboard:ccolour:cstyle:focus:title"
-set -sa terminal-features ",xterm-256color:RGB"
-set -sa terminal-features ",*:hyperlinks"
 set -sg escape-time 0
 
 # Make Yazi render images properly
