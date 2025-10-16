@@ -1,5 +1,6 @@
 local u = require("config.utils")
 
+u.ex.abbrev("m", "Man")
 u.ex.abbrev("man", "Man")
 u.ex.abbrev("h", "vertical botright help")
 
