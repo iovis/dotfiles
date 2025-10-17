@@ -2,7 +2,7 @@ set -g base-index 1
 set -g detach-on-destroy off
 set -g display-panes-time 4000
 set -g display-time 100000
-set -g extended-keys on
+set -g extended-keys off  # doesn't seem to work when pasting text with newlines in 3.5
 set -g focus-events on
 set -g history-limit 100000
 set -g mouse on
