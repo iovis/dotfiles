@@ -3,6 +3,7 @@
 fzf_command() {
   fzf \
     --prompt="❯ " \
+    --gutter=" " \
     --info=hidden \
     --reverse \
     --bind="j:down,k:up,q:abort" \

@@ -17,6 +17,7 @@ INITIAL_QUERY="${*:-}"
 fzf_command() {
   fzf \
     --prompt="❯ " \
+    --gutter=" " \
     --header-border \
     --input-border \
     --input-label " folders " \
