@@ -11,8 +11,8 @@ bind -N "Switch to last session" -n M-Space {
 bind -n C-M-Space last-window
 bind -n C-M-h previous-window
 bind -n C-M-l next-window
-bind -n C-M-j swap-window -dt -1
-bind -n C-M-k swap-window -dt +1
+bind -n C-M-j swap-window -d -t -1
+bind -n C-M-k swap-window -d -t +1
 
 ## Switch panes
 bind -n C-h if "$is_vim" "send C-h"  "select-pane -L"

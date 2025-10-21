@@ -132,10 +132,10 @@ bind -N "Resize panes equally" = {
 }
 
 # Move panes
-bind -N "Move pane down"  -r down  swap-pane -dt "{down-of}"
-bind -N "Move pane left"  -r left  swap-pane -dt "{left-of}"
-bind -N "Move pane right" -r right swap-pane -dt "{right-of}"
-bind -N "Move pane up"    -r up    swap-pane -dt "{up-of}"
+bind -N "Move pane down"  -r down  swap-pane -d -t "{down-of}"
+bind -N "Move pane left"  -r left  swap-pane -d -t "{left-of}"
+bind -N "Move pane right" -r right swap-pane -d -t "{right-of}"
+bind -N "Move pane up"    -r up    swap-pane -d -t "{up-of}"
 
 ## Switch panes
 bind C-down select-pane -D
