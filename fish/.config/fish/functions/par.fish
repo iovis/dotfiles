@@ -1,3 +1,3 @@
-function par --wraps='sudo pacman -Rs'
-    sudo pacman -Rs $argv && pacdump
+function par --wraps='sudo pacman -R'
+    sudo pacman -R $argv && pacdump
 end
