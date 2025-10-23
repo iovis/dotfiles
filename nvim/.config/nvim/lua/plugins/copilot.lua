@@ -32,5 +32,6 @@ return {
 
     vim.keymap.set("i", "<m-h>", "<Plug>(copilot-dismiss)")
     vim.keymap.set("i", "<m-l>", "<Plug>(copilot-accept-line)")
+    vim.keymap.set("i", "<m-w>", "<Plug>(copilot-accept-word)")
   end,
 }
