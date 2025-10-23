@@ -5,6 +5,7 @@ fzf_command() {
     --prompt="❯ " \
     --gutter=" " \
     --info=hidden \
+    --highlight-line \
     --reverse \
     --bind="j:down,k:up,q:abort" \
     --no-preview
