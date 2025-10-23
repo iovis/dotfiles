@@ -19,7 +19,7 @@ bind -N "Open htop" -T command h {
 }
 
 bind -N "Open Copilot" -T command k {
-  new-window -Sn copilot 'copilot --resume'
+  new-window -Sn copilot copilot --resume
 }
 
 bind -N "Open numbat" -T command m {

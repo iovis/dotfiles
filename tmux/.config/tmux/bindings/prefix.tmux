@@ -91,6 +91,10 @@ bind -N "Open lazygit" C-j {
   new-window -S -c "#{pane_current_path}" -n lazygit lazygit
 }
 
+bind -N "Open yazi" C-y {
+  new-window -S -c "#{pane_current_path}" -n yazi yazi
+}
+
 bind -N "Open Vim plugin" C-p {
   display-popup -w 50% -h 60% -b none -E vim_plugins
 }
