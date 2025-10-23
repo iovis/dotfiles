@@ -21,11 +21,8 @@ return {
       expr = true,
     })
 
-    vim.keymap.set("n", "<leader>lc", "<cmd>Copilot panel<cr>", {
-      desc = "Open Copilot panel",
-    })
-
-    vim.keymap.set("i", "<m-g>", "<Plug>(copilot-suggest)")
+    vim.keymap.set("i", "<m-c>", "<esc><cmd>Copilot panel<cr>")
+    vim.keymap.set("i", "<m-s>", "<Plug>(copilot-suggest)")
 
     vim.keymap.set("i", "<m-down>", "<Plug>(copilot-next)")
     vim.keymap.set("i", "<m-up>", "<Plug>(copilot-previous)")
