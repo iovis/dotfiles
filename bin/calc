@@ -4,11 +4,14 @@ NUMBAT_CMD="numbat -e"
 INITIAL_QUERY="${*:-}"
 
 fzf \
-  --prompt="❯ " \
+  --prompt="  ❯ " \
   --disabled \
+  --gutter=" " \
+  --pointer=" " \
   --wrap \
   --ansi \
   --info=hidden \
+  --separator=" " \
   --reverse \
   --bind="start:reload:$NUMBAT_CMD {q} 2>&1" \
   --bind="change:reload:sleep 0.1; $NUMBAT_CMD {q} 2>&1" \

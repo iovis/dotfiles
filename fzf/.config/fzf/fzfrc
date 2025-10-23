@@ -1,5 +1,5 @@
 --ansi
---gutter ' '
+--gutter=' '
 --gutter-raw ▎
 --bind=ctrl-n:page-down,ctrl-p:page-up
 --bind=alt-a:select-all,alt-d:deselect-all,alt-t:toggle-all
@@ -9,7 +9,7 @@
 --bind=alt-j:preview-page-down,alt-k:preview-page-up
 --bind=alt-left:backward-word,alt-right:forward-word
 --bind=alt-h:backward-word,alt-l:forward-word
---preview='bat --style=numbers,changes --color=always {} 2> /dev/null'
+--preview='fzf-preview {}'
 --color=current-bg:#414559
 --color=bg:-1
 --color=current-fg:#c6d0f5
