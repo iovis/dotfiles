@@ -1,3 +1,3 @@
-function rmv --wraps='rsync -avz --progress -h --remove-source-files'
-    rsync -avz --progress -h --remove-source-files $argv
+function rmv --wraps='rsync -av --progress -h --remove-source-files'
+    rsync -av --progress -h --remove-source-files $argv
 end

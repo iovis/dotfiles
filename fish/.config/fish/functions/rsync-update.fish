@@ -1,3 +1,3 @@
-function rsync-update --wraps='rsync -avzu --progress -h'
-    rsync -avzu --progress -h $argv
+function rsync-update --wraps='rsync -av --progress -h --update'
+    rsync -av --progress -h --update $argv
 end
