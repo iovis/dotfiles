@@ -1,0 +1,118 @@
+#!/usr/bin/env bash
+
+set +e
+
+# JS field injection code from https://github.com/qutebrowser/qutebrowser/blob/main/misc/userscripts/password_fill
+javascript_escape() {
+    # print the first argument in an escaped way, such that it can safely
+    # be used within javascripts double quotes
+    # shellcheck disable=SC2001
+    sed "s,[\\\\'\"\/],\\\\&,g" <<< "$1"
+}
+
+js() {
+cat <<EOF
+    function isVisible(elem) {
+        var style = elem.ownerDocument.defaultView.getComputedStyle(elem, null);
+        if (style.getPropertyValue("visibility") !== "visible" ||
+            style.getPropertyValue("display") === "none" ||
+            style.getPropertyValue("opacity") === "0") {
+            return false;
+        }
+        return elem.offsetWidth > 0 && elem.offsetHeight > 0;
+    };
+    function hasPasswordField(form) {
+        var inputs = form.getElementsByTagName("input");
+        for (var j = 0; j < inputs.length; j++) {
+            var input = inputs[j];
+            if (input.type == "password") {
+                return true;
+            }
+        }
+        return false;
+    };
+    function loadData2Form (form) {
+        var inputs = form.getElementsByTagName("input");
+        for (var j = 0; j < inputs.length; j++) {
+            var input = inputs[j];
+            if (isVisible(input) && (input.type == "text" || input.type == "email")) {
+                input.focus();
+                input.value = "$(javascript_escape "${USERNAME}")";
+                input.dispatchEvent(new Event('change'));
+                input.blur();
+            }
+            if (input.type == "password") {
+                input.focus();
+                input.value = "$(javascript_escape "${PASSWORD}")";
+                input.dispatchEvent(new Event('change'));
+                input.blur();
+            }
+        }
+    };
+    var forms = document.getElementsByTagName("form");
+    if("$(javascript_escape "${QUTE_URL}")" == window.location.href) {
+        for (i = 0; i < forms.length; i++) {
+            if (hasPasswordField(forms[i])) {
+                loadData2Form(forms[i]);
+            }
+        }
+    } else {
+        alert("Secrets will not be inserted.\nUrl of this page and the one where the user script was started differ.");
+    }
+EOF
+}
+
+if ! op item list > /dev/null; then
+  echo "message-error '1password is not running'" >> "$QUTE_FIFO"
+  exit
+fi
+
+URL=$(echo "$QUTE_URL" | awk -F/ '{print $3}' | sed 's/www.//g')
+echo "message-info 'Looking for password for $URL...'" >> "$QUTE_FIFO"
+
+# find entry matching the exact host of our domain
+UUID=$(op item list --format=json | \
+    jq --arg url "$URL" -r '
+        [ .[]
+        | select((.urls[]?.href // .url? // "")
+            | split("/")[2] == $url)
+        | .id
+        ]
+        | first
+    ') || UUID=""
+
+if [ -z "$UUID" ] || [ "$UUID" == "null" ]; then
+    TITLE=$(op item list --format=json | jq -r '.[].title' | vicinae dmenu) || TITLE=""
+    if [ -n "$TITLE" ]; then
+        # fallback: pick entry whose title contains the chosen string
+        UUID=$(op item list --format=json | \
+            jq --arg title "$TITLE" -r '[.[] | select(.title | contains($title))][0].id') || UUID=""
+    fi
+fi
+
+if [ -n "$UUID" ]; then
+    ITEM=$(op item get --format=json "$UUID")
+
+    # extract password field (fallback to any concealed field if purpose missing)
+    PASSWORD=$(echo "$ITEM" | jq -r '(.fields[] | select(.purpose=="PASSWORD") | .value) // (.fields[] | select(.type=="CONCEALED") | .value)' | head -n1)
+
+    if [ -n "$PASSWORD" ]; then
+        TITLE=$(echo "$ITEM" | jq -r '.title')
+        USERNAME=$(echo "$ITEM" | jq -r '.fields[] | select(.purpose=="USERNAME") | .value')
+
+        printjs() {
+            js | sed 's,//.*$,,' | tr '\n' ' '
+        }
+        echo "jseval -q $(printjs)" >> "$QUTE_FIFO"
+
+        TOTP=$(op item get --otp "$UUID") || TOTP=""
+        if [ -n "$TOTP" ]; then
+            echo "$TOTP" | wl-copy
+            echo "message-info 'Pasted one time password for $TITLE to clipboard'" >> "$QUTE_FIFO"
+        fi
+    else
+        echo "message-error 'No password found for $URL'" >> "$QUTE_FIFO"
+    fi
+else
+    echo "message-error 'Entry not found for $UUID'" >> "$QUTE_FIFO"
+fi

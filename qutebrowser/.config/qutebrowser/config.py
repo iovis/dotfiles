@@ -78,6 +78,11 @@ config.bind("<ctrl-p>", "spawn --detach mpv {url}")
 config.bind("<ctrl-p>", "spawn --detach mpv {url}", mode="insert")
 config.bind("<ctrl-p>", "spawn --detach mpv {url}", mode="passthrough")
 
+# 1Password
+config.bind("<ctrl-.>", "spawn --userscript 1pass")
+config.bind("<ctrl-.>", "spawn --userscript 1pass", mode="insert")
+config.bind("<ctrl-.>", "spawn --userscript 1pass", mode="passthrough")
+
 # Normal
 config.bind(";", "cmd-set-text :")
 config.bind("d", "scroll-page 0 0.5")
@@ -88,7 +93,8 @@ config.bind("U", "undo")
 config.bind(
     "ga", "open -t https://web.archive.org/web/{url}"
 )  # web archive of current page
-config.bind("gh", "history -t")
+config.bind("gy", "history -t")
+config.bind("gh", "hint all hover")
 
 # Passthrough/Insert
 config.bind("<Escape>", "fullscreen --leave ;; fake-key <Escape>", mode="passthrough")
@@ -113,8 +119,7 @@ config.bind(
 config.bind("td", "config-cycle --print colors.webpage.darkmode.enabled")
 config.bind("sh", "cmd-set-text -s :help -t")
 config.bind("sl", "config-cycle tabs.width 300 38")
-config.bind("sp", "set --print -u {url:host} input.mode_override passthrough")
-config.bind("sP", "config-unset --print -u {url:host} input.mode_override")
+config.bind("sp", "config-cycle --print -u {url:host} input.mode_override passthrough normal")
 config.bind("so", "config-source ;; message-info 'config reloaded'")
 config.bind("sr", "config-cycle tabs.position top right")
 config.bind("ss", "config-cycle statusbar.show always in-mode")
@@ -195,6 +200,7 @@ c.content.user_stylesheets = []
 c.statusbar.padding = {"top": 8, "bottom": 8, "left": 0, "right": 8}
 c.statusbar.show = "always"  # always, in-mode, never
 c.tabs.indicator.width = 0
+c.tabs.last_close = "startpage"
 c.tabs.padding = {"top": 5, "bottom": 5, "left": 9, "right": 9}
 c.tabs.position = "right"
 c.tabs.show = "multiple"
