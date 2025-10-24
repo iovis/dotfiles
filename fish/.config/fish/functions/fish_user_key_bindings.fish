@@ -1,7 +1,7 @@
 function fish_user_key_bindings
     # NOTE: Use `bind` to check your bindings in the terminal
-    bind ctrl-n accept-autosuggestion
-    bind ctrl-p nextd-or-forward-word
+    bind alt-l accept-autosuggestion
+    bind alt-w nextd-or-forward-word
 
     # quick command pipes
     bind alt-g '__fish_custom_grep; commandline -f end-of-line'
