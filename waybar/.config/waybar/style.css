@@ -122,9 +122,7 @@ tooltip {
 }
 
 menu {
-  /* background: alpha(#222, 0); Doesn't seem to blur with hyprland */
   background: #111;
-  border-radius: 15px;
   padding: 0;
 }
 
@@ -134,9 +132,9 @@ menuitem {
 }
 
 menuitem:first-child {
-  border-radius: 15px 15px 0 0;
+  border-radius: 5px 5px 0 0;
 }
 
 menuitem:last-child {
-  border-radius: 0 0 15px 15px;
+  border-radius: 0 0 5px 5px;
 }
