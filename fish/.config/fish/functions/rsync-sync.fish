@@ -1,3 +1,3 @@
-function rsync-sync --wraps='rsync -av --progress -h --update --delete'
-    rsync -av --progress -h --update --delete $argv
+function rsync-sync --wraps='rsync -aiv --progress -h --update --delete'
+    rsy $argv
 end

@@ -1,3 +1,3 @@
-function rcp --wraps='rsync -av --progress -h'
-    rsync -av --progress -h $argv
+function rcp --wraps='rsync -aiv --progress -h'
+    r $argv
 end
