@@ -71,7 +71,7 @@ return {
           opts = { tab = true },
           desc = "Open the entry in new tab",
         },
-        ["gd"] = {
+        ["yod"] = {
           desc = "Toggle file detail view",
           callback = function()
             show_details = not show_details
