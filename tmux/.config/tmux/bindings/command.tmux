@@ -26,6 +26,10 @@ bind -N "Open numbat" -T command m {
   new-window -Sn numbat numbat
 }
 
+bind -N "Run just open" -T command o {
+run -b "gh repo view --web"
+}
+
 bind -N "Browse PRs for current branch" -T command p {
   run -b "gh pr view --web"
 }
@@ -66,14 +70,6 @@ bind -N "Run just console" -T command c {
 bind -N "Run just db" -T command d {
   if "test -f justfile" {
     new-window -Sn db just db
-  } {
-    display-message "No justfile!"
-  }
-}
-
-bind -N "Run just open" -T command o {
-  if "test -f justfile" {
-    new-window -Sd just open
   } {
     display-message "No justfile!"
   }
