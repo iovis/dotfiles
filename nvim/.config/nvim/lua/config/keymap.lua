@@ -294,6 +294,7 @@ vim.keymap.set("n", "<leader>N", function()
 end, { desc = "Open daily note" })
 
 -- Project files
+vim.keymap.set("n", "<leader>ua", "<cmd>e! AGENTS.md<cr>")
 vim.keymap.set("n", "<leader>uC", "<cmd>e! CMakeLists.txt<cr>")
 vim.keymap.set("n", "<leader>uc", "<cmd>e! Cargo.toml<cr>")
 vim.keymap.set("n", "<leader>ue", "<cmd>e! .env<cr>")
