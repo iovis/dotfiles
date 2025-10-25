@@ -24,6 +24,7 @@ return {
       "html",
       "http",
       "hurl",
+      "hyprlang",
       "javascript",
       "jsdoc",
       "json",
