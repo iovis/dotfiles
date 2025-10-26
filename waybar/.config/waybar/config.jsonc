@@ -117,7 +117,6 @@
       "logout": "loginctl terminate-user david",
       "suspend": "systemctl suspend",
       "reboot": "systemctl reboot",
-      "hibernate": "systemctl hibernate",
       "shutdown": "systemctl poweroff"
     }
   },

@@ -17,11 +17,6 @@
       </object>
     </child>
     <child>
-      <object class="GtkMenuItem" id="hibernate">
-        <property name="label">Hibernate</property>
-      </object>
-    </child>
-    <child>
       <object class="GtkMenuItem" id="shutdown">
         <property name="label">Shutdown</property>
       </object>
