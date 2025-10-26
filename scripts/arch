@@ -1,6 +1,8 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-# curl --proto '=https' --tlsv1.2 -LsSf https://raw.githubusercontent.com/iovis/dotfiles/master/scripts/arch | sh
+# curl --proto '=https' --tlsv1.2 -LsSf https://raw.githubusercontent.com/iovis/dotfiles/master/scripts/arch | bash
+set -euo pipefail
+
 export DOTFILES="$HOME/.dotfiles"
 export PACMAN_PATH="$DOTFILES/pacman/.config/pacman"
 export LOCAL_BIN="$HOME/.local/bin"
@@ -16,7 +18,7 @@ if [ ! -d "$DOTFILES" ]; then
   git clone https://github.com/iovis/dotfiles "$DOTFILES"
 fi
 
-sudo pacman -S --needed $(cat $PACMAN_PATH/Pacfile)
+sudo pacman -S --needed $(cat "$PACMAN_PATH/Pacfile")
 
 if ! command -v paru >/dev/null 2>&1; then
   echo "[$(date '+%Y-%m-%d %H:%M')] Installing paru"
@@ -32,7 +34,7 @@ if ! command -v paru >/dev/null 2>&1; then
   rm -rf "$PROJECT_HOME/paru/"
 fi
 
-paru -S --needed $(cat $PACMAN_PATH/Parufile)
+paru -S --needed $(cat "$PACMAN_PATH/Parufile")
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Starting services"
 sudo systemctl enable --now avahi-daemon bluetooth fstrim.timer gdm reflector.timer sshd
