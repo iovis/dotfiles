@@ -343,14 +343,40 @@ return {
     end, { desc = "snacks.picker.qflist" })
 
     -- LSP
-    vim.keymap.set("n", "<leader>ls", snacks.picker.lsp_symbols, { desc = "snacks.picker.lsp_symbols" })
-    vim.keymap.set("n", "<leader>lw", snacks.picker.lsp_workspace_symbols, {
-      desc = "snacks.picker.lsp_workspace_symbols",
-    })
+    vim.api.nvim_create_autocmd("LspAttach", {
+      callback = function(event)
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
+        local bufnr = event.buf
 
-    vim.keymap.set("n", "<leader>ld", function()
-      snacks.picker.diagnostics({ focus = "list" })
-    end, { desc = "snacks.picker.diagnostics" })
+        if not client then
+          return
+        end
+
+        vim.keymap.set("n", "<leader>ls", snacks.picker.lsp_symbols, {
+          desc = "snacks.picker.lsp_symbols",
+          buffer = bufnr,
+        })
+
+        vim.keymap.set("n", "<leader>lw", snacks.picker.lsp_workspace_symbols, {
+          desc = "snacks.picker.lsp_workspace_symbols",
+          buffer = bufnr,
+        })
+
+        vim.keymap.set("n", "<leader>ld", function()
+          snacks.picker.diagnostics({ focus = "list" })
+        end, {
+          desc = "snacks.picker.diagnostics",
+          buffer = bufnr,
+        })
+
+        vim.keymap.set("n", "T", function()
+          snacks.picker.lsp_references({ focus = "list" })
+        end, {
+          desc = "snacks.picker.lsp_references",
+          buffer = bufnr,
+        })
+      end,
+    })
 
     ----Rename
     vim.api.nvim_create_autocmd("User", {
