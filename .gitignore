@@ -42,7 +42,6 @@ irb/.config/irb/irb_history
 
 # tmux
 tmux/.config/tmux/local.tmux
-tmux/.config/tmux/resurrect
 
 # wezterm
 wezterm/.config/wezterm/locals.lua

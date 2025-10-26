@@ -9,7 +9,6 @@ set -g @cpu_high_fg_color "#[fg=#e78284]"
 
 # tmux-resurrect
 set -g @resurrect-capture-pane-contents 'on'
-set -g @resurrect-dir '~/.config/tmux/resurrect'
 set -g @resurrect-processes 'lazygit'
 set -g @resurrect-strategy-nvim 'session'
 
