@@ -22,9 +22,9 @@ eval "$fd_folders" | fzf \
 --multi \
 --bind="ctrl-g:transform:$TRANSFORMER" \
 --bind='enter:execute-silent(setsid -f xdg-open {})+abort' \
+--bind='alt-enter:execute-silent(setsid -f nautilus {+})+abort' \
 --bind='alt-m:execute-silent(setsid -f fd -tf . {+} -X mpv --shuffle --loop-playlist=inf)+abort' \
---bind='ctrl-o:execute-silent(setsid -f nautilus {+})+abort' \
---bind='ctrl-y:execute-silent(wl-copy {+} && notify-send --icon edit-paste "Copied path to clipboard")+abort' \
+--bind='ctrl-o:execute-silent(wl-copy {+} && notify-send --icon edit-paste "Copied path to clipboard")+abort' \
 --bind=alt-p:toggle-preview \
 --bind='alt-r:change-preview-window(down|right)' \
 --preview="fzf-preview {}" \
