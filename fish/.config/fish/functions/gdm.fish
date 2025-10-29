@@ -1,3 +1,3 @@
 function gdm --wraps='git diff-main'
-    git diff-main $argv
+    git -c diff.external=difft diff-main $argv
 end
