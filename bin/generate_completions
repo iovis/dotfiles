@@ -31,3 +31,8 @@ if type ngrok &>/dev/null; then
   echo "Generating completions for ngrok"
   ngrok completion >"$completions_dir/ngrok.fish"
 fi
+
+if type codex &>/dev/null; then
+  echo "Generating completions for codex"
+  codex completion fish >"$completions_dir/codex.fish"
+fi
