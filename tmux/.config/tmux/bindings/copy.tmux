@@ -9,13 +9,13 @@ unbind -T copy-mode-vi C-down
 unbind -T copy-mode-vi C-up
 
 # Enter copy mode
-bind -n C-_ if "$is_vim" {
+bind -n C-_ if "$forward_keys" {
   send C-_
 } {
   copy-mode
 }
 
-bind -n C-/ if "$is_vim" {
+bind -n C-/ if "$forward_keys" {
   send C-/
 } {
   copy-mode
