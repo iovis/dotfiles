@@ -39,43 +39,53 @@ vim.api.nvim_create_autocmd("LspAttach", {
       return
     end
 
-    ---- Signature/Definition
-    -- nmap("<c-s>", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
-    -- imap("<c-s>", vim.lsp.buf.signature_help, "vim.lsp.buf.signature_help")
-    -- imap("<c-h>", vim.lsp.buf.hover, "vim.lsp.buf.hover")
-    --
-    -- nmap("T", vim.lsp.buf.references, "vim.lsp.buf.references")
-    -- nmap("gd", vim.lsp.buf.hover, "vim.lsp.buf.hover")
-    -- nmap("gt", vim.lsp.buf.type_definition, "vim.lsp.buf.type_definition")
-    -- nmap("t", vim.lsp.buf.definition, "vim.lsp.buf.definition")
-    --
-    -- ---- Actions
-    -- imap("<m-j>", vim.lsp.buf.code_action, "vim.lsp.buf.code_action")
-    -- nmap("<leader>la", vim.lsp.buf.code_action, "vim.lsp.buf.code_action")
-    --
-    -- nmap("<leader>lr", vim.lsp.buf.rename, "vim.lsp.buf.rename")
-    -- xmap("<leader>lr", vim.lsp.buf.rename, "vim.lsp.buf.rename")
-    --
-    -- ---- Symbols
-    -- nmap("<leader>ls", vim.lsp.buf.document_symbol, "vim.lsp.buf.document_symbol")
-    -- nmap("<leader>lw", vim.lsp.buf.workspace_symbol, "vim.lsp.buf.workspace_symbol")
-    --
-    -- ---- Diagnostics
-    -- nmap("<m-d>", vim.diagnostic.open_float, "vim.diagnostic.open_float")
-    --
-    -- nmap("<left>", function()
-    --   vim.diagnostic.jump({
-    --     count = -1,
-    --     float = true,
-    --   })
-    -- end, "vim.diagnostic.goto_prev")
-    --
-    -- nmap("<right>", function()
-    --   vim.diagnostic.jump({
-    --     count = 1,
-    --     float = true,
-    --   })
-    -- end, "vim.diagnostic.goto_next")
+    vim.keymap.set("n", "t", vim.lsp.buf.definition, { buffer = bufnr, desc = "vim.lsp.buf.definition" })
+
+    if false then
+      ---- Signature/Definition
+      vim.keymap.set({ "n", "i" }, "<c-s>", vim.lsp.buf.signature_help, {
+        buffer = bufnr,
+        desc = "vim.lsp.buf.signature_help",
+      })
+
+      vim.keymap.set("n", "gd", vim.lsp.buf.hover, { buffer = bufnr, desc = "vim.lsp.buf.hover" })
+      vim.keymap.set("i", "<c-h>", vim.lsp.buf.hover, { buffer = bufnr, desc = "vim.lsp.buf.hover" })
+      vim.keymap.set("n", "T", vim.lsp.buf.references, { buffer = bufnr, desc = "vim.lsp.buf.references" })
+      vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = bufnr, desc = "vim.lsp.buf.type_definition" })
+
+      ---- Actions
+      vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { buffer = bufnr, desc = "vim.lsp.buf.code_action" })
+      vim.keymap.set("i", "<m-j>", vim.lsp.buf.code_action, { buffer = bufnr, desc = "vim.lsp.buf.code_action" })
+      vim.keymap.set({ "n", "x" }, "<leader>lr", vim.lsp.buf.rename, { buffer = bufnr, desc = "vim.lsp.buf.rename" })
+
+      ---- Symbols
+      vim.keymap.set("n", "<leader>ls", vim.lsp.buf.document_symbol, {
+        buffer = bufnr,
+        desc = "vim.lsp.buf.document_symbol",
+      })
+
+      vim.keymap.set("n", "<leader>lw", vim.lsp.buf.workspace_symbol, {
+        buffer = bufnr,
+        desc = "vim.lsp.buf.workspace_symbol",
+      })
+
+      ---- Diagnostics
+      vim.keymap.set("n", "<m-d>", vim.diagnostic.open_float, { buffer = bufnr, desc = "vim.diagnostic.open_float" })
+
+      vim.keymap.set("n", "<left>", function()
+        vim.diagnostic.jump({
+          count = -1,
+          float = true,
+        })
+      end, { buffer = bufnr, desc = "vim.diagnostic.goto_prev" })
+
+      vim.keymap.set("n", "<right>", function()
+        vim.diagnostic.jump({
+          count = 1,
+          float = true,
+        })
+      end, { buffer = bufnr, desc = "vim.diagnostic.goto_next" })
+    end
 
     ----Inlay hints
     if client:supports_method("textDocument/inlayHint") then
