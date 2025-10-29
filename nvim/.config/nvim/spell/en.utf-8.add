@@ -94,3 +94,4 @@ miette
 subdirectory
 clippy
 hardcode
+deserialization
