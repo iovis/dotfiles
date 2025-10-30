@@ -18,5 +18,5 @@ set -g @yank_selection_mouse 'clipboard'
 
 if "type muxi" {
   run -b "muxi init"
-  run -b "muxi plugins init"
+  run -b "muxi plugins init || tmux display 'muxi: plugins init failed'"
 }
