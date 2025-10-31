@@ -13,7 +13,7 @@ function upgrade_libraries
             parupdate
         end
 
-        log_step $(green pacman) orpaned
+        log_step $(green pacman) orphaned
         pacorphan
     else if command -q apt
         sudo apt update
