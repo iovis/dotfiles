@@ -34,8 +34,9 @@ gui:
 git:
   autoFetch: false
   autoForwardBranches: none
-  paging:
-    externalDiffCommand: difft --color=always
+  pagers:
+    - externalDiffCommand: difft --color=always
+    - pager: ""  # default git diff
   parseEmoji: true
 notARepository: 'quit'
 promptToReturnFromSubprocess: false
