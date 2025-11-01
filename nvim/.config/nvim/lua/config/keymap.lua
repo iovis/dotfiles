@@ -94,13 +94,13 @@ vim.keymap.set("n", "<space>", "<nop>")
 -- Buffers
 vim.keymap.set("n", "<bs>", "<c-^>")
 
-vim.keymap.set("n", "<leader>n", "<cmd>enew<cr>")
 vim.keymap.set("n", "<leader>q", "<cmd>%bdelete<cr>")
 vim.keymap.set("n", "<leader>Q", "<cmd>%bdelete|e#|bd#<cr>")
 vim.keymap.set("n", "<leader>b", "<cmd>bd!<cr>")
 
 vim.keymap.set("n", "<leader>e", ":e!<space>")
 vim.keymap.set("n", "<leader>E", ":e! <c-r>=fnameescape(expand('%:.:h')).'/'<cr>")
+vim.keymap.set("n", "<leader>N", "<cmd>enew<cr>")
 vim.keymap.set("n", "<leader>W", ":saveas <c-r>=fnameescape(expand('%:.:h')).'/'<cr>")
 
 -- Editing
@@ -288,10 +288,10 @@ vim.keymap.set("n", "<leader>uf", "<cmd>EditFtplugin<cr>")
 vim.keymap.set("n", "<leader>uF", ":EditFtplugin<space>")
 
 -- Notes
-vim.keymap.set("n", "<leader>N", function()
-  local note = string.format("notes/%s.md", vim.fn.strftime("%F"))
-  vim.cmd.edit(note)
-end, { desc = "Open daily note" })
+-- vim.keymap.set("n", "<leader>N", function()
+--   local note = string.format("notes/%s.md", vim.fn.strftime("%F"))
+--   vim.cmd.edit(note)
+-- end, { desc = "Open daily note" })
 
 -- Project files
 vim.keymap.set("n", "<leader>ua", "<cmd>e! AGENTS.md<cr>")
