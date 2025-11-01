@@ -1,0 +1,23 @@
+{
+    "closeOnFocusLoss": false,
+    "faviconService": "twenty",
+    "font": {
+        "normal": "FiraCode Nerd Font",
+        "size": 10
+    },
+    "keybinding": "default",
+    "keybinds": {
+    },
+    "popToRootOnClose": false,
+    "rootSearch": {
+        "searchFiles": false
+    },
+    "theme": {
+        "name": "vicinae-dark"
+    },
+    "window": {
+        "csd": true,
+        "opacity": 0.95,
+        "rounding": 10
+    }
+}
