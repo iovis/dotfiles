@@ -46,6 +46,12 @@ local winbar_per_filetype = {
     hl = "DevIconGitLogo",
     title = "git rebase",
   },
+  ["markdown.gh"] = {
+    icon = "",
+    title = function()
+      return vim.fn.bufname()
+    end,
+  },
   oil = {
     icon = "  ",
     hl = "Directory",
