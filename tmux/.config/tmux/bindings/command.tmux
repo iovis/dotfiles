@@ -18,8 +18,8 @@ bind -N "Open htop" -T command h {
   new-window -Sn htop htop
 }
 
-bind -N "Open Copilot" -T command k {
-  new-window -Sn copilot copilot --resume
+bind -N "Open Codex" -T command k {
+  new-window -Sn codex codex resume
 }
 
 bind -N "Open numbat" -T command m {
