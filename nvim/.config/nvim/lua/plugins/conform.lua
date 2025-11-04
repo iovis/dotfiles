@@ -5,6 +5,8 @@ return {
   config = function()
     local format_options = {
       timeout_ms = 2000,
+      async = false,
+      quiet = false,
       lsp_format = "fallback",
     }
 
