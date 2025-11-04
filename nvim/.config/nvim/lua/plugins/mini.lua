@@ -19,17 +19,21 @@ return {
         --       - a: xxx
         --       - i:  x
         r = { "%b[]", "^.().*().$" }, -- alias 'r' to []
-        n = gen_ai_spec.number(),
+        d = gen_ai_spec.number(),
         l = gen_ai_spec.line(),
         i = gen_ai_spec.indent(),
         e = gen_ai_spec.buffer(),
+        m = { -- Word with case
+          { "%u[%l%d]+%f[^%l%d]", "%f[%S][%l%d]+%f[^%l%d]", "%f[%P][%l%d]+%f[^%l%d]", "^[%l%d]+%f[^%l%d]" },
+          "^().*()$",
+        },
 
         -- treesitter
-        a = gen_spec.treesitter({ a = "@parameter.outer", i = "@parameter.inner" }),
+        -- a = gen_spec.treesitter({ a = "@parameter.outer", i = "@parameter.inner" }), -- outer doesn't seem to work
         u = gen_spec.treesitter({ a = "@list_item.outer", i = "@list_item.inner" }),
         j = gen_spec.treesitter({
-          a = { "@block.outer", "@loop.outer" },
-          i = { "@block.inner", "@loop.inner" },
+          a = { "@block.outer", "@conditional.outer", "@loop.outer" },
+          i = { "@block.inner", "@conditional.inner", "@loop.inner" },
         }),
       },
       mappings = {

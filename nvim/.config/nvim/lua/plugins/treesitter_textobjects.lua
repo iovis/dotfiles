@@ -9,6 +9,8 @@ return {
       ["if"] = "@function.inner",
       ["ac"] = "@class.outer",
       ["ic"] = "@class.inner",
+      ["aa"] = "@parameter.outer",
+      ["ia"] = "@parameter.inner",
     }
 
     for key, selector in pairs(keymaps) do
