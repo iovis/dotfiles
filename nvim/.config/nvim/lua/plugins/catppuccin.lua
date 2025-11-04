@@ -71,6 +71,11 @@ return {
           -- Cmp
           CmpItemMenu = { link = "Comment" },
 
+          -- Diff
+          ["@diff.plus"] = { fg = colors.green, bold = true },
+          ["@diff.delta"] = { fg = colors.blue, bold = true },
+          ["@diff.minus"] = { fg = colors.red, bold = true },
+
           -- LSP Document Highlights
           LspReferenceRead = { bg = colors.base },
           LspReferenceText = { bg = colors.base },
