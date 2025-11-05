@@ -26,6 +26,9 @@ return {
         formatters = {
           file = { truncate = 80 },
         },
+        previewers = {
+          diff = { style = "syntax" },
+        },
         sources = {
           buffers = {
             sort_lastused = false,
@@ -357,6 +360,10 @@ return {
     end, { desc = "snacks.picker.qflist" })
 
     -- LSP
+    vim.keymap.set("n", "<leader>li", function()
+      snacks.picker.lsp_config({ focus = "list" })
+    end, { desc = "snacks.picker.lsp_config" })
+
     vim.api.nvim_create_autocmd("LspAttach", {
       callback = function(event)
         local client = vim.lsp.get_client_by_id(event.data.client_id)
