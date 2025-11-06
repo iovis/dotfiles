@@ -10,5 +10,9 @@ autoload -U down-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search # Down
 
-bindkey "^N" forward-char
-bindkey "^P" forward-word
+# alt + arrow keys to move by word
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
+
+bindkey "^[L" forward-char
+bindkey "^[W" forward-word
