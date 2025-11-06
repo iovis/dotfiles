@@ -31,7 +31,7 @@ bind -N "Set session name and path to current pane's" i {
   run tmux_set_session_name
 }
 
-bind -N "Toggle synchronize panes" S {
+bind -N "Toggle synchronize panes" s {
   set -w synchronize-panes
 }
 
@@ -111,7 +111,7 @@ bind -N "Horizontal pane" C-h {
   split-window -v -c "#{pane_current_path}"
 }
 
-bind -N "Horizontal pane (full)" s {
+bind -N "Horizontal pane (full)" c-s {
   split-window -fv -c "#{pane_current_path}"
 }
 

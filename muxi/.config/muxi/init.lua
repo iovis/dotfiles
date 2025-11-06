@@ -13,6 +13,7 @@ return {
         ["resurrect-capture-pane-contents"] = "on",
         ["resurrect-processes"] = "lazygit",
         ["resurrect-strategy-nvim"] = "session",
+        ["resurrect-save"] = "S",
       },
     },
     {
