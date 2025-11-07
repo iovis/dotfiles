@@ -27,7 +27,10 @@ return {
           file = { truncate = 80 },
         },
         previewers = {
-          diff = { style = "syntax" },
+          diff = {
+            style = "syntax",
+            wo = { wrap = false },
+          },
         },
         sources = {
           buffers = {
