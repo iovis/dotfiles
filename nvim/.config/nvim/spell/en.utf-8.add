@@ -96,3 +96,5 @@ clippy
 hardcode
 deserialization
 conf
+Neovim
+keymaps
