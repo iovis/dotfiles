@@ -241,10 +241,10 @@ nnoremap <leader>W :saveas <C-R>=fnameescape(expand('%:.:h')).'/'<cr>
 " Editing
 nnoremap J m`J``
 
-nnoremap <M-j> <cmd>m+<cr>==
-nnoremap <M-k> <cmd>m-2<cr>==
-xnoremap <M-j> <cmd>m'>+<cr>`<my`>mzgv=gv`yo`z
-xnoremap <M-k> <cmd>m'<-2<cr>`>my`<mzgv=gv`yo`z
+nnoremap <m-j> <cmd>m+<cr>==
+nnoremap <m-k> <cmd>m-2<cr>==
+xnoremap <m-j> <cmd>m'>+<cr>`<my`>mzgv=gv`yo`z
+xnoremap <m-k> <cmd>m'<-2<cr>`>my`<mzgv=gv`yo`z
 
 nnoremap <m-o> m`o<esc>``
 nnoremap <m-O> m`O<esc>``
@@ -257,9 +257,6 @@ xnoremap < <gv
 xnoremap > >gv
 
 " Editor
-nnoremap ; :
-xnoremap ; :
-
 nnoremap <leader>w <cmd>w!<cr>
 nnoremap <leader>x <cmd>confirm qa<cr>
 nnoremap <leader>X <cmd>qa!<cr>
@@ -302,8 +299,6 @@ nnoremap <leader>L <c-w>L
 
 nnoremap M <c-w>o
 nnoremap <leader>m <c-w>_<c-w>\|
-nnoremap <leader>_ <c-w>_
-nnoremap <leader>\| <c-w>\|
 
 " Copy/Paste
 nnoremap Y y$
@@ -324,18 +319,17 @@ xnoremap D yP`<^
 " Quickfix/Location list
 nnoremap <up>   <cmd>cprevious<cr>
 nnoremap <down> <cmd>cnext<cr>
-nnoremap <leader><up>   <cmd>cpfile<cr>
-nnoremap <leader><down> <cmd>cnfile<cr>
+nnoremap <c-s-up>   <cmd>cpfile<cr>
+nnoremap <c-s-down> <cmd>cnfile<cr>
 
 nnoremap <left>  <cmd>lprevious<cr>
 nnoremap <right> <cmd>lnext<cr>
-nnoremap <leader><left>  <cmd>lpfile<cr>
-nnoremap <leader><right> <cmd>lnfile<cr>
+nnoremap <c-s-left>  <cmd>lpfile<cr>
+nnoremap <c-s-right> <cmd>lnfile<cr>
 
 " Repeat
 nnoremap <leader>. @:
 nnoremap <leader>, @@
-
 xnoremap <silent> . :normal .<cr>
 
 " Replace
@@ -352,20 +346,18 @@ xnoremap * y:let @/=escape(@@, '/\') <bar> normal! /<cr>
 xnoremap # y:let @/=escape(@@, '/\') <bar> normal! ?<cr>
 
 " Tabs
-nnoremap <m-l> <cmd>tabnext<cr>
-nnoremap <m-h> <cmd>tabprevious<cr>
-
 " nnoremap 'q <cmd>tabonly<cr>
-nnoremap <leader>< <cmd>tabmove -1<cr>
-nnoremap <leader>> <cmd>tabmove +1<cr>
-nnoremap <leader>C <cmd>tabclose<cr>
-nnoremap <leader>t <cmd>tabnew<cr>
 nnoremap <leader><tab> <c-w>T
-nnoremap <leader><s-tab> <cmd>tab sbuffer<cr>
+nnoremap <leader>t <cmd>tabnew<cr>
+nnoremap <m-,> <cmd>tabmove -1<cr>
+nnoremap <m-.> <cmd>tabmove +1<cr>
+nnoremap <m-h> <cmd>tabprevious<cr>
+nnoremap <m-l> <cmd>tabnext<cr>
+nnoremap <s-tab> <cmd>tabclose<cr>
 
 " Tags
-nmap T g]
 nmap t <c-]>
+nmap T g]
 
 " Toggle settings
 nnoremap yol :set cursorline!<cr>
@@ -381,13 +373,6 @@ nnoremap yow :setlocal wrap!<cr>
 " }}} Normal mode "
 
 " Misc {{{ "
-" Global substitutions
-nnoremap +g :g//<left>
-nnoremap +v :v//<left>
-
-xnoremap +g :g//<left>
-xnoremap +v :v//<left>
-
 " Undo
 nmap U :undolist<cr>
 " }}} Misc "
@@ -825,7 +810,7 @@ function! ToggleList(bufname, pfx)
   endif
 endfunction
 
-nnoremap <silent>  \ :call ToggleList("Quickfix List", 'c')<cr>
+nnoremap <silent> + :call ToggleList("Quickfix List", 'c')<cr>
 nnoremap <silent> \| :call ToggleList("Location List", 'l')<cr>
 " }}} QuickFix toggle "
 
@@ -961,7 +946,7 @@ noremap <silent> <unique> <Plug>ResizeLeft  :call Resize_left()<cr>
 noremap <silent> <unique> <Plug>ResizeRight :call Resize_right()<cr>
 
 function! Resize_up() abort
-  let l:sign = Resize_is_edge('j') ? '+' : '-'
+  let l:sign = Resize_is_edge('k') ? '-' : '+'
   silent! execute 'resize ' . l:sign . g:resize_vim_vertical
 endfunction
 
@@ -971,7 +956,7 @@ function! Resize_down() abort
 endfunction
 
 function! Resize_left() abort
-  let l:sign = Resize_is_edge('l') ? '+' : '-'
+  let l:sign = Resize_is_edge('h') ? '-' : '+'
   silent! execute 'vertical resize ' . l:sign . g:resize_vim_horizontal
 endfunction
 
@@ -981,13 +966,7 @@ function! Resize_right() abort
 endfunction
 
 function! Resize_is_edge(direction) abort
-  let l:current_window = winnr()
-  silent! execute 'wincmd ' . a:direction
-
-  let l:edge_window = winnr()
-  silent! execute l:current_window . 'wincmd w'
-
-  return l:current_window == l:edge_window
+  return winnr() == winnr(a:direction)
 endfunction
 " }}} resize.vim "
 

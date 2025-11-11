@@ -166,8 +166,6 @@ vim.keymap.set("n", "<leader>L", "<c-w>L")
 
 vim.keymap.set("n", "M", "<c-w>o")
 vim.keymap.set("n", "<leader>m", "<c-w>_<c-w>|")
-vim.keymap.set("n", "<leader>_", "<c-w>_")
-vim.keymap.set("n", "<leader>|", "<c-w>|")
 
 -- Copy/Paste
 vim.keymap.set("n", "Y", "y$")
@@ -227,8 +225,8 @@ end, { desc = "Copy current buffer's path and line number to clipboard" })
 
 -- Quickfix/Location list
 vim.keymap.set("n", "<up>", "<cmd>cprevious<cr>")
-vim.keymap.set("n", "<c-s-up>", "<cmd>cpfile<cr>")
 vim.keymap.set("n", "<down>", "<cmd>cnext<cr>")
+vim.keymap.set("n", "<c-s-up>", "<cmd>cpfile<cr>")
 vim.keymap.set("n", "<c-s-down>", "<cmd>cnfile<cr>")
 
 vim.keymap.set("n", "<left>", "<cmd>lprevious<cr>")
