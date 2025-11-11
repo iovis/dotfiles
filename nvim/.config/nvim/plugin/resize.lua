@@ -4,28 +4,28 @@ local function is_edge(direction)
   return vim.fn.winnr() == vim.fn.winnr(direction)
 end
 
+local function sign_for(direction)
+  return is_edge(direction) and "-" or "+"
+end
+
 function resize.run(command, sign, amount)
   vim.cmd(string.format("silent! %s %s%d", command, sign, math.abs(amount)))
 end
 
 function resize.up(amount)
-  local sign = is_edge("k") and "-" or "+"
-  resize.run("resize", sign, amount)
+  resize.run("resize", sign_for("k"), amount)
 end
 
 function resize.down(amount)
-  local sign = is_edge("j") and "-" or "+"
-  resize.run("resize", sign, amount)
+  resize.run("resize", sign_for("j"), amount)
 end
 
 function resize.left(amount)
-  local sign = is_edge("h") and "-" or "+"
-  resize.run("vertical resize", sign, amount)
+  resize.run("vertical resize", sign_for("h"), amount)
 end
 
 function resize.right(amount)
-  local sign = is_edge("l") and "-" or "+"
-  resize.run("vertical resize", sign, amount)
+  resize.run("vertical resize", sign_for("l"), amount)
 end
 
 vim.keymap.set("n", "<m-up>", function()
