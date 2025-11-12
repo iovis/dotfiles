@@ -1,0 +1,7 @@
+[tui]
+# Examples: true | ["agent-turn-complete", "approval-requested"]
+notifications = true
+notify = ["notify-send", "Codex"]
+
+[features]
+web_search_request = true
