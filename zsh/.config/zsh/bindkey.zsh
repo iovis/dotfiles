@@ -14,5 +14,5 @@ bindkey "^[[B" down-line-or-beginning-search # Down
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 
-bindkey "^[L" forward-char
-bindkey "^[W" forward-word
+bindkey "^[l" forward-char
+bindkey "^[w" forward-word
