@@ -28,6 +28,8 @@ fastfetch
 fd
 fish
 fzf
+gamemode
+gamescope
 gdm
 git
 github-cli
@@ -96,6 +98,7 @@ just
 kitty
 lazygit
 less
+lib32-gamemode
 libpulse
 libqalculate
 libva-nvidia-driver
