@@ -1,3 +1,3 @@
 function pipo
-    pip list --outdated --format=columns | grep --color -f $DOTFILES/default/pips
+    pip list --outdated --format=columns | rg --color=always -wf $DOTFILES/default/pips
 end
