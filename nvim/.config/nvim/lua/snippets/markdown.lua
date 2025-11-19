@@ -89,6 +89,9 @@ return {
   s("note", { t({ "> [!NOTE]", "> " }), i(1) }, {
     condition = conds.line_begin,
   }),
+  s("todo", { t({ "> [!TODO]", "> " }), i(1) }, {
+    condition = conds.line_begin,
+  }),
   s("tip", { t({ "> [!TIP]", "> " }), i(1) }, {
     condition = conds.line_begin,
   }),
