@@ -5,3 +5,6 @@ notify = ["notify-send", "Codex"]
 
 [features]
 web_search_request = true
+
+[shell_environment_policy]
+ignore_default_excludes = true  # inherit all env variables
