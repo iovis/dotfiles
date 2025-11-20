@@ -30,10 +30,9 @@ return {
 
         -- treesitter
         -- a = gen_spec.treesitter({ a = "@parameter.outer", i = "@parameter.inner" }), -- outer doesn't seem to work
-        u = gen_spec.treesitter({ a = "@list_item.outer", i = "@list_item.inner" }),
         j = gen_spec.treesitter({
-          a = { "@block.outer", "@conditional.outer", "@loop.outer" },
-          i = { "@block.inner", "@conditional.inner", "@loop.inner" },
+          a = { "@block.outer", "@conditional.outer", "@loop.outer", "@list_item.outer" },
+          i = { "@block.inner", "@conditional.inner", "@loop.inner", "@list_item.inner" },
         }),
       },
       mappings = {
