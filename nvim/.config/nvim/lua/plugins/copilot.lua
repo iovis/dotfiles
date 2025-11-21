@@ -4,6 +4,7 @@ return {
     vim.g.copilot_no_tab_map = true
     vim.g.copilot_filetypes = {
       gitcommit = true,
+      oil = false,
     }
 
     vim.keymap.set("n", "yoq", function()
