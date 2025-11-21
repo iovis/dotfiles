@@ -1,2 +1,13 @@
 [mgr]
 show_hidden = true
+
+[[opener.mpv_dir]]
+run = 'fd -tf . "$@" -X mpv --shuffle --loop-playlist=inf'
+for = "unix"
+orphan = true
+desc = "Open in mpv"
+
+[open]
+append_rules = [
+  { mime = "inode/directory", use = "mpv_dir" }
+]
