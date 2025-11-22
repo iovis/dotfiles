@@ -3,8 +3,12 @@
   --noti-bg-focus: rgba(0, 0, 0, 0);
 }
 
+.notification-row .notification-background .notification .notification-default-action .notification-content {
+  padding: 16px 0 16px 16px;
+}
+
 .notification-row .notification-background .notification .notification-default-action .notification-content .image {
   -gtk-icon-size: calc(var(--notification-icon-size) / 2);
   border-radius: 0px;
-  margin: 16px;
+  margin-right: 20px;
 }
