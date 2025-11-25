@@ -4,7 +4,7 @@ NUMBAT_CMD="numbat -e"
 INITIAL_QUERY="${*:-}"
 
 fzf \
-  --prompt="  ❯ " \
+  --prompt="    " \
   --disabled \
   --gutter=" " \
   --pointer=" " \
