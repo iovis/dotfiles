@@ -73,6 +73,9 @@ sudo cp "$DOTFILES/scripts/extra/reflector.conf" /etc/xdg/reflector/reflector.co
 # gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 # gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
 
+echo "[$(date '+%Y-%m-%d %H:%M')] Apply monitor settings to GDM"
+sudo cp ~/.config/monitors.xml /etc/xdg/monitors.xml
+
 echo "[$(date '+%Y-%m-%d %H:%M')] Installation ended"
 
 shell=$(basename "$SHELL")
