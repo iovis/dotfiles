@@ -26,15 +26,11 @@ u.bind.cmd({ ctrl_shift, "delete" }, "aerospace workspace-back-and-forth")
 ---Focus window
 ---See: https://nikitabobko.github.io/AeroSpace/commands#focus
 u.bind.cmd({ ctrl_alt_cmd, "h" }, "aerospace focus left --boundaries all-monitors-outer-frame")
-u.bind.cmd({ ctrl_alt_cmd, "j" }, "aerospace focus down")
-u.bind.cmd({ ctrl_alt_cmd, "k" }, "aerospace focus up")
 u.bind.cmd({ ctrl_alt_cmd, "l" }, "aerospace focus right --boundaries all-monitors-outer-frame")
 
 ---Move window
 ---See: https://nikitabobko.github.io/AeroSpace/commands#move
 u.bind.cmd({ hyper, "h" }, "aerospace move left")
-u.bind.cmd({ hyper, "j" }, "aerospace move down")
-u.bind.cmd({ hyper, "k" }, "aerospace move up")
 u.bind.cmd({ hyper, "l" }, "aerospace move right")
 
 ---Join window
