@@ -1,3 +1,4 @@
+config-version = 2
 start-at-login = true
 accordion-padding = 350
 # Mouse follows focus when focused monitor changes
@@ -6,6 +7,8 @@ accordion-padding = 350
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
 # on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 on-focused-monitor-changed = []
+on-focus-changed = ['move-mouse window-lazy-center']
+persistent-workspaces = ["1", "2", "3", "4", "K"]
 
 [exec.env-vars]
 PATH = "${HOME}/.dotfiles/bin/:/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}"
@@ -44,8 +47,8 @@ K = "secondary"  # Non-main monitor in case when there are only two monitors
 
 # All possible commands: https://nikitabobko.github.io/AeroSpace/commands
 
-ctrl-alt-cmd-j = "workspace prev"
-ctrl-alt-cmd-k = "workspace next"
+ctrl-alt-cmd-j = "workspace --wrap-around prev"
+ctrl-alt-cmd-k = "workspace --wrap-around next"
 ctrl-alt-cmd-shift-j = ["move-node-to-workspace prev", "workspace prev"]
 ctrl-alt-cmd-shift-k = ["move-node-to-workspace next", "workspace next"]
 
@@ -53,26 +56,19 @@ ctrl-alt-cmd-1 = "workspace 1"
 ctrl-alt-cmd-2 = "workspace 2"
 ctrl-alt-cmd-3 = "workspace 3"
 ctrl-alt-cmd-4 = "workspace 4"
-ctrl-alt-cmd-5 = "workspace 5"
-ctrl-alt-cmd-6 = "workspace 6"
-ctrl-alt-cmd-7 = "workspace 7"
-ctrl-alt-cmd-8 = "workspace 8"
-ctrl-alt-cmd-9 = "workspace 9"
 
 ctrl-alt-cmd-shift-1 = ["move-node-to-workspace 1", "workspace 1"]
 ctrl-alt-cmd-shift-2 = ["move-node-to-workspace 2", "workspace 2"]
 ctrl-alt-cmd-shift-3 = ["move-node-to-workspace 3", "workspace 3"]
 ctrl-alt-cmd-shift-4 = ["move-node-to-workspace 4", "workspace 4"]
-ctrl-alt-cmd-shift-5 = ["move-node-to-workspace 5", "workspace 5"]
-ctrl-alt-cmd-shift-6 = ["move-node-to-workspace 6", "workspace 6"]
-ctrl-alt-cmd-shift-7 = ["move-node-to-workspace 7", "workspace 7"]
-ctrl-alt-cmd-shift-8 = ["move-node-to-workspace 8", "workspace 8"]
-ctrl-alt-cmd-shift-9 = ["move-node-to-workspace 9", "workspace 9"]
 
 ctrl-alt-cmd-space = "mode prefix"
+
 [mode.prefix.binding]
 esc = "mode main"
 q = ["close-all-windows-but-current", "mode main"]
+k = ["workspace K", "mode main"]
+shift-k = ["move-node-to-workspace K", "mode main"]
 s = ["exec-and-forget aerospace_secondary", "mode main"]
 w = ["exec-and-forget aerospace_swap", "mode main"]
 1 = ["exec-and-forget aerospace_move_all_to_workspace 1", "mode main"]
@@ -118,7 +114,7 @@ run = "layout floating"
 [[on-window-detected]]
 # Webex
 if.app-id = "Cisco-Systems.Spark"
-run = ["layout floating", "move-node-to-workspace 1"]
+run = ["layout floating"]
 
 [[on-window-detected]]
 if.app-id = "com.culturedcode.ThingsMac"
