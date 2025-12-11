@@ -7,12 +7,12 @@ return {
       timeout_ms = 2000,
       async = false,
       quiet = false,
-      lsp_format = "fallback",
     }
 
     local conform = require("conform")
     conform.setup({
       log_level = vim.log.levels.ERROR,
+      default_format_opts = { lsp_format = "fallback" },
       format_on_save = function(bufnr)
         local ignore_filetypes = {}
 
@@ -37,13 +37,8 @@ return {
         },
       },
       formatters_by_ft = {
-        ["*"] = { "injected" }, -- Treesitter based injections
-        -- eruby = { "htmlbeautifier" },
-        hurl = { "hurlfmt" },
         lua = { "stylua" },
-        rust = { "rustfmt", lsp_format = "fallback" },
         sql = { "sql_formatter" },
-        swift = { "swift_format" },
       },
     })
 
@@ -61,7 +56,7 @@ return {
         }
       end
 
-      require("conform").format({ async = true, lsp_format = "fallback", range = range })
+      require("conform").format({ async = true, range = range })
     end, { range = true })
   end,
 }
