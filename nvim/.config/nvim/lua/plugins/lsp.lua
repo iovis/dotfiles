@@ -1,6 +1,6 @@
 return {
   { "neovim/nvim-lspconfig" },
-  { "b0o/schemastore.nvim", lazy = true },
+  -- { "b0o/schemastore.nvim", lazy = true },
   {
     "folke/lazydev.nvim",
     ft = "lua",
