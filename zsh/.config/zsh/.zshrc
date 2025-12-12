@@ -22,10 +22,10 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
-zinit cdreplay -q
 
-eval "$(starship init zsh)"
-eval "$(mise activate zsh)"
+if type starship > /dev/null; then
+  eval "$(starship init zsh)"
+fi
 
 ## Source config files
 source "$ZDOTDIR/aliases.zsh"
@@ -40,6 +40,8 @@ source "$ZDOTDIR/completions.zsh"
 for filename in $ZDOTDIR/local/*.zsh(N.); do
   source "$filename"
 done
+
+zinit cdreplay -q
 
 ## Profiling helper (keep at the end)
 if [[ "$ZPROF" = true ]]; then
