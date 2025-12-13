@@ -1,34 +1,35 @@
 # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
 gui:
   border: rounded
-  enlargedSideViewLocation: 'top'
+  enlargedSideViewLocation: top
   expandFocusedSidePanel: true
-  filterMode: 'fuzzy'
-  nerdFontsVersion: '3'
+  filterMode: fuzzy
+  nerdFontsVersion: "3"
   showBottomLine: false
   showCommandLog: false
+  # commandLogSize: 3
   showDivergenceFromBaseBranch: arrowAndNumber
   showFileTree: false
   skipAmendWarning: true
   skipRewordInEditorWarning: true
   theme:
     activeBorderColor:
-      - '#a6d189'
+      - "#a6d189"
       - bold
     inactiveBorderColor:
-      - '#737994'
+      - "#737994"
     searchingActiveBorderColor:
-      - '#8caaee'
+      - "#8caaee"
       - bold
     optionsTextColor:
-      - '#8caaee'
+      - "#8caaee"
     selectedLineBgColor:
-      - '#292c3c'
+      - "#292c3c"
       - bold
     cherryPickedCommitBgColor:
       - bold
     cherryPickedCommitFgColor:
-      - '#8caaee'
+      - "#8caaee"
     defaultFgColor:
       - default
 git:
@@ -36,21 +37,22 @@ git:
   autoForwardBranches: none
   pagers:
     - externalDiffCommand: difft --color=always
-    - pager: ""  # default git diff
+    - pager: "" # default git diff
   parseEmoji: true
-notARepository: 'quit'
+notARepository: "quit"
 promptToReturnFromSubprocess: false
 keybinding:
   universal:
-    # return: 'q'
-    prevBlock-alt: '<c-k>'
-    nextBlock-alt: '<c-j>'
-    nextTab: '<c-l>'
-    prevTab: '<backspace>' # '<c-h>'
+    prevBlock-alt: <c-k>
+    nextBlock-alt: <c-j>
+    nextTab: <c-l>
+    prevTab: <backspace> # <c-h>
+    return: h
+    goInto: l
   commits:
-    moveDownCommit: 'J'
-    moveUpCommit: 'K'
-    openLogMenu: '<c-g>'
+    moveDownCommit: J
+    moveUpCommit: K
+    openLogMenu: <c-g>
   files:
-    commitChanges: 'C'
-    commitChangesWithEditor: 'c'
+    commitChanges: C
+    commitChangesWithEditor: c
