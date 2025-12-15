@@ -47,11 +47,17 @@ bind -n C-l if "$forward_keys" "send C-l"  "select-pane -R"
 # }
 
 ## Resize panes
+bind -n M-m     resize-pane -Z
+
 bind -n C-down  resize-pane -D 5
 bind -n C-left  resize-pane -L 20
 bind -n C-right resize-pane -R 20
 bind -n C-up    resize-pane -U 5
-bind -n M-m     resize-pane -Z
+
+bind -n C-M-down  if "$forward_keys" "send C-M-down"  "resize-pane -D 1"
+bind -n C-M-left  if "$forward_keys" "send C-M-left"  "resize-pane -L 1"
+bind -n C-M-right if "$forward_keys" "send C-M-right" "resize-pane -R 1"
+bind -n C-M-up    if "$forward_keys" "send C-M-up"    "resize-pane -U 1"
 
 ## Quick Notes popup
 bind -N "Notes popup" -n M-u if -F '#{==:#{session_name},notes}' {
