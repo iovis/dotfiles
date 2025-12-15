@@ -23,7 +23,7 @@ sudo pacman -S --needed $(cat "$PACMAN_PATH/Pacfile")
 if ! command -v paru >/dev/null 2>&1; then
   echo "[$(date '+%Y-%m-%d %H:%M')] Installing paru"
 
-  mkdir "$PROJECT_HOME"
+  mkdir -p "$PROJECT_HOME"
 
   git clone https://aur.archlinux.org/paru-bin.git "$PROJECT_HOME/paru/"
 
