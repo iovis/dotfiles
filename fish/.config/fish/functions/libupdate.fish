@@ -19,13 +19,12 @@ function libupdate
 
     log_step $(green muxi) plugins update
     muxi plugins update
-    echo
 
-    log_step $(green npm) outdated
-    npm -g outdated
+    # log_step $(green npm) outdated
+    # npm -g outdated
 
-    log_step $(green gem) outdated
-    gemo
+    # log_step $(green gem) outdated
+    # gemo
 
     log_step Done!
 end
