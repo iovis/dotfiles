@@ -138,3 +138,7 @@ menuitem:first-child {
 menuitem:last-child {
   border-radius: 0 0 5px 5px;
 }
+
+#custom-screenrecording-indicator.active {
+  color: #e78285;
+}

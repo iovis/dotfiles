@@ -15,6 +15,7 @@
   ],
   "modules-right": [
     // "group/expand",
+    "custom/screenrecording-indicator",
     "idle_inhibitor",
     "custom/notification",
     "bluetooth",
@@ -119,6 +120,12 @@
       "reboot": "systemctl reboot",
       "shutdown": "systemctl poweroff"
     }
+  },
+  "custom/screenrecording-indicator": {
+    "on-click": "screenrecord",
+    "exec": "indicator_screenrecord",
+    "signal": 8,
+    "return-type": "json"
   },
   "clock": {
     // "format": "{:%a %d %b %H:%M}",
