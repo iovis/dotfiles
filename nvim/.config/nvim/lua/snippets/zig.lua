@@ -23,14 +23,13 @@ return {
     fmta(
       [[
         const std = @import("std");
-        const print = std.debug.print;
 
         pub fn main() !void {
             <>
         }
       ]],
       {
-        i(0, [[print("Hello World!\n", .{});]]),
+        i(0, [[std.debug.print("Hello World!\n", .{});]]),
       }
     ),
     {
@@ -182,7 +181,6 @@ return {
       }
     ),
     {
-      -- condition = conds.line_begin,
       condition = conds.line_begin,
     }
   ),
@@ -249,7 +247,10 @@ return {
     }
   ),
 
-  -- Misc
+  -- Imports
+  s("std", t('const std = @import("std");'), {
+    condition = conds.line_begin,
+  }),
   s(
     "import",
     fmt('const {} = @import("{}");', {
