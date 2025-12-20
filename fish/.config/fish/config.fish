@@ -1,18 +1,17 @@
 ## Environment
-set -gx XDG_CACHE_HOME $HOME/.cache
-set -gx XDG_CONFIG_HOME $HOME/.config
-set -gx XDG_DATA_HOME $HOME/.local/share
-set -gx XDG_STATE_HOME $HOME/.local/state
+set -gx XDG_CACHE_HOME "$HOME/.cache"
+set -gx XDG_CONFIG_HOME "$HOME/.config"
+set -gx XDG_DATA_HOME "$HOME/.local/share"
+set -gx XDG_STATE_HOME "$HOME/.local/state"
 
 set -gx DOTFILES "$HOME/.dotfiles"
-set -gx FDOTDIR $XDG_CONFIG_HOME/fish
+set -gx FDOTDIR "$XDG_CONFIG_HOME/fish"
 set -gx ICLOUD_PATH "$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 set -gx NOTES "$HOME/vaults/io/"
 set -gx PROJECT_HOME "$HOME/code"
 
 set -gx EDITOR nvim
-set -gx PODMAN_COMPOSE_WARNING_LOGS false
-set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
+set -gx MANPAGER 'nvim +Man!'
 
 set -gx FZF_CTRL_T_OPTS ""
 set -gx FZF_DEFAULT_COMMAND "fd -H -E '.git' -E '.keep' --type file --follow --color=always"
@@ -62,10 +61,6 @@ source $FDOTDIR/abbrs.fish
 if command -q fzf
     fzf --fish | source
 end
-
-# if command -q tv
-#     tv init fish | source
-# end
 
 if command -q starship
     starship init fish | source
