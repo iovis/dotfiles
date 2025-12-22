@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-fd_folders='fd --type d --max-depth 3 --exclude node_modules --exclude public --exclude src --exclude target . "$HOME" "/run/media/$USER"'
-fd_files='fd --type f --exclude node_modules --exclude public --exclude src --exclude target . "$HOME" "/run/media/$USER"'
+fd_folders='fd --type d --max-depth 3 --exclude node_modules --exclude public --exclude src --exclude target . "$HOME" "/run/media/"'
+fd_files='fd --type f --exclude node_modules --exclude public --exclude src --exclude target . "$HOME" "/run/media/"'
 
 TRANSFORMER="
   test \$FZF_INPUT_LABEL = ' folders ' &&
@@ -11,23 +11,23 @@ TRANSFORMER="
 
 INITIAL_QUERY="${*:-}"
 eval "$fd_folders" | fzf \
---prompt="❯ " \
---gutter=" " \
---header-border \
---input-border \
---input-label=" folders " \
---list-border \
---info=hidden \
---reverse \
---multi \
---bind="ctrl-g:transform:$TRANSFORMER" \
---bind='enter:execute-silent(setsid -f xdg-open {})+abort' \
---bind='alt-enter:execute-silent(setsid -f nautilus {+})+abort' \
---bind='alt-m:execute-silent(setsid -f fd -tf . {+} -X mpv --shuffle --loop-playlist=inf)+abort' \
---bind='ctrl-o:execute-silent(wl-copy {+} && notify-send --icon edit-paste "Copied path to clipboard")+abort' \
---bind=alt-p:toggle-preview \
---bind='alt-r:change-preview-window(down|right)' \
---preview="fzf-preview {}" \
---preview-window=right \
---color=input-border:blue \
---query="$INITIAL_QUERY" || true
+  --prompt="❯ " \
+  --gutter=" " \
+  --header-border \
+  --input-border \
+  --input-label=" folders " \
+  --list-border \
+  --info=hidden \
+  --reverse \
+  --multi \
+  --bind="ctrl-g:transform:$TRANSFORMER" \
+  --bind='enter:execute-silent(setsid -f xdg-open {})+abort' \
+  --bind='alt-enter:execute-silent(setsid -f nautilus {+})+abort' \
+  --bind='alt-m:execute-silent(setsid -f fd -tf . {+} -X mpv --shuffle --loop-playlist=inf)+abort' \
+  --bind='ctrl-o:execute-silent(wl-copy {+} && notify-send --icon edit-paste "Copied path to clipboard")+abort' \
+  --bind=alt-p:toggle-preview \
+  --bind='alt-r:change-preview-window(down|right)' \
+  --preview="fzf-preview {}" \
+  --preview-window=right \
+  --color=input-border:blue \
+  --query="$INITIAL_QUERY" || true
