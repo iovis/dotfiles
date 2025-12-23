@@ -1,6 +1,7 @@
 /* /etc/xdg/swaync/style.css */
 :root {
   --noti-bg-focus: rgba(0, 0, 0, 0);
+  --cc-bg: rgba(0, 0, 0, 0.7);
 }
 
 .notification-row .notification-background .notification .notification-default-action .notification-content {
