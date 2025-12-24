@@ -73,7 +73,7 @@ bind -N "New session" C-n command-prompt -p "new session name:" {
   new-session -A -s "%1" -c "#{pane_current_path}"
 }
 
-bind -N "Reset session" q confirm -p "reset session? (y/n)" {
+bind -N "Reset session" q {
   new-window -c "#{pane_current_path}"
   kill-window -a
 }
@@ -83,7 +83,7 @@ bind -N "New window" c new-window
 bind -N "New window" C-c new-window
 bind -N "New window (current path)" Tab new-window -c "#{pane_current_path}"
 
-bind -N "Close the rest of the windows" Q confirm -p "kill the rest of the windows? (y/n)" {
+bind -N "Close the rest of the windows" Q {
   kill-window -a
 }
 
