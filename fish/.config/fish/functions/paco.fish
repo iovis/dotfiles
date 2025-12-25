@@ -1,3 +1,3 @@
 function paco
-    pacman -Qtdq || echo 'No orphan packages'
+    pacman -Qtdq || echo 'No orphaned packages'
 end
