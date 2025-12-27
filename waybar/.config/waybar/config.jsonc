@@ -51,7 +51,7 @@
     "tooltip-format-on": "Bluetooth On",
     "tooltip-format-disabled": "Bluetooth Off",
     "tooltip-format-connected": "Device: {device_alias}\nMAC: {device_address}\nBattery: {device_battery_percentage}%",
-    "on-click": "GTK_THEME=Adwaita:dark blueberry"
+    "on-click": "vicinae deeplink vicinae://extensions/Gelei/bluetooth/devices"
   },
   "cpu": {
     "format": "  {usage}% ",
