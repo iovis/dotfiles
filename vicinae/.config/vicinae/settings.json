@@ -44,7 +44,6 @@
          "height": 480
       },
       "layer_shell": {
-         "scope": "vicinae",
          "layer": "top",
          "keyboard_interactivity": "exclusive",
          "enabled": true
