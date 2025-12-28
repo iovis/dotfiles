@@ -8,6 +8,4 @@ orphan = true
 desc = "Open in mpv"
 
 [open]
-append_rules = [
-  { mime = "inode/directory", use = "mpv_dir" }
-]
+append_rules = [{ mime = "inode/directory", use = "mpv_dir" }]
