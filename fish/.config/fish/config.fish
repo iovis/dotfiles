@@ -54,6 +54,8 @@ if not status is-interactive
     return
 end
 
+fish_config theme choose "Catppuccin Mocha"
+
 ulimit -n 2048
 
 source $FDOTDIR/abbrs.fish
