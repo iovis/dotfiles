@@ -43,6 +43,6 @@ vim.api.nvim_create_user_command("FloatTerm", function()
   end
 end, {})
 
-vim.keymap.set({ "t", "n" }, [[<c-_>]], "<cmd>FloatTerm<cr>", {
+vim.keymap.set({ "t", "n" }, "<m-/>", "<cmd>FloatTerm<cr>", {
   desc = "Open floating terminal",
 })

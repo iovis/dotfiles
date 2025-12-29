@@ -42,6 +42,7 @@ vim.keymap.set("i", "<m-o>", "<esc>o")
 
 ---- Terminal mode
 vim.keymap.set("t", "KJ", [[<c-\><c-n>]])
+vim.keymap.set("t", "<c-_>", [[<c-\><c-n>]])
 
 ---- Operator pending mode (text objects)
 -- Whole WORD is kinda awkward to press
