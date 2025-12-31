@@ -3,10 +3,11 @@
 # curl --proto '=https' --tlsv1.2 -LsSf https://raw.githubusercontent.com/iovis/dotfiles/master/scripts/arch | bash
 set -euo pipefail
 
-export DOTFILES="$HOME/.dotfiles"
-export PACMAN_PATH="$DOTFILES/pacman/.config/pacman"
-export LOCAL_BIN="$HOME/.local/bin"
-export PROJECT_HOME="$HOME/code/"
+export DOTFILES="${DOTFILES:-$HOME/.dotfiles}"
+export PACMAN_PATH="${PACMAN_PATH:-$DOTFILES/pacman/.config/pacman}"
+export PROJECT_HOME="${PROJECT_HOME:-$HOME/code/}"
+
+export LOCAL_BIN="${LOCAL_BIN:-$HOME/.local/bin}"
 export PATH="$LOCAL_BIN:$PATH"
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing Libraries"
