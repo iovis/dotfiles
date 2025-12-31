@@ -1,3 +1,5 @@
+# Profiling: fish --profile-startup /tmp/fish.profile -ic exit
+
 ## Environment
 set -gx XDG_CACHE_HOME "$HOME/.cache"
 set -gx XDG_CONFIG_HOME "$HOME/.config"
