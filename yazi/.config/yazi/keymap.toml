@@ -1,4 +1,6 @@
+#:schema https://yazi-rs.github.io/schemas/keymap.json
+
 [[input.prepend_keymap]]
-on   = "<Esc>"
-run  = "close"
+on = "<Esc>"
+run = "close"
 desc = "Cancel input"
