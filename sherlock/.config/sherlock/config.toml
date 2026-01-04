@@ -1,5 +1,0 @@
-[default_apps]
-teams = ""
-calendar_client = ""
-terminal = "kitty"
-browser = "qutebrowser --untrusted-args %u"
