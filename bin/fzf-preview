@@ -23,15 +23,15 @@ type=$(file --brief --dereference --mime -- "$file")
 dim=${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}
 
 if [[ $dim == x ]]; then
-  dim=$(stty size < /dev/tty | awk '{print $2 "x" $1}')
-elif ! [[ $KITTY_WINDOW_ID ]] && ((FZF_PREVIEW_TOP + FZF_PREVIEW_LINES == $(stty size < /dev/tty | awk '{print $1}'))); then
+  dim=$(stty size </dev/tty | awk '{print $2 "x" $1}')
+elif ! [[ $KITTY_WINDOW_ID ]] && ((FZF_PREVIEW_TOP + FZF_PREVIEW_LINES == $(stty size </dev/tty | awk '{print $1}'))); then
   # Avoid scrolling issue when the Sixel image touches the bottom of the screen
   # * https://github.com/junegunn/fzf/issues/2544
   dim=${FZF_PREVIEW_COLUMNS}x$((FZF_PREVIEW_LINES - 1))
 fi
 
 if [[ $type =~ image/ ]]; then
-  if [[ $KITTY_WINDOW_ID ]] || [[ $GHOSTTY_RESOURCES_DIR ]] && command -v kitten > /dev/null; then
+  if [[ $KITTY_WINDOW_ID ]] || [[ $GHOSTTY_RESOURCES_DIR ]] && command -v kitten >/dev/null; then
     # 1. 'memory' is the fastest option but if you want the image to be scrollable,
     #    you have to use 'stream'.
     #
@@ -43,9 +43,16 @@ if [[ $type =~ image/ ]]; then
     file "$file"
   fi
 elif [[ $type =~ video/ ]]; then
-  if [[ $KITTY_WINDOW_ID ]] || [[ $GHOSTTY_RESOURCES_DIR ]] && command -v kitten > /dev/null; then
-    # you could use `-vf "thumbnail"` instead of `-ss` to get a better representative frame
-    ffmpeg -hide_banner -loglevel error -i "$file" -ss 00:00:06 -frames:v 1 -f image2 - | kitten icat --clear --transfer-mode=memory --unicode-placeholder --place="$dim@0x0" | sed '$d' | sed $'$s/$/\e[m/'
+  if [[ $KITTY_WINDOW_ID ]] || [[ $GHOSTTY_RESOURCES_DIR ]] && command -v kitten >/dev/null; then
+    out="/tmp/preview.webp"
+
+    # Generate a webp animation from the first 5 seconds of the video
+    ffmpeg -loglevel fatal -y -an -sn -dn -i "$file" -t 5 \
+      -vf "fps=10,scale=480:-1:flags=lanczos" \
+      -c:v libwebp -lossless 0 -compression_level 0 -q:v 75 \
+      -loop 0 -f webp "$out"
+
+    kitten icat --clear --transfer-mode=memory --unicode-placeholder --stdin=no --place="$dim@0x0" "$out" | sed '$d' | sed $'$s/$/\e[m/'
   else
     file "$file"
   fi
