@@ -19,7 +19,7 @@ return {
         --       - a: xxx
         --       - i:  x
         r = { "%b[]", "^.().*().$" }, -- alias 'r' to []
-        d = gen_ai_spec.number(),
+        n = gen_ai_spec.number(),
         l = gen_ai_spec.line(),
         i = gen_ai_spec.indent(),
         e = gen_ai_spec.buffer(),
