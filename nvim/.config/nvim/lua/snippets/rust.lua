@@ -86,6 +86,23 @@ return {
   ),
   -- Tests
   s(
+    "modtest",
+    fmta(
+      [[
+        #[cfg(test)]
+        mod tests {
+            use super::*;
+
+            test<>
+        }
+      ]],
+      {
+        i(0),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
     "test",
     fmta(
       [[

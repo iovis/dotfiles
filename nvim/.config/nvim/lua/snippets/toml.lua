@@ -18,7 +18,7 @@ return {
     fmt(
       [=[
         [workspace]
-        resolver = "2"
+        resolver = "3"
         members = ["{}"]
       ]=],
       {
