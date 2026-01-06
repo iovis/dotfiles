@@ -7,7 +7,7 @@ accordion-padding = 350
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
 # on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 on-focused-monitor-changed = []
-on-focus-changed = ['move-mouse window-lazy-center']
+on-focus-changed = []
 persistent-workspaces = ["1", "2", "3", "4", "K"]
 
 [exec.env-vars]
@@ -51,17 +51,14 @@ ctrl-alt-cmd-j = "workspace --wrap-around prev"
 ctrl-alt-cmd-k = "workspace --wrap-around next"
 ctrl-alt-cmd-shift-j = ["move-node-to-workspace prev", "workspace prev"]
 ctrl-alt-cmd-shift-k = ["move-node-to-workspace next", "workspace next"]
-
 ctrl-alt-cmd-1 = "workspace 1"
 ctrl-alt-cmd-2 = "workspace 2"
 ctrl-alt-cmd-3 = "workspace 3"
 ctrl-alt-cmd-4 = "workspace 4"
-
 ctrl-alt-cmd-shift-1 = ["move-node-to-workspace 1", "workspace 1"]
 ctrl-alt-cmd-shift-2 = ["move-node-to-workspace 2", "workspace 2"]
 ctrl-alt-cmd-shift-3 = ["move-node-to-workspace 3", "workspace 3"]
 ctrl-alt-cmd-shift-4 = ["move-node-to-workspace 4", "workspace 4"]
-
 ctrl-alt-cmd-space = "mode prefix"
 
 [mode.prefix.binding]
