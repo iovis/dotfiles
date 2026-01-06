@@ -40,10 +40,8 @@ vim.opt.fillchars = {
 }
 vim.o.foldcolumn = "0"
 vim.o.foldenable = true
-vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
-vim.o.foldmethod = "expr"
 vim.o.foldtext = "v:lua.require'config.utils'.ui.foldtext()"
 vim.o.formatoptions = "jcroqlnt" -- tcqj
 vim.o.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"

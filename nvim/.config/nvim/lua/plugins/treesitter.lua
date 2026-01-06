@@ -28,7 +28,6 @@ return {
       "javascript",
       "jsdoc",
       "json",
-      "jsonc",
       "just",
       "lua",
       "make",
@@ -57,12 +56,14 @@ return {
     vim.api.nvim_create_autocmd("FileType", {
       desc = "treesitter.config",
       group = augroup,
-      callback = function()
-        if not pcall(vim.treesitter.start) then
+      callback = function(e)
+        if not pcall(vim.treesitter.start, e.buf) then
           return
         end
 
         vim.bo.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
+        vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+        vim.wo.foldmethod = "expr"
       end,
     })
   end,
