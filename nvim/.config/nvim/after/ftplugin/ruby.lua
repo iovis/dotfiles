@@ -89,24 +89,3 @@ elseif u.current_file() == "Gemfile" then
     end,
   })
 end
-
----- Solargraph
-vim.api.nvim_buf_create_user_command(0, "SolargraphRebuild", function(ctx)
-  local tux = require("tux")
-  local cmd = "ctags && bundle exec yard gems"
-
-  if ctx.bang then
-    cmd = cmd .. " --rebuild; pause"
-  end
-
-  tux.window(cmd, {
-    detached = true,
-    select = false,
-    name = nil,
-  })
-end, { bang = true })
-
----- Regenerate Rubocop TODO
-vim.api.nvim_buf_create_user_command(0, "RubocopRegenerateTodo", function()
-  vim.cmd.Tux("rubocop --regenerate-todo")
-end, {})

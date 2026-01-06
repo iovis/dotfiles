@@ -145,9 +145,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     ----Custom server capabilities
-    if client.name == "solargraph" then
-      client.server_capabilities.documentSymbolProvider = false
-    elseif client.name == "eslint" then
+    if client.name == "eslint" then
       client.server_capabilities.documentFormattingProvider = true
     end
   end,
