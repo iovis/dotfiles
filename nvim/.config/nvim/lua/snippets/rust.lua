@@ -92,11 +92,16 @@ return {
         #[cfg(test)]
         mod tests {
             use super::*;
+            use pretty_assertions::assert_eq;
 
-            test<>
+            #[test]
+            fn <test_name>_test() {
+                <>
+            }
         }
       ]],
       {
+        test_name = i(1, "name"),
         i(0),
       }
     ),
@@ -287,6 +292,7 @@ return {
           #[cfg(test)]
           mod tests {
               use super::*;
+              use pretty_assertions::assert_eq;
 
               #[test]
               fn p1_test() {
@@ -300,10 +306,10 @@ return {
               #[test]
               fn p2_test() {
                   let input = indoc::indoc! {"
-                      something
+                      <input>
                   "};
 
-                  // assert_eq!(p2(input), 23);
+                  // assert_eq!(p2(input), <output>);
               }
           }
       ]],
