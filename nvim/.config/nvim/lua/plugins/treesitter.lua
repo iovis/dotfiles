@@ -66,5 +66,16 @@ return {
         vim.wo.foldmethod = "expr"
       end,
     })
+
+    ---- Remove bad Ruby indentation characters
+    -- (for some reason this doesn't work in after/ftplugin/ruby.lua)
+    vim.api.nvim_create_autocmd("FileType", {
+      desc = "treesitter.config: Ruby indentation",
+      group = augroup,
+      pattern = { "ruby" },
+      callback = function()
+        vim.opt_local.indentkeys:remove({ ".", "0{" })
+      end,
+    })
   end,
 }

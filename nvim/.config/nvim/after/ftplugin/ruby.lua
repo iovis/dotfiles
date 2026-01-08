@@ -1,5 +1,8 @@
 local u = require("config.utils")
 
+-- TODO: why does this fail?
+-- vim.opt_local.indentkeys:remove({ ".", "0{" })
+
 vim.cmd.compiler("ruby")
 
 vim.keymap.set("n", "s<cr>", "<cmd>Tux ruby %:.<cr>", { buffer = true })
