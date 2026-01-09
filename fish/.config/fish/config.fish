@@ -52,6 +52,7 @@ for local_override in $FDOTDIR/local/*.fish
     source $local_override
 end
 
+## Interactive
 if not status is-interactive
     return
 end
