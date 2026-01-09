@@ -88,15 +88,16 @@ local function winbar_per_path(path)
     title = "%t"
   end
 
-  -- If fugitive object, append the hash to the filename
-  if path:match("^fugitive://") then
+  -- If git object, append the hash to the filename
+  if path:match("^fugitive://") or path:match("^gitsigns://") then
     -- Parse commit hash (Lua doesn't have fixed number of character patterns {40})
     -- fugitive:///Users/david/.dotfiles/.git//e1e0416a90c20f0181eb3445a3fa98ff9a9b2752/nvim/.config/nvim/lua/config/winbar.lua
+    -- gitsigns:///Users/david/.dotfiles/.git//e1e0416a90c20f0181eb3445a3fa98ff9a9b2752^:nvim/.config/nvim/lua/config/winbar.lua
     local hash = path:match("%.git/+([^/]+)/")
 
     if hash then
       hash = hash:sub(1, 8)
-      title = ("%s:%s"):format(title, hash)
+      title = ("%s [%s]"):format(title, hash)
     end
   end
 

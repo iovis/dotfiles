@@ -5,6 +5,8 @@ return {
   config = function()
     local gitsigns = require("gitsigns")
 
+    vim.keymap.set("n", "<leader>gb", "<cmd>Gitsigns blame<cr>")
+
     gitsigns.setup({
       signs = {
         delete = { show_count = true },
