@@ -111,7 +111,7 @@ run = "layout floating"
 [[on-window-detected]]
 # Webex
 if.app-id = "Cisco-Systems.Spark"
-run = ["layout floating"]
+run = ["layout floating", "move-node-to-monitor main"]
 
 [[on-window-detected]]
 if.app-id = "com.culturedcode.ThingsMac"
