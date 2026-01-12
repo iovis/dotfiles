@@ -179,6 +179,22 @@ return {
   s("tracinginit", t("tracing_subscriber::fmt::init();"), {
     condition = conds.line_begin,
   }),
+  s(
+    "tracingcompact",
+    fmt(
+      [[
+        tracing_subscriber::fmt()
+            .without_time()
+            .with_target(false)
+            .with_env_filter(EnvFilter::from_default_env())
+            .init();
+      ]],
+      {}
+    ),
+    {
+      condition = conds.line_begin,
+    }
+  ),
   s("tracinginstrument", fmt("#[tracing::instrument{}]", { i(1) }), {
     condition = conds.line_begin,
   }),
@@ -265,28 +281,34 @@ return {
   s(".ins", t('.inspect(|x| eprintln!("{x:?}"))'), {
     condition = conds.line_begin,
   }),
+  s(".tap", t('.inspect(|x| eprintln!("{x:?}"))'), {
+    condition = conds.line_begin,
+  }),
   s(
     "sleep",
     fmt("std::thread::sleep(std::time::Duration::from_secs({}));", { i(1, "5") }),
     { condition = conds.line_begin }
   ),
+  s("utf", fmt("std::str::from_utf8({}).unwrap();", { i(1) })),
   s(
     "aoc",
     fmta(
       [[
           fn main() {
+              tracing_subscriber::fmt::init();
+
               let input = include_str!("input.txt");
 
               println!("p1 = {:?}", p1(input));
               println!("p2 = {:?}", p2(input));
           }
 
-          fn p1(input: &str) ->> usize {
-              <p1>
+          fn p1(input: &str) ->> u64 {
+              todo!()<eos>
           }
 
-          fn p2(input: &str) ->> usize {
-              123
+          fn p2(input: &str) ->> u64 {
+              todo!()
           }
 
           #[cfg(test)]
@@ -306,17 +328,19 @@ return {
               #[test]
               fn p2_test() {
                   let input = indoc::indoc! {"
-                      <input>
+                      <input_repeat>
                   "};
 
-                  // assert_eq!(p2(input), <output>);
+                  // assert_eq!(p2(input), <output_repeat>);
               }
           }
       ]],
       {
         input = i(1),
+        input_repeat = rep(1),
         output = i(2, "123"),
-        p1 = i(0, "123"),
+        output_repeat = rep(2),
+        eos = i(0),
       }
     ),
     { condition = conds.line_begin }
