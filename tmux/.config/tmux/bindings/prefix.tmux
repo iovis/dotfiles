@@ -7,7 +7,6 @@ bind -N "Command prompt" \; {
 }
 
 # Pass-through
-bind -r C-f send 'C-f'
 bind C-k send 'C-k'
 bind C-l send 'C-l'
 
@@ -54,9 +53,14 @@ bind -N "muxi picker" C-_ {
   run "muxi fzf"
 }
 
+bind -N "Run FZF session picker" C-f {
+  display-popup -w 80% -h 80% -b none -E ts
+}
+
 bind -N "Run sessionist" C-k {
   display-popup -w 50% -h 60% -b none -E sessionist
 }
+
 bind -N "Run zoxide_sessionist" C-o {
   display-popup -w 50% -h 60% -b none -E zoxide_sessionist
 }

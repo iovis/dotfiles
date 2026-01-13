@@ -7,13 +7,6 @@ return {
     args = { "-c", "nmap q <cmd>silent wqa<cr>" },
   },
   plugins = {
-    -- {
-    --   url = "kristijan/flash-copy.tmux",
-    --   opts = {
-    --     -- ["flash-copy-bind-key"] = "F",
-    --     ["flash-copy-prompt-indicator"] = "❯",
-    --   },
-    -- },
     {
       url = "tmux-plugins/tmux-resurrect",
       opts = {
