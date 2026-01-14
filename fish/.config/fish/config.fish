@@ -15,6 +15,7 @@ set -gx PROJECT_HOME "$HOME/code"
 set -gx EDITOR nvim
 set -gx MANPAGER 'nvim +Man!'
 
+set -gx FZF_CTRL_R_OPTS --no-preview
 set -gx FZF_CTRL_T_OPTS ""
 set -gx FZF_DEFAULT_COMMAND "fd -H -E '.git' -E '.keep' --type file --follow --color=always"
 set -gx FZF_DEFAULT_OPTS_FILE "$HOME/.config/fzf/fzfrc"
