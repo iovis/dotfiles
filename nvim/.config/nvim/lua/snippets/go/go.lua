@@ -15,6 +15,22 @@ return {
     ),
     { condition = conds.line_begin }
   ),
+  s(
+    "mainscript",
+    fmta(
+      [[
+        package main
+
+        import "github.com/bitfield/script"
+
+        func main() {
+          script.Echo("Hello, World!\n").Stdout()
+        }
+      ]],
+      {}
+    ),
+    { condition = conds.line_begin }
+  ),
   -- Functions
   s(
     "f",
