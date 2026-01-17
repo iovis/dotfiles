@@ -361,4 +361,38 @@ return {
     ),
     { condition = conds.line_begin }
   ),
+  -- Scripting
+  s(
+    "main",
+    fmt(
+      [[
+        #!/usr/bin/env ruby
+
+        require "bundler/setup"
+
+      ]],
+      {}
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "geminit",
+    fmt(
+      [[
+        source "https://rubygems.org"
+
+        gem "awesome_print"
+        gem "pry-byebug"
+        gem "pry-doc"
+        gem "{}"
+      ]],
+      {
+        i(1, "faraday"),
+      }
+    ),
+    {
+      condition = conds.line_begin * u.ls.within("Gemfile"),
+      show_condition = u.ls.within("Gemfile"),
+    }
+  ),
 }

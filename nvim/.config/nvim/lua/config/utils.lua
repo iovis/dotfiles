@@ -333,6 +333,36 @@ function M.range(start, finish, step)
   error(("Invalid range: %s, %s, %s"):format(tostring(start), tostring(finish), tostring(step)))
 end
 
+----Ex commands
+M.ex = {}
+
+---Abbreviate command
+---Example:
+---  abbrev("g", "Git") -- converts `:g ` to `:Git `
+---@param alias string
+---@param cmd string
+function M.ex.abbrev(alias, cmd)
+  vim.keymap.set("ca", alias, function()
+    if vim.fn.getcmdtype() == ":" and vim.fn.getcmdpos() == #alias + 1 then
+      return cmd
+    else
+      return alias
+    end
+  end, { expr = true })
+end
+
+----LuaSnip utils
+M.ls = {}
+
+---within a file condition
+---@param file string
+---@return table
+function M.ls.within(file)
+  return require("luasnip.extras.conditions").make_condition(function()
+    return vim.fn.expand("%:t") == file
+  end)
+end
+
 ---Treesitter utils
 M.ts = {}
 
@@ -388,24 +418,6 @@ function M.ui.foldtext()
     { text_end, "" },
     { ("  󰁂 %d lines"):format(num_lines), "Comment" },
   }
-end
-
-----Ex commands
-M.ex = {}
-
----Abbreviate command
----Example:
----  abbrev("g", "Git") -- converts `:g ` to `:Git `
----@param alias string
----@param cmd string
-function M.ex.abbrev(alias, cmd)
-  vim.keymap.set("ca", alias, function()
-    if vim.fn.getcmdtype() == ":" and vim.fn.getcmdpos() == #alias + 1 then
-      return cmd
-    else
-      return alias
-    end
-  end, { expr = true })
 end
 
 return M
