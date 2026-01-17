@@ -179,7 +179,7 @@
   },
   "memory": {
     "format": "󰾆 {percentage}%",
-    "on-click": "kitty --class=widget.btop -e htop",
+    "on-click": "kitty --class=widget.btop -e htop --sort-key=PERCENT_MEM",
     "on-click-right": "gnome-system-monitor"
   },
   "network": {
