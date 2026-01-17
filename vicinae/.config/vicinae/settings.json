@@ -9,6 +9,7 @@
 // Learn more about configuration at https://docs.vicinae.com/config
 
 {
+   "$schema": "https://vicinae.com/schemas/config.json",
    "imports": [],
    "close_on_focus_loss": false,
    "consider_preedit": false,
@@ -76,6 +77,51 @@
       "files:search"
    ],
    "providers": {
+      "applications": {
+         "preferences": {
+            "paths": [
+               "/home/david/.local/share/applications",
+               "/usr/share/applications"
+            ]
+         }
+      },
+      "developer": {
+         "enabled": false
+      },
+      "files": {
+         "enabled": true
+      },
+      "power": {
+         "entrypoints": {
+            "hibernate": {
+               "enabled": false
+            },
+            "lock": {
+               "enabled": false
+            },
+            "logout": {
+               "enabled": false
+            },
+            "power-off": {
+               "preferences": {
+                  "confirm": false
+               }
+            },
+            "reboot": {
+               "preferences": {
+                  "confirm": false
+               }
+            },
+            "sleep": {
+               "enabled": false
+            },
+            "soft-reboot": {
+               "preferences": {
+                  "confirm": false
+               }
+            }
+         }
+      },
       "system": {
          "enabled": false
       },
