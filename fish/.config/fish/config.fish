@@ -8,6 +8,7 @@ set -gx XDG_STATE_HOME "$HOME/.local/state"
 
 set -gx DOTFILES "$HOME/.dotfiles"
 set -gx FDOTDIR "$XDG_CONFIG_HOME/fish"
+set -gx GOPATH "$XDG_DATA_HOME/go"
 set -gx ICLOUD_PATH "$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 set -gx NOTES "$HOME/vaults/io/"
 set -gx PROJECT_HOME "$HOME/code"
