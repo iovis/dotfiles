@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+result="$(vicinae close 2>&1 || true)"
+
+if [[ "$result" == *"Already closed"* ]]; then
+  exec vicinae "$@"
+fi
