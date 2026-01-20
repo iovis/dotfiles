@@ -11,7 +11,7 @@ on-focus-changed = []
 persistent-workspaces = ["1", "2", "3", "4", "K"]
 
 [exec.env-vars]
-PATH = "${HOME}/.dotfiles/bin/:/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}"
+PATH = "${HOME}/.dotfiles/bin:/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}"
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
