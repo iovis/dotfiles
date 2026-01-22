@@ -50,16 +50,6 @@ return {
 
     local status = {
       {
-        -- Copilot status
-        function()
-          if vim.fn["copilot#Enabled"]() == 1 then
-            return " "
-          else
-            return " "
-          end
-        end,
-      },
-      {
         "diff",
         diff_color = {
           added = "DiffAdded",

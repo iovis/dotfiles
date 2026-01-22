@@ -112,38 +112,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     --   })
     -- end, {})
 
-    ----Copilot completions
-    if
-      vim.lsp.inline_completion
-      and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion, bufnr)
-    then
-      vim.lsp.inline_completion.enable(true, { bufnr = bufnr })
-
-      vim.keymap.set("i", "<m-cr>", vim.lsp.inline_completion.get, {
-        desc = "LSP: accept inline completion",
-        buffer = bufnr,
-      })
-
-      vim.keymap.set("i", "<m-down>", vim.lsp.inline_completion.select, {
-        desc = "LSP: switch inline completion",
-        buffer = bufnr,
-      })
-
-      local function toggle_inline_completion()
-        if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion) then
-          vim.lsp.inline_completion.enable(not vim.lsp.inline_completion.is_enabled())
-          vim.notify("Inline completion: " .. tostring(vim.lsp.inline_completion.is_enabled()), vim.log.levels.WARN)
-        else
-          vim.notify("No inline completion available", vim.log.levels.WARN)
-        end
-      end
-
-      vim.keymap.set("n", "yoq", toggle_inline_completion, {
-        desc = "vim.lsp.inline_completion",
-        buffer = bufnr,
-      })
-    end
-
     ----Custom server capabilities
     if client.name == "eslint" then
       client.server_capabilities.documentFormattingProvider = true
