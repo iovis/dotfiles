@@ -47,7 +47,7 @@ end
 
 fish_add_path $HOME/.dotfiles/bin
 fish_add_path $HOME/.local/bin
-fish_add_path $XDG_DATA_HOME/nvim/mason/bin
+# fish_add_path $XDG_DATA_HOME/nvim/mason/bin
 
 mise activate fish | source
 
