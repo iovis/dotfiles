@@ -73,6 +73,7 @@ return {
         },
         ["yod"] = {
           desc = "Toggle file detail view",
+          mode = "n",
           callback = function()
             show_details = not show_details
 
