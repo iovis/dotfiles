@@ -8,62 +8,63 @@ return {
     require("blink.cmp").setup({
       keymap = {
         preset = "none",
-        ["<Tab>"] = { "select_and_accept", "fallback" },
-        ["<C-j>"] = { "snippet_forward", "fallback" },
-        ["<C-k>"] = { "snippet_backward", "fallback" },
+        ["<m-l>"] = { "select_and_accept", "snippet_forward", "fallback" },
+        ["<tab>"] = { "select_and_accept", "fallback" },
+        ["<c-j>"] = { "snippet_forward", "fallback" },
+        ["<c-k>"] = { "snippet_backward", "fallback" },
         -- ["<Esc>"] = { "cancel", "fallback" },
-        ["<C-b>"] = { "show", "hide" },
-        ["<M-d>"] = { "show_documentation", "hide_documentation" },
-        ["<C-p>"] = { "select_prev", "fallback" },
-        ["<C-n>"] = { "select_next", "fallback" },
-        ["<M-k>"] = { "scroll_documentation_up", "fallback" },
-        ["<M-j>"] = { "scroll_documentation_down", "fallback" },
-        ["<C-s>"] = {
+        ["<c-b>"] = { "show", "hide" },
+        ["<m-d>"] = { "show_documentation", "hide_documentation" },
+        ["<c-p>"] = { "select_prev", "fallback" },
+        ["<c-n>"] = { "select_next", "fallback" },
+        ["<m-k>"] = { "scroll_documentation_up", "fallback" },
+        ["<m-j>"] = { "scroll_documentation_down", "fallback" },
+        ["<c-s>"] = {
           function(cmp)
             cmp.show({ providers = { "snippets" } })
           end,
         },
-        ["<M-1>"] = {
+        ["<m-1>"] = {
           function(cmp)
             cmp.accept({ index = 1 })
           end,
         },
-        ["<M-2>"] = {
+        ["<m-2>"] = {
           function(cmp)
             cmp.accept({ index = 2 })
           end,
         },
-        ["<M-3>"] = {
+        ["<m-3>"] = {
           function(cmp)
             cmp.accept({ index = 3 })
           end,
         },
-        ["<M-4>"] = {
+        ["<m-4>"] = {
           function(cmp)
             cmp.accept({ index = 4 })
           end,
         },
-        ["<M-5>"] = {
+        ["<m-5>"] = {
           function(cmp)
             cmp.accept({ index = 5 })
           end,
         },
-        ["<M-6>"] = {
+        ["<m-6>"] = {
           function(cmp)
             cmp.accept({ index = 6 })
           end,
         },
-        ["<M-7>"] = {
+        ["<m-7>"] = {
           function(cmp)
             cmp.accept({ index = 7 })
           end,
         },
-        ["<M-8>"] = {
+        ["<m-8>"] = {
           function(cmp)
             cmp.accept({ index = 8 })
           end,
         },
-        ["<M-9>"] = {
+        ["<m-9>"] = {
           function(cmp)
             cmp.accept({ index = 9 })
           end,
@@ -126,53 +127,53 @@ return {
           -- TODO:
           --   - <c-b> not mappable?
           --   - <esc> executes the command (neovim issue)
-          ["<C-y>"] = { "select_and_accept" },
-          ["<Tab>"] = { "select_next" },
-          ["<S-Tab>"] = { "select_prev" },
-          ["<C-n>"] = { "select_next", "fallback" },
-          ["<C-p>"] = { "select_prev", "fallback" },
-          ["<C-b>"] = { "show", "hide" },
-          ["<M-1>"] = {
+          ["<m-l>"] = { "select_and_accept", "fallback" },
+          ["<tab>"] = { "select_next" },
+          ["<s-Tab>"] = { "select_prev" },
+          ["<c-n>"] = { "select_next", "fallback" },
+          ["<c-p>"] = { "select_prev", "fallback" },
+          ["<c-b>"] = { "show", "hide" },
+          ["<m-1>"] = {
             function(cmp)
               cmp.accept({ index = 1 })
             end,
           },
-          ["<M-2>"] = {
+          ["<m-2>"] = {
             function(cmp)
               cmp.accept({ index = 2 })
             end,
           },
-          ["<M-3>"] = {
+          ["<m-3>"] = {
             function(cmp)
               cmp.accept({ index = 3 })
             end,
           },
-          ["<M-4>"] = {
+          ["<m-4>"] = {
             function(cmp)
               cmp.accept({ index = 4 })
             end,
           },
-          ["<M-5>"] = {
+          ["<m-5>"] = {
             function(cmp)
               cmp.accept({ index = 5 })
             end,
           },
-          ["<M-6>"] = {
+          ["<m-6>"] = {
             function(cmp)
               cmp.accept({ index = 6 })
             end,
           },
-          ["<M-7>"] = {
+          ["<m-7>"] = {
             function(cmp)
               cmp.accept({ index = 7 })
             end,
           },
-          ["<M-8>"] = {
+          ["<m-8>"] = {
             function(cmp)
               cmp.accept({ index = 8 })
             end,
           },
-          ["<M-9>"] = {
+          ["<m-9>"] = {
             function(cmp)
               cmp.accept({ index = 9 })
             end,
