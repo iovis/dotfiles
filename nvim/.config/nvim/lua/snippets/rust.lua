@@ -289,7 +289,7 @@ return {
     fmt("std::thread::sleep(std::time::Duration::from_secs({}));", { i(1, "5") }),
     { condition = conds.line_begin }
   ),
-  s("utf", fmt("std::str::from_utf8({}).unwrap();", { i(1) })),
+  s("utf", fmt("std::str::from_utf8({}).unwrap()", { i(1) })),
   s(
     "aoc",
     fmta(

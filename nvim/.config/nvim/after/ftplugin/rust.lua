@@ -61,5 +61,9 @@ vim.b.minisurround_config = {
       input = { "Some%(().-()%)" },
       output = { left = "Some(", right = ")" },
     },
+    u = {
+      input = { "std::str::from_utf8%(().-()%).unwrap%(%)" },
+      output = { left = "std::str::from_utf8(", right = ").unwrap()" },
+    },
   },
 }
