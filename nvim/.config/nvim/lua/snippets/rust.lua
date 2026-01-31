@@ -318,6 +318,7 @@ return {
 
               #[test]
               fn p1_test() {
+                  tracing_subscriber::fmt::init();
                   let input = indoc::indoc! {"
                       <input>
                   "};
@@ -326,12 +327,14 @@ return {
               }
 
               #[test]
+              #[ignore = "pending"]
               fn p2_test() {
+                  tracing_subscriber::fmt::init();
                   let input = indoc::indoc! {"
                       <input_repeat>
                   "};
 
-                  // assert_eq!(p2(input), <output_repeat>);
+                  assert_eq!(p2(input), <output_repeat>);
               }
           }
       ]],
