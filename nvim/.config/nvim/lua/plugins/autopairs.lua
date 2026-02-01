@@ -17,6 +17,9 @@ return {
       disable_in_macro = true,
     })
 
+    ---- Disable rules for `'`
+    npairs.remove_rule("'")
+
     ---- Disable `[` for checkboxes in markdown
     npairs.get_rules("[")[1]:with_pair(cond.not_before_text("- "))
 
