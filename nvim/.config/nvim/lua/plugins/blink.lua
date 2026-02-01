@@ -16,8 +16,8 @@ return {
         ["<m-d>"] = { "show_documentation", "hide_documentation" },
         ["<c-p>"] = { "select_prev", "fallback" },
         ["<c-n>"] = { "select_next", "fallback" },
-        ["<m-k>"] = { "scroll_documentation_up", "fallback" },
-        ["<m-j>"] = { "scroll_documentation_down", "fallback" },
+        ["<m-up>"] = { "scroll_documentation_up", "fallback" },
+        ["<m-down>"] = { "scroll_documentation_down", "fallback" },
         ["<c-s>"] = {
           function(cmp)
             cmp.show({ providers = { "snippets" } })
