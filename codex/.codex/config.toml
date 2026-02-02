@@ -1,10 +1,9 @@
 #:schema https://raw.githubusercontent.com/openai/codex/refs/heads/main/codex-rs/core/config.schema.json
 
+web_search = "live"
+
 [tui]
 notifications = true
-
-[features]
-web_search_request = true
 
 [sandbox_workspace_write]
 network_access = true
