@@ -11,7 +11,13 @@ return {
         enable = true,
         arrayIndex = "Disable",
       },
-      -- workspace = { checkThirdParty = false },
+      workspace = {
+        checkThirdParty = false,
+        library = {
+          vim.env.VIMRUNTIME,
+          { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        },
+      },
     },
   },
 }
