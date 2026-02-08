@@ -2,9 +2,6 @@
 
 web_search = "live"
 
-[tui]
-notifications = true
-
 [sandbox_workspace_write]
 network_access = true
 
