@@ -1,4 +1,5 @@
 nnoremap <silent> <buffer> <nowait> q :wq<cr>
+inoremap <silent> <buffer> <c-h> <esc>:Glg -500<cr><c-w><c-w>a
 
 setlocal spell
 setlocal spelllang=en_us
