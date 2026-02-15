@@ -19,6 +19,7 @@ if [ ! -d "$DOTFILES" ]; then
   git clone https://github.com/iovis/dotfiles "$DOTFILES"
 fi
 
+# shellcheck disable=SC2046 # pacdump-generated, newline-delimited package list
 sudo pacman -S --needed $(cat "$PACMAN_PATH/Pacfile")
 
 if ! command -v paru >/dev/null 2>&1; then
@@ -35,6 +36,7 @@ if ! command -v paru >/dev/null 2>&1; then
   rm -rf "$PROJECT_HOME/paru/"
 fi
 
+# shellcheck disable=SC2046 # pacdump-generated, newline-delimited package list
 paru -S --needed $(cat "$PACMAN_PATH/Parufile")
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Starting services"
@@ -57,8 +59,21 @@ if ! command -v cargo >/dev/null 2>&1; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 fi
 
-. "$HOME/.cargo/env"
+if [ -f "$HOME/.cargo/env" ]; then
+  # shellcheck disable=SC1091 # dynamic path created by rustup installer
+  . "$HOME/.cargo/env"
+else
+  echo "rustup env file missing at $HOME/.cargo/env" >&2
+  exit 1
+fi
+
+command -v cargo >/dev/null 2>&1 || {
+  echo "cargo not found after rustup setup" >&2
+  exit 1
+}
+
 cargo install cargo-binstall
+# shellcheck disable=SC2046 # curated newline-delimited crate list
 cargo binstall -y $(cat "$DOTFILES/default/crates")
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Reflector settings"
@@ -75,7 +90,11 @@ sudo cp "$DOTFILES/scripts/extra/reflector.conf" /etc/xdg/reflector/reflector.co
 # gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Apply monitor settings to GDM"
-sudo cp ~/.config/monitors.xml /etc/xdg/monitors.xml
+if [ -f "$HOME/.config/monitors.xml" ]; then
+  sudo cp "$HOME/.config/monitors.xml" /etc/xdg/monitors.xml
+else
+  echo "[$(date '+%Y-%m-%d %H:%M')] monitors.xml not found; skipping"
+fi
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Orphaned packages"
 pacman -Qtdq || echo 'No orphaned packages'
