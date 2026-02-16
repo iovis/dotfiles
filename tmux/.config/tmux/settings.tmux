@@ -2,7 +2,6 @@ set -g base-index 1
 set -g detach-on-destroy off
 set -g display-panes-time 4000
 set -g display-time 100000
-set -g extended-keys off  # doesn't seem to work when pasting text with newlines in 3.5
 set -g focus-events on
 set -g history-limit 100000
 set -g mouse on
@@ -18,7 +17,8 @@ set -wg automatic-rename-format '#{pane_current_command}'
 set -wg mode-keys vi
 set -wg monitor-activity on
 
-set -s terminal-features "xterm*:clipboard:ccolour:cstyle:focus:title:extkeys:RGB:hyperlinks"
+set -s extended-keys always
+set -s terminal-features "xterm*:clipboard:ccolour:cstyle:extkeys:focus:hyperlinks:overline:RGB:strikethrough:title:usstyle"
 set -sg default-terminal "tmux-256color"
 set -sg escape-time 0
 
