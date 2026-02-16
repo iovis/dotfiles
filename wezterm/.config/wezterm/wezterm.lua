@@ -108,7 +108,8 @@ table.insert(config.hyperlink_rules, {
 ----Linux
 if wezterm.target_triple ~= "aarch64-apple-darwin" then
   config.font_size = 16
-  config.enable_wayland = false
+  config.enable_wayland = true
+  config.window_decorations = "NONE"
   -- config.front_end = "WebGpu" -- OpenGL, Software, WebGpu
   config.window_background_opacity = 0.7
 end
