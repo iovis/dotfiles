@@ -25,6 +25,7 @@ eval "$fd_folders" | fzf \
   --bind='alt-enter:execute-silent(setsid -f nautilus {+})+abort' \
   --bind='alt-m:execute-silent(setsid -f fd -tf . {+} -X mpv --shuffle --loop-playlist=inf)+abort' \
   --bind='ctrl-o:execute-silent(wl-copy {+} && notify-send --icon edit-paste "Copied path to clipboard")+abort' \
+  --bind=ctrl-n:page-down,ctrl-p:page-up \
   --bind=alt-p:toggle-preview \
   --bind='alt-r:change-preview-window(down|right)' \
   --preview="fzf-preview {}" \

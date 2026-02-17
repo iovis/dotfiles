@@ -32,27 +32,57 @@ fi
 
 if [[ $type =~ image/ ]]; then
   if [[ $KITTY_WINDOW_ID ]] || [[ $GHOSTTY_RESOURCES_DIR ]] && command -v kitten >/dev/null; then
-    # 1. 'memory' is the fastest option but if you want the image to be scrollable,
-    #    you have to use 'stream'.
-    #
-    # 2. The last line of the output is the ANSI reset code without newline.
-    #    This confuses fzf and makes it render scroll offset indicator.
-    #    So we remove the last line and append the reset code to its previous line.
-    kitten icat --clear --transfer-mode=memory --unicode-placeholder --stdin=no --place="$dim@0x0" "$file" | sed '$d' | sed $'$s/$/\e[m/'
+    kitten icat --transfer-mode=memory --unicode-placeholder --stdin=no --place="$dim@0x0" "$file"
   else
     file "$file"
   fi
 elif [[ $type =~ video/ ]]; then
   if [[ $KITTY_WINDOW_ID ]] || [[ $GHOSTTY_RESOURCES_DIR ]] && command -v kitten >/dev/null; then
-    out="/tmp/preview.webp"
+    cache_dir="${XDG_RUNTIME_DIR:-${TMPDIR:-/tmp}}/fzf-preview"
+    mkdir -p "$cache_dir"
 
-    # Generate a webp animation from the first 5 seconds of the video
-    ffmpeg -loglevel fatal -y -an -sn -dn -i "$file" -t 5 \
-      -vf "fps=10,scale=480:-1:flags=lanczos" \
-      -c:v libwebp -lossless 0 -compression_level 0 -q:v 75 \
-      -loop 0 -f webp "$out"
+    if meta=$(stat -Lc '%n|%s|%Y' -- "$file" 2>/dev/null); then
+      :
+    else
+      meta=$(stat -f '%N|%z|%m' -- "$file" 2>/dev/null)
+    fi
+    meta=${meta:-$file}
 
-    kitten icat --clear --transfer-mode=memory --unicode-placeholder --stdin=no --place="$dim@0x0" "$out" | sed '$d' | sed $'$s/$/\e[m/'
+    key_input="$meta|$dim|ss=1|t=3|fps=12|q=70|cl=4"
+
+    if command -v sha1sum >/dev/null; then
+      hash=$(printf '%s' "$key_input" | sha1sum)
+    elif command -v shasum >/dev/null; then
+      hash=$(printf '%s' "$key_input" | shasum -a 1)
+    else
+      hash=$(printf '%s' "$key_input" | cksum)
+    fi
+
+    key=${hash%% *}
+    out="$cache_dir/$key.webp"
+
+    if [[ ! -s $out ]]; then
+      tmp_out=$(mktemp "${cache_dir%/}/.${key}.XXXXXX.webp")
+      trap 'rm -f "$tmp_out"' EXIT
+
+      if ffmpeg -hide_banner -loglevel error -y \
+        -ss 1 -i "$file" -t 3 -an -sn -dn \
+        -vf "fps=12,scale='min(960,iw)':-2:flags=bicubic" \
+        -c:v libwebp -lossless 0 -compression_level 4 -q:v 70 -loop 0 \
+        -f webp "$tmp_out"; then
+        mv -f -- "$tmp_out" "$out"
+      else
+        rm -f -- "$tmp_out"
+      fi
+
+      trap - EXIT
+    fi
+
+    if [[ -s $out ]]; then
+      kitten icat --transfer-mode=memory --unicode-placeholder --stdin=no --place="$dim@0x0" --loop=-1 "$out"
+    else
+      file "$file"
+    fi
   else
     file "$file"
   fi
@@ -61,7 +91,7 @@ else
   if [[ -d $file ]]; then
     eza --color=always --icons -1a --group-directories-first "$file"
   elif [[ $type =~ =binary ]]; then
-    file "$1"
+    file "$file"
   else
     bat --style="${BAT_STYLE:-numbers}" --color=always --pager=never --highlight-line="${center:-0}" -- "$file"
   fi
