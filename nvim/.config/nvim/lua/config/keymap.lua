@@ -406,3 +406,28 @@ vim.keymap.set({ "n", "x" }, "'v", ":v/\\v")
 vim.keymap.set({ "n", "x" }, "'l", function()
   return ':luado return string.format("%s", line)' .. ("<left>"):rep(10)
 end, { expr = true, desc = "luado modify line" })
+
+---- Tmux
+-- Send current location to last pane
+vim.keymap.set("n", "<m-n>", function()
+  local path = (" @%s:%s "):format(vim.fn.expand("%:."), vim.fn.line("."))
+  vim.system({ "tmux", "send", "-t", "!", path }):wait()
+  vim.system({ "tmux", "last-pane" }):wait()
+end, { desc = "Send current file and line number to last pane" })
+
+vim.keymap.set("x", "<m-n>", function()
+  local line_start = vim.fn.line("v")
+  local line_end = vim.fn.line(".")
+
+  if line_start > line_end then
+    line_start, line_end = line_end, line_start
+  end
+
+  local location = line_start == line_end and tostring(line_start) or (line_start .. "-" .. line_end)
+  local path = (" @%s:%s "):format(vim.fn.expand("%:."), location)
+
+  vim.api.nvim_input("<Esc>")
+
+  vim.system({ "tmux", "send", "-t", "!", path }):wait()
+  vim.system({ "tmux", "last-pane" }):wait()
+end, { desc = "Send currently selected file and range to last pane" })
