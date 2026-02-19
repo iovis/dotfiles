@@ -1,3 +1,3 @@
 function bell
-    say ding
+    echo -e '\a'
 end

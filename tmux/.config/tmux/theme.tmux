@@ -47,6 +47,7 @@ set -ag status-right '#[fg=#51576d]#{?#{SSH_CLIENT}, #(whoami)@#h,} '
 set -g status-justify absolute-centre # Center window list
 set -g window-status-separator ' '
 set -g window-status-activity-style ''
+set -g window-status-bell-style ''
 
 set -g window-status-current-format ''
 set -ag window-status-current-format '#[bg=default,fg=#414559]#[bg=#414559,fg=#a6d189,bold]#I#[bg=#303446,fg=#414559]' # Number
@@ -54,8 +55,8 @@ set -ag window-status-current-format '#[bg=#303446,fg=#8caaee,bold] #W' # Window
 set -ag window-status-current-format '#[bg=default,fg=#303446]'
 
 set -g window-status-format ''
-set -ag window-status-format '#[bg=default,fg=#303446]#[bg=#303446,fg=#{?window_activity_flag,#e78285,#737994},bold]#I#[bg=#232634,fg=#303446]' # Number
-set -ag window-status-format '#[bg=#232634,fg=#838ba7,nobold] #W' # Window name
+set -ag window-status-format '#[bg=default,fg=#{?window_bell_flag,#e78285,#303446}]#[bg=#{?window_bell_flag,#e78285,#303446},fg=#{?window_bell_flag,#232634,#737994},bold]#I#[bg=#232634,fg=#{?window_bell_flag,#e78285,#303446}]' # Number
+set -ag window-status-format '#[bg=#232634,fg=#{?window_bell_flag,#e78285,#838ba7},nobold] #W' # Window name
 set -ag window-status-format '#[bg=default,fg=#232634]'
 
 ## Pane
