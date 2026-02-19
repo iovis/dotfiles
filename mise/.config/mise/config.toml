@@ -3,7 +3,7 @@
 [tools]
 bun = "latest"
 go = "latest"
-node = "24"
+node = "latest"
 ruby = "latest"
 usage = "latest"
 zig = "latest"
