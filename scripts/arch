@@ -11,6 +11,7 @@ export LOCAL_BIN="${LOCAL_BIN:-$HOME/.local/bin}"
 export PATH="$LOCAL_BIN:$PATH"
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing Libraries"
+sudo pacman -Sy --needed --noconfirm archlinux-keyring
 sudo pacman -Syu --noconfirm
 sudo pacman -S --needed --noconfirm git
 
@@ -22,22 +23,23 @@ fi
 # shellcheck disable=SC2046 # pacdump-generated, newline-delimited package list
 sudo pacman -S --needed $(cat "$PACMAN_PATH/Pacfile")
 
-if ! command -v paru >/dev/null 2>&1; then
-  echo "[$(date '+%Y-%m-%d %H:%M')] Installing paru"
+if ! command -v yay >/dev/null 2>&1; then
+  echo "[$(date '+%Y-%m-%d %H:%M')] Installing yay"
 
   mkdir -p "$PROJECT_HOME"
 
-  git clone https://aur.archlinux.org/paru.git "$PROJECT_HOME/paru/"
+  git clone https://aur.archlinux.org/yay-bin.git "$PROJECT_HOME/yay-bin/"
 
-  cd "$PROJECT_HOME/paru/" || exit
+  cd "$PROJECT_HOME/yay-bin/" || exit
   makepkg -si --noconfirm
   cd - || exit
 
-  rm -rf "$PROJECT_HOME/paru/"
+  rm -rf "$PROJECT_HOME/yay-bin/"
 fi
 
+yay -Y --gendb
 # shellcheck disable=SC2046 # pacdump-generated, newline-delimited package list
-paru -S --needed $(cat "$PACMAN_PATH/Parufile")
+yay -S --needed $(cat "$PACMAN_PATH/Aurfile")
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Starting services"
 sudo systemctl enable --now avahi-daemon bluetooth cpupower fstrim.timer gdm reflector.timer sshd

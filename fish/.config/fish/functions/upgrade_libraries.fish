@@ -8,9 +8,9 @@ function upgrade_libraries
         log_step $(green pacman) update
         pacupdate
 
-        if command -q paru
-            log_step $(green paru) update
-            parupdate
+        if command -q yay
+            log_step $(green yay) update
+            yayupdate
         end
 
         pacorphan

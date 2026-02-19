@@ -1,3 +1,3 @@
-function pi --wraps="paru -Sii"
-    paru -Sii $argv
+function pi --wraps="yay -Sii"
+    yay -Sii $argv
 end

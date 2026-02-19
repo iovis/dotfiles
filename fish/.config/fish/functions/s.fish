@@ -1,3 +1,3 @@
-function s --wraps='paru -Ss'
-    paru -Ss $argv
+function s --wraps='yay -Ss'
+    yay -Ss $argv
 end
