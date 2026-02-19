@@ -2,6 +2,6 @@ awesome_print
 bundler
 pry
 pry-doc
-rubocop
+standard
 ruby-lsp
 ruby-lsp-rails
