@@ -101,7 +101,7 @@ vim.keymap.set("n", "<leader>b", "<cmd>bd!<cr>")
 
 vim.keymap.set("n", "<leader>e", ":e!<space>")
 vim.keymap.set("n", "<leader>E", ":e! <c-r>=fnameescape(expand('%:.:h')).'/'<cr>")
-vim.keymap.set("n", "<leader>N", "<cmd>enew<cr>")
+vim.keymap.set("n", "<leader>n", "<cmd>enew<cr>")
 vim.keymap.set("n", "<leader>W", ":saveas <c-r>=fnameescape(expand('%:.:h')).'/'<cr>")
 
 -- Editing

@@ -412,12 +412,6 @@ return {
       end,
     })
 
-    ----Scratch
-    vim.keymap.set("n", "<leader>n", snacks.scratch.open, { desc = "snacks.scratch" })
-    vim.keymap.set("n", "<leader>gm", function()
-      snacks.picker.scratch({ focus = "list" })
-    end, { desc = "snacks.picker.scratch" })
-
     ----Zen
     vim.keymap.set("n", "<leader>z", snacks.zen.zen, { desc = "snacks.zen.zen" })
     vim.api.nvim_create_user_command("ZenMode", function()
