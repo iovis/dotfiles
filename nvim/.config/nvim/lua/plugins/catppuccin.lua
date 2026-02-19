@@ -6,47 +6,9 @@ return {
   config = function()
     require("catppuccin").setup({
       flavour = "frappe",
-      background = {
-        light = "latte",
-        dark = "frappe",
-      },
       transparent_background = true,
-      float = {
-        transparent = true,
-      },
-      dim_inactive = { enabled = false },
-      styles = {
-        comments = {},
-        conditionals = {},
-      },
-      integrations = {
-        blink_cmp = true,
-        cmp = true,
-        fidget = true,
-        gitsigns = true,
-        leap = true,
-        lsp_saga = true,
-        mason = true,
-        mini = true,
-        neotree = true,
-        treesitter = true,
-        treesitter_context = true,
-        native_lsp = {
-          enabled = true,
-          virtual_text = {
-            errors = {},
-            hints = {},
-            warnings = {},
-            information = {},
-          },
-          underlines = {
-            errors = { "underline" },
-            hints = { "underline" },
-            warnings = { "underline" },
-            information = { "underline" },
-          },
-        },
-      },
+      float = { transparent = true },
+      no_italic = true,
       -- NOTE: May need to re-compile after changing
       -- lua=require("catppuccin.palettes").get_palette()
       custom_highlights = function(colors)
