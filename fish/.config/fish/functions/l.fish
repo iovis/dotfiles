@@ -1,3 +1,3 @@
 function l --wraps='eza'
-    eza -la --git --group-directories-first --hyperlink --icons $argv
+    eza -al --git --group-directories-first --hyperlink --icons $argv
 end
