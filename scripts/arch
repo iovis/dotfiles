@@ -39,7 +39,7 @@ fi
 
 yay -Y --gendb
 # shellcheck disable=SC2046 # pacdump-generated, newline-delimited package list
-yay -S --needed $(cat "$PACMAN_PATH/Aurfile")
+yay -S --needed --answerclean=none --answerdiff=none $(cat "$PACMAN_PATH/Aurfile")
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Starting services"
 sudo systemctl enable --now avahi-daemon bluetooth cpupower fstrim.timer gdm reflector.timer sshd
