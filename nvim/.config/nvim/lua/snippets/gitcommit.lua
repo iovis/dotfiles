@@ -5,6 +5,8 @@ local u = require("config.utils")
 -- the expensive results
 local ctx = {}
 
+---get branch name
+---@return string
 local function get_branch()
   if not ctx.branch then
     ctx.branch = u.system({ "git", "rev-parse", "--abbrev-ref", "HEAD" })
@@ -13,7 +15,22 @@ local function get_branch()
   return ctx.branch
 end
 
----@return table
+---get jira card from branch name
+---@return string
+local function get_jira_card()
+  if ctx.jira_card then
+    return ctx.jira_card
+  end
+
+  local jira_card = get_branch():match("%w+-%d+")
+
+  if jira_card then
+    ctx.jira_card = jira_card:upper()
+  end
+
+  return ctx.jira_card or ""
+end
+
 -- local get_qa_prs = function()
 --   if ctx.prs then
 --     return ctx.prs
@@ -38,28 +55,14 @@ end
 --   return ctx.prs
 -- end
 
-local function get_jira_card()
-  local jira_card = get_branch():match("%w+-%d+")
-
-  if jira_card then
-    jira_card = jira_card:upper()
-  end
-
-  return sn(nil, t(jira_card))
-end
-
 local function get_jira_url()
-  local jira_card = get_branch():match("%w+-%d+")
+  local jira_card = get_jira_card()
 
-  if jira_card then
-    jira_card = jira_card:upper()
-  end
-
-  if u.is_empty(jira_card) then
+  if not vim.env.JIRA_URL or u.is_empty(jira_card) then
     return sn(nil, t(""))
   end
 
-  local jira_url = ("https://meraki.atlassian.net/browse/%s"):format(jira_card)
+  local jira_url = ("%s/browse/%s"):format(vim.env.JIRA_URL, jira_card)
 
   return sn(nil, t(jira_url))
 end
@@ -107,20 +110,22 @@ end
 
 ----Conventional Commits
 local function conventional_commit()
+  local jira_card = get_jira_card()
+
   return sn(
     nil,
     c(1, {
       sn(
         nil,
         fmt("({}): {}", {
-          r(1, "scope", i(1)),
+          r(1, "scope", i(1, jira_card)),
           r(2, "message", i(2)),
         })
       ),
       sn(
         nil,
         fmt("({})!: {}", {
-          r(1, "scope", i(1)),
+          r(1, "scope", i(1, jira_card)),
           r(2, "message", i(2)),
         })
       ),
@@ -129,14 +134,6 @@ local function conventional_commit()
 end
 
 return {
-  s(
-    "t",
-    fmt("{jira}: {}", {
-      jira = d(1, get_jira_card),
-      i(2),
-    }),
-    { condition = conds.line_begin }
-  ),
   -- Conventional Commits
   s(
     { trig = "build", dscr = "Changes that affect the build system or external dependencies" },
@@ -204,9 +201,6 @@ return {
     condition = conds.line_begin,
   }),
   -- Templates
-  s("bookmarks", t("chore(qutebrowser): sync bookmarks"), {
-    condition = conds.line_begin,
-  }),
   s("plugins", t("chore(nvim.plugin): sync plugins"), {
     condition = conds.line_begin,
   }),
@@ -228,29 +222,6 @@ return {
   --       jira_url = d(3, get_jira_url, { 1 }),
   --       qa_prs = d(4, get_related_prs),
   --       i(0),
-  --     }
-  --   ),
-  --   { condition = conds.line_begin }
-  -- ),
-  -- s(
-  --   "qa",
-  --   fmt(
-  --     [[
-  --       qa|{jira}{space}{title}
-  --       {jira_url}
-  --       **Changes:**
-  --       - {changes}
-  --
-  --       **How to test:**
-  --       - {test}
-  --     ]],
-  --     {
-  --       jira = d(1, get_jira_card),
-  --       space = n(1, " "),
-  --       title = d(2, get_pr_title),
-  --       jira_url = d(3, get_jira_url, { 1 }),
-  --       changes = i(4),
-  --       test = i(5),
   --     }
   --   ),
   --   { condition = conds.line_begin }
