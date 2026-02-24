@@ -116,7 +116,8 @@ vim.keymap.set("n", "<m-o>", "m`o<esc>``")
 vim.keymap.set("n", "<m-O>", "m`O<esc>``")
 
 vim.keymap.set("n", "<leader>fo", "gg=G")
-vim.keymap.set("x", "<leader>c", ":!column -t<cr>", { desc = "Format as columns" })
+vim.keymap.set("n", "<leader>C", ":%!column -t<cr>", { desc = "Format as columns" })
+vim.keymap.set("x", "<leader>C", ":!column -t<cr>", { desc = "Format as columns" })
 
 vim.keymap.set("n", "g2", "m`:set shiftwidth=2 softtabstop=2 expandtab | retab<cr>gg=G``")
 vim.keymap.set("n", "g4", "m`:set shiftwidth=4 softtabstop=4 expandtab | retab<cr>gg=G``")
