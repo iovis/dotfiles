@@ -1,5 +1,16 @@
 # Created by http://www.gitignore.io
 
+### Codex ###
+.codex-state/
+
+### CTags ###
+tags
+.tags*
+.gemtags
+
+### Npm ###
+node_modules/
+
 ### OSX ###
 .DS_Store
 .AppleDouble
@@ -19,6 +30,15 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+### Ruby ###
+.ruby-lsp/
+
 ### vim ###
 [._]*.s[a-w][a-z]
 [._]s[a-w][a-z]
@@ -33,23 +53,6 @@ NvimTree
 BqfPreviewBorder
 BqfPreviewScrollBar
 quickfix-*
-
-### Npm ###
-node_modules/
-
-### CTags ###
-tags
-.tags*
-.gemtags
-
-### Python ###
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-
-### Ruby ###
-.ruby-lsp/
 
 ### Visual Studio Code ###
 .vscode/
