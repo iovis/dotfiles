@@ -46,7 +46,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = config_augroup,
   callback = function()
     vim.cmd([[normal! m`]])
-    vim.cmd([[%s/\s\+$//e]])
+    vim.cmd([[keeppatterns %s/\s\+$//e]])
     vim.cmd([[normal! ``]])
   end,
 })
