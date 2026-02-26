@@ -7,3 +7,6 @@ network_access = true
 
 [shell_environment_policy]
 ignore_default_excludes = true  # inherit all env variables
+
+[tui]
+theme = "catppuccin-mocha"
