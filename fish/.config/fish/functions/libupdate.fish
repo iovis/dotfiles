@@ -11,9 +11,6 @@ function libupdate
     log_step $(green mise) self-update
     mise self-update --yes
 
-    log_step $(green mise) outdated --bump
-    mise outdated --bump
-
     log_step $(green mise) outdated
     mise outdated
 
