@@ -53,6 +53,10 @@ bind -N "muxi picker" C-_ {
   run "muxi fzf"
 }
 
+bind -N "muxi picker" C-/ {
+  run "muxi fzf"
+}
+
 bind -N "Run FZF session picker" C-f {
   display-popup -w 80% -h 80% -b none -E ts
 }
