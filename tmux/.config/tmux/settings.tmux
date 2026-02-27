@@ -17,7 +17,7 @@ set -wg automatic-rename-format '#{pane_current_command}'
 set -wg mode-keys vi
 set -wg monitor-activity on
 
-set -s extended-keys always
+set -s extended-keys off
 set -s terminal-features "xterm*:clipboard:ccolour:cstyle:extkeys:focus:hyperlinks:overline:RGB:strikethrough:title:usstyle"
 set -sg default-terminal "tmux-256color"
 set -sg escape-time 0
