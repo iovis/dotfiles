@@ -18,10 +18,6 @@ bind -N "Open htop" -T command h {
   new-window -Sn htop htop
 }
 
-bind -N "Open Codex" -T command k {
-  new-window -Sn codex codex resume
-}
-
 bind -N "Open numbat" -T command m {
   new-window -Sn numbat numbat
 }
