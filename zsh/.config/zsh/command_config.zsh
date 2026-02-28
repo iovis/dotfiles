@@ -32,7 +32,7 @@ fi
 # just
 if type just > /dev/null; then
   alias j="just"
-  alias jf="just --choose --chooser \"fzf-tmux -p50\%,50\% --prompt 'just> ' --reverse --info inline --preview 'just --show {}' --preview-window 'down'\""
+  export JUST_CHOOSER='fzf --prompt="❯ " --header-border --input-border --list-border --info=inline-right --ghost="Just" --reverse --no-input --multi --bind="j:down,k:up" --bind="p,alt-p:toggle-preview" --bind="r,alt-r:change-preview-window(down|right)" --bind="i,/:show-input+unbind(j,k,p,r,i,/)" --preview="just --unstable --color=always --show={}" --preview-window="right:75%" --color=input-border:blue'
 fi
 
 # lazygit

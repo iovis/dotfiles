@@ -31,7 +31,7 @@ return {
     local u = require("config.utils")
     vim.keymap.set("n", "<leader>S", function()
       if u.has_justfile() then
-        tux.run("jf")
+        tux.run("just --choose")
       else
         vim.notify("No justfile found", vim.log.levels.WARN)
       end
