@@ -10,6 +10,7 @@ return {
       float = { transparent = true },
       no_italic = true,
       integrations = {
+        lsp_saga = true,
         mason = true,
       },
       -- NOTE: May need to re-compile after changing
@@ -48,7 +49,7 @@ return {
 
           -- lspsaga
           CodeActionNumber = { fg = colors.teal },
-          CodeActionText = { fg = colors.blue },
+          CodeActionText = { fg = colors.lavender },
           DiagnosticSource = { link = "Comment" },
           SagaLightBulb = { fg = colors.yellow },
 
