@@ -9,7 +9,6 @@
 --bind=alt-j:preview-page-down,alt-k:preview-page-up
 --bind=alt-left:backward-word,alt-right:forward-word
 --bind=alt-h:backward-word,alt-l:forward-word
---preview='fzf-preview {}'
 --color=current-bg:#414559
 --color=bg:-1
 --color=current-fg:#c6d0f5
