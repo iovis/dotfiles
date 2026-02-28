@@ -68,7 +68,7 @@
       "action.save": "control+S",
       "open-search-filter": "control+P",
       "open-settings": "control+,",
-      "toggle-action-panel": "control+B"
+      "toggle-action-panel": "control+K"
    },
    "favorites": [
       "clipboard:history"
