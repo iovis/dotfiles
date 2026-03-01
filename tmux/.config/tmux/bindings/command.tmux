@@ -6,7 +6,7 @@ bind -N "Open btop" -T command b {
   new-window -Sn btop btop
 }
 
-bind -N "Open neovim with current pane contents" -T command n {
+bind -N "Open neovim with current pane contents" -T command v {
   run -b tmux-capture
 }
 
@@ -18,12 +18,12 @@ bind -N "Open htop" -T command h {
   new-window -Sn htop htop
 }
 
-bind -N "Open numbat" -T command m {
+bind -N "Open numbat" -T command n {
   new-window -Sn numbat numbat
 }
 
 bind -N "Run just open" -T command o {
-run -b "gh repo view --web"
+  run -b "just open || gh repo view --web"
 }
 
 bind -N "Browse PRs for current branch" -T command p {
@@ -57,7 +57,7 @@ bind -N "Run just picker" -T command j {
 
 bind -N "Run just console" -T command c {
   if "test -f justfile" {
-    new-window -Sn console just console
+    new-window -Sn console "just console || tmux display-message 'just console failed'"
   } {
     display-message "No justfile!"
   }
@@ -65,7 +65,7 @@ bind -N "Run just console" -T command c {
 
 bind -N "Run just db" -T command d {
   if "test -f justfile" {
-    new-window -Sn db just db
+    new-window -Sn db "just db || tmux display-message 'just db failed'"
   } {
     display-message "No justfile!"
   }
@@ -73,15 +73,7 @@ bind -N "Run just db" -T command d {
 
 bind -N "Run just dev" -T command s {
   if "test -f justfile" {
-    new-window -Sn dev just dev
-  } {
-    display-message "No justfile!"
-  }
-}
-
-bind -N "Run just open dev" -T command S {
-  if "test -f justfile" {
-    new-window -Sn dev just open dev
+    new-window -Sn dev "just dev || tmux display-message 'just dev failed'"
   } {
     display-message "No justfile!"
   }
@@ -89,7 +81,7 @@ bind -N "Run just open dev" -T command S {
 
 bind -N "Run just test" -T command t {
   if "test -f justfile" {
-    new-window -n test -d just test
+    new-window -n test -d "just test || tmux display-message 'just test failed'"
   } {
     display-message "No justfile!"
   }
