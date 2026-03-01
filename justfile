@@ -1,3 +1,5 @@
+url := "https://github.com/iovis/dotfiles"
+
 default: init
 
 @list:
@@ -9,4 +11,4 @@ init:
     git stash pop || true
 
 open:
-    open "https://github.com/iovis/dotfiles"
+    open {{ url }} || xdg-open {{ url }}
