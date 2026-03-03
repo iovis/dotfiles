@@ -19,8 +19,11 @@ fi
 
 source "${ZINIT_HOME}/zinit.zsh"
 
+zinit ice wait lucid
 zinit light zsh-users/zsh-syntax-highlighting
+zinit ice wait lucid
 zinit light zsh-users/zsh-completions
+zinit ice wait lucid
 zinit light zsh-users/zsh-autosuggestions
 
 if type starship > /dev/null; then
