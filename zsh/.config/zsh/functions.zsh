@@ -54,13 +54,11 @@ function zcompare() {
 }
 
 function clean_zsh_cache() {
-  echo '=== Cleaning ZSH compilation files ==='
   rm -f $ZDOTDIR/**/{.,}*.zwc
   rm -f $ZDOTDIR/.zcompdump*
 }
 
 function compile_zsh() {
-  echo '=== Compiling ZSH files ==='
   zcompare $ZDOTDIR/.zcompdump
   zcompare $ZDOTDIR/.zshrc
   zcompare $ZDOTDIR/.zprofile
