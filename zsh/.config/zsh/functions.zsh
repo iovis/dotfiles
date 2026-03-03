@@ -2,6 +2,7 @@ function libupdate() {
   upgrade_libraries
 
   zinit update --all
+  compile_zsh
 
   rust_update
 
