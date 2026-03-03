@@ -5,6 +5,7 @@ base
 base-devel
 bat
 bear
+binwalk
 bluetui
 bluez-utils
 btop
@@ -148,6 +149,7 @@ ttf-firacode-nerd
 ttf-jetbrains-mono
 ttf-liberation
 udiskie
+unrar
 uwsm
 valgrind
 vim
