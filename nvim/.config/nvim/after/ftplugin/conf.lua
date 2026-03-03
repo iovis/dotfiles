@@ -7,7 +7,7 @@ if u.current_file():match("kitty.conf") then
     group = augroup,
     buffer = vim.api.nvim_get_current_buf(),
     callback = function()
-      vim.cmd("silent !kill -SIGUSR1 $(pgrep kitty)")
+      vim.cmd("silent !killall -SIGUSR1 kitty")
     end,
   })
 end
