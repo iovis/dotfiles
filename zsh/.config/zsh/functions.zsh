@@ -42,3 +42,30 @@ git_current_branch() {
 
   echo ${ref#refs/heads/}
 }
+
+# Function to determine the need of a zcompile. If the .zwc file
+# does not exist, or the base file is newer, we need to compile.
+# These jobs are asynchronous, and will not impact the interactive shell
+function zcompare() {
+  if [[ -s ${1} && ( ! -s ${1}.zwc || ${1} -nt ${1}.zwc) ]]; then
+    zcompile ${1}
+  fi
+}
+
+function clean_zsh_cache() {
+  echo '=== Cleaning ZSH compilation files ==='
+  rm -f $ZDOTDIR/**/{.,}*.zwc
+  rm -f $ZDOTDIR/.zcompdump*
+}
+
+function compile_zsh() {
+  echo '=== Compiling ZSH files ==='
+  zcompare $ZDOTDIR/.zcompdump
+  zcompare $ZDOTDIR/.zshrc
+  zcompare $ZDOTDIR/.zprofile
+
+  local file
+  for file in $ZDOTDIR/**/*.zsh{,-theme}(N); do
+    zcompare "$file"
+  done
+}
