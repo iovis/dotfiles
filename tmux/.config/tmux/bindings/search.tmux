@@ -1,7 +1,8 @@
+bind -N "flash.tmux" -T copy-mode-vi C-f run flash_tmux
 bind -N "flash.tmux" -n C-f if "$forward_keys" {
   send 'C-f'
 } {
-  run 'flash_tmux'
+  run flash_tmux
 }
 
 bind -N "Search mode" f {
@@ -10,7 +11,7 @@ bind -N "Search mode" f {
 }
 
 bind -N "flash.tmux" -T search l {
-  run 'flash_tmux'
+  run flash_tmux
 }
 
 # Command Prompts
