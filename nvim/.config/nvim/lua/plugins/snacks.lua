@@ -337,7 +337,7 @@ return {
     end, { desc = "Open Neovim config" })
 
     -- Grep
-    vim.keymap.set({ "n", "x" }, "<leader>fi", function()
+    vim.keymap.set({ "n", "x" }, "<leader>fe", function()
       snacks.picker.grep_word({
         exclude = grep_exclude,
         focus = "list",

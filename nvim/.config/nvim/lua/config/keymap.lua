@@ -115,6 +115,7 @@ vim.keymap.set("x", "<m-k>", ":m'<-2<cr>`>my`<mzgv=gv`yo`z", { silent = true })
 vim.keymap.set("n", "<m-o>", "m`o<esc>``")
 vim.keymap.set("n", "<m-O>", "m`O<esc>``")
 
+vim.keymap.set({ "n", "x" }, "<leader>fi", ":%!", { desc = "Filter through program" })
 vim.keymap.set("n", "<leader>fo", "gg=G")
 vim.keymap.set("n", "<leader>C", ":%!column -t<cr>", { desc = "Format as columns" })
 vim.keymap.set("x", "<leader>C", ":!column -t<cr>", { desc = "Format as columns" })
