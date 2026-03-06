@@ -15,7 +15,7 @@ fzf_command() {
     --list-border \
     --info=hidden \
     --reverse \
-    --bind=alt-enter:print-query \
+    --bind=alt-enter,alt-c:print-query \
     --bind=alt-p:toggle-preview \
     --bind="ctrl-x:execute-silent(zoxide remove {})+reload:$zoxide_folders" \
     --bind='alt-r:change-preview-window(down|right)' \

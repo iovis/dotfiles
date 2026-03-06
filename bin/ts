@@ -18,7 +18,7 @@ fzf_command() {
     --reverse \
     --no-input \
     --accept-nth=2 \
-    --bind=alt-enter:print-query \
+    --bind=alt-enter,alt-c:print-query \
     --bind="j:down,k:up,q:abort" \
     --bind="p,alt-p:toggle-preview" \
     --bind="r,alt-r:change-preview-window(down|right)" \
