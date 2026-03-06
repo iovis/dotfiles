@@ -1,14 +1,34 @@
 #!/usr/bin/env bash
 
-fzf-tmux \
-  -p 80%,80% \
-  --reverse \
-  --info hidden \
-  --preview "git log -20 --color=always --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' \$(echo {-1} | tr -d '[]') --" \
-  --preview-window down \
-  --sync \
-  --bind 'start:reload:git worktree list' \
-  --bind 'enter:become(tmux new-window -c {1})' \
-  --bind 'ctrl-x:execute-silent(git worktree remove {1})+reload(git worktree list)' \
-  --prompt "git> " \
-  --query "${*:-}" || true
+set -euo pipefail
+
+command='git worktree list'
+
+fzf_command() {
+  # using `reload:cmd` instead of `reload(cmd)` because otherwise fzf fails to
+  # parse a command with braces
+  fzf \
+    --prompt="❯ " \
+    --header-border \
+    --input-border \
+    --list-border \
+    --info hidden \
+    --list-label=" git worktree " \
+    --ghost="git worktree" \
+    --reverse \
+    --no-input \
+    --accept-nth=2 \
+    --bind="j:down,k:up,q:abort" \
+    --bind="p,alt-p:toggle-preview" \
+    --bind="r,alt-r:change-preview-window(right|down)" \
+    --bind="d,x,ctrl-x:execute-silent(git worktree remove {1})+reload:$command" \
+    --bind="i,/:show-input+unbind(j,k,q,d,x,p,r,i,/)" \
+    --bind='enter:become(tmux new-window -c {1})' \
+    --bind="focus:transform-preview-label:echo '  {1..2}  '" \
+    --preview="git log -50 --color=always --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' \$(echo {-1} | tr -d '[]') --" \
+    --preview-window="down,75%" \
+    --exit-0 \
+    --query="${*:-}" || true
+}
+
+eval "$command" | fzf_command "$@"

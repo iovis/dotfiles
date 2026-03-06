@@ -35,7 +35,7 @@ bind -N "Open Notes" -T command u {
 }
 
 bind -N "Switch to git worktree" -T command w {
-  run -b "cd #{pane_current_path} && gws"
+  display-popup -w 80% -h 80% -b none -E gws
 }
 
 bind -N "Open yazi" -T command y {
