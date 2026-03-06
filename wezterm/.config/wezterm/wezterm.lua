@@ -76,11 +76,7 @@ config.colors = {
 -- wezterm ls-fonts --list-system | rg Fira
 -- wezterm ls-fonts --text "✔"
 config.font_size = 20
-config.font = wezterm.font_with_fallback({
-  { family = "FiraCode Nerd Font", weight = 450 }, -- Retina
-  "Menlo", -- This has the check mark and cross symbols
-  "Apple Color Emoji",
-})
+config.font = wezterm.font("FiraCode Nerd Font")
 
 ---Keymaps
 -- wezterm show-keys --lua
