@@ -85,11 +85,6 @@ else
   }
 fi
 
-# worktrunk
-if type wt >/dev/null; then
-  eval "$(command wt config shell init zsh)"
-fi
-
 # zoxide
 if type zoxide > /dev/null; then
   eval "$(zoxide init zsh)"

@@ -23,7 +23,6 @@ zinit ice wait lucid
 zinit light zsh-users/zsh-syntax-highlighting
 zinit ice wait lucid
 zinit light zsh-users/zsh-completions
-zinit ice wait lucid
 zinit light zsh-users/zsh-autosuggestions
 
 if type starship > /dev/null; then
@@ -45,6 +44,8 @@ for filename in $ZDOTDIR/local/*.zsh(N.); do
 done
 
 zinit cdreplay -q
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
 
 ## Profiling helper (keep at the end)
 if [[ "$ZPROF" = true ]]; then
