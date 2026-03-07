@@ -40,7 +40,7 @@ return {
         ["gx"] = "actions.open_external",
         ["gh"] = "actions.toggle_hidden",
         -- Custom
-        q = "actions.close",
+        q = { "actions.close", opts = { exit_if_last_buf = true } },
         gt = "actions.toggle_trash",
         ["<m-p>"] = "actions.preview",
         ["<m-j>"] = "actions.preview_scroll_down",
