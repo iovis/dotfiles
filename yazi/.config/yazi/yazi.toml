@@ -4,7 +4,7 @@
 show_hidden = true
 
 [[opener.mpv_dir]]
-run = 'fd -tf . "$@" -X mpv --shuffle --loop-playlist=inf'
+run = 'mpv --autocreate-playlist=filter --shuffle --loop-playlist=inf "$@"'
 for = "unix"
 orphan = true
 desc = "Open in mpv"
