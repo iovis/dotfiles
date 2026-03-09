@@ -1,3 +1,3 @@
 function notes
-    cd $NOTES && nvim -S Session.vim
+    cd $NOTES_HOME && nvim -S Session.vim
 end
