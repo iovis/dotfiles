@@ -21,6 +21,6 @@ local u = require("utils")
 require("application_launcher")
 require("bindings")
 require("aerospace")
-pcall(require, "overrides")
+pcall(require, "local")
 
 u.notify("Configuration Reloaded")

@@ -12,7 +12,7 @@ fish/.config/fish/completions/*
 !fish/.config/fish/completions/ts.fish
 
 # hammerspoon
-hammerspoon/.hammerspoon/overrides*
+hammerspoon/.hammerspoon/local*
 
 # lazygit
 lazygit/.config/lazygit/state.yml
