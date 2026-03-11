@@ -28,12 +28,12 @@ return {
     })
 
     vim.keymap.set("n", "dm<space>", ":Muxi delete<space>")
-    vim.keymap.set("n", "m<space>", function()
-      vim.ui.input({ prompt = "key" }, function(input)
-        local key = vim.trim(input or "")
-        muxi.add(key)
-      end)
-    end)
+    -- vim.keymap.set("n", "m<space>", function()
+    --   vim.ui.input({ prompt = "key" }, function(input)
+    --     local key = vim.trim(input or "")
+    --     muxi.add(key)
+    --   end)
+    -- end)
 
     ----Quick maps
     for lower, upper in pairs({
