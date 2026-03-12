@@ -152,8 +152,8 @@
   },
   "hyprland/workspaces": {
     "on-click": "activate",
-    "on-scroll-up": "hyprctl dispatch workspace -1",
-    "on-scroll-down": "hyprctl dispatch workspace +1",
+    "on-scroll-up": "hyprctl dispatch workspace +1",
+    "on-scroll-down": "hyprctl dispatch workspace -1",
     "format": "{icon}",
     "format-icons": {
       "active": "",
