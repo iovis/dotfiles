@@ -19,7 +19,7 @@ return {
     {
       url = "tmux-plugins/tmux-continuum",
       opts = {
-        -- ["continuum-restore"] = "on", -- Seems to cause issues when resurrecting (race condition?)
+        ["continuum-restore"] = "on",
         ["continuum-save-interval"] = "2",
       },
     },
