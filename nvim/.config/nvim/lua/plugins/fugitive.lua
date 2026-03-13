@@ -37,7 +37,7 @@ return {
 
     vim.keymap.set("n", "<leader>lg", "<cmd>Glg -500<cr>")
     u.ex.abbrev("glg", "Glg")
-    vim.api.nvim_create_user_command("Glg", [[Git log --graph --pretty='%h -%d %s (%cr) <%an>' <args>]], {
+    vim.api.nvim_create_user_command("Glg", [[botright Git log --graph --pretty='%h -%d %s (%cr) <%an>' <args>]], {
       nargs = "*",
     })
 
