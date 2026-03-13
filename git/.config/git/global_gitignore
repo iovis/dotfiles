@@ -1,7 +1,8 @@
 # Created by http://www.gitignore.io
 
-### Codex ###
+### AI ###
 .codex-state/
+.opencode/
 
 ### CTags ###
 tags
