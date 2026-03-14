@@ -1,10 +1,3 @@
-# copyq
-copyq/.config/copyq/*
-!copyq/.config/copyq/copyq.conf
-
-# encryption
-master.key
-
 # fish
 fish/.config/fish/fish_variables
 fish/.config/fish/local/*

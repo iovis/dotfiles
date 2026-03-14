@@ -1,6 +1,7 @@
 # Created by http://www.gitignore.io
 
 ### AI ###
+.claude/
 .codex-state/
 .opencode/
 
