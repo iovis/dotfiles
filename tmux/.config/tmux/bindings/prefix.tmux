@@ -30,7 +30,7 @@ bind -N "Set session name and path to current pane's" i {
   run tmux_set_session_name
 }
 
-bind -N "Toggle synchronize panes" s {
+bind -N "Toggle synchronize panes" C-s {
   set -w synchronize-panes
 }
 
@@ -81,17 +81,28 @@ bind -N "New session" C-n command-prompt -p "new session name:" {
   new-session -A -s "%1" -c "#{pane_current_path}"
 }
 
-bind -N "Reset session" q {
-  new-window -c "#{pane_current_path}"
+bind -N "Promote pane to session" s {
+  run tmux_promote_pane
+}
+
+bind -N "Reset session" Q {
+  new-window
   kill-window -a
 }
 
 ## Window management
-bind -N "New window" c new-window
 bind -N "New window" C-c new-window
-bind -N "New window (current path)" Tab new-window -c "#{pane_current_path}"
+bind -N "New window (current path)" C-t {
+  new-window -c "#{pane_current_path}"
+}
 
-bind -N "Close the rest of the windows" Q {
+bind -N "Close window" C-w kill-window
+bind -N "Reset window" q {
+  new-window -c "#{pane_current_path}"
+  kill-window -t "{last}"
+}
+
+bind -N "Close the rest of the windows" O {
   kill-window -a
 }
 
@@ -109,34 +120,13 @@ bind -N "Open Vim plugin" C-p {
 
 ## Pane Management
 bind-key -N "Kill pane" C-x kill-pane
-bind-key -N "Kill pane" x kill-pane
-
-bind -N "Horizontal pane" h {
-  split-window -v -c "#{pane_current_path}"
-}
 
 bind -N "Horizontal pane" C-h {
   split-window -v -c "#{pane_current_path}"
 }
 
-bind -N "Horizontal pane (full)" c-s {
-  split-window -fv -c "#{pane_current_path}"
-}
-
-bind -N "Vertical pane" v {
-  split-window -h -c "#{pane_current_path}"
-}
-
 bind -N "Vertical pane" C-v {
   split-window -h -c "#{pane_current_path}"
-}
-
-bind -N "Vertical pane (full)" V {
-  split-window -fh -c "#{pane_current_path}"
-}
-
-bind -N "Resize panes equally" 0 {
-  select-layout tiled
 }
 
 bind -N "Resize panes equally" = {
@@ -149,7 +139,7 @@ bind -N "Move pane left"  -r left  swap-pane -d -t "{left-of}"
 bind -N "Move pane right" -r right swap-pane -d -t "{right-of}"
 bind -N "Move pane up"    -r up    swap-pane -d -t "{up-of}"
 
-## Switch panes
+## Switch panes (fallback)
 bind C-down select-pane -D
 bind C-left select-pane -L
 bind C-right select-pane -R
@@ -161,9 +151,7 @@ bind -N "Move pane left (full)"  J move-pane -fv -t '.{next}'
 bind -N "Move pane right (full)" K move-pane -fv -b -t '.{next}'
 bind -N "Move pane up (full)"    L move-pane -fh -t '.{next}'
 
-bind -N "Promote pane to session" @ {
-  run tmux_promote_pane
-}
+bind -N "Break pane" Tab break-pane
 
 ## Join panes
 bind -N "Join pane" j {
