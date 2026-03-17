@@ -102,7 +102,7 @@ bind -N "Reset window" q {
   kill-window -t "{last}"
 }
 
-bind -N "Close the rest of the windows" O {
+bind -N "Close the rest of the windows" o {
   kill-window -a
 }
 
