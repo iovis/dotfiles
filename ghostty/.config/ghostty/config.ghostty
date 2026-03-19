@@ -1,0 +1,19 @@
+# ghostty +show-config --default --docs
+confirm-close-surface = false
+
+theme = Catppuccin Mocha
+font-size = 20
+
+background = #000000
+background-opacity = 0.85
+background-blur = true
+
+macos-titlebar-style = hidden
+window-padding-x = 8
+window-padding-y = 10,2
+
+macos-option-as-alt = true
+keybind = alt+left=unbind
+keybind = alt+right=unbind
+
+config-file = ?local
