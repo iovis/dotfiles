@@ -101,6 +101,18 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+---- Map [q] to close if reading from STDIN
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  callback = function()
+    if vim.v.argv[3] == "-" then
+      vim.keymap.set("n", "q", "<cmd>qa!<cr>", {
+        buffer = true,
+        nowait = true,
+      })
+    end
+  end,
+})
+
 ---- Highlight on yank
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   desc = "Highlight on yank",
