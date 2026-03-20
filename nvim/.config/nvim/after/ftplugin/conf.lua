@@ -26,6 +26,7 @@ elseif u.current_file():match("config.ghostty") then
     vim.cmd("0r !ghostty +show-config --default --docs")
     vim.cmd.normal("gg")
     vim.bo.filetype = "conf"
+    vim.bo.buftype = "nofile"
     vim.keymap.set("n", "q", "<cmd>close<cr>", {
       buffer = true,
       nowait = true,

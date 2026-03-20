@@ -1,8 +1,10 @@
 # ghostty +show-config --default --docs
 confirm-close-surface = false
+cursor-style-blink = false
 
 theme = Catppuccin Mocha
-font-size = 20
+font-family = FiraCode Nerd Font
+font-size = 16
 
 background = #000000
 background-opacity = 0.85
@@ -15,5 +17,18 @@ window-padding-y = 10,2
 macos-option-as-alt = true
 keybind = alt+left=unbind
 keybind = alt+right=unbind
+keybind = ctrl+alt+arrow_up=unbind
+keybind = ctrl+alt+arrow_down=unbind
+keybind = ctrl+alt+arrow_left=unbind
+keybind = ctrl+alt+arrow_right=unbind
+keybind = alt+1=unbind
+keybind = alt+2=unbind
+keybind = alt+3=unbind
+keybind = alt+4=unbind
+keybind = alt+5=unbind
+keybind = alt+6=unbind
+keybind = alt+7=unbind
+keybind = alt+8=unbind
+keybind = alt+9=unbind
 
 config-file = ?local
