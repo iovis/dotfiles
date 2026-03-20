@@ -26,4 +26,4 @@ let g:test#strategy = 'tux'
 
 nnoremap <leader>si <cmd>TestNearest<cr>
 nnoremap <leader>so <cmd>TestFile<cr>
-nnoremap <leader>ss <cmd>TestSuite<cr>
+nnoremap <leader>sa <cmd>TestSuite<cr>
