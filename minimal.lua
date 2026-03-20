@@ -3,6 +3,11 @@ vim.g.mapleader = vim.keycode("<space>")
 
 vim.keymap.set("i", "kj", "<esc>")
 vim.keymap.set("n", ",", "<cmd>Ex<cr>")
+vim.keymap.set("n", "<bs>", "<c-^>")
+vim.keymap.set("n", "<c-h>", "<c-w>h")
+vim.keymap.set("n", "<c-j>", "<c-w>j")
+vim.keymap.set("n", "<c-k>", "<c-w>k")
+vim.keymap.set("n", "<c-l>", "<c-w>l")
 vim.keymap.set("n", "<leader>;", "<cmd>noh<cr><cmd>echon<cr>")
 vim.keymap.set("n", "<leader>b", "<cmd>bd!<cr>")
 vim.keymap.set("n", "<leader>c", "<cmd>close<cr>")
@@ -12,12 +17,9 @@ vim.keymap.set("n", "<leader>k", "<cmd>Lex<cr>")
 vim.keymap.set("n", "<leader>v", "<c-w>v")
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr>")
 vim.keymap.set("n", "<leader>x", "<cmd>qa<cr>")
-vim.keymap.set("n", "<c-j>", "<c-w>j")
-vim.keymap.set("n", "<c-h>", "<c-w>h")
-vim.keymap.set("n", "<c-k>", "<c-w>k")
-vim.keymap.set("n", "<c-l>", "<c-w>l")
 vim.keymap.set("n", "M", "<c-w>o")
-vim.keymap.set("n", "<bs>", "<c-^>")
+vim.keymap.set("n", "yoi", "<cmd>set list!<cr>")
+vim.keymap.set("n", "yow", "<cmd>set wrap!<cr>")
 vim.keymap.set({ "n", "x" }, ";", ":")
 vim.keymap.set({ "n", "x", "o" }, "H", "^")
 vim.keymap.set({ "n", "x", "o" }, "L", "$")
@@ -54,7 +56,7 @@ vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.o.foldlevel = 99
 vim.o.foldmethod = "expr"
 vim.o.ignorecase = true
-vim.o.list = true
+vim.o.list = false
 vim.o.laststatus = 3
 vim.opt.listchars = {
 	tab = "▏ ",
@@ -86,13 +88,24 @@ vim.o.virtualedit = "block"
 vim.o.winborder = "rounded"
 vim.o.wrap = false
 
+-- Highlights
 vim.api.nvim_set_hl(0, "Normal", { bg = nil })
 vim.api.nvim_set_hl(0, "StatusLine", { link = "LineNr" })
 vim.api.nvim_set_hl(0, "StatusLineNC", { link = "LineNr" })
 vim.api.nvim_set_hl(0, "WinSeparator", { link = "LineNr" })
 
+vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+  desc = "Highlight on yank",
+	group = vim.api.nvim_create_augroup("my.highlight_yank", { clear = true }),
+  pattern = "*",
+  callback = function()
+    vim.hl.on_yank({ timeout = 75 })
+  end,
+})
+
 -- Treesitter
 vim.api.nvim_create_autocmd("FileType", {
+	group = vim.api.nvim_create_augroup("my.treesitter_start", { clear = true }),
 	callback = function()
 		pcall(vim.treesitter.start)
 	end,
@@ -118,7 +131,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("my.lsp", { clear = false }),
 				buffer = args.buf,
 				callback = function()
-					vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 1000 })
+					vim.lsp.buf.format({
+						bufnr = args.buf,
+						id = client.id,
+						timeout_ms = 1000
+					})
 				end,
 			})
 		end
