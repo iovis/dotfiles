@@ -1,6 +1,7 @@
 # ghostty +show-config --default --docs
 confirm-close-surface = false
 cursor-style-blink = false
+mouse-hide-while-typing = true
 
 theme = Catppuccin Mocha
 font-family = FiraCode Nerd Font
