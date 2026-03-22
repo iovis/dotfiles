@@ -1,6 +1,4 @@
 # Unbind so they use the "root" binding
-unbind -T copy-mode-vi Enter
-unbind -T copy-mode-vi Space
 unbind -T copy-mode-vi C-h
 unbind -T copy-mode-vi C-j
 unbind -T copy-mode-vi C-k
@@ -28,39 +26,29 @@ bind -T copy-mode-vi K send -X top-line
 bind -T copy-mode-vi J send -X bottom-line
 bind -T copy-mode-vi d send -X halfpage-down
 bind -T copy-mode-vi u send -X halfpage-up
-bind -T copy-mode-vi p send -X search-reverse
+bind -T copy-mode-vi [ send -X previous-prompt -o
+bind -T copy-mode-vi ] send -X next-prompt -o
+
+# Selection
+bind -T copy-mode-vi v send -X begin-selection
+bind -T copy-mode-vi i send -X select-word
 
 # Search
 bind -T copy-mode-vi / command-prompt -i -I "#{pane_search_string}" -T search -p "(search up)" { send-keys -X search-backward-incremental "%%" }
 bind -T copy-mode-vi ? command-prompt -i -I "#{pane_search_string}" -T search -p "(search down)" { send-keys -X search-forward-incremental "%%" }
 
-# Marks
-bind -T copy-mode-vi m   send -X set-mark
-bind -T copy-mode-vi "'" send -X jump-to-mark
-
-# Quick select
-bind -N "append selection" -T copy-mode-vi a send -X copy-pipe-no-clear "pbcopy"
-bind -T copy-mode-vi v send -X begin-selection
+# Copy
+bind -T copy-mode-vi y send -X copy-selection-and-cancel
+bind -T copy-mode-vi Space send -X copy-pipe-and-cancel "tmux paste-buffer -p"
+bind -T copy-mode-vi m-y send -X copy-pipe-no-clear
+bind -T copy-mode-vi Y send -X copy-pipe-end-of-line-and-cancel
 
 bind -N "Copy word and paste it directly" -T copy-mode-vi Enter {
   send -X select-word
   send -X copy-pipe-and-cancel "tmux paste-buffer -p"
 }
 
-bind -N "Copy WORD and paste it directly" -T copy-mode-vi i {
-  send Escape 'lBvE' Space
-}
-
-bind -N "Copy word" -T copy-mode-vi c {
-  send -X select-word
-  send -X copy-pipe-and-cancel "pbcopy"
-}
-
-bind -N "Copy line" -T copy-mode-vi C {
+bind -N "Copy line" -T copy-mode-vi c {
   send -X select-line
-  send -X copy-pipe-and-cancel "pbcopy"
-}
-
-bind -N "Copy till end of line" -T copy-mode-vi Y {
-  send Escape 'v$!'
+  send -X copy-pipe-and-cancel
 }

@@ -31,12 +31,5 @@ return {
         cpu_high_fg_color = "#[fg=#e78284]",
       },
     },
-    {
-      url = "tmux-plugins/tmux-yank",
-      opts = {
-        copy_mode_put = "Space",
-        yank_selection_mouse = "clipboard",
-      },
-    },
   },
 }
