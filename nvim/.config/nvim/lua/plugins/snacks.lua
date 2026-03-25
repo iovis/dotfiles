@@ -21,7 +21,6 @@ return {
         animate = { enabled = false },
       },
       explorer = {},
-      image = {},
       input = { enabled = true },
       picker = {
         formatters = {
