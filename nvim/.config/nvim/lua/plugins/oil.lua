@@ -67,9 +67,14 @@ return {
           end,
         },
         ["<leader>t"] = {
-          "actions.select",
-          opts = { tab = true },
           desc = "Open the entry in new tab",
+          callback = function()
+            if vim.w.is_oil_win then
+              actions.select.callback({ tab = true })
+            else
+              vim.cmd.tabnew()
+            end
+          end,
         },
         ["yod"] = {
           desc = "Toggle file detail view",
