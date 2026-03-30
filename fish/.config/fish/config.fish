@@ -89,3 +89,7 @@ end
 if command -q zoxide
     zoxide init fish | source
 end
+
+if command -q bob
+    fish_add_path $XDG_DATA_HOME/bob/nvim-bin
+end
