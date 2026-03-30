@@ -36,7 +36,7 @@ vim.api.nvim_create_autocmd({ "FocusLost", "BufLeave" }, {
       return
     end
 
-    vim.cmd("silent! wall")
+    vim.cmd("silent! wall ++p")
   end,
 })
 
@@ -87,6 +87,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "help",
     "httpResult",
     "notify",
+    "nvim-undotree",
     "qf",
     "redir",
     "startuptime",
@@ -126,25 +127,6 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   end,
 })
 
----- Auto create intermediate directories if they don't exist
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  desc = "Create intermediate directories if they don't exist",
-  group = config_augroup,
-  pattern = "*",
-  callback = function(ctx)
-    local ignored_filetypes = {
-      "oil",
-    }
-
-    if in_ignored_filetypes(ignored_filetypes) then
-      return
-    end
-
-    local dir = vim.fn.fnamemodify(ctx.file, ":p:h")
-    vim.fn.mkdir(dir, "p")
-  end,
-})
-
 ---- Terminal mode settings
 vim.api.nvim_create_autocmd("TermOpen", {
   desc = "Terminal settings",
@@ -159,30 +141,3 @@ vim.api.nvim_create_autocmd("TermOpen", {
     vim.keymap.set("n", "<up>", "i<up>", { buffer = true })
   end,
 })
-
----- Remove highlight after search
--- vim.api.nvim_create_autocmd({ "CursorMoved" }, {
---   desc = "Remove highlight after search",
---   group = config_augroup,
---   callback = function()
---     if not vim.g.hlsearch then
---       return
---     end
---
---     if vim.v.hlsearch == 1 and vim.fn.searchcount().exact_match == 0 then
---       vim.schedule(function()
---         vim.cmd.nohlsearch()
---       end)
---     end
---   end,
--- })
-
----- Force commentstring padding
--- vim.api.nvim_create_autocmd({ "FileType" }, {
---   desc = "Force commentstring to include spaces",
---   group = config_augroup,
---   callback = function(event)
---     local comment_string = vim.bo[event.buf].commentstring
---     vim.bo[event.buf].commentstring = comment_string:gsub("(%S)%%s", "%1 %%s"):gsub("%%s(%S)", "%%s %1")
---   end,
--- })

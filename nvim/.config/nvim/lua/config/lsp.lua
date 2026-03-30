@@ -1,14 +1,24 @@
 -- vim.lsp.set_log_level("debug")
 
-vim.keymap.set("n", "<leader>lC", "<cmd>LspActiveClients<cr>")
-vim.keymap.set("n", "<leader>lR", ":LspRestart<cr>")
+vim.keymap.set("n", "<leader>lR", ":lsp restart<cr>")
 vim.keymap.set("n", "<leader>lh", "<cmd>help lspconfig-all<cr>")
--- vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
 vim.keymap.set("n", "<leader>lo", "<cmd>LspLog<cr>")
 
-vim.api.nvim_create_user_command("LspActiveClients", "R=vim.lsp.get_clients()", {})
-vim.api.nvim_create_user_command("LspServerCapabilities", "R=vim.lsp.get_clients()[1].server_capabilities", {})
-vim.api.nvim_create_user_command("LspServerHandlers", "R=vim.tbl_keys(vim.lsp.handlers)", {})
+vim.api.nvim_create_user_command("LspInfo", "checkhealth vim.lsp", {})
+vim.api.nvim_create_user_command("LspActiveClients", "R=vim.lsp.get_clients({ bufnr = 0 })", {})
+vim.api.nvim_create_user_command(
+  "LspServerCapabilities",
+  "R=vim.lsp.get_clients({ bufnr = 0 })[1].server_capabilities",
+  {}
+)
+
+vim.api.nvim_create_user_command("LspLog", function()
+  vim.cmd("tabnew " .. vim.lsp.log.get_filename())
+  vim.keymap.set("n", "q", "<cmd>close<cr>", {
+    buffer = true,
+    nowait = true,
+  })
+end, {})
 
 vim.lsp.enable({
   "bashls",
@@ -40,6 +50,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     vim.keymap.set("n", "t", vim.lsp.buf.definition, { buffer = bufnr, desc = "vim.lsp.buf.definition" })
+    vim.keymap.set("n", "<leader>lx", vim.lsp.codelens.run, { buffer = bufnr, desc = "vim.lsp.codelens.run" })
 
     if false then
       ---- Signature/Definition
@@ -57,6 +68,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { buffer = bufnr, desc = "vim.lsp.buf.code_action" })
       vim.keymap.set("i", "<m-j>", vim.lsp.buf.code_action, { buffer = bufnr, desc = "vim.lsp.buf.code_action" })
       vim.keymap.set({ "n", "x" }, "<leader>lr", vim.lsp.buf.rename, { buffer = bufnr, desc = "vim.lsp.buf.rename" })
+      vim.keymap.set("n", "<leader>lx", vim.lsp.codelens.run, { buffer = bufnr, desc = "vim.lsp.codelens.run" })
 
       ---- Symbols
       vim.keymap.set("n", "<leader>ls", vim.lsp.buf.document_symbol, {
@@ -95,10 +107,21 @@ vim.api.nvim_create_autocmd("LspAttach", {
       end
 
       vim.keymap.set("n", "<leader>lk", toggle_inlay_hints, {
-        desc = "vim.lsp.inlay_hint",
+        desc = "toggle vim.lsp.inlay_hint",
         buffer = bufnr,
       })
     end
+
+    ----Codelens
+    local function toggle_codelens()
+      vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled())
+      vim.notify("LSP Codelens: " .. tostring(vim.lsp.codelens.is_enabled()), vim.log.levels.WARN)
+    end
+
+    vim.keymap.set("n", "<leader>lc", toggle_codelens, {
+      desc = "toggle vim.lsp.codelens",
+      buffer = bufnr,
+    })
 
     ----Code Actions
     -- nmap("<leader>lI", ":LspOrganizeImports<cr>")

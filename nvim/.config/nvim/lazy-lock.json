@@ -1,6 +1,6 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
-  "LuaSnip": { "branch": "master", "commit": "5a1e39223db9a0498024a77b8441169d260c8c25" },
+  "LuaSnip": { "branch": "master", "commit": "642b0c595e11608b4c18219e93b88d7637af27bc" },
   "blame.nvim": { "branch": "main", "commit": "179da7aaacce7c52874af636255ede72dd6fe796" },
   "blink.cmp": { "branch": "main", "commit": "451168851e8e2466bc97ee3e026c3dcb9141ce07" },
   "bufferline.nvim": { "branch": "main", "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3" },
@@ -37,7 +37,6 @@
   "splitjoin.vim": { "branch": "main", "commit": "9ce4fb4f0538cff02a57a393057b7ab371324483" },
   "treesj": { "branch": "main", "commit": "26bc2a8432ba3ea79ed6aa346fba780a3d372570" },
   "tux.nvim": { "branch": "master", "commit": "e7ba76b3fe13cb453d9b3548f09cac9957222526" },
-  "undotree": { "branch": "master", "commit": "6fa6b57cda8459e1e4b2ca34df702f55242f4e4d" },
   "vim-dadbod": { "branch": "master", "commit": "6d1d41da4873a445c5605f2005ad2c68c99d8770" },
   "vim-eunuch": { "branch": "master", "commit": "e86bb794a1c10a2edac130feb0ea590a00d03f1e" },
   "vim-fugitive": { "branch": "master", "commit": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0" },

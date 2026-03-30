@@ -21,10 +21,11 @@ vim.opt.diffopt = {
   "internal",
   "filler",
   "closeoff",
+  "indent-heuristic",
+  "inline:char",
+  "linematch:200",
   "context:12",
   "algorithm:histogram",
-  "linematch:200",
-  "indent-heuristic",
   "hiddenoff",
   "vertical",
 }
@@ -57,7 +58,7 @@ vim.opt.listchars:append({
   leadmultispace = "│·",
   space = "·",
 })
-vim.o.messagesopt = "hit-enter,history:2000"
+vim.o.messagesopt = "hit-enter,history:2000,progress:c"
 vim.o.mouse = "a"
 vim.o.number = true
 vim.o.relativenumber = true

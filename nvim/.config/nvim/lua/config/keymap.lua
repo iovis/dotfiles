@@ -133,7 +133,7 @@ vim.keymap.set("n", "gy", "`[v`]", { desc = "Select last inserted text (clobbere
 vim.keymap.set({ "n", "x" }, ";", ":")
 vim.keymap.set("n", "<leader>x", "<cmd>confirm qa<cr>")
 vim.keymap.set("n", "<leader>X", "<cmd>qa!<cr>")
-vim.keymap.set("n", "<leader>w", "<cmd>w!<cr>")
+vim.keymap.set("n", "<leader>w", "<cmd>w! ++p<cr>")
 
 -- Macros
 vim.keymap.set("n", "Q", "@q")
@@ -394,6 +394,9 @@ end, { desc = "Toggle scroll lock" })
 
 ---- Misc
 vim.keymap.set("n", "m<space>", ":vertical Man<space>")
+vim.keymap.set("n", "U", function()
+  require("undotree").open({ command = "topleft 40vnew" })
+end)
 
 vim.keymap.set("n", "<leader>fp", ":se ft?<cr>")
 vim.keymap.set("n", "<leader>P", ":R=")
