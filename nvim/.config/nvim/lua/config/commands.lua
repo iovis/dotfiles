@@ -89,18 +89,14 @@ vim.api.nvim_create_user_command("P", function(ctx)
 end, { nargs = "+", complete = "command" })
 
 ---- Terminal
--- Render ANSI code colors
-vim.api.nvim_create_user_command("RenderAscii", function(opts)
-  local file = opts.args
+-- Render ANSI color codes in current buffer
+vim.api.nvim_create_user_command("RenderAscii", function()
+  vim.api.nvim_open_term(0, {})
 
-  if u.is_empty(opts.args) then
-    file = vim.fn.bufname()
-  end
-
-  vim.cmd("tab terminal bat -pp " .. file)
+  vim.cmd.stopinsert()
 
   vim.keymap.set("n", "q", "<cmd>close<cr>", {
     buffer = true,
     nowait = true,
   })
-end, { nargs = "?", complete = "file" })
+end, {})
