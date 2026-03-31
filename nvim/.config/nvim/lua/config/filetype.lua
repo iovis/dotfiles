@@ -1,6 +1,7 @@
 vim.filetype.add({
   extension = {
     dbout = "dbout",
+    ghostty = "conf",
     http = "http",
     nbt = "numbat",
     rbs = "ruby",
@@ -12,7 +13,6 @@ vim.filetype.add({
     Brewfile = "ruby",
     PULLREQ_EDITMSG = "gitcommit",
     [".clang-format"] = "yaml",
-    ["config.ghostty"] = "conf",
     justfile = "just",
     pryrc = "ruby",
   },

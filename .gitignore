@@ -5,7 +5,7 @@ fish/.config/fish/completions/*
 !fish/.config/fish/completions/ts.fish
 
 # ghostty
-ghostty/.config/ghostty/local
+ghostty/.config/ghostty/local.ghostty
 
 # hammerspoon
 hammerspoon/.hammerspoon/local*
