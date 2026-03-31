@@ -12,6 +12,7 @@ vim.filetype.add({
     Brewfile = "ruby",
     PULLREQ_EDITMSG = "gitcommit",
     [".clang-format"] = "yaml",
+    ["config.ghostty"] = "conf",
     justfile = "just",
     pryrc = "ruby",
   },
