@@ -87,7 +87,6 @@ vim.api.nvim_create_autocmd("FileType", {
     "help",
     "httpResult",
     "notify",
-    "nvim-undotree",
     "qf",
     "redir",
     "startuptime",
