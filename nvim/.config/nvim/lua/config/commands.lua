@@ -2,7 +2,6 @@ local u = require("config.utils")
 
 u.ex.abbrev("m", "Man")
 u.ex.abbrev("man", "Man")
-u.ex.abbrev("h", "vertical botright help")
 
 vim.api.nvim_create_user_command("Hitest", function()
   vim.cmd.source(vim.env.VIMRUNTIME .. "/syntax/hitest.vim")
@@ -90,14 +89,6 @@ vim.api.nvim_create_user_command("P", function(ctx)
 end, { nargs = "+", complete = "command" })
 
 ---- Terminal
-vim.api.nvim_create_user_command("T", function(ctx)
-  vim.cmd("horizontal botright terminal " .. ctx.args)
-end, { nargs = "*", complete = "shellcmdline" })
-
-vim.api.nvim_create_user_command("VT", function(ctx)
-  vim.cmd("vertical botright terminal " .. ctx.args)
-end, { nargs = "*", complete = "shellcmdline" })
-
 -- Render ANSI code colors
 vim.api.nvim_create_user_command("RenderAscii", function(opts)
   local file = opts.args
