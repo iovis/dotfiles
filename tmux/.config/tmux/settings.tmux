@@ -18,7 +18,6 @@ set -wg mode-keys vi
 set -wg monitor-activity on
 
 set -s extended-keys off
-set -s terminal-features "xterm*:clipboard:ccolour:cstyle:extkeys:focus:hyperlinks:overline:RGB:strikethrough:title:usstyle"
 set -sg default-terminal "tmux-256color"
 set -sg escape-time 0
 
@@ -26,3 +25,8 @@ set -sg escape-time 0
 set -g allow-passthrough on
 set -ga update-environment TERM
 set -ga update-environment TERM_PROGRAM
+
+# Terminal features
+set -s terminal-features "xterm*:256:clipboard:ccolour:cstyle:extkeys:focus:hyperlinks:overline:margins:mouse:osc7:overline:rectfill:RGB:strikethrough:sync:title:usstyle"
+set -sa terminal-features "screen*:title"
+set -sa terminal-features "rxvt*:ignorefkeys"
