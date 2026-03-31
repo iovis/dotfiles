@@ -5,17 +5,15 @@ mouse-hide-while-typing = true
 
 theme = Catppuccin Mocha
 font-family = FiraCode Nerd Font
-font-size = 16
+font-size = 20
 
 background = #000000
 background-opacity = 0.85
 background-blur = true
 
-macos-titlebar-style = hidden
-window-padding-x = 8
-window-padding-y = 10,2
-
 macos-option-as-alt = true
+macos-titlebar-style = tabs
+
 keybind = alt+left=unbind
 keybind = alt+right=unbind
 keybind = ctrl+alt+arrow_up=unbind
