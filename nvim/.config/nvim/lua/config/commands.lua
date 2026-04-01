@@ -2,6 +2,7 @@ local u = require("config.utils")
 
 u.ex.abbrev("m", "Man")
 u.ex.abbrev("man", "Man")
+u.ex.abbrev("vh", "vert bo h")
 
 vim.api.nvim_create_user_command("Hitest", function()
   vim.cmd.source(vim.env.VIMRUNTIME .. "/syntax/hitest.vim")

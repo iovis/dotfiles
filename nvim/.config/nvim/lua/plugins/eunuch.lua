@@ -3,6 +3,6 @@ return {
   event = "VeryLazy",
   config = function()
     local u = require("config.utils")
-    u.ex.abbrev("re", "Remove")
+    u.ex.abbrev("rm", "Remove")
   end,
 }
