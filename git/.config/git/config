@@ -30,7 +30,7 @@
 [diff]
   algorithm = histogram
   colorMoved = plain
-  ; mnemonicPrefix = true
+  mnemonicPrefix = true
   renames = true
   tool = nvim
 [difftool]
