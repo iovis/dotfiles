@@ -395,7 +395,7 @@ end, { desc = "Toggle scroll lock" })
 ---- Misc
 vim.keymap.set("n", "m<space>", ":vertical Man<space>")
 vim.keymap.set("n", "U", function()
-  require("undotree").open({ command = "topleft 40vnew" })
+  require("undotree").open({ command = "40vnew" })
 end)
 
 vim.keymap.set("n", "<leader>fs", ":se ft=")
