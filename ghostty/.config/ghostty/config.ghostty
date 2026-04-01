@@ -1,5 +1,6 @@
 # ghostty +show-config --default --docs
 confirm-close-surface = false
+copy-on-select = clipboard
 cursor-style-blink = false
 mouse-hide-while-typing = true
 shell-integration-features = cursor,no-sudo,title,ssh-env,no-ssh-terminfo,path
