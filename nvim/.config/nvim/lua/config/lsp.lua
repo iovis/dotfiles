@@ -15,7 +15,7 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_user_command("LspLog", function()
   vim.cmd("tabnew " .. vim.lsp.log.get_filename())
   vim.keymap.set("n", "q", "<cmd>close<cr>", {
-    buffer = true,
+    buf = 0,
     nowait = true,
   })
 end, {})
@@ -49,54 +49,54 @@ vim.api.nvim_create_autocmd("LspAttach", {
       return
     end
 
-    vim.keymap.set("n", "t", vim.lsp.buf.definition, { buffer = bufnr, desc = "vim.lsp.buf.definition" })
-    vim.keymap.set("n", "<leader>lx", vim.lsp.codelens.run, { buffer = bufnr, desc = "vim.lsp.codelens.run" })
+    vim.keymap.set("n", "t", vim.lsp.buf.definition, { buf = bufnr, desc = "vim.lsp.buf.definition" })
+    vim.keymap.set("n", "<leader>lx", vim.lsp.codelens.run, { buf = bufnr, desc = "vim.lsp.codelens.run" })
 
     if false then
       ---- Signature/Definition
       vim.keymap.set({ "n", "i" }, "<c-s>", vim.lsp.buf.signature_help, {
-        buffer = bufnr,
+        buf = bufnr,
         desc = "vim.lsp.buf.signature_help",
       })
 
-      vim.keymap.set("n", "gd", vim.lsp.buf.hover, { buffer = bufnr, desc = "vim.lsp.buf.hover" })
-      vim.keymap.set("i", "<c-h>", vim.lsp.buf.hover, { buffer = bufnr, desc = "vim.lsp.buf.hover" })
-      vim.keymap.set("n", "T", vim.lsp.buf.references, { buffer = bufnr, desc = "vim.lsp.buf.references" })
-      vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = bufnr, desc = "vim.lsp.buf.type_definition" })
+      vim.keymap.set("n", "gd", vim.lsp.buf.hover, { buf = bufnr, desc = "vim.lsp.buf.hover" })
+      vim.keymap.set("i", "<c-h>", vim.lsp.buf.hover, { buf = bufnr, desc = "vim.lsp.buf.hover" })
+      vim.keymap.set("n", "T", vim.lsp.buf.references, { buf = bufnr, desc = "vim.lsp.buf.references" })
+      vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buf = bufnr, desc = "vim.lsp.buf.type_definition" })
 
       ---- Actions
-      vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { buffer = bufnr, desc = "vim.lsp.buf.code_action" })
-      vim.keymap.set("i", "<m-j>", vim.lsp.buf.code_action, { buffer = bufnr, desc = "vim.lsp.buf.code_action" })
-      vim.keymap.set({ "n", "x" }, "<leader>lr", vim.lsp.buf.rename, { buffer = bufnr, desc = "vim.lsp.buf.rename" })
-      vim.keymap.set("n", "<leader>lx", vim.lsp.codelens.run, { buffer = bufnr, desc = "vim.lsp.codelens.run" })
+      vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { buf = bufnr, desc = "vim.lsp.buf.code_action" })
+      vim.keymap.set("i", "<m-j>", vim.lsp.buf.code_action, { buf = bufnr, desc = "vim.lsp.buf.code_action" })
+      vim.keymap.set({ "n", "x" }, "<leader>lr", vim.lsp.buf.rename, { buf = bufnr, desc = "vim.lsp.buf.rename" })
+      vim.keymap.set("n", "<leader>lx", vim.lsp.codelens.run, { buf = bufnr, desc = "vim.lsp.codelens.run" })
 
       ---- Symbols
       vim.keymap.set("n", "<leader>ls", vim.lsp.buf.document_symbol, {
-        buffer = bufnr,
+        buf = bufnr,
         desc = "vim.lsp.buf.document_symbol",
       })
 
       vim.keymap.set("n", "<leader>lw", vim.lsp.buf.workspace_symbol, {
-        buffer = bufnr,
+        buf = bufnr,
         desc = "vim.lsp.buf.workspace_symbol",
       })
 
       ---- Diagnostics
-      vim.keymap.set("n", "<m-d>", vim.diagnostic.open_float, { buffer = bufnr, desc = "vim.diagnostic.open_float" })
+      vim.keymap.set("n", "<m-d>", vim.diagnostic.open_float, { buf = bufnr, desc = "vim.diagnostic.open_float" })
 
       vim.keymap.set("n", "<left>", function()
         vim.diagnostic.jump({
           count = -1,
           float = true,
         })
-      end, { buffer = bufnr, desc = "vim.diagnostic.goto_prev" })
+      end, { buf = bufnr, desc = "vim.diagnostic.goto_prev" })
 
       vim.keymap.set("n", "<right>", function()
         vim.diagnostic.jump({
           count = 1,
           float = true,
         })
-      end, { buffer = bufnr, desc = "vim.diagnostic.goto_next" })
+      end, { buf = bufnr, desc = "vim.diagnostic.goto_next" })
     end
 
     ----Inlay hints
@@ -108,7 +108,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
       vim.keymap.set("n", "<leader>lk", toggle_inlay_hints, {
         desc = "toggle vim.lsp.inlay_hint",
-        buffer = bufnr,
+        buf = bufnr,
       })
     end
 
@@ -120,7 +120,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     vim.keymap.set("n", "<leader>lc", toggle_codelens, {
       desc = "toggle vim.lsp.codelens",
-      buffer = bufnr,
+      buf = bufnr,
     })
 
     ----Code Actions

@@ -7,16 +7,16 @@ vim.bo.comments = ":---,:--"
 ----Bindings
 vim.keymap.set({ "n", "x" }, "<leader>so", ":source<cr>", {
   desc = "Source file",
-  buffer = true,
+  buf = 0,
 })
 
 vim.keymap.set("n", "<leader>si", ":.lua<cr>", {
   desc = "Execute line",
-  buffer = true,
+  buf = 0,
 })
 
-vim.keymap.set("n", "s<cr>", ":10R source<cr>", { buffer = true })
-vim.keymap.set("x", "<leader>sp", ":<c-u>10R '<,'>source<cr>", { buffer = true })
+vim.keymap.set("n", "s<cr>", ":10R source<cr>", { buf = 0 })
+vim.keymap.set("x", "<leader>sp", ":<c-u>10R '<,'>source<cr>", { buf = 0 })
 
 if u.current_file():match("plugins/") then
   ----Re-source `config()` for the current plugin
@@ -31,11 +31,11 @@ if u.current_file():match("plugins/") then
     require(plugin).config()
 
     print(string.format("Reloaded %s", plugin))
-  end, { buffer = true })
+  end, { buf = 0 })
 elseif u.current_file():match("hammerspoon/") then
-  vim.keymap.set("n", "s<cr>", "<cmd>Tux hs<cr>", { buffer = true })
+  vim.keymap.set("n", "s<cr>", "<cmd>Tux hs<cr>", { buf = 0 })
 elseif u.current_file():match("muxi/") then
-  vim.keymap.set("n", "s<cr>", "<cmd>Tux muxi init<cr>", { buffer = true })
+  vim.keymap.set("n", "s<cr>", "<cmd>Tux muxi init<cr>", { buf = 0 })
 end
 
 ----Surround debug

@@ -28,10 +28,10 @@ elseif u.current_file():match(".ghostty$") then
     vim.bo.filetype = "conf"
     vim.bo.buftype = "nofile"
     vim.keymap.set("n", "q", "<cmd>close<cr>", {
-      buffer = true,
+      buf = 0,
       nowait = true,
     })
-  end, { buffer = true })
+  end, { buf = 0 })
 
   vim.keymap.set("n", "d?", function()
     vim.cmd("vnew")
@@ -40,8 +40,8 @@ elseif u.current_file():match(".ghostty$") then
     vim.bo.filetype = "conf"
     vim.bo.buftype = "nofile"
     vim.keymap.set("n", "q", "<cmd>close<cr>", {
-      buffer = true,
+      buf = 0,
       nowait = true,
     })
-  end, { buffer = true })
+  end, { buf = 0 })
 end

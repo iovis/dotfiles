@@ -97,7 +97,7 @@ vim.api.nvim_create_user_command("RenderAscii", function()
   vim.cmd.stopinsert()
 
   vim.keymap.set("n", "q", "<cmd>quit<cr>", {
-    buffer = true,
+    buf = 0,
     nowait = true,
   })
 end, {})

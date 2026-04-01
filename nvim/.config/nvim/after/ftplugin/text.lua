@@ -1,7 +1,7 @@
 local u = require("config.utils")
 
 if u.current_path():match("urls.txt") then
-  vim.keymap.set("n", "s<cr>", "<cmd>Tux yt-dlp -a %<cr>", { buffer = true })
+  vim.keymap.set("n", "s<cr>", "<cmd>Tux yt-dlp -a %<cr>", { buf = 0 })
 end
 
 vim.cmd([[

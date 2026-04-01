@@ -97,4 +97,4 @@ end, { buffer = true, expr = true, desc = "Toggle checkbox" })
 
 vim.keymap.set("x", "X", function()
   ToggleCheckbox(vim.fn.mode())
-end, { buffer = true, desc = "Toggle checkbox" })
+end, { buf = 0, desc = "Toggle checkbox" })

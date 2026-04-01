@@ -167,7 +167,7 @@ end
 ---Create buffer local command to show RSpec output
 function RSpec:create_buf_command()
   -- Mapping
-  vim.keymap.set("n", "''", ":RSpecOutput<cr>", { buffer = true, silent = true })
+  vim.keymap.set("n", "''", ":RSpecOutput<cr>", { buf = 0, silent = true })
 
   -- User command
   vim.api.nvim_buf_create_user_command(self.file_bufnr, "RSpecOutput", function()
@@ -189,7 +189,7 @@ function RSpec:create_buf_command()
     vim.bo.filetype = "ruby"
 
     vim.keymap.set("n", "q", "<cmd>close<cr>", {
-      buffer = true,
+      buf = 0,
       nowait = true,
     })
 

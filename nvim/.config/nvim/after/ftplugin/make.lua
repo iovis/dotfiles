@@ -7,8 +7,8 @@ vim.bo.tabstop = 2
 
 if u.current_file():match("rules.mk") then
   ---- QMK
-  vim.keymap.set("n", "s<cr>", "<cmd>Tuxpopup just compile<cr>", { buffer = true })
-  vim.keymap.set("n", "m<cr>", "<cmd>Tuxpopup just flash<cr>", { buffer = true })
+  vim.keymap.set("n", "s<cr>", "<cmd>Tuxpopup just compile<cr>", { buf = 0 })
+  vim.keymap.set("n", "m<cr>", "<cmd>Tuxpopup just flash<cr>", { buf = 0 })
 
-  vim.keymap.set("n", "d<cr>", "<cmd>botright split! ../qmk_firmware/docs/keycodes.md<cr>", { buffer = true })
+  vim.keymap.set("n", "d<cr>", "<cmd>botright split! ../qmk_firmware/docs/keycodes.md<cr>", { buf = 0 })
 end

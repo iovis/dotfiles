@@ -66,25 +66,25 @@ return {
         end
 
         ---- definition
-        vim.keymap.set("i", "<c-h>", "<cmd>Lspsaga hover_doc<cr>", { buffer = bufnr })
-        vim.keymap.set("n", "gd", "<cmd>Lspsaga hover_doc<cr>", { buffer = bufnr })
-        vim.keymap.set("n", "gt", "<cmd>Lspsaga goto_type_definition<cr>", { buffer = bufnr })
+        vim.keymap.set("i", "<c-h>", "<cmd>Lspsaga hover_doc<cr>", { buf = bufnr })
+        vim.keymap.set("n", "gd", "<cmd>Lspsaga hover_doc<cr>", { buf = bufnr })
+        vim.keymap.set("n", "gt", "<cmd>Lspsaga goto_type_definition<cr>", { buf = bufnr })
 
-        vim.keymap.set("n", "<leader>lf", "<cmd>Lspsaga peek_definition<cr>", { buffer = bufnr })
-        vim.keymap.set("n", "<leader>lt", "<cmd>Lspsaga peek_type_definition<cr>", { buffer = bufnr })
+        vim.keymap.set("n", "<leader>lf", "<cmd>Lspsaga peek_definition<cr>", { buf = bufnr })
+        vim.keymap.set("n", "<leader>lt", "<cmd>Lspsaga peek_type_definition<cr>", { buf = bufnr })
 
         ---- actions
-        vim.keymap.set("i", "<m-j>", "<cmd>Lspsaga code_action<cr>", { buffer = bufnr })
-        vim.keymap.set({ "n", "x" }, "<leader>la", "<cmd>Lspsaga code_action<cr>", { buffer = bufnr })
-        vim.keymap.set({ "n", "x" }, "<leader>lr", "<cmd>Lspsaga rename<cr>", { buffer = bufnr })
+        vim.keymap.set("i", "<m-j>", "<cmd>Lspsaga code_action<cr>", { buf = bufnr })
+        vim.keymap.set({ "n", "x" }, "<leader>la", "<cmd>Lspsaga code_action<cr>", { buf = bufnr })
+        vim.keymap.set({ "n", "x" }, "<leader>lr", "<cmd>Lspsaga rename<cr>", { buf = bufnr })
 
         ---- diagnostics
-        vim.keymap.set("n", "<m-d>", "<cmd>Lspsaga show_line_diagnostics<cr>", { buffer = bufnr })
-        vim.keymap.set("n", "<left>", "<cmd>Lspsaga diagnostic_jump_prev<cr>", { buffer = bufnr })
-        vim.keymap.set("n", "<right>", "<cmd>Lspsaga diagnostic_jump_next<cr>", { buffer = bufnr })
+        vim.keymap.set("n", "<m-d>", "<cmd>Lspsaga show_line_diagnostics<cr>", { buf = bufnr })
+        vim.keymap.set("n", "<left>", "<cmd>Lspsaga diagnostic_jump_prev<cr>", { buf = bufnr })
+        vim.keymap.set("n", "<right>", "<cmd>Lspsaga diagnostic_jump_next<cr>", { buf = bufnr })
 
         ---- outline
-        vim.keymap.set("n", "<leader>lm", "<cmd>Lspsaga outline<cr>", { buffer = bufnr })
+        vim.keymap.set("n", "<leader>lm", "<cmd>Lspsaga outline<cr>", { buf = bufnr })
       end,
     })
   end,

@@ -1,3 +1,3 @@
-vim.keymap.set("n", "K", "<cmd>normal! K<cr>", { buffer = true })
-vim.keymap.set("n", "T", "g]", { buffer = true })
-vim.keymap.set("n", "t", "<c-]>", { buffer = true })
+vim.keymap.set("n", "K", "<cmd>normal! K<cr>", { buf = 0 })
+vim.keymap.set("n", "T", "g]", { buf = 0 })
+vim.keymap.set("n", "t", "<c-]>", { buf = 0 })

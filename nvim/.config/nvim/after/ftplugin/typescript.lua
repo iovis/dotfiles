@@ -1,4 +1,4 @@
-vim.keymap.set("n", "s<cr>", "<cmd>Tux bun %:.<cr>", { buffer = true })
+vim.keymap.set("n", "s<cr>", "<cmd>Tux bun %:.<cr>", { buf = 0 })
 
 local u = require("config.utils")
 
@@ -39,4 +39,4 @@ local function add_async()
 end
 
 -- Listen to `t` to check for async
-vim.keymap.set("i", "t", add_async, { buffer = true })
+vim.keymap.set("i", "t", add_async, { buf = 0 })

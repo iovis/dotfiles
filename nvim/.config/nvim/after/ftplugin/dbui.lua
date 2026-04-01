@@ -1,2 +1,2 @@
-vim.keymap.del("n", "<c-j>", { buffer = true })
-vim.keymap.del("n", "<c-k>", { buffer = true })
+vim.keymap.del("n", "<c-j>", { buf = 0 })
+vim.keymap.del("n", "<c-k>", { buf = 0 })

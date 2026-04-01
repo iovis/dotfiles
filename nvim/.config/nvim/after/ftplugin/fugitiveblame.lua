@@ -1,4 +1,4 @@
 vim.keymap.set("n", "<cr>", "o", {
-  buffer = true,
+  buf = 0,
   remap = true,
 })

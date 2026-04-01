@@ -3,10 +3,10 @@ vim.wo.winbar = ""
 
 vim.keymap.set("n", "C", ":Cfilter<space>", {
   desc = "Filter QuickFix list",
-  buffer = true,
+  buf = 0,
 })
 
 vim.keymap.set("n", "<leader>A", "<cmd>Cfilter ^app<cr>", {
   desc = "Filter only items in `app/`",
-  buffer = true,
+  buf = 0,
 })

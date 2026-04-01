@@ -83,7 +83,7 @@ function M.floating_window(contents, opts)
 
   -- Map [q] to read the changes and close the popup
   vim.keymap.set("n", "q", "<cmd>close<cr>", {
-    buffer = bufnr,
+    buf = bufnr,
     nowait = true,
   })
 end

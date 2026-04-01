@@ -1,4 +1,4 @@
 vim.keymap.set("n", "<leader>lm", "q", {
-  buffer = true,
+  buf = 0,
   remap = true,
 })

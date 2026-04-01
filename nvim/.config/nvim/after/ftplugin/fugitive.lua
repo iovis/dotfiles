@@ -1,21 +1,21 @@
 vim.keymap.set("n", "q", "gq", {
-  buffer = true,
+  buf = 0,
   nowait = true,
   remap = true,
 })
 
 -- open in splits
 vim.keymap.set("n", "<c-s>", "o", {
-  buffer = true,
+  buf = 0,
   remap = true,
 })
 
 vim.keymap.set("n", "<c-v>", "gO", {
-  buffer = true,
+  buf = 0,
   remap = true,
 })
 
 vim.keymap.set("n", "<c-t>", "O", {
-  buffer = true,
+  buf = 0,
   remap = true,
 })

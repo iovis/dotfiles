@@ -95,7 +95,7 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function(event)
     vim.bo[event.buf].buflisted = false
     vim.keymap.set("n", "q", "<cmd>close<cr>", {
-      buffer = event.buf,
+      buf = event.buf,
       nowait = true,
     })
   end,
@@ -106,7 +106,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
   callback = function()
     if vim.v.argv[3] == "-" then
       vim.keymap.set("n", "q", "<cmd>qa!<cr>", {
-        buffer = true,
+        buf = 0,
         nowait = true,
       })
     end
@@ -131,9 +131,9 @@ vim.api.nvim_create_autocmd("TermOpen", {
   callback = function()
     vim.cmd.startinsert()
 
-    vim.keymap.set("n", "<down>", "i<down>", { buffer = true })
-    vim.keymap.set("n", "<left>", "i<left>", { buffer = true })
-    vim.keymap.set("n", "<right>", "i<right>", { buffer = true })
-    vim.keymap.set("n", "<up>", "i<up>", { buffer = true })
+    vim.keymap.set("n", "<down>", "i<down>", { buf = 0 })
+    vim.keymap.set("n", "<left>", "i<left>", { buf = 0 })
+    vim.keymap.set("n", "<right>", "i<right>", { buf = 0 })
+    vim.keymap.set("n", "<up>", "i<up>", { buf = 0 })
   end,
 })

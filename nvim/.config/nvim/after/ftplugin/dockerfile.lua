@@ -12,7 +12,7 @@ vim.keymap.set("n", "s<cr>", function()
   local cmd = ("podman run %s"):format(container)
 
   tux.run(cmd)
-end, { buffer = true })
+end, { buf = 0 })
 
 vim.keymap.set("n", "m<cr>", function()
   local tag = container_name_from_cwd()
@@ -20,4 +20,4 @@ vim.keymap.set("n", "m<cr>", function()
   local cmd = ("podman build -t %s %s"):format(tag, dockerfile_folder)
 
   tux.run(cmd)
-end, { buffer = true })
+end, { buf = 0 })

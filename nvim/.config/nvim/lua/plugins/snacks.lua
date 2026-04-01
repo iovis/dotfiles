@@ -378,26 +378,26 @@ return {
 
         vim.keymap.set("n", "<leader>ls", snacks.picker.lsp_symbols, {
           desc = "snacks.picker.lsp_symbols",
-          buffer = bufnr,
+          buf = bufnr,
         })
 
         vim.keymap.set("n", "<leader>lw", snacks.picker.lsp_workspace_symbols, {
           desc = "snacks.picker.lsp_workspace_symbols",
-          buffer = bufnr,
+          buf = bufnr,
         })
 
         vim.keymap.set("n", "<leader>ld", function()
           snacks.picker.diagnostics({ focus = "list" })
         end, {
           desc = "snacks.picker.diagnostics",
-          buffer = bufnr,
+          buf = bufnr,
         })
 
         vim.keymap.set("n", "T", function()
           snacks.picker.lsp_references({ focus = "list" })
         end, {
           desc = "snacks.picker.lsp_references",
-          buffer = bufnr,
+          buf = bufnr,
         })
       end,
     })

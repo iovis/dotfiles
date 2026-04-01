@@ -142,7 +142,7 @@ return {
     --   end
     --
     --   vim.keymap.set("n", lhs, rhs, {
-    --     buffer = buf_id,
+    --     buf = buf_id,
     --     desc = "Split " .. direction,
     --   })
     -- end
@@ -152,8 +152,8 @@ return {
     --   callback = function(args)
     --     local buf_id = args.data.buf_id
     --
-    --     vim.keymap.set("n", "g.", toggle_dotfiles, { buffer = buf_id })
-    --     vim.keymap.set("n", "<M-p>", toggle_preview, { buffer = buf_id })
+    --     vim.keymap.set("n", "g.", toggle_dotfiles, { buf = buf_id })
+    --     vim.keymap.set("n", "<M-p>", toggle_preview, { buf = buf_id })
     --
     --     map_split(buf_id, "<leader>h", "belowright horizontal")
     --     map_split(buf_id, "<leader>v", "belowright vertical")

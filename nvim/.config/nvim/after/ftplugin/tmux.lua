@@ -1,3 +1,4 @@
 vim.keymap.set("n", "<leader>so", function()
-  vim.cmd("silent !tmux source % && tmux display 'Tmux reloaded!'")
-end, { buffer = true, desc = "Reload Tmux" })
+  vim.cmd("silent !tmux source %")
+  vim.cmd("silent !tmux display 'sourced %:.'")
+end, { buf = 0, desc = "Reload Tmux" })

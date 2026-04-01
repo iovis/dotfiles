@@ -90,7 +90,7 @@ return {
     -- vim.keymap.set("n", "<leader>gM", function()
     --   local muxi_path = muxi.config.path
     --   vim.cmd.split(muxi_path)
-    --   vim.keymap.set("n", "q", "<cmd>q!<cr>", { buffer = true })
+    --   vim.keymap.set("n", "q", "<cmd>q!<cr>", { buf = 0 })
     -- end, { desc = "[muxi] Open storage" })
   end,
 }

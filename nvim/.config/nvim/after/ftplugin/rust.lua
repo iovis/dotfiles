@@ -11,24 +11,24 @@ vim.keymap.set("n", "c<cr>", function()
     select = true,
     name = "evcxr",
   })
-end, { buffer = true })
+end, { buf = 0 })
 
-vim.keymap.set("n", "<leader>sp", "<cmd>TestNearest -strategy=rust_print<cr>", { buffer = true })
-vim.keymap.set("n", "<leader>sw", "<cmd>Tux cargo watch --clear -x check -x 'nextest run'<cr>", { buffer = true })
+vim.keymap.set("n", "<leader>sp", "<cmd>TestNearest -strategy=rust_print<cr>", { buf = 0 })
+vim.keymap.set("n", "<leader>sw", "<cmd>Tux cargo watch --clear -x check -x 'nextest run'<cr>", { buf = 0 })
 
 if u.current_file():match("examples/") then
   -- if inside example, run it
-  vim.keymap.set("n", "s<cr>", "<cmd>Tux cargo run -q --example --release %:t:r<cr>", { buffer = true })
+  vim.keymap.set("n", "s<cr>", "<cmd>Tux cargo run -q --example --release %:t:r<cr>", { buf = 0 })
 elseif u.current_file():match("src/bin/") then
-  vim.keymap.set("n", "s<cr>", "<cmd>Tux cargo run -q --release --bin %:t:r<cr>", { buffer = true })
+  vim.keymap.set("n", "s<cr>", "<cmd>Tux cargo run -q --release --bin %:t:r<cr>", { buf = 0 })
 elseif u.current_file():match("benches/") then
-  vim.keymap.set("n", "s<cr>", "<cmd>Tux cargo bench -q<cr>", { buffer = true })
+  vim.keymap.set("n", "s<cr>", "<cmd>Tux cargo bench -q<cr>", { buf = 0 })
 elseif u.current_file():match("ext/") then
-  vim.keymap.set("n", "s<cr>", "<cmd>Tux bundle exec rake<cr>", { buffer = true })
-  vim.keymap.set("n", "<leader>sw", "<cmd>Tux watchexec -e rs,rb -- bundle exec rake<cr>", { buffer = true })
+  vim.keymap.set("n", "s<cr>", "<cmd>Tux bundle exec rake<cr>", { buf = 0 })
+  vim.keymap.set("n", "<leader>sw", "<cmd>Tux watchexec -e rs,rb -- bundle exec rake<cr>", { buf = 0 })
 elseif not u.has_justfile() then
-  vim.keymap.set("n", "s<cr>", "<cmd>Tux cargo run --release<cr>", { buffer = true })
-  vim.keymap.set("n", "m<cr>", "<cmd>Tux cargo check --all-targets && clippy<cr>", { buffer = true })
+  vim.keymap.set("n", "s<cr>", "<cmd>Tux cargo run --release<cr>", { buf = 0 })
+  vim.keymap.set("n", "m<cr>", "<cmd>Tux cargo check --all-targets && clippy<cr>", { buf = 0 })
 end
 
 ----Clippy fix

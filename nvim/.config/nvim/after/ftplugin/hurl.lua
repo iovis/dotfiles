@@ -16,5 +16,5 @@ local function hurl_request()
   end)
 end
 
-vim.keymap.set("n", "s<cr>", hurl_request, { buffer = true })
-vim.keymap.set("n", "<leader>so", "<cmd>Tux hurl -v %:.<cr>", { buffer = true })
+vim.keymap.set("n", "s<cr>", hurl_request, { buf = 0 })
+vim.keymap.set("n", "<leader>so", "<cmd>Tux hurl -v %:.<cr>", { buf = 0 })
