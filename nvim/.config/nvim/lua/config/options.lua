@@ -16,6 +16,7 @@ vim.o.autowriteall = true
 vim.o.breakindent = true
 -- vim.o.cmdheight = 0
 vim.o.completeopt = "menu,menuone,noselect"
+vim.o.confirm = true
 vim.o.cursorline = true
 vim.opt.diffopt = {
   "internal",
