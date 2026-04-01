@@ -53,10 +53,9 @@ return {
     end
 
     ----Mark management
-    vim.keymap.set("n", "g/", function()
-      ---@diagnostic disable-next-line: undefined-field
-      Snacks.picker.muxi_marks({ pattern = "key:" })
-    end, { desc = "snacks.picker.muxi_marks" })
+    vim.keymap.set("n", "g/", Snacks.picker.muxi_marks, {
+      desc = "snacks.picker.muxi_marks",
+    })
 
     vim.keymap.set("n", "m/", muxi.ui.qf, {
       desc = "[muxi] quickfix marks",
