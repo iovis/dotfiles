@@ -2,6 +2,7 @@
 confirm-close-surface = false
 cursor-style-blink = false
 mouse-hide-while-typing = true
+shell-integration-features = cursor,no-sudo,title,ssh-env,no-ssh-terminfo,path
 window-padding-x = 16
 
 theme = Catppuccin Mocha
