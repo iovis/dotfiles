@@ -5,6 +5,7 @@ require("config.keymap")
 
 require("config.lazy") -- load plugins
 
+require("config.statuscol")
 require("config.winbar")
 require("config.lsp")
 

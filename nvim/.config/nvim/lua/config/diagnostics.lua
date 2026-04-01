@@ -31,14 +31,14 @@ local config = {
 vim.diagnostic.config(config)
 
 ---- Set Diagnostics on location list
-local augroup = vim.api.nvim_create_augroup("diagnostics", { clear = true })
+local augroup = vim.api.nvim_create_augroup("config.diagnostics", { clear = true })
 vim.api.nvim_create_autocmd("DiagnosticChanged", {
+  desc = "Set diagnostics on location list",
+  group = augroup,
   pattern = "*",
   callback = function()
     vim.diagnostic.setloclist({ open = false })
   end,
-  group = augroup,
-  desc = "Set diagnostics on location list",
 })
 
 vim.keymap.set("n", "|", vim.diagnostic.setloclist, {

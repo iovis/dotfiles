@@ -77,7 +77,6 @@ vim.o.softtabstop = 2
 vim.o.spelllang = "en_us"
 vim.o.splitbelow = true
 vim.o.splitright = true
-vim.o.statuscolumn = require("config.statuscol").statuscolumn()
 vim.o.swapfile = false
 vim.o.tabclose = "uselast"
 vim.o.tabstop = 2

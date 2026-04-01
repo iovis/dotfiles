@@ -104,4 +104,6 @@ function M.statuscolumn()
   return '%{%v:lua.require("config.statuscol").build()%}'
 end
 
+vim.o.statuscolumn = M.statuscolumn()
+
 return M

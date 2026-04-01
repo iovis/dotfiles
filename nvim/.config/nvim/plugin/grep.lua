@@ -14,7 +14,7 @@ end, { nargs = "+", complete = "file" })
 local function escape_for_rg(text)
   -- test string: ();[!]{}/\@<>&#$%?+.*=^~
   -- # and % need to be escaped twice
-  return vim.fn.escape(vim.fn.escape(vim.fn.trim(vim.fn.getreg('"')), "%#'\\"), "%#")
+  return vim.fn.escape(vim.fn.escape(vim.fn.trim(text), "%#'\\"), "%#")
 end
 
 local function capture_visual_selection()
