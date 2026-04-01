@@ -393,6 +393,7 @@ vim.keymap.set("n", "yoz", function()
 end, { desc = "Toggle scroll lock" })
 
 ---- Misc
+vim.keymap.set("n", "gcu", "gcgc")
 vim.keymap.set("n", "m<space>", ":vertical Man<space>")
 vim.keymap.set("n", "U", function()
   require("undotree").open({ command = "40vnew" })
