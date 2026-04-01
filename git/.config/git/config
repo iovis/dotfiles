@@ -3,13 +3,8 @@
   branch-name = !git rev-parse --abbrev-ref HEAD
   default-branch = !awk -F'/' '{print $NF}' .git/refs/remotes/origin/HEAD
 
-  exclude = !$EDITOR .git/info/exclude
   excluded = ls-files --ignored --others --exclude-from=.git/info/exclude
-  ; hidden = !git ls-files -v | grep \"^[a-z]\"
-  ; hide = update-index --assume-unchanged
-  ignored = !git status -s --ignored | grep \"^!!\"
-  ; unhide = update-index --no-assume-unchanged
-  ; unhide-all = update-index --really-refresh
+  ignored = !git status -s --ignored | rg '^!!\\s*' -r '' | sort
 
   publish = !git push -u origin $(git branch-name)
   unpublish = !git push origin :$(git branch-name)
