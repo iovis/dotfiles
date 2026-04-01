@@ -10,7 +10,7 @@ if u.current_file():match("kitty.conf") then
       vim.cmd("silent !killall -SIGUSR1 kitty")
     end,
   })
-elseif u.current_file():match("config.ghostty") then
+elseif u.current_file():match(".ghostty$") then
   local augroup = vim.api.nvim_create_augroup("ghostty_reload", { clear = true })
   vim.api.nvim_create_autocmd("BufWritePost", {
     desc = "Reload ghostty config on save",

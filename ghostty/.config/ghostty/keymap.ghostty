@@ -1,0 +1,32 @@
+# ghostty +list-keybinds
+# ghostty +list-actions
+keybind = super+u=toggle_background_opacity
+
+# Clipboard
+keybind = ctrl+shift+c=copy_to_clipboard:mixed
+keybind = ctrl+shift+v=paste_from_clipboard
+
+# Tabs
+keybind = ctrl+1=goto_tab:1
+keybind = ctrl+2=goto_tab:2
+keybind = ctrl+3=goto_tab:3
+keybind = super+1=goto_tab:1
+keybind = super+2=goto_tab:2
+keybind = super+3=goto_tab:3
+
+# Unbinds
+keybind = alt+left=unbind
+keybind = alt+right=unbind
+keybind = ctrl+alt+arrow_up=unbind
+keybind = ctrl+alt+arrow_down=unbind
+keybind = ctrl+alt+arrow_left=unbind
+keybind = ctrl+alt+arrow_right=unbind
+keybind = alt+1=unbind
+keybind = alt+2=unbind
+keybind = alt+3=unbind
+keybind = alt+4=unbind
+keybind = alt+5=unbind
+keybind = alt+6=unbind
+keybind = alt+7=unbind
+keybind = alt+8=unbind
+keybind = alt+9=unbind

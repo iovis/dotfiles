@@ -2,40 +2,18 @@
 confirm-close-surface = false
 cursor-style-blink = false
 mouse-hide-while-typing = true
+window-padding-x = 16
 
 theme = Catppuccin Mocha
 font-family = FiraCode Nerd Font
 font-size = 20
 
 background = #000000
-background-opacity = 0.85
 background-blur = true
+background-opacity = 0.85
 
 macos-option-as-alt = true
 macos-titlebar-style = tabs
-window-padding-x = 16
 
-keybind = ctrl+1=goto_tab:1
-keybind = ctrl+2=goto_tab:2
-keybind = ctrl+3=goto_tab:3
-keybind = super+1=goto_tab:1
-keybind = super+2=goto_tab:2
-keybind = super+3=goto_tab:3
-
-keybind = alt+left=unbind
-keybind = alt+right=unbind
-keybind = ctrl+alt+arrow_up=unbind
-keybind = ctrl+alt+arrow_down=unbind
-keybind = ctrl+alt+arrow_left=unbind
-keybind = ctrl+alt+arrow_right=unbind
-keybind = alt+1=unbind
-keybind = alt+2=unbind
-keybind = alt+3=unbind
-keybind = alt+4=unbind
-keybind = alt+5=unbind
-keybind = alt+6=unbind
-keybind = alt+7=unbind
-keybind = alt+8=unbind
-keybind = alt+9=unbind
-
+config-file = keymap.ghostty
 config-file = ?local.ghostty
