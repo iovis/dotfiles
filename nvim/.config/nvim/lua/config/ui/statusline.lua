@@ -429,7 +429,7 @@ end
 
 set_highlights()
 vim.g.qf_disable_statusline = true
-vim.o.statusline = [[%!v:lua.require("config.statusline").build()]]
+vim.o.statusline = [[%!v:lua.require("config.ui.statusline").build()]]
 
 vim.api.nvim_create_autocmd("ColorScheme", {
   group = augroup,

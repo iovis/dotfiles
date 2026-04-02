@@ -78,7 +78,7 @@ local function tabline()
   return line
 end
 
-vim.o.tabline = "%!v:lua.require'config.tabline'.tabline()"
+vim.o.tabline = "%!v:lua.require'config.ui.tabline'.tabline()"
 
 return {
   tabline = tabline,

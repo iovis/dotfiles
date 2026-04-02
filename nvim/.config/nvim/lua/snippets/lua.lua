@@ -85,7 +85,7 @@ return {
   s("t", t('local tux = require("tux")'), {
     condition = conds.line_begin,
   }),
-  s("hi", t('local hi = require("config.highlights").hi'), {
+  s("hi", t('local hi = require("config.ui.highlights").hi'), {
     condition = conds.line_begin,
   }),
   s("c", t('local c = require("catppuccin.palettes").get_palette()'), {
