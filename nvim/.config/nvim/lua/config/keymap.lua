@@ -266,10 +266,21 @@ vim.keymap.set("x", "*", [[y:let @/= '\V' . escape(@@, '/\') <bar> set hls <bar>
 
 -- Tabs
 vim.keymap.set("n", "'q", "<cmd>tabonly<cr>")
+vim.keymap.set("n", "<m-h>", "<cmd>tabprevious<cr>")
+vim.keymap.set("n", "<m-l>", "<cmd>tabnext<cr>")
 vim.keymap.set("n", "<m-,>", "<cmd>tabmove -1<cr>")
 vim.keymap.set("n", "<m-.>", "<cmd>tabmove +1<cr>")
 vim.keymap.set("n", "<s-tab>", "<cmd>tabclose<cr>")
 vim.keymap.set("n", "<leader>t", "<cmd>tabnew<cr>")
+
+for i = 1, 5 do
+  vim.keymap.set("n", ("<M-%s>"):format(i), function()
+    if i <= vim.fn.tabpagenr("$") then
+      vim.cmd.tabnext(i)
+    end
+  end, { desc = "Go to tab " .. i })
+end
+
 vim.keymap.set("n", "<leader><tab>", function()
   local number_of_windows = #vim.api.nvim_tabpage_list_wins(0)
 
