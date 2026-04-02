@@ -251,6 +251,57 @@ local function quickfix_title()
   return ("[%d/%d] %s"):format(qf.nr, total_pages, qf.title)
 end
 
+local function snacks_picker_context()
+  local ok, snacks_picker = pcall(require, "snacks.picker")
+  if not ok or type(snacks_picker.get) ~= "function" then
+    return nil
+  end
+
+  local winid = vim.api.nvim_get_current_win()
+
+  for _, picker in ipairs(snacks_picker.get({ tab = false })) do
+    local windows = {
+      snacks_picker_input = picker.input and picker.input.win and picker.input.win.win or nil,
+      snacks_picker_list = picker.list and picker.list.win and picker.list.win.win or nil,
+      snacks_picker_preview = picker.preview and picker.preview.win and picker.preview.win.win or nil,
+    }
+
+    for role, picker_win in pairs(windows) do
+      if picker_win == winid then
+        return {
+          role = role,
+          title = picker.title,
+          preview_title = picker.preview and picker.preview.title or nil,
+        }
+      end
+    end
+  end
+
+  return nil
+end
+
+local function render_snacks_picker()
+  local ctx = snacks_picker_context()
+  local filetype = vim.bo.filetype
+  local titles = {
+    snacks_picker_input = ctx and ctx.title or "Snacks Picker",
+    snacks_picker_list = ctx and ctx.title or "Snacks Picker",
+    snacks_picker_preview = (ctx and ctx.preview_title) or (ctx and ctx.title) or "Snacks Preview",
+  }
+  local icons = {
+    snacks_picker_input = "",
+    snacks_picker_list = "󰍉",
+    snacks_picker_preview = "󰈔",
+  }
+  local title = titles[filetype] or "Snacks"
+
+  return concat({
+    hl("UserStatuslineA", " "),
+    hl("UserStatuslineB", (" %s %s"):format(icons[filetype] or "󰒲", vim.trim(title))),
+    "%#StatusLine#",
+  })
+end
+
 local function render_default()
   local icon, icon_hl = file_icon()
 
@@ -323,11 +374,8 @@ local function render_mason()
   end
 
   return concat({
-    hl("UserStatuslineA", " Mason "),
-    hl(
-      "UserStatuslineB",
-      (" Installed: %d/%d"):format(#registry.get_installed_packages(), #registry.get_all_package_specs())
-    ),
+    hl("UserStatuslineA", " mason "),
+    hl("UserStatuslineB", (" %d/%d"):format(#registry.get_installed_packages(), #registry.get_all_package_specs())),
   })
 end
 
@@ -356,6 +404,9 @@ local special_renderers = {
   mason = render_mason,
   oil = render_oil,
   qf = render_quickfix,
+  snacks_picker_input = render_snacks_picker,
+  snacks_picker_list = render_snacks_picker,
+  snacks_picker_preview = render_snacks_picker,
 }
 
 local function build_in_window(winid)
