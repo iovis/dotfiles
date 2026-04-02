@@ -289,6 +289,7 @@ local function render_fugitive()
 
   return concat({
     hl("UserStatuslineA", " " .. branch_label .. " "),
+    "%#StatusLine#",
     "%<%=",
     location(),
   })
