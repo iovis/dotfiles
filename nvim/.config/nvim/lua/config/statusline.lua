@@ -331,8 +331,17 @@ local function render_oil()
     return hl("UserStatuslineA", " oil ")
   end
 
-  local dir = vim.fn.fnamemodify(oil.get_current_dir() or "", ":~")
-  return hl("UserStatuslineA", " " .. dir .. " ")
+  local current_dir = oil.get_current_dir() or ""
+  local dir = vim.fn.fnamemodify(current_dir, ":~")
+
+  return concat({
+    hl("UserStatuslineA", " "),
+    hl("Directory", " "),
+    hl("UserStatuslineB", " " .. dir),
+    "%<%=",
+    branch(),
+    progress(),
+  })
 end
 
 local special_renderers = {
