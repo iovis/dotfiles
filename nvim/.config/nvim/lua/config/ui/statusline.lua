@@ -224,7 +224,7 @@ local function branch()
     return ""
   end
 
-  return " " .. hl("UserStatuslineB", u.truncate(" " .. head, 20))
+  return "  " .. hl("UserStatuslineB", u.truncate(" " .. head, 30))
 end
 
 local function progress()
@@ -232,7 +232,7 @@ local function progress()
   local total = vim.fn.line("$")
   local percent = math.floor(cur / math.max(total, 1) * 100) .. "%"
 
-  return " " .. hl("UserStatuslineB", ("%5s:%s"):format(percent, total))
+  return hl("UserStatuslineB", ("%5s:%s"):format(percent, total))
 end
 
 local function location()
@@ -330,20 +330,20 @@ local function render_quickfix()
   })
 end
 
-local function render_fugitive()
-  local branch_label = branch_name()
-  if branch_label == "" then
-    branch_label = "fugitive"
-  else
-    branch_label = " " .. branch_label
-  end
+local function render_git(title)
+  local label = title or vim.bo.filetype
 
-  return concat({
-    hl("UserStatuslineA", " " .. branch_label .. " "),
-    "%#StatusLine#",
-    "%<%=",
-    location(),
-  })
+  return function()
+    return concat({
+      hl("UserStatuslineA", " "),
+      hl("DevIconGitLogo", " "),
+      hl("UserStatuslineB", " " .. label),
+      "%#StatusLine#",
+      "%<%=",
+      branch(),
+      location(),
+    })
+  end
 end
 
 local function render_lazy()
@@ -399,7 +399,11 @@ local function render_oil()
 end
 
 local special_renderers = {
-  fugitive = render_fugitive,
+  blame = render_git("git blame"),
+  fugitive = render_git("git status"),
+  fugitiveblame = render_git("git blame"),
+  gitrebase = render_git("git rebase"),
+  ["gitsigns-blame"] = render_git("git blame"),
   lazy = render_lazy,
   mason = render_mason,
   oil = render_oil,

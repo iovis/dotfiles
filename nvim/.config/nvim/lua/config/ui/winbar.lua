@@ -36,15 +36,15 @@ local winbar_per_filetype = {
     hl = "DevIconGitLogo",
     title = "git blame",
   },
-  ["gitsigns-blame"] = {
-    icon = "",
-    hl = "DevIconGitLogo",
-    title = "git blame",
-  },
   gitrebase = {
     icon = "",
     hl = "DevIconGitLogo",
     title = "git rebase",
+  },
+  ["gitsigns-blame"] = {
+    icon = "",
+    hl = "DevIconGitLogo",
+    title = "git blame",
   },
   ["markdown.gh"] = {
     icon = "",
@@ -52,17 +52,17 @@ local winbar_per_filetype = {
       return vim.fn.bufname()
     end,
   },
+  ["nvim-undotree"] = {
+    icon = "󰁯",
+    hl = "DevIconBackup",
+    title = "%t",
+  },
   oil = {
     icon = "  ",
     hl = "Directory",
     title = function()
       return vim.fn.fnamemodify(require("oil").get_current_dir() or "", ":~")
     end,
-  },
-  undotree = {
-    icon = "󰁯",
-    hl = "DevIconBackup",
-    title = "undotree",
   },
 }
 
