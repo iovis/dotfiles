@@ -92,7 +92,137 @@ local function custom_tab_name(tabpage)
   return name
 end
 
+local function snacks_picker_context(bufnr)
+  local ok, snacks_picker = pcall(require, "snacks.picker")
+  if not ok or type(snacks_picker.get) ~= "function" then
+    return nil
+  end
+
+  for _, picker in ipairs(snacks_picker.get({ tab = false })) do
+    local windows = {
+      snacks_picker_input = picker.input and picker.input.win and picker.input.win.win or nil,
+      snacks_picker_list = picker.list and picker.list.win and picker.list.win.win or nil,
+      snacks_picker_preview = picker.preview and picker.preview.win and picker.preview.win.win or nil,
+    }
+
+    for role, picker_win in pairs(windows) do
+      if picker_win and vim.api.nvim_win_is_valid(picker_win) and vim.api.nvim_win_get_buf(picker_win) == bufnr then
+        return {
+          role = role,
+          title = picker.title,
+          preview_title = picker.preview and picker.preview.title or nil,
+        }
+      end
+    end
+  end
+
+  return nil
+end
+
+local special_components = {
+  blame = {
+    icon = "",
+    hl = "DevIconGitLogo",
+    title = "git blame",
+  },
+  checkhealth = {
+    icon = "󰓙",
+    hl = "DevIconCheckhealth",
+    title = "checkhealth",
+  },
+  fugitive = {
+    icon = "",
+    hl = "DevIconGitLogo",
+    title = "git status",
+  },
+  fugitiveblame = {
+    icon = "",
+    hl = "DevIconGitLogo",
+    title = "git blame",
+  },
+  gitrebase = {
+    icon = "",
+    hl = "DevIconGitLogo",
+    title = "git rebase",
+  },
+  ["gitsigns-blame"] = {
+    icon = "",
+    hl = "DevIconGitLogo",
+    title = "git blame",
+  },
+  ["markdown.gh"] = {
+    icon = "",
+    title = function(bufnr)
+      return vim.api.nvim_buf_get_name(bufnr)
+    end,
+  },
+  ["nvim-undotree"] = {
+    icon = "󰁯",
+    hl = "DevIconBackup",
+    title = function(bufnr)
+      local name = vim.api.nvim_buf_get_name(bufnr)
+      return vim.fn.fnamemodify(name, ":t")
+    end,
+  },
+  oil = {
+    icon = "",
+    hl = "Directory",
+    title = function()
+      local ok, oil = pcall(require, "oil")
+      if not ok then
+        return "oil"
+      end
+
+      return vim.fn.fnamemodify(oil.get_current_dir() or "", ":~")
+    end,
+  },
+  snacks_picker_input = {
+    icon = "",
+    title = function(bufnr)
+      local ctx = snacks_picker_context(bufnr)
+      return ctx and ctx.title or "Snacks Picker"
+    end,
+  },
+  snacks_picker_list = {
+    icon = "󰍉",
+    title = function(bufnr)
+      local ctx = snacks_picker_context(bufnr)
+      return ctx and ctx.title or "Snacks Picker"
+    end,
+  },
+  snacks_picker_preview = {
+    icon = "󰈔",
+    title = function(bufnr)
+      local ctx = snacks_picker_context(bufnr)
+      return (ctx and ctx.preview_title) or (ctx and ctx.title) or "Snacks Preview"
+    end,
+  },
+}
+
+local function special_component(bufnr)
+  local component = special_components[vim.bo[bufnr].filetype]
+  if not component then
+    return nil
+  end
+
+  local title = component.title
+  if type(title) == "function" then
+    title = title(bufnr)
+  end
+
+  return {
+    icon = component.icon or "",
+    hl = component.hl,
+    title = title or "",
+  }
+end
+
 local function buffer_title(bufnr)
+  local component = special_component(bufnr)
+  if component and component.title ~= "" then
+    return component.title
+  end
+
   local name = vim.api.nvim_buf_get_name(bufnr)
   local buftype = vim.bo[bufnr].buftype
   local filetype = vim.bo[bufnr].filetype
@@ -168,12 +298,17 @@ local function tab_title(tabpage)
 end
 
 local function tab_icon(tabpage)
+  local bufnr = vim.api.nvim_win_get_buf(vim.api.nvim_tabpage_get_win(tabpage))
+  local component = special_component(bufnr)
+  if component and component.icon ~= "" then
+    return component.icon, component.hl
+  end
+
   local ok, devicons = pcall(require, "nvim-web-devicons")
   if not ok then
     return "", nil
   end
 
-  local bufnr = vim.api.nvim_win_get_buf(vim.api.nvim_tabpage_get_win(tabpage))
   local name = vim.api.nvim_buf_get_name(bufnr)
   local filename = vim.fn.fnamemodify(name, ":t")
   local extension = vim.fn.fnamemodify(name, ":e")
