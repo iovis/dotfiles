@@ -5,8 +5,9 @@ require("config.keymap")
 
 require("config.lazy") -- load plugins
 
-require("config.statuscol")
-require("config.winbar")
+require("config.ui.statuscol")
+require("config.ui.winbar")
+require("config.ui.statusline")
 require("config.lsp")
 
 vim.api.nvim_create_autocmd("User", {

@@ -101,7 +101,7 @@ end
 ---Return value for `statuscolumn`
 ---@return string
 function M.statuscolumn()
-  return '%{%v:lua.require("config.statuscol").build()%}'
+  return '%{%v:lua.require("config.ui.statuscol").build()%}'
 end
 
 vim.o.statuscolumn = M.statuscolumn()
