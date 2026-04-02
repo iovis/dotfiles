@@ -91,11 +91,15 @@ local function filename()
     end
   end
 
-  if vim.bo.modified then
-    data = data .. " ●"
+  return data
+end
+
+local function modified_indicator()
+  if not vim.api.nvim_get_option_value("mod", {}) then
+    return ""
   end
 
-  return data
+  return " " .. hl("DiffAdded", "●")
 end
 
 local function file_icon()
@@ -254,6 +258,7 @@ local function render_default()
     hl("UserStatuslineA", " "),
     icon ~= "" and hl(icon_hl, " " .. icon) or "",
     hl("UserStatuslineB", " " .. filename()),
+    modified_indicator(),
     diagnostics(),
     "%<%=",
     muxi_marks(),
