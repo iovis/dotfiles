@@ -177,24 +177,24 @@ local special_components = {
     end,
   },
   snacks_picker_input = {
-    icon = "",
+    icon = "󰕲",
     title = function(bufnr)
       local ctx = snacks_picker_context(bufnr)
-      return ctx and ctx.title or "Snacks Picker"
+      return ctx and ctx.title or "snacks picker"
     end,
   },
   snacks_picker_list = {
-    icon = "󰍉",
+    icon = "󰕲",
     title = function(bufnr)
       local ctx = snacks_picker_context(bufnr)
-      return ctx and ctx.title or "Snacks Picker"
+      return ctx and ctx.title or "snacks picker"
     end,
   },
   snacks_picker_preview = {
-    icon = "󰈔",
+    icon = "󰕲",
     title = function(bufnr)
       local ctx = snacks_picker_context(bufnr)
-      return (ctx and ctx.preview_title) or (ctx and ctx.title) or "Snacks Preview"
+      return ctx and ctx.title or "snacks preview"
     end,
   },
 }

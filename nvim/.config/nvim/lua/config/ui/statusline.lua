@@ -224,7 +224,7 @@ local function branch()
     return ""
   end
 
-  return "  " .. hl("UserStatuslineB", u.truncate(" " .. head, 30))
+  return "  " .. hl("UserStatuslineB", u.truncate(" " .. head, 30))
 end
 
 local function progress()
@@ -282,22 +282,11 @@ end
 
 local function render_snacks_picker()
   local ctx = snacks_picker_context()
-  local filetype = vim.bo.filetype
-  local titles = {
-    snacks_picker_input = ctx and ctx.title or "Snacks Picker",
-    snacks_picker_list = ctx and ctx.title or "Snacks Picker",
-    snacks_picker_preview = (ctx and ctx.preview_title) or (ctx and ctx.title) or "Snacks Preview",
-  }
-  local icons = {
-    snacks_picker_input = "",
-    snacks_picker_list = "󰍉",
-    snacks_picker_preview = "󰈔",
-  }
-  local title = titles[filetype] or "Snacks"
+  local title = ctx and ctx.title or "snacks picker"
 
   return concat({
     hl("UserStatuslineA", " "),
-    hl("UserStatuslineB", (" %s %s"):format(icons[filetype] or "󰒲", vim.trim(title))),
+    hl("UserStatuslineB", (" %s %s"):format("󰕲", vim.trim(title))),
     "%#StatusLine#",
   })
 end
