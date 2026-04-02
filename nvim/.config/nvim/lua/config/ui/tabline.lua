@@ -333,23 +333,34 @@ local function modified_indicator(tabpage)
   return hl("UserTablineModified", " ● ")
 end
 
-local function label_budget(tab_count)
+local function tab_width_bounds(tab_count)
   local columns = math.max(vim.o.columns, 40)
-  local available = math.max(columns - 4, 20)
-  return math.min(18, math.max(10, math.floor(available / math.max(tab_count, 1)) - 2))
+  local dynamic_max = math.floor((columns - 4) / math.max(tab_count, 1)) - 1
+  local min_width = 10
+  local max_width = math.max(min_width, math.min(25, dynamic_max))
+
+  return min_width, max_width
 end
 
-local function render_tab(index, tabpage, current_tabpage, max_width)
+local function render_tab(index, tabpage, current_tabpage, min_width, max_width)
   local selected = tabpage == current_tabpage
-  local title = shorten_label(tab_title(tabpage), max_width)
   local icon, icon_hl = tab_icon(tabpage)
+  local icon_text = icon ~= "" and (icon .. " ") or ""
+  local suffix_text = vim.bo[vim.api.nvim_win_get_buf(vim.api.nvim_tabpage_get_win(tabpage))].modified and " ● "
+    or "   "
+  local fixed_width = vim.fn.strdisplaywidth(icon_text) + vim.fn.strdisplaywidth(suffix_text)
+  local title = shorten_label(tab_title(tabpage), math.max(1, max_width - fixed_width))
+  local target_width = math.max(min_width, math.min(max_width, fixed_width + vim.fn.strdisplaywidth(title)))
   local click = "%" .. index .. "T"
   local text_hl = selected and "UserTablineTextSel" or "UserTablineText"
   local parts = { click }
-  local indicator = selected and hl("UserTablineSeparator", "▍") or hl(text_hl, " ")
+  local indicator = selected and hl("UserTablineSeparator", "▍ ") or hl(text_hl, "  ")
+  local content_width = vim.fn.strdisplaywidth(icon_text)
+    + vim.fn.strdisplaywidth(title)
+    + vim.fn.strdisplaywidth(suffix_text)
+  local right_pad = string.rep(" ", math.max(0, target_width - content_width))
 
   parts[#parts + 1] = indicator
-  parts[#parts + 1] = hl(text_hl, " ")
 
   if icon ~= "" then
     parts[#parts + 1] = hl(icon_hl or text_hl, icon)
@@ -358,7 +369,7 @@ local function render_tab(index, tabpage, current_tabpage, max_width)
 
   parts[#parts + 1] = hl(text_hl, title)
   parts[#parts + 1] = modified_indicator(tabpage)
-  parts[#parts + 1] = hl(text_hl, " ")
+  parts[#parts + 1] = hl(text_hl, right_pad)
   parts[#parts + 1] = "%T"
 
   return concat(parts)
@@ -367,11 +378,11 @@ end
 local function build()
   local tabpages = vim.api.nvim_list_tabpages()
   local current_tabpage = vim.api.nvim_get_current_tabpage()
-  local max_width = label_budget(#tabpages)
+  local min_width, max_width = tab_width_bounds(#tabpages)
   local parts = {}
 
   for index, tabpage in ipairs(tabpages) do
-    parts[#parts + 1] = render_tab(index, tabpage, current_tabpage, max_width)
+    parts[#parts + 1] = render_tab(index, tabpage, current_tabpage, min_width, max_width)
   end
 
   parts[#parts + 1] = "%#UserTablineFill#%="
