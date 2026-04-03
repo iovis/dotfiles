@@ -190,5 +190,8 @@ vim.api.nvim_create_autocmd(events, {
 
 vim.keymap.set("n", "yop", function()
   vim.g.winbar_full_path = not vim.g.winbar_full_path
-  set_winbar({})
+
+  local current_window = vim.api.nvim_get_current_win()
+  vim.cmd("windo redrawstatus")
+  vim.api.nvim_set_current_win(current_window)
 end, { desc = "Toggle full path in winbar" })
