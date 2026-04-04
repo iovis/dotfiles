@@ -60,6 +60,7 @@ start_screenrecording() {
   local filename="$OUTPUT_DIR/screenrecording-$(date +'%Y-%m-%d_%H-%M-%S').mp4"
   local audio_devices=""
   local audio_args=""
+  local recorder_pid
 
   [[ "$DESKTOP_AUDIO" == "true" ]] && audio_devices+="default_output"
 
@@ -72,6 +73,15 @@ start_screenrecording() {
   [[ -n "$audio_devices" ]] && audio_args+="-a $audio_devices"
 
   gpu-screen-recorder -w portal -f 60 -fallback-cpu-encoding yes -o "$filename" $audio_args -ac aac &
+  recorder_pid=$!
+
+  sleep 0.2
+
+  if ! kill -0 "$recorder_pid" 2>/dev/null; then
+    notify-send --icon org.gnome.Snapshot-symbolic "Screen recording error" "Failed to start screen recording." -u critical -t 5000
+    return 1
+  fi
+
   toggle_screenrecording_indicator
 }
 
@@ -95,13 +105,19 @@ stop_screenrecording() {
   if pgrep -f "^gpu-screen-recorder" >/dev/null; then
     pkill -9 -f "^gpu-screen-recorder"
     cleanup_webcam
+    toggle_screenrecording_indicator
     notify-send --icon org.gnome.Snapshot-symbolic "Screen recording error" "Recording process had to be force-killed. Video may be corrupted." -u critical -t 5000
   else
     cleanup_webcam
-    notify-send --icon org.gnome.Snapshot-symbolic "Screen recording saved to $OUTPUT_DIR" -t 2000
-  fi
+    toggle_screenrecording_indicator
 
-  toggle_screenrecording_indicator
+    local action
+    action=$(notify-send --icon org.gnome.Snapshot-symbolic --action="open=Open Folder" --wait "Screen recording saved to $OUTPUT_DIR" -t 5000)
+
+    if [[ "$action" == "open" ]]; then
+      setsid -f xdg-open "$OUTPUT_DIR" >/dev/null 2>&1
+    fi
+  fi
 }
 
 toggle_screenrecording_indicator() {
