@@ -1,5 +1,7 @@
 local kulala = require("kulala")
 
+vim.lsp.enable("kulala_ls")
+
 vim.keymap.set("n", "<leader>si", kulala.run, { buf = 0 })
 vim.keymap.set("n", "<leader>so", kulala.run_all, { buf = 0 })
 vim.keymap.set("n", "s<cr>", kulala.run, { buf = 0 })

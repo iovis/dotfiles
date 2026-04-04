@@ -8,12 +8,14 @@ return {
     local kulala = require("kulala")
 
     kulala.setup({
-      default_view = "headers_body",
-      icons = {
-        inlay = {
-          done = "✔",
-          error = "✗",
-          loading = "■",
+      ui = {
+        max_response_size = 327680,
+        icons = {
+          inlay = {
+            done = "✔",
+            error = "✗",
+            loading = "■",
+          },
         },
       },
       kulala_keymaps = {
