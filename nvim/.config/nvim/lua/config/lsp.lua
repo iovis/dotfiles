@@ -89,14 +89,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
           count = -1,
           float = true,
         })
-      end, { buf = bufnr, desc = "vim.diagnostic.goto_prev" })
+      end, { buf = bufnr, desc = "vim.diagnostic.jump prev" })
 
       vim.keymap.set("n", "<right>", function()
         vim.diagnostic.jump({
           count = 1,
           float = true,
         })
-      end, { buf = bufnr, desc = "vim.diagnostic.goto_next" })
+      end, { buf = bufnr, desc = "vim.diagnostic.jump next" })
     end
 
     ----Inlay hints
