@@ -72,13 +72,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
       ---- Symbols
       vim.keymap.set("n", "<leader>ls", vim.lsp.buf.document_symbol, {
-        buf = bufnr,
         desc = "vim.lsp.buf.document_symbol",
+        buf = bufnr,
       })
 
       vim.keymap.set("n", "<leader>lw", vim.lsp.buf.workspace_symbol, {
-        buf = bufnr,
         desc = "vim.lsp.buf.workspace_symbol",
+        buf = bufnr,
       })
 
       ---- Diagnostics

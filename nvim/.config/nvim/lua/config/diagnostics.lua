@@ -1,6 +1,7 @@
 local multiline_diagnostics = false
 local virtual_text = true
 
+local sev = vim.diagnostic.severity
 local config = {
   float = {
     focusable = true,
@@ -12,16 +13,16 @@ local config = {
   severity_sort = true,
   signs = {
     text = {
-      [vim.diagnostic.severity.ERROR] = "",
-      [vim.diagnostic.severity.HINT] = "",
-      [vim.diagnostic.severity.INFO] = "",
-      [vim.diagnostic.severity.WARN] = "",
+      [sev.ERROR] = "",
+      [sev.HINT] = "",
+      [sev.INFO] = "",
+      [sev.WARN] = "",
     },
   },
   underline = {
     severity = {
-      vim.diagnostic.severity.WARN,
-      vim.diagnostic.severity.ERROR,
+      sev.WARN,
+      sev.ERROR,
     },
   },
   virtual_lines = multiline_diagnostics,
