@@ -295,6 +295,12 @@ end, { desc = "Tab with current buffer" })
 vim.keymap.set("n", "t", "<c-]>", { remap = true })
 vim.keymap.set("n", "T", "g]")
 
+-- Treesitter
+vim.keymap.set("x", "<up>", "an", { remap = true, desc = "[Treesitter] Increase selection" })
+vim.keymap.set("x", "<down>", "in", { remap = true, desc = "[Treesitter] Decrease selection" })
+vim.keymap.set("x", "<left>", "[n", { remap = true, desc = "[Treesitter] Previous sibling" })
+vim.keymap.set("x", "<right>", "]n", { remap = true, desc = "[Treesitter] Next sibling" })
+
 ---- Quick File access
 -- Config files
 vim.keymap.set("n", "<leader>uf", "<cmd>EditFtplugin<cr>")
