@@ -134,16 +134,16 @@ bind -N "Resize panes equally" = {
 }
 
 # Move panes
-bind -N "Move pane down"  -r down  swap-pane -d -t "{down-of}"
-bind -N "Move pane left"  -r left  swap-pane -d -t "{left-of}"
-bind -N "Move pane right" -r right swap-pane -d -t "{right-of}"
-bind -N "Move pane up"    -r up    swap-pane -d -t "{up-of}"
+bind -N "Move pane down"  -r c-down  swap-pane -d -t "{down-of}"
+bind -N "Move pane left"  -r c-left  swap-pane -d -t "{left-of}"
+bind -N "Move pane right" -r c-right swap-pane -d -t "{right-of}"
+bind -N "Move pane up"    -r c-up    swap-pane -d -t "{up-of}"
 
 ## Switch panes (fallback)
-bind C-down select-pane -D
-bind C-left select-pane -L
-bind C-right select-pane -R
-bind C-up select-pane -U
+bind down  select-pane -D
+bind left  select-pane -L
+bind right select-pane -R
+bind up    select-pane -U
 
 # Make pane full split
 bind -N "Move pane down (full)"  H move-pane -fh -b -t '.{next}'
