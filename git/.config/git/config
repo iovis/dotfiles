@@ -32,14 +32,10 @@
   colorMoved = plain
   mnemonicPrefix = true
   renames = true
-  tool = nvim
+  tool = nvimdiff
 [difftool]
   prompt = false
   keepBackup = false
-[difftool "nvimdiff"]
-  cmd = nvim -d $LOCAL $REMOTE
-[difftool "nvim"]
-  cmd = nvim -c DiffviewOpen
 [fetch]
   all = true
   prune = true
@@ -60,11 +56,9 @@
 [merge]
   conflictstyle = diff3
   ff = false
-  tool = nvim
 [mergetool]
   prompt = false
-[mergetool "nvim"]
-  cmd = nvim -c DiffviewOpen
+  keepBackup = false
 [pull]
   rebase = true
 [push]
