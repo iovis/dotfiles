@@ -1,28 +1,13 @@
 # https://starship.rs/config/
 # Get editor completions based on the config schema
-"$schema" = 'https://starship.rs/config-schema.json'
+"$schema" = "https://starship.rs/config-schema.json"
 
 add_newline = false
 
 format = """
-$directory\
-$git_branch\
-$git_state\
-$git_status\
-$git_commit\
-$status\
-
-$fill\
-
-$cmd_duration\
-$username\
-$hostname\
-
+$directory$git_branch$git_state$git_status$git_commit$status $fill $cmd_duration$username$hostname\
 $line_break\
-
-$jobs\
-$python\
-$character
+$jobs$python$character
 """
 
 [fill]
@@ -63,7 +48,7 @@ format = "[$duration]($style) "
 style = "yellow"
 
 [python]
-format = "[$virtualenv]($style)"
+format = "[$virtualenv]($style) "
 style = "bright-black"
 
 [username]
