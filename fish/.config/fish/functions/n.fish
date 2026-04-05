@@ -1,3 +1,3 @@
-function nin --wraps=nvim
+function n --wraps=nvim
     nvim --clean -u $DOTFILES/minimal.lua $argv
 end
