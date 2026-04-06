@@ -79,6 +79,11 @@ local function set_highlights()
 end
 
 local function filename()
+  local term_title = u.terminal_label(0)
+  if term_title then
+    return term_title
+  end
+
   local path_separator = package.config:sub(1, 1)
   local data = vim.fn.expand("%:~:.")
 
@@ -103,6 +108,10 @@ local function modified_indicator()
 end
 
 local function file_icon()
+  if vim.bo.buftype == "terminal" then
+    return "", "UserStatuslineB"
+  end
+
   local ok, devicons = pcall(require, "nvim-web-devicons")
   if not ok then
     return "", "UserStatuslineB"
@@ -429,6 +438,20 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   callback = function()
     set_highlights()
     vim.cmd.redrawstatus()
+  end,
+})
+
+vim.api.nvim_create_autocmd("TermRequest", {
+  group = augroup,
+  callback = function(args)
+    if not u.is_terminal_title_sequence(args.data and args.data.sequence) then
+      return
+    end
+
+    vim.schedule(function()
+      vim.cmd.redrawstatus()
+      vim.cmd.redrawtabline()
+    end)
   end,
 })
 

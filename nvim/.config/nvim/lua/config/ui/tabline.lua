@@ -1,5 +1,7 @@
 local M = {}
 
+local u = require("config.utils")
+
 local augroup = vim.api.nvim_create_augroup("user_tabline", { clear = true })
 
 local function stl_escape(text)
@@ -227,21 +229,17 @@ local function buffer_title(bufnr)
   local buftype = vim.bo[bufnr].buftype
   local filetype = vim.bo[bufnr].filetype
 
+  local term_title = u.terminal_label(bufnr)
+  if term_title then
+    return term_title
+  end
+
   if buftype == "help" then
     return "help:" .. vim.fn.fnamemodify(name, ":t:r")
   end
 
   if buftype == "quickfix" then
     return "quickfix"
-  end
-
-  if buftype == "terminal" then
-    local _, term_type = name:match("^term:(.*):(%a+)$")
-    if term_type and term_type ~= "" then
-      return term_type
-    end
-
-    return vim.fn.fnamemodify(vim.env.SHELL or "", ":t")
   end
 
   if filetype == "TelescopePrompt" then
@@ -307,6 +305,10 @@ local function tab_icon(tabpage)
   local ok, devicons = pcall(require, "nvim-web-devicons")
   if not ok then
     return "", nil
+  end
+
+  if vim.bo[bufnr].buftype == "terminal" then
+    return "", "DevIconAwk"
   end
 
   local name = vim.api.nvim_buf_get_name(bufnr)

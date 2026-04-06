@@ -107,6 +107,41 @@ function M.current_path()
   return vim.fn.expand("%:~")
 end
 
+---Current terminal title/command label
+---@param bufnr? integer
+---@return string?
+function M.terminal_label(bufnr)
+  bufnr = bufnr or 0
+  if vim.bo[bufnr].buftype ~= "terminal" then
+    return nil
+  end
+
+  local ok, title = pcall(vim.api.nvim_buf_get_var, bufnr, "term_title")
+  if ok and type(title) == "string" then
+    title = vim.trim(title)
+    if title ~= "" then
+      return title
+    end
+  end
+
+  local name = vim.api.nvim_buf_get_name(bufnr)
+  local fallback = name:match(":([^:]+)$") or vim.fn.fnamemodify(vim.env.SHELL or "", ":t")
+  fallback = vim.trim(fallback or "")
+
+  if fallback ~= "" then
+    return fallback
+  end
+
+  return "terminal"
+end
+
+---@param sequence? string
+---@return boolean
+function M.is_terminal_title_sequence(sequence)
+  return type(sequence) == "string"
+    and (vim.startswith(sequence, "\027]0;") or vim.startswith(sequence, "\027]2;"))
+end
+
 ---Check if there's a justfile
 ---@return boolean
 function M.has_justfile()

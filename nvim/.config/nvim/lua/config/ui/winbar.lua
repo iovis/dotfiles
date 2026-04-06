@@ -1,4 +1,5 @@
 local devicons = require("nvim-web-devicons")
+local u = require("config.utils")
 
 ---@class (exact) WinbarComponent
 ---@field icon string
@@ -8,6 +9,19 @@ local devicons = require("nvim-web-devicons")
 ---@type WinbarComponent
 local none = { icon = "", hl = "", title = "" }
 local empty = { icon = "", hl = "", title = "" }
+
+local function winbar_escape(text)
+  return tostring(text or ""):gsub("%%", "%%%%")
+end
+
+---@return WinbarComponent
+local function terminal_component()
+  return {
+    hl = "DevIconAwk",
+    icon = "",
+    title = winbar_escape(u.terminal_label(0)),
+  }
+end
 
 ---@type table<string, WinbarComponent>
 local winbar_per_filetype = {
@@ -69,6 +83,10 @@ local winbar_per_filetype = {
 ---@param path string
 ---@return WinbarComponent
 local function winbar_per_path(path)
+  if vim.bo.buftype == "terminal" then
+    return terminal_component()
+  end
+
   local filename = string.lower(vim.fn.fnamemodify(path, ":t"))
   local ext = vim.fn.fnamemodify(path, ":e")
 
@@ -151,27 +169,53 @@ local ignored_filetypes = {
   "text.kulala_ui",
 }
 
+---@param winid integer
+---@param is_active boolean
+local function set_winbar_for_window(winid, is_active)
+  vim.api.nvim_win_call(winid, function()
+    -- Ignore custom winbar or certain filetypes
+    if vim.wo.winbar:match("»") or vim.tbl_contains(ignored_filetypes, vim.bo.filetype) then
+      return
+    end
+
+    local win_config = vim.api.nvim_win_get_config(winid)
+
+    -- Ignore floating windows
+    if win_config.relative ~= "" then
+      return
+    end
+
+    local winbar = get_winbar(is_active)
+    if vim.bo.buftype == "terminal" then
+      winbar = " " .. vim.trim(winbar)
+    end
+
+    -- This still fails for some reason saying it doesn't have enough space
+    pcall(vim.api.nvim_set_option_value, "winbar", winbar, {
+      scope = "local",
+      win = winid,
+    })
+  end)
+end
+
 local function set_winbar(args)
-  -- Ignore custom winbar or certain filetypes
-  if vim.wo.winbar:match("»") or vim.tbl_contains(ignored_filetypes, vim.bo.filetype) then
-    return
-  end
-
   local winnr = vim.api.nvim_get_current_win()
-  local win_config = vim.api.nvim_win_get_config(winnr)
+  local is_active = args.event ~= "WinLeave"
+  set_winbar_for_window(winnr, is_active)
+end
 
-  -- Ignore floating windows
-  if win_config.relative ~= "" then
+local function refresh_terminal_winbar(args)
+  if not u.is_terminal_title_sequence(args.data and args.data.sequence) then
     return
   end
 
-  local is_active = args.event ~= "WinLeave"
-
-  -- This still fails for some reason saying it doesn't have enough space
-  pcall(vim.api.nvim_set_option_value, "winbar", get_winbar(is_active), {
-    scope = "local",
-    win = winnr,
-  })
+  local current_window = vim.api.nvim_get_current_win()
+  for _, winid in ipairs(vim.fn.win_findbuf(args.buf)) do
+    if vim.api.nvim_win_is_valid(winid) then
+      local is_active = winid == current_window
+      set_winbar_for_window(winid, is_active)
+    end
+  end
 end
 
 local augroup = vim.api.nvim_create_augroup("user_winbar", { clear = true })
@@ -186,6 +230,11 @@ local events = {
 vim.api.nvim_create_autocmd(events, {
   group = augroup,
   callback = set_winbar,
+})
+
+vim.api.nvim_create_autocmd("TermRequest", {
+  group = augroup,
+  callback = refresh_terminal_winbar,
 })
 
 vim.keymap.set("n", "yop", function()
