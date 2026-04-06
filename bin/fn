@@ -17,7 +17,7 @@ eval "$fd_folders" | fzf \
   --input-border \
   --input-label=" folders " \
   --list-border \
-  --info=hidden \
+  --info=inline-right \
   --reverse \
   --multi \
   --bind="ctrl-g:transform:$TRANSFORMER" \
@@ -30,6 +30,8 @@ eval "$fd_folders" | fzf \
   --bind='alt-r:change-preview-window(down|right)' \
   --preview="fzf-preview {}" \
   --preview-window=right \
+  --color=border:black \
+  --color=info:black \
   --color=input-border:blue \
   --query="$INITIAL_QUERY" || true
 

@@ -19,7 +19,7 @@ fzf_command() {
     --input-border \
     --list-border \
     --ghost="Neovim plugins" \
-    --info=hidden \
+    --info=inline-right \
     --reverse \
     --bind=alt-p:toggle-preview \
     --bind='alt-r:change-preview-window(down|right)' \
