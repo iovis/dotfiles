@@ -135,5 +135,6 @@ vim.api.nvim_create_autocmd("TermOpen", {
     vim.keymap.set("n", "<left>", "i<left>", { buf = 0 })
     vim.keymap.set("n", "<right>", "i<right>", { buf = 0 })
     vim.keymap.set("n", "<up>", "i<up>", { buf = 0 })
+    vim.keymap.set("n", "q", "i", { buf = 0 })
   end,
 })

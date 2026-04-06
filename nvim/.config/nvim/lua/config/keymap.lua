@@ -41,7 +41,6 @@ vim.keymap.set("i", "<m-O>", "<esc>O")
 vim.keymap.set("i", "<m-o>", "<esc>o")
 
 ---- Terminal mode
-vim.keymap.set("t", "KJ", [[<c-\><c-n>]])
 vim.keymap.set("t", "<c-/>", [[<c-\><c-n>]])
 vim.keymap.set("t", "<c-_>", [[<c-\><c-n>]])
 
