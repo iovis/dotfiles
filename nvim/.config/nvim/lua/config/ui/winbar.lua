@@ -241,6 +241,9 @@ vim.keymap.set("n", "yop", function()
   vim.g.winbar_full_path = not vim.g.winbar_full_path
 
   local current_window = vim.api.nvim_get_current_win()
-  vim.cmd("windo redrawstatus")
-  vim.api.nvim_set_current_win(current_window)
+  for _, winid in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+    if vim.api.nvim_win_is_valid(winid) then
+      set_winbar_for_window(winid, winid == current_window)
+    end
+  end
 end, { desc = "Toggle full path in winbar" })
