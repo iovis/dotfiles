@@ -124,8 +124,26 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 })
 
 ---- Terminal mode settings
+vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+  desc = "Terminal window settings",
+  group = config_augroup,
+  pattern = "*",
+  callback = function()
+    if vim.bo.buftype ~= "terminal" then
+      return
+    end
+
+    vim.opt_local.foldcolumn = "0"
+    vim.opt_local.list = false
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+    vim.opt_local.signcolumn = "no"
+    vim.opt_local.wrap = false
+  end,
+})
+
 vim.api.nvim_create_autocmd("TermOpen", {
-  desc = "Terminal settings",
+  desc = "Terminal buffer settings",
   group = config_augroup,
   pattern = "*",
   callback = function()
