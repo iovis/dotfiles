@@ -149,10 +149,14 @@ vim.api.nvim_create_autocmd("TermOpen", {
   callback = function()
     vim.cmd.startinsert()
 
-    vim.keymap.set("n", "<down>", "i<down>", { buf = 0 })
-    vim.keymap.set("n", "<left>", "i<left>", { buf = 0 })
-    vim.keymap.set("n", "<right>", "i<right>", { buf = 0 })
-    vim.keymap.set("n", "<up>", "i<up>", { buf = 0 })
-    vim.keymap.set("n", "q", "i", { buf = 0 })
+    local opts = { buf = 0, nowait = true }
+    vim.keymap.set("n", "d", "<c-d>", opts)
+    vim.keymap.set("n", "u", "<c-u>", opts)
+    vim.keymap.set("n", "q", "i", opts)
+
+    vim.keymap.set("n", "<down>", "i<down>", opts)
+    vim.keymap.set("n", "<left>", "i<left>", opts)
+    vim.keymap.set("n", "<right>", "i<right>", opts)
+    vim.keymap.set("n", "<up>", "i<up>", opts)
   end,
 })
