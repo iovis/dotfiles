@@ -1,3 +1,4 @@
+-- Docs: https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md
 return {
   "L3MON4D3/LuaSnip",
   event = "VeryLazy",
