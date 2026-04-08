@@ -127,7 +127,6 @@ rsync
 rygel
 satty
 sd
-shellcheck
 shfmt
 simple-scan
 smartmontools
