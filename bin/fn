@@ -34,5 +34,3 @@ eval "$fd_folders" | fzf \
   --color=info:black \
   --color=input-border:blue \
   --query="$INITIAL_QUERY" || true
-
-rm -rf /tmp/preview.webp
