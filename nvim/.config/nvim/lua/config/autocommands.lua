@@ -45,9 +45,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   desc = "Clean trailing whitespace",
   group = config_augroup,
   callback = function()
-    vim.cmd([[normal! m`]])
-    vim.cmd([[keeppatterns %s/\s\+$//e]])
-    vim.cmd([[normal! ``]])
+    if vim.g.autoformat then
+      vim.cmd([[normal! m`]])
+      vim.cmd([[keeppatterns %s/\s\+$//e]])
+      vim.cmd([[normal! ``]])
+    end
   end,
 })
 
