@@ -2,6 +2,7 @@
 
 ### AI ###
 .claude/
+.codex
 .codex-state/
 .opencode/
 
