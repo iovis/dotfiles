@@ -156,6 +156,7 @@ uwsm
 valgrind
 vim
 virtualbox
+vulkan-tools
 watchexec
 waybar
 wev
