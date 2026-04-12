@@ -49,57 +49,98 @@ vim.api.nvim_create_autocmd("LspAttach", {
       return
     end
 
-    vim.keymap.set("n", "t", vim.lsp.buf.definition, { buf = bufnr, desc = "vim.lsp.buf.definition" })
-    vim.keymap.set("n", "<leader>lx", vim.lsp.codelens.run, { buf = bufnr, desc = "vim.lsp.codelens.run" })
+    vim.keymap.set("n", "t", vim.lsp.buf.definition, { desc = "vim.lsp.buf.definition", buf = bufnr })
+    vim.keymap.set("n", "<leader>lx", vim.lsp.codelens.run, { desc = "vim.lsp.codelens.run", buf = bufnr })
 
-    if false then
-      ---- Signature/Definition
-      vim.keymap.set({ "n", "i" }, "<c-s>", vim.lsp.buf.signature_help, {
-        buf = bufnr,
-        desc = "vim.lsp.buf.signature_help",
+    ---- Signature/Definition
+    vim.keymap.set({ "n", "i" }, "<c-s>", vim.lsp.buf.signature_help, {
+      desc = "vim.lsp.buf.signature_help",
+      buf = bufnr,
+    })
+
+    vim.keymap.set("n", "gd", vim.lsp.buf.hover, { desc = "vim.lsp.buf.hover", buf = bufnr })
+    vim.keymap.set("i", "<c-h>", vim.lsp.buf.hover, { desc = "vim.lsp.buf.hover", buf = bufnr })
+    vim.keymap.set("n", "T", vim.lsp.buf.references, { desc = "vim.lsp.buf.references", buf = bufnr })
+    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { desc = "vim.lsp.buf.type_definition", buf = bufnr })
+
+    ---- Actions
+    vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { desc = "vim.lsp.buf.code_action", buf = bufnr })
+    vim.keymap.set("i", "<m-j>", vim.lsp.buf.code_action, { desc = "vim.lsp.buf.code_action", buf = bufnr })
+    vim.keymap.set({ "n", "x" }, "<leader>lr", vim.lsp.buf.rename, { desc = "vim.lsp.buf.rename", buf = bufnr })
+    vim.keymap.set("n", "<leader>lx", vim.lsp.codelens.run, { desc = "vim.lsp.codelens.run", buf = bufnr })
+
+    ---- Symbols
+    vim.keymap.set("n", "<leader>ls", vim.lsp.buf.document_symbol, {
+      desc = "vim.lsp.buf.document_symbol",
+      buf = bufnr,
+    })
+
+    vim.keymap.set("n", "<leader>lw", vim.lsp.buf.workspace_symbol, {
+      desc = "vim.lsp.buf.workspace_symbol",
+      buf = bufnr,
+    })
+
+    ---- Diagnostics
+    vim.keymap.set("n", "<m-d>", vim.diagnostic.open_float, { desc = "vim.diagnostic.open_float", buf = bufnr })
+
+    vim.keymap.set("n", "<left>", function()
+      vim.diagnostic.jump({
+        count = -1,
+        float = true,
       })
+    end, { desc = "vim.diagnostic.jump prev", buf = bufnr })
 
-      vim.keymap.set("n", "gd", vim.lsp.buf.hover, { buf = bufnr, desc = "vim.lsp.buf.hover" })
-      vim.keymap.set("i", "<c-h>", vim.lsp.buf.hover, { buf = bufnr, desc = "vim.lsp.buf.hover" })
-      vim.keymap.set("n", "T", vim.lsp.buf.references, { buf = bufnr, desc = "vim.lsp.buf.references" })
-      vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buf = bufnr, desc = "vim.lsp.buf.type_definition" })
-
-      ---- Actions
-      vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { buf = bufnr, desc = "vim.lsp.buf.code_action" })
-      vim.keymap.set("i", "<m-j>", vim.lsp.buf.code_action, { buf = bufnr, desc = "vim.lsp.buf.code_action" })
-      vim.keymap.set({ "n", "x" }, "<leader>lr", vim.lsp.buf.rename, { buf = bufnr, desc = "vim.lsp.buf.rename" })
-      vim.keymap.set("n", "<leader>lx", vim.lsp.codelens.run, { buf = bufnr, desc = "vim.lsp.codelens.run" })
-
-      ---- Symbols
-      vim.keymap.set("n", "<leader>ls", vim.lsp.buf.document_symbol, {
-        desc = "vim.lsp.buf.document_symbol",
-        buf = bufnr,
+    vim.keymap.set("n", "<right>", function()
+      vim.diagnostic.jump({
+        count = 1,
+        float = true,
       })
+    end, { desc = "vim.diagnostic.jump next", buf = bufnr })
 
-      vim.keymap.set("n", "<leader>lw", vim.lsp.buf.workspace_symbol, {
-        desc = "vim.lsp.buf.workspace_symbol",
-        buf = bufnr,
-      })
+    ---- Lspsaga
+    -- peek
+    vim.keymap.set("i", "<c-h>", "<cmd>Lspsaga hover_doc<cr>", { buf = bufnr })
+    vim.keymap.set("n", "gd", "<cmd>Lspsaga hover_doc<cr>", { buf = bufnr })
+    vim.keymap.set("n", "gt", "<cmd>Lspsaga goto_type_definition<cr>", { buf = bufnr })
+    vim.keymap.set("n", "<leader>lf", "<cmd>Lspsaga peek_definition<cr>", { buf = bufnr })
+    vim.keymap.set("n", "<leader>lt", "<cmd>Lspsaga peek_type_definition<cr>", { buf = bufnr })
 
-      ---- Diagnostics
-      vim.keymap.set("n", "<m-d>", vim.diagnostic.open_float, { buf = bufnr, desc = "vim.diagnostic.open_float" })
+    -- actions
+    vim.keymap.set("i", "<m-j>", "<cmd>Lspsaga code_action<cr>", { buf = bufnr })
+    vim.keymap.set({ "n", "x" }, "<leader>la", "<cmd>Lspsaga code_action<cr>", { buf = bufnr })
+    vim.keymap.set({ "n", "x" }, "<leader>lr", "<cmd>Lspsaga rename<cr>", { buf = bufnr })
 
-      vim.keymap.set("n", "<left>", function()
-        vim.diagnostic.jump({
-          count = -1,
-          float = true,
-        })
-      end, { buf = bufnr, desc = "vim.diagnostic.jump prev" })
+    -- diagnostics
+    vim.keymap.set("n", "<m-d>", "<cmd>Lspsaga show_line_diagnostics<cr>", { buf = bufnr })
+    vim.keymap.set("n", "<left>", "<cmd>Lspsaga diagnostic_jump_prev<cr>", { buf = bufnr })
+    vim.keymap.set("n", "<right>", "<cmd>Lspsaga diagnostic_jump_next<cr>", { buf = bufnr })
 
-      vim.keymap.set("n", "<right>", function()
-        vim.diagnostic.jump({
-          count = 1,
-          float = true,
-        })
-      end, { buf = bufnr, desc = "vim.diagnostic.jump next" })
-    end
+    ---- Snacks
+    vim.keymap.set("n", "<leader>ls", Snacks.picker.lsp_symbols, {
+      desc = "Snacks.picker.lsp_symbols",
+      buf = bufnr,
+    })
 
-    ----Inlay hints
+    vim.keymap.set("n", "<leader>lw", Snacks.picker.lsp_workspace_symbols, {
+      desc = "Snacks.picker.lsp_workspace_symbols",
+      buf = bufnr,
+    })
+
+    vim.keymap.set("n", "<leader>ld", function()
+      Snacks.picker.diagnostics({ focus = "list" })
+    end, {
+      desc = "Snacks.picker.diagnostics",
+      buf = bufnr,
+    })
+
+    vim.keymap.set("n", "T", function()
+      Snacks.picker.lsp_references({ focus = "list" })
+    end, {
+      desc = "Snacks.picker.lsp_references",
+      buf = bufnr,
+    })
+
+    ---- Inlay hints
     if client:supports_method("textDocument/inlayHint") then
       local function toggle_inlay_hints()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
@@ -112,18 +153,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
       })
     end
 
-    ----Codelens
+    ---- Codelens
     local function toggle_codelens()
       vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled())
       vim.notify("LSP Codelens: " .. tostring(vim.lsp.codelens.is_enabled()), vim.log.levels.WARN)
     end
 
-    vim.keymap.set("n", "<leader>lc", toggle_codelens, {
+    vim.keymap.set("n", "yoc", toggle_codelens, {
       desc = "toggle vim.lsp.codelens",
       buf = bufnr,
     })
 
-    ----Code Actions
+    ---- Commands
     -- nmap("<leader>lI", ":LspOrganizeImports<cr>")
     -- vim.api.nvim_buf_create_user_command(0, "LspOrganizeImports", function()
     --   vim.lsp.buf.code_action({
@@ -134,10 +175,5 @@ vim.api.nvim_create_autocmd("LspAttach", {
     --     },
     --   })
     -- end, {})
-
-    ----Custom server capabilities
-    if client.name == "eslint" then
-      client.server_capabilities.documentFormattingProvider = true
-    end
   end,
 })
