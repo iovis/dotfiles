@@ -262,7 +262,12 @@ local function buffer_title(bufnr)
     return "[No Name]"
   end
 
-  return vim.fn.fnamemodify(name, ":t")
+  local fname_mod = ":t"
+  if vim.g.winbar_full_path then
+    fname_mod = ":."
+  end
+
+  return vim.fn.fnamemodify(name, fname_mod)
 end
 
 local function shorten_label(label, max_width)

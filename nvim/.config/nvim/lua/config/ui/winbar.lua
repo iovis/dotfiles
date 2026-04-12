@@ -239,6 +239,7 @@ vim.api.nvim_create_autocmd("TermRequest", {
 
 vim.keymap.set("n", "yop", function()
   vim.g.winbar_full_path = not vim.g.winbar_full_path
+  vim.cmd.redrawtabline()
 
   local current_window = vim.api.nvim_get_current_win()
   for _, winid in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
