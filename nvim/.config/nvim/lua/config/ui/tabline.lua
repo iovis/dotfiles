@@ -152,6 +152,13 @@ local special_components = {
     hl = "DevIconGitLogo",
     title = "git blame",
   },
+  help = {
+    icon = "󰈙",
+    hl = "DevIconLog",
+    title = function(bufnr)
+      return "help:" .. vim.fn.fnamemodify(vim.fn.bufname(bufnr), ":t:r")
+    end,
+  },
   ["markdown.gh"] = {
     icon = "",
     title = function(bufnr)
@@ -177,6 +184,10 @@ local special_components = {
 
       return vim.fn.fnamemodify(oil.get_current_dir() or "", ":~")
     end,
+  },
+  qf = {
+    icon = "󰕲",
+    title = "quickfix",
   },
   snacks_picker_input = {
     icon = "󰕲",
@@ -225,31 +236,12 @@ local function buffer_title(bufnr)
     return component.title
   end
 
-  local name = vim.api.nvim_buf_get_name(bufnr)
-  local buftype = vim.bo[bufnr].buftype
-  local filetype = vim.bo[bufnr].filetype
-
   local term_title = u.terminal_label(bufnr)
   if term_title then
     return term_title
   end
 
-  if buftype == "help" then
-    return "help:" .. vim.fn.fnamemodify(name, ":t:r")
-  end
-
-  if buftype == "quickfix" then
-    return "quickfix"
-  end
-
-  if filetype == "git" then
-    return "Git"
-  end
-
-  if filetype == "fugitive" then
-    return "Fugitive"
-  end
-
+  local name = vim.api.nvim_buf_get_name(bufnr)
   if name == "" then
     return "[No Name]"
   end

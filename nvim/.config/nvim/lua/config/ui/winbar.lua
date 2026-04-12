@@ -53,7 +53,7 @@ local winbar_per_filetype = {
   },
   help = {
     icon = "󰈙",
-    hl = "DevIconTxt",
+    hl = "DevIconLog",
     title = function()
       return "help:" .. vim.fn.fnamemodify(vim.fn.bufname(), ":t:r")
     end,

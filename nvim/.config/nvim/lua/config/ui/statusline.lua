@@ -320,7 +320,7 @@ end
 local function render_quickfix()
   return concat({
     hl("UserStatuslineA", " "),
-    hl("UserStatuslineB", "  " .. quickfix_title()),
+    hl("UserStatuslineB", " 󰕲 " .. quickfix_title()),
     "%<%=",
     diff_status(),
     branch(),
