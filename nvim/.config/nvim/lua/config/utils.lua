@@ -138,8 +138,7 @@ end
 ---@param sequence? string
 ---@return boolean
 function M.is_terminal_title_sequence(sequence)
-  return type(sequence) == "string"
-    and (vim.startswith(sequence, "\027]0;") or vim.startswith(sequence, "\027]2;"))
+  return type(sequence) == "string" and (vim.startswith(sequence, "\027]0;") or vim.startswith(sequence, "\027]2;"))
 end
 
 ---Check if there's a justfile
@@ -438,6 +437,19 @@ end
 
 ---UI
 M.ui = {}
+
+---open popup with cmd
+---@param cmd string
+function M.ui.float_terminal(cmd)
+  Snacks.win({
+    width = 0.75,
+    height = 0.66,
+    border = "rounded",
+    on_win = function()
+      vim.cmd.terminal(cmd)
+    end,
+  })
+end
 
 function M.ui.foldtext()
   local start = vim.fn.getline(vim.v.foldstart)

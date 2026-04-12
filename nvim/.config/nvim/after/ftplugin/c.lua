@@ -28,12 +28,17 @@ elseif vim.uv.cwd():match("qmk_userspace") then
     vim.keymap.set("n", "<leader>S", function()
       -- keyboards/(boardsource/unicorne)/keymaps/...
       local keyboard = u.current_file():match([[keyboards/(.*)/keymaps]])
-      tux.popup("just choose " .. keyboard)
+      u.ui.float_terminal("just choose " .. keyboard)
     end, { buf = 0 })
   end
 
-  vim.keymap.set("n", "s<cr>", "<cmd>Tuxpopup just run<cr>", { buf = 0 })
-  vim.keymap.set("n", "m<cr>", "<cmd>Tuxpopup just flash<cr>", { buf = 0 })
+  vim.keymap.set("n", "s<cr>", function()
+    u.ui.float_terminal("just run")
+  end, { buf = 0 })
+
+  vim.keymap.set("n", "m<cr>", function()
+    u.ui.float_terminal("just flash")
+  end, { buf = 0 })
 
   vim.keymap.set("n", "<leader>do", "<cmd>botright split! ../qmk_firmware/docs/keycodes.md<cr>", { buf = 0 })
   vim.keymap.set("n", "<leader>dS", "<cmd>60vs keymap.md<cr>", { buf = 0 })
