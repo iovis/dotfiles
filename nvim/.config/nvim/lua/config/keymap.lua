@@ -438,13 +438,13 @@ end, { expr = true, desc = "luado modify line" })
 ---- Tmux
 -- Send current location to last pane
 vim.keymap.set("n", "<m-p>", function()
-  local path = (" @%s "):format(vim.fn.expand("%:."))
+  local path = ("@%s"):format(vim.fn.expand("%:."))
   vim.system({ "tmux", "send", "-t", "!", path }):wait()
   vim.system({ "tmux", "last-pane" }):wait()
 end, { desc = "Send current file to last pane" })
 
 vim.keymap.set("n", "<m-n>", function()
-  local path = (" @%s:%s "):format(vim.fn.expand("%:."), vim.fn.line("."))
+  local path = ("@%s:%s"):format(vim.fn.expand("%:."), vim.fn.line("."))
   vim.system({ "tmux", "send", "-t", "!", path }):wait()
   vim.system({ "tmux", "last-pane" }):wait()
 end, { desc = "Send current file and line number to last pane" })
@@ -458,7 +458,7 @@ vim.keymap.set("x", "<m-n>", function()
   end
 
   local location = line_start == line_end and tostring(line_start) or (line_start .. "-" .. line_end)
-  local path = (" @%s:%s "):format(vim.fn.expand("%:."), location)
+  local path = ("@%s:%s"):format(vim.fn.expand("%:."), location)
 
   vim.api.nvim_input("<Esc>")
 
