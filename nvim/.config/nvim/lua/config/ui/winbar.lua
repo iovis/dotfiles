@@ -14,15 +14,6 @@ local function winbar_escape(text)
   return tostring(text or ""):gsub("%%", "%%%%")
 end
 
----@return WinbarComponent
-local function terminal_component()
-  return {
-    hl = "DevIconAwk",
-    icon = "",
-    title = winbar_escape(u.terminal_label(0)),
-  }
-end
-
 ---@type table<string, WinbarComponent>
 local winbar_per_filetype = {
   DiffviewFiles = empty,
@@ -60,6 +51,13 @@ local winbar_per_filetype = {
     hl = "DevIconGitLogo",
     title = "git blame",
   },
+  help = {
+    icon = "󰈙",
+    hl = "DevIconTxt",
+    title = function()
+      return "help:" .. vim.fn.fnamemodify(vim.fn.bufname(), ":t:r")
+    end,
+  },
   ["markdown.gh"] = {
     icon = "",
     title = function()
@@ -84,7 +82,11 @@ local winbar_per_filetype = {
 ---@return WinbarComponent
 local function winbar_per_path(path)
   if vim.bo.buftype == "terminal" then
-    return terminal_component()
+    return {
+      hl = "DevIconAwk",
+      icon = "",
+      title = winbar_escape(u.terminal_label(0) or "terminal"),
+    }
   end
 
   local filename = string.lower(vim.fn.fnamemodify(path, ":t"))

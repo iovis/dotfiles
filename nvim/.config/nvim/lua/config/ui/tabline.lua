@@ -242,20 +242,12 @@ local function buffer_title(bufnr)
     return "quickfix"
   end
 
-  if filetype == "TelescopePrompt" then
-    return "Telescope"
-  end
-
   if filetype == "git" then
     return "Git"
   end
 
   if filetype == "fugitive" then
     return "Fugitive"
-  end
-
-  if filetype == "fzf" then
-    return "FZF"
   end
 
   if name == "" then
