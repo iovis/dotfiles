@@ -249,7 +249,6 @@ end, { desc = "QuickFix Toggle" })
 
 -- Repeat
 vim.keymap.set("n", "<leader>.", "@:")
-vim.keymap.set("n", "<leader>,", "@@")
 vim.keymap.set("x", ".", ":normal .<cr>", { silent = true })
 
 -- Replace
@@ -420,8 +419,9 @@ end)
 vim.keymap.set("n", "<leader>fs", ":se ft=")
 vim.keymap.set("n", "<leader>fp", ":se ft?<cr>")
 vim.keymap.set("n", "<leader>P", ":R=")
-vim.keymap.set("n", "<leader>!", ":R! !")
 vim.keymap.set("n", "<leader>T", ":RenderAscii<cr>")
+vim.keymap.set({ "n", "x" }, "<leader>,", ":!")
+vim.keymap.set("n", "<leader><", ":R! !")
 vim.keymap.set("x", "<leader>I", "y:R! !<c-r>0<cr>")
 
 vim.keymap.set("n", "<leader>M", "<cmd>10R messages<cr>G")

@@ -329,7 +329,6 @@ nnoremap <c-s-right> <cmd>lnfile<cr>
 
 " Repeat
 nnoremap <leader>. @:
-nnoremap <leader>, @@
 xnoremap <silent> . :normal .<cr>
 
 " Replace
@@ -372,10 +371,9 @@ nnoremap yos :setlocal spell! spelllang=en_us<cr>
 nnoremap yow :setlocal wrap!<cr>
 " }}} Normal mode "
 
-" Misc {{{ "
-" Undo
 nmap U :undolist<cr>
-" }}} Misc "
+nnoremap <leader>, :!
+xnoremap <leader>, :!
 " }}} bindings "
 
 " substitute {{{ "
