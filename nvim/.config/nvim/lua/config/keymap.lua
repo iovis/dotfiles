@@ -1,3 +1,5 @@
+local u = require("config.utils")
+
 ---- Insert mode
 -- Exit
 vim.keymap.set("i", "kj", "<esc>")
@@ -420,7 +422,7 @@ vim.keymap.set("n", "<leader>fp", ":se ft?<cr>")
 vim.keymap.set("n", "<leader>P", ":R=")
 vim.keymap.set("n", "<leader>!", ":R! !")
 vim.keymap.set("n", "<leader>T", ":RenderAscii<cr>")
-vim.keymap.set("x", "<leader>i", "y:R! !<c-r>0<cr>")
+vim.keymap.set("x", "<leader>I", "y:R! !<c-r>0<cr>")
 
 vim.keymap.set("n", "<leader>M", "<cmd>10R messages<cr>G")
 vim.keymap.set("n", "'M", function()
