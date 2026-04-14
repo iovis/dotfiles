@@ -39,6 +39,6 @@
   "vim-projectionist": { "branch": "master", "commit": "5ff7bf79a6ef741036d2038a226bcb5f8b1cd296" },
   "vim-rhubarb": { "branch": "master", "commit": "5496d7c94581c4c9ad7430357449bb57fc59f501" },
   "vim-startuptime": { "branch": "master", "commit": "f10474b400c197787a0434548d842a2db583c333" },
-  "vim-test": { "branch": "master", "commit": "bca51394b5febc6e50492d88e8e124f5c5147087" },
+  "vim-test": { "branch": "master", "commit": "bc0e94059de40641d163516a83c63bc45c716acf" },
   "vim-tmux-navigator": { "branch": "master", "commit": "e41c431a0c7b7388ae7ba341f01a0d217eb3a432" }
 }
