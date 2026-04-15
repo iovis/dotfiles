@@ -119,6 +119,12 @@ function M.terminal_label(bufnr)
   local ok, title = pcall(vim.api.nvim_buf_get_var, bufnr, "term_title")
   if ok and type(title) == "string" then
     title = vim.trim(title)
+
+    if title:match("^term://") then
+      local path, command = title:match("^term://(.-)//[^:]+:(.+)$")
+      return ("%s %s"):format(command, path)
+    end
+
     if title ~= "" then
       return title
     end

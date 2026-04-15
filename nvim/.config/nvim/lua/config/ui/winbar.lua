@@ -20,7 +20,6 @@ local winbar_per_filetype = {
   DiffviewFileHistory = none,
   ["neo-tree"] = empty,
   qf = none,
-  toggleterm = none,
   blame = {
     icon = "",
     hl = "DevIconGitLogo",
@@ -227,6 +226,7 @@ local events = {
   "BufModifiedSet",
   "WinEnter",
   "WinLeave",
+  "TermOpen",
 }
 
 vim.api.nvim_create_autocmd(events, {
