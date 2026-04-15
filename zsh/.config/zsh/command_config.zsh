@@ -20,13 +20,13 @@ if type eza > /dev/null; then
 fi
 
 # fzf
-[[ ! -f "~/.fzf.zsh" ]] || source "~/.fzf.zsh"
-
 if type fzf > /dev/null; then
   export FZF_ALT_C_OPTS="--preview='fzf-preview {}'"
   export FZF_CTRL_T_OPTS="--preview='fzf-preview {}'"
   export FZF_DEFAULT_COMMAND="fd -H -E '.git' -E '.keep' --type file --follow --color=always"
   export FZF_DEFAULT_OPTS_FILE="$HOME/.config/fzf/fzfrc"
+
+  source <(fzf --zsh)
 fi
 
 # just
