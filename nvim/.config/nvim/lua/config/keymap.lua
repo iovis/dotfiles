@@ -1,5 +1,3 @@
-local u = require("config.utils")
-
 ---- Insert mode
 -- Exit
 vim.keymap.set("i", "kj", "<esc>")
