@@ -432,7 +432,7 @@ end, { desc = "Clear messages" })
 vim.keymap.set({ "n", "x" }, "'g", ":g/\\v")
 vim.keymap.set({ "n", "x" }, "'v", ":v/\\v")
 vim.keymap.set({ "n", "x" }, "'l", function()
-  return ':luado return string.format("%s", line)' .. ("<left>"):rep(10)
+  return ':luado return "" .. line' .. ("<left>"):rep(9)
 end, { expr = true, desc = "luado modify line" })
 
 ---- Tmux
