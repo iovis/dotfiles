@@ -126,21 +126,33 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 })
 
 ---- Terminal mode settings
-vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+---@param bufnr integer
+local function set_terminal_window_settings(bufnr)
+  if not vim.api.nvim_buf_is_valid(bufnr) or vim.bo[bufnr].buftype ~= "terminal" then
+    return
+  end
+
+  if vim.api.nvim_get_current_buf() ~= bufnr then
+    return
+  end
+
+  vim.opt_local.foldcolumn = "0"
+  vim.opt_local.list = false
+  vim.opt_local.number = false
+  vim.opt_local.relativenumber = false
+  vim.opt_local.signcolumn = "no"
+  vim.opt_local.statuscolumn = '%{%v:lua.require("config.ui.statuscol").build()%}'
+  vim.opt_local.wrap = false
+end
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "WinEnter" }, {
   desc = "Terminal window settings",
   group = config_augroup,
   pattern = "*",
-  callback = function()
-    if vim.bo.buftype ~= "terminal" then
-      return
-    end
-
-    vim.opt_local.foldcolumn = "0"
-    vim.opt_local.list = false
-    vim.opt_local.number = false
-    vim.opt_local.relativenumber = false
-    vim.opt_local.signcolumn = "no"
-    vim.opt_local.wrap = false
+  callback = function(event)
+    vim.schedule(function()
+      set_terminal_window_settings(event.buf)
+    end)
   end,
 })
 
@@ -148,10 +160,14 @@ vim.api.nvim_create_autocmd("TermOpen", {
   desc = "Terminal buffer settings",
   group = config_augroup,
   pattern = "*",
-  callback = function()
+  callback = function(event)
+    vim.schedule(function()
+      set_terminal_window_settings(event.buf)
+    end)
+
     vim.cmd.startinsert()
 
-    local opts = { buf = 0, nowait = true }
+    local opts = { buf = event.buf, nowait = true }
     vim.keymap.set("n", "d", "<c-d>", opts)
     vim.keymap.set("n", "u", "<c-u>", opts)
     vim.keymap.set("n", "q", "i", opts)
