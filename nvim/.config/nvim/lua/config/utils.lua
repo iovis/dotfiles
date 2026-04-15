@@ -438,19 +438,6 @@ end
 ---UI
 M.ui = {}
 
----open popup with cmd
----@param cmd string
-function M.ui.float_terminal(cmd)
-  Snacks.win({
-    width = 0.75,
-    height = 0.66,
-    border = "rounded",
-    on_win = function()
-      vim.cmd.terminal(cmd)
-    end,
-  })
-end
-
 function M.ui.foldtext()
   local start = vim.fn.getline(vim.v.foldstart)
   local replace = vim.fn["repeat"](" ", vim.bo.tabstop)

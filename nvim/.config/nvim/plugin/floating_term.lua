@@ -10,7 +10,7 @@ local function floating_term(bufnr)
   Snacks.win({
     buf = bufnr,
     width = 0.75,
-    height = 0.66,
+    height = 0.75,
     border = "rounded",
     on_win = function()
       if is_valid_buffer then
@@ -24,15 +24,29 @@ local function floating_term(bufnr)
   return bufnr
 end
 
+local function floating_term_run(cmd)
+  Snacks.win({
+    width = 0.75,
+    height = 0.75,
+    border = "rounded",
+    on_win = function()
+      vim.cmd.terminal(cmd)
+    end,
+  })
+end
+
 local buffer = nil
-vim.api.nvim_create_user_command("FloatTerm", function()
+vim.api.nvim_create_user_command("FloatTerm", function(ctx)
+  if ctx.args ~= "" then
+    return floating_term_run(ctx.args)
+  end
+
   if vim.bo.buftype == "terminal" then
     vim.cmd.fclose()
   else
     buffer = floating_term(buffer)
   end
-end, {})
+end, { nargs = "*" })
 
-vim.keymap.set({ "t", "n" }, "<m-/>", "<cmd>FloatTerm<cr>", {
-  desc = "Open floating terminal",
-})
+vim.keymap.set("n", "f<space>", ":FloatTerm<space>")
+vim.keymap.set({ "t", "n" }, "<m-/>", "<cmd>FloatTerm<cr>")
