@@ -24,7 +24,7 @@ local line_ending = {
 vim.keymap.set("i", "<m-cr>", function()
   local char = line_ending[vim.bo.filetype] or ""
 
-  return ("<c-o>A%s<cr>"):format(char)
+  return "<c-o>A" .. char .. "<cr>"
 end, { expr = true })
 
 -- Movement
