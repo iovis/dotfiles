@@ -239,7 +239,7 @@ vim.api.nvim_create_autocmd("TermRequest", {
   callback = refresh_terminal_winbar,
 })
 
-vim.keymap.set("n", "yop", function()
+vim.keymap.set("n", "yof", function()
   vim.g.winbar_full_path = not vim.g.winbar_full_path
   vim.cmd.redrawtabline()
 

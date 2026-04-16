@@ -351,7 +351,7 @@ vim.keymap.set("n", "yoa", function()
   end
 end, { desc = "Toggle autoformat" })
 
-vim.keymap.set("n", "yof", function()
+vim.keymap.set("n", "yoF", function()
   vim.g.foldcolumn = not vim.g.foldcolumn
 
   -- HACK: statuscol doesn't refresh properly
