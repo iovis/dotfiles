@@ -20,8 +20,8 @@ if [ ! -d "$DOTFILES" ]; then
   git clone https://github.com/iovis/dotfiles "$DOTFILES"
 fi
 
-# shellcheck disable=SC2046 # pacdump-generated, newline-delimited package list
-sudo pacman -S --needed $(cat "$PACMAN_PATH/Pacfile")
+# shellcheck disable=SC2024 # don't need sudo to pipe a file
+sudo pacman -S --needed - <"$PACMAN_PATH/Pacfile"
 
 if ! command -v yay >/dev/null 2>&1; then
   echo "[$(date '+%Y-%m-%d %H:%M')] Installing yay"
@@ -38,8 +38,7 @@ if ! command -v yay >/dev/null 2>&1; then
 fi
 
 yay -Y --gendb
-# shellcheck disable=SC2046 # pacdump-generated, newline-delimited package list
-yay -S --needed --answerclean=none --answerdiff=none $(cat "$PACMAN_PATH/Aurfile")
+yay -S --needed --answerclean=none --answerdiff=none - <"$PACMAN_PATH/Aurfile"
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Starting services"
 sudo systemctl enable --now avahi-daemon bluetooth cpupower fstrim.timer gdm paccache.timer reflector.timer sshd
