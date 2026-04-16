@@ -1,7 +1,7 @@
 local tux = require("tux")
 local u = require("config.utils")
 
-vim.keymap.set("n", "<leader>al", "<cmd>ClangdSwitchSourceHeader<cr>", { buf = 0 })
+vim.keymap.set("n", "<leader>al", "<cmd>LspClangdSwitchSourceHeader<cr>", { buf = 0 })
 
 if vim.uv.cwd():match("qmk_userspace") then
   if u.current_file():match("keyboards/") then
