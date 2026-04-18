@@ -1,7 +1,8 @@
 local u = require("config.utils")
 
 u.ex.abbrev("m", "Man")
-u.ex.abbrev("man", "Man")
+u.ex.abbrev("st", "vert bo terminal")
+u.ex.abbrev("t", "terminal")
 u.ex.abbrev("ve", "vert bo")
 u.ex.abbrev("vh", "vert bo h")
 
