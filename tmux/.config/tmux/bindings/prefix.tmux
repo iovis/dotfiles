@@ -40,6 +40,7 @@ bind -N "Toggle monitor activity" a {
 }
 
 bind -N "Command prompt" c-\; command-prompt
+bind -N "Command prompt" \; command-prompt
 bind -N "List keys" ? list-keys
 
 ## Session management
