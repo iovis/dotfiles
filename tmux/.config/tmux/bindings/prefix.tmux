@@ -2,10 +2,6 @@ unbind C-b
 set -g prefix C-Space
 unbind Space
 
-bind -N "Command prompt" \; {
-  command-prompt
-}
-
 # Pass-through
 bind C-k send 'C-k'
 bind C-l send 'C-l'
@@ -43,6 +39,7 @@ bind -N "Toggle monitor activity" a {
   display 'monitor-activity #{?monitor-activity,on,off}'
 }
 
+bind -N "Command prompt" c-\; command-prompt
 bind -N "List keys" ? list-keys
 
 ## Session management
