@@ -11,6 +11,15 @@ require("config.ui.winbar")
 require("config.ui.statusline")
 require("config.lsp")
 
+-- Experimental new messages UI
+if vim.g.use_ui2 then
+  require("vim._core.ui2").enable({})
+  vim.keymap.set("n", "<leader>M", "<cmd>messages<cr>")
+  vim.keymap.set("n", "g,", "g<", {
+    desc = "Show latest messages in the pager",
+  })
+end
+
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",
   callback = function()
@@ -18,14 +27,5 @@ vim.api.nvim_create_autocmd("User", {
     require("config.diagnostics")
 
     pcall(require, "local")
-
-    -- Experimental new messages UI
-    if vim.g.use_ui2 then
-      require("vim._core.ui2").enable({})
-      vim.keymap.set("n", "<leader>M", "<cmd>messages<cr>")
-      vim.keymap.set("n", "g,", "g<", {
-        desc = "Show latest messages in the pager",
-      })
-    end
   end,
 })
