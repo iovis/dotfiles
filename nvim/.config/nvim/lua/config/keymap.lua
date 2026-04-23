@@ -312,11 +312,12 @@ vim.keymap.set("n", "<leader>uF", ":EditFtplugin<space>")
 
 -- Project files
 vim.keymap.set("n", "<leader>ua", "<cmd>e! AGENTS.md<cr>")
-vim.keymap.set("n", "<leader>uC", "<cmd>e! CMakeLists.txt<cr>")
 vim.keymap.set("n", "<leader>uc", "<cmd>e! Cargo.toml<cr>")
+vim.keymap.set("n", "<leader>uC", "<cmd>e! CMakeLists.txt<cr>")
 vim.keymap.set("n", "<leader>ue", "<cmd>e! .env<cr>")
 vim.keymap.set("n", "<leader>ui", "<cmd>e! .gitignore<cr>")
 vim.keymap.set("n", "<leader>uj", "<cmd>e! justfile<cr>")
+vim.keymap.set("n", "<leader>um", "<cmd>e! Makefile<cr>")
 vim.keymap.set("n", "<leader>up", "<cmd>e! package.json<cr>")
 vim.keymap.set("n", "<leader>uv", "<cmd>e! .nvim.lua<cr>")
 vim.keymap.set("n", "<leader>ux", "<cmd>e! .git/info/exclude<cr>")
