@@ -18,11 +18,6 @@ return {
         ["<c-n>"] = { "select_next", "fallback" },
         ["<m-up>"] = { "scroll_documentation_up", "fallback" },
         ["<m-down>"] = { "scroll_documentation_down", "fallback" },
-        ["<c-s>"] = {
-          function(cmp)
-            cmp.show({ providers = { "snippets" } })
-          end,
-        },
         ["<m-1>"] = {
           function(cmp)
             cmp.accept({ index = 1 })
