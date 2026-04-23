@@ -5,6 +5,7 @@ local u = require("config.utils")
 ---@field icon string
 ---@field hl string Highlight
 ---@field title string|fun(): string
+---@field trim boolean?
 
 ---@type WinbarComponent
 local none = { icon = "", hl = "", title = "" }
@@ -21,9 +22,10 @@ local winbar_per_filetype = {
   ["neo-tree"] = empty,
   qf = none,
   blame = {
-    icon = "",
+    icon = "   ",
     hl = "DevIconGitLogo",
     title = "git blame",
+    trim = true,
   },
   checkhealth = {
     icon = "󰓙",
@@ -36,9 +38,10 @@ local winbar_per_filetype = {
     title = "git status",
   },
   fugitiveblame = {
-    icon = "",
+    icon = " ",
     hl = "DevIconGitLogo",
     title = "git blame",
+    trim = true,
   },
   gitrebase = {
     icon = "",
@@ -46,22 +49,35 @@ local winbar_per_filetype = {
     title = "git rebase",
   },
   ["gitsigns-blame"] = {
-    icon = "",
+    icon = " ",
     hl = "DevIconGitLogo",
     title = "git blame",
+    trim = true,
   },
   help = {
-    icon = "󰈙",
-    hl = "DevIconLog",
+    icon = "   󰈙",
+    hl = "DevIconDefault",
     title = function()
       return "help:" .. vim.fn.fnamemodify(vim.fn.bufname(), ":t:r")
     end,
+    trim = true,
+  },
+  man = {
+    icon = " 󰈙",
+    hl = "DevIconDefault",
+    title = function()
+      return "man:" .. vim.fn.fnamemodify(vim.fn.bufname(), ":t:r")
+    end,
+    trim = true,
   },
   ["markdown.gh"] = {
-    icon = "",
+    -- Snacks gh buffers
+    icon = "   ",
+    hl = "DevIconLog",
     title = function()
       return vim.fn.bufname()
     end,
+    trim = true,
   },
   ["nvim-undotree"] = {
     icon = "󰁯",
@@ -83,8 +99,9 @@ local function winbar_per_path(path)
   if vim.bo.buftype == "terminal" then
     return {
       hl = "DevIconAwk",
-      icon = "",
+      icon = " ",
       title = winbar_escape(u.terminal_label(0) or "terminal"),
+      trim = true,
     }
   end
 
@@ -151,13 +168,17 @@ local function get_winbar(is_active)
     title = winbar.title --[[@as string]]
   end
 
-  if is_active then
-    --      "    %#DevIconLua# %#Winbar#%t %#diffAdded#●"
-    return ("    %%#%s#%s %%#Winbar#%s%s"):format(winbar.hl, winbar.icon, title, modified)
-  else
-    --      "    %#WinbarNC# %t %#diffAdded#●"
-    return ("    %%#WinbarNC#%s %s%s"):format(winbar.icon, title, modified)
-  end
+  -- active:   "%#DevIconLua# %#Winbar#%t %#diffAdded#●"
+  -- inactive: "%#WinbarNC# %t %#diffAdded#●"
+  return table.concat({
+    winbar.trim and "" or "    ",
+    "%#" .. (is_active and winbar.hl or "WinbarNC") .. "#",
+    winbar.icon,
+    " ",
+    (is_active and "%#Winbar#" or ""),
+    title,
+    modified,
+  })
 end
 
 local ignored_filetypes = {
@@ -187,9 +208,6 @@ local function set_winbar_for_window(winid, is_active)
     end
 
     local winbar = get_winbar(is_active)
-    if vim.bo.buftype == "terminal" then
-      winbar = " " .. vim.trim(winbar)
-    end
 
     -- This still fails for some reason saying it doesn't have enough space
     pcall(vim.api.nvim_set_option_value, "winbar", winbar, {
