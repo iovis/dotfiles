@@ -1,9 +1,8 @@
 return {
   "saghen/blink.cmp",
-  -- enabled = false,
-  version = "*",
-  -- build = "cargo build --release",
+  version = "1.*",
   dependencies = { "L3MON4D3/LuaSnip" },
+  event = "VeryLazy",
   config = function()
     require("blink.cmp").setup({
       keymap = {
