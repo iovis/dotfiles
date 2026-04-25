@@ -5,6 +5,71 @@ local u = require("config.utils")
 -- the expensive results
 local ctx = {}
 
+---current directory name
+---@return string
+local function current_dir_name()
+  return vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+end
+
+local function current_dir()
+  return sn(nil, t(current_dir_name()))
+end
+
+---@return string?
+local function cargo_version()
+  if not u.is_executable("cargo") then
+    return nil
+  end
+
+  local manifest_path = vim.fs.find("Cargo.toml", {
+    path = vim.fn.getcwd(),
+    upward = true,
+  })[1]
+
+  if not manifest_path then
+    return nil
+  end
+
+  local result = vim
+    .system({ "cargo", "metadata", "--format-version=1", "--no-deps" }, {
+      cwd = vim.fs.dirname(manifest_path),
+      text = true,
+    })
+    :wait()
+
+  if result.code ~= 0 then
+    return nil
+  end
+
+  local ok, metadata = pcall(vim.json.decode, result.stdout or "")
+  if not ok or type(metadata) ~= "table" or type(metadata.packages) ~= "table" then
+    return nil
+  end
+
+  local package = metadata.packages[1]
+  for _, candidate in ipairs(metadata.packages) do
+    if candidate.manifest_path == manifest_path then
+      package = candidate
+      break
+    end
+  end
+
+  if type(package) ~= "table" or type(package.version) ~= "string" then
+    return nil
+  end
+
+  return package.version
+end
+
+---@return string
+local function project_version()
+  return cargo_version() or ""
+end
+
+local function release_version()
+  return sn(nil, t(project_version()))
+end
+
 ---get branch name
 ---@return string
 local function get_branch()
@@ -31,30 +96,6 @@ local function get_jira_card()
   return ctx.jira_card or ""
 end
 
--- local get_qa_prs = function()
---   if ctx.prs then
---     return ctx.prs
---   end
---
---   local branch = get_branch()
---   local cmd = ([[gh pr list --head "%s" --base qa --search "sort:created-asc" --state all --json "title,url"]]):format(
---     branch
---   )
---
---   local output = u.system(cmd, true)
---   local ok, json = pcall(vim.json.decode, output)
---
---   if ok then
---     ctx.prs = json
---   else
---     vim.notify("There was an issue parsing the JSON", vim.log.levels.ERROR)
---     vim.print(output)
---     ctx.prs = {}
---   end
---
---   return ctx.prs
--- end
-
 local function get_jira_url()
   local jira_card = get_jira_card()
 
@@ -66,47 +107,6 @@ local function get_jira_url()
 
   return sn(nil, t(jira_url))
 end
-
--- local extract_title_from_branch = function()
---   local branch = get_branch()
---
---   return branch:match("%w+-%d+_([%w_]+)") or branch:match("%w+/([%w_]+)") or branch
--- end
-
--- local get_pr_title = function()
---   local title = extract_title_from_branch()
---   title = u.titleize(title:gsub("_", " "))
---
---   return sn(nil, i(1, title))
--- end
-
--- local get_master_pr_title = function()
---   local qa_prs = get_qa_prs()
---   local title
---
---   if vim.tbl_isempty(ctx.prs) then
---     title = u.titleize(extract_title_from_branch():gsub("_", " "))
---   else
---     -- Reuse title from QA PR (strip prefix)
---     title = qa_prs[1].title:gsub([[^qa|%w+-%d+ ]], "")
---   end
---
---   return sn(nil, i(1, title))
--- end
-
--- local get_related_prs = function()
---   local qa_prs = get_qa_prs()
---
---   if vim.tbl_isempty(qa_prs) then
---     return sn(nil, fmt("- {}", { i(1) }))
---   else
---     local pr_list = vim.tbl_map(function(item)
---       return ("- %s"):format(item.url)
---     end, qa_prs)
---
---     return sn(nil, t(pr_list))
---   end
--- end
 
 ----Conventional Commits
 local function conventional_commit()
@@ -160,7 +160,9 @@ return {
     fmt("feat{}", d(1, conventional_commit)),
     { condition = conds.line_begin }
   ),
-  s({ trig = "fix", dscr = "A bug fix" }, fmt("fix{}", d(1, conventional_commit)), { condition = conds.line_begin }),
+  s({ trig = "fix", dscr = "A bug fix" }, fmt("fix{}", d(1, conventional_commit)), {
+    condition = conds.line_begin,
+  }),
   s(
     { trig = "perf", dscr = "A code change that improves performance" },
     fmt("perf{}", d(1, conventional_commit)),
@@ -201,29 +203,10 @@ return {
     condition = conds.line_begin,
   }),
   -- Templates
+  s("release", fmt("release: {} v{}", { d(1, current_dir), d(2, release_version) }), {
+    condition = conds.line_begin,
+  }),
   s("plugins", t("chore(nvim.plugin): sync plugins"), {
     condition = conds.line_begin,
   }),
-  -- s(
-  --   "main",
-  --   fmt(
-  --     [[
-  --       main|{jira}{space}{title}
-  --       {jira_url}
-  --       **Related PRs:**
-  --       {qa_prs}
-  --
-  --       **Changelog:** {}
-  --     ]],
-  --     {
-  --       jira = d(1, get_jira_card),
-  --       space = n(1, " "),
-  --       title = d(2, get_master_pr_title),
-  --       jira_url = d(3, get_jira_url, { 1 }),
-  --       qa_prs = d(4, get_related_prs),
-  --       i(0),
-  --     }
-  --   ),
-  --   { condition = conds.line_begin }
-  -- ),
 }
