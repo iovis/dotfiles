@@ -7,16 +7,11 @@ bind -N "flash.tmux" -n C-f if "$forward_keys" {
 
 bind -N "Search mode" f {
   switch-client -T search
-  display " Search: [d]-Dates [f]-Floats [i]-IPs [j]-JIRA [l]-Flash [n]-Numbers [o]-Commits [p]-Paths [r]-RSpec [s]-FZF [t]-Time [u]-URLs [,]-Prompts"
+  display " Search: [d]-Dates [f]-Floats [i]-IPs [j]-JIRA [l]-Flash [n]-Numbers [o]-Commits [p]-Paths [r]-RSpec [t]-Time [u]-URLs [,]-Prompts"
 }
 
 bind -N "flash.tmux" -T search l {
   run flash_tmux
-}
-
-# FZF search
-bind -N "FZF search pane" -T search s {
-  run "tmux display-popup -x #{pane_left} -y $((#{pane_top} + #{pane_height})) -w #{pane_width} -h #{pane_height} -b none -E \"tmux-fzf-search '#{pane_id}'\""
 }
 
 # Command Prompts
