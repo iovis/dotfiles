@@ -90,6 +90,8 @@ libva-nvidia-driver
 linux
 linux-firmware
 linux-headers
+lld
+lldb
 llvm
 loupe
 malcontent
