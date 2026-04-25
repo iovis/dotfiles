@@ -48,6 +48,8 @@ vim.keymap.set("t", "<c-_>", [[<c-\><c-n>]])
 -- Whole WORD is kinda awkward to press
 vim.keymap.set({ "o", "x" }, "ao", "aW")
 vim.keymap.set({ "o", "x" }, "io", "iW")
+vim.keymap.set({ "o", "x" }, "ag", "aW")
+vim.keymap.set({ "o", "x" }, "ig", "iW")
 
 ---- Command mode
 vim.keymap.set("c", "kj", "<c-f>")
