@@ -77,6 +77,11 @@
       "files:search"
    ],
    "providers": {
+      "@Gelei/store.vicinae.bluetooth": {
+         "preferences": {
+            "connectionToggleable": true
+         }
+      },
       "applications": {
          "preferences": {
             "paths": [
@@ -85,11 +90,62 @@
             ]
          }
       },
+      "core": {
+         "enabled": true,
+         "entrypoints": {
+            "about": {
+               "enabled": false
+            },
+            "forget-telemetry": {
+               "enabled": false
+            },
+            "inspect-local-storage": {
+               "enabled": false
+            },
+            "keybind-settings": {
+               "enabled": false
+            },
+            "manage-fallback": {
+               "enabled": false
+            },
+            "oauth-token-store": {
+               "enabled": false
+            },
+            "open-config-file": {
+               "enabled": false
+            },
+            "open-default-config": {
+               "enabled": false
+            },
+            "prune-memory": {
+               "enabled": false
+            },
+            "reload-scripts": {
+               "enabled": false
+            },
+            "settings": {
+               "enabled": false
+            },
+            "sponsor": {
+               "enabled": false
+            }
+         }
+      },
       "developer": {
          "enabled": false
       },
       "files": {
-         "enabled": true
+         "enabled": false
+      },
+      "font": {
+         "entrypoints": {
+            "browse": {
+               "enabled": true
+            }
+         }
+      },
+      "manage-shortcuts": {
+         "enabled": false
       },
       "power": {
          "entrypoints": {
@@ -124,6 +180,13 @@
       },
       "system": {
          "enabled": false
+      },
+      "theme": {
+         "entrypoints": {
+            "set": {
+               "enabled": true
+            }
+         }
       },
       "wm": {
          "enabled": false
