@@ -38,6 +38,7 @@ vim.lsp.enable({
   "tombi",
   "ts_ls",
   "yamlls",
+  "zls",
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
