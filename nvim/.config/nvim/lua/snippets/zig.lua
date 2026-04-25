@@ -24,7 +24,7 @@ return {
       [[
         const std = @import("std");
 
-        pub fn main() !void {
+        pub fn main(init: std.process.Init) !void {
             <>
         }
       ]],
@@ -134,33 +134,6 @@ return {
       condition = conds.line_begin,
     }
   ),
-  s(
-    "eif",
-    fmta(
-      [[
-        else if (<>) {
-            <>
-        }
-      ]],
-      { i(1), i(0) }
-    )
-  ),
-  s(
-    "ife",
-    fmta(
-      [[
-        if (<>) {
-            <>
-        } else {
-            <>
-        }
-      ]],
-      { i(1), i(2), i(0) }
-    ),
-    {
-      condition = conds.line_begin,
-    }
-  ),
 
   -- Loops
   s(
@@ -200,48 +173,6 @@ return {
         i(0),
       }
     ),
-    {
-      condition = conds.line_begin,
-    }
-  ),
-
-  -- Printing
-  s(
-    "stdout",
-    fmta(
-      [[
-        const stdout = std.io.getStdOut().writer();
-        try stdout.print("<>\n", .{<>});
-      ]],
-      {
-        i(1),
-        i(2),
-      }
-    ),
-    {
-      condition = conds.line_begin,
-    }
-  ),
-
-  -- Allocators
-  s(
-    "arena",
-    t({
-      "var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);",
-      "defer arena.deinit();",
-      "const allocator = arena.allocator();",
-    }),
-    {
-      condition = conds.line_begin,
-    }
-  ),
-  s(
-    "gpa",
-    t({
-      "var gpa = std.heap.GeneralPurposeAllocator(.{}){};",
-      "defer gpa.deinit();",
-      "const allocator = gpa.allocator();",
-    }),
     {
       condition = conds.line_begin,
     }
