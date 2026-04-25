@@ -48,5 +48,6 @@ vim.api.nvim_create_user_command("FloatTerm", function(ctx)
   end
 end, { nargs = "*" })
 
-vim.keymap.set("n", "f<space>", ":FloatTerm<space>")
+local u = require("config.utils")
+u.ex.abbrev("f", "FloatTerm")
 vim.keymap.set({ "t", "n" }, "<m-/>", "<cmd>FloatTerm<cr>")
