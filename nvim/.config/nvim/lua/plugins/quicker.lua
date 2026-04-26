@@ -1,6 +1,6 @@
 return {
   "stevearc/quicker.nvim",
-  version = "*",
+  -- version = "*",
   -- enabled = false,
   config = function()
     local quicker = require("quicker")
@@ -42,9 +42,8 @@ return {
       pattern = { "qf" },
       callback = function(event)
         vim.keymap.set("n", "yoe", function()
-          -- It creates a new quickfix, but at least it's properly formatted
           vim.g.quicker_expanded = not vim.g.quicker_expanded
-          vim.fn.setqflist(vim.fn.getqflist())
+          vim.cmd.Refresh()
         end, {
           desc = "Toggle quicker.nvim filename width",
           buffer = event.buf,
