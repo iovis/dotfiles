@@ -37,7 +37,9 @@ function M.scratch(contents, opts)
   vim.bo.filetype = "redir"
 
   vim.api.nvim_buf_set_lines(0, 0, -1, false, contents)
-  vim.bo.filetype = opts.filetype or "lua"
+  if opts.filetype then
+    vim.bo.filetype = opts.filetype
+  end
 
   if opts.winbar then
     local escaped_winbar = opts.winbar:gsub("%%", "%%%%") -- escape `%`
@@ -56,7 +58,7 @@ end
 function M.floating_window(contents, opts)
   local win_opts = vim.tbl_extend("force", {
     title = nil,
-    filetype = "lua",
+    filetype = "redir",
     width = 0.66,
     height = 0.5,
   }, opts or {})
@@ -77,7 +79,7 @@ function M.floating_window(contents, opts)
     noautocmd = true,
   })
 
-  -- Set the contents to muxi table and the filetype to lua
+  -- Set the contents and filetype
   vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, contents)
   vim.bo[bufnr].filetype = win_opts.filetype
 

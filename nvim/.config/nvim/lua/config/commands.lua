@@ -48,23 +48,41 @@ vim.api.nvim_create_user_command("EditFtplugin", function(opts)
 end, { nargs = "?", complete = "filetype" })
 
 ---- Redir
-local function run_command(cmd)
-  -- Run command
-  local lines = vim.split(
-    vim.api.nvim_exec2(cmd, {
-      output = true,
-    }).output,
-    "\r?\n",
-    { trimempty = true }
-  )
+local function split_output(output)
+  output = output:gsub("\r\n", "\n"):gsub("\r", "\n")
 
-  -- Remove the first 2 lines if it's a external command (starts with `!`)
-  local is_external_command = (cmd:sub(1, 1) == "!")
-  if is_external_command then
-    lines = vim.list_slice(lines, 3, #lines) -- same as lines[3..]
+  local lines = vim.split(output, "\n", { plain = true })
+  if lines[#lines] == "" then
+    table.remove(lines)
   end
 
   return lines
+end
+
+local function run_shell_escape(cmd)
+  local shell_cmd = vim.trim(cmd:sub(2))
+  if shell_cmd == "" then
+    return {}
+  end
+
+  local lines = split_output(vim.fn.system(shell_cmd))
+  if vim.v.shell_error ~= 0 then
+    vim.notify(("Command exited with %d"):format(vim.v.shell_error), vim.log.levels.WARN)
+  end
+
+  return lines
+end
+
+local function run_ex_command(cmd)
+  return split_output(vim.api.nvim_exec2(cmd, { output = true }).output)
+end
+
+local function run_command(cmd)
+  if cmd:sub(1, 1) == "!" then
+    return run_shell_escape(cmd)
+  end
+
+  return run_ex_command(cmd)
 end
 
 vim.api.nvim_create_user_command("R", function(ctx)
