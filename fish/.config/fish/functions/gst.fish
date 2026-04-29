@@ -1,3 +1,3 @@
-function gst --wraps='git status'
-    git status $argv
+function gst --wraps='git stash'
+    git stash push $argv
 end
