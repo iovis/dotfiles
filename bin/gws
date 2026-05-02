@@ -25,7 +25,7 @@ fzf_command() {
     --bind="i,/:show-input+unbind(j,k,q,d,x,p,r,i,/)" \
     --bind='enter:become(tmux new-window -c {1})' \
     --bind="focus:transform-preview-label:echo '  {1..2}  '" \
-    --preview="git log -50 --color=always --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' \$(echo {-1} | tr -d '[]') --" \
+    --preview="git log -50 --color=always --graph --pretty=format:'%C(yellow)%h%Creset - %s %C(auto)%d%Creset %Cgreen(%cr) %C(bold blue)<%an>%Creset' \$(echo {-1} | tr -d '[]') --" \
     --preview-window="down,75%" \
     --exit-0 \
     --query="${*:-}" || true

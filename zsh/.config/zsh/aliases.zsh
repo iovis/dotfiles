@@ -48,7 +48,7 @@ alias gf="git fetch"
 alias gi="git ignored"
 alias gitconfig="\$EDITOR ~/.config/git/config"
 alias gl="git pull"
-alias glg='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'\'
+alias glg="git log --graph --pretty=format:'%C(yellow)%h%Creset - %s %C(auto)%d%Creset %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
 alias glga='glg --all'
 alias glgs="glg --stat"
 alias gls="git log -S"
