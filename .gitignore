@@ -17,6 +17,7 @@ lazygit/.config/lazygit/state.yml
 mpv/.config/mpv/watch_later/*
 
 # muxi
+muxi/.config/muxi/.lua_ls/
 muxi/.config/muxi/sessions.toml
 
 # numbat

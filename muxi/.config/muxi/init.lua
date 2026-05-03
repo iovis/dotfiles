@@ -1,5 +1,6 @@
 -- muxi.print(muxi)
 
+---@type muxi.Config
 return {
   use_current_pane_path = true,
   fzf = { input = false },
