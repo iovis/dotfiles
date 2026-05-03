@@ -5,7 +5,7 @@ return {
   use_current_pane_path = true,
   fzf = { input = false },
   editor = {
-    args = { "-c", "nmap q <cmd>silent wqa<cr>" },
+    args = { "-c", "ZenModeBorder", "-c", "nmap q <cmd>silent wqa<cr>" },
   },
   plugins = {
     {

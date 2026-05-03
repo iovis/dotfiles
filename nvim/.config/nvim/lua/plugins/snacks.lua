@@ -375,8 +375,19 @@ return {
 
     ----Zen
     vim.keymap.set("n", "<leader>z", snacks.zen.zen, { desc = "snacks.zen.zen" })
+
     vim.api.nvim_create_user_command("ZenMode", function()
       snacks.zen.zen()
+    end, {})
+
+    vim.api.nvim_create_user_command("ZenModeBorder", function()
+      snacks.zen.zen({
+        win = {
+          border = true,
+          width = 0,
+          height = 0.999,
+        },
+      })
     end, {})
 
     ----Dim
