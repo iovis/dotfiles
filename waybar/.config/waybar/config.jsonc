@@ -115,10 +115,10 @@
     "menu": "on-click",
     "menu-file": "$HOME/.config/waybar/power_menu.xml",
     "menu-actions": {
-      "logout": "loginctl terminate-user david",
-      "suspend": "systemctl suspend",
-      "reboot": "systemctl reboot",
-      "shutdown": "systemctl poweroff"
+      "logout": "hyprshutdown -t 'logout'",
+      "reboot": "hyprshutdown -t 'reboot' --post-cmd 'systemctl reboot'",
+      "shutdown": "hyprshutdown -t 'shutdown' --post-cmd 'systemctl poweroff'",
+      "suspend": "systemctl suspend"
     }
   },
   "custom/screenrecording-indicator": {
