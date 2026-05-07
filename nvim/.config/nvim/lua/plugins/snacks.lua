@@ -120,11 +120,13 @@ return {
               input = {
                 keys = {
                   ["<c-x>"] = { "file_checkout", mode = { "n", "i" } },
+                  dd = "file_checkout",
                 },
               },
               list = {
                 keys = {
                   ["<c-x>"] = "file_checkout",
+                  dd = "file_checkout",
                 },
               },
             },
