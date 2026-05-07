@@ -31,7 +31,7 @@ end, { expr = true })
 vim.keymap.set("i", "<m-left>", "<s-left>")
 vim.keymap.set("i", "<m-right>", "<s-right>")
 vim.keymap.set("i", "<m-h>", "<s-left>")
-vim.keymap.set("i", "<m-l>", "<s-right>")
+vim.keymap.set("i", "<m-l>", "<c-o>e<right>")
 vim.keymap.set("i", "<m-bs>", "<c-w>")
 
 vim.keymap.set("i", "<c-a>", "<home>")
