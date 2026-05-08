@@ -9,7 +9,9 @@ binwalk
 bluetui
 bluez-utils
 btop
+btrfs-assistant
 btrfs-progs
+btrfsmaintenance
 caligula
 chromium
 clang
@@ -124,6 +126,7 @@ pipewire-jack
 pipewire-pulse
 python-adblock
 qmk
+qt6ct
 qutebrowser
 reflector
 ripgrep
@@ -134,6 +137,7 @@ sd
 shfmt
 simple-scan
 smartmontools
+snapper
 snapshot
 sof-firmware
 speedtest-cli
