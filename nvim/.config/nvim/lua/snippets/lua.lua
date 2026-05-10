@@ -1,21 +1,4 @@
--- s(
---   "sh",
---   fmt(
---     [[
---       package.path = ("%s/.dotfiles/bin/?.lua;%s/.dotfiles/bin/?/init.lua;%s"):format(
---         os.getenv("HOME"),
---         os.getenv("HOME"),
---         package.path
---       )
---
---       local sh = require("sh")
---     ]],
---     {}
---   ),
---   {
---     condition = conds.line_begin,
---   }
--- ),
+local u = require("config.utils")
 
 local function lua_fn()
   return sn(
@@ -70,6 +53,60 @@ return {
       }
     ),
     { condition = conds.line_begin }
+  ),
+  -- .nvim.lua
+  s(
+    "filetype",
+    fmta(
+      [[
+        vim.api.nvim_create_autocmd("FileType", {
+          group = vim.api.nvim_create_augroup("my.filetype", { clear = true }),
+          pattern = { "<>" },
+          callback = function()
+            <>
+          end,
+        })
+      ]],
+      {
+        i(1, "c"),
+        i(0, "-- TODO"),
+      }
+    ),
+    {
+      show_condition = u.ls.within(".nvim.lua"),
+      condition = conds.line_begin * u.ls.within(".nvim.lua"),
+    }
+  ),
+  s(
+    "rubylsp",
+    fmta(
+      [[
+        vim.lsp.config("ruby_lsp", {
+          init_options = {
+            formatter = "<>",
+            linters = { "<>" },
+          },
+        })
+      ]],
+      {
+        i(1, "standard"),
+        i(2, "standard"),
+      }
+    ),
+    {
+      show_condition = u.ls.within(".nvim.lua"),
+      condition = conds.line_begin * u.ls.within(".nvim.lua"),
+    }
+  ),
+  s(
+    "lsp",
+    fmta([[vim.lsp.enable({ "<>" })]], {
+      i(1, "ruby_lsp"),
+    }),
+    {
+      show_condition = u.ls.within(".nvim.lua"),
+      condition = conds.line_begin * u.ls.within(".nvim.lua"),
+    }
   ),
   -- Functions
   s("f", d(1, lua_fn), {
