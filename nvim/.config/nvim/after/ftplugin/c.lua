@@ -2,8 +2,6 @@ local tux = require("tux")
 local u = require("config.utils")
 
 vim.bo.commentstring = "// %s"
-vim.bo.shiftwidth = 4
-vim.bo.softtabstop = 4
 
 vim.keymap.set("n", "<leader>al", "<cmd>LspClangdSwitchSourceHeader<cr>", { buf = 0 })
 

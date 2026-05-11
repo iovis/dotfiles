@@ -16,6 +16,24 @@ return {
     { condition = conds.line_begin }
   ),
   s(
+    "maintest",
+    fmta(
+      [[
+        #include <<stdio.h>>
+
+        int main(void) {
+          <>
+          puts("ok");
+          return 0;
+        }
+      ]],
+      {
+        i(1, "some_test();"),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
     "pf",
     fmta(
       [[
@@ -111,15 +129,14 @@ return {
     { condition = conds.line_begin }
   ),
   s(
-    "criterion",
-    fmt(
+    "modtest",
+    fmta(
       [[
-        #include <criterion/criterion.h>
-        #include <criterion/new/assert.h>
-
-        test
+        #ifdef TEST
+        <>
+        #endif
       ]],
-      {}
+      { i(1) }
     ),
     { condition = conds.line_begin }
   ),
@@ -127,28 +144,52 @@ return {
     "test",
     fmta(
       [[
-        Test(<>, <>) {
+        void <test_name>_test(void) {
           <>
         }
       ]],
       {
-        i(1, "suite_name"),
-        i(2, "test_name"),
-        i(3, "// TODO"),
+        test_name = i(1, "name"),
+        i(2, "// TODO"),
       }
     ),
     { condition = conds.line_begin }
   ),
-  s("as", fmt("cr_assert({});", { i(1) }), {
+  s("ase", fmt("assert({});", { i(1) }), {
     condition = conds.line_begin,
   }),
-  s("ase", fmt("cr_assert(eq({}, {}, {}));", { i(1, "int"), i(2, "expected"), i(3, "actual") }), {
-    condition = conds.line_begin,
-  }),
-  s("exp", fmt("cr_expect({});", { i(1) }), {
-    condition = conds.line_begin,
-  }),
-  s("expe", fmt("cr_expect(eq({}, {}, {}));", { i(1, "int"), i(2, "expected"), i(3, "actual") }), {
-    condition = conds.line_begin,
-  }),
+  s(
+    "p",
+    fmta([[printf("<>\n"<comma><>);]], {
+      i(1, "%s"),
+      comma = n(2, ", "),
+      i(2),
+    }),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "ep",
+    fmta([[fprintf(stderr, "<>\n"<comma><>);]], {
+      i(1, "%s"),
+      comma = n(2, ", "),
+      i(2),
+    }),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "dbg",
+    fmta(
+      [[
+        fprintf(stderr, "[%s:%d %s] <> = %<>\n", __FILE__, __LINE__, __func__, <>);
+      ]],
+      {
+        i(1, "var"),
+        i(2, "d"),
+        dl(3, l._1, 1), -- dynamic lambda: repeat node 1 but let override
+      }
+    ),
+    {
+      condition = conds.line_begin,
+    }
+  ),
 }

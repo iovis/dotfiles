@@ -223,7 +223,7 @@ return {
   s("skipfmt", t("#[rustfmt::skip]"), { condition = conds.line_begin }),
   -- Misc
   s(
-    "pln",
+    "p",
     fmta('println!("{<>}"<comma><>);', {
       i(1),
       comma = n(2, ", "),
