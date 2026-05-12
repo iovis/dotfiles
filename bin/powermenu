@@ -14,7 +14,8 @@ fzf_command() {
 action=$(printf "suspend\nshutdown\nreboot\nlogout" | fzf_command) || exit 0
 
 case $action in
-"logout") hyprshutdown -t logout ;;
+"logout") loginctl terminate-user "" ;;
+# "logout") hyprshutdown -t logout ;; # TODO: put back when hyprshutdown updates
 "reboot") hyprshutdown -t reboot --post-cmd "systemctl reboot" ;;
 "shutdown") hyprshutdown -t shutdown --post-cmd "systemctl poweroff" ;;
 "suspend") systemctl suspend ;;

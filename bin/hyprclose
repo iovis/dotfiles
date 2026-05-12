@@ -1,6 +1,33 @@
 #!/usr/bin/env bash
 
-command=$1
-result=$(hyprctl dispatch closewindow "$command")
+set -euo pipefail
 
-[[ $result == "ok" ]] || exit 1
+selector=${*:-}
+
+[[ -n $selector ]] || exit 2
+
+case $selector in
+class:*)
+  field=class
+  pattern=${selector#class:}
+  ;;
+title:*)
+  field=title
+  pattern=${selector#title:}
+  ;;
+*)
+  exit 2
+  ;;
+esac
+
+window_exists() {
+  hyprctl clients -j | jq -e --arg field "$field" --arg pattern "$pattern" '
+    any(.[]; try ((.[$field] // "") | tostring | test($pattern)) catch false)
+  ' >/dev/null
+}
+
+window_exists || exit 1
+
+result=$(hyprctl dispatch "hl.dsp.window.close({ window = '$selector' })")
+
+[[ $result == "ok" ]]

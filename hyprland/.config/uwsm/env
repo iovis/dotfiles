@@ -1,0 +1,11 @@
+# See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
+# export GTK_THEME="Adwaita:dark"
+
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+export QT_QPA_PLATFORM="wayland;xcb"
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+export QT_QPA_PLATFORMTHEME=qt6ct
+
+export LIBVA_DRIVER_NAME=nvidia
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+export __GL_VRR_ALLOWED=0
