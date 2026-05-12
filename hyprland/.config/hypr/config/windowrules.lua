@@ -116,6 +116,7 @@ hl.window_rule({
   float = true,
   pin = true,
   focus_on_activate = false,
+  keep_aspect_ratio = true,
   no_initial_focus = true,
   size = { 640, 360 },
   move = {
