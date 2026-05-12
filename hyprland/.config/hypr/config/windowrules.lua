@@ -55,6 +55,7 @@ hl.window_rule({
   name = "bluetui",
   match = { class = "widget\\.bluetui" },
   center = true,
+  dim_around = true,
   float = true,
   pin = true,
   size = {
@@ -67,6 +68,7 @@ hl.window_rule({
   name = "btop",
   match = { class = "widget\\.btop" },
   center = true,
+  dim_around = true,
   float = true,
   size = {
     "monitor_w * 0.85",
@@ -78,6 +80,7 @@ hl.window_rule({
   name = "calc",
   match = { class = "widget\\.calc" },
   center = true,
+  dim_around = true,
   float = true,
   size = {
     "monitor_w * 0.33",
@@ -89,6 +92,7 @@ hl.window_rule({
   name = "fn",
   match = { class = "widget\\.fn" },
   center = true,
+  dim_around = true,
   float = true,
   pin = true,
   size = {
@@ -124,6 +128,7 @@ hl.window_rule({
   name = "powermenu",
   match = { class = "widget\\.powermenu" },
   center = true,
+  dim_around = true,
   float = true,
   pin = true,
   size = { 400, 200 },
@@ -155,6 +160,7 @@ hl.window_rule({
   name = "wiremix",
   match = { class = "widget\\.wiremix" },
   center = true,
+  dim_around = true,
   float = true,
   pin = true,
   size = {
