@@ -1,30 +1,30 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
 -- `hyprctl clients -j | jq '.[].class'`
-hl.window_rule({
-  name = "fullscreen games",
-  match = { class = "^(steam_app_\\d+)$" },
-  border_size = 0,
-  fullscreen = true,
-  idle_inhibit = "fullscreen",
-  immediate = true,
-  no_anim = true,
-  rounding = 0,
-  suppress_event = "maximize",
-  sync_fullscreen = true,
-})
+-- hl.window_rule({
+--   name = "fullscreen games",
+--   match = { class = "^(steam_app_\\d+)$" },
+--   border_size = 0,
+--   fullscreen = true,
+--   idle_inhibit = "fullscreen",
+--   immediate = true,
+--   no_anim = true,
+--   rounding = 0,
+--   suppress_event = "maximize",
+--   sync_fullscreen = true,
+-- })
 
-hl.window_rule({
-  name = "Steam Big Picture fullscreen",
-  match = { title = "Steam Big Picture Mode" },
-  border_size = 0,
-  fullscreen = true,
-  idle_inhibit = "fullscreen",
-  immediate = true,
-  no_anim = true,
-  rounding = 0,
-  suppress_event = "maximize",
-  sync_fullscreen = true,
-})
+-- hl.window_rule({
+--   name = "Steam Big Picture fullscreen",
+--   match = { title = "Steam Big Picture Mode" },
+--   border_size = 0,
+--   fullscreen = true,
+--   idle_inhibit = "fullscreen",
+--   immediate = true,
+--   no_anim = true,
+--   rounding = 0,
+--   suppress_event = "maximize",
+--   sync_fullscreen = true,
+-- })
 
 hl.window_rule({
   name = "screensaver",
@@ -36,31 +36,26 @@ hl.window_rule({
   rounding = 0,
 })
 
--- Floating applications
+---- Floating applications
+local floating_applications = table.concat({
+  "1password",
+  "btrfs-assistant",
+  "mpv",
+  "org\\.gnome\\.Calendar",
+  "org\\.gnome\\.Weather",
+  "org\\.gnome\\.baobab",
+  "org\\.pulseaudio\\.pavucontrol",
+  "widget\\.kitty",
+}, "|")
+
 hl.window_rule({
   name = "float-center",
-  match = {
-    -- TODO: turn into a table
-    class = "^(1password|btrfs-assistant|mpv|org\\.gnome\\.(Calendar|Weather|baobab)|org\\.pulseaudio\\.pavucontrol|widget\\.kitty)$",
-  },
+  match = { class = ("^(%s)$"):format(floating_applications) },
   center = true,
   float = true,
   size = {
     "monitor_w * 0.5",
     "monitor_h * 0.5",
-  },
-})
-
-hl.window_rule({
-  name = "bluetui",
-  match = { class = "widget\\.bluetui" },
-  center = true,
-  dim_around = true,
-  float = true,
-  pin = true,
-  size = {
-    "monitor_w * 0.35",
-    "monitor_h * 0.40",
   },
 })
 
@@ -85,6 +80,42 @@ hl.window_rule({
   size = {
     "monitor_w * 0.33",
     "monitor_h * 0.33",
+  },
+})
+
+hl.window_rule({
+  name = "satty",
+  match = { class = "com\\.gabm\\.satty" },
+  center = true,
+  float = true,
+  size = {
+    "monitor_w * 0.85",
+    "monitor_h * 0.85",
+  },
+})
+
+hl.window_rule({
+  name = "steam-friends",
+  match = { title = "Friends List" },
+  float = true,
+  size = { 360, 640 },
+  move = {
+    "monitor_w - window_w - 5",
+    "monitor_h - window_h - 5",
+  },
+})
+
+---- Pinned applications
+hl.window_rule({
+  name = "bluetui",
+  match = { class = "widget\\.bluetui" },
+  center = true,
+  dim_around = true,
+  float = true,
+  pin = true,
+  size = {
+    "monitor_w * 0.35",
+    "monitor_h * 0.40",
   },
 })
 
@@ -136,28 +167,6 @@ hl.window_rule({
 })
 
 hl.window_rule({
-  name = "satty",
-  match = { class = "com\\.gabm\\.satty" },
-  center = true,
-  float = true,
-  size = {
-    "monitor_w * 0.85",
-    "monitor_h * 0.85",
-  },
-})
-
-hl.window_rule({
-  name = "steam-friends",
-  match = { title = "Friends List" },
-  float = true,
-  size = { 360, 640 },
-  move = {
-    "monitor_w - window_w - 5",
-    "monitor_h - window_h - 5",
-  },
-})
-
-hl.window_rule({
   name = "wiremix",
   match = { class = "widget\\.wiremix" },
   center = true,
@@ -170,10 +179,17 @@ hl.window_rule({
   },
 })
 
--- Layer Rules (https://wiki.hypr.land/Configuring/Basics/Window-Rules/#layer-rules)
+---- Layer Rules (https://wiki.hypr.land/Configuring/Basics/Window-Rules/#layer-rules)
+local blurred_applications = table.concat({
+  "swayosd",
+  "vicinae",
+  "waybar",
+  "swaync-.*",
+}, "|")
+
 hl.layer_rule({
   name = "layer-blur",
-  match = { namespace = "^(swayosd|vicinae|waybar|swaync-.*)$" },
+  match = { namespace = ("^(%s)$"):format(blurred_applications) },
   blur = true,
   ignore_alpha = 0.5,
 })
