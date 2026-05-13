@@ -99,6 +99,11 @@ hl.bind(g("left"), hl.dsp.window.resize({ x = -300, y = 0, relative = true }))
 hl.bind(g("down"), hl.dsp.window.resize({ x = 0, y = 100, relative = true }))
 hl.bind(g("up"), hl.dsp.window.resize({ x = 0, y = -100, relative = true }))
 
+hl.bind(c(g("right")), hl.dsp.window.resize({ x = 30, y = 0, relative = true }))
+hl.bind(c(g("left")), hl.dsp.window.resize({ x = -30, y = 0, relative = true }))
+hl.bind(c(g("down")), hl.dsp.window.resize({ x = 0, y = 30, relative = true }))
+hl.bind(c(g("up")), hl.dsp.window.resize({ x = 0, y = -30, relative = true }))
+
 -- move focus with vim keys
 hl.bind(g("h"), hl.dsp.focus({ direction = "left" }))
 hl.bind(g("j"), hl.dsp.focus({ direction = "down" }))
@@ -146,22 +151,22 @@ end, { release = true })
 hl.bind(g("y"), hl.dsp.window.float({ action = "toggle" }))
 
 -- move window
-hl.bind(c(g("down")), function()
+hl.bind(s(g("down")), function()
   hl.dispatch(hl.dsp.window.float({ action = "enable" }))
   hl.dispatch(hl.dsp.window.move({ direction = "down" }))
 end)
 
-hl.bind(c(g("left")), function()
+hl.bind(s(g("left")), function()
   hl.dispatch(hl.dsp.window.float({ action = "enable" }))
   hl.dispatch(hl.dsp.window.move({ direction = "left" }))
 end)
 
-hl.bind(c(g("right")), function()
+hl.bind(s(g("right")), function()
   hl.dispatch(hl.dsp.window.float({ action = "enable" }))
   hl.dispatch(hl.dsp.window.move({ direction = "right" }))
 end)
 
-hl.bind(c(g("up")), function()
+hl.bind(s(g("up")), function()
   hl.dispatch(hl.dsp.window.float({ action = "enable" }))
   hl.dispatch(hl.dsp.window.move({ direction = "up" }))
 end)
