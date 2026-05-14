@@ -68,8 +68,8 @@ hl.bind(G("space"), hl.dsp.exec_cmd("vicinae toggle"))
 hl.bind(C(S("space")), hl.dsp.exec_cmd("vicinae_toggle deeplink vicinae://launch/core/search-emojis"))
 
 hl.bind(G("n"), hl.dsp.exec_cmd("swaync-client -t -sw"))
-hl.bind(C(G("n")), hl.dsp.exec_cmd("swaync-client -C"))
-hl.bind(S(G("n")), hl.dsp.exec_cmd("swaync-client -d"))
+hl.bind(G("semicolon"), hl.dsp.exec_cmd("swaync-client -C"))
+hl.bind(C(G("semicolon")), hl.dsp.exec_cmd("swaync-client -d"))
 
 hl.bind("print", hl.dsp.exec_cmd("screenshot output"))
 hl.bind(G("print"), hl.dsp.exec_cmd("screenshot window"))
