@@ -5,8 +5,9 @@ return {
       [[
         CC = clang
         SANITIZE_FLAGS ?= -fsanitize=address,undefined -fno-omit-frame-pointer
-        CFLAGS ?= -std=c23 -Wall -Wextra -Wpedantic -g $(SANITIZE_FLAGS)
-        RELEASE_CFLAGS ?= -std=c23 -Wall -Wextra -Wpedantic -O3 -DNDEBUG
+        BASE_CFLAGS ?= -std=c23 -fdefer-ts -Wall -Wextra -Wpedantic
+        CFLAGS ?= $(BASE_CFLAGS) -g $(SANITIZE_FLAGS)
+        RELEASE_CFLAGS ?= $(BASE_CFLAGS) -O3 -DNDEBUG
 
         TARGET := $(notdir $(CURDIR))
         BUILD_DIR := build
