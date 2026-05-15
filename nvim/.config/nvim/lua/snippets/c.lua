@@ -1,3 +1,9 @@
+local function module_name()
+  local path = vim.fn.expand("%:t:r")
+
+  return sn(nil, i(1, path))
+end
+
 return {
   s(
     "main",
@@ -144,13 +150,36 @@ return {
     "test",
     fmta(
       [[
-        void <test_name>_test(void) {
+        static void <test_name>_test(void) {
           <>
         }
       ]],
       {
         test_name = i(1, "name"),
         i(2, "// TODO"),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "tests",
+    fmta(
+      [[
+        void <test_name>_tests(void)<>
+      ]],
+      {
+        test_name = d(1, module_name),
+        c(2, {
+          t(";"),
+          fmta(
+            [[
+              {
+                <>
+              }
+            ]],
+            { i(1, "// TODO") }
+          ),
+        }),
       }
     ),
     { condition = conds.line_begin }
