@@ -186,289 +186,94 @@ return {
     { condition = conds.line_begin }
   ),
   s(
-    "zig",
-    fmt(
-      [[
-        set dotenv-load := true
-
-        default: {}
-
-        # lists available tasks
-        @list:
-            just --list
-
-        run:
-            {}
-
-        build:
-            {}
-
-        dev:
-            {}
-
-        open:
-            gh repo view --web
-
-        clean:
-            zig build uninstall
-            rm -rf zig-cache/ zig-out/
-
-        # run tests
-        test:
-            {}
-
-        # Open the DB
-        db:
-            {}
-      ]],
-      {
-        i(1, "run"),
-        i(2, "zig build run"),
-        i(3, "zig build -Doptimize=ReleaseSafe"),
-        i(4, "watchexec -e zig just run"),
-        i(5, "zig build test"),
-        i(7, "pgcli $DATABASE_URL"),
-      }
-    ),
-    { condition = conds.line_begin }
-  ),
-  s(
-    "xmake",
+    "c",
     fmta(
       [[
-        bin := "<>"
+        cc := "clang"
+        libs := ""
+        cc_flags := "-std=c23 -fdefer-ts -D_GNU_SOURCE -Wall -Wextra -Wpedantic"
+        sanitize_flags := "-fsanitize=address,undefined -fno-omit-frame-pointer"
+        debug_flags := f"{{cc_flags}} -g -O0"
+        release_flags := f"{{cc_flags}} -O3 -DNDEBUG"
+
+        program_name := file_name(justfile_directory())
+        build_dir := "./build"
+        debug_dir := build_dir / "debug"
+        release_dir := build_dir / "release"
+        test_dir := build_dir / "debug"
+        debug_bin := debug_dir / program_name
+        release_bin := release_dir / program_name
+        test_bin := test_dir / f"{{program_name}}_test"
 
         default: run
 
-        run *args: build
-            xmake run {{ bin }} {{ args }}
+        alias r := run
+        run *args: build_debug
+            {{ debug_bin }} {{ args }}
 
-        build:
-            xmake f -m debug
-            xmake build {{ bin }}
-            xmake project -k compile_commands
+        alias build := build_debug
+        build_debug: init
+            {{ cc }} {{ debug_flags }} {{ sanitize_flags }} src/main.c -o {{ debug_bin }} {{ libs }}
 
-        release:
-            xmake f -m release
-            xmake build {{ bin }}
+        alias rr := run_release
+        run_release *args: build_release
+            {{ release_bin }} {{ args }}
 
-        clean:
-            xmake clean
+        alias release := build_release
+        build_release: init
+            {{ cc }} {{ release_flags }} src/main.c -o {{ release_bin }} {{ libs }}
 
-        dev *args:
-            watchexec -e c,h just run {{ args }}
+        alias t := run_test
+        alias test := run_test
+        run_test: build_test
+            {{ test_bin }}
 
-        open:
-            gh repo view --web
+        build_test: init
+            {{ cc }} {{ debug_flags }} {{ sanitize_flags }} -DTEST src/main_test.c -o {{ test_bin }} {{ libs }}
 
-        debug *args: build
-            xmake run -d {{ bin }} {{ args }}
+        alias db := compiledb
+        compiledb:
+            bear -- just clean build_debug build_test
 
-        build_tests:
-            xmake build tests
+        alias w := watch
+        alias dev := watch
+        watch:
+            watchexec -c clear -e c,h just run
 
-        @test *args: build_tests
-            xmake run tests {{ args }}
-      ]],
-      {
-        i(1, "my_program"),
-      }
-    ),
-    { condition = conds.line_begin }
-  ),
-  s(
-    "c",
-    fmt(
-      [[
-        cc_flags := "-std=c2x"
-        libs := "-Iinclude/ -Isrc/"
-        build_folder := "./build"
-        program_name := "{}"
-        bin := build_folder / program_name
+        alias wt := watch_test
+        watch_test:
+            watchexec -c clear -e c,h just test
 
-        default: {}
+        alias d := debug
+        debug *args: build_debug
+            ASAN_OPTIONS=detect_leaks=0 lldb -o "b main" -o "run" -- {{ debug_bin }} {{ args }}
 
-        run: build
-            {}
+        alias dt := debug_test
+        debug_test *args: build_test
+            ASAN_OPTIONS=detect_leaks=0 lldb -- {{ test_bin }} {{ args }}
 
-        build: init
-            {}
+        alias v := valgrind
+        valgrind *args: build_valgrind
+            valgrind --tool=memcheck --leak-check=full --track-origins=yes {{ debug_bin }} {{ args }}
 
-        release: init
-            {}
+        build_valgrind: init
+            {{ cc }} {{ debug_flags }} src/main.c -o {{ debug_bin }} {{ libs }}
 
-        build_tests: init
-            {}
+        alias c := callgrind
+        callgrind *args: build_callgrind
+            valgrind --tool=callgrind --callgrind-out-file=callgrind.out {{ release_bin }} {{ args }}
+            callgrind_annotate callgrind.out
 
-        @init:
-            {}
-
-        clean:
-            {}
-
-        dev:
-            {}
-
-        open:
-            gh repo view --web
-
-        debug: build
-            {}
-
-        @test:
-            {}
-      ]],
-      {
-        i(1, "my_program"),
-        i(2, "run"),
-        i(3, "{{ bin }}"),
-        i(4, "cc {{ cc_flags }} {{ libs }} -g -Wall -Wextra -Wpedantic -O0 src/*.c -o {{ bin }}"),
-        i(5, "cc {{ cc_flags }} {{ libs }} -O3 src/*.c -o {{ bin }}"),
-        i(6, 'cc {{ cc_flags }} {{ libs }} src/*.c test/*.c -o {{ build_folder / "tests" }}'),
-        i(7, "mkdir -p build/"),
-        i(8, "rm -rf build/"),
-        i(9, "watchexec -e c,h just run"),
-        i(10, "sudo lldb -- {{ bin }}"),
-        i(11, '{{ build_folder / "tests" }}'),
-      }
-    ),
-    { condition = conds.line_begin }
-  ),
-  s(
-    "cmake",
-    fmta(
-      [[
-        bin := "build/<>"
-
-        default: <>
-
-        run: build
-            <>
-
-        build type="Debug": # or Release
-            cmake -S. -B build -DCMAKE_BUILD_TYPE={{type}}
-            cmake --build build
-
-        clean:
-            <>
-
-        dev:
-            <>
-
-        open:
-            gh repo view --web
-
-        lldb: build
-            <>
-
-        test:
-            <>
-
-        db:
-            <>
-      ]],
-      {
-        i(1, "my_program"),
-        i(2, "run"),
-        i(3, "{{bin}}"),
-        i(4, "rm -rf build/"),
-        i(5, "watchexec -e c,h just run"),
-        i(6, "sudo lldb -- {{bin}}"),
-        i(7, "just run"),
-        i(8, "pgcli $DATABASE_URL"),
-      }
-    ),
-    { condition = conds.line_begin }
-  ),
-  s(
-    "c",
-    fmt(
-      [[
-        cc_flags := "-std=c2x"
-        libs := "-Iinclude/ -Isrc/"
-        build_folder := "./build"
-        program_name := "{}"
-        bin := build_folder / program_name
-
-        default: {}
-
-        run: build
-            {}
-
-        build: init
-            {}
-
-        release: init
-            {}
-
-        build_tests: init
-            {}
+        build_callgrind: init
+            {{ cc }} {{ release_flags }} -g src/main.c -o {{ release_bin }} {{ libs }}
 
         @init:
-            {}
+            mkdir -p {{ debug_dir }} {{ release_dir }} {{ test_dir }}
 
         clean:
-            {}
-
-        dev:
-            {}
-
-        open:
-            gh repo view --web
-
-        debug: build
-            {}
-
-        @test:
-            {}
+            rm -rf build/
       ]],
-      {
-        i(1, "my_program"),
-        i(2, "run"),
-        i(3, "{{ bin }}"),
-        i(4, "cc {{ cc_flags }} {{ libs }} -g -Wall -Wextra -Wpedantic -O0 src/*.c -o {{ bin }}"),
-        i(5, "cc {{ cc_flags }} {{ libs }} -O3 src/*.c -o {{ bin }}"),
-        i(6, 'cc {{ cc_flags }} {{ libs }} src/*.c test/*.c -o {{ build_folder / "tests" }}'),
-        i(7, "mkdir -p build/"),
-        i(8, "rm -rf build/"),
-        i(9, "watchexec -e c,h just run"),
-        i(10, "sudo lldb -- {{ bin }}"),
-        i(11, '{{ build_folder / "tests" }}'),
-      }
-    ),
-    { condition = conds.line_begin }
-  ),
-  s(
-    "go",
-    fmta(
-      [[
-        set dotenv-load := true
-
-        bin := "<>"
-
-        default: run
-
-        @list:
-            just --list
-
-        run:
-            go run {{ bin }}
-
-        build:
-            go build {{ bin }}
-
-        dev:
-            watchexec -re go,html just run
-
-        test:
-            go test -v ./tests
-
-        db:
-            pgcli $DATABASE_URL
-      ]],
-      {
-        i(1, "cmd/api/main.go"),
-      }
+      {}
     ),
     { condition = conds.line_begin }
   ),
