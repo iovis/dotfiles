@@ -40,6 +40,16 @@ return {
     { condition = conds.line_begin }
   ),
   s(
+    "include",
+    fmt([[#include {}]], {
+      c(1, {
+        fmt([["{}.h"]], { d(1, module_name) }),
+        fmt([[<{}.h>]], { i(1, "stdio") }),
+      }),
+    }),
+    { condition = conds.line_begin }
+  ),
+  s(
     "pf",
     fmta(
       [[
@@ -206,10 +216,10 @@ return {
     { condition = conds.line_begin }
   ),
   s(
-    "dbg",
+    "dp",
     fmta(
       [[
-        fprintf(stderr, "[%s:%d %s] <> = %<>\n", __FILE__, __LINE__, __func__, <>);
+        fprintf(stderr, "[%s:%d:%s] <> = %<>\n", __FILE__, __LINE__, __func__, <>);
       ]],
       {
         i(1, "var"),
@@ -220,5 +230,14 @@ return {
     {
       condition = conds.line_begin,
     }
+  ),
+  s(
+    "debug",
+    fmta([[dbg("<> = %<>", <>);]], {
+      i(1, "var"),
+      i(2, "d"),
+      dl(3, l._1, 1), -- dynamic lambda: repeat node 1 but let override
+    }),
+    { condition = conds.line_begin }
   ),
 }
