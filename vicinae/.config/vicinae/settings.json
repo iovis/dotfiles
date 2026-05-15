@@ -34,11 +34,11 @@
       }
    },
    "launcher_window": {
-      "opacity": 0.95,
+      "opacity": 0.9,
       "client_side_decorations": {
          "enabled": true,
          "rounding": 10,
-         "border_width": 3
+         "border_width": 1
       },
       "size": {
          "width": 770,
