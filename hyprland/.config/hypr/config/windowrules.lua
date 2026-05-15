@@ -151,8 +151,8 @@ hl.window_rule({
   no_initial_focus = true,
   size = { 640, 360 },
   move = {
-    "monitor_w - window_w - 5",
-    "monitor_h - window_h - 5",
+    "monitor_w - window_w - 9",
+    "monitor_h - window_h - 9",
   },
 })
 
