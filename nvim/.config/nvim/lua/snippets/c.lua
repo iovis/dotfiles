@@ -50,7 +50,7 @@ return {
     { condition = conds.line_begin }
   ),
   s(
-    "pf",
+    "f",
     fmta(
       [[
         <ret_type> <fname>(<args>) {
@@ -67,7 +67,7 @@ return {
     { condition = conds.line_begin }
   ),
   s(
-    "f",
+    "sf",
     fmta(
       [[
         static <ret_type> <fname>(<args>) {
