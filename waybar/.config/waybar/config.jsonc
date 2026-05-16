@@ -137,6 +137,7 @@
   "custom/screenrecording-indicator": {
     "on-click": "screenrecord",
     "exec": "indicator_screenrecord",
+    "interval": 10,
     "signal": 8,
     "return-type": "json"
   },
