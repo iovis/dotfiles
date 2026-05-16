@@ -55,6 +55,7 @@ hl.bind(G("v"), hl.dsp.exec_cmd("vicinae_toggle deeplink vicinae://launch/clipbo
 hl.bind(C(G("v")), hl.dsp.exec_cmd("hyprclose 'class:Mullvad VPN' || mullvad-vpn"))
 
 hl.bind(C(G("y")), hl.dsp.exec_cmd("hyprclose class:widget.btop || kitty --class=widget.btop -e yazi"))
+hl.bind(G("i"), hl.dsp.exec_cmd("hyprclose class:widget.wiremix || kitty --class=widget.wiremix -e impala"))
 hl.bind(C(G("i")), hl.dsp.exec_cmd("hypridle_toggle"))
 hl.bind(G("o"), hl.dsp.exec_cmd("hyprclose class:widget.fn || kitty --class=widget.fn -e fn"))
 hl.bind(C(G("o")), hl.dsp.exec_cmd("hyprfocus class:obsidian || uwsm app -- obsidian"))
