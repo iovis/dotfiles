@@ -16,7 +16,8 @@
   "modules-right": [
     // "group/expand",
     "custom/screenrecording-indicator",
-    "idle_inhibitor",
+    // "idle_inhibitor",
+    "custom/idle-indicator",
     "custom/notification",
     "bluetooth",
     "network",
@@ -24,21 +25,21 @@
     "clock",
     "custom/power"
   ],
-  // "group/expand": {
-  //   "orientation": "horizontal",
-  //   "drawer": {
-  //     "transition-duration": 600,
-  //     "transition-to-left": true,
-  //     "click-to-reveal": true
-  //   },
-  //   "modules": [
-  //     "custom/expand",
-  //     "bluetooth",
-  //     "idle_inhibitor",
-  //     "network",
-  //     "custom/endpoint"
-  //   ]
-  // },
+  "group/expand": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 600,
+      "transition-to-left": true,
+      "click-to-reveal": true
+    },
+    "modules": [
+      "custom/expand",
+      "bluetooth",
+      "idle_inhibitor",
+      "network",
+      "custom/endpoint"
+    ]
+  },
   "bluetooth": {
     "tooltip": true,
     "rotate": 0,
@@ -53,41 +54,53 @@
     "tooltip-format-connected": "Device: {device_alias}\nMAC: {device_address}\nBattery: {device_battery_percentage}%",
     "on-click": "vicinae deeplink vicinae://extensions/Gelei/bluetooth/devices"
   },
+  "clock": {
+    // "format": "{:%a %d %b %H:%M}",
+    "format": "{:%H:%M}",
+    "interval": 1,
+    "tooltip-format": "<span>{calendar}</span>",
+    "on-click": "gnome-calendar",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "on-scroll": 1,
+      "on-click-right": "mode",
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b>{}</b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
   "cpu": {
     "format": "  {usage}% ",
     "tooltip": false,
     "on-click": "kitty --class=widget.btop -e btop",
     "on-click-right": "gnome-system-monitor"
   },
-  "disk": {
-    "format": "  {percentage_used}%  ",
-    "interval": 30,
-    "on-click": "baobab",
-    "on-click-right": "gnome-disks",
-    "path": "/",
-    "tooltip-format": "{specific_used:0.2f}/{specific_total:0.2f} GB",
-    "unit": "GB"
-  },
-  "disk#secondary": {
-    "format": " {percentage_used}%  ",
-    "interval": 30,
-    "on-click": "baobab",
-    "on-click-right": "gnome-disks",
-    "path": "/mnt/HDD/",
-    "tooltip-format": "{specific_used:0.2f}/{specific_total:0.2f} GB",
-    "unit": "GB"
-  },
-  "custom/expand": {
-    "format": " ",
+  "custom/arch": {
+    "format": "  󰣇 ",
     "tooltip": false
   },
   "custom/endpoint": {
     "format": "",
     "tooltip": false
   },
-  "custom/arch": {
-    "format": "  󰣇 ",
+  "custom/expand": {
+    "format": " ",
     "tooltip": false
+  },
+  "custom/idle-indicator": {
+    "on-click": "hypridle_toggle",
+    "exec": "indicator_hypridle",
+    "interval": 10,
+    "signal": 9,
+    "return-type": "json"
   },
   "custom/notification": {
     "tooltip": false,
@@ -127,28 +140,23 @@
     "signal": 8,
     "return-type": "json"
   },
-  "clock": {
-    // "format": "{:%a %d %b %H:%M}",
-    "format": "{:%H:%M}",
-    "interval": 1,
-    "tooltip-format": "<span>{calendar}</span>",
-    "on-click": "gnome-calendar",
-    "calendar": {
-      "mode": "month",
-      "mode-mon-col": 3,
-      "on-scroll": 1,
-      "on-click-right": "mode",
-      "format": {
-        "months": "<span color='#ffead3'><b>{}</b></span>",
-        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-        "today": "<span color='#ff6699'><b>{}</b></span>"
-      }
-    },
-    "actions": {
-      "on-click-right": "mode",
-      "on-scroll-up": "shift_up",
-      "on-scroll-down": "shift_down"
-    }
+  "disk": {
+    "format": "  {percentage_used}%  ",
+    "interval": 30,
+    "on-click": "baobab",
+    "on-click-right": "gnome-disks",
+    "path": "/",
+    "tooltip-format": "{specific_used:0.2f}/{specific_total:0.2f} GB",
+    "unit": "GB"
+  },
+  "disk#secondary": {
+    "format": " {percentage_used}%  ",
+    "interval": 30,
+    "on-click": "baobab",
+    "on-click-right": "gnome-disks",
+    "path": "/mnt/HDD/",
+    "tooltip-format": "{specific_used:0.2f}/{specific_total:0.2f} GB",
+    "unit": "GB"
   },
   "hyprland/workspaces": {
     "on-click": "activate",

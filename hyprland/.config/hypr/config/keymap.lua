@@ -31,7 +31,6 @@ hl.bind(G("w"), hl.dsp.exec_cmd("pkill gnome-weather || uwsm app -- gnome-weathe
 hl.bind(C(G("w")), hl.dsp.exec_cmd("pkill waybar || uwsm app -- waybar"))
 hl.bind(G("e"), hl.dsp.exec_cmd("hyprfocus class:org.gnome.Nautilus || uwsm app -- nautilus"))
 hl.bind(C(G("e")), hl.dsp.exec_cmd("uwsm app -- nautilus --new-window"))
-hl.bind(C(G("r")), hl.dsp.exec_cmd("screenrecord"))
 hl.bind(G("t"), hl.dsp.exec_cmd("hyprclose class:widget.btop || kitty --class=widget.btop -e btop"))
 hl.bind(C(G("t")), hl.dsp.exec_cmd("hyprclose class:widget.btop || kitty --class=widget.btop -e htop"))
 
@@ -56,9 +55,7 @@ hl.bind(G("v"), hl.dsp.exec_cmd("vicinae_toggle deeplink vicinae://launch/clipbo
 hl.bind(C(G("v")), hl.dsp.exec_cmd("hyprclose 'class:Mullvad VPN' || mullvad-vpn"))
 
 hl.bind(C(G("y")), hl.dsp.exec_cmd("hyprclose class:widget.btop || kitty --class=widget.btop -e yazi"))
-hl.bind(G("i"), hl.dsp.exec_cmd("screenshot output"))
-hl.bind(C(G("i")), hl.dsp.exec_cmd("screenshot region"))
-hl.bind(S(G("i")), hl.dsp.exec_cmd("screenshot window"))
+hl.bind(C(G("i")), hl.dsp.exec_cmd("hypridle_toggle"))
 hl.bind(G("o"), hl.dsp.exec_cmd("hyprclose class:widget.fn || kitty --class=widget.fn -e fn"))
 hl.bind(C(G("o")), hl.dsp.exec_cmd("hyprfocus class:obsidian || uwsm app -- obsidian"))
 hl.bind(G("p"), hl.dsp.exec_cmd("hyprfocus class:1Password || uwsm app -- 1password"))
@@ -74,6 +71,12 @@ hl.bind(C(G("semicolon")), hl.dsp.exec_cmd("swaync-client -d"))
 hl.bind("print", hl.dsp.exec_cmd("screenshot output"))
 hl.bind(G("print"), hl.dsp.exec_cmd("screenshot window"))
 hl.bind(C("print"), hl.dsp.exec_cmd("screenshot region"))
+
+---- Screenshots
+hl.bind(C(G("3")), hl.dsp.exec_cmd("screenshot output"))
+hl.bind(C(G("4")), hl.dsp.exec_cmd("screenshot region"))
+hl.bind(C(G("5")), hl.dsp.exec_cmd("screenrecord"))
+hl.bind(C(G("6")), hl.dsp.exec_cmd("screenshot window"))
 
 ---- Window management
 hl.bind(G("q"), hl.dsp.window.close())

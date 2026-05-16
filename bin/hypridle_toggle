@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+hypridle_running() {
+  pgrep -x hypridle >/dev/null
+}
+
+refresh_waybar() {
+  pkill -RTMIN+9 waybar >/dev/null 2>&1 || true
+}
+
+wait_for_hypridle_running() {
+  for _ in {1..20}; do
+    hypridle_running && return 0
+    sleep 0.05
+  done
+
+  return 1
+}
+
+wait_for_hypridle_stopped() {
+  for _ in {1..20}; do
+    hypridle_running || return 0
+    sleep 0.05
+  done
+
+  return 1
+}
+
+if hypridle_running; then
+  pkill -x hypridle
+
+  if wait_for_hypridle_stopped; then
+    echo "󰈈  Idle inhibit on"
+    # notify-send -u low "󰈈    Idle inhibit on"
+  else
+    notify-send -u critical "󰈉    Failed to stop hypridle"
+  fi
+else
+  uwsm-app -- hypridle >/dev/null 2>&1 &
+
+  if wait_for_hypridle_running; then
+    echo "󰈉  Idle inhibit off"
+    # notify-send -u low "󰈉    Idle inhibit off"
+  else
+    notify-send -u critical "󰈈    Failed to start hypridle"
+  fi
+fi
+
+refresh_waybar

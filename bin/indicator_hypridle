@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if pgrep -x hypridle >/dev/null; then
+  echo '{ "text": " 󰈉 ", "tooltip": "Idle inhibit off" }'
+else
+  echo '{ "text": " 󰈈 ", "tooltip": "Idle inhibit on" }'
+fi
