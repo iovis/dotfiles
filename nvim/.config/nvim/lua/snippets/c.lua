@@ -13,6 +13,8 @@ return {
 
         int main(int argc, char *argv[]) {
           <body>
+
+          return 0;
         }
       ]],
       {
@@ -29,6 +31,7 @@ return {
 
         int main(void) {
           <>
+
           puts("ok");
           return 0;
         }
@@ -110,8 +113,8 @@ return {
           } <>;
         ]],
         {
-          r(1, "body", i(1)),
-          r(2, "name", i(2)),
+          r(2, "body", i(2)),
+          r(1, "name", i(1)),
         }
       ),
       fmta(
