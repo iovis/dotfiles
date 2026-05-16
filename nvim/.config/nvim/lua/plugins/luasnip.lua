@@ -26,7 +26,6 @@ return {
     })
 
     ---- Language config
-    luasnip.filetype_extend("cpp", { "c" })
     luasnip.filetype_extend("gitcommit", { "markdown" })
     luasnip.filetype_extend("markdown_inline", { "markdown" })
     luasnip.filetype_extend("pullrequest", { "gitcommit" })

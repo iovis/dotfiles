@@ -37,8 +37,31 @@ return {
         }
       ]],
       {
-        i(1, "some_test();"),
+        i(1, "// some_tests();"),
       }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "aoc",
+    fmta(
+      [[
+        #include "lib.h"
+
+        static const char input[] = {
+        #embed "../input.txt"
+            ,
+            '\0'
+        };
+
+        int main(void) {
+          printf("p1 = %lu\n", p1(input));
+          // printf("p2 = %lu\n", p2(input));
+
+          return 0;
+        }
+      ]],
+      {}
     ),
     { condition = conds.line_begin }
   ),
@@ -178,21 +201,13 @@ return {
     "tests",
     fmta(
       [[
-        void <test_name>_tests(void)<>
+        void <test_name>_tests(void) {
+          <>
+        }
       ]],
       {
         test_name = d(1, module_name),
-        c(2, {
-          t(";"),
-          fmta(
-            [[
-              {
-                <>
-              }
-            ]],
-            { i(1, "// TODO") }
-          ),
-        }),
+        i(2),
       }
     ),
     { condition = conds.line_begin }
