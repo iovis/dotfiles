@@ -172,13 +172,28 @@ return {
   ),
   s(
     "modtest",
-    fmta(
+    fmt(
       [[
         #ifdef TEST
-        <>
+        {}
         #endif
       ]],
-      { i(1) }
+      {
+        c(1, {
+          i(1),
+          fmta(
+            [[
+              void <test_name>_tests(void) {
+                <>
+              }
+            ]],
+            {
+              test_name = d(1, module_name),
+              i(2),
+            }
+          ),
+        }),
+      }
     ),
     { condition = conds.line_begin }
   ),
@@ -193,21 +208,6 @@ return {
       {
         test_name = i(1, "name"),
         i(2, "// TODO"),
-      }
-    ),
-    { condition = conds.line_begin }
-  ),
-  s(
-    "tests",
-    fmta(
-      [[
-        void <test_name>_tests(void) {
-          <>
-        }
-      ]],
-      {
-        test_name = d(1, module_name),
-        i(2),
       }
     ),
     { condition = conds.line_begin }
