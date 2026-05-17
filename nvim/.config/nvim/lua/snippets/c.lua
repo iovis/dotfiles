@@ -49,8 +49,7 @@ return {
         #include "lib.h"
 
         static const char input[] = {
-        #embed "../input.txt"
-            ,
+        #embed "../input.txt" suffix(, )
             '\0'
         };
 
