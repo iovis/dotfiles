@@ -1,7 +1,6 @@
 #:schema https://mise.jdx.dev/schema/mise.json
 
 [tools]
-bun = "latest"
 go = "latest"
 node = "latest"
 ruby = "latest"
