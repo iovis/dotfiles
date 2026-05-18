@@ -6,7 +6,7 @@ local function module_name()
 end
 
 return {
-  s("pragma", fmt("#pragma {}", { i(1, "once") }), {
+  s("pragma", t("#pragma once"), {
     condition = conds.line_begin,
   }),
   s(
