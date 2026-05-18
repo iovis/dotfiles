@@ -19,8 +19,8 @@
     // "idle_inhibitor",
     "custom/notification",
     "custom/idle-indicator",
-    "bluetooth",
     "network",
+    "bluetooth",
     "pulseaudio",
     "clock",
     "custom/power"
