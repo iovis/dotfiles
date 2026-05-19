@@ -228,6 +228,23 @@ vim.keymap.set("n", "<leader>yn", function()
   vim.notify('Copied "' .. path .. '" to the clipboard!')
 end, { desc = "Copy current buffer's path and line number to clipboard" })
 
+vim.keymap.set("x", "<leader>n", function()
+  local line_start = vim.fn.line("v")
+  local line_end = vim.fn.line(".")
+
+  if line_start > line_end then
+    line_start, line_end = line_end, line_start
+  end
+
+  local location = line_start == line_end and tostring(line_start) or (line_start .. "-" .. line_end)
+  local path = ("%s:%s"):format(vim.fn.expand("%:."), location)
+
+  vim.api.nvim_input("<Esc>")
+
+  vim.fn.setreg("+", path)
+  vim.notify('Copied "' .. path .. '" to the clipboard!')
+end, { desc = "Copy currently selected file and range" })
+
 -- Quickfix/Location list
 vim.keymap.set("n", "<up>", "<cmd>cprevious<cr>")
 vim.keymap.set("n", "<down>", "<cmd>cnext<cr>")
