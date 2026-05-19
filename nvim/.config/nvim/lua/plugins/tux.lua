@@ -14,8 +14,14 @@ return {
     vim.keymap.set("n", "<leader>i", "<cmd>Tux Up<cr>")
     vim.keymap.set("n", "<leader>I", ":.Tux<cr>", { desc = "[tux] execute current line" })
     vim.keymap.set("x", "<leader>i", ":Tux<cr>", { desc = "[tux] run selected lines" })
-    vim.keymap.set("n", "<m-p>", tux.send_file, { desc = "[tux] send current file" })
-    vim.keymap.set({ "n", "x" }, "<m-n>", tux.send_location, { desc = "[tux] send current file location" })
+
+    vim.keymap.set("n", "<m-p>", function()
+      tux.send_file({ prefix = "" })
+    end, { desc = "[tux] send current file" })
+
+    vim.keymap.set({ "n", "x" }, "<m-n>", function()
+      tux.send_location({ prefix = "" })
+    end, { desc = "[tux] send current file location" })
 
     vim.keymap.set("n", "s<cr>", "<cmd>Tux just run<cr>")
     vim.keymap.set("n", "m<cr>", "<cmd>Tux just build<cr>")
