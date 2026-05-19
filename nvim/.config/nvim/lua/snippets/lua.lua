@@ -13,7 +13,7 @@ local function lua_fn()
         fname = i(1, "fname"),
         space = n(1, " "),
         args = i(2),
-        body = i(3, "-- TODO"),
+        body = dl(3, l.LS_SELECT_DEDENT),
       }
     )
   )
