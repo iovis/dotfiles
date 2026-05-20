@@ -5,8 +5,6 @@ go = "latest"
 node = "latest"
 ruby = "latest"
 usage = "latest"
-zig = "latest"
-zls = "latest"
 
 [settings]
 disable_hints = ["outdated_bump"]
