@@ -46,7 +46,6 @@ elseif vim.uv.cwd():match("qmk_userspace") then
     })
   end, { buf = 0 })
 elseif u.has_justfile() then
-  vim.keymap.set("n", "d<cr>", "<cmd>Tux just debug<cr>", { buf = 0 })
   vim.keymap.set("n", "m<cr>", "<cmd>Tux just build<cr>", { buf = 0 })
   vim.keymap.set("n", "s<cr>", "<cmd>Tux just run<cr>", { buf = 0 })
 
@@ -54,11 +53,15 @@ elseif u.has_justfile() then
   vim.keymap.set("n", "<leader>sw", "<cmd>Tux just watch<cr>", { buf = 0 })
   vim.keymap.set("n", "<leader>st", "<cmd>Tux just watch_test<cr>", { buf = 0 })
 
+  vim.keymap.set("n", "d<cr>", function()
+    tux.pane("just debug", { focus = true })
+  end, { buf = 0, desc = "Debug program" })
+
   vim.keymap.set("n", "d<space>", function()
     local current_line = vim.fn.expand("%:.") .. ":" .. vim.fn.line(".")
     local debug_cmd = ("just debug_test -o 'b %s' -o run"):format(current_line)
 
-    tux.run(debug_cmd)
+    tux.pane(debug_cmd, { focus = true })
   end, { buf = 0, desc = "Test debug current line" })
 else
   local cc = "clang -std=c23 -fdefer-ts -Wall -Wextra -Wpedantic -Werror -O3"
