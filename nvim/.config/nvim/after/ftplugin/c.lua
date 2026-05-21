@@ -53,6 +53,13 @@ elseif u.has_justfile() then
   vim.keymap.set("n", "<leader>so", "<cmd>Tux just test<cr>", { buf = 0 })
   vim.keymap.set("n", "<leader>sw", "<cmd>Tux just watch<cr>", { buf = 0 })
   vim.keymap.set("n", "<leader>st", "<cmd>Tux just watch_test<cr>", { buf = 0 })
+
+  vim.keymap.set("n", "d<space>", function()
+    local current_line = vim.fn.expand("%:.") .. ":" .. vim.fn.line(".")
+    local debug_cmd = ("just debug_test -o 'b %s' -o run"):format(current_line)
+
+    tux.run(debug_cmd)
+  end, { buf = 0, desc = "Test debug current line" })
 else
   local cc = "clang -std=c23 -fdefer-ts -Wall -Wextra -Wpedantic -Werror -O3"
   vim.keymap.set("n", "s<cr>", "<cmd>Tux " .. cc .. " -o %:t:r %:. && ./%:t:r && rm %:t:r<cr>", { buf = 0 })

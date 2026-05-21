@@ -186,7 +186,7 @@ return {
     { condition = conds.line_begin }
   ),
   s(
-    "c",
+    "unitybuild",
     fmta(
       [[
         cc := "clang"
@@ -249,8 +249,9 @@ return {
             ASAN_OPTIONS=detect_leaks=0 lldb -o "b main" -o "run" -- {{ debug_bin }} {{ args }}
 
         alias dt := debug_test
+        [positional-arguments]
         debug_test *args: build_test
-            ASAN_OPTIONS=detect_leaks=0 lldb -- {{ test_bin }} {{ args }}
+            ASAN_OPTIONS=detect_leaks=0 lldb "$@" -- {{ test_bin }}
 
         alias v := valgrind
         valgrind *args: build_valgrind

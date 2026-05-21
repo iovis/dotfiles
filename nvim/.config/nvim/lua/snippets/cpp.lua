@@ -78,12 +78,8 @@ return {
       [[
         #pragma once
 
-        #include <<assert.h>>
-        #include <<stddef.h>>
-        #include <<stddefer.h>>
-        #include <<stdint.h>>
-        #include <<stdio.h>>  // IWYU pragma: keep
-        #include <<stdlib.h>> // IWYU pragma: keep
+        #include <<stdio.h>>  // IWYU pragma: keep (fprintf)
+        #include <<stdlib.h>> // IWYU pragma: keep (abort)
 
         typedef float f32_t;
         typedef double f64_t;

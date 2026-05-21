@@ -48,6 +48,10 @@ return {
       [[
         #include "lib.h"
 
+        #include "p1.h"
+
+        #include <<stdio.h>>
+
         static const char input[] = {
         #embed "../input.txt" suffix(, )
             '\0'
@@ -182,6 +186,8 @@ return {
           i(1),
           fmta(
             [[
+              #include <<assert.h>>
+
               void <test_name>_tests(void) {
                 <>
               }
