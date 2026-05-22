@@ -8,10 +8,7 @@ vim.cmd.compiler("ruby")
 vim.keymap.set("n", "s<cr>", "<cmd>Tux ruby %:.<cr>", { buf = 0 })
 
 ---- Runnables
-if u.current_path():match("/co/manage") then
-  vim.g["test#strategy"] = "script_spring"
-  vim.g["test#ruby#bundle_exec"] = 0
-elseif u.current_file():match("exe/") then
+if u.current_file():match("exe/") then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux bundle exec %:.<cr>", { buf = 0 })
 elseif u.current_file():match("_spec.rb") then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux rspec %:.<cr>", { buf = 0 })
@@ -26,41 +23,43 @@ elseif u.current_file():match("_spec.rb") then
   })
 
   ---- Toggle autotest
-  vim.keymap.set("n", "<leader>TD", function()
-    vim.g.autotest = nil
-    vim.notify("Autotest disabled")
-  end, { buf = 0, desc = "Autotest disable" })
+  if vim.g.custom_hooks then
+    vim.keymap.set("n", "<leader>TD", function()
+      vim.g.autotest = nil
+      vim.notify("Autotest disabled")
+    end, { buf = 0, desc = "Autotest disable" })
 
-  vim.keymap.set("n", "<leader>TL", function()
-    vim.g.autotest = "line"
-    vim.notify("Autotest line")
-  end, { buf = 0, desc = "Autotest line" })
+    vim.keymap.set("n", "<leader>TL", function()
+      vim.g.autotest = "line"
+      vim.notify("Autotest line")
+    end, { buf = 0, desc = "Autotest line" })
 
-  vim.keymap.set("n", "<leader>TF", function()
-    vim.g.autotest = "file"
-    vim.notify("Autotest file")
-  end, { buf = 0, desc = "Autotest file" })
+    vim.keymap.set("n", "<leader>TF", function()
+      vim.g.autotest = "file"
+      vim.notify("Autotest file")
+    end, { buf = 0, desc = "Autotest file" })
 
-  vim.keymap.set("n", "<leader>TT", function()
-    vim.ui.select({ "file", "line", "disable" }, {
-      prompt = "RSpec> ",
-      format_item = function(item)
-        local is_current = ""
+    vim.keymap.set("n", "<leader>TT", function()
+      vim.ui.select({ "file", "line", "disable" }, {
+        prompt = "RSpec> ",
+        format_item = function(item)
+          local is_current = ""
 
-        if vim.g.autotest == item or (vim.g.autotest == nil and item == "disable") then
-          is_current = " (current)"
+          if vim.g.autotest == item or (vim.g.autotest == nil and item == "disable") then
+            is_current = " (current)"
+          end
+
+          return item .. is_current
+        end,
+      }, function(choice)
+        if choice == "disable" then
+          vim.g.autotest = nil
+        else
+          vim.g.autotest = choice
         end
-
-        return item .. is_current
-      end,
-    }, function(choice)
-      if choice == "disable" then
-        vim.g.autotest = nil
-      else
-        vim.g.autotest = choice
-      end
-    end)
-  end, { buf = 0, desc = "Toggle autotest" })
+      end)
+    end, { buf = 0, desc = "Toggle autotest" })
+  end
 
   ---- Load failing tests in a scratch window
   vim.api.nvim_buf_create_user_command(0, "FailedRSpecTests", function()
@@ -83,12 +82,14 @@ elseif u.current_file():match("_spec.rb") then
 elseif u.current_file() == "Gemfile" then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux bundle install<cr>", { buf = 0 })
 
-  vim.api.nvim_create_autocmd({ "BufWinEnter", "BufWritePost" }, {
-    desc = "Check bundler dependencies",
-    group = vim.api.nvim_create_augroup("bundler_dependencies", { clear = true }),
-    buffer = vim.api.nvim_get_current_buf(),
-    callback = function()
-      require("config.hooks.dependencies").run("bundler")
-    end,
-  })
+  if vim.g.custom_hooks then
+    vim.api.nvim_create_autocmd({ "BufWinEnter", "BufWritePost" }, {
+      desc = "Check bundler dependencies",
+      group = vim.api.nvim_create_augroup("bundler_dependencies", { clear = true }),
+      buffer = vim.api.nvim_get_current_buf(),
+      callback = function()
+        require("config.hooks.dependencies").run("bundler")
+      end,
+    })
+  end
 end

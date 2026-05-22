@@ -1,6 +1,7 @@
 ---- Global Variables
 vim.g.autoformat = true
 vim.g.autotest = nil
+vim.g.custom_hooks = true
 vim.g.debug = false
 vim.g.foldcolumn = false
 -- vim.g.health = { style = "float" }
