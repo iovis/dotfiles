@@ -36,19 +36,33 @@ vim.keymap.set("n", "<s-tab>", "<cmd>tabclose<cr>")
 vim.keymap.set("n", "<tab>", "<cmd>bp|bd #<cr>")
 vim.keymap.set("n", "J", "m`J``")
 vim.keymap.set("n", "M", "<c-w>o")
-vim.keymap.set("n", "gcu", "gcgc")
+vim.keymap.set("n", "gcu", "gcgc", { remap = true })
 vim.keymap.set("n", "yoi", "<cmd>set list!<cr>")
 vim.keymap.set("n", "yow", "<cmd>set wrap!<cr>")
 vim.keymap.set("x", "<", "<gv")
+vim.keymap.set("x", ">", ">gv")
 vim.keymap.set("x", "<m-j>", ":m'>+<cr>`<my`>mzgv=gv`yo`z", { silent = true })
 vim.keymap.set("x", "<m-k>", ":m'<-2<cr>`>my`<mzgv=gv`yo`z", { silent = true })
-vim.keymap.set("x", ">", ">gv")
 vim.keymap.set({ "n", "x" }, ";", ":")
 vim.keymap.set({ "n", "x" }, "<leader>y", '"+y')
 vim.keymap.set({ "n", "x", "o" }, "H", "^")
 vim.keymap.set({ "n", "x", "o" }, "L", "$")
 vim.keymap.set({ "o", "x" }, "ao", "aW")
 vim.keymap.set({ "o", "x" }, "io", "iW")
+vim.keymap.set({ "o", "x" }, "ag", "aW")
+vim.keymap.set({ "o", "x" }, "ig", "iW")
+
+vim.keymap.set("i", "<tab>", function()
+  if vim.fn.pumvisible() == 1 then
+    if vim.fn.complete_info({ "selected" }).selected == -1 then
+      return "<c-n><c-y>"
+    end
+
+    return "<c-y>"
+  end
+
+  return "<tab>"
+end, { expr = true, desc = "Accept completion or tab" })
 
 -- Options
 vim.g.netrw_banner = 0
@@ -153,17 +167,17 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 })
 
 -- Treesitter
-vim.api.nvim_create_autocmd("FileType", {
-  group = vim.api.nvim_create_augroup("my.treesitter_start", { clear = true }),
-  callback = function()
-    pcall(vim.treesitter.start)
-  end,
-})
+vim.keymap.set("n", "yot", function()
+  vim.b.ts_enabled = not vim.b.ts_enabled
 
-vim.lsp.enable({
-  "lua_ls",
-})
+  if vim.b.ts_enabled then
+    vim.treesitter.start()
+  else
+    vim.treesitter.stop()
+  end
+end, { desc = "Toggle Treesitter" })
 
+-- LSP
 vim.lsp.config("lua_ls", {
   cmd = { "lua-language-server" },
   filetypes = { "lua" },
@@ -171,10 +185,10 @@ vim.lsp.config("lua_ls", {
   settings = {
     Lua = {
       codeLens = { enable = true },
-      hint = { enable = true, semicolon = 'Disable' },
+      hint = { enable = true, semicolon = "Disable" },
       runtime = {
-        version = 'LuaJIT',
-        path = { 'lua/?.lua', 'lua/?/init.lua' },
+        version = "LuaJIT",
+        path = { "lua/?.lua", "lua/?/init.lua" },
       },
       workspace = {
         checkThirdParty = false,
@@ -182,7 +196,6 @@ vim.lsp.config("lua_ls", {
       },
     },
   },
-
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -276,5 +289,5 @@ vim.api.nvim_create_autocmd("LspAttach", {
     --    end,
     --  })
     -- end
-  end
+  end,
 })
