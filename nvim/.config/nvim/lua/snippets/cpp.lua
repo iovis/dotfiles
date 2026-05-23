@@ -1,8 +1,18 @@
 -- C header files (*.h)
-local function module_name()
-  local path = vim.fn.expand("%:t:r")
+---@param node "i"|"t"
+---@return function
+local function module_name(node)
+  return function()
+    local path = vim.fn.expand("%:t:r")
 
-  return sn(nil, i(1, path))
+    if node == "t" then
+      return sn(nil, t(path))
+    elseif node == "i" then
+      return sn(nil, i(1, path))
+    else
+      assert(false, "messed up")
+    end
+  end
 end
 
 return {
@@ -14,7 +24,7 @@ return {
     fmt([[#include {}]], {
       c(1, {
         fmt([[<{}.h>]], { i(1, "stdio") }),
-        fmt([["{}.h"]], { d(1, module_name) }),
+        fmt([["{}.h"]], { d(1, module_name("i")) }),
       }),
     }),
     { condition = conds.line_begin }
@@ -67,7 +77,21 @@ return {
         #endif
       ]],
       {
-        test_name = d(1, module_name),
+        test_name = d(1, module_name("t")),
+      }
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
+    "clangformat",
+    fmt(
+      [[
+        // clang-format off
+        {visual_selection}
+        // clang-format on
+      ]],
+      {
+        visual_selection = dl(1, l.LS_SELECT_DEDENT),
       }
     ),
     { condition = conds.line_begin }

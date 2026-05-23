@@ -1,7 +1,17 @@
-local function module_name()
-  local path = vim.fn.expand("%:t:r")
+---@param node "i"|"t"
+---@return function
+local function module_name(node)
+  return function()
+    local path = vim.fn.expand("%:t:r")
 
-  return sn(nil, i(1, path))
+    if node == "t" then
+      return sn(nil, t(path))
+    elseif node == "i" then
+      return sn(nil, i(1, path))
+    else
+      assert(false, "messed up")
+    end
+  end
 end
 
 return {
@@ -27,6 +37,8 @@ return {
     "maintest",
     fmta(
       [[
+        #include "lib.h"
+
         #include <<stdio.h>>
 
         int main(void) {
@@ -72,7 +84,7 @@ return {
     "include",
     fmt([[#include {}]], {
       c(1, {
-        fmt([["{}.h"]], { d(1, module_name) }),
+        fmt([["{}.h"]], { d(1, module_name("i")) }),
         fmt([[<{}.h>]], { i(1, "stdio") }),
       }),
     }),
@@ -193,7 +205,7 @@ return {
               }
             ]],
             {
-              test_name = d(1, module_name),
+              test_name = d(1, module_name("t")),
               i(2),
             }
           ),
