@@ -1,6 +1,6 @@
 return {
   "stevearc/quicker.nvim",
-  -- version = "*",
+  version = "*",
   -- enabled = false,
   config = function()
     local quicker = require("quicker")
