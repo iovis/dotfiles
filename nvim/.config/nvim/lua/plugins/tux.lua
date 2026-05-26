@@ -25,6 +25,7 @@ return {
     if u.has_justfile() then
       vim.keymap.set("n", "<leader>st", "<cmd>Tux just test<cr>")
 
+      vim.keymap.set("n", "<leader>sj", "<cmd>Tux just<cr>", { desc = "Tux just (run default recipe)" })
       vim.keymap.set("n", "<leader>sk", "<cmd>Tux just run<cr>")
       vim.keymap.set("n", "<leader>sm", "<cmd>Tux just build<cr>")
 
