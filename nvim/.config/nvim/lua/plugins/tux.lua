@@ -1,7 +1,6 @@
 return {
   "iovis/tux.nvim",
   -- dev = true,
-  event = "VeryLazy",
   config = function()
     local tux = require("tux")
 
@@ -23,14 +22,15 @@ return {
       tux.send_location({ prefix = "" })
     end, { desc = "[tux] send current file location" })
 
-    vim.keymap.set("n", "s<cr>", "<cmd>Tux just run<cr>")
-    vim.keymap.set("n", "m<cr>", "<cmd>Tux just build<cr>")
-    vim.keymap.set("n", "<leader>S", function()
-      if u.has_justfile() then
-        tux.run("just --choose")
-      else
-        vim.notify("No justfile found", vim.log.levels.WARN)
-      end
-    end, { desc = "[tux] run a task from the Justfile" })
+    if u.has_justfile() then
+      vim.keymap.set("n", "<leader>st", "<cmd>Tux just test<cr>")
+
+      vim.keymap.set("n", "<leader>sk", "<cmd>Tux just run<cr>")
+      vim.keymap.set("n", "<leader>sm", "<cmd>Tux just build<cr>")
+
+      vim.keymap.set("n", "<leader>sl", function()
+        tux.pane("just console", { focus = true })
+      end, { desc = "Tux just console" })
+    end
   end,
 }

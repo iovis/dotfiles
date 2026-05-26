@@ -26,7 +26,7 @@ elseif u.current_file():match("benches/") then
 elseif u.current_file():match("ext/") then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux bundle exec rake<cr>", { buf = 0 })
   vim.keymap.set("n", "<leader>sw", "<cmd>Tux watchexec -e rs,rb -- bundle exec rake<cr>", { buf = 0 })
-elseif not u.has_justfile() then
+else
   vim.keymap.set("n", "s<cr>", "<cmd>Tux cargo run --release<cr>", { buf = 0 })
   vim.keymap.set("n", "m<cr>", "<cmd>Tux cargo check --all-targets && clippy<cr>", { buf = 0 })
 end

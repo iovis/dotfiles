@@ -30,24 +30,6 @@ elseif vim.uv.cwd():match("qmk_userspace") then
       "user.keyboard",
     }))
   end, { buf = 0 })
-elseif u.has_justfile() then
-  vim.keymap.set("n", "m<cr>", "<cmd>Tux just build<cr>", { buf = 0 })
-  vim.keymap.set("n", "s<cr>", "<cmd>Tux just run<cr>", { buf = 0 })
-
-  vim.keymap.set("n", "<leader>so", "<cmd>Tux just test<cr>", { buf = 0 })
-  vim.keymap.set("n", "<leader>sw", "<cmd>Tux just watch<cr>", { buf = 0 })
-  vim.keymap.set("n", "<leader>st", "<cmd>Tux just watch_test<cr>", { buf = 0 })
-
-  vim.keymap.set("n", "d<cr>", function()
-    tux.pane("just debug", { focus = true })
-  end, { buf = 0, desc = "Debug program" })
-
-  vim.keymap.set("n", "d<space>", function()
-    local current_line = vim.fn.expand("%:.") .. ":" .. vim.fn.line(".")
-    local debug_cmd = ("just debug_test -o 'b %s' -o run"):format(current_line)
-
-    tux.pane(debug_cmd, { focus = true })
-  end, { buf = 0, desc = "Test debug current line" })
 else
   local cc = "clang -std=c23 -fdefer-ts -Wall -Wextra -Wpedantic -O3"
   vim.keymap.set("n", "s<cr>", "<cmd>Tux " .. cc .. " -o %:t:r %:. && ./%:t:r && rm %:t:r<cr>", { buf = 0 })
@@ -64,4 +46,23 @@ else
     tux.pane(compile_debug)
     tux.pane(run_debug, { focus = true })
   end, { buf = 0, desc = "Debug program" })
+end
+
+if u.has_justfile() then
+  vim.keymap.set("n", "<leader>sd", "<cmd>Tux just compiledb<cr>", { buf = 0 })
+  vim.keymap.set("n", "<leader>so", "<cmd>Tux just test<cr>", { buf = 0 })
+  vim.keymap.set("n", "<leader>sr", "<cmd>Tux just run_release<cr>", { buf = 0 })
+  vim.keymap.set("n", "<leader>st", "<cmd>Tux just watch_test<cr>", { buf = 0 })
+  vim.keymap.set("n", "<leader>sw", "<cmd>Tux just watch<cr>", { buf = 0 })
+
+  vim.keymap.set("n", "d<cr>", function()
+    tux.pane("just debug", { focus = true })
+  end, { buf = 0, desc = "Tux just debug" })
+
+  vim.keymap.set("n", "<leader>sl", function()
+    local current_line = vim.fn.expand("%:.") .. ":" .. vim.fn.line(".")
+    local debug_cmd = ("just debug_test -o 'b %s' -o run"):format(current_line)
+
+    tux.pane(debug_cmd, { focus = true })
+  end, { buf = 0, desc = "Tux just debug_test (current line)" })
 end
