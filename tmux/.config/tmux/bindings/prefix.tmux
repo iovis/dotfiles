@@ -150,6 +150,7 @@ bind -N "Move pane right (full)" K move-pane -fv -b -t '.{next}'
 bind -N "Move pane up (full)"    L move-pane -fh -t '.{next}'
 
 bind -N "Break pane" Tab break-pane
+bind -N "Break pane detached" Enter break-pane -d
 
 ## Join panes
 bind -N "Join pane" j {
