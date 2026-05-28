@@ -158,7 +158,9 @@ vim.keymap.set("n", "<c-p>", "<c-i>")
 
 -- Panes
 vim.keymap.set("n", "<leader>v", "<c-w>v")
+vim.keymap.set("n", "<leader>V", "<cmd>botright vsplit<cr>")
 vim.keymap.set("n", "<leader>h", "<c-w>s")
+vim.keymap.set("n", "<leader>S", "<cmd>botright split<cr>")
 
 vim.keymap.set("n", "<leader>c", "<c-w>c")
 vim.keymap.set("n", "<leader>0", "<c-w>=")
