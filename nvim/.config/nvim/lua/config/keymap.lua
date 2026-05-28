@@ -438,6 +438,7 @@ vim.keymap.set("n", "U", function()
   require("undotree").open({ command = "40vnew" })
 end)
 
+vim.keymap.set("n", "<leader><enter>", "<cmd>e!<cr>")
 vim.keymap.set("n", "<leader>fs", ":se ft=")
 vim.keymap.set("n", "<leader>fp", ":se ft?<cr>")
 vim.keymap.set("n", "<leader>P", ":R=")
