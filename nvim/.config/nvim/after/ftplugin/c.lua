@@ -31,12 +31,12 @@ elseif vim.uv.cwd():match("qmk_userspace") then
     }))
   end, { buf = 0 })
 else
-  local cc = "clang -std=c23 -fdefer-ts -Wall -Wextra -Wpedantic -O3"
+  local cc = "clang -std=gnu23 -fdefer-ts -Wall -Wextra -Wpedantic -O3"
   vim.keymap.set("n", "s<cr>", "<cmd>Tux " .. cc .. " -o %:t:r %:. && ./%:t:r && rm %:t:r<cr>", { buf = 0 })
   vim.keymap.set("n", "m<cr>", "<cmd>Tux " .. cc .. " -o %:t:r %:.<cr>", { buf = 0 })
 
   vim.keymap.set("n", "d<cr>", function()
-    local clang = "clang -std=c23 -fdefer-ts -Wall -Wextra -Wpedantic -g -O0"
+    local clang = "clang -std=gnu23 -fdefer-ts -Wall -Wextra -Wpedantic -g -O0"
     local program_name = vim.fn.expand("%:t:r")
     local file_path = vim.fn.expand("%:.")
 

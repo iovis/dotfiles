@@ -5,7 +5,7 @@ return {
       [[
         CC = clang
         SANITIZE_FLAGS ?= -fsanitize=address,undefined -fno-omit-frame-pointer
-        BASE_CFLAGS ?= -std=c23 -fdefer-ts -Wall -Wextra -Wpedantic
+        BASE_CFLAGS ?= -std=gnu23 -fdefer-ts -Wall -Wextra -Wpedantic
         CFLAGS ?= $(BASE_CFLAGS) -g $(SANITIZE_FLAGS)
         RELEASE_CFLAGS ?= $(BASE_CFLAGS) -O3 -DNDEBUG
 
