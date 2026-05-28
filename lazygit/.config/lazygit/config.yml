@@ -1,4 +1,6 @@
 # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
+# https://github.com/jesseduffield/lazygit/blob/master/docs/keybindings/Custom_Keybindings.md
+# Time format uses Time.Format syntax: https://pkg.go.dev/time#Time.Format
 gui:
   border: rounded
   enlargedSideViewLocation: top
@@ -10,8 +12,23 @@ gui:
   # commandLogSize: 3
   showDivergenceFromBaseBranch: arrowAndNumber
   showFileTree: false
+  shortTimeFormat: 15:04
+  timeFormat: 2006-01-02
   skipAmendWarning: true
   skipRewordInEditorWarning: true
+  statusPanelView: allBranchesLog
+  spinner:
+    frames:
+      - "⠋"
+      - "⠙"
+      - "⠹"
+      - "⠸"
+      - "⠼"
+      - "⠴"
+      - "⠦"
+      - "⠧"
+      - "⠇"
+      - "⠏"
   theme:
     activeBorderColor:
       - "#a6d189"
@@ -43,14 +60,17 @@ notARepository: "quit"
 promptToReturnFromSubprocess: false
 keybinding:
   universal:
-    prevBlock-alt: <c-k>
-    nextBlock-alt: <c-j>
-    nextTab: l
-    prevTab: h
+    confirmInEditor: <alt+enter>
+    # return: [h, <esc>]
+    goInto: <enter>
+    prevBlock: <ctrl+k>
+    nextBlock: <ctrl+j>
+    prevTab: [<alt+h>, "h"] # <ctrl+h>  doesn't work for some reason
+    nextTab: [<alt+l>, "l"]
   commits:
-    moveDownCommit: J
-    moveUpCommit: K
-    openLogMenu: <c-g>
+    moveDownCommit: <alt+j>
+    moveUpCommit: <alt+k>
+    openLogMenu: <ctrl+g>
     renameCommit: R
     renameCommitWithEditor: r
   files:
