@@ -43,7 +43,7 @@ function SubstituteMotion(mode)
     if is_same_line(mode) then
       -- Something like `iw`
       local search_term = capture_motion_text(mode)
-      u.send_keys(([[:%%s/\v%s]]):format(search_term))
+      u.send_keys(([[:%%s/\v%s/]]):format(search_term))
     else
       -- Something like `if`
       u.send_keys([[:'[,']s/\v]])
@@ -57,7 +57,7 @@ function SubstituteMotion(mode)
   elseif mode == "v" then
     if is_same_line(mode) then
       local search_term = capture_motion_text(mode)
-      u.send_keys(([[:%%s/\v%s]]):format(search_term))
+      u.send_keys(([[:%%s/\v%s/]]):format(search_term))
     else
       u.send_keys([[:s/\v]])
     end
