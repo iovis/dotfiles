@@ -194,6 +194,7 @@ return {
       },
     })
 
+    vim.keymap.set("n", "sj", "saia", { remap = true })
     vim.keymap.set("n", "sk", "saiw", { remap = true })
     vim.keymap.set("n", "sl", "sa_", { remap = true })
     vim.keymap.set("n", "so", "saio", { remap = true })
