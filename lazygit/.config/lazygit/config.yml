@@ -63,10 +63,10 @@ keybinding:
     confirmInEditor: <alt+enter>
     # return: [h, <esc>]
     goInto: <enter>
-    prevBlock: <ctrl+k>
-    nextBlock: <ctrl+j>
-    prevTab: [<alt+h>, "h"] # <ctrl+h>  doesn't work for some reason
-    nextTab: [<alt+l>, "l"]
+    prevBlock-alt: <ctrl+k>
+    nextBlock-alt: <ctrl+j>
+    prevTab: [h, <alt+h>, <ctrl+h>, <backspace>]
+    nextTab: [l, <alt+l>, <ctrl+l>]
   commits:
     moveDownCommit: <alt+j>
     moveUpCommit: <alt+k>
