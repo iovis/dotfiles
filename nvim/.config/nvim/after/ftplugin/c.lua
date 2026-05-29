@@ -66,3 +66,13 @@ if u.has_justfile() then
     tux.pane(debug_cmd, { focus = true })
   end, { buf = 0, desc = "Tux just debug_test (current line)" })
 end
+
+----Surround debug
+vim.b.minisurround_config = {
+  custom_surroundings = {
+    e = {
+      input = { "expect%(().-()%)" },
+      output = { left = "expect(", right = ")" },
+    },
+  },
+}
