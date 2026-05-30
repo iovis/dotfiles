@@ -1,1 +1,2 @@
 settings set symbols.auto-download foreground
+settings set show-statusline false
