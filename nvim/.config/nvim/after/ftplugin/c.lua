@@ -12,6 +12,14 @@ if u.current_file():match("ext/") then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux bear -- rake<cr>", { buf = 0 })
   vim.keymap.set("n", "<leader>sw", "<cmd>Tux watchexec -e c,h,rb -c clear -- bear -- rake<cr>", { buf = 0 })
 elseif vim.uv.cwd():match("qmk_userspace") then
+  if u.current_file():match("keyboards/") then
+    vim.keymap.set("n", "<leader>sk", function()
+      -- keyboards/(boardsource/unicorne)/keymaps/...
+      local keyboard = u.current_file():match([[keyboards/(.*)/keymaps]])
+      vim.cmd.FloatTerm("just choose " .. keyboard)
+    end, { buf = 0 })
+  end
+
   vim.keymap.set("n", "s<cr>", function()
     vim.cmd.FloatTerm("just run")
   end, { buf = 0 })
