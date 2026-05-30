@@ -74,10 +74,10 @@ hl.bind(G("print"), hl.dsp.exec_cmd("screenshot window"))
 hl.bind(C("print"), hl.dsp.exec_cmd("screenshot region"))
 
 ---- Screenshots
-hl.bind(C(G("3")), hl.dsp.exec_cmd("screenshot output"))
-hl.bind(C(G("4")), hl.dsp.exec_cmd("screenshot region"))
-hl.bind(C(G("5")), hl.dsp.exec_cmd("screenrecord"))
-hl.bind(C(G("6")), hl.dsp.exec_cmd("screenshot window"))
+hl.bind(S(G("3")), hl.dsp.exec_cmd("screenshot output"))
+hl.bind(S(G("4")), hl.dsp.exec_cmd("screenshot region"))
+hl.bind(S(G("5")), hl.dsp.exec_cmd("screenrecord"))
+hl.bind(S(G("6")), hl.dsp.exec_cmd("screenshot window"))
 
 ---- Window management
 hl.bind(G("q"), hl.dsp.window.close())
@@ -204,7 +204,7 @@ hl.bind(C(G("space")), hl.dsp.focus({ workspace = "previous" }))
 
 for i = 1, 9 do
   hl.bind(G(i), hl.dsp.focus({ workspace = i }))
-  hl.bind(S(G(i)), hl.dsp.window.move({ workspace = i }))
+  hl.bind(C(G(i)), hl.dsp.window.move({ workspace = i }))
 end
 
 hl.bind(G("tab"), hl.dsp.window.move({ workspace = "empty" }))
