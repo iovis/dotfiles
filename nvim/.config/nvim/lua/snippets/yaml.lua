@@ -8,16 +8,18 @@ return {
       [[
         BasedOnStyle: LLVM
         ColumnLimit: 120
-        AllowShortIfStatementsOnASingleLine: WithoutElse
+
         AllowShortFunctionsOnASingleLine: None
+        AllowShortIfStatementsOnASingleLine: WithoutElse
+        AllowShortLoopsOnASingleLine: true
         BreakAfterReturnType: None
         PenaltyReturnTypeOnItsOwnLine: 1000
 
-        BinPackArguments: false
-        BinPackParameters: false
+        AlignAfterOpenBracket: BlockIndent
         AllowAllArgumentsOnNextLine: false
         AllowAllParametersOfDeclarationOnNextLine: false
-        AlignAfterOpenBracket: BlockIndent
+        BinPackArguments: false
+        BinPackParameters: false
         BreakBeforeBinaryOperators: All
       ]],
       {}

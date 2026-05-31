@@ -1,5 +1,16 @@
 ---
-BasedOnStyle: Google
+BasedOnStyle: LLVM
 ColumnLimit: 120
-IndentWidth: 4
+
 AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: WithoutElse
+AllowShortLoopsOnASingleLine: true
+BreakAfterReturnType: None
+PenaltyReturnTypeOnItsOwnLine: 1000
+
+AlignAfterOpenBracket: BlockIndent
+AllowAllArgumentsOnNextLine: false
+AllowAllParametersOfDeclarationOnNextLine: false
+BinPackArguments: false
+BinPackParameters: false
+BreakBeforeBinaryOperators: All
