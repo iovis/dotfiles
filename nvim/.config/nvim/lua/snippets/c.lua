@@ -195,7 +195,6 @@ return {
       ]],
       {
         c(1, {
-          i(1),
           fmta(
             [[
               #include <<assert.h>>
@@ -209,6 +208,7 @@ return {
               i(2),
             }
           ),
+          i(1),
         }),
       }
     ),
