@@ -10,6 +10,9 @@ ghostty/.config/ghostty/local.ghostty
 # hammerspoon
 hammerspoon/.hammerspoon/local*
 
+# kitty
+kitty/.config/kitty/local.conf
+
 # lazygit
 lazygit/.config/lazygit/state.yml
 
