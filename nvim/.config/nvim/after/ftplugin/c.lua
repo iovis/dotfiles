@@ -29,7 +29,7 @@ elseif vim.uv.cwd():match("qmk_userspace") then
   end, { buf = 0 })
 
   vim.keymap.set("n", "<leader>do", "<cmd>botright split! ../qmk_firmware/docs/keycodes.md<cr>", { buf = 0 })
-  vim.keymap.set("n", "d<cr>", "<cmd>60vs keymap.md<cr>", { buf = 0 })
+  vim.keymap.set("n", "<leader>S", "<cmd>60vs keymap.md<cr>", { buf = 0 })
 
   vim.keymap.set("n", "s?", function()
     vim.notify(u.system({
