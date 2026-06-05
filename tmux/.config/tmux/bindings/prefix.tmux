@@ -97,7 +97,7 @@ bind -N "New window (current path)" C-t {
 bind -N "Close window" C-w kill-window
 bind -N "Reset window" q {
   kill-pane -a
-  respawn-pane -k -c "#{pane_current_path}"
+  respawn-pane -k -c "#{pane_current_path}" "$SHELL"
 }
 
 bind -N "Close the rest of the windows" o {
