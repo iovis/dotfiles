@@ -107,7 +107,7 @@ return {
                   table.insert(cmd, item.file)
                 end
 
-                vim.system(cmd):wait()
+                vim.system(cmd, { cwd = picker:cwd() }):wait()
                 vim.cmd.checktime()
 
                 -- refresh list
