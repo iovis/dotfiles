@@ -101,13 +101,23 @@ return {
             actions = {
               file_checkout = function(picker)
                 local items = picker:selected({ fallback = true })
-                local cmd = { "git", "checkout", "--" }
+                local checkout = { "git", "checkout", "--" }
+                local clean = { "git", "clean", "-f", "--" }
 
                 for _, item in ipairs(items) do
-                  table.insert(cmd, item.file)
+                  if item.status == "??" then
+                    table.insert(clean, item.file)
+                  else
+                    table.insert(checkout, item.file)
+                  end
                 end
 
-                vim.system(cmd, { cwd = picker:cwd() }):wait()
+                if #checkout > 3 then
+                  vim.system(checkout, { cwd = picker:cwd() }):wait()
+                end
+                if #clean > 4 then
+                  vim.system(clean, { cwd = picker:cwd() }):wait()
+                end
                 vim.cmd.checktime()
 
                 -- refresh list
