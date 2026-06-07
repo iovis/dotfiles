@@ -191,7 +191,7 @@ return {
       [[
         cc := "clang"
         libs := ""
-        cc_flags := "-std=gnu23 -fdefer-ts -D_GNU_SOURCE -Wall -Wextra -Wpedantic"
+        cc_flags := "-std=gnu23 -fdefer-ts -D_GNU_SOURCE -Wall -Wextra"
         sanitize_flags := "-fsanitize=address,undefined -fno-omit-frame-pointer"
         debug_flags := f"{{cc_flags}} -g -O0"
         release_flags := f"{{cc_flags}} -O3 -DNDEBUG"
