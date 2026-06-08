@@ -34,6 +34,18 @@ return {
         },
         sources = {
           buffers = {
+            preview = function(ctx)
+              if ctx.item.buftype == "terminal" then
+                ctx.item.pos = nil
+                ctx.preview:set_title(ctx.item.file or "terminal")
+                ctx.preview:set_buf(ctx.item.buf)
+                -- Keep the colored terminal preview without Snacks resetting terminal window options on jump.
+                vim.b[ctx.item.buf].snacks_previewed = nil
+                return
+              end
+
+              return snacks.picker.preview.file(ctx)
+            end,
             sort_lastused = false,
             win = {
               input = {

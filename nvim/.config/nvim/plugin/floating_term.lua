@@ -13,6 +13,15 @@ local function floating_term(bufnr)
     height = 0.75,
     border = "rounded",
     on_win = function()
+      vim.wo.cursorline = false
+      vim.wo.foldcolumn = "0"
+      vim.wo.list = false
+      vim.wo.number = false
+      vim.wo.relativenumber = false
+      vim.wo.signcolumn = "no"
+      vim.wo.statuscolumn = " "
+      vim.wo.wrap = false
+
       if is_valid_buffer then
         vim.cmd.startinsert()
       else
