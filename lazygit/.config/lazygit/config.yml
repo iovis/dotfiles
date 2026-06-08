@@ -7,6 +7,7 @@ gui:
   expandFocusedSidePanel: true
   filterMode: fuzzy
   nerdFontsVersion: "3"
+  scrollHeight: 20
   showBottomLine: false
   showCommandLog: false
   # commandLogSize: 3
