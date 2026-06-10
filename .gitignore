@@ -2,7 +2,7 @@
 fish/.config/fish/fish_variables
 fish/.config/fish/local/*
 fish/.config/fish/completions/*
-!fish/.config/fish/completions/ts.fish
+!fish/.config/fish/completions/tmux_sessions.fish
 
 # ghostty
 ghostty/.config/ghostty/local.ghostty

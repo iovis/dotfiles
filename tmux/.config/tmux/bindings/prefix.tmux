@@ -56,7 +56,7 @@ bind -N "muxi picker" C-/ {
 }
 
 bind -N "Run FZF session picker" C-f {
-  display-popup -w 80% -h 80% -b none -E ts
+  display-popup -w 80% -h 80% -b none -E tmux_sessions
 }
 
 bind -N "Run sessionist" C-k {
