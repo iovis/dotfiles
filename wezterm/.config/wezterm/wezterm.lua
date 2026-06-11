@@ -75,7 +75,7 @@ config.colors = {
 -- config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" } -- Disable ligatures
 -- wezterm ls-fonts --list-system | rg Fira
 -- wezterm ls-fonts --text "✔"
-config.font_size = 20
+config.font_size = 23
 config.font = wezterm.font("FiraCode Nerd Font")
 
 ---Keymaps
