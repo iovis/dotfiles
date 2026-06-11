@@ -3,7 +3,7 @@ local u = require("config.utils")
 return {
   -- .clang-format
   s(
-    "init",
+    "clangformat",
     fmta(
       [[
         BasedOnStyle: LLVM
