@@ -92,7 +92,7 @@ vim.keymap.set("n", "<leader>a", "<nop>")
 vim.keymap.set("n", "<leader>f", "<nop>")
 vim.keymap.set("n", "<leader>s", "<nop>")
 vim.keymap.set("n", "<leader>u", "<nop>")
-vim.keymap.set("n", "<space>", "<nop>")
+vim.keymap.set({ "n", "x" }, "<space>", "<nop>")
 
 -- Buffers
 vim.keymap.set("n", "<bs>", "<c-^>")
