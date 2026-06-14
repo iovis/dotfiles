@@ -1,3 +1,3 @@
-function y --wraps=yt-dlp
-    yt-dlp -N10 $argv
+function y --wraps=yazi
+    yazi $argv
 end
