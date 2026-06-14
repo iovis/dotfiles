@@ -130,6 +130,7 @@ pipewire-alsa
 pipewire-jack
 pipewire-pulse
 python-adblock
+python-curl_cffi
 qmk
 qt6ct
 qutebrowser
