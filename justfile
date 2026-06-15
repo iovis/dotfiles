@@ -6,8 +6,13 @@ install-mpv: install-thumbfast install-modernz
 
 init:
     git stash push
+    git checkout master
     git pull
+    git checkout -
+    git rebase -
     git stash pop || true
+    cd ~/co/skills/meraki-skills/ && git pull
+    codex plugin marketplace upgrade
 
 # Download and install the latest Thumbfast revision
 install-thumbfast:
