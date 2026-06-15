@@ -1,5 +1,6 @@
 awesome_print
 bundler
+mki_cli
 pry
 pry-doc
 ruby-lsp
