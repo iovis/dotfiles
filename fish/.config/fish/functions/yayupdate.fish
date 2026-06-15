@@ -1,3 +1,3 @@
 function yayupdate
-    yay -Sua --answerclean=none --answerdiff=none && pacdump
+    yay -Sua --answerclean=none && pacdump
 end
