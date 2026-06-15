@@ -6,7 +6,10 @@ install-mpv: install-thumbfast install-modernz
 
 init:
     git stash push
+    git checkout master
     git pull
+    git checkout -
+    git rebase -
     git stash pop || true
 
 # Download and install the latest Thumbfast revision
