@@ -1,7 +1,6 @@
 tap "homebrew/bundle"
 tap "homebrew/services"
 tap "jesseduffield/lazygit", trusted: true
-tap "koekeishiya/formulae", trusted: true
 tap "nikitabobko/tap", trusted: true
 tap "osx-cross/arm", trusted: true
 tap "osx-cross/avr", trusted: true

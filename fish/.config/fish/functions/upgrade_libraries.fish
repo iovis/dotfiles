@@ -1,7 +1,7 @@
 function upgrade_libraries
     if command -q brew
         brew update
-        brew upgrade
+        brew upgrade -y
         brew autoremove
         brewdump
     else if command -q pacman
