@@ -5,10 +5,6 @@ tap "nikitabobko/tap", trusted: true
 tap "osx-cross/arm", trusted: true
 tap "osx-cross/avr", trusted: true
 tap "qmk/qmk", trusted: true
-# Code searching, linting, rewriting
-brew "ast-grep"
-# Automatic configure script builder
-brew "autoconf"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Generate compilation database for clang tooling
@@ -31,8 +27,6 @@ brew "eza"
 brew "fd"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
-# Banner-like program prints strings as ASCII art
-brew "figlet"
 # User-friendly command-line shell for UNIX-like operating systems
 brew "fish"
 # Command-line fuzzy finder written in Go
@@ -41,34 +35,20 @@ brew "fzf"
 brew "gh"
 # Distributed revision control system
 brew "git"
-# Git extension for versioning large files
-brew "git-lfs"
-# Open-source GitLab command-line tool
-brew "glab"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
 # Language server for the Go language
 brew "gopls"
-# Graph visualization software from AT&T and Bell Labs
-brew "graphviz"
-# Tool for glamorous shell scripts
-brew "gum"
 # Command-line hex viewer
 brew "hexyl"
 # Improved top (interactive process viewer)
 brew "htop"
-# Run and Test HTTP Requests with plain text and curl
-brew "hurl"
 # Command-line benchmarking tool
 brew "hyperfine"
-# Get events and tasks from the macOS calendar database
-brew "ical-buddy"
 # Tools and libraries to manipulate images in select formats
 brew "imagemagick"
-# Tools and libraries to manipulate images in many formats
-brew "imagemagick@6"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Handy way to save and run project-specific commands
@@ -77,16 +57,12 @@ brew "just"
 brew "lazygit"
 # Pager program similar to more
 brew "less"
-# Linux virtual machines
-brew "lima"
 # Next-gen compiler infrastructure
 brew "llvm"
 # Remote terminal application
 brew "mosh"
 # 'traceroute' and 'ping' in a single tool
 brew "mtr"
-# CLI for MySQL with auto-completion and syntax highlighting
-brew "mycli"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Port scanning utility for large networks
@@ -95,14 +71,8 @@ brew "nmap"
 brew "numbat"
 # Shell command parallelization utility
 brew "parallel"
-# Command-line tool to generate, analyze, convert and manipulate colors
-brew "pastel"
-# CLI for Postgres with auto-completion and syntax highlighting
-brew "pgcli"
 # Package compiler and linker metadata toolkit
 brew "pkgconf"
-# Object-relational database system
-brew "postgresql@17"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Utility that provides fast incremental file transfer
@@ -113,22 +83,14 @@ brew "sd"
 brew "shellcheck"
 # Autoformat shell script source code
 brew "shfmt"
-# Simple keystroke visualizer
-brew "showkey"
-# Command-line interface for https://speedtest.net bandwidth tests
-brew "speedtest-cli"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
 # Opinionated Lua code formatter
 brew "stylua"
-# Formatting technology for Swift source code
-brew "swift-format"
 # Very fast implementation of tldr in Rust
 brew "tealdeer"
-# Granddaddy of HTML tools, with support for modern standards
-brew "tidy-html5"
 # Terminal multiplexer
 brew "tmux"
 # Extremely fast Python package installer and resolver, written in Rust
@@ -141,12 +103,8 @@ brew "watch"
 brew "watchexec"
 # Internet file retriever
 brew "wget"
-# HTTP benchmarking tool
-brew "wrk"
 # Friendly and fast tool for sending HTTP requests
 brew "xh"
-# Fast CSV toolkit written in Rust
-brew "xsv"
 # Blazing fast terminal file manager written in Rust, based on async I/O
 brew "yazi"
 # Feature-rich command-line audio/video downloader
@@ -165,8 +123,6 @@ cask "nikitabobko/tap/aerospace"
 cask "appcleaner"
 # Chromium based browser
 cask "arc"
-# OpenAI's coding agent that runs in your terminal
-cask "codex"
 # Create and run Linux containers using lightweight virtual machines
 cask "container"
 # Disk space visualiser
@@ -182,17 +138,11 @@ cask "google-chrome@canary"
 cask "hammerspoon"
 # Free and open-source media player
 cask "iina"
-# Open-source keystroke visualiser
-cask "keycastr"
 # GPU-based terminal emulator
 cask "kitty"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
-# Display image info and preview unsupported formats in QuickLook
-cask "qlimagesize"
 # Control your tools with a few keystrokes
 cask "raycast"
-# Native GUI tool for relational databases
-cask "tableplus"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
 cask "wezterm"
