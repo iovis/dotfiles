@@ -10,4 +10,4 @@ orphan = true
 desc = "Open in mpv"
 
 [open]
-append_rules = [{ mime = "inode/directory", use = "mpv_dir" }]
+prepend_rules = [{ url = "*/", use = ["open", "mpv_dir", "edit"] }]
