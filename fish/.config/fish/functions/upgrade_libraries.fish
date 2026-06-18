@@ -10,7 +10,7 @@ function upgrade_libraries
 
         if command -q yay
             log_step $(green yay) update
-            yay -Sua --answerclean=none # --answerdiff=none
+            yayupdate
         end
 
         pacorphan
