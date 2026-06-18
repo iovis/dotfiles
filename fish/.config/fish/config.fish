@@ -31,10 +31,11 @@ set -gx JUST_CHOOSER '\
         --reverse \
         --no-input \
         --multi \
-        --bind="j:down,k:up" \
+        --bind=space,enter:accept \
+        --bind="j:down,k:up,q:abort" \
         --bind="p,alt-p:toggle-preview" \
         --bind="r,alt-r:change-preview-window(down|right)" \
-        --bind="i,/:show-input+unbind(j,k,p,r,i,/)" \
+        --bind="i,/:show-input+unbind(j,k,q,p,r,i,/,space)" \
         --preview="just --unstable --color=always --show={}" \
         --preview-window="right:75%" \
         --color=input-border:blue'
