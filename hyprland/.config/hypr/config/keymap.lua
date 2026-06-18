@@ -36,7 +36,7 @@ hl.bind(C(G("t")), hl.dsp.exec_cmd("hyprclose class:widget.btop || kitty --class
 
 hl.bind(G("a"), hl.dsp.exec_cmd("hyprclose class:widget.wiremix || kitty --class=widget.wiremix -e wiremix"))
 hl.bind(S(G("a")), hl.dsp.exec_cmd("hyprfocus class:org.pulseaudio.pavucontrol || uwsm app -- pavucontrol"))
-hl.bind(G("s"), hl.dsp.exec_cmd("hyprfocus class:steam || STEAM_RUNTIME=1 steam -no-cef-sandbox -cef-force-glx"))
+hl.bind(G("s"), hl.dsp.exec_cmd("hyprfocus class:steam || steam"))
 hl.bind(C(G("s")), hl.dsp.exec_cmd("XDG_CURRENT_DESKTOP=GNOME gnome-control-center"))
 hl.bind(G("d"), hl.dsp.exec_cmd("hyprfocus class:kitty || uwsm app -- kitty"))
 hl.bind(C(G("d")), hl.dsp.exec_cmd("uwsm app -- kitty"))
