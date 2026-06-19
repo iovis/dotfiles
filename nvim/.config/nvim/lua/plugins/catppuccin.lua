@@ -22,8 +22,8 @@ return {
         return {
           -- general
           CursorLine = { bg = black },
-          CursorLineSign = { link = "CursorLine" },
-          CursorLineNr = { fg = colors.lavender, bg = black },
+          -- CursorLineSign = { link = "CursorLine" },
+          -- CursorLineNr = { fg = colors.lavender, bg = black },
           EndOfBuffer = {},
           StatusLine = {},
           StatusLineNC = {},
