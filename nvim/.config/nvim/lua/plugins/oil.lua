@@ -31,6 +31,7 @@ return {
     oil.setup({
       default_file_explorer = true,
       skip_confirm_for_simple_edits = true,
+      watch_for_changes = true,
       lsp_file_methods = { autosave_changes = true },
       columns = { { "icon", add_padding = false } },
       float = {
