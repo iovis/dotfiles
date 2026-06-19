@@ -21,12 +21,35 @@ return {
     local show_details = false
     u.ex.abbrev("o", "Oil")
 
+    local permission_hlgroups = {
+      ["-"] = "NonText",
+      ["r"] = "DiagnosticSignWarn",
+      ["w"] = "DiagnosticSignError",
+      ["x"] = "DiagnosticSignOk",
+    }
+
     oil.setup({
       default_file_explorer = true,
       skip_confirm_for_simple_edits = true,
+      lsp_file_methods = { autosave_changes = true },
+      columns = { { "icon", add_padding = false } },
       float = {
         max_height = 0.5,
         max_width = 0.5,
+      },
+      view_options = {
+        show_hidden = true,
+        is_always_hidden = function(name, _)
+          return vim.tbl_contains({
+            "..",
+            ".git",
+          }, name)
+        end,
+      },
+      win_options = {
+        number = true,
+        relativenumber = true,
+        signcolumn = "yes",
       },
       use_default_keymaps = false,
       keymaps = {
@@ -83,9 +106,24 @@ return {
             show_details = not show_details
 
             if show_details then
-              oil.set_columns({ "permissions", "size", "mtime", "icon" })
+              oil.set_columns({
+                {
+                  "permissions",
+                  highlight = function(permission_str)
+                    local hls = {}
+                    for i = 1, #permission_str do
+                      local char = permission_str:sub(i, i)
+                      table.insert(hls, { permission_hlgroups[char], i - 1, i })
+                    end
+                    return hls
+                  end,
+                },
+                { "size", highlight = "Special" },
+                { "mtime", highlight = "Number" },
+                { "icon", add_padding = false },
+              })
             else
-              oil.set_columns({ "icon" })
+              oil.set_columns({ "icon", add_padding = false })
             end
           end,
         },
@@ -98,23 +136,6 @@ return {
             -- modify = ":h",
           },
         },
-      },
-      lsp_file_methods = {
-        autosave_changes = true,
-      },
-      view_options = {
-        show_hidden = true,
-        is_always_hidden = function(name, _)
-          return vim.tbl_contains({
-            "..",
-            ".git",
-          }, name)
-        end,
-      },
-      win_options = {
-        number = true,
-        relativenumber = true,
-        signcolumn = "yes",
       },
     })
   end,
