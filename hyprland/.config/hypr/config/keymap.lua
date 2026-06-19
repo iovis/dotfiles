@@ -39,7 +39,7 @@ hl.bind(S(G("a")), hl.dsp.exec_cmd("hyprfocus class:org.pulseaudio.pavucontrol |
 hl.bind(G("s"), hl.dsp.exec_cmd("hyprfocus class:steam || steam"))
 hl.bind(C(G("s")), hl.dsp.exec_cmd("XDG_CURRENT_DESKTOP=GNOME gnome-control-center"))
 hl.bind(G("d"), hl.dsp.exec_cmd("hyprfocus class:com.mitchellh.ghostty || uwsm app -- ghostty"))
-hl.bind(C(G("d")), hl.dsp.exec_cmd("uwsm app -- ghostty"))
+hl.bind(C(G("d")), hl.dsp.exec_cmd("uwsm app -- ghostty +new-window"))
 hl.bind(G("f"), hl.dsp.exec_cmd("hyprfocus class:zen || uwsm app -- zen-browser"))
 hl.bind(C(G("f")), hl.dsp.exec_cmd("uwsm app -- zen-browser --private-window"))
 hl.bind(G("G"), hl.dsp.exec_cmd("hyprfocus class:chromium || uwsm app -- chromium"))
