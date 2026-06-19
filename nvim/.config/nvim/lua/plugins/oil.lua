@@ -73,6 +73,8 @@ return {
         ["<m-j>"] = "actions.preview_scroll_down",
         ["<m-k>"] = "actions.preview_scroll_up",
         ["<bs>"] = "actions.refresh",
+        ["<leader>y"] = "actions.copy_to_system_clipboard",
+        ["<leader>p"] = "actions.paste_from_system_clipboard",
         ["<leader>v"] = {
           desc = "Open the entry in a vertical split",
           callback = function()
