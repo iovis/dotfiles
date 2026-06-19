@@ -60,9 +60,12 @@ return {
         ["-"] = "actions.parent",
         [","] = "actions.parent",
         ["_"] = "actions.open_cwd",
-        ["gs"] = "actions.change_sort",
         ["gx"] = "actions.open_external",
         ["gh"] = "actions.toggle_hidden",
+        ["gs"] = {
+          nowait = true,
+          "actions.change_sort",
+        },
         -- Custom
         q = { "actions.close", opts = { exit_if_last_buf = true } },
         gt = "actions.toggle_trash",
