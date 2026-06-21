@@ -1,12 +1,12 @@
 # ghostty +list-keybinds
 # ghostty +list-actions
-keybind = super+u=toggle_background_opacity
-
-# Clipboard
-keybind = ctrl+shift+c=copy_to_clipboard:mixed
-keybind = ctrl+shift+v=paste_from_clipboard
+keybind = clear
+# keybind = super+u=toggle_background_opacity  # only on mac
 
 # Tabs
+keybind = ctrl+shift+t=new_tab
+keybind = ctrl+shift+w=close_tab:this
+
 keybind = ctrl+1=goto_tab:1
 keybind = ctrl+2=goto_tab:2
 keybind = ctrl+3=goto_tab:3
@@ -14,19 +14,45 @@ keybind = super+1=goto_tab:1
 keybind = super+2=goto_tab:2
 keybind = super+3=goto_tab:3
 
-# Unbinds
-keybind = alt+left=unbind
-keybind = alt+right=unbind
-keybind = ctrl+alt+arrow_up=unbind
-keybind = ctrl+alt+arrow_down=unbind
-keybind = ctrl+alt+arrow_left=unbind
-keybind = ctrl+alt+arrow_right=unbind
-keybind = alt+1=unbind
-keybind = alt+2=unbind
-keybind = alt+3=unbind
-keybind = alt+4=unbind
-keybind = alt+5=unbind
-keybind = alt+6=unbind
-keybind = alt+7=unbind
-keybind = alt+8=unbind
-keybind = alt+9=unbind
+keybind = ctrl+tab=next_tab
+keybind = ctrl+shift+tab=previous_tab
+
+# Splits
+keybind = ctrl+shift+o=new_split:right
+keybind = ctrl+shift+;=new_split:down
+
+keybind = ctrl+shift+h=goto_split:left
+keybind = ctrl+shift+j=goto_split:down
+keybind = ctrl+shift+k=goto_split:up
+keybind = ctrl+shift+l=goto_split:right
+
+keybind = ctrl+shift+m=toggle_split_zoom
+keybind = ctrl+shift+/=equalize_splits
+
+keybind = ctrl+shift+arrow_up=resize_split:up,100
+keybind = ctrl+shift+arrow_down=resize_split:down,100
+keybind = ctrl+shift+arrow_left=resize_split:left,200
+keybind = ctrl+shift+arrow_right=resize_split:right,200
+keybind = ctrl+shift+alt+arrow_up=resize_split:up,10
+
+keybind = ctrl+shift+alt+arrow_down=resize_split:down,10
+keybind = ctrl+shift+alt+arrow_left=resize_split:left,10
+keybind = ctrl+shift+alt+arrow_right=resize_split:right,10
+
+# Default
+keybind = ctrl+shift+p=toggle_command_palette
+keybind = ctrl+shift+,=reload_config
+keybind = ctrl+shift+c=copy_to_clipboard:mixed
+keybind = ctrl+shift+v=paste_from_clipboard
+keybind = copy=copy_to_clipboard:mixed
+keybind = paste=paste_from_clipboard
+keybind = ctrl+shift+==increase_font_size:1
+keybind = ctrl+shift++=increase_font_size:1
+keybind = ctrl+shift+-=decrease_font_size:1
+keybind = ctrl+shift+0=reset_font_size
+keybind = ctrl+shift+n=new_window
+keybind = ctrl+shift+q=quit
+keybind = ctrl+shift+page_up=jump_to_prompt:-1
+keybind = ctrl+shift+page_down=jump_to_prompt:1
+keybind = ctrl+shift+f=start_search
+keybind = ctrl+shift+a=select_all
