@@ -17,16 +17,17 @@ set -wg automatic-rename-format '#{pane_current_command}'
 set -wg mode-keys vi
 set -wg monitor-activity on
 
-set -s extended-keys off
-set -sg default-terminal "tmux-256color"
-set -sg escape-time 0
+set -s extended-keys on
+set -s extended-keys-format csi-u
+set -g default-terminal "tmux-256color"
+set -g escape-time 0
 
 # Make Yazi render images properly
 set -g allow-passthrough on
-set -ga update-environment TERM
-set -ga update-environment TERM_PROGRAM
+set -ag update-environment TERM
+set -ag update-environment TERM_PROGRAM
 
 # Terminal features
 set -s terminal-features "xterm*:256:clipboard:ccolour:cstyle:extkeys:focus:hyperlinks:overline:margins:mouse:osc7:overline:rectfill:RGB:strikethrough:sync:title:usstyle"
-set -sa terminal-features "screen*:title"
-set -sa terminal-features "rxvt*:ignorefkeys"
+set -as terminal-features "screen*:title"
+set -as terminal-features "rxvt*:ignorefkeys"
