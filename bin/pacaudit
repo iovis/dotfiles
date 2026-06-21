@@ -1,0 +1,309 @@
+#!/usr/bin/env bash
+
+set -uo pipefail
+
+export LC_ALL=C
+
+pacman_path="${PACMAN_PATH:-${XDG_CONFIG_HOME:-$HOME/.config}/pacman}"
+pacfile="$pacman_path/Pacfile"
+aurfile="$pacman_path/Aurfile"
+
+tmpdir=$(mktemp -d)
+trap 'rm -rf "$tmpdir"' EXIT
+
+failed=0
+sudo_ready=0
+sudo_auth_error="$tmpdir/sudo-auth-error"
+
+red=
+green=
+yellow=
+bold=
+reset=
+
+if [[ -z ${NO_COLOR:-} && (-n ${FORCE_COLOR:-} || (-t 1 && ${TERM:-} != dumb)) ]]; then
+  red=$'\033[31m'
+  green=$'\033[32m'
+  yellow=$'\033[33m'
+  bold=$'\033[1m'
+  reset=$'\033[0m'
+fi
+
+status() {
+  local label="$1"
+  local color="$2"
+  local message="$3"
+
+  printf '[ %s%s%s%s ] %s\n' "$bold" "$color" "$label" "$reset" "$message"
+}
+
+ok() {
+  status "ok" "$green" "$1"
+}
+
+warn() {
+  status "warn" "$yellow" "$1"
+}
+
+error() {
+  status "error" "$red" "$1"
+}
+
+diagnostic() {
+  sed $'s/^/\t/'
+}
+
+section() {
+  local title="$1"
+  local file="$2"
+  local severity="${3:-fail}"
+
+  if [[ ! -s "$file" ]]; then
+    return 0
+  fi
+
+  if [[ "$severity" == "warn" ]]; then
+    warn "$title"
+  else
+    error "$title"
+  fi
+  diagnostic <"$file"
+
+  if [[ "$severity" != "warn" ]]; then
+    failed=1
+  fi
+}
+
+authenticate_sudo() {
+  if sudo -n -v 2>/dev/null; then
+    sudo_ready=1
+    return
+  fi
+
+  printf 'Authenticating sudo for root-only package checks...\n' >&2
+
+  if sudo -v 2>"$sudo_auth_error"; then
+    sudo_ready=1
+  fi
+}
+
+check_manifest_file() {
+  local name="$1"
+  local file="$2"
+
+  if [[ ! -f "$file" ]]; then
+    error "$name manifest missing"
+    printf '\t%s\n' "$file"
+    failed=1
+    return 1
+  fi
+
+  return 0
+}
+
+check_database() {
+  local output="$tmpdir/db"
+
+  if pacman -Dk >"$output" 2>&1; then
+    ok "pacman database is consistent"
+  else
+    section "pacman database errors" "$output"
+  fi
+}
+
+check_manifest_sync() {
+  local name="$1"
+  local query_cmd="$2"
+  local manifest="$3"
+
+  local live="$tmpdir/$name-live"
+  local missing_from_manifest="$tmpdir/$name-missing-from-manifest"
+  local stale_manifest="$tmpdir/$name-stale-manifest"
+  local missing_deps="$tmpdir/$name-missing-deps"
+  local query_error="$tmpdir/$name-query-error"
+  local missing_deps_error="$tmpdir/$name-missing-deps-error"
+
+  if ! $query_cmd >"$live" 2>"$query_error"; then
+    section "$name explicit package query failed" "$query_error"
+    if [[ ! -s "$query_error" ]]; then
+      error "$name explicit package query failed"
+      failed=1
+    fi
+    return
+  fi
+
+  if [[ -s "$query_error" ]]; then
+    section "$name explicit package query failed" "$query_error"
+    failed=1
+    return
+  fi
+
+  comm -23 "$live" "$manifest" >"$missing_from_manifest"
+  comm -13 "$live" "$manifest" >"$stale_manifest"
+
+  section "$name explicit packages installed but missing from manifest" "$missing_from_manifest"
+  section "$name manifest entries not installed as explicit packages" "$stale_manifest"
+
+  mapfile -t packages <"$manifest"
+  if ((${#packages[@]} > 0)); then
+    pacman -T "${packages[@]}" >"$missing_deps" 2>"$missing_deps_error"
+    if [[ -s "$missing_deps_error" ]]; then
+      section "$name manifest dependency check failed" "$missing_deps_error"
+      return
+    fi
+    section "$name manifest entries not satisfied locally" "$missing_deps"
+  fi
+
+  if [[ ! -s "$missing_from_manifest" && ! -s "$stale_manifest" && ! -s "$missing_deps" ]]; then
+    ok "$name explicit package manifest matches installed state"
+  fi
+}
+
+check_lingering_packages() {
+  local orphans="$tmpdir/orphans"
+  local optional_only="$tmpdir/optional-only"
+  local orphan_error="$tmpdir/orphan-error"
+  local optional_only_error="$tmpdir/optional-only-error"
+
+  if ! pacman -Qdtq >"$orphans" 2>"$orphan_error" && [[ -s "$orphan_error" ]]; then
+    section "orphan package query failed" "$orphan_error"
+    return
+  fi
+
+  if ! pacman -Qqdtt >"$optional_only" 2>"$optional_only_error" && [[ -s "$optional_only_error" ]]; then
+    section "optional-only dependency query failed" "$optional_only_error"
+    return
+  fi
+
+  section "dependency packages no longer required by anything (orphans)" "$orphans"
+  section "dependency packages kept only as optional dependencies (optional-only)" "$optional_only"
+
+  if [[ ! -s "$orphans" && ! -s "$optional_only" ]]; then
+    ok "no lingering dependency packages"
+  fi
+}
+
+check_missing_files() {
+  local missing="$tmpdir/qk-missing"
+  local error="$tmpdir/qk-error"
+
+  if ((!sudo_ready)); then
+    {
+      cat "$sudo_auth_error"
+      printf 'Run pacaudit from an interactive terminal, or authenticate sudo first.\n'
+    } >"$error"
+    section "package file check requires sudo" "$error"
+    return
+  fi
+
+  # The temp files are user-owned; sudo is only needed for pacman reading paths like /boot.
+  # shellcheck disable=SC2024
+  if ! sudo pacman -Qkq >"$missing" 2>"$error"; then
+    section "package file check failed" "$error"
+    return
+  fi
+
+  section "missing package-owned files" "$missing"
+
+  if [[ ! -s "$missing" ]]; then
+    ok "package file check found no missing files"
+  fi
+}
+
+check_stale_download_dirs() {
+  local cache_dirs="$tmpdir/cache-dirs"
+  local stale_dirs="$tmpdir/stale-download-dirs"
+  local error="$tmpdir/stale-download-dirs-error"
+
+  if ((!sudo_ready)); then
+    return
+  fi
+
+  if ! pacman-conf CacheDir >"$cache_dirs" 2>"$error"; then
+    section "pacman cache directory lookup failed" "$error" warn
+    return
+  fi
+
+  if ! {
+    while IFS= read -r cache_dir; do
+      [[ -n "$cache_dir" ]] || continue
+      sudo find "$cache_dir" -maxdepth 1 -type d -name 'download-*' -empty -print
+    done <"$cache_dirs"
+  } 2>"$error" | sort >"$stale_dirs"; then
+    section "pacman download temp directory check failed" "$error" warn
+    return
+  fi
+
+  section "empty stale pacman download temp directories" "$stale_dirs" warn
+
+  if [[ -s "$stale_dirs" ]]; then
+    printf '\n'
+    printf '\tClean after confirming no package manager is active:\n'
+    printf "\tpgrep -a 'pacman|yay|paru|makepkg|packagekitd|PackageKit'\n"
+    printf "\tsudo find /var/cache/pacman/pkg -maxdepth 1 -type d -name 'download-*' -empty -delete\n"
+  else
+    ok "no empty stale pacman download temp directories"
+  fi
+}
+
+check_pacnew() {
+  local pacnew="$tmpdir/pacnew"
+  local error="$tmpdir/pacnew-error"
+  local scope="visible "
+
+  if ((sudo_ready)); then
+    scope=""
+    if ! {
+      sudo find /etc -xdev \( -name '*.pacnew' -o -name '*.pacorig' -o -name '*.pacsave' -o -name '*.pacsave.[0-9]*' \) -print
+    } 2>"$error" | sort >"$pacnew"; then
+      section "pacnew/pacsave/pacorig scan failed" "$error" warn
+      return
+    fi
+  else
+    find /etc -xdev \( -name '*.pacnew' -o -name '*.pacorig' -o -name '*.pacsave' -o -name '*.pacsave.[0-9]*' \) -print 2>/dev/null | sort >"$pacnew"
+  fi
+
+  section "${scope}pacnew/pacsave/pacorig files to review" "$pacnew" warn
+
+  if [[ -s "$pacnew" ]]; then
+    printf '\n'
+    printf '\tReview package-owned files with: pacdiff --sudo\n'
+    printf '\tPreview the full scan with: sudo pacdiff --output --find\n'
+    printf '\tpacnew means a package shipped a new default config beside your edited file.\n'
+    printf '\tpacsave means pacman saved a modified config while removing or replacing a package.\n'
+    printf '\tpacorig means pacman saved the previous file before installing a package config.\n'
+    printf '\tIf a pacsave does not appear in pacdiff, inspect it manually and remove it if stale.\n'
+    printf '\tMerge or keep any useful changes, then remove the reviewed .pacnew/.pacsave/.pacorig file.\n'
+  else
+    ok "no ${scope}pacnew/pacsave/pacorig files under /etc"
+  fi
+}
+
+authenticate_sudo
+
+native_manifest_ok=0
+aur_manifest_ok=0
+
+if check_manifest_file "native" "$pacfile"; then
+  native_manifest_ok=1
+fi
+
+if check_manifest_file "aur" "$aurfile"; then
+  aur_manifest_ok=1
+fi
+
+check_database
+if ((native_manifest_ok)); then
+  check_manifest_sync "native" "pacman -Qqen" "$pacfile"
+fi
+if ((aur_manifest_ok)); then
+  check_manifest_sync "aur" "pacman -Qqem" "$aurfile"
+fi
+check_lingering_packages
+check_missing_files
+check_stale_download_dirs
+check_pacnew
+
+if ((failed)); then
+  exit 1
+fi

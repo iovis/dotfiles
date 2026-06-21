@@ -13,7 +13,8 @@ function upgrade_libraries
             yayupdate
         end
 
-        pacorphan
+        log_step $(green pacman) audit
+        pacaudit
     else if command -q apt
         sudo apt update
         sudo apt upgrade -y
