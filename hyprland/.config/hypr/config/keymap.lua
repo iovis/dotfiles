@@ -32,7 +32,7 @@ hl.bind(C(G("w")), hl.dsp.exec_cmd("pkill waybar || uwsm app -- waybar"))
 hl.bind(G("e"), hl.dsp.exec_cmd("hyprfocus class:org.gnome.Nautilus || uwsm app -- nautilus"))
 hl.bind(C(G("e")), hl.dsp.exec_cmd("uwsm app -- nautilus --new-window"))
 hl.bind(G("t"), hl.dsp.exec_cmd("hyprclose class:widget.btop || kitty --class=widget.btop -e btop"))
-hl.bind(C(G("t")), hl.dsp.exec_cmd("hyprclose class:widget.btop || kitty --class=widget.btop -e htop"))
+hl.bind(C(G("t")), hl.dsp.exec_cmd("hyprclose class:widget.btop || kitty --class=widget.btop -e htop -s PERCENT_CPU"))
 
 hl.bind(G("a"), hl.dsp.exec_cmd("hyprclose class:widget.wiremix || kitty --class=widget.wiremix -e wiremix"))
 hl.bind(S(G("a")), hl.dsp.exec_cmd("hyprfocus class:org.pulseaudio.pavucontrol || uwsm app -- pavucontrol"))
