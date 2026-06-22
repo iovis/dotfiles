@@ -77,11 +77,6 @@
       "files:search"
    ],
    "providers": {
-      "@Gelei/store.vicinae.bluetooth": {
-         "preferences": {
-            "connectionToggleable": true
-         }
-      },
       "applications": {
          "preferences": {
             "paths": [
