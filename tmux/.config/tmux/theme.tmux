@@ -65,7 +65,7 @@ set -ag window-status-format '#[bg=default,fg=#232634]'
 # set -wg window-active-style fg=white,bg=default
 
 ## Copy mode
-set -wg mode-style 'bg=#292c3c,fg=white'
+set -wg mode-style 'bg=#232634,fg=terminal'
 
 set -wg copy-mode-current-match-style 'bg=#8caaee,fg=black'
 set -wg copy-mode-mark-style 'bg=default,fg=#a6d189'
