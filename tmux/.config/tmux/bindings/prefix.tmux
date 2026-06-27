@@ -67,13 +67,8 @@ bind -N "Run zoxide_sessionist" C-o {
   display-popup -w 50% -h 60% -b none -E zoxide_sessionist
 }
 
-bind -N "Rename session" . command-prompt -I "#S" {
-  rename-session "%%"
-}
-
-bind -N "New session" C command-prompt -p "new session name:" {
-  new-session -A -s "%1" -c "#{pane_current_path}"
-}
+bind -N "Rename session" .   command-prompt -I "#S" { rename-session "%%" }
+bind -N "Rename session" C-. command-prompt -I "#S" { rename-session "%%" }
 
 bind -N "New session" C-n command-prompt -p "new session name:" {
   new-session -A -s "%1" -c "#{pane_current_path}"
@@ -93,6 +88,9 @@ bind -N "New window" C-c new-window
 bind -N "New window (current path)" C-t {
   new-window -c "#{pane_current_path}"
 }
+
+bind -N "Rename window" ,   command-prompt -I "#W" { rename-window "%%" }
+bind -N "Rename window" C-, command-prompt -I "#W" { rename-window "%%" }
 
 bind -N "Close window" C-w kill-window
 bind -N "Reset window" q {
@@ -149,8 +147,8 @@ bind -N "Move pane left (full)"  J move-pane -fv -t '.{next}'
 bind -N "Move pane right (full)" K move-pane -fv -b -t '.{next}'
 bind -N "Move pane up (full)"    L move-pane -fh -t '.{next}'
 
-bind -N "Break pane" Tab break-pane
-bind -N "Break pane detached" Enter break-pane -d
+bind -N "Break pane" Tab break-pane -n remove_on_next_release
+bind -N "Break pane detached" Enter break-pane -d -n remove_on_next_release
 
 ## Join panes
 bind -N "Join pane" j {
