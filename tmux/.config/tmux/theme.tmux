@@ -9,7 +9,7 @@ set -g popup-border-style 'fg=#414559'
 set -g popup-border-lines rounded
 
 ## Message
-set -g message-style 'bg=default,fg=#8caaee'
+set -g message-style 'bg=default,fg=#8caaee,fill=terminal'
 
 ## Status line
 set -g status-style 'bg=default,fg=#51576d'

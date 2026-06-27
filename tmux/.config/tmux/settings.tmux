@@ -1,12 +1,15 @@
 set -g base-index 1
 set -g detach-on-destroy off
+set -g clock-mode-style 24-with-seconds
+set -g copy-mode-line-numbers hybrid
 set -g display-panes-time 4000
 set -g display-time 100000
 set -g focus-events on
+set -g focus-follows-mouse off
 set -g history-limit 100000
 set -g mouse on
 set -g pane-base-index 1
-set -g remain-on-exit off # failed
+set -g remain-on-exit off  # off|on|failed|key
 set -g renumber-windows on
 set -g set-clipboard on
 set -g status-keys emacs
