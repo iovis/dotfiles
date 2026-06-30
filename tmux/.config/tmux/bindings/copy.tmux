@@ -6,6 +6,21 @@ unbind -T copy-mode-vi C-l
 unbind -T copy-mode-vi C-down
 unbind -T copy-mode-vi C-up
 
+# TODO: copy mode pipe selection to program?
+# bind -N "Open current JIRA match" -T copy-mode-vi o {
+#   if -F '#{search_match}' {
+#     run -b 'xdg-open https://atlassian.net/browse/#{q:search_match} >/dev/null 2>&1'
+#   } {
+#     display 'No current search match'
+#   }
+# }
+#
+## Alternative
+# Pipe to a program (as stdin)
+# -C: don't update the terminal clipboard
+# -P: don't create a tmux buffer
+# bind -T copy-mode-vi o send -X copy-pipe-and-cancel -CP 'jira-open'
+
 # Enter copy mode
 bind -n C-_ if "$forward_keys" {
   send C-_
