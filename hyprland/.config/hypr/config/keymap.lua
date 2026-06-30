@@ -18,7 +18,7 @@ local function A(key)
 end
 
 ---- Power management
-local logout = "loginctl terminate user david"
+local logout = "hyprshutdown -t logout"
 local powermenu = "hyprclose class:widget.powermenu || kitty --class=widget.powermenu -e powermenu"
 local screensaver = "kitty --class=widget.screensaver -o background_opacity=1 -o background=black -e cmatrix -bsk"
 hl.bind(C(G("q")), hl.dsp.exec_cmd(logout))
