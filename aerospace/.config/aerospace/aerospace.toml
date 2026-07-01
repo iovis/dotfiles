@@ -114,7 +114,12 @@ q = ["close-all-windows-but-current", "mode main"]
 k = ["workspace K", "mode main"]
 shift-k = ["move-node-to-workspace K", "mode main"]
 s = ["exec-and-forget aerospace_secondary", "mode main"]
-w = ["exec-and-forget aerospace_swap", "mode main"]
+
+w = [
+  "move-node-to-monitor --wrap-around next && focus-monitor --wrap-around next && focus left && move-node-to-monitor --wrap-around next && focus-monitor --wrap-around next",
+  "mode main",
+]
+
 1 = ["exec-and-forget aerospace_move_all_to_workspace 1", "mode main"]
 2 = ["exec-and-forget aerospace_move_all_to_workspace 2", "mode main"]
 3 = ["exec-and-forget aerospace_move_all_to_workspace 3", "mode main"]
