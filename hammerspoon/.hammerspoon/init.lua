@@ -20,7 +20,7 @@ hyper = { "ctrl", "cmd", "alt", "shift" }
 local u = require("utils")
 require("application_launcher")
 require("bindings")
-require("aerospace")
+require("floating_windows")
 pcall(require, "local")
 
 u.notify("Configuration Reloaded")

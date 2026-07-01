@@ -69,6 +69,31 @@ K = "secondary"  # Non-main monitor in case when there are only two monitors
 
 # All possible commands: https://nikitabobko.github.io/AeroSpace/commands
 
+# Layouts
+ctrl-alt-cmd-comma = "layout h_accordion"
+ctrl-alt-cmd-period = "flatten-workspace-tree"
+ctrl-alt-cmd-slash = "layout tiles horizontal vertical"
+ctrl-alt-cmd-y = "fullscreen off && layout tiling"
+
+# Workspaces
+ctrl-shift-backspace = "workspace-back-and-forth"
+
+# Windows
+ctrl-alt-cmd-h = "focus left --boundaries all-monitors-outer-frame"
+ctrl-alt-cmd-l = "focus right --boundaries all-monitors-outer-frame"
+ctrl-alt-cmd-shift-h = "move left"
+ctrl-alt-cmd-shift-l = "move right"
+ctrl-alt-cmd-left = "join-with left"
+ctrl-alt-cmd-down = "join-with down"
+ctrl-alt-cmd-up = "join-with up"
+ctrl-alt-cmd-right = "join-with right"
+ctrl-alt-cmd-semicolon = "resize smart +400"
+ctrl-alt-cmd-shift-semicolon = "resize smart -400"
+ctrl-alt-cmd-m = "fullscreen"
+
+# Displays
+ctrl-alt-cmd-tab = "move-node-to-monitor --focus-follows-window --wrap-around next"
+
 ctrl-alt-cmd-j = "workspace --wrap-around prev"
 ctrl-alt-cmd-k = "workspace --wrap-around next"
 ctrl-alt-cmd-shift-j = "move-node-to-workspace --focus-follows-window --wrap-around prev"
