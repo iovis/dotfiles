@@ -123,12 +123,3 @@ alias cw="cargo watch -x 'nextest run'"
 ctn() {
   cargo nextest run --nocapture
 }
-
-## tmux
-alias tksv='tmux kill-server'
-alias tl='tmux list-sessions'
-alias tlk='tmux list-keys'
-alias tlkc='tmux list-keys -T copy-mode-vi'
-alias tlkp='tmux list-keys -T prefix'
-alias tlkr='tmux list-keys -T root'
-alias tm="tmux attach || tmux new-session"

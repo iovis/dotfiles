@@ -85,6 +85,24 @@ else
   }
 fi
 
+# tmux
+if type tmux > /dev/null; then
+  alias tksv='tmux kill-server'
+  alias tl='tmux list-sessions'
+  alias tlk='tmux list-keys'
+  alias tlkc='tmux list-keys -T copy-mode-vi'
+  alias tlkp='tmux list-keys -T prefix'
+  alias tlkr='tmux list-keys -T root'
+
+  function tm() {
+    if [[ $# -gt 0 ]]; then
+      tmux $@
+    else
+      tmux attach || tmux new-session
+    fi
+  }
+fi
+
 # zoxide
 if type zoxide > /dev/null; then
   eval "$(zoxide init zsh)"
