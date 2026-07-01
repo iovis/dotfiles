@@ -6,6 +6,8 @@ keybind = clear
 # Tabs
 keybind = ctrl+shift+t=new_tab
 keybind = ctrl+shift+w=close_tab:this
+keybind = super+t=new_tab
+keybind = super+w=close_tab:this
 
 keybind = ctrl+1=goto_tab:1
 keybind = ctrl+2=goto_tab:2
@@ -43,16 +45,26 @@ keybind = ctrl+shift+alt+arrow_right=resize_split:right,10
 keybind = ctrl+shift+p=toggle_command_palette
 keybind = ctrl+shift+,=reload_config
 keybind = ctrl+shift+c=copy_to_clipboard:mixed
+keybind = super+c=copy_to_clipboard:mixed
 keybind = ctrl+shift+v=paste_from_clipboard
+keybind = super+v=paste_from_clipboard
 keybind = copy=copy_to_clipboard:mixed
 keybind = paste=paste_from_clipboard
 keybind = ctrl+shift+==increase_font_size:1
+keybind = super+==increase_font_size:1
 keybind = ctrl+shift++=increase_font_size:1
+keybind = super++=increase_font_size:1
 keybind = ctrl+shift+-=decrease_font_size:1
+keybind = super+-=decrease_font_size:1
 keybind = ctrl+shift+0=reset_font_size
+keybind = super+0=reset_font_size
 keybind = ctrl+shift+n=new_window
+keybind = super+n=new_window
 keybind = ctrl+shift+q=quit
+keybind = super+q=quit
 keybind = ctrl+shift+page_up=jump_to_prompt:-1
 keybind = ctrl+shift+page_down=jump_to_prompt:1
 keybind = ctrl+shift+f=start_search
+keybind = super+f=start_search
 keybind = ctrl+shift+a=select_all
+keybind = super+a=select_all
