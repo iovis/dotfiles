@@ -1,6 +1,6 @@
 local u = require("utils")
 
-u.bind.cmd({ hyper, "r" }, "aerospace reload-config", {
+u.bind.cmd({ hyper, "r" }, "aerospace reload-config --warnings-as-errors", {
   success_message = "Aerospace reloaded",
   error = true,
 })
@@ -9,10 +9,10 @@ u.bind.cmd({ hyper, "r" }, "aerospace reload-config", {
 -- Layouts --
 -------------
 ---See: https://nikitabobko.github.io/AeroSpace/commands#layout
-u.bind.cmd({ ctrl_alt_cmd, "," }, "aerospace layout accordion horizontal")
+u.bind.cmd({ ctrl_alt_cmd, "," }, "aerospace layout h_accordion")
 u.bind.cmd({ ctrl_alt_cmd, "." }, "aerospace flatten-workspace-tree")
 u.bind.cmd({ ctrl_alt_cmd, "/" }, "aerospace layout tiles horizontal vertical")
-u.bind.cmd({ ctrl_alt_cmd, "y" }, "aerospace fullscreen off; aerospace layout tiling")
+u.bind.cmd({ ctrl_alt_cmd, "y" }, "aerospace eval 'fullscreen off && layout tiling'")
 
 ----------------
 -- Workspaces --
@@ -69,7 +69,7 @@ local function float_layout(binding, os_shortcut)
             u.notify("AeroSpace is not running")
           end
         end
-      end, { "-c", "aerospace layout floating || true" })
+      end, { "-c", "aerospace layout floating" })
       :start()
   end)
 end
@@ -93,7 +93,4 @@ float_layout({ ctrl_shift, ";" }, { fn_ctrl, "r" })
 -- Displays --
 --------------
 ---send window to monitor and follow focus
-u.bind.cmd(
-  { ctrl_alt_cmd, "tab" },
-  "aerospace move-node-to-monitor --wrap-around next && aerospace focus-monitor --wrap-around next"
-)
+u.bind.cmd({ ctrl_alt_cmd, "tab" }, "aerospace move-node-to-monitor --focus-follows-window --wrap-around next")

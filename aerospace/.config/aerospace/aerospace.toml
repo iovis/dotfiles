@@ -1,5 +1,6 @@
 config-version = 2
 start-at-login = true
+auto-reload-config = true
 accordion-padding = 350
 # Mouse follows focus when focused monitor changes
 # Drop it from your config, if you don't like this behavior
@@ -9,6 +10,27 @@ accordion-padding = 350
 on-focused-monitor-changed = []
 on-focus-changed = []
 persistent-workspaces = ["1", "2", "3", "4", "K"]
+
+# Floating layout apps
+# $ aerospace list-apps
+on-window-detected = [
+  { if = "test %{app-bundle-id} = com.apple.finder", run = "layout floating" },
+  { if = "test %{app-bundle-id} = com.apple.mail", run = "layout floating" },
+  { if = "test %{app-bundle-id} = com.1password.1password", run = "layout floating" },
+  { if = "test %{app-bundle-id} = com.apple.Music", run = "layout floating" },
+  { if = "test %{app-bundle-id} = com.apple.MobileSMS", run = "layout floating" },
+  { if = "test %{app-bundle-id} = com.colliderli.iina", run = "layout floating" },
+  { if = "test %{app-bundle-id} = com.cisco.secureclient.gui", run = "layout floating" },
+  # Webex
+  { if = "test %{app-bundle-id} = Cisco-Systems.Spark", run = [
+    "layout floating",
+    "move-node-to-monitor main"
+  ] },
+  { if = "test %{app-bundle-id} = com.culturedcode.ThingsMac", run = "layout floating" },
+  { if = "test %{app-bundle-id} = com.apple.Home", run = "layout floating" },
+  { if = "test %{app-bundle-id} = com.apple.FaceTime", run = "layout floating" },
+  { if = "test %{app-bundle-id} = com.daisydiskapp.DaisyDiskStandAlone", run = "layout floating" },
+]
 
 [exec.env-vars]
 PATH = "${HOME}/.dotfiles/bin:/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}"
@@ -49,16 +71,16 @@ K = "secondary"  # Non-main monitor in case when there are only two monitors
 
 ctrl-alt-cmd-j = "workspace --wrap-around prev"
 ctrl-alt-cmd-k = "workspace --wrap-around next"
-ctrl-alt-cmd-shift-j = ["move-node-to-workspace prev", "workspace prev"]
-ctrl-alt-cmd-shift-k = ["move-node-to-workspace next", "workspace next"]
+ctrl-alt-cmd-shift-j = "move-node-to-workspace --focus-follows-window --wrap-around prev"
+ctrl-alt-cmd-shift-k = "move-node-to-workspace --focus-follows-window --wrap-around next"
 ctrl-alt-cmd-1 = "workspace 1"
 ctrl-alt-cmd-2 = "workspace 2"
 ctrl-alt-cmd-3 = "workspace 3"
 ctrl-alt-cmd-4 = "workspace 4"
-ctrl-alt-cmd-shift-1 = ["move-node-to-workspace 1", "workspace 1"]
-ctrl-alt-cmd-shift-2 = ["move-node-to-workspace 2", "workspace 2"]
-ctrl-alt-cmd-shift-3 = ["move-node-to-workspace 3", "workspace 3"]
-ctrl-alt-cmd-shift-4 = ["move-node-to-workspace 4", "workspace 4"]
+ctrl-alt-cmd-shift-1 = "move-node-to-workspace --focus-follows-window 1"
+ctrl-alt-cmd-shift-2 = "move-node-to-workspace --focus-follows-window 2"
+ctrl-alt-cmd-shift-3 = "move-node-to-workspace --focus-follows-window 3"
+ctrl-alt-cmd-shift-4 = "move-node-to-workspace --focus-follows-window 4"
 ctrl-alt-cmd-space = "mode prefix"
 
 [mode.prefix.binding]
@@ -72,59 +94,3 @@ w = ["exec-and-forget aerospace_swap", "mode main"]
 2 = ["exec-and-forget aerospace_move_all_to_workspace 2", "mode main"]
 3 = ["exec-and-forget aerospace_move_all_to_workspace 3", "mode main"]
 4 = ["exec-and-forget aerospace_move_all_to_workspace 4", "mode main"]
-5 = ["exec-and-forget aerospace_move_all_to_workspace 5", "mode main"]
-6 = ["exec-and-forget aerospace_move_all_to_workspace 6", "mode main"]
-7 = ["exec-and-forget aerospace_move_all_to_workspace 7", "mode main"]
-8 = ["exec-and-forget aerospace_move_all_to_workspace 8", "mode main"]
-9 = ["exec-and-forget aerospace_move_all_to_workspace 9", "mode main"]
-
-# Floating layout apps
-# $ aerospace list-apps
-[[on-window-detected]]
-if.app-id = "com.apple.finder"
-run = "layout floating"
-
-[[on-window-detected]]
-if.app-id = "com.apple.mail"
-run = "layout floating"
-
-[[on-window-detected]]
-if.app-id = "com.1password.1password"
-run = "layout floating"
-
-[[on-window-detected]]
-if.app-id = "com.apple.Music"
-run = "layout floating"
-
-[[on-window-detected]]
-if.app-id = "com.apple.MobileSMS"
-run = "layout floating"
-
-[[on-window-detected]]
-if.app-id = "com.colliderli.iina"
-run = "layout floating"
-
-[[on-window-detected]]
-if.app-id = "com.cisco.secureclient.gui"
-run = "layout floating"
-
-[[on-window-detected]]
-# Webex
-if.app-id = "Cisco-Systems.Spark"
-run = ["layout floating", "move-node-to-monitor main"]
-
-[[on-window-detected]]
-if.app-id = "com.culturedcode.ThingsMac"
-run = "layout floating"
-
-[[on-window-detected]]
-if.app-id = "com.apple.Home"
-run = "layout floating"
-
-[[on-window-detected]]
-if.app-id = "com.apple.FaceTime"
-run = "layout floating"
-
-[[on-window-detected]]
-if.app-id = "com.daisydiskapp.DaisyDiskStandAlone"
-run = "layout floating"

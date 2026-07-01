@@ -15,7 +15,4 @@ elseif u.current_file() == "Cargo.toml" then
       end,
     })
   end
-elseif u.current_file() == "aerospace.toml" then
-  vim.keymap.set("n", "s<cr>", ":silent !aerospace reload-config<cr>", { buf = 0 })
-  vim.keymap.set("n", "<leader>so", ":silent !aerospace reload-config<cr>", { buf = 0 })
 end
