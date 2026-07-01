@@ -76,6 +76,11 @@ return {
           -- statuscolumn
           VisualLineNr = { fg = colors.peach, bold = true },
 
+          -- termdebug
+          debugPC = { link = "Visual" },
+          debugBreakpoint = { fg = colors.peach, bg = "none", bold = true },
+          debugBreakpointDisabled = { fg = colors.surface2, bg = "none" },
+
           -- treesitter
           TreesitterContext = { bg = black, bold = true },
           TreesitterContextBottom = { style = {} }, -- Disable underline
