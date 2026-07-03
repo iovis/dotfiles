@@ -55,17 +55,13 @@ bind -T copy-mode-vi C-_ command-prompt -i -I "#{pane_search_string}" -T search 
 bind -T copy-mode-vi C-/ command-prompt -i -I "#{pane_search_string}" -T search -p "(search up)" { send-keys -X search-backward-incremental "%%" }
 
 # Copy
-bind -T copy-mode-vi y     send -X copy-selection-and-cancel
+bind -T copy-mode-vi c     send -X copy-selection
 bind -T copy-mode-vi Space send -X copy-pipe-and-cancel "tmux paste-buffer -p"
+bind -T copy-mode-vi y     send -X copy-selection-and-cancel
 bind -T copy-mode-vi m-y   send -X copy-pipe-no-clear
 bind -T copy-mode-vi Y     send -X copy-pipe-end-of-line-and-cancel
 
 bind -N "Copy word and paste it directly" -T copy-mode-vi Enter {
   send -X select-word
   send -X copy-pipe-and-cancel "tmux paste-buffer -p"
-}
-
-bind -N "Copy line" -T copy-mode-vi c {
-  send -X select-line
-  send -X copy-pipe-and-cancel
 }
