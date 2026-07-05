@@ -12,6 +12,7 @@ return {
       url = "tmux-plugins/tmux-resurrect",
       opts = {
         ["resurrect-capture-pane-contents"] = "on",
+        ["resurrect-pane-contents-area"] = "visible",
         ["resurrect-processes"] = "lazygit",
         ["resurrect-strategy-nvim"] = "session",
         ["resurrect-save"] = "S",
