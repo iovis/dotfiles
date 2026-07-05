@@ -193,7 +193,12 @@ return {
                   })
                 else
                   vim.ui.input({ prompt = item.reg, default = item.data }, function(input)
-                    vim.fn.setreg(item.reg, input or "")
+                    -- Don't do anything on cancel
+                    if not input then
+                      return
+                    end
+
+                    vim.fn.setreg(item.reg, input)
 
                     -- refresh list
                     picker.list:set_selected()
