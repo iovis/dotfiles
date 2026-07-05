@@ -67,7 +67,7 @@ end
 
 local obsession_augroup = vim.api.nvim_create_augroup("obsession", { clear = true })
 
-vim.api.nvim_create_autocmd("BufEnter", {
+vim.api.nvim_create_autocmd("FocusLost", {
   desc = "Autosave session",
   group = obsession_augroup,
   pattern = "*",
