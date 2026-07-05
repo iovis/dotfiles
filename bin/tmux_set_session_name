@@ -3,9 +3,10 @@
 set -euo pipefail
 
 current_path=$(tmux display -p '#{pane_current_path}')
-new_session_name=$(basename "$current_path" | tr '.' '_')
+new_session_name=$(basename "$current_path")
+new_session_target="=$new_session_name:"
 
-if tmux has-session -t "=$new_session_name" &>/dev/null; then
+if tmux has-session -t "$new_session_target" &>/dev/null; then
   tmux display "Session $new_session_name already exists!"
   exit
 fi

@@ -27,10 +27,12 @@ fzf_command() {
 }
 
 session_path=$(eval "$zoxide_folders" | fzf_command)
-session_name=$(basename "$session_path" | tr '.' '_')
+session_name=$(basename "$session_path")
 
 if [[ -z "$session_path" || -z "$session_name" ]]; then
   exit 0
 fi
 
-tmux has-session -t "=$session_name" || tmux new-session -d -s "$session_name" -c "$session_path" && tmux switch-client -t "=$session_name"
+session_target="=$session_name:"
+
+tmux has-session -t "$session_target" || tmux new-session -d -s "$session_name" -c "$session_path" && tmux switch-client -t "$session_target"

@@ -35,8 +35,9 @@ fzf_command() {
 }
 
 session_path="$PROJECT_HOME/$(fd_command | fzf_command)"
-session_name=$(basename "$session_path" | tr '.' '_')
+session_name=$(basename "$session_path")
+session_target="=$session_name:"
 
 mkdir -p "$session_path"
 
-tmux has-session -t "=$session_name" || tmux new-session -d -s "$session_name" -c "$session_path" && tmux switch-client -t "=$session_name"
+tmux has-session -t "$session_target" || tmux new-session -d -s "$session_name" -c "$session_path" && tmux switch-client -t "$session_target"

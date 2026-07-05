@@ -44,7 +44,7 @@ switch_session() {
 main() {
   local session=$(current_session_name)
   switch_session
-  tmux kill-session -t "$session"
+  tmux kill-session -t "=${session}:"
 }
 
 main

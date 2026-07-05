@@ -11,9 +11,10 @@ fi
 
 current_pane_id=$(tmux display -p '#{pane_id}')
 current_path=$(tmux display -p '#{pane_current_path}')
-new_session_name=$(basename "$current_path" | tr '.' '_')
+new_session_name=$(basename "$current_path")
+new_session_target="=$new_session_name:"
 
-if tmux has-session -t "=$new_session_name" &>/dev/null; then
+if tmux has-session -t "$new_session_target" &>/dev/null; then
   tmux display "Session $new_session_name already exists!"
   exit
 fi
@@ -22,10 +23,10 @@ fi
 tmux new-session -d -s "$new_session_name" -c "$current_path"
 
 # Move the pane to the new session and delete the default pane
-new_session_pane_id=$(tmux list-panes -t "=$new_session_name" -F "#{pane_id}")
+new_session_pane_id=$(tmux list-panes -t "$new_session_target" -F "#{pane_id}")
 tmux join-pane -s "$current_pane_id" -t "$new_session_pane_id"
 tmux kill-pane -t "$new_session_pane_id"
 
 # Switch to new session
-tmux switch-client -t "=$new_session_name"
+tmux switch-client -t "$new_session_target"
 tmux display "Session $new_session_name created"
