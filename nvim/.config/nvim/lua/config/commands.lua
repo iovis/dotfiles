@@ -13,12 +13,14 @@ end, {})
 vim.api.nvim_create_user_command("Delregisters", function(opts)
   local reg = opts.args
 
-  if #reg == 1 then
-    vim.fn.setreg(reg, "")
-  else
+  if reg == "" then
     for char in u.range("a", "z") do
       vim.fn.setreg(char, "")
     end
+  elseif #reg == 1 then
+    vim.fn.setreg(reg, "")
+  else
+    vim.notify("Unrecognized register: " .. reg, vim.log.levels.ERROR)
   end
 end, { nargs = "?" })
 
