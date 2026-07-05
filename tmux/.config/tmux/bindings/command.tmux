@@ -43,42 +43,44 @@ bind -N "Tmux customization mode" -T command z {
 }
 
 ## Justfile
+just_available="just --summary >/dev/null 2>&1"
+
 bind -N "Run just picker" -T command j {
-  if "test -f justfile" {
-    display-popup -w 75% -h 50% -T ' just ' -b rounded "just --choose"
+  if $just_available {
+    display-popup -w 75% -h 50% -T ' just ' -b rounded -EE "just --choose"
   } {
-    display-message "No justfile!"
+    display-message "No usable justfile!"
   }
 }
 
 bind -N "Run just console" -T command c {
-  if "test -f justfile" {
+  if $just_available {
     new-window -Sn console "just console || tmux display-message 'just console failed'"
   } {
-    display-message "No justfile!"
+    display-message "No usable justfile!"
   }
 }
 
 bind -N "Run just db" -T command d {
-  if "test -f justfile" {
+  if $just_available {
     new-window -Sn db "just db || tmux display-message 'just db failed'"
   } {
-    display-message "No justfile!"
+    display-message "No usable justfile!"
   }
 }
 
 bind -N "Run just dev" -T command s {
-  if "test -f justfile" {
+  if $just_available {
     new-window -Sn dev "just dev || tmux display-message 'just dev failed'"
   } {
-    display-message "No justfile!"
+    display-message "No usable justfile!"
   }
 }
 
 bind -N "Run just test" -T command t {
-  if "test -f justfile" {
+  if $just_available {
     new-window -n test -d "just test || tmux display-message 'just test failed'"
   } {
-    display-message "No justfile!"
+    display-message "No usable justfile!"
   }
 }
