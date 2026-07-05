@@ -27,6 +27,7 @@ set -g escape-time 0
 
 # Make Yazi render images properly
 set -g allow-passthrough on
+set -gu update-environment # reset setting to default before appending
 set -ag update-environment TERM
 set -ag update-environment TERM_PROGRAM
 
