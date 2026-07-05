@@ -49,15 +49,15 @@ return {
         end),
     })
 
-    for _, bracket in pairs(brackets) do
-      Rule("", " " .. bracket[2])
+    for _, bracket in ipairs(brackets) do
+      npairs.add_rule(Rule("", " " .. bracket[2])
         :with_pair(cond.none())
         :with_move(function(opts)
           return opts.char == bracket[2]
         end)
         :with_cr(cond.none())
         :with_del(cond.none())
-        :use_key(bracket[2])
+        :use_key(bracket[2]))
     end
   end,
 }
