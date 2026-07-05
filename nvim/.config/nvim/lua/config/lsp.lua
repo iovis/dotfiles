@@ -51,7 +51,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     vim.keymap.set("n", "t", vim.lsp.buf.definition, { desc = "vim.lsp.buf.definition", buf = bufnr })
-    vim.keymap.set("n", "<leader>lx", vim.lsp.codelens.run, { desc = "vim.lsp.codelens.run", buf = bufnr })
 
     ---- Signature/Definition
     vim.keymap.set({ "n", "i" }, "<c-s>", vim.lsp.buf.signature_help, {

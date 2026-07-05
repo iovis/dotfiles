@@ -1,6 +1,6 @@
 local u = require("config.utils")
 
-vim.keymap.set("i", "<m-'>", ".{  }<left><left>")
+vim.keymap.set("i", "<m-'>", ".{  }<left><left>", { buf = 0 })
 
 if u.current_file():match("src/") then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux zig build run<cr>", { buf = 0 })
