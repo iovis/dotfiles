@@ -3,7 +3,6 @@ set -g prefix C-Space
 unbind Space
 
 # Pass-through
-bind C-k send 'C-k'
 bind C-l send 'C-l'
 
 ## Quick settings
@@ -142,10 +141,10 @@ bind right select-pane -R
 bind up    select-pane -U
 
 # Make pane full split
-bind -N "Move pane down (full)"  H move-pane -fh -b -t '.{next}'
-bind -N "Move pane left (full)"  J move-pane -fv -t '.{next}'
-bind -N "Move pane right (full)" K move-pane -fv -b -t '.{next}'
-bind -N "Move pane up (full)"    L move-pane -fh -t '.{next}'
+bind -N "Move pane left (full)"  H move-pane -fh -b -t '.{next}'
+bind -N "Move pane down (full)"  J move-pane -fv -t '.{next}'
+bind -N "Move pane up (full)"    K move-pane -fv -b -t '.{next}'
+bind -N "Move pane right (full)" L move-pane -fh -t '.{next}'
 
 bind -N "Break pane" Tab break-pane
 bind -N "Break pane detached" Enter break-pane -d
