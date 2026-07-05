@@ -27,11 +27,10 @@ set -g escape-time 0
 
 # Make Yazi render images properly
 set -g allow-passthrough on
-set -gu update-environment # reset setting to default before appending
+set -gu update-environment
 set -ag update-environment TERM
 set -ag update-environment TERM_PROGRAM
 
 # Terminal features
-set -s terminal-features "xterm*:256:clipboard:ccolour:cstyle:extkeys:focus:hyperlinks:overline:margins:mouse:osc7:overline:rectfill:RGB:strikethrough:sync:title:usstyle"
-set -as terminal-features "screen*:title"
-set -as terminal-features "rxvt*:ignorefkeys"
+set -su terminal-features
+set -as terminal-features "xterm*:256:extkeys:hyperlinks:overline:margins:mouse:osc7:rectfill:RGB:strikethrough:sync:usstyle"
