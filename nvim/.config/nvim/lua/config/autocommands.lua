@@ -104,16 +104,13 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 ---- Map [q] to close if reading from STDIN
-vim.api.nvim_create_autocmd("BufWinEnter", {
-  once = true,
+vim.api.nvim_create_autocmd("StdinReadPost", {
   callback = function()
-    if vim.v.argv[3] == "-" then
-      vim.keymap.set("n", "<leader>x", "<cmd>qa!<cr>", { buf = 0 })
-      vim.keymap.set("n", "q", "<cmd>qa!<cr>", {
-        buf = 0,
-        nowait = true,
-      })
-    end
+    vim.keymap.set("n", "<leader>x", "<cmd>qa!<cr>", { buf = 0 })
+    vim.keymap.set("n", "q", "<cmd>qa!<cr>", {
+      buf = 0,
+      nowait = true,
+    })
   end,
 })
 
