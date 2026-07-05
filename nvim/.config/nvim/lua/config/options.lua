@@ -6,7 +6,6 @@ vim.g.foldcolumn = false
 -- vim.g.health = { style = "float" }
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-vim.g.messages_persistent = true
 vim.g.scrolloff = 4
 vim.g.termdebug_config = { sign = "●" }
 vim.g.winbar_full_path = false

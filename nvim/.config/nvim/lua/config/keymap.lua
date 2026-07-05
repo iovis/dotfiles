@@ -388,18 +388,6 @@ vim.keymap.set("n", "yoF", function()
   vim.cmd("redraw!")
 end, { desc = "Toggle foldcolumn" })
 
-vim.keymap.set("n", "yom", function()
-  vim.g.messages_persistent = not vim.g.messages_persistent
-
-  if vim.g.messages_persistent then
-    vim.o.messagesopt = "hit-enter,history:2000"
-    vim.notify("Persistent messages")
-  else
-    vim.o.messagesopt = "wait:500,history:2000"
-    vim.notify("Temporary messages")
-  end
-end, { desc = "Toggle message dismissal" })
-
 vim.keymap.set("n", "yoW", function()
   if vim.opt.diff:get() then
     -- Toggle ignore whitespace in diff
