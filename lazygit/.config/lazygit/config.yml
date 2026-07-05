@@ -62,12 +62,12 @@ promptToReturnFromSubprocess: false
 keybinding:
   universal:
     confirmInEditor: <alt+enter>
-    # return: [h, <esc>]
-    goInto: <enter>
+    return: [h, <esc>]
+    goInto: [l, <enter>]
     prevBlock-alt: <ctrl+k>
     nextBlock-alt: <ctrl+j>
-    prevTab: [h, <alt+h>, <ctrl+h>, <backspace>]
-    nextTab: [l, <alt+l>, <ctrl+l>]
+    prevTab: [<ctrl+h>, <backspace>]
+    nextTab: <ctrl+l>
   commits:
     moveDownCommit: <alt+j>
     moveUpCommit: <alt+k>
@@ -77,3 +77,6 @@ keybinding:
   files:
     commitChanges: C
     commitChangesWithEditor: c
+  main:
+    prevHunk: <left>
+    nextHunk: <right>
