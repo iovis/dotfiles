@@ -15,15 +15,19 @@ elseif u.current_file():match("_spec.rb") then
   vim.keymap.set("n", "<leader>sd", ":TestFile --format documentation<cr>", { buf = 0, silent = true })
   vim.keymap.set("n", "<leader>sp", ":TestNearest -strategy=test_prof<cr>", { buf = 0, silent = true })
 
-  vim.api.nvim_create_autocmd("BufWritePost", {
-    desc = "Run RSpec on save",
-    group = vim.api.nvim_create_augroup("rspec_runner", { clear = true }),
-    buffer = vim.api.nvim_get_current_buf(),
-    callback = require("config.hooks.rspec").run,
-  })
-
   ---- Toggle autotest
   if vim.g.custom_hooks then
+    -- Only clean up autocmds belonging to this buffer
+    local augroup = vim.api.nvim_create_augroup("rspec_runner", { clear = false })
+    vim.api.nvim_clear_autocmds({ group = augroup, buffer = 0 })
+
+    vim.api.nvim_create_autocmd("BufWritePost", {
+      desc = "Run RSpec on save",
+      group = augroup,
+      buffer = vim.api.nvim_get_current_buf(),
+      callback = require("config.hooks.rspec").run,
+    })
+
     vim.keymap.set("n", "<leader>TD", function()
       vim.g.autotest = nil
       vim.notify("Autotest disabled")
@@ -83,9 +87,13 @@ elseif u.current_file() == "Gemfile" then
   vim.keymap.set("n", "s<cr>", "<cmd>Tux bundle install<cr>", { buf = 0 })
 
   if vim.g.custom_hooks then
+    -- Only clean up autocmds belonging to this buffer
+    local augroup = vim.api.nvim_create_augroup("bundler_dependencies", { clear = false })
+    vim.api.nvim_clear_autocmds({ group = augroup, buffer = 0 })
+
     vim.api.nvim_create_autocmd({ "BufWinEnter", "BufWritePost" }, {
       desc = "Check bundler dependencies",
-      group = vim.api.nvim_create_augroup("bundler_dependencies", { clear = true }),
+      group = augroup,
       buffer = vim.api.nvim_get_current_buf(),
       callback = function()
         require("config.hooks.dependencies").run("bundler")
