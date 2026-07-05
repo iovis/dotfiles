@@ -34,10 +34,6 @@ bind -N "Open Notes" -T command u {
   new-window -Sn notes notes
 }
 
-bind -N "Switch to git worktree" -T command w {
-  display-popup -w 80% -h 80% -b none -E gws
-}
-
 bind -N "Open yazi" -T command y {
   new-window -Sn yazi yazi
 }
