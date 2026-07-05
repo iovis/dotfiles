@@ -43,7 +43,7 @@ bind -N "Tmux customization mode" -T command z {
 }
 
 ## Justfile
-just_available="just --summary >/dev/null 2>&1"
+%hidden just_available="just --summary >/dev/null 2>&1"
 
 bind -N "Run just picker" -T command j {
   if $just_available {
