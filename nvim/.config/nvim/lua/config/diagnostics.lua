@@ -54,10 +54,12 @@ end, { desc = "Toggle diagnostics" })
 ---- Toggle multiline diagnostics
 vim.keymap.set("n", "yoe", function()
   multiline_diagnostics = not multiline_diagnostics
+  -- remove virtual text when using multiline diagnostics
+  virtual_text = not multiline_diagnostics
 
   vim.diagnostic.config({
     virtual_lines = multiline_diagnostics,
-    virtual_text = not multiline_diagnostics,
+    virtual_text = virtual_text,
   })
 end, { desc = "Toggle multiline diagnostics" })
 
