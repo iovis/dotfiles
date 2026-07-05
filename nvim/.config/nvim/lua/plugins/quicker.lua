@@ -46,7 +46,7 @@ return {
           vim.cmd.Refresh()
         end, {
           desc = "Toggle quicker.nvim filename width",
-          buffer = event.buf,
+          buf = event.buf,
         })
       end,
     })

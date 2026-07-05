@@ -93,7 +93,7 @@ vim.keymap.set("n", "yox", function()
   -- Sending `g@` back would wait for a motion.
   -- Giving `l` keeps the cursor in place
   return "g@l"
-end, { buffer = true, expr = true, desc = "Toggle checkbox" })
+end, { buf = 0, expr = true, desc = "Toggle checkbox" })
 
 vim.keymap.set("x", "X", function()
   ToggleCheckbox(vim.fn.mode())

@@ -29,4 +29,4 @@ vim.keymap.set("n", "s<cr>", function()
   else
     vim.notify("No recipe", vim.log.levels.WARN)
   end
-end, { buffer = true, desc = "Run current recipe" })
+end, { buf = 0, desc = "Run current recipe" })

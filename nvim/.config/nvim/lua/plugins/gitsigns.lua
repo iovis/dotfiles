@@ -16,7 +16,7 @@ return {
       on_attach = function(bufnr)
         local function map(mode, lhs, rhs, opts)
           opts = opts or {}
-          opts.buffer = bufnr
+          opts.buf = bufnr
           vim.keymap.set(mode, lhs, rhs, opts)
         end
 
