@@ -129,7 +129,9 @@ return {
                 { "icon", add_padding = false },
               })
             else
-              oil.set_columns({ "icon", add_padding = false })
+              oil.set_columns({
+                { "icon", add_padding = false },
+              })
             end
           end,
         },
