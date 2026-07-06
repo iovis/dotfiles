@@ -25,6 +25,17 @@ cleanup_webcam() {
   pkill -f "WebcamOverlay" 2>/dev/null
 }
 
+watch_screenrecording() {
+  local recorder_pid="$1"
+
+  while kill -0 "$recorder_pid" 2>/dev/null; do
+    sleep 0.2
+  done
+
+  cleanup_webcam
+  toggle_screenrecording_indicator
+}
+
 start_webcam_overlay() {
   cleanup_webcam
 
@@ -82,6 +93,10 @@ start_screenrecording() {
     return 1
   fi
 
+  if [[ "$WEBCAM" == "true" ]]; then
+    watch_screenrecording "$recorder_pid" &
+  fi
+
   toggle_screenrecording_indicator
 }
 
@@ -89,6 +104,7 @@ stop_screenrecording() {
   # If share picker is still open, user probably cancelled recording
   if pgrep -f "^hyprland-share-picker" >/dev/null; then
     pkill -f "^hyprland-share-picker"
+    cleanup_webcam
     toggle_screenrecording_indicator
     exit
   fi
@@ -124,17 +140,17 @@ toggle_screenrecording_indicator() {
   pkill -RTMIN+8 waybar
 }
 
-screenrecording_active() {
-  pgrep -f "^gpu-screen-recorder" >/dev/null || pgrep -f "WebcamOverlay" >/dev/null
-}
+if pgrep -f "^gpu-screen-recorder" >/dev/null; then
+  stop_screenrecording
+  exit
+fi
 
-if screenrecording_active; then
-  if pgrep -f "WebcamOverlay" >/dev/null && ! pgrep -f "^gpu-screen-recorder" >/dev/null; then
-    cleanup_webcam
-  else
-    stop_screenrecording
-  fi
-elif [[ "$STOP_RECORDING" == "false" ]]; then
+if pgrep -f "WebcamOverlay" >/dev/null; then
+  cleanup_webcam
+  toggle_screenrecording_indicator
+fi
+
+if [[ "$STOP_RECORDING" == "false" ]]; then
   [[ "$WEBCAM" == "true" ]] && start_webcam_overlay
 
   start_screenrecording || cleanup_webcam
