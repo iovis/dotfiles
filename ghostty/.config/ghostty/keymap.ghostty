@@ -66,5 +66,6 @@ keybind = ctrl+shift+page_up=jump_to_prompt:-1
 keybind = ctrl+shift+page_down=jump_to_prompt:1
 keybind = ctrl+shift+f=start_search
 keybind = super+f=start_search
+keybind = performable:escape=end_search
 keybind = ctrl+shift+a=select_all
 keybind = super+a=select_all
