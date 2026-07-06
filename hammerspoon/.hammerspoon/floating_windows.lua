@@ -9,18 +9,8 @@ local u = require("utils")
 local function float_layout(binding, os_shortcut)
   hs.hotkey.bind(binding[1], binding[2], function()
     hs.task
-      .new(os.getenv("SHELL"), function(code, stdout, stderr)
-        if code == 0 then
-          hs.eventtap.keyStroke(os_shortcut[1], os_shortcut[2])
-        else
-          print(code)
-          print(stdout)
-          print(stderr)
-
-          if stderr:match("Can't connect to AeroSpace server.") then
-            u.notify("AeroSpace is not running")
-          end
-        end
+      .new(os.getenv("SHELL"), function(_code, _stdout, _stderr)
+        hs.eventtap.keyStroke(os_shortcut[1], os_shortcut[2])
       end, { "-c", "aerospace layout floating" })
       :start()
   end)
