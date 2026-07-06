@@ -23,10 +23,10 @@ fzf_command() {
     --bind="j:down,k:up,q:abort" \
     --bind="p,alt-p:toggle-preview" \
     --bind="r,alt-r:change-preview-window(down|right)" \
-    --bind="d,x,ctrl-x:execute-silent(tmux kill-session -t ={2}:)+reload:$tmux_sessions" \
+    --bind="d,x,ctrl-x:execute-silent(tmux kill-session -t '={2}:')+reload:$tmux_sessions" \
     --bind="i,/:show-input+unbind(j,k,q,d,x,p,r,i,/,space)" \
     --bind="focus:transform-preview-label:echo '  {1..2}  '" \
-    --preview="tmux capture-pane -ep -t ={2}:" \
+    --preview="tmux capture-pane -ep -t '={2}:'" \
     --preview-window="right,75%" \
     --exit-0 \
     --query="${*:-}" || true
