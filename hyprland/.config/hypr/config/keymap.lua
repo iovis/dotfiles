@@ -51,7 +51,7 @@ hl.bind(C(G("c")), hl.dsp.exec_cmd("hyprclose class:widget.calc || kitty --class
 hl.bind(S(G("c")), hl.dsp.exec_cmd("hyprfocus class:org.gnome.Calendar || uwsm app -- gnome-calendar"))
 hl.bind(G("b"), hl.dsp.exec_cmd("hyprclose class:widget.bluetui || kitty --class=widget.bluetui -e bluetui"))
 hl.bind(G("v"), hl.dsp.exec_cmd("vicinae_toggle deeplink vicinae://launch/clipboard/history"))
-hl.bind(C(G("v")), hl.dsp.exec_cmd("hyprclose 'class:Mullvad VPN' || mullvad-vpn"))
+-- hl.bind(C(G("v")), hl.dsp.exec_cmd("hyprclose 'class:Mullvad VPN' || mullvad-vpn"))
 
 hl.bind(C(G("y")), hl.dsp.exec_cmd("hyprclose class:widget.btop || kitty --class=widget.btop -e yazi"))
 hl.bind(G("i"), hl.dsp.exec_cmd("hyprclose class:widget.wiremix || kitty --class=widget.wiremix -e impala"))

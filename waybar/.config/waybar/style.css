@@ -8,18 +8,6 @@ window#waybar {
   all: unset;
 }
 
-.modules-left {
-  /* padding: 5px 7px; */
-}
-
-.modules-center {
-  /* padding: 5px 7px; */
-}
-
-.modules-right {
-  /* padding: 5px 7px; */
-}
-
 tooltip {
   background: #222;
 }
@@ -29,8 +17,7 @@ tooltip {
 #bluetooth:hover,
 #network:hover,
 #cpu:hover,
-#memory:hover,
-#temperature:hover {
+#memory:hover {
   transition: all .3s ease;
 }
 
@@ -89,30 +76,10 @@ tooltip {
   transition: all .3s ease;
 }
 
-#group-expand {
-  padding: 0px 5px;
-  transition: all .3s ease;
-}
-
-#custom-expand {
-  padding: 0px 5px;
-  transition: all .3s ease;
-}
-
-#custom-expand:hover {
-  color: #888;
-}
-
 #cpu,
-#memory,
-#temperature {
+#memory {
   padding: 0px 5px;
   transition: all .3s ease;
-}
-
-#custom-endpoint {
-  color: transparent;
-  text-shadow: 0px 0px 1.5px rgba(0, 0, 0, 1);
 }
 
 #tray {

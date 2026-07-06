@@ -14,9 +14,7 @@
     "hyprland/workspaces"
   ],
   "modules-right": [
-    // "group/expand",
     "custom/screenrecording-indicator",
-    // "idle_inhibitor",
     "custom/notification",
     "custom/idle-indicator",
     "network",
@@ -25,21 +23,6 @@
     "clock",
     "custom/power"
   ],
-  "group/expand": {
-    "orientation": "horizontal",
-    "drawer": {
-      "transition-duration": 600,
-      "transition-to-left": true,
-      "click-to-reveal": true
-    },
-    "modules": [
-      "custom/expand",
-      "bluetooth",
-      "idle_inhibitor",
-      "network",
-      "custom/endpoint"
-    ]
-  },
   "bluetooth": {
     "tooltip": true,
     "rotate": 0,
@@ -52,12 +35,10 @@
     "tooltip-format-on": "Bluetooth On",
     "tooltip-format-disabled": "Bluetooth Off",
     "tooltip-format-connected": "Device: {device_alias}\nMAC: {device_address}\nBattery: {device_battery_percentage}%",
-    "on-click": "vicinae deeplink vicinae://extensions/Gelei/bluetooth/devices"
+    "on-click": "hyprclose class:widget.bluetui || kitty --class=widget.bluetui -e bluetui"
   },
   "clock": {
-    // "format": "{:%a %d %b %H:%M}",
     "format": "{:%H:%M}",
-    "interval": 1,
     "tooltip-format": "<span>{calendar}</span>",
     "on-click": "gnome-calendar",
     "calendar": {
@@ -85,14 +66,6 @@
   },
   "custom/arch": {
     "format": "  󰣇 ",
-    "tooltip": false
-  },
-  "custom/endpoint": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/expand": {
-    "format": " ",
     "tooltip": false
   },
   "custom/idle-indicator": {
@@ -179,13 +152,6 @@
       ]
     }
   },
-  "idle_inhibitor": {
-    "format": "{icon}",
-    "format-icons": {
-      "activated": "  ",
-      "deactivated": "  "
-    }
-  },
   "memory": {
     "format": "󰾆 {percentage}%",
     "on-click": "kitty --class=widget.btop -e htop --sort-key=PERCENT_MEM",
@@ -207,7 +173,6 @@
     "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-disconnected": "Disconnected",
     "interval": 3,
-    "nospacing": 1,
     "on-click": "XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
   },
   "pulseaudio": {
@@ -227,10 +192,6 @@
     },
     "on-click": "kitty --class=widget.wiremix -e wiremix",
     "on-click-right": "pavucontrol"
-  },
-  "temperature": {
-    "critical-threshold": 80,
-    "format": "{temperatureC}°C {icon}"
   },
   "tray": {
     "icon-size": 16,
