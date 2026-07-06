@@ -1,3 +1,3 @@
-function gcm --wraps='git switch main|master'
+function gcm
     git switch $(git default-branch)
 end

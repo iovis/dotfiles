@@ -1,3 +1,3 @@
-function psg --wraps='ps aux | rg'
+function psg --wraps='rg'
     ps aux | rg $argv
 end
