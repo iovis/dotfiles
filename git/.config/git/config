@@ -1,5 +1,4 @@
 [alias]
-  bare-clone = !git_bare_clone
   branch-name = !git rev-parse --abbrev-ref HEAD
   default-branch = !awk -F'/' '{print $NF}' .git/refs/remotes/origin/HEAD
 
@@ -11,7 +10,6 @@
 
   files-changed = !git diff --name-only $(git merge-base HEAD $(git default-branch))
   diff-main = !git diff $(git merge-base HEAD $(git default-branch))
-  review = "!f() { $EDITOR ${@:-$(git files-changed)}; }; f"
   stat = !git diff --stat $(git merge-base HEAD $(git default-branch))
 [branch]
   sort = -committerdate
@@ -35,7 +33,6 @@
   tool = nvimdiff
 [difftool]
   prompt = false
-  keepBackup = false
 [fetch]
   all = true
   prune = true
@@ -44,21 +41,9 @@
   autocorrect = prompt
 [init]
   defaultBranch = main
-[filter "lfs"]
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-  process = git-lfs filter-process
-  required = true
-[filter "media"]
-  clean = git media clean %f
-  smudge = git media smudge %f
-  required = true
 [merge]
   conflictstyle = diff3
   ff = false
-[mergetool]
-  prompt = false
-  keepBackup = false
 [pull]
   rebase = true
 [push]
