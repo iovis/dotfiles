@@ -12,10 +12,11 @@ return {
       url = "tmux-plugins/tmux-resurrect",
       opts = {
         ["resurrect-capture-pane-contents"] = "on",
+        ["resurrect-delete-backup-after"] = "0",
         ["resurrect-pane-contents-area"] = "visible",
         ["resurrect-processes"] = "lazygit",
-        ["resurrect-strategy-nvim"] = "session",
         ["resurrect-save"] = "S",
+        ["resurrect-strategy-nvim"] = "session",
       },
     },
     {
