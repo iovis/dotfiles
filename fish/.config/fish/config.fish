@@ -75,7 +75,9 @@ end
 
 fish_config theme choose "Catppuccin Mocha"
 
-ulimit -n 2048
+if test (uname) = Darwin
+    ulimit --soft -n 2048
+end
 
 source $FDOTDIR/abbrs.fish
 
