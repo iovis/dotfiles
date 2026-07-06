@@ -37,15 +37,14 @@ if ! command -v yay >/dev/null 2>&1; then
   rm -rf "$PROJECT_HOME/yay-bin/"
 fi
 
-yay -Y --gendb
 yay -S --needed --answerclean=none --answerdiff=none - <"$PACMAN_PATH/Aurfile"
 
-echo "[$(date '+%Y-%m-%d %H:%M')] Starting services"
-sudo systemctl enable --now avahi-daemon bluetooth cpupower fstrim.timer gdm paccache.timer reflector.timer sshd
+echo "[$(date '+%Y-%m-%d %H:%M')] Enabling services"
+sudo systemctl enable avahi-daemon bluetooth cpupower fstrim.timer gdm paccache.timer reflector.timer sshd
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Stow"
 cd "$DOTFILES" || exit
-stow bat fish fzf ghostty git hyprland kitty lazygit mise mpv muxi nvim pacman starship stylua swaync tldr tmux vicinae vim waybar
+stow bat fish fzf ghostty gdb git hyprland kitty lazygit llvm mise mpv muxi nvim pacman starship stylua swaync tldr tmux vicinae vim waybar yazi
 cd - || exit
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing mise"
@@ -56,7 +55,7 @@ fi
 mise install -y
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing rust"
-if ! command -v cargo >/dev/null 2>&1; then
+if [ ! -f "$HOME/.cargo/env" ]; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 fi
 
@@ -96,9 +95,6 @@ if [ -f "$HOME/.config/monitors.xml" ]; then
 else
   echo "[$(date '+%Y-%m-%d %H:%M')] monitors.xml not found; skipping"
 fi
-
-echo "[$(date '+%Y-%m-%d %H:%M')] Orphaned packages"
-pacman -Qtdq || echo 'No orphaned packages'
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installation ended"
 
