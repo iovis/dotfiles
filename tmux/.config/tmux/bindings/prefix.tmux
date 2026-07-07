@@ -40,7 +40,10 @@ bind -N "Toggle monitor activity" a {
 
 bind -N "Command prompt" c-\; command-prompt
 bind -N "Command prompt" \; command-prompt
-bind -N "List keys" ? list-keys
+
+bind -N "List keys" ? {
+  display-popup -w 75% -h 75% -b rounded -T " tmux keybindings " -E "tmux list-keys | nvim +ZenModeWide +'se ft=tmux'"
+}
 
 ## Session management
 bind -N "Detach session" C-d detach-client

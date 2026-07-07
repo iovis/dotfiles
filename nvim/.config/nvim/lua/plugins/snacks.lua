@@ -409,6 +409,16 @@ return {
       snacks.zen.zen()
     end, {})
 
+    vim.api.nvim_create_user_command("ZenModeWide", function()
+      snacks.zen.zen({
+        win = {
+          width = 0.98, -- don't show "zoom_indicator"
+          height = 0.95,
+          wo = { cursorline = true },
+        },
+      })
+    end, {})
+
     vim.api.nvim_create_user_command("ZenModeBorder", function()
       snacks.zen.zen({
         win = {
