@@ -132,8 +132,6 @@ cask "font-jetbrains-mono"
 cask "font-jetbrains-mono-nerd-font"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
-# Web browser
-cask "google-chrome@canary"
 # Desktop automation application
 cask "hammerspoon"
 # Free and open-source media player
