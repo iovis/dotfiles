@@ -44,7 +44,7 @@ return {
                 return
               end
 
-              return snacks.picker.preview.file(ctx)
+              return Snacks.picker.preview.file(ctx)
             end,
             sort_lastused = false,
             win = {
@@ -221,7 +221,7 @@ return {
                 keys = {
                   ["<c-x>"] = { "delete", mode = { "n", "i" } },
                   ["<m-cr>"] = { "execute_macro", mode = { "n", "i" } },
-                  d = "delete",
+                  dd = "delete",
                   e = "edit",
                 },
               },
@@ -229,7 +229,7 @@ return {
                 keys = {
                   ["<c-x>"] = "delete",
                   ["<m-cr>"] = "execute_macro",
-                  d = "delete",
+                  dd = "delete",
                   e = "edit",
                 },
               },
@@ -319,41 +319,41 @@ return {
 
     ----Explorer
     vim.keymap.set("n", "<leader>k", function()
-      snacks.explorer()
+      Snacks.explorer()
     end, { desc = "snacks.explorer" })
 
     ----Gitbrowse
-    vim.keymap.set({ "n", "x" }, "<leader>gG", snacks.gitbrowse.open, { desc = "snacks.gitbrowse.open" })
+    vim.keymap.set({ "n", "x" }, "<leader>gG", Snacks.gitbrowse.open, { desc = "Snacks.gitbrowse.open" })
 
     ----Picker
     ---@diagnostic disable-next-line: undefined-field
-    vim.keymap.set("n", "<leader>F", snacks.picker.filetypes, { desc = "snacks.picker.filetypes" })
-    vim.keymap.set("n", "<leader>/", snacks.picker.lines, { desc = "snacks.picker.lines" })
-    vim.keymap.set("n", "<leader>fh", snacks.picker.help, { desc = "snacks.picker.help" })
-    vim.keymap.set("n", "<leader>fm", snacks.picker.man, { desc = "snacks.picker.man" })
-    vim.keymap.set("n", "<leader>o", snacks.picker.files, { desc = "snacks.picker.files" })
-    vim.keymap.set("n", "<leader>r", snacks.picker.resume, { desc = "snacks.picker.resume" })
-    vim.keymap.set("n", "s<space>", snacks.picker.pick, { desc = "snacks.picker.pick" })
+    vim.keymap.set("n", "<leader>F", Snacks.picker.filetypes, { desc = "Snacks.picker.filetypes" })
+    vim.keymap.set("n", "<leader>/", Snacks.picker.lines, { desc = "Snacks.picker.lines" })
+    vim.keymap.set("n", "<leader>fh", Snacks.picker.help, { desc = "Snacks.picker.help" })
+    vim.keymap.set("n", "<leader>fm", Snacks.picker.man, { desc = "Snacks.picker.man" })
+    vim.keymap.set("n", "<leader>o", Snacks.picker.files, { desc = "Snacks.picker.files" })
+    vim.keymap.set("n", "<leader>r", Snacks.picker.resume, { desc = "Snacks.picker.resume" })
+    vim.keymap.set("n", "s<space>", Snacks.picker.pick, { desc = "Snacks.picker.pick" })
 
     vim.keymap.set("n", "gm", function()
-      snacks.picker.buffers({ focus = "list" })
-    end, { desc = "snacks.picker.buffers" })
+      Snacks.picker.buffers({ focus = "list" })
+    end, { desc = "Snacks.picker.buffers" })
 
     vim.keymap.set("n", "<leader>j", function()
-      snacks.picker.git_status({ focus = "list" })
-    end, { desc = "snacks.picker.git_status" })
+      Snacks.picker.git_status({ focus = "list" })
+    end, { desc = "Snacks.picker.git_status" })
 
     vim.keymap.set("n", "<leader>sp", function()
-      snacks.picker.spelling({ focus = "list" })
-    end, { desc = "snacks.picker.spelling" })
+      Snacks.picker.spelling({ focus = "list" })
+    end, { desc = "Snacks.picker.spelling" })
 
     vim.keymap.set("n", "<leader>O", function()
-      snacks.picker.files({ ignored = true })
-    end, { desc = "snacks.picker.files (no gitignore)" })
+      Snacks.picker.files({ ignored = true })
+    end, { desc = "Snacks.picker.files (no gitignore)" })
 
     vim.keymap.set("n", "<leader>R", function()
-      snacks.picker.registers({ pattern = "label:" })
-    end, { desc = "snacks.picker.registers" })
+      Snacks.picker.registers({ pattern = "label:" })
+    end, { desc = "Snacks.picker.registers" })
 
     -- Files
     vim.keymap.set("n", "<leader>ud", function()
@@ -362,35 +362,35 @@ return {
 
     -- Grep
     vim.keymap.set({ "n", "x" }, "<leader>fe", function()
-      snacks.picker.grep_word({
+      Snacks.picker.grep_word({
         exclude = grep_exclude,
         focus = "list",
         hidden = true,
       })
-    end, { desc = "snacks.picker.grep_word" })
+    end, { desc = "Snacks.picker.grep_word" })
 
     vim.keymap.set("n", "<leader>fk", function()
-      snacks.picker.grep({
+      Snacks.picker.grep({
         search = "\\w",
         live = false,
         hidden = true,
         exclude = grep_exclude,
       })
-    end, { desc = "snacks.picker.grep" })
+    end, { desc = "Snacks.picker.grep" })
 
     vim.keymap.set("n", "<leader>fl", function()
-      snacks.picker.grep({ hidden = true, exclude = grep_exclude })
-    end, { desc = "snacks.picker.grep" })
+      Snacks.picker.grep({ hidden = true, exclude = grep_exclude })
+    end, { desc = "Snacks.picker.grep" })
 
     vim.keymap.set("n", "<leader>fq", function()
       vim.cmd.cclose()
-      snacks.picker.qflist({ focus = "list" })
-    end, { desc = "snacks.picker.qflist" })
+      Snacks.picker.qflist({ focus = "list" })
+    end, { desc = "Snacks.picker.qflist" })
 
     -- LSP
     vim.keymap.set("n", "<leader>li", function()
-      snacks.picker.lsp_config({ focus = "list" })
-    end, { desc = "snacks.picker.lsp_config" })
+      Snacks.picker.lsp_config({ focus = "list" })
+    end, { desc = "Snacks.picker.lsp_config" })
 
     ----Rename
     vim.api.nvim_create_autocmd("User", {
@@ -403,14 +403,14 @@ return {
     })
 
     ----Zen
-    vim.keymap.set("n", "<leader>z", snacks.zen.zen, { desc = "snacks.zen.zen" })
+    vim.keymap.set("n", "<leader>z", Snacks.zen.zen, { desc = "Snacks.zen.zen" })
 
     vim.api.nvim_create_user_command("ZenMode", function()
-      snacks.zen.zen()
+      Snacks.zen.zen()
     end, {})
 
     vim.api.nvim_create_user_command("ZenModeWide", function()
-      snacks.zen.zen({
+      Snacks.zen.zen({
         win = {
           width = 0.98, -- don't show "zoom_indicator"
           height = 0.95,
@@ -420,7 +420,7 @@ return {
     end, {})
 
     vim.api.nvim_create_user_command("ZenModeBorder", function()
-      snacks.zen.zen({
+      Snacks.zen.zen({
         win = {
           border = true,
           width = 0,
@@ -433,10 +433,10 @@ return {
     vim.keymap.set("n", "yoT", "<cmd>Dim<cr>")
     vim.api.nvim_create_user_command("Dim", function()
       -- Doesn't support toggling yet
-      if snacks.dim.enabled then
-        snacks.dim.disable()
+      if Snacks.dim.enabled then
+        Snacks.dim.disable()
       else
-        snacks.dim.enable()
+        Snacks.dim.enable()
       end
     end, {})
   end,
