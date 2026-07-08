@@ -33,4 +33,4 @@ set -ag update-environment TERM_PROGRAM
 
 # Terminal features
 set -su terminal-features
-set -as terminal-features "xterm*:256:extkeys:hyperlinks:overline:margins:mouse:osc7:rectfill:RGB:strikethrough:sync:usstyle"
+set -as terminal-features "xterm*:256:extkeys:hyperlinks:overline:margins:mouse:osc7:progressbar:rectfill:RGB:strikethrough:sync:usstyle"
