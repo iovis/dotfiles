@@ -1,7 +1,7 @@
 set -g base-index 1
 set -g detach-on-destroy off
 set -g clock-mode-style 24-with-seconds
-# set -g copy-mode-line-numbers hybrid
+set -g copy-mode-line-numbers relative
 set -g display-panes-time 4000
 set -g display-time 5000
 set -g focus-events on
