@@ -1,42 +1,16 @@
--- TODO: translate to lua
-vim.cmd([[
-" Options {{{ "
-setlocal conceallevel=0
-setlocal concealcursor=n  " keep current line concealed in normal mode
-setlocal spelllang=en_us
-setlocal spell
-setlocal shiftwidth=4
-setlocal softtabstop=4
-" }}} Options "
-
-" Formatting {{{ "
-setlocal formatoptions+=tcroqnl1jp
-
-" Allow *, -, +, ?, > to auto create the character on line change
-setlocal comments=b:*,b:-\ [\ ],b:-\ [\x],b:-,n:>
-
-" Better indention/hierarchy (:h fo-n)
-"
-" Example:
-" 1. the first item
-"    wraps
-" 2. the second item
-setlocal formatlistpat=^\\s*                    " Optional leading whitespace
-setlocal formatlistpat+=[                       " Start class
-setlocal formatlistpat+=\\[({]\\?               " |  Optionally match opening punctuation
-setlocal formatlistpat+=\\(                     " |  Start group
-setlocal formatlistpat+=[0-9]\\+                " |  |  A number
-setlocal formatlistpat+=\\\|[iIvVxXlLcCdDmM]\\+ " |  |  Roman numerals
-setlocal formatlistpat+=\\\|[a-zA-Z]            " |  |  A single letter
-setlocal formatlistpat+=\\)                     " |  End group
-setlocal formatlistpat+=[\\]:.)}                " |  Closing punctuation
-setlocal formatlistpat+=]                       " End class
-setlocal formatlistpat+=\\s\\+                  " One or more spaces
-setlocal formatlistpat+=\\\|^\\s*[-–+o*]\\s\\+  " Or ASCII style bullet points
-" }}} Formatting "
-]])
-
 local u = require("config.utils")
+
+vim.opt_local.conceallevel = 0
+vim.opt_local.concealcursor = "n" -- Keep current line concealed in normal mode
+vim.opt_local.spelllang = "en_us"
+vim.opt_local.spell = true
+vim.opt_local.shiftwidth = 4
+vim.opt_local.softtabstop = 4
+
+vim.opt_local.formatoptions:append("tcroqnl1jp")
+
+-- Allow *, -, +, ?, > to auto-create the character on line change
+vim.opt_local.comments = "b:*,b:- [ ],b:- [x],b:-,n:>"
 
 ---An incredibly over-engineered task toggler to learn a bit of Treesitter
 ---@param mode string
