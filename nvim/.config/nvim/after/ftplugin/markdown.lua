@@ -2,6 +2,7 @@
 vim.cmd([[
 " Options {{{ "
 setlocal conceallevel=0
+setlocal concealcursor=n  " keep current line concealed in normal mode
 setlocal spelllang=en_us
 setlocal spell
 setlocal shiftwidth=4
