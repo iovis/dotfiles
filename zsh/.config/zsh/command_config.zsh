@@ -15,8 +15,8 @@ fi
 
 # eza
 if type eza > /dev/null; then
-  alias l="eza -la --git --group-directories-first --icons"
-  alias tree="eza -T --group-directories-first --icons"
+  alias l="eza -al --git --group-directories-first --hyperlink=auto --icons=always"
+  alias tree="eza -aT --group-directories-first --hyperlink=auto --icons=always"
 fi
 
 # fzf

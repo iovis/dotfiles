@@ -38,8 +38,8 @@ wezterm.on("open-uri", function(_window, pane, uri)
             "-la",
             "--git",
             "--group-directories-first",
-            "--hyperlink",
-            "--icons",
+            "--hyperlink=always",
+            "--icons=always",
           }) .. "\r")
 
           return false

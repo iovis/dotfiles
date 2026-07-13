@@ -89,7 +89,7 @@ elif [[ $type =~ video/ ]]; then
 else
   # if type is a directory, list its contents
   if [[ -d $file ]]; then
-    eza --color=always --icons -1a --group-directories-first "$file"
+    eza --color=always --icons=always -1a --group-directories-first "$file"
   elif [[ $type =~ =binary ]]; then
     file "$file"
   else

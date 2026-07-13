@@ -23,7 +23,7 @@ fzf_command() {
     --reverse \
     --bind=alt-p:toggle-preview \
     --bind='alt-r:change-preview-window(down|right)' \
-    --preview="eza --color=always --icons -1a --group-directories-first $PLUGIN_DIR/{}" \
+    --preview="eza --color=always --icons=always -1a --group-directories-first $PLUGIN_DIR/{}" \
     --preview-window=right \
     --color=input-border:green \
     --query="$INITIAL_QUERY" || true
