@@ -186,6 +186,84 @@ return {
     { condition = conds.line_begin }
   ),
   s(
+    "odin",
+    fmta(
+      [[
+        program_name := file_name(justfile_directory())
+        build_dir := "./build"
+        debug_dir := build_dir / "debug"
+        release_dir := build_dir / "release"
+        debug_bin := debug_dir / program_name
+        release_bin := release_dir / program_name
+        test_bin := debug_dir / f"{{program_name}}_test"
+
+        default: run
+
+        alias r := run
+        run *args:
+            odin run . -debug -- {{ args }}
+
+        alias build := build_debug
+        build_debug: init
+            odin build . -debug -out:{{ debug_bin }}
+
+        alias rr := run_release
+        run_release *args:
+            odin run . -o:speed -- {{ args }}
+
+        alias release := build_release
+        build_release: init
+            odin build . -o:speed -out:{{ release_bin }}
+
+        alias t := run_test
+        alias test := run_test
+        run_test:
+            odin test . -all-packages
+
+        build_test: init
+            odin build . -build-mode:test -debug -out:{{ test_bin }}
+
+        alias w := watch
+        alias dev := watch
+        watch:
+            watchexec -c clear -e odin just run
+
+        alias wt := watch_test
+        watch_test:
+            watchexec -c clear -e odin just test
+
+        alias d := debug
+        debug *args: build_debug
+            lldb -o "b main::main" -o "run" -- {{ debug_bin }} {{ args }}
+
+        alias dt := debug_test
+        [positional-arguments]
+        debug_test *args: build_test
+            lldb "$@" -- {{ test_bin }}
+
+        alias v := valgrind
+        valgrind *args: build_debug
+            valgrind --tool=memcheck --leak-check=full --track-origins=yes {{ debug_bin }} {{ args }}
+
+        alias c := callgrind
+        callgrind *args: build_callgrind
+            valgrind --tool=callgrind --callgrind-out-file=callgrind.out {{ release_bin }} {{ args }}
+            callgrind_annotate callgrind.out
+
+        build_callgrind: init
+            odin build . -debug -o:speed -out:{{ release_bin }}
+
+        @init:
+            mkdir -p {{ debug_dir }} {{ release_dir }}
+
+        clean:
+            rm -rf build/
+      ]],
+      {}
+    ),
+    { condition = conds.line_begin }
+  ),
+  s(
     "unitybuild",
     fmta(
       [[
@@ -200,10 +278,9 @@ return {
         build_dir := "./build"
         debug_dir := build_dir / "debug"
         release_dir := build_dir / "release"
-        test_dir := build_dir / "debug"
         debug_bin := debug_dir / program_name
         release_bin := release_dir / program_name
-        test_bin := test_dir / f"{{program_name}}_test"
+        test_bin := debug_dir / f"{{program_name}}_test"
 
         default: run
 
@@ -269,7 +346,7 @@ return {
             {{ cc }} {{ release_flags }} -g src/main.c -o {{ release_bin }} {{ libs }}
 
         @init:
-            mkdir -p {{ debug_dir }} {{ release_dir }} {{ test_dir }}
+            mkdir -p {{ debug_dir }} {{ release_dir }}
 
         clean:
             rm -rf build/

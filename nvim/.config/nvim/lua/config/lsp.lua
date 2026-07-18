@@ -33,6 +33,7 @@ vim.lsp.enable({
   "jsonls",
   "just",
   "lua_ls",
+  "ols",
   "ruby_lsp",
   "rust_analyzer",
   "tombi",

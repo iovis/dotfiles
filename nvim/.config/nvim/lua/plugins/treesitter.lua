@@ -33,6 +33,7 @@ return {
       "make",
       "markdown",
       "markdown_inline",
+      "odin",
       "python",
       "query", -- treesitter query language
       "regex",
