@@ -1,5 +1,9 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
+  cursor = {
+    hide_on_key_press = true,
+    inactive_timeout = 3,
+  },
   general = {
     border_size = 2,
     gaps_in = 5,
