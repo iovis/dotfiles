@@ -37,14 +37,14 @@ hl.config({
       vibrancy = 0.1696,
     },
   },
-  animations = { enabled = true },
+  animations = { enabled = false },
   dwindle = {
     -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/
     preserve_split = true,
     force_split = 2, -- new splits go right/down
   },
   misc = {
-    background_color = 0x000000,
+    background_color = "#000000",
     disable_hyprland_logo = true,
     disable_splash_rendering = true,
     exit_window_retains_fullscreen = false,
