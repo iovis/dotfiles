@@ -9,7 +9,6 @@ return {
       transparent_background = true,
       float = { transparent = true },
       no_italic = true,
-      auto_integrations = true,
       -- NOTE: May need to re-compile after changing
       -- lua=require("catppuccin.palettes").get_palette()
       custom_highlights = function(colors)
