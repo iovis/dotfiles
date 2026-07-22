@@ -75,7 +75,7 @@ vim.keymap.set("n", "<leader>si", function()
   end
 
   local selector = ("-tests:%s.%s"):format(package_name, test_name)
-  tux.run(("odin test . -all-packages -- %s"):format(vim.fn.shellescape(selector)))
+  tux.run(("odin test . -all-packages -define:ODIN_TEST_FANCY=false -- %s"):format(vim.fn.shellescape(selector)))
 end, { buf = 0, desc = "[odin] Test nearest" })
 
 if u.has_justfile() then

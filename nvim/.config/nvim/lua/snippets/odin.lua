@@ -133,7 +133,7 @@ return {
 
         main :: proc() {
           input :: #load("./input.txt", string)
-          fmt.println("p1 = ", p1(input))
+          fmt.println("p1 =", p1(input))
         }
 
         p1 :: proc(input: string) ->> uint {
