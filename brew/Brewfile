@@ -123,8 +123,6 @@ cask "nikitabobko/tap/aerospace"
 cask "appcleaner"
 # Chromium based browser
 cask "arc"
-# Create and run Linux containers using lightweight virtual machines
-cask "container"
 # Disk space visualiser
 cask "daisydisk"
 cask "font-fira-code-nerd-font"
