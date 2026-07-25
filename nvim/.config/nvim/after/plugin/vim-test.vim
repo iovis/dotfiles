@@ -15,6 +15,10 @@ function! SpringStrategy(cmd)
 endfunction
 
 let test#ruby#use_spring_binstub = 1
+let g:test#rust#cargotest#test_options = {
+      \ 'nearest': ['--', '--exact', '--nocapture', '--color=always'],
+      \}
+
 let g:test#custom_strategies = {
       \ 'tux': function('TuxStrategy'),
       \ 'rust_print': function('RustPrintStrategy'),

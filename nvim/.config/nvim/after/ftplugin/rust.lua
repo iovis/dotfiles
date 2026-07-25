@@ -13,8 +13,18 @@ vim.keymap.set("n", "c<cr>", function()
   })
 end, { buf = 0 })
 
-vim.keymap.set("n", "<leader>sp", "<cmd>TestNearest -strategy=rust_print<cr>", { buf = 0 })
-vim.keymap.set("n", "<leader>sw", "<cmd>Tux cargo watch --clear -x check -x 'nextest run'<cr>", { buf = 0 })
+vim.keymap.set("n", "<leader>si", function()
+  local key = "test#rust#runner"
+  local previous = vim.g[key]
+
+  vim.g[key] = "cargotest"
+  local ok, err = pcall(vim.cmd.TestNearest)
+  vim.g[key] = previous
+
+  if not ok then
+    error(err)
+  end
+end, { buf = 0 })
 
 if u.current_file():match("examples/") then
   -- if inside example, run it
