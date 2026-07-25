@@ -131,57 +131,69 @@ return {
     "rust",
     fmta(
       [[
-        set dotenv-load := true
-        bin := <>
+        program_name := file_name(justfile_directory())
+        debug_bin := "./target/debug" / program_name
+        profile_bin := "./target/profiling" / program_name
 
-        default: <>
+        default: run
 
         @list:
             just --list
 
-        run:
-            <>
+        alias r := run
+        run *args:
+            cargo run -- {{ args }}
 
-        build:
-            <>
+        alias b := build_debug
+        alias build := build_debug
+        build_debug:
+            cargo build
 
-        dev:
-            <>
+        alias rr := run_release
+        run_release *args:
+            cargo run --release -- {{ args }}
+
+        alias release := build_release
+        build_release:
+            cargo build --release
+
+        alias t := run_test
+        alias test := run_test
+        run_test:
+            cargo nextest run
+
+        alias w := watch
+        alias dev := watch
+        watch:
+            watchexec -c clear -e rs,toml -- just run
+
+        alias d := debug
+        debug *args: build_debug
+            rust-lldb -Q -o "b {{ program_name }}::main" -o "run" -- {{ debug_bin }} {{ args }}
 
         console:
-            <>
+            evcxr
 
-        open:
-            gh repo view --web
+        alias v := valgrind
+        valgrind *args: build_debug
+            valgrind --tool=memcheck --leak-check=full --track-origins=yes {{ debug_bin }} {{ args }}
+
+        alias c := callgrind
+        callgrind *args: build_profile
+            valgrind --tool=callgrind --callgrind-out-file=callgrind.out {{ profile_bin }} {{ args }}
+            callgrind_annotate callgrind.out
+
+        alias p := profile
+        profile *args: build_profile
+            samply record {{ profile_bin }} {{ args }}
+
+        build_profile:
+            cargo build --profile profiling
 
         clean:
-            <>
-
-        test:
-            <>
-
-        profile *args:
-            cargo build --profile profiling
-            samply record target/profiling/{{ bin }} {{ args }}
-
-        debug *args:
-            cargo build
-            rust-lldb -Q -- target/debug/{{ bin }} {{ args }}
-
-        db:
-            <>
+            cargo clean
       ]],
-      {
-        i(1, "file_name(justfile_directory())"),
-        i(2, "run"),
-        i(3, "cargo run"),
-        i(4, "cargo build --release"),
-        i(5, "watchexec -re rs,toml -- just run"),
-        i(6, "evcxr"),
-        i(7, "cargo clean"),
-        i(8, "cargo nextest run"),
-        i(9, "pgcli $DATABASE_URL"),
-      }
+      {}
     ),
     { condition = conds.line_begin }
   ),
