@@ -8,21 +8,6 @@ return {
     { condition = conds.line_begin }
   ),
   s(
-    "t",
-    fmt(
-      [[
-        {}: {}
-          {}
-      ]],
-      {
-        i(1, "name"),
-        i(2),
-        i(3),
-      }
-    ),
-    { condition = conds.line_begin }
-  ),
-  s(
     "init",
     fmt(
       [[

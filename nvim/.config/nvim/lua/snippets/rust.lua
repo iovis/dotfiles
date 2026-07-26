@@ -107,7 +107,7 @@ return {
     { condition = conds.line_begin }
   ),
   s(
-    "test",
+    "t",
     fmta(
       [[
         #[test]

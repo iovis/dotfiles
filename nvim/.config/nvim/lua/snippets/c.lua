@@ -215,7 +215,7 @@ return {
     { condition = conds.line_begin }
   ),
   s(
-    "test",
+    "t",
     fmta(
       [[
         static void <test_name>_test(void) {

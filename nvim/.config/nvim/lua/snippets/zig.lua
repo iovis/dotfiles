@@ -105,7 +105,7 @@ return {
 
   -- Tests
   s(
-    "test",
+    "t",
     fmta(
       [[
         test "<>" {

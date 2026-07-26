@@ -208,7 +208,7 @@ return {
   ),
   -- Testing
   s(
-    "test",
+    "t",
     fmta(
       [[
       func Test<fname>(t *testing.T) {
