@@ -27,28 +27,33 @@ hl.bind(C(G("backspace")), hl.dsp.exec_cmd(powermenu))
 
 ---- Applications
 -- `hyprctl clients -j | jq '.[].class'`
-hl.bind(G("w"), hl.dsp.exec_cmd("pkill gnome-weather || uwsm app -- gnome-weather"))
-hl.bind(C(G("w")), hl.dsp.exec_cmd("pkill waybar || uwsm app -- waybar"))
-hl.bind(G("e"), hl.dsp.exec_cmd("hyprfocus class:org.gnome.Nautilus || uwsm app -- nautilus"))
-hl.bind(C(G("e")), hl.dsp.exec_cmd("uwsm app -- nautilus --new-window"))
+hl.bind(G("w"), hl.dsp.exec_cmd("pkill gnome-weather || uwsm-app -- gnome-weather"))
+hl.bind(
+  C(G("w")),
+  hl.dsp.exec_cmd(
+    "systemctl --user is-active --quiet waybar.service && systemctl --user stop waybar.service || systemctl --user start waybar.service"
+  )
+)
+hl.bind(G("e"), hl.dsp.exec_cmd("hyprfocus class:org.gnome.Nautilus || uwsm-app -- nautilus"))
+hl.bind(C(G("e")), hl.dsp.exec_cmd("uwsm-app -- nautilus --new-window"))
 hl.bind(G("t"), hl.dsp.exec_cmd("hyprclose class:widget.btop || kitty --class=widget.btop -e btop"))
 hl.bind(C(G("t")), hl.dsp.exec_cmd("hyprclose class:widget.btop || kitty --class=widget.btop -e htop -s PERCENT_CPU"))
 
 hl.bind(G("a"), hl.dsp.exec_cmd("hyprclose class:widget.wiremix || kitty --class=widget.wiremix -e wiremix"))
-hl.bind(S(G("a")), hl.dsp.exec_cmd("hyprfocus class:org.pulseaudio.pavucontrol || uwsm app -- pavucontrol"))
+hl.bind(S(G("a")), hl.dsp.exec_cmd("hyprfocus class:org.pulseaudio.pavucontrol || uwsm-app -- pavucontrol"))
 hl.bind(G("s"), hl.dsp.exec_cmd("hyprfocus class:steam || steam"))
 hl.bind(C(G("s")), hl.dsp.exec_cmd("XDG_CURRENT_DESKTOP=GNOME gnome-control-center"))
-hl.bind(G("d"), hl.dsp.exec_cmd("hyprfocus class:com.mitchellh.ghostty || uwsm app -- ghostty"))
-hl.bind(C(G("d")), hl.dsp.exec_cmd("uwsm app -- ghostty +new-window"))
-hl.bind(G("f"), hl.dsp.exec_cmd("hyprfocus class:zen || uwsm app -- zen-browser"))
-hl.bind(C(G("f")), hl.dsp.exec_cmd("uwsm app -- zen-browser --private-window"))
-hl.bind(G("g"), hl.dsp.exec_cmd("hyprfocus class:chromium || uwsm app -- chromium"))
-hl.bind(C(G("g")), hl.dsp.exec_cmd("uwsm app -- chromium --incognito"))
+hl.bind(G("d"), hl.dsp.exec_cmd("hyprfocus class:com.mitchellh.ghostty || uwsm-app -- ghostty"))
+hl.bind(C(G("d")), hl.dsp.exec_cmd("uwsm-app -- ghostty +new-window"))
+hl.bind(G("f"), hl.dsp.exec_cmd("hyprfocus class:zen || uwsm-app -- zen-browser"))
+hl.bind(C(G("f")), hl.dsp.exec_cmd("uwsm-app -- zen-browser --private-window"))
+hl.bind(G("g"), hl.dsp.exec_cmd("hyprfocus class:chromium || uwsm-app -- chromium"))
+hl.bind(C(G("g")), hl.dsp.exec_cmd("uwsm-app -- chromium --incognito"))
 
-hl.bind(G("x"), hl.dsp.exec_cmd("hyprfocus class:localsend || GTK_THEME=Adwaita:dark uwsm app -- localsend"))
+hl.bind(G("x"), hl.dsp.exec_cmd("hyprfocus class:localsend || GTK_THEME=Adwaita:dark uwsm-app -- localsend"))
 hl.bind(G("c"), hl.dsp.exec_cmd("hyprclose class:widget.fn || kitty --class=widget.fn -e codex --cd ~/code/"))
 hl.bind(C(G("c")), hl.dsp.exec_cmd("hyprclose class:widget.calc || kitty --class=widget.calc -e calc"))
-hl.bind(S(G("c")), hl.dsp.exec_cmd("hyprfocus class:org.gnome.Calendar || uwsm app -- gnome-calendar"))
+hl.bind(S(G("c")), hl.dsp.exec_cmd("hyprfocus class:org.gnome.Calendar || uwsm-app -- gnome-calendar"))
 hl.bind(G("b"), hl.dsp.exec_cmd("hyprclose class:widget.bluetui || kitty --class=widget.bluetui -e bluetui"))
 hl.bind(G("v"), hl.dsp.exec_cmd("vicinae_toggle deeplink vicinae://launch/clipboard/history"))
 -- hl.bind(C(G("v")), hl.dsp.exec_cmd("hyprclose 'class:Mullvad VPN' || mullvad-vpn"))
@@ -57,8 +62,8 @@ hl.bind(C(G("y")), hl.dsp.exec_cmd("hyprclose class:widget.btop || kitty --class
 hl.bind(G("i"), hl.dsp.exec_cmd("hyprclose class:widget.wiremix || kitty --class=widget.wiremix -e impala"))
 hl.bind(C(G("i")), hl.dsp.exec_cmd("hypridle_toggle"))
 hl.bind(G("o"), hl.dsp.exec_cmd("hyprclose class:widget.fn || kitty --class=widget.fn -e fn"))
-hl.bind(C(G("o")), hl.dsp.exec_cmd("hyprfocus class:obsidian || uwsm app -- obsidian"))
-hl.bind(G("p"), hl.dsp.exec_cmd("hyprfocus class:1Password || uwsm app -- 1password"))
+hl.bind(C(G("o")), hl.dsp.exec_cmd("hyprfocus class:obsidian || uwsm-app -- obsidian"))
+hl.bind(G("p"), hl.dsp.exec_cmd("hyprfocus class:1Password || 1password"))
 hl.bind(S(G("p")), hl.dsp.exec_cmd("hyprpicker --autocopy"))
 
 hl.bind(G("space"), hl.dsp.exec_cmd("vicinae toggle"))

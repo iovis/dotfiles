@@ -5,10 +5,10 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("systemctl --user start swaync.service")
   hl.exec_cmd("systemctl --user start vicinae.service")
 
-  hl.exec_cmd("GTK_THEME=Adwaita:dark uwsm app -- swayosd-server")
-  hl.exec_cmd("uwsm app -- udiskie")
-  hl.exec_cmd("uwsm app -- waybar")
+  hl.exec_cmd("GTK_THEME=Adwaita:dark uwsm-app -- swayosd-server")
+  hl.exec_cmd("uwsm-app -- udiskie")
+  hl.exec_cmd("systemctl --user start waybar.service")
 
   -- Don't run as a service to be able to control inhibit
-  hl.exec_cmd("uwsm app -- hypridle")
+  hl.exec_cmd("uwsm-app -- hypridle")
 end)
