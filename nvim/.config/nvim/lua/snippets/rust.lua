@@ -41,6 +41,89 @@ local function rust_method()
   )
 end
 
+local preceding_attribute_nodes = {
+  attribute_item = true,
+  block_comment = true,
+  line_comment = true,
+}
+
+local function has_cfg_test_attribute(item)
+  local sibling = item:prev_named_sibling()
+
+  while sibling and preceding_attribute_nodes[sibling:type()] do
+    if sibling:type() == "attribute_item" then
+      local attribute = sibling:named_child(0)
+      local name = attribute and attribute:named_child(0)
+      local arguments = attribute and attribute:named_child(1)
+
+      if
+        name
+        and arguments
+        and vim.treesitter.get_node_text(name, 0) == "cfg"
+        and vim.treesitter.get_node_text(arguments, 0):gsub("%s+", "") == "(test)"
+      then
+        return true
+      end
+    end
+
+    sibling = sibling:prev_named_sibling()
+  end
+
+  return false
+end
+
+local function inside_cfg_test_module()
+  local node = vim.treesitter.get_node()
+
+  while node do
+    if node:type() == "mod_item" and has_cfg_test_attribute(node) then
+      return true
+    end
+
+    node = node:parent()
+  end
+
+  return false
+end
+
+local function rust_modtest()
+  if inside_cfg_test_module() then
+    return sn(
+      nil,
+      fmta(
+        [[
+          mod <test_name>_tests {
+              use super::*;
+
+              <>
+          }
+        ]],
+        {
+          test_name = i(1, "name"),
+          i(2),
+        }
+      )
+    )
+  end
+
+  return sn(
+    nil,
+    fmta(
+      [[
+        #[cfg(test)]
+        mod tests {
+            use super::*;
+
+            <>
+        }
+      ]],
+      {
+        i(1),
+      }
+    )
+  )
+end
+
 return {
   -- Functions
   s("f", d(1, rust_fn), {
@@ -85,27 +168,9 @@ return {
     }
   ),
   -- Tests
-  s(
-    "modtest",
-    fmta(
-      [[
-        #[cfg(test)]
-        mod tests {
-            use super::*;
-
-            #[test]
-            fn <test_name>_test() {
-                <>
-            }
-        }
-      ]],
-      {
-        test_name = i(1, "name"),
-        i(0),
-      }
-    ),
-    { condition = conds.line_begin }
-  ),
+  s("modtest", d(1, rust_modtest), {
+    condition = conds.line_begin,
+  }),
   s(
     "t",
     fmta(
@@ -219,27 +284,17 @@ return {
   s("allow", fmt("#[allow({})]", { i(1) }), {
     condition = conds.line_begin,
   }),
-  s("skipfmt", t("#[rustfmt::skip]"), { condition = conds.line_begin }),
   -- Misc
-  s(
-    "p",
-    fmta('println!("{<>}"<comma><>);', {
-      i(1),
-      comma = n(2, ", "),
-      i(2),
-    }),
-    {
-      condition = conds.line_begin,
-    }
-  ),
+  s("rustfmt", t("#[rustfmt::skip]"), { condition = conds.line_begin }),
+  s("p", fmta('println!("{<>}");', { i(1) }), {
+    condition = conds.line_begin,
+  }),
   s(
     "ep",
     c(1, {
-      fmta('eprintln!("<> = {<>:?}"<comma><>);', {
+      fmta('eprintln!("<> = {<>:?}");', {
         r(1, "label", i(1)),
         dl(2, l._1, 1), -- dynamic lambda: repeat node 1 but let override
-        comma = n(3, ", "),
-        i(3),
       }),
       fmta('eprintln!("<> = {:?}", <>);', {
         r(1, "label", i(1)),
