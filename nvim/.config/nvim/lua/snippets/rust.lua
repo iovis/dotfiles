@@ -117,9 +117,7 @@ local function rust_modtest()
             <>
         }
       ]],
-      {
-        i(1),
-      }
+      { i(1) }
     )
   )
 end
@@ -150,23 +148,6 @@ return {
   s("pafm", fmt("pub async {}", { d(1, rust_method) }), {
     condition = conds.line_begin,
   }),
-  s(
-    "axum_handler",
-    fmt(
-      [[
-        #[axum::debug_handler]
-        #[tracing::instrument{}]
-        pub async {}
-      ]],
-      {
-        i(1),
-        d(2, rust_fn),
-      }
-    ),
-    {
-      condition = conds.line_begin,
-    }
-  ),
   -- Tests
   s("modtest", d(1, rust_modtest), {
     condition = conds.line_begin,
@@ -203,7 +184,9 @@ return {
     ),
     { condition = conds.line_begin }
   ),
-  s("ignore", t("#[ignore]"), { condition = conds.line_begin }),
+  s("ignore", t("#[ignore]"), {
+    condition = conds.line_begin,
+  }),
   s("as", fmt("assert!({});", { i(1) }), {
     condition = conds.line_begin,
   }),
@@ -221,9 +204,7 @@ return {
       ]],
       { i(1), i(0) }
     ),
-    {
-      condition = conds.line_begin,
-    }
+    { condition = conds.line_begin }
   ),
   s(
     "pst",
@@ -235,9 +216,7 @@ return {
       ]],
       { i(1), i(0) }
     ),
-    {
-      condition = conds.line_begin,
-    }
+    { condition = conds.line_begin }
   ),
   -- Tracing
   s("tracinginit", t("tracing_subscriber::fmt::init();"), {
@@ -255,9 +234,7 @@ return {
       ]],
       {}
     ),
-    {
-      condition = conds.line_begin,
-    }
+    { condition = conds.line_begin }
   ),
   s("tracinginstrument", fmt("#[tracing::instrument{}]", { i(1) }), {
     condition = conds.line_begin,
@@ -285,7 +262,9 @@ return {
     condition = conds.line_begin,
   }),
   -- Misc
-  s("rustfmt", t("#[rustfmt::skip]"), { condition = conds.line_begin }),
+  s("rustfmt", t("#[rustfmt::skip]"), {
+    condition = conds.line_begin,
+  }),
   s("p", fmta('println!("{<>}");', { i(1) }), {
     condition = conds.line_begin,
   }),
@@ -301,9 +280,7 @@ return {
         dl(2, l._1, 1), -- dynamic lambda: repeat node 1 but let override
       }),
     }),
-    {
-      condition = conds.line_begin,
-    }
+    { condition = conds.line_begin }
   ),
   s(
     "fd",
@@ -311,9 +288,7 @@ return {
       field = i(1, "field"),
       value = i(2, "String"),
     }),
-    {
-      condition = conds.line_begin,
-    }
+    { condition = conds.line_begin }
   ),
   s(
     "pfd",
@@ -321,9 +296,7 @@ return {
       field = i(1, "field"),
       value = i(2, "String"),
     }),
-    {
-      condition = conds.line_begin,
-    }
+    { condition = conds.line_begin }
   ),
   s("r", fmt('r#"{}"#', { i(1) })),
   s("now", t("let now = std::time::Instant::now();"), {

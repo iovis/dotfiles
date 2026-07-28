@@ -1,4 +1,5 @@
 return {
+  -- Projectionist
   s(
     "alternate",
     fmta(
@@ -11,9 +12,7 @@ return {
         i(1, "app/*.rb"),
         i(2, "spec/{}_spec.rb"),
       },
-      {
-        condition = conds.line_begin,
-      }
+      { condition = conds.line_begin }
     )
   ),
   s(
@@ -45,9 +44,7 @@ return {
         rep(6),
         rep(5),
       },
-      {
-        condition = conds.line_begin,
-      }
+      { condition = conds.line_begin }
     )
   ),
   s(
@@ -70,9 +67,7 @@ return {
         }
       ]],
       {},
-      {
-        condition = conds.line_begin,
-      }
+      { condition = conds.line_begin }
     )
   ),
   s(
@@ -101,9 +96,7 @@ return {
         }
       ]],
       {},
-      {
-        condition = conds.line_begin,
-      }
+      { condition = conds.line_begin }
     )
   ),
 }

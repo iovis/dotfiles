@@ -7,9 +7,7 @@ return {
         name = "{}"
         harness = false
       ]=],
-      {
-        i(1, "main"),
-      }
+      { i(1, "main") }
     ),
     { condition = conds.line_begin }
   ),
@@ -21,9 +19,7 @@ return {
         resolver = "3"
         members = ["{}"]
       ]=],
-      {
-        i(1, "crates/*"),
-      }
+      { i(1, "crates/*") }
     ),
     { condition = conds.line_begin }
   ),

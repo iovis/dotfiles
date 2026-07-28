@@ -7,10 +7,7 @@ return {
             {}
         end
       ]],
-      {
-        i(1),
-        i(0),
-      }
+      { i(1), i(0) }
     ),
     { condition = conds.line_begin }
   ),
@@ -21,10 +18,7 @@ return {
         else if {}
             {}
       ]],
-      {
-        i(1),
-        i(0),
-      }
+      { i(1), i(0) }
     ),
     { condition = conds.line_begin }
   ),
@@ -38,10 +32,7 @@ return {
                 echo fallback
         end
       ]],
-      {
-        i(1),
-        i(0),
-      }
+      { i(1), i(0) }
     ),
     { condition = conds.line_begin }
   ),
@@ -52,25 +43,19 @@ return {
         case {}
             {}
       ]],
-      {
-        i(1),
-        i(0),
-      }
+      { i(1), i(0) }
     ),
     { condition = conds.line_begin }
   ),
   s(
-    "fun",
+    "f",
     fmt(
       [[
         function {}
             {}
         end
       ]],
-      {
-        i(1),
-        i(0),
-      }
+      { i(1), i(0) }
     ),
     { condition = conds.line_begin }
   ),
@@ -82,9 +67,7 @@ return {
             {}
         end
       ]],
-      {
-        i(1),
-      }
+      { i(1) }
     ),
     { condition = conds.line_begin }
   ),
@@ -96,10 +79,7 @@ return {
             {}
         end
       ]],
-      {
-        i(1),
-        i(0),
-      }
+      { i(1), i(0) }
     ),
     { condition = conds.line_begin }
   ),

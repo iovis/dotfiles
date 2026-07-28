@@ -1,6 +1,10 @@
 return {
-  s("=", fmt("<%= {} %>", { i(1) }), { condition = conds.line_begin }),
-  s("-", fmt("<% {} %>", { i(1) }), { condition = conds.line_begin }),
+  s("=", fmt("<%= {} %>", { i(1) }), {
+    condition = conds.line_begin,
+  }),
+  s("-", fmt("<% {} %>", { i(1) }), {
+    condition = conds.line_begin,
+  }),
   s(
     "link_to",
     fmt("<%= link_to {}, {} %>", {
@@ -9,13 +13,9 @@ return {
     }),
     { condition = conds.line_begin }
   ),
-  s(
-    "render",
-    fmt("<%= render {} %>", {
-      i(1, "partial"),
-    }),
-    { condition = conds.line_begin }
-  ),
+  s("render", fmt("<%= render {} %>", { i(1, "partial") }), {
+    condition = conds.line_begin,
+  }),
   s(
     "each",
     fmt(
@@ -40,10 +40,7 @@ return {
           {}
         <% end %>
       ]],
-      {
-        i(1),
-        i(2),
-      }
+      { i(1), i(2) }
     ),
     { condition = conds.line_begin }
   ),
@@ -57,11 +54,7 @@ return {
           {}
         <% end %>
       ]],
-      {
-        i(1),
-        i(2),
-        i(3),
-      }
+      { i(1), i(2), i(3) }
     ),
     { condition = conds.line_begin }
   ),
@@ -72,9 +65,7 @@ return {
         <% else %>
           {}
       ]],
-      {
-        i(1),
-      }
+      { i(1) }
     ),
     { condition = conds.line_begin }
   ),

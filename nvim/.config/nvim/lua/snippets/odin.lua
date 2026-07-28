@@ -31,9 +31,7 @@ return {
           <body>
         }
       ]],
-      {
-        body = i(0, "// body"),
-      }
+      { body = i(0, "// body") }
     ),
     { condition = conds.line_begin }
   ),

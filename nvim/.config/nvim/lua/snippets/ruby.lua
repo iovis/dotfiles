@@ -67,25 +67,8 @@ return {
         }),
         i(0),
       }
-    )
-  ),
-  s(
-    "inj",
-    fmt(
-      [[
-        include Injectable
-
-        {deps}
-
-        def call
-          {}
-        end
-      ]],
-      {
-        deps = i(1, "# dependencies or arguments"),
-        i(0, "# body"),
-      }
-    )
+    ),
+    { condition = conds.line_begin }
   ),
   s(
     "mod",
@@ -99,21 +82,9 @@ return {
         name = d(1, constant_name_choices),
         i(0),
       }
-    )
+    ),
+    { condition = conds.line_begin }
   ),
-  s(
-    "dep",
-    fmt("dependency{}", {
-      c(1, {
-        {
-          t(" :"),
-          i(1, "service_name"),
-        },
-        fmta("(:<>) { <> }", { i(1, "name"), i(2, "ServiceName") }),
-      }),
-    })
-  ),
-  parse("arg", "argument :${1:name}"),
   -- RSpec
   s("dc", t("described_class.")),
   s(
@@ -139,10 +110,7 @@ return {
           {}
         end
       ]],
-      {
-        i(1),
-        i(0),
-      }
+      { i(1), i(0) }
     ),
     { condition = conds.line_begin }
   ),
@@ -294,24 +262,6 @@ return {
     }),
     { condition = conds.line_begin }
   ),
-  -- Yard
-  parse("ret", "# @return [${1:type}] ${0:Description}"),
-  parse("param", "# @param ${1:name} [${2:type}] ${0:Description}"),
-  s(
-    "attr",
-    fmt(
-      [[
-        # @!attribute [r] {}
-        #   @return [{}] {}
-      ]],
-      {
-        i(1, "attr_name"),
-        i(2, "ret_type"),
-        i(0, "Description"),
-      }
-    ),
-    { condition = conds.line_begin }
-  ),
   -- Misc
   s("frozenstring", t("# frozen_string_literal: true"), {
     condition = conds.line_begin,
@@ -386,9 +336,7 @@ return {
         gem "pry-doc"
         gem "{}"
       ]],
-      {
-        i(1, "faraday"),
-      }
+      { i(1, "faraday") }
     ),
     {
       condition = conds.line_begin * u.ls.within("Gemfile"),
