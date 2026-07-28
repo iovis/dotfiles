@@ -101,10 +101,10 @@
     "menu": "on-click",
     "menu-file": "$HOME/.config/waybar/power_menu.xml",
     "menu-actions": {
-      "logout": "hyprshutdown -t logout",
-      "reboot": "hyprshutdown -t reboot --post-cmd 'systemctl reboot'",
-      "shutdown": "hyprshutdown -t shutdown --post-cmd 'systemctl poweroff'",
-      "suspend": "systemctl suspend"
+      "logout": "powermenu logout",
+      "reboot": "powermenu reboot",
+      "shutdown": "powermenu shutdown",
+      "suspend": "powermenu suspend"
     }
   },
   "custom/screenrecording-indicator": {

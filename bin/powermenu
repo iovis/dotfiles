@@ -11,11 +11,28 @@ fzf_command() {
     --no-preview
 }
 
-action=$(printf "suspend\nshutdown\nreboot\nlogout" | fzf_command) || exit 0
+usage() {
+  printf "Usage: %s [suspend|shutdown|reboot|logout]\n" "${0##*/}" >&2
+}
+
+if (($# > 1)); then
+  usage
+  exit 2
+fi
+
+if (($# == 0)); then
+  action=$(printf "suspend\nshutdown\nreboot\nlogout" | fzf_command) || exit 0
+else
+  action=$1
+fi
 
 case $action in
-"logout") hyprshutdown -t logout ;;
-"reboot") hyprshutdown -t reboot --post-cmd "systemctl reboot" ;;
-"shutdown") hyprshutdown -t shutdown --post-cmd "systemctl poweroff" ;;
-"suspend") systemctl suspend ;;
+"logout") exec uwsm-app -- hyprshutdown -t logout ;;
+"reboot") exec uwsm-app -- hyprshutdown -t reboot --post-cmd "systemctl reboot" ;;
+"shutdown") exec uwsm-app -- hyprshutdown -t shutdown --post-cmd "systemctl poweroff" ;;
+"suspend") exec systemctl suspend ;;
+*)
+  usage
+  exit 2
+  ;;
 esac
