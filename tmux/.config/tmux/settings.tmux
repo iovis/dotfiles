@@ -19,7 +19,6 @@ set -wg automatic-rename on
 set -wg automatic-rename-format '#{pane_current_command}'
 set -wg mode-keys vi
 set -wg monitor-activity on
-set -wg window-size largest
 
 set -s extended-keys on
 set -s extended-keys-format csi-u
