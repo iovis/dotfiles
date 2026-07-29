@@ -45,7 +45,7 @@ return {
     condition = conds.line_begin,
   }),
   s(
-    "st",
+    "s",
     fmta(
       [[
         <> :: struct {

@@ -140,6 +140,20 @@ local function rust_modtest()
   )
 end
 
+local function rust_struct()
+  return sn(
+    nil,
+    fmta(
+      [[
+        struct <> {
+            <>
+        }
+      ]],
+      { i(1), i(0) }
+    )
+  )
+end
+
 return {
   -- Functions/methods
   s("f", d(1, rust_function), {
@@ -200,30 +214,12 @@ return {
     condition = conds.line_begin,
   }),
   -- Structs
-  s(
-    "st",
-    fmta(
-      [[
-        struct <> {
-            <>
-        }
-      ]],
-      { i(1), i(0) }
-    ),
-    { condition = conds.line_begin }
-  ),
-  s(
-    "pst",
-    fmta(
-      [[
-        pub struct <> {
-            <>
-        }
-      ]],
-      { i(1), i(0) }
-    ),
-    { condition = conds.line_begin }
-  ),
+  s("s", d(1, rust_struct), {
+    condition = conds.line_begin,
+  }),
+  s("ps", fmt("pub {}", { d(1, rust_struct) }), {
+    condition = conds.line_begin,
+  }),
   -- Tracing
   s("tracinginit", t("tracing_subscriber::fmt::init();"), {
     condition = conds.line_begin,
@@ -285,22 +281,6 @@ return {
         r(1, "label", i(1)),
         dl(2, l._1, 1), -- dynamic lambda: repeat node 1 but let override
       }),
-    }),
-    { condition = conds.line_begin }
-  ),
-  s(
-    "fd",
-    fmt("{field}: {value},", {
-      field = i(1, "field"),
-      value = i(2, "String"),
-    }),
-    { condition = conds.line_begin }
-  ),
-  s(
-    "pfd",
-    fmt("pub {field}: {value},", {
-      field = i(1, "field"),
-      value = i(2, "String"),
     }),
     { condition = conds.line_begin }
   ),

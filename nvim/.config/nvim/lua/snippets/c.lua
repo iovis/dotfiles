@@ -142,7 +142,7 @@ return {
     { condition = conds.line_begin }
   ),
   s(
-    "st",
+    "s",
     c(1, {
       fmta(
         [[
@@ -167,9 +167,7 @@ return {
         }
       ),
     }),
-    {
-      condition = conds.line_begin,
-    }
+    { condition = conds.line_begin }
   ),
   s(
     "clangformat",
@@ -179,9 +177,7 @@ return {
         {visual_selection}
         // clang-format on
       ]],
-      {
-        visual_selection = dl(1, l.LS_SELECT_DEDENT),
-      }
+      { visual_selection = dl(1, l.LS_SELECT_DEDENT) }
     ),
     { condition = conds.line_begin }
   ),
@@ -262,9 +258,7 @@ return {
         dl(3, l._1, 1), -- dynamic lambda: repeat node 1 but let override
       }
     ),
-    {
-      condition = conds.line_begin,
-    }
+    { condition = conds.line_begin }
   ),
   s(
     "debug",
