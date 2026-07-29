@@ -1,6 +1,6 @@
 local u = require("config.utils")
 
-vim.opt_local.conceallevel = 0
+vim.opt_local.conceallevel = 2
 vim.opt_local.concealcursor = "n" -- Keep current line concealed in normal mode
 vim.opt_local.spelllang = "en_us"
 vim.opt_local.spell = true

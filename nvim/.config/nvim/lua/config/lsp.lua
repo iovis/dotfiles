@@ -82,7 +82,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
     })
 
     ---- Diagnostics
-    vim.keymap.set("n", "<m-d>", vim.diagnostic.open_float, { desc = "vim.diagnostic.open_float", buf = bufnr })
+    vim.keymap.set("n", "<m-d>", vim.diagnostic.open_float, {
+      desc = "vim.diagnostic.open_float",
+      buf = bufnr,
+    })
 
     vim.keymap.set("n", "<left>", function()
       vim.diagnostic.jump({
@@ -100,9 +103,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     ---- Lspsaga
     -- peek
-    vim.keymap.set("i", "<c-h>", "<cmd>Lspsaga hover_doc<cr>", { buf = bufnr })
-    vim.keymap.set("n", "gd", "<cmd>Lspsaga hover_doc<cr>", { buf = bufnr })
-    vim.keymap.set("n", "gt", "<cmd>Lspsaga goto_type_definition<cr>", { buf = bufnr })
     vim.keymap.set("n", "<leader>lf", "<cmd>Lspsaga peek_definition<cr>", { buf = bufnr })
     vim.keymap.set("n", "<leader>lt", "<cmd>Lspsaga peek_type_definition<cr>", { buf = bufnr })
 
