@@ -1,4 +1,45 @@
-local function rust_fn()
+local function inside_impl()
+  local node = vim.treesitter.get_node()
+
+  while node do
+    if node:type() == "block" then
+      return false
+    end
+
+    if node:type() == "declaration_list" then
+      return node:parent():type() == "impl_item"
+    end
+
+    node = node:parent()
+  end
+
+  return false
+end
+
+local function rust_function()
+  if inside_impl() then
+    return sn(
+      nil,
+      fmta(
+        [[
+          fn <fname>(<args>)<arrow><ret_type> {
+              <body>
+          }
+        ]],
+        {
+          fname = i(1, "fname"),
+          args = c(2, {
+            fmta("&self<>", { r(1, "arg", i(1)) }),
+            fmta("&mut self<>", { r(1, "arg", i(1)) }),
+          }),
+          arrow = n(3, " -> "),
+          ret_type = i(3),
+          body = i(4, "todo!()"),
+        }
+      )
+    )
+  end
+
   return sn(
     nil,
     fmta(
@@ -10,29 +51,6 @@ local function rust_fn()
       {
         fname = i(1, "fname"),
         args = i(2),
-        arrow = n(3, " -> "),
-        ret_type = i(3),
-        body = i(4, "todo!()"),
-      }
-    )
-  )
-end
-
-local function rust_method()
-  return sn(
-    nil,
-    fmta(
-      [[
-        fn <fname>(<args>)<arrow><ret_type> {
-            <body>
-        }
-      ]],
-      {
-        fname = i(1, "fname"),
-        args = c(2, {
-          fmta("&self<>", { r(1, "arg", i(1)) }),
-          fmta("&mut self<>", { r(1, "arg", i(1)) }),
-        }),
         arrow = n(3, " -> "),
         ret_type = i(3),
         body = i(4, "todo!()"),
@@ -123,29 +141,17 @@ local function rust_modtest()
 end
 
 return {
-  -- Functions
-  s("f", d(1, rust_fn), {
+  -- Functions/methods
+  s("f", d(1, rust_function), {
     condition = conds.line_begin,
   }),
-  s("pf", fmt("pub {}", { d(1, rust_fn) }), {
+  s("pf", fmt("pub {}", { d(1, rust_function) }), {
     condition = conds.line_begin,
   }),
-  s("af", fmt("async {}", { d(1, rust_fn) }), {
+  s("af", fmt("async {}", { d(1, rust_function) }), {
     condition = conds.line_begin,
   }),
-  s("paf", fmt("pub async {}", { d(1, rust_fn) }), {
-    condition = conds.line_begin,
-  }),
-  s("fm", d(1, rust_method), {
-    condition = conds.line_begin,
-  }),
-  s("pfm", fmt("pub {}", { d(1, rust_method) }), {
-    condition = conds.line_begin,
-  }),
-  s("afm", fmt("async {}", { d(1, rust_method) }), {
-    condition = conds.line_begin,
-  }),
-  s("pafm", fmt("pub async {}", { d(1, rust_method) }), {
+  s("paf", fmt("pub async {}", { d(1, rust_function) }), {
     condition = conds.line_begin,
   }),
   -- Tests
