@@ -51,8 +51,8 @@ hl.bind(G("g"), hl.dsp.exec_cmd("hyprfocus class:chromium || uwsm-app -- chromiu
 hl.bind(C(G("g")), hl.dsp.exec_cmd("uwsm-app -- chromium --incognito"))
 
 hl.bind(G("x"), hl.dsp.exec_cmd("hyprfocus class:localsend || GTK_THEME=Adwaita:dark uwsm-app -- localsend"))
-hl.bind(G("c"), hl.dsp.exec_cmd("hyprclose class:widget.fn || kitty --class=widget.fn -e codex --cd ~/code/"))
-hl.bind(C(G("c")), hl.dsp.exec_cmd("hyprclose class:widget.calc || kitty --class=widget.calc -e calc"))
+hl.bind(G("c"), hl.dsp.exec_cmd("hyprclose class:widget.calc || kitty --class=widget.calc -e calc"))
+hl.bind(C(G("c")), hl.dsp.exec_cmd("hyprclose class:widget.fn || kitty --class=widget.fn -e codex --cd ~/code/"))
 hl.bind(S(G("c")), hl.dsp.exec_cmd("hyprfocus class:org.gnome.Calendar || uwsm-app -- gnome-calendar"))
 hl.bind(G("b"), hl.dsp.exec_cmd("hyprclose class:widget.bluetui || kitty --class=widget.bluetui -e bluetui"))
 hl.bind(G("v"), hl.dsp.exec_cmd("vicinae_toggle deeplink vicinae://launch/clipboard/history"))
