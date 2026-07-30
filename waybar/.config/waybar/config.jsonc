@@ -61,7 +61,7 @@
   "cpu": {
     "format": "  {usage}% ",
     "tooltip": false,
-    "on-click": "kitty --class=widget.btop -e btop",
+    "on-click": "hyprclose class:widget.btop || kitty --class=widget.btop -e btop",
     "on-click-right": "gnome-system-monitor"
   },
   "custom/arch": {
@@ -154,7 +154,7 @@
   },
   "memory": {
     "format": "󰾆 {percentage}%",
-    "on-click": "kitty --class=widget.btop -e htop --sort-key=PERCENT_MEM",
+    "on-click": "hyprclose class:widget.btop || kitty --class=widget.btop -e htop --sort-key=PERCENT_MEM",
     "on-click-right": "gnome-system-monitor"
   },
   "network": {
@@ -173,7 +173,8 @@
     "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-disconnected": "Disconnected",
     "interval": 3,
-    "on-click": "XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
+    "on-click": "hyprclose class:widget.wiremix || kitty --class=widget.wiremix -e impala",
+    "on-click-right": "XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
   },
   "pulseaudio": {
     "scroll-step": 5, // %, can be a float
@@ -190,7 +191,7 @@
         ""
       ]
     },
-    "on-click": "kitty --class=widget.wiremix -e wiremix",
+    "on-click": "hyprclose class:widget.wiremix || kitty --class=widget.wiremix -e wiremix",
     "on-click-right": "pavucontrol"
   },
   "tray": {
