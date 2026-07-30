@@ -21,7 +21,7 @@ vim.keymap.set("n", "<leader>sl", function()
 end, { buf = 0, desc = "[odin] Debug current line" })
 
 -- Testing
-vim.keymap.set("n", "<leader>sa", "<cmd>Tux odin test . -all-packages<cr>", {
+vim.keymap.set("n", "<leader>st", "<cmd>Tux odin test . -all-packages<cr>", {
   desc = "[odin] Test suite",
   buf = 0,
 })
@@ -80,7 +80,6 @@ end, { buf = 0, desc = "[odin] Test nearest" })
 
 if u.has_justfile() then
   vim.keymap.set("n", "<leader>sr", "<cmd>Tux just run_release<cr>", { buf = 0 })
-  vim.keymap.set("n", "<leader>st", "<cmd>Tux just watch_test<cr>", { buf = 0 })
   vim.keymap.set("n", "<leader>sw", "<cmd>Tux just watch<cr>", { buf = 0 })
 
   vim.keymap.set("n", "d<cr>", function()

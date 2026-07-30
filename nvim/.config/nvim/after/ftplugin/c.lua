@@ -60,7 +60,6 @@ if u.has_justfile() then
   vim.keymap.set("n", "<leader>sd", "<cmd>Tux just compiledb<cr>", { buf = 0 })
   vim.keymap.set("n", "<leader>so", "<cmd>Tux just test<cr>", { buf = 0 })
   vim.keymap.set("n", "<leader>sr", "<cmd>Tux just run_release<cr>", { buf = 0 })
-  vim.keymap.set("n", "<leader>st", "<cmd>Tux just watch_test<cr>", { buf = 0 })
   vim.keymap.set("n", "<leader>sw", "<cmd>Tux just watch<cr>", { buf = 0 })
 
   vim.keymap.set("n", "d<cr>", function()
