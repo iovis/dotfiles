@@ -18,6 +18,9 @@ lazygit/.config/lazygit/state.yml
 
 # mpv
 mpv/.config/mpv/watch_later/*
+mpv/.config/mpv/fonts/material-osc_google_sans_flex.ttf
+mpv/.config/mpv/fonts/material-osc_icons.otf
+mpv/.config/mpv/scripts/material-osc.lua
 
 # muxi
 muxi/.config/muxi/.lua_ls/
