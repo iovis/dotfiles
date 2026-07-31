@@ -22,6 +22,13 @@ unbind -T copy-mode-vi C-up
 # bind -T copy-mode-vi o send -X copy-pipe-and-cancel -CP 'jira-open'
 
 # Enter copy mode
+bind -n C-, if "$forward_keys" {
+  send C-,
+} {
+  copy-mode
+}
+
+# TODO: clean up?
 bind -n C-_ if "$forward_keys" {
   send C-_
 } {
