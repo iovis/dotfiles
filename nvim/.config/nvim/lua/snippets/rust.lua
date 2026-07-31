@@ -149,7 +149,7 @@ local function rust_struct()
             <>
         }
       ]],
-      { i(1), i(0) }
+      { i(1), i(2) }
     )
   )
 end
