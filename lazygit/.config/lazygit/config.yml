@@ -19,6 +19,7 @@ gui:
   skipRewordInEditorWarning: true
   statusPanelView: allBranchesLog
   spinner:
+    rate: 60
     frames:
       - "⠋"
       - "⠙"
