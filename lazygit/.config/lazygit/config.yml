@@ -53,9 +53,10 @@ gui:
 git:
   autoFetch: false
   autoForwardBranches: none
-  pagers:
-    - externalDiffCommand: difft --color=always
-    - pager: "" # default git diff
+  diffRenderers:
+    - command: difft --color=always
+      type: extDiff
+    - type: rawGit
   parseEmoji: true
 notARepository: "quit"
 promptToReturnFromSubprocess: false
