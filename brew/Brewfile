@@ -112,11 +112,11 @@ brew "zoxide"
 # UNIX shell (command interpreter)
 brew "zsh"
 # Quantum Mechanical Keyboard (QMK) Firmware
-brew "qmk/qmk/qmk", trusted: true
+brew "qmk/qmk/qmk"
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # AeroSpace is an i3-like tiling window manager for macOS
-cask "nikitabobko/tap/aerospace", trusted: true
+cask "nikitabobko/tap/aerospace"
 # Application uninstaller
 cask "appcleaner"
 # Chromium based browser
