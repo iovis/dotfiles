@@ -1,3 +1,10 @@
+# Enter copy mode
+bind -n C-, if "$forward_keys" {
+  send C-,
+} {
+  copy-mode
+}
+
 # Unbind so they use the "root" binding
 unbind -T copy-mode-vi C-h
 unbind -T copy-mode-vi C-j
@@ -20,26 +27,6 @@ unbind -T copy-mode-vi C-up
 # -C: don't update the terminal clipboard
 # -P: don't create a tmux buffer
 # bind -T copy-mode-vi o send -X copy-pipe-and-cancel -CP 'jira-open'
-
-# Enter copy mode
-bind -n C-, if "$forward_keys" {
-  send C-,
-} {
-  copy-mode
-}
-
-# TODO: clean up?
-bind -n C-_ if "$forward_keys" {
-  send C-_
-} {
-  copy-mode
-}
-
-bind -n C-/ if "$forward_keys" {
-  send C-/
-} {
-  copy-mode
-}
 
 # Movement
 bind -T copy-mode-vi H send -X back-to-indentation
