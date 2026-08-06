@@ -176,6 +176,7 @@ vim.api.nvim_create_user_command("Grep", function(opts)
 end, { nargs = "+", complete = "file" })
 
 -- Highlights
+vim.cmd.colorscheme("catppuccin")
 vim.api.nvim_set_hl(0, "Normal", { bg = nil })
 vim.api.nvim_set_hl(0, "Pmenu", { link = "Normal" })
 vim.api.nvim_set_hl(0, "PmenuSel", { link = "CursorLine" })
