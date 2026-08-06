@@ -64,6 +64,16 @@ vim.keymap.set("i", "<tab>", function()
   return "<tab>"
 end, { expr = true, desc = "Accept completion or tab" })
 
+vim.keymap.set("n", "<up>", "<cmd>cprevious<cr>")
+vim.keymap.set("n", "<down>", "<cmd>cnext<cr>")
+vim.keymap.set("n", "+", function()
+  if vim.fn.getqflist({ winid = 1 }).winid == 0 then
+    vim.cmd("botright copen")
+  else
+    vim.cmd("cclose")
+  end
+end, { desc = "QuickFix Toggle" })
+
 -- Options
 vim.g.netrw_banner = 0
 
