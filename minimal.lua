@@ -1,5 +1,5 @@
 -- Keymap
-vim.g.mapleader = vim.keycode("<space>")
+vim.g.mapleader = " "
 
 vim.keymap.set("i", "kj", "<esc>")
 vim.keymap.set("n", ",", "<cmd>Ex<cr>")
@@ -18,7 +18,7 @@ vim.keymap.set("n", "<leader>L", "<c-w>L")
 vim.keymap.set("n", "<leader>X", "<cmd>qa!<cr>")
 vim.keymap.set("n", "<leader>b", "<cmd>bd!<cr>")
 vim.keymap.set("n", "<leader>c", "<c-w>c")
-vim.keymap.set("n", "<leader>e", ":e!<space>")
+vim.keymap.set("n", "<leader>e", ":e! ")
 vim.keymap.set("n", "<leader>h", "<c-w>s")
 vim.keymap.set("n", "<leader>k", "<cmd>20Lex<cr>")
 vim.keymap.set("n", "<leader>n", "<cmd>enew<cr>")
