@@ -159,6 +159,15 @@ vim.diagnostic.config({
   },
 })
 
+-- Fuzzy find files
+vim.opt.findfunc = "v:lua.FuzzyFindFiles"
+vim.keymap.set("n", "<leader>o", ":find ")
+
+function FuzzyFindFiles(text, _)
+  local files = vim.fn.glob("`fd -H -E '.git' -E '.keep' --type file`", true, true)
+  return vim.fn.matchfuzzy(files, text)
+end
+
 -- Highlights
 vim.api.nvim_set_hl(0, "Normal", { bg = nil })
 vim.api.nvim_set_hl(0, "Pmenu", { link = "Normal" })
