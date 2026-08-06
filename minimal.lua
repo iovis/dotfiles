@@ -168,6 +168,13 @@ function FuzzyFindFiles(text, _)
   return vim.fn.matchfuzzy(files, text)
 end
 
+-- Grep
+vim.keymap.set("n", "g<space>", ":Grep ")
+vim.api.nvim_create_user_command("Grep", function(opts)
+  vim.cmd("silent grep! " .. opts.args)
+  vim.cmd("botright cwindow")
+end, { nargs = "+", complete = "file" })
+
 -- Highlights
 vim.api.nvim_set_hl(0, "Normal", { bg = nil })
 vim.api.nvim_set_hl(0, "Pmenu", { link = "Normal" })
