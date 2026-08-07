@@ -37,6 +37,7 @@ vim.keymap.set("n", "<tab>", "<cmd>bp|bd #<cr>")
 vim.keymap.set("n", "J", "m`J``")
 vim.keymap.set("n", "M", "<c-w>o")
 vim.keymap.set("n", "gcu", "gcgc", { remap = true })
+vim.keymap.set("n", "gm", ":ls<cr>:b ")
 vim.keymap.set("n", "yoi", "<cmd>set list!<cr>")
 vim.keymap.set("n", "yow", "<cmd>set wrap!<cr>")
 vim.keymap.set("x", "<", "<gv")
@@ -77,9 +78,12 @@ end, { desc = "QuickFix Toggle" })
 -- Options
 vim.g.netrw_banner = 0
 
+vim.o.autowriteall = true
 vim.o.autocomplete = true
 vim.o.background = "dark"
+vim.o.breakindent = true
 vim.o.completeopt = "menu,menuone,noselect,popup,fuzzy"
+vim.o.confirm = true
 vim.o.cursorline = true
 vim.opt.diffopt = {
   "internal",
@@ -104,12 +108,12 @@ vim.opt.fillchars = {
   stl = "─",
   stlnc = "─",
 }
+vim.o.foldcolumn = "0"
 vim.o.foldenable = true
 vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.o.foldlevel = 99
 vim.o.foldmethod = "expr"
-vim.o.ignorecase = true
-vim.o.list = false
+vim.o.inccommand = "split"
 vim.o.laststatus = 3
 vim.opt.listchars:append({
   tab = ">-",
@@ -119,6 +123,7 @@ vim.opt.listchars:append({
   leadmultispace = "│·",
   space = "·",
 })
+vim.o.mouse = "a"
 vim.o.number = true
 vim.o.pumborder = "rounded"
 vim.o.pumheight = 10
