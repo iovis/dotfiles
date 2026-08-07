@@ -218,8 +218,10 @@ hl.bind(G("return"), function() -- TODO: till we get workspacemovesilent
 end)
 
 -- mouse quick switch
-hl.bind(G("mouse_down"), hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(G("mouse_up"), hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(G("mouse_up"), hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(G("mouse_down"), hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(C(G("mouse_up")), hl.dsp.window.move({ workspace = "+1" }))
+hl.bind(C(G("mouse_down")), hl.dsp.window.move({ workspace = "-1" }))
 
 ---- Media keys
 -- Only display the OSD on the currently focused monitor
