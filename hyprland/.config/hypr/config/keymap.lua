@@ -69,9 +69,9 @@ hl.bind(S(G("p")), hl.dsp.exec_cmd("hyprpicker --autocopy"))
 hl.bind(G("space"), hl.dsp.exec_cmd("vicinae toggle"))
 hl.bind(C(S("space")), hl.dsp.exec_cmd("vicinae_toggle deeplink vicinae://launch/core/search-emojis"))
 
-hl.bind(G("n"), hl.dsp.exec_cmd("swaync-client -t -sw"))
-hl.bind(C(G("n")), hl.dsp.exec_cmd("swaync-client -d"))
-hl.bind(G("semicolon"), hl.dsp.exec_cmd("swaync-client -C"))
+hl.bind(G("n"), hl.dsp.exec_cmd("swaync-client --toggle-panel --skip-wait"))
+hl.bind(C(G("n")), hl.dsp.exec_cmd("swaync-client --toggle-dnd --skip-wait"))
+hl.bind(G("semicolon"), hl.dsp.exec_cmd("swaync-client --close-panel --close-all --skip-wait"))
 
 hl.bind("print", hl.dsp.exec_cmd("screenshot output"))
 hl.bind(G("print"), hl.dsp.exec_cmd("screenshot window"))
