@@ -19,10 +19,6 @@ bind -N "Search command prompts" -T copy-mode-vi , {
   send -X search-backward "(❯|❮)(.*[^[:space:]])?"
 }
 
-bind -N "Search command prompts" -T copy-mode-vi C-, {
-  send -X search-backward "(❯|❮)(.*[^[:space:]])?"
-}
-
 bind -N "Search command prompts" -T search , {
   copy-mode
   send ,

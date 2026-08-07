@@ -1,6 +1,12 @@
 # Enter copy mode
-bind -n C-, if "$forward_keys" {
-  send C-,
+bind -n C-_ if "$forward_keys" {
+  send c-_
+} {
+  copy-mode
+}
+
+bind -n C-/ if "$forward_keys" {
+  send C-/
 } {
   copy-mode
 }
