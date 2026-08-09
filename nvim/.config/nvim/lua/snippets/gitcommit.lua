@@ -63,11 +63,19 @@ end
 
 ---@return string
 local function project_version()
+  -- TODO: use other version managers
   return cargo_version() or ""
 end
 
 local function release_version()
-  return sn(nil, t(project_version()))
+  local version = project_version()
+
+  -- copy version to clipboard if it exists
+  if version ~= "" then
+    vim.fn.setreg("+", "v" .. version)
+  end
+
+  return sn(nil, t(version))
 end
 
 ---get branch name
