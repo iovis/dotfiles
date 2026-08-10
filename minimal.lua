@@ -166,6 +166,7 @@ vim.diagnostic.config({
 
 -- Fuzzy find files
 vim.opt.findfunc = "v:lua.FuzzyFindFiles"
+vim.keymap.set("n", "f<space>", ":find ")
 vim.keymap.set("n", "<leader>o", ":find ")
 
 function FuzzyFindFiles(text, _)

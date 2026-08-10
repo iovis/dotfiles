@@ -5,6 +5,5 @@ function FuzzyFindFiles(_text, _)
   -- return vim.fn.matchfuzzy(files, text)
 end
 
-local u = require("config.utils")
-u.ex.abbrev("f", "find")
+vim.keymap.set("n", "f<space>", ":find ")
 vim.opt.findfunc = "v:lua.FuzzyFindFiles"
