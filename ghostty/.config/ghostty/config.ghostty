@@ -8,7 +8,7 @@ window-padding-x = 16
 
 theme = Catppuccin Mocha
 font-family = FiraCode Nerd Font
-font-size = 20
+font-size = 23
 
 background = #000000
 background-blur = true
