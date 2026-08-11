@@ -61,36 +61,22 @@ return {
       desc = "[muxi] quickfix marks",
     })
 
-    -- vim.keymap.set("n", "m?", muxi.fzf.sessions, {
-    --   desc = "[muxi] fzf-lua sessions",
-    -- })
-
     vim.keymap.set("n", "m!", function()
       muxi.clear_all()
       vim.notify("Cleared current marks")
     end, { desc = "[muxi] Clear current workspace" })
 
-    vim.keymap.set("n", "'e", muxi.ui.edit, {
-      desc = "[muxi] Modify current workspace interactively",
-    })
-
-    -- ----Settings toggles
-    -- vim.keymap.set("n", "yom", function()
-    --   muxi.config.go_to_cursor = not muxi.config.go_to_cursor
-    --
-    --   local message = "Muxi go to cursor "
-    --   message = message .. (muxi.config.go_to_cursor and "enabled" or "disabled")
-    --   vim.notify(message)
-    -- end, { desc = "[muxi] Toggle go to cursor" })
-
     ---Testing-------------------------------------
     -- vim.keymap.set("n", "<leader>gs", muxi.ui.go_to_prompt, { desc = "[muxi] Interactive go to" })
     -- vim.keymap.set("n", "<leader>gd", muxi.ui.delete_prompt, { desc = "[muxi] Interactive delete" })
-    --
-    -- vim.keymap.set("n", "<leader>gM", function()
-    --   local muxi_path = muxi.config.path
-    --   vim.cmd.split(muxi_path)
-    --   vim.keymap.set("n", "q", "<cmd>q!<cr>", { buf = 0 })
-    -- end, { desc = "[muxi] Open storage" })
+    -- vim.keymap.set("n", "'e", muxi.ui.edit, {
+    --   desc = "[muxi] Modify current workspace interactively",
+    -- })
+
+    vim.api.nvim_create_user_command("MuxiStorage", function()
+      local muxi_path = muxi.config.path
+      vim.cmd.split(muxi_path)
+      vim.keymap.set("n", "q", "<cmd>q!<cr>", { buf = 0 })
+    end, {})
   end,
 }
