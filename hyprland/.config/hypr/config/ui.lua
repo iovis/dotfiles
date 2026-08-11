@@ -15,6 +15,7 @@ hl.config({
     resize_on_border = true,
     allow_tearing = true,
     layout = "dwindle",
+    no_focus_fallback = true,
   },
   decoration = {
     rounding = 10,
