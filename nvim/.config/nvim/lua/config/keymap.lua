@@ -189,8 +189,8 @@ vim.keymap.set("n", "<c-m>", maximize_pane, { desc = "Maximize pane" })
 -- Copy/Paste
 vim.keymap.set("n", "Y", "y$")
 
-vim.keymap.set("n", "p", [[p<cmd>execute ":silent normal! `[v`]="<cr>]])
-vim.keymap.set("n", "P", [[P<cmd>execute ":silent normal! `[v`]="<cr>]])
+vim.keymap.set("n", "p", [[p<cmd>normal! `[v`]=<cr>]])
+vim.keymap.set("n", "P", [[P<cmd>normal! `[v`]=<cr>]])
 vim.keymap.set("n", "gp", "p")
 vim.keymap.set("n", "gP", "P")
 vim.keymap.set("n", "zp", '"0p')
