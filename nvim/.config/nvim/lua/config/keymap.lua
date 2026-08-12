@@ -182,7 +182,7 @@ local function maximize_pane()
   vim.o.cmdheight = cmdheight
 end
 
-vim.keymap.set("n", "<leader>m", "<nop>")
+vim.keymap.set("n", "<leader>m", maximize_pane, { desc = "Maximize pane" })
 vim.keymap.set("n", "<c-cr>", maximize_pane, { desc = "Maximize pane" })
 vim.keymap.set("n", "<c-m>", maximize_pane, { desc = "Maximize pane" })
 
