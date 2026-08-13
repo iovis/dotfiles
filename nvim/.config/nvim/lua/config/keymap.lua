@@ -172,6 +172,7 @@ vim.keymap.set("n", "<leader>K", "<c-w>K")
 vim.keymap.set("n", "<leader>L", "<c-w>L")
 
 vim.keymap.set("n", "M", "<c-w>o")
+vim.keymap.set("n", "<leader>m", "<c-w>_<c-w>|")
 
 local function maximize_pane()
   local cmdheight = vim.o.cmdheight
@@ -182,7 +183,6 @@ local function maximize_pane()
   vim.o.cmdheight = cmdheight
 end
 
-vim.keymap.set("n", "<leader>m", maximize_pane, { desc = "Maximize pane" })
 vim.keymap.set("n", "<c-cr>", maximize_pane, { desc = "Maximize pane" })
 vim.keymap.set("n", "<c-m>", maximize_pane, { desc = "Maximize pane" })
 
@@ -444,7 +444,6 @@ vim.keymap.set("n", "<leader><enter>", "<cmd>e!<cr>")
 vim.keymap.set("n", "<leader>fs", ":se ft=")
 vim.keymap.set("n", "<leader>fp", ":se ft?<cr>")
 vim.keymap.set("n", "<leader>P", ":R=")
-vim.keymap.set("n", "<leader>T", ":RenderAscii<cr>")
 vim.keymap.set({ "n", "x" }, "<leader>,", ":!")
 vim.keymap.set("n", "<leader><", ":R! !")
 vim.keymap.set("x", "<leader>I", "y:R! !<c-r>0<cr>")
