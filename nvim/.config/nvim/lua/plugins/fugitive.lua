@@ -1,7 +1,10 @@
 return {
   "tpope/vim-fugitive",
   event = "VeryLazy",
-  dependencies = { "tpope/vim-rhubarb" },
+  dependencies = {
+    "tpope/vim-rhubarb",
+    "shumphrey/fugitive-gitlab.vim",
+  },
   config = function()
     local u = require("config.utils")
     u.ex.abbrev("g", "Git")
