@@ -53,7 +53,7 @@ return {
 
           -- markdown
           ["@markup.quote"] = { link = "Comment" },
-          MarkviewInlineCode = { bg = colors.crust },
+          RenderMarkdownCode = { bg = "#0e1015" },
 
           -- matchup
           MatchParen = { bg = colors.mantle, fg = colors.peach, bold = true },
