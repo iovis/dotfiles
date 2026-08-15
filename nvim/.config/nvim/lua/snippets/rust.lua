@@ -308,16 +308,14 @@ return {
     fmta(
       [[
           fn main() {
-              tracing_subscriber::fmt::init();
-
-              let input = include_str!("input.txt");
+              let input = include_str!("../input.txt");
 
               println!("p1 = {:?}", p1(input));
               println!("p2 = {:?}", p2(input));
           }
 
           fn p1(input: &str) ->> u64 {
-              todo!()<eos>
+              todo!()
           }
 
           fn p2(input: &str) ->> u64 {
@@ -327,14 +325,13 @@ return {
           #[cfg(test)]
           mod tests {
               use super::*;
-              use pretty_assertions::assert_eq;
 
               #[test]
               fn p1_test() {
-                  let _ = tracing_subscriber::fmt::try_init();
-                  let input = indoc::indoc! {"
+                  #[rustfmt::skip]
+                  let input = concat!(
                       <input>
-                  "};
+                  );
 
                   assert_eq!(p1(input), <output>);
               }
@@ -342,21 +339,20 @@ return {
               #[test]
               #[ignore = "pending"]
               fn p2_test() {
-                  let _ = tracing_subscriber::fmt::try_init();
-                  let input = indoc::indoc! {"
+                  #[rustfmt::skip]
+                  let input = concat!(
                       <input_repeat>
-                  "};
+                  );
 
                   assert_eq!(p2(input), <output_repeat>);
               }
           }
       ]],
       {
-        input = i(1),
+        input = i(1, '"line\\n",'),
         input_repeat = rep(1),
         output = i(2, "123"),
         output_repeat = rep(2),
-        eos = i(0),
       }
     ),
     { condition = conds.line_begin }
