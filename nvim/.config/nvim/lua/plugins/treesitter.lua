@@ -4,6 +4,28 @@ return {
   branch = "main",
   build = ":TSUpdate",
   config = function()
+    ---- Custom grammars
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "TSUpdate",
+      callback = function()
+        require("nvim-treesitter.parsers").tmux = {
+          install_info = {
+            url = "https://github.com/Freed-Wu/tree-sitter-tmux",
+            branch = "main",
+            queries = "queries",
+          },
+        }
+
+        require("nvim-treesitter.parsers").tmuxf = {
+          install_info = {
+            url = "https://github.com/Freed-Wu/tree-sitter-tmuxf",
+            branch = "main",
+            queries = "queries",
+          },
+        }
+      end,
+    })
+
     require("nvim-treesitter").install({
       "bash",
       "c",
@@ -42,7 +64,8 @@ return {
       "scss",
       "sql",
       "svelte",
-      -- "tmux",
+      "tmux",
+      "tmuxf",
       "toml",
       "tsx",
       "typescript",

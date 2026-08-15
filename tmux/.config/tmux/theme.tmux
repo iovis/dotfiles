@@ -70,14 +70,3 @@ set -wg mode-style 'bg=#232634,fg=terminal'
 set -wg copy-mode-current-match-style 'bg=#8caaee,fg=black'
 set -wg copy-mode-mark-style 'bg=default,fg=#a6d189'
 set -wg copy-mode-match-style 'bg=#414559,fg=white'
-
-# Minimalistic Status
-# set -g status-justify left
-# set -g status-style bg=default,fg=black,bright
-# set -g status-left ""
-# set -g status-right "#[fg=black,bright]#S"
-#
-# set -g window-status-format ""
-# set -g window-status-current-format ""
-# set -g window-status-current-style "#{?window_zoomed_flag,fg=green,fg=magenta,nobold}"
-# set -g window-status-activity-style "fg=red,nobold"
