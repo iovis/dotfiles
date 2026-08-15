@@ -1,9 +1,11 @@
 local u = require("config.utils")
 
-vim.keymap.set("n", "yoc", "<cmd>RenderMarkdown toggle<cr>", { buf = 0 })
+-- LSP Markdown buffers use buftype=nofile
+if vim.bo.buftype == "" then
+  vim.opt_local.conceallevel = 0
+end
 
--- vim.opt_local.conceallevel = 2
--- vim.opt_local.concealcursor = "n" -- Keep current line concealed in normal mode
+vim.opt_local.concealcursor = "n" -- Keep current line concealed in normal mode
 vim.opt_local.spelllang = "en_us"
 vim.opt_local.spell = true
 vim.opt_local.shiftwidth = 4

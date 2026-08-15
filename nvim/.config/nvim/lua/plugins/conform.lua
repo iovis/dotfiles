@@ -9,6 +9,8 @@ return {
       quiet = false,
     }
 
+    vim.keymap.set("n", "<leader>lC", "<cmd>ConformInfo<cr>")
+
     local conform = require("conform")
     conform.setup({
       log_level = vim.log.levels.ERROR,
@@ -29,8 +31,16 @@ return {
         return format_options
       end,
       formatters = {
-        htmlbeautifier = {
-          prepend_args = { "--keep-blank-lines", "1" },
+        injected = {
+          options = {
+            ignore_errors = true,
+            lang_to_formatters = {
+              c = { "clang-format" },
+              ruby = { "standardrb" },
+              rust = { "rustfmt" },
+              sh = { "shfmt" },
+            },
+          },
         },
         sql_formatter = {
           prepend_args = { "-l", "postgresql" },
@@ -38,6 +48,7 @@ return {
       },
       formatters_by_ft = {
         lua = { "stylua" },
+        markdown = { "deno_fmt", "injected" },
         sql = { "sql_formatter" },
       },
     })

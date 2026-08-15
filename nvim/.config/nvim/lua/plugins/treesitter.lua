@@ -4,6 +4,8 @@ return {
   branch = "main",
   build = ":TSUpdate",
   config = function()
+    vim.treesitter.language.register("ruby", "rb")
+
     ---- Custom grammars
     vim.api.nvim_create_autocmd("User", {
       pattern = "TSUpdate",
