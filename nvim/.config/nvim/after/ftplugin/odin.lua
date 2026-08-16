@@ -21,14 +21,18 @@ vim.keymap.set("n", "<leader>sl", function()
 end, { buf = 0, desc = "[odin] Debug current line" })
 
 -- Testing
-vim.keymap.set("n", "<leader>st", "<cmd>Tux odin test . -all-packages<cr>", {
+vim.keymap.set("n", "<leader>st", "<cmd>Tux odin test . -all-packages -define:ODIN_TEST_FANCY=false<cr>", {
   desc = "[odin] Test suite",
   buf = 0,
 })
 
 vim.keymap.set("n", "<leader>so", function()
   local package_path = vim.fn.expand("%:h")
-  tux.run(("odin test %s"):format(vim.fn.shellescape(package_path)))
+  tux.run(
+    ("odin test -define:ODIN_TEST_FANCY=false -define:ODIN_TEST_LOG_LEVEL=debug %s"):format(
+      vim.fn.shellescape(package_path)
+    )
+  )
 end, { buf = 0, desc = "[odin] Test package" })
 
 local test_query = vim.treesitter.query.parse(
@@ -75,7 +79,11 @@ vim.keymap.set("n", "<leader>si", function()
   end
 
   local selector = ("-tests:%s.%s"):format(package_name, test_name)
-  tux.run(("odin test . -all-packages -define:ODIN_TEST_FANCY=false -- %s"):format(vim.fn.shellescape(selector)))
+  tux.run(
+    ("odin test . -all-packages -define:ODIN_TEST_FANCY=false -define:ODIN_TEST_LOG_LEVEL=debug -- %s"):format(
+      vim.fn.shellescape(selector)
+    )
+  )
 end, { buf = 0, desc = "[odin] Test nearest" })
 
 if u.has_justfile() then
