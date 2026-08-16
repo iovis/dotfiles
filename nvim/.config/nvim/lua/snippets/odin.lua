@@ -120,6 +120,18 @@ return {
   s("ep", fmta("fmt.eprintln(<>)", { i(1) }), {
     condition = conds.line_begin,
   }),
+  s("logd", fmt("log.debug({});", { i(1, "value") }), {
+    condition = conds.line_begin,
+  }),
+  s("loge", fmt("log.error({});", { i(1, "value") }), {
+    condition = conds.line_begin,
+  }),
+  s("logi", fmt("log.info({});", { i(1, "value") }), {
+    condition = conds.line_begin,
+  }),
+  s("logw", fmt("log.warn({});", { i(1, "value") }), {
+    condition = conds.line_begin,
+  }),
   s(
     "aoc",
     fmta(
