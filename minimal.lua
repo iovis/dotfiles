@@ -188,6 +188,9 @@ vim.api.nvim_set_hl(0, "Pmenu", { link = "Normal" })
 vim.api.nvim_set_hl(0, "PmenuSel", { link = "CursorLine" })
 vim.api.nvim_set_hl(0, "StatusLine", { link = "LineNr" })
 vim.api.nvim_set_hl(0, "StatusLineNC", { link = "LineNr" })
+vim.api.nvim_set_hl(0, "TabLine", { bg = "none", bold = true })
+vim.api.nvim_set_hl(0, "TabLineFill", { link = "Normal" })
+vim.api.nvim_set_hl(0, "TabLineSel", { link = "Comment" })
 vim.api.nvim_set_hl(0, "WinSeparator", { link = "LineNr" })
 
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
