@@ -131,6 +131,10 @@ bind -N "Resize panes equally" = {
   select-layout tiled
 }
 
+bind -N "Resize panes equally" C-= {
+  select-layout tiled
+}
+
 # Move panes
 bind -N "Move pane down"  -r c-down  swap-pane -d -t "{down-of}"
 bind -N "Move pane left"  -r c-left  swap-pane -d -t "{left-of}"
