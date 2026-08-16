@@ -1,6 +1,10 @@
 -- Keymap
 vim.g.mapleader = " "
 
+pcall(function()
+  require("vim._core.ui2").enable({})
+end)
+
 vim.keymap.set("i", "kj", "<esc>")
 vim.keymap.set("n", ",", "<cmd>Ex<cr>")
 vim.keymap.set("n", "<bs>", "<c-^>")
