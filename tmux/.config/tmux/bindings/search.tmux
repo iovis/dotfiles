@@ -1,4 +1,5 @@
 bind -N "flash.tmux" -T copy-mode-vi C-f run flash_tmux
+bind -N "flash.tmux" -T copy-mode-vi s   run flash_tmux
 bind -N "flash.tmux" -n C-f if "$forward_keys" {
   send 'C-f'
 } {
