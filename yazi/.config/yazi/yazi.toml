@@ -2,12 +2,3 @@
 
 [mgr]
 show_hidden = true
-
-[[opener.mpv_dir]]
-run = 'mpv --autocreate-playlist=filter --shuffle --loop-playlist=inf "$@"'
-for = "unix"
-orphan = true
-desc = "Open in mpv"
-
-[open]
-prepend_rules = [{ url = "*/", use = ["open", "mpv_dir", "edit"] }]

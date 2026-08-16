@@ -1,6 +1,36 @@
 #:schema https://yazi-rs.github.io/schemas/keymap.json
 
+[[mgr.prepend_keymap]]
+on = "<a-m>"
+run = "shell --orphan -- mpv --autocreate-playlist=filter --shuffle --loop-playlist=inf %h & ya emit quit"
+desc = "Open hovered item in mpv"
+
+[[tasks.prepend_keymap]]
+on = "q"
+run = "close"
+desc = "Close task manager"
+
+[[spot.prepend_keymap]]
+on = "q"
+run = "close"
+desc = "Close the spot"
+
+[[pick.prepend_keymap]]
+on = "q"
+run = "close"
+desc = "Cancel pick"
+
 [[input.prepend_keymap]]
-on = "<Esc>"
+on = "<esc>"
 run = "close"
 desc = "Cancel input"
+
+[[confirm.prepend_keymap]]
+on = "q"
+run = "close"
+desc = "Cancel the confirm"
+
+[[help.prepend_keymap]]
+on = "q"
+run = "close"
+desc = "Hide the help"
