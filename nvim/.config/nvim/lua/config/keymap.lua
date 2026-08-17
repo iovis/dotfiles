@@ -177,8 +177,8 @@ vim.keymap.set("n", "<leader>m", "<c-w>_<c-w>|")
 local function maximize_pane()
   local cmdheight = vim.o.cmdheight
 
-  vim.api.nvim_win_set_width(0, math.floor(vim.o.columns * 0.75))
-  vim.api.nvim_win_set_height(0, math.floor(vim.o.lines * 0.75))
+  vim.api.nvim_win_set_width(0, math.floor(vim.o.columns * 0.66))
+  vim.api.nvim_win_set_height(0, math.floor(vim.o.lines * 0.66))
 
   vim.o.cmdheight = cmdheight
 end
