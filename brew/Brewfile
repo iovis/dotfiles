@@ -71,6 +71,8 @@ brew "numbat"
 brew "parallel"
 # Package compiler and linker metadata toolkit
 brew "pkgconf"
+# Monitor data's progress through a pipe
+brew "pv"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Utility that provides fast incremental file transfer
