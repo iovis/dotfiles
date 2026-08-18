@@ -120,16 +120,16 @@ return {
   s("ep", fmta("fmt.eprintln(<>)", { i(1) }), {
     condition = conds.line_begin,
   }),
-  s("logd", fmt("log.debug({});", { i(1, "value") }), {
+  s("logd", fmt("log.debug({})", { i(1, "value") }), {
     condition = conds.line_begin,
   }),
-  s("loge", fmt("log.error({});", { i(1, "value") }), {
+  s("loge", fmt("log.error({})", { i(1, "value") }), {
     condition = conds.line_begin,
   }),
-  s("logi", fmt("log.info({});", { i(1, "value") }), {
+  s("logi", fmt("log.info({})", { i(1, "value") }), {
     condition = conds.line_begin,
   }),
-  s("logw", fmt("log.warn({});", { i(1, "value") }), {
+  s("logw", fmt("log.warn({})", { i(1, "value") }), {
     condition = conds.line_begin,
   }),
   s(
@@ -146,8 +146,8 @@ return {
           fmt.println("p1 =", p1(input))
         }
 
-        p1 :: proc(input: string) ->> uint {
-          total: uint = 0
+        p1 :: proc(input: string) ->> u64 {
+          total: u64 = 0
           return total
         }
 
