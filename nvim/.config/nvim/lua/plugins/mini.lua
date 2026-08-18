@@ -182,6 +182,14 @@ return {
     ---- mini.surround
     require("mini.surround").setup({
       search_method = "cover_or_nearest",
+      n_lines = 40,
+      mappings = {
+        find = "",
+        find_left = "",
+        highlight = "",
+        suffix_last = "",
+        suffix_next = "",
+      },
       custom_surroundings = {
         r = {
           input = { "%b[]", "^.().*().$" },
