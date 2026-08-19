@@ -39,6 +39,12 @@ fi
 
 yay -S --needed --answerclean=none --answerdiff=none - <"$PACMAN_PATH/Aurfile"
 
+## May be needed on reconciliation
+# {
+#   cat "$PACMAN_PATH/Pacfile"
+#   cat "$PACMAN_PATH/Aurfile"
+# } | sudo pacman -D --asexplicit -
+
 echo "[$(date '+%Y-%m-%d %H:%M')] Enabling services"
 sudo systemctl enable avahi-daemon bluetooth cpupower fstrim.timer gdm paccache.timer reflector.timer sshd
 
