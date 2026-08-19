@@ -248,19 +248,34 @@ check_stale_download_dirs() {
 
 check_pacnew() {
   local pacnew="$tmpdir/pacnew"
+  local active="$tmpdir/pacnew-active"
+  local etc_artifacts="$tmpdir/pacnew-etc"
   local error="$tmpdir/pacnew-error"
   local scope="visible "
 
   if ((sudo_ready)); then
     scope=""
-    if ! {
-      sudo find /etc -xdev \( -name '*.pacnew' -o -name '*.pacorig' -o -name '*.pacsave' -o -name '*.pacsave.[0-9]*' \) -print
-    } 2>"$error" | sort >"$pacnew"; then
+    # shellcheck disable=SC2024 # temp files are user-owned; sudo only reads protected paths
+    if ! sudo pacdiff --output >"$active" 2>"$error"; then
+      section "pacnew/pacsave/pacorig scan failed" "$error" warn
+      return
+    fi
+    # shellcheck disable=SC2024 # temp files are user-owned; sudo only reads protected paths
+    if ! sudo find /etc -xdev \( -name '*.pacnew' -o -name '*.pacorig' -o -name '*.pacsave' -o -name '*.pacsave.[0-9]*' \) -print >"$etc_artifacts" 2>>"$error"; then
       section "pacnew/pacsave/pacorig scan failed" "$error" warn
       return
     fi
   else
-    find /etc -xdev \( -name '*.pacnew' -o -name '*.pacorig' -o -name '*.pacsave' -o -name '*.pacsave.[0-9]*' \) -print 2>/dev/null | sort >"$pacnew"
+    if ! pacdiff --output >"$active" 2>"$error"; then
+      section "pacnew/pacsave/pacorig scan failed" "$error" warn
+      return
+    fi
+    find /etc -xdev \( -name '*.pacnew' -o -name '*.pacorig' -o -name '*.pacsave' -o -name '*.pacsave.[0-9]*' \) -print >"$etc_artifacts" 2>/dev/null || true
+  fi
+
+  if ! sort -u "$active" "$etc_artifacts" >"$pacnew" 2>>"$error"; then
+    section "pacnew/pacsave/pacorig scan failed" "$error" warn
+    return
   fi
 
   section "${scope}pacnew/pacsave/pacorig files to review" "$pacnew" warn
@@ -268,14 +283,14 @@ check_pacnew() {
   if [[ -s "$pacnew" ]]; then
     printf '\n'
     printf '\tReview package-owned files with: pacdiff --sudo\n'
-    printf '\tPreview the full scan with: sudo pacdiff --output --find\n'
+    printf '\tPreview active package files with: sudo pacdiff --output\n'
     printf '\tpacnew means a package shipped a new default config beside your edited file.\n'
     printf '\tpacsave means pacman saved a modified config while removing or replacing a package.\n'
     printf '\tpacorig means pacman saved the previous file before installing a package config.\n'
     printf '\tIf a pacsave does not appear in pacdiff, inspect it manually and remove it if stale.\n'
     printf '\tMerge or keep any useful changes, then remove the reviewed .pacnew/.pacsave/.pacorig file.\n'
   else
-    ok "no ${scope}pacnew/pacsave/pacorig files under /etc"
+    ok "no ${scope}pacnew/pacsave/pacorig files found"
   fi
 }
 
