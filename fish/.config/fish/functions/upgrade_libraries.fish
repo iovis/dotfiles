@@ -4,7 +4,9 @@ function upgrade_libraries
         brew upgrade -y
         brew autoremove
         brewdump
-    else if command -q pacman
+    end
+
+    if command -q pacman
         log_step $(green pacman) update
         pacupdate
 
@@ -15,11 +17,17 @@ function upgrade_libraries
 
         log_step $(green pacman) audit
         pacaudit
-    else if command -q apt
+    end
+
+    if command -q flatpak
+        log_step $(green flatpak) update
+        flatpak update --noninteractive
+        flatpak uninstall --unused --noninteractive
+    end
+
+    if command -q apt
+        log_step $(green apt) update
         sudo apt update
         sudo apt upgrade -y
-    else
-        echo 'Define how to upgrade libraries'
-        exit 1
     end
 end
