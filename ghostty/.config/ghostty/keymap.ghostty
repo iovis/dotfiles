@@ -31,12 +31,12 @@ keybind = ctrl+shift+l=goto_split:right
 keybind = ctrl+shift+m=toggle_split_zoom
 keybind = ctrl+shift+/=equalize_splits
 
-keybind = ctrl+shift+arrow_up=resize_split:up,100
-keybind = ctrl+shift+arrow_down=resize_split:down,100
-keybind = ctrl+shift+arrow_left=resize_split:left,200
-keybind = ctrl+shift+arrow_right=resize_split:right,200
-keybind = ctrl+shift+alt+arrow_up=resize_split:up,10
+# keybind = ctrl+shift+arrow_up=resize_split:up,100
+# keybind = ctrl+shift+arrow_down=resize_split:down,100
+# keybind = ctrl+shift+arrow_left=resize_split:left,200
+# keybind = ctrl+shift+arrow_right=resize_split:right,200
 
+keybind = ctrl+shift+alt+arrow_up=resize_split:up,10
 keybind = ctrl+shift+alt+arrow_down=resize_split:down,10
 keybind = ctrl+shift+alt+arrow_left=resize_split:left,10
 keybind = ctrl+shift+alt+arrow_right=resize_split:right,10
