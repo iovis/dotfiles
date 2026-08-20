@@ -9,6 +9,9 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("uwsm-app -- udiskie")
   hl.exec_cmd("systemctl --user start waybar.service")
 
+  -- GNOME housekeeping (nautilus)
+  hl.exec_cmd("uwsm-app -- /usr/lib/gsd-housekeeping")
+
   -- Don't run as a service to be able to control inhibit
   hl.exec_cmd("uwsm-app -- hypridle")
 end)
