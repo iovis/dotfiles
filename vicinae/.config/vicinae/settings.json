@@ -17,6 +17,9 @@
    "favicon_service": "twenty",
    "keybinding": "default",
    "search_files_in_root": false,
+   "global_shortcuts": {
+      "toggle": ""
+   },
    "font": {
       "normal": {
          "family": "FiraCode Nerd Font",
