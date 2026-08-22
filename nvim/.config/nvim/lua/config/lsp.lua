@@ -29,7 +29,6 @@ vim.lsp.enable({
   "gopls",
   -- "herb_ls",
   "html",
-  "hyprls",
   "jsonls",
   "just",
   "lua_ls",
