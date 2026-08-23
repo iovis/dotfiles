@@ -3,6 +3,7 @@ hl.config({
   cursor = {
     hide_on_key_press = true,
     inactive_timeout = 3,
+    min_refresh_rate = 48,
   },
   general = {
     border_size = 2,

@@ -8,4 +8,3 @@ export QT_QPA_PLATFORMTHEME=qt6ct
 
 export LIBVA_DRIVER_NAME=nvidia
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
-export __GL_VRR_ALLOWED=0
