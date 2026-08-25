@@ -8,6 +8,7 @@ ruby = "latest"
 usage = "latest"
 
 [settings]
+auto_update = false
 disable_hints = ["outdated_bump"]
 idiomatic_version_file_enable_tools = ["node", "ruby"]
 
