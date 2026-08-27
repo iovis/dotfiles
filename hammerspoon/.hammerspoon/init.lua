@@ -21,6 +21,7 @@ local u = require("utils")
 require("application_launcher")
 require("bindings")
 require("floating_windows")
+require("terminal_popups")
 pcall(require, "local")
 
 u.notify("Configuration Reloaded")

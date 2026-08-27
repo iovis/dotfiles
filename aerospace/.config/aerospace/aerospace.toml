@@ -14,6 +14,7 @@ persistent-workspaces = ["1", "2", "3", "4", "K"]
 # Floating layout apps
 # $ aerospace list-apps
 on-window-detected = [
+  { if = "test %{app-bundle-id} = net.kovidgoyal.kitty", run = "layout floating" },
   { if = "test %{app-bundle-id} = com.apple.finder", run = "layout floating" },
   { if = "test %{app-bundle-id} = com.apple.mail", run = "layout floating" },
   { if = "test %{app-bundle-id} = com.1password.1password", run = "layout floating" },
