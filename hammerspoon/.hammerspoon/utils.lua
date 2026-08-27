@@ -59,5 +59,26 @@ return {
         task(command, notification):start()
       end)
     end,
+    ---Binds a floating-window layout through AeroSpace and macOS native tiling
+    ---@param binding HammerspoonBinding
+    ---@param os_shortcut HammerspoonBinding
+    float_layout = function(binding, os_shortcut)
+      hs.hotkey.bind(binding[1], binding[2], function()
+        hs.task
+          .new(os.getenv("SHELL"), function(_code, _stdout, _stderr)
+            hs.eventtap.keyStroke(os_shortcut[1], os_shortcut[2])
+          end, { "-c", "aerospace layout floating" })
+          :start()
+      end)
+    end,
+    ---Binds a command to a reusable terminal popup rule
+    ---@param binding HammerspoonBinding
+    ---@param rule table
+    ---@param command string
+    popup = function(binding, rule, command)
+      hs.hotkey.bind(binding[1], binding[2], function()
+        require("terminal_popups").launch(rule, command)
+      end)
+    end,
   },
 }

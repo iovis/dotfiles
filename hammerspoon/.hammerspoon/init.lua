@@ -18,10 +18,7 @@ fn_ctrl = { "fn", "ctrl" }
 hyper = { "ctrl", "cmd", "alt", "shift" }
 
 local u = require("utils")
-require("application_launcher")
-require("bindings")
-require("floating_windows")
-require("terminal_popups")
+require("keymap")
 pcall(require, "local")
 
 u.notify("Configuration Reloaded")
