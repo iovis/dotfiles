@@ -18,81 +18,43 @@ if [[ ! -r $file ]]; then
   fi
 fi
 
-type=$(file --brief --dereference --mime -- "$file")
+mime_type=$(file --brief --dereference --mime -- "$file")
+
+can_preview_images=0
+if [[ -n $KITTY_WINDOW_ID || -n $GHOSTTY_RESOURCES_DIR ]] && command -v kitten >/dev/null; then
+  can_preview_images=1
+fi
 
 dim=${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}
 
 if [[ $dim == x ]]; then
   dim=$(stty size </dev/tty | awk '{print $2 "x" $1}')
 elif ! [[ $KITTY_WINDOW_ID ]] && ((FZF_PREVIEW_TOP + FZF_PREVIEW_LINES == $(stty size </dev/tty | awk '{print $1}'))); then
-  # Avoid scrolling issue when the Sixel image touches the bottom of the screen
+  # Avoid scrolling when the image touches the bottom of the screen
   # * https://github.com/junegunn/fzf/issues/2544
   dim=${FZF_PREVIEW_COLUMNS}x$((FZF_PREVIEW_LINES - 1))
 fi
 
-if [[ $type =~ image/ ]]; then
-  if [[ $KITTY_WINDOW_ID ]] || [[ $GHOSTTY_RESOURCES_DIR ]] && command -v kitten >/dev/null; then
+if [[ $mime_type =~ image/ ]]; then
+  if ((can_preview_images)); then
     kitten icat --transfer-mode=memory --unicode-placeholder --stdin=no --place="$dim@0x0" "$file"
   else
-    file "$file"
+    file -- "$file"
   fi
-elif [[ $type =~ video/ ]]; then
-  if [[ $KITTY_WINDOW_ID ]] || [[ $GHOSTTY_RESOURCES_DIR ]] && command -v kitten >/dev/null; then
-    cache_dir="${XDG_RUNTIME_DIR:-${TMPDIR:-/tmp}}/fzf-preview"
-    mkdir -p "$cache_dir"
-
-    if meta=$(stat -Lc '%n|%s|%Y' -- "$file" 2>/dev/null); then
-      :
-    else
-      meta=$(stat -f '%N|%z|%m' -- "$file" 2>/dev/null)
-    fi
-    meta=${meta:-$file}
-
-    key_input="$meta|$dim|ss=1|t=3|fps=12|q=70|cl=4"
-
-    if command -v sha1sum >/dev/null; then
-      hash=$(printf '%s' "$key_input" | sha1sum)
-    elif command -v shasum >/dev/null; then
-      hash=$(printf '%s' "$key_input" | shasum -a 1)
-    else
-      hash=$(printf '%s' "$key_input" | cksum)
-    fi
-
-    key=${hash%% *}
-    out="$cache_dir/$key.webp"
-
-    if [[ ! -s $out ]]; then
-      tmp_out=$(mktemp "${cache_dir%/}/.${key}.XXXXXX.webp")
-      trap 'rm -f "$tmp_out"' EXIT
-
-      if ffmpeg -hide_banner -loglevel error -y \
-        -ss 1 -i "$file" -t 3 -an -sn -dn \
-        -vf "fps=12,scale='min(960,iw)':-2:flags=bicubic" \
-        -c:v libwebp -lossless 0 -compression_level 4 -q:v 70 -loop 0 \
-        -f webp "$tmp_out"; then
-        mv -f -- "$tmp_out" "$out"
-      else
-        rm -f -- "$tmp_out"
-      fi
-
-      trap - EXIT
-    fi
-
-    if [[ -s $out ]]; then
-      kitten icat --transfer-mode=memory --unicode-placeholder --stdin=no --place="$dim@0x0" --loop=-1 "$out"
-    else
-      file "$file"
-    fi
+elif [[ $mime_type =~ video/ ]]; then
+  if ((can_preview_images)); then
+    ffmpegthumbnailer -i "$file" -o - -s 960 -t 50 -c png 2>/dev/null |
+      kitten icat --transfer-mode=memory --unicode-placeholder --stdin=yes --place="$dim@0x0"
   else
-    file "$file"
+    file -- "$file"
   fi
 else
-  # if type is a directory, list its contents
+  # If the file is a directory, list its contents
   if [[ -d $file ]]; then
-    eza --color=always --icons=always -1a --group-directories-first "$file"
-  elif [[ $type =~ =binary ]]; then
-    file "$file"
+    eza --color=always --icons=always -1a --group-directories-first -- "$file"
+  elif [[ $mime_type =~ =binary ]]; then
+    file -- "$file"
   else
-    bat --style="${BAT_STYLE:-numbers}" --color=always --pager=never --highlight-line="${center:-0}" -- "$file"
+    bat --style="${BAT_STYLE:-numbers}" --color=always --pager=never --highlight-line="$center" -- "$file"
   fi
 fi
