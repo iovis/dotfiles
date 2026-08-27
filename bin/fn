@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-fd_folders='fd --type d --max-depth 3 --exclude node_modules --exclude public --exclude src --exclude target . "$HOME" "/run/media/"'
+fd_folders='fd --type d --max-depth 4 --exclude node_modules --exclude public --exclude src --exclude target . "$HOME" "/run/media/"'
 fd_files='fd --type f --exclude node_modules --exclude public --exclude src --exclude target . "$HOME" "/run/media/"'
 
 TRANSFORMER="
@@ -22,7 +22,8 @@ eval "$fd_folders" | fzf \
   --multi \
   --bind="ctrl-g:transform:$TRANSFORMER" \
   --bind='enter:execute-silent(setsid -f xdg-open {})+abort' \
-  --bind='alt-enter:execute-silent(setsid -f nautilus {+})+abort' \
+  --bind='alt-enter:execute-silent(setsid -f ghostty --working-directory={+})+abort' \
+  --bind='alt-o:execute-silent(setsid -f nautilus {+})+abort' \
   --bind='alt-m:execute-silent(setsid -f mpv --autocreate-playlist=filter --shuffle --loop-playlist=inf {+})+abort' \
   --bind='ctrl-o:execute-silent(wl-copy {+} && notify-send --icon edit-paste "Copied path to clipboard")+abort' \
   --bind=ctrl-n:page-down,ctrl-p:page-up \
