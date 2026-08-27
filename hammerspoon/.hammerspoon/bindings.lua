@@ -2,6 +2,9 @@ local u = require("utils")
 
 hs.hotkey.bind(hyper, "c", hs.toggleConsole)
 hs.hotkey.bind(ctrl_alt_cmd, "r", hs.reload)
+hs.hotkey.bind(ctrl_alt_cmd, "q", nil, function()
+  hs.eventtap.keyStroke({ "cmd" }, "q", 0)
+end)
 
 u.bind.cmd({ hyper, "r" }, "aerospace reload-config --warnings-as-errors", {
   success_message = "Aerospace reloaded",
