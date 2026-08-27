@@ -56,6 +56,7 @@ hl.bind(C(G("y")), hl.dsp.exec_cmd("hyprclose class:widget.btop || kitty --class
 hl.bind(G("i"), hl.dsp.exec_cmd("hyprclose class:widget.wiremix || kitty --class=widget.wiremix -e wiremix"))
 hl.bind(C(G("i")), hl.dsp.exec_cmd("hypridle_toggle"))
 hl.bind(G("o"), hl.dsp.exec_cmd("hyprclose class:widget.fn || kitty --class=widget.fn -e fn"))
+hl.bind(C(G("o")), hl.dsp.exec_cmd("hyprfocus class:md.obsidian.Obsidian || uwsm-app -- obsidian"))
 hl.bind(G("p"), hl.dsp.exec_cmd("hyprfocus class:1Password || 1password"))
 hl.bind(C(G("p")), hl.dsp.exec_cmd("hyprpicker --autocopy"))
 
