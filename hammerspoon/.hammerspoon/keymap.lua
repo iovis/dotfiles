@@ -29,13 +29,12 @@ u.bind.app({ ctrl_alt_cmd, "c" }, "Calendar")
 
 u.bind.app({ hyper, "i" }, "iPhone Mirroring")
 u.bind.app({ ctrl_alt_cmd, "i" }, "IINA")
-u.bind.app({ ctrl_alt_cmd, "o" }, "Obsidian")
+u.bind.app({ hyper, "o" }, "Obsidian")
 u.bind.app({ ctrl_alt_cmd, "p" }, "1Password")
 
 ---- Terminal popups
 local rules = require("terminal_popups").rules
-u.bind.popup({ hyper, "o" }, rules.centered_half, "fn")
-u.bind.popup({ hyper, "p" }, rules.centered_400x200, "powermenu")
+u.bind.popup({ ctrl_alt_cmd, "o" }, rules.centered_half, "fn")
 
 ---- Floating windows
 -- Halves (TODO: not working with fn+ctrl+arrow, so I had to remap at OS level)
