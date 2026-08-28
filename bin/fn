@@ -6,6 +6,7 @@ case "$(uname -s)" in
 Darwin)
   open_action='open {}'
   terminal_action='open -na Ghostty.app --args --working-directory={}'
+  yazi_action='yazi {}'
   file_manager_action='open -R {}'
   media_action='open -a IINA {+}'
   copy_action="printf '%s\\n' {+} | pbcopy && osascript -e 'display notification \"Copied path to clipboard\" with title \"fn\"'"
@@ -14,6 +15,7 @@ Linux)
   [[ -d /run/media ]] && search_roots+=(/run/media)
   open_action='setsid -f xdg-open {}'
   terminal_action='setsid -f ghostty --working-directory={}'
+  yazi_action='yazi {}'
   file_manager_action='setsid -f nautilus {+}'
   media_action='setsid -f mpv --autocreate-playlist=filter --shuffle --loop-playlist=inf {+}'
   copy_action='wl-copy {+} && notify-send --icon edit-paste "Copied path to clipboard"'
@@ -51,6 +53,7 @@ INITIAL_QUERY="${*:-}"
   --bind="ctrl-g:transform:$TRANSFORMER" \
   --bind="enter:execute-silent($open_action)+abort" \
   --bind="alt-enter:execute-silent($terminal_action)+abort" \
+  --bind="alt-y:become($yazi_action)" \
   --bind="alt-o:execute-silent($file_manager_action)+abort" \
   --bind="alt-m:execute-silent($media_action)+abort" \
   --bind="ctrl-o:execute-silent($copy_action)+abort" \
