@@ -35,6 +35,7 @@ u.bind.app({ ctrl_alt_cmd, "p" }, "1Password")
 local rules = require("terminal_popups").rules
 u.bind.popup({ ctrl_alt_cmd, "t" }, rules.centered_66, "htop")
 u.bind.popup({ hyper, "y" }, rules.centered_50, "yazi")
+u.bind.popup({ ctrl_alt_cmd, "u" }, rules.centered_400x200, "calc")
 u.bind.popup({ ctrl_alt_cmd, "o" }, rules.centered_50, "fn")
 
 ---- Floating windows

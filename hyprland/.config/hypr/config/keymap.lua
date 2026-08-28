@@ -48,11 +48,11 @@ hl.bind(C(G("g")), hl.dsp.exec_cmd("uwsm-app -- chromium --incognito"))
 
 hl.bind(G("x"), hl.dsp.exec_cmd("hyprfocus class:localsend || GTK_THEME=Adwaita:dark uwsm-app -- localsend"))
 hl.bind(G("c"), hl.dsp.exec_cmd("hyprfocus class:org.gnome.Calendar || uwsm-app -- gnome-calendar"))
-hl.bind(C(G("c")), hl.dsp.exec_cmd("hyprclose class:widget.calc || kitty --class=widget.calc -e calc"))
 hl.bind(G("b"), hl.dsp.exec_cmd("hyprclose class:widget.bluetui || kitty --class=widget.bluetui -e bluetui"))
 hl.bind(G("v"), hl.dsp.exec_cmd("vicinae_toggle deeplink vicinae://launch/clipboard/history"))
 
 hl.bind(C(G("y")), hl.dsp.exec_cmd("hyprclose class:widget.btop || kitty --class=widget.btop -e yazi"))
+hl.bind(G("u"), hl.dsp.exec_cmd("hyprclose class:widget.calc || kitty --class=widget.calc -e calc"))
 hl.bind(G("i"), hl.dsp.exec_cmd("hyprclose class:widget.wiremix || kitty --class=widget.wiremix -e wiremix"))
 hl.bind(C(G("i")), hl.dsp.exec_cmd("hypridle_toggle"))
 hl.bind(G("o"), hl.dsp.exec_cmd("hyprclose class:widget.fn || kitty --class=widget.fn -e fn"))
