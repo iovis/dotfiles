@@ -1,8 +1,16 @@
 local u = require("utils")
 
 local rules = {
-  centered_half = {
-    title = "popup:centered_half",
+  centered_75 = {
+    title = "popup:centered_75",
+    unit = { x = 0.125, y = 0.125, w = 0.75, h = 0.75 },
+  },
+  centered_66 = {
+    title = "popup:centered_66",
+    unit = { x = 0.165, y = 0.165, w = 0.66, h = 0.66 },
+  },
+  centered_50 = {
+    title = "popup:centered_50",
     unit = { x = 0.25, y = 0.25, w = 0.5, h = 0.5 },
   },
   centered_400x200 = {

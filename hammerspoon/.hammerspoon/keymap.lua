@@ -22,7 +22,6 @@ u.bind.app({ ctrl_alt_cmd, "g" }, "Google Chrome Canary")
 
 u.bind.app({ ctrl_alt_cmd, "w" }, "Messages")
 u.bind.app({ ctrl_alt_cmd, "e" }, "Mail")
-u.bind.app({ ctrl_alt_cmd, "t" }, "Things3")
 
 u.bind.app({ ctrl_alt_cmd, "x" }, "Music")
 u.bind.app({ ctrl_alt_cmd, "c" }, "Calendar")
@@ -34,7 +33,9 @@ u.bind.app({ ctrl_alt_cmd, "p" }, "1Password")
 
 ---- Terminal popups
 local rules = require("terminal_popups").rules
-u.bind.popup({ ctrl_alt_cmd, "o" }, rules.centered_half, "fn")
+u.bind.popup({ ctrl_alt_cmd, "t" }, rules.centered_66, "htop")
+u.bind.popup({ hyper, "y" }, rules.centered_50, "yazi")
+u.bind.popup({ ctrl_alt_cmd, "o" }, rules.centered_50, "fn")
 
 ---- Floating windows
 -- Halves (TODO: not working with fn+ctrl+arrow, so I had to remap at OS level)
