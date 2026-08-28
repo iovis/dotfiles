@@ -179,6 +179,7 @@ local function maximize_pane()
 
   vim.api.nvim_win_set_width(0, math.floor(vim.o.columns * 0.66))
   vim.api.nvim_win_set_height(0, math.floor(vim.o.lines * 0.66))
+  vim.cmd("normal! 0")
 
   vim.o.cmdheight = cmdheight
 end
