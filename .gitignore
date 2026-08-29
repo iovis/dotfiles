@@ -1,3 +1,6 @@
+# aerc
+aerc/.config/aerc/accounts.conf
+
 # fish
 fish/.config/fish/fish_variables
 fish/.config/fish/local/*

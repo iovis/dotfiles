@@ -1,0 +1,36 @@
+# git clone https://git.sr.ht/~rjarry/aerc
+
+install:
+    make -B PREFIX="${HOME}/.local" docs= GOFLAGS= install
+
+uninstall:
+    make PREFIX="${HOME}/.local" docs= GOFLAGS= uninstall
+
+audit:
+    #!/usr/bin/env bash
+    set -u -o pipefail
+
+    audit_status=0
+
+    run_check() {
+        local label="$1"
+        shift
+        printf '\n==> %s\n' "$label"
+        if ! "$@"; then
+            audit_status=1
+        fi
+    }
+
+    run_check "Verify downloaded modules" go mod verify
+    run_check "Scan current source" make vulncheck
+    run_check "Scan installed binary" \
+        go run golang.org/x/vuln/cmd/govulncheck@latest \
+        -mode=binary "${HOME}/.local/bin/aerc"
+
+    if ((audit_status)); then
+        printf '\nAudit found problems; review the output above.\n' >&2
+    else
+        printf '\nAudit passed.\n'
+    fi
+
+    exit "$audit_status"

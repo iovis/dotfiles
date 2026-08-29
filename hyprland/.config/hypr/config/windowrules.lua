@@ -60,6 +60,18 @@ hl.window_rule({
 })
 
 hl.window_rule({
+  name = "aerc",
+  match = { class = "widget\\.aerc" },
+  center = true,
+  dim_around = true,
+  float = true,
+  size = {
+    "monitor_w * 0.66",
+    "monitor_h * 0.66",
+  },
+})
+
+hl.window_rule({
   name = "btop",
   match = { class = "widget\\.btop" },
   center = true,

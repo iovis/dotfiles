@@ -1,4 +1,5 @@
 7zip
+aerc
 amd-ucode
 baobab
 base
@@ -11,6 +12,7 @@ btop
 btrfs-assistant
 btrfsmaintenance
 caligula
+chawan
 chromium
 clang
 compsize
@@ -105,6 +107,7 @@ llvm
 loupe
 man-db
 man-pages
+moor
 mpv
 mpv-mpris
 mtr

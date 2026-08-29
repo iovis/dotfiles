@@ -31,12 +31,12 @@ local restart_waybar =
   "systemctl --user is-active --quiet waybar.service && systemctl --user stop waybar.service || systemctl --user start waybar.service"
 hl.bind(G("w"), hl.dsp.exec_cmd("hyprclose class:widget.wiremix || kitty --class=widget.wiremix -e impala"))
 hl.bind(C(G("w")), hl.dsp.exec_cmd(restart_waybar))
-hl.bind(G("e"), hl.dsp.exec_cmd("hyprfocus class:org.gnome.Nautilus || uwsm-app -- nautilus"))
-hl.bind(C(G("e")), hl.dsp.exec_cmd("uwsm-app -- nautilus --new-window"))
+hl.bind(G("e"), hl.dsp.exec_cmd("hyprfocus class:widget.aerc || kitty --class=widget.aerc -e aerc"))
 hl.bind(G("t"), hl.dsp.exec_cmd("hyprclose class:widget.btop || kitty --class=widget.btop -e btop"))
 hl.bind(C(G("t")), hl.dsp.exec_cmd("hyprclose class:widget.btop || kitty --class=widget.btop -e htop -s PERCENT_CPU"))
 
-hl.bind(G("a"), hl.dsp.exec_cmd("hyprfocus class:md.obsidian.Obsidian || uwsm-app -- obsidian"))
+hl.bind(G("a"), hl.dsp.exec_cmd("hyprfocus class:org.gnome.Nautilus || uwsm-app -- nautilus"))
+hl.bind(S(G("a")), hl.dsp.exec_cmd("uwsm-app -- nautilus --new-window"))
 hl.bind(G("s"), hl.dsp.exec_cmd("hyprfocus class:steam || steam"))
 hl.bind(C(G("s")), hl.dsp.exec_cmd("XDG_CURRENT_DESKTOP=GNOME gnome-control-center"))
 hl.bind(G("d"), hl.dsp.exec_cmd("hyprfocus class:com.mitchellh.ghostty || uwsm-app -- ghostty"))
