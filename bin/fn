@@ -46,6 +46,7 @@ INITIAL_QUERY="${*:-}"
   --input-label=" folders " \
   --list-border \
   --info=inline-right \
+  --highlight-line \
   --reverse \
   --multi \
   --bind="ctrl-g:transform:$TRANSFORMER" \
