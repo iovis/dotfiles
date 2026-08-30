@@ -42,7 +42,7 @@ msglist_deleted.fg=#737994
 msglist_deleted.dim=true
 msglist_marked.fg=#ca9ee6
 msglist_marked.bold=true
-msglist_result.fg=#8caaee
+msglist_result.fg=#ef9f76
 msglist_result.bold=true
 msglist_answered.fg=#81c8be
 msglist_forwarded.fg=#85c1dc
@@ -50,7 +50,7 @@ msglist_thread_folded.fg=#babbf1
 msglist_thread_folded.bold=true
 msglist_thread_context.fg=#737994
 msglist_thread_context.dim=true
-msglist_thread_orphan.fg=#ef9f76
+msglist_thread_orphan.fg=#e78284
 
 msglist_pill.bg=#51576d
 
