@@ -31,7 +31,8 @@ local restart_waybar =
   "systemctl --user is-active --quiet waybar.service && systemctl --user stop waybar.service || systemctl --user start waybar.service"
 hl.bind(G("w"), hl.dsp.exec_cmd("hyprclose class:widget.wiremix || kitty --class=widget.wiremix -e impala"))
 hl.bind(C(G("w")), hl.dsp.exec_cmd(restart_waybar))
-hl.bind(G("e"), hl.dsp.exec_cmd("hyprfocus class:widget.aerc || kitty --class=widget.aerc -e aerc"))
+hl.bind(G("e"), hl.dsp.exec_cmd("hyprfocus class:aerc || kitty --class=aerc -e aerc"))
+hl.bind(C(G("e")), hl.dsp.exec_cmd("hyprclose class:widget.aerc || kitty --class=widget.aerc -e aerc -I"))
 hl.bind(G("t"), hl.dsp.exec_cmd("hyprclose class:widget.btop || kitty --class=widget.btop -e btop"))
 hl.bind(C(G("t")), hl.dsp.exec_cmd("hyprclose class:widget.btop || kitty --class=widget.btop -e htop -s PERCENT_CPU"))
 
