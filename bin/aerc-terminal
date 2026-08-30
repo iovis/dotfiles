@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+set -uo pipefail
+
+aerc_pid=
+pending_signal=
+
+shutdown() {
+  pending_signal=$1
+  [[ -n $aerc_pid ]] || return
+
+  trap - HUP TERM
+  kill -TERM "$aerc_pid" 2>/dev/null || true
+  wait "$aerc_pid" 2>/dev/null || true
+  exit "$((128 + pending_signal))"
+}
+
+trap 'shutdown 1' HUP
+trap 'shutdown 15' TERM
+
+aerc "$@" &
+aerc_pid=$!
+
+# Handle a signal received between installing the traps and recording the PID.
+if [[ -n $pending_signal ]]; then
+  shutdown "$pending_signal"
+fi
+
+wait "$aerc_pid"
+status=$?
+
+trap - HUP TERM
+exit "$status"

@@ -32,8 +32,8 @@ local restart_waybar =
 
 hl.bind(G("w"), hl.dsp.exec_cmd("hyprclose class:widget.wiremix || kitty --class=widget.wiremix -e impala"))
 hl.bind(C(G("w")), hl.dsp.exec_cmd(restart_waybar))
-hl.bind(G("e"), hl.dsp.exec_cmd("hyprfocus class:aerc || kitty --class=aerc -e aerc"))
-hl.bind(C(G("e")), hl.dsp.exec_cmd("hyprclose class:widget.aerc || kitty --class=widget.aerc -e aerc -I"))
+hl.bind(G("e"), hl.dsp.exec_cmd("hyprfocus class:aerc || kitty --class=aerc -e aerc-terminal"))
+hl.bind(C(G("e")), hl.dsp.exec_cmd("hyprclose class:widget.aerc || kitty --class=widget.aerc -e aerc-terminal -I"))
 hl.bind(G("t"), hl.dsp.exec_cmd("hyprclose class:widget.btop || kitty --class=widget.btop -e btop"))
 hl.bind(C(G("t")), hl.dsp.exec_cmd("hyprclose class:widget.btop || kitty --class=widget.btop -e htop -s PERCENT_CPU"))
 
@@ -277,7 +277,7 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd(osdclient .. "--playerctl previous"), {
 local workspace_bootstrap_apps = {
   { class = "zen", command = "uwsm-app -- zen-browser", workspace = "1" },
   { class = "com.mitchellh.ghostty", command = "uwsm-app -- ghostty", workspace = "2" },
-  { class = "aerc", command = "kitty --class=aerc -e aerc", workspace = "3" },
+  { class = "aerc", command = "kitty --class=aerc -e aerc-terminal", workspace = "3" },
 }
 
 for _, app in ipairs(workspace_bootstrap_apps) do
