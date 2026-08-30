@@ -29,6 +29,7 @@ hl.bind(C(G("backspace")), hl.dsp.exec_cmd(powermenu))
 -- `hyprctl clients -j | jq '.[].class'`
 local restart_waybar =
   "systemctl --user is-active --quiet waybar.service && systemctl --user stop waybar.service || systemctl --user start waybar.service"
+
 hl.bind(G("w"), hl.dsp.exec_cmd("hyprclose class:widget.wiremix || kitty --class=widget.wiremix -e impala"))
 hl.bind(C(G("w")), hl.dsp.exec_cmd(restart_waybar))
 hl.bind(G("e"), hl.dsp.exec_cmd("hyprfocus class:aerc || kitty --class=aerc -e aerc"))
@@ -271,3 +272,57 @@ hl.bind("XF86AudioNext", hl.dsp.exec_cmd(osdclient .. "--playerctl next"), { loc
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd(osdclient .. "--playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd(osdclient .. "--playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd(osdclient .. "--playerctl previous"), { locked = true })
+
+---- Bootstrap
+local workspace_bootstrap_apps = {
+  { class = "zen", command = "uwsm-app -- zen-browser", workspace = "1" },
+  { class = "com.mitchellh.ghostty", command = "uwsm-app -- ghostty", workspace = "2" },
+  { class = "aerc", command = "kitty --class=aerc -e aerc", workspace = "3" },
+}
+
+for _, app in ipairs(workspace_bootstrap_apps) do
+  app.pending = false
+  app.rule = hl.window_rule({
+    enabled = false,
+    name = ("workspace-bootstrap-%s"):format(app.workspace),
+    match = { class = app.class },
+    no_initial_focus = true,
+    workspace = ("%s silent"):format(app.workspace),
+  })
+end
+
+local function start_workspace_bootstrap_timeout(app)
+  if app.timeout ~= nil then
+    app.timeout:set_enabled(true)
+    return
+  end
+
+  app.timeout = hl.timer(function()
+    app.pending = false
+    app.rule:set_enabled(false)
+  end, { timeout = 15000, type = "oneshot" })
+end
+
+hl.on("window.open", function(window)
+  for _, app in ipairs(workspace_bootstrap_apps) do
+    if app.pending and window.initial_class == app.class then
+      app.pending = false
+      app.rule:set_enabled(false)
+      if app.timeout ~= nil then
+        app.timeout:set_enabled(false)
+      end
+      return
+    end
+  end
+end)
+
+hl.bind(S(C(G("k"))), function()
+  for _, app in ipairs(workspace_bootstrap_apps) do
+    if not app.pending and #hl.get_windows({ class = app.class }) == 0 then
+      app.pending = true
+      app.rule:set_enabled(true)
+      start_workspace_bootstrap_timeout(app)
+      hl.exec_cmd(app.command)
+    end
+  end
+end)
