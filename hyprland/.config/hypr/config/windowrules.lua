@@ -72,6 +72,17 @@ hl.window_rule({
 })
 
 hl.window_rule({
+  name = "pdf",
+  match = { class = "widget\\.pdf" },
+  center = true,
+  float = true,
+  size = {
+    "monitor_h * 0.60",
+    "monitor_h * 0.75",
+  },
+})
+
+hl.window_rule({
   name = "btop",
   match = { class = "widget\\.btop" },
   center = true,
