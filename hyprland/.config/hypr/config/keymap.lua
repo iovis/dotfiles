@@ -48,7 +48,10 @@ hl.bind(C(G("f")), hl.dsp.exec_cmd("uwsm-app -- zen-browser --private-window"))
 hl.bind(G("g"), hl.dsp.exec_cmd("hyprfocus class:chromium || uwsm-app -- chromium"))
 hl.bind(C(G("g")), hl.dsp.exec_cmd("uwsm-app -- chromium --incognito"))
 
-hl.bind(G("x"), hl.dsp.exec_cmd("hyprfocus class:localsend || GTK_THEME=Adwaita:dark uwsm-app -- localsend"))
+hl.bind(
+  G("x"),
+  hl.dsp.exec_cmd("hyprfocus class:org.localsend.localsend_app || flatpak run org.localsend.localsend_app")
+)
 hl.bind(G("c"), hl.dsp.exec_cmd("hyprfocus class:org.gnome.Calendar || uwsm-app -- gnome-calendar"))
 hl.bind(G("b"), hl.dsp.exec_cmd("hyprclose class:widget.bluetui || kitty --class=widget.bluetui -e bluetui"))
 hl.bind(G("v"), hl.dsp.exec_cmd("vicinae_toggle deeplink vicinae://launch/clipboard/history"))
