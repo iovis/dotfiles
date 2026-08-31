@@ -73,7 +73,10 @@ hl.window_rule({
 
 hl.window_rule({
   name = "pdf",
-  match = { class = "widget\\.pdf" },
+  match = {
+    class = "kitty",
+    initial_title = "widget\\.pdf",
+  },
   center = true,
   float = true,
   size = {

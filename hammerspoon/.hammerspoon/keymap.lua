@@ -1,4 +1,5 @@
 local u = require("utils")
+local rules = require("terminal_popups").rules
 
 ---- System
 hs.hotkey.bind(hyper, "c", hs.toggleConsole)
@@ -21,7 +22,6 @@ u.bind.app({ hyper, "f" }, "Safari")
 u.bind.app({ ctrl_alt_cmd, "g" }, "Google Chrome Canary")
 
 u.bind.app({ ctrl_alt_cmd, "w" }, "Messages")
-u.bind.app({ ctrl_alt_cmd, "e" }, "Mail")
 
 u.bind.app({ ctrl_alt_cmd, "x" }, "Music")
 u.bind.app({ ctrl_alt_cmd, "c" }, "Calendar")
@@ -32,7 +32,7 @@ u.bind.app({ hyper, "o" }, "Obsidian")
 u.bind.app({ ctrl_alt_cmd, "p" }, "1Password")
 
 ---- Terminal popups
-local rules = require("terminal_popups").rules
+u.bind.popup({ ctrl_alt_cmd, "e" }, rules.centered_66, "aerc")
 u.bind.popup({ ctrl_alt_cmd, "t" }, rules.centered_66, "htop")
 u.bind.popup({ hyper, "y" }, rules.centered_50, "yazi")
 u.bind.popup({ ctrl_alt_cmd, "u" }, rules.centered_400x200, "calc")
