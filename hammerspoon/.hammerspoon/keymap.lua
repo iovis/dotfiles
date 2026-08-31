@@ -1,5 +1,5 @@
 local u = require("utils")
-local rules = require("terminal_popups").rules
+local layouts = require("terminal_popups").layouts
 
 ---- System
 hs.hotkey.bind(hyper, "c", hs.toggleConsole)
@@ -32,11 +32,15 @@ u.bind.app({ hyper, "o" }, "Obsidian")
 u.bind.app({ ctrl_alt_cmd, "p" }, "1Password")
 
 ---- Terminal popups
-u.bind.popup({ ctrl_alt_cmd, "e" }, rules.centered_66, "aerc")
-u.bind.popup({ ctrl_alt_cmd, "t" }, rules.centered_66, "htop")
-u.bind.popup({ hyper, "y" }, rules.centered_50, "yazi")
-u.bind.popup({ ctrl_alt_cmd, "u" }, rules.centered_400x200, "calc")
-u.bind.popup({ ctrl_alt_cmd, "o" }, rules.centered_50, "fn")
+u.bind.popup({ ctrl_alt_cmd, "e" }, "aerc-terminal", {
+  layout = layouts.centered_66,
+  launch_or_focus = true,
+  title = "popup:aerc",
+})
+u.bind.popup({ ctrl_alt_cmd, "t" }, "htop", { layout = layouts.centered_66 })
+u.bind.popup({ hyper, "y" }, "yazi", { layout = layouts.centered_50 })
+u.bind.popup({ ctrl_alt_cmd, "u" }, "calc", { layout = layouts.centered_400x200 })
+u.bind.popup({ ctrl_alt_cmd, "o" }, "fn", { layout = layouts.centered_50 })
 
 ---- Floating windows
 -- Halves (TODO: not working with fn+ctrl+arrow, so I had to remap at OS level)

@@ -71,13 +71,22 @@ return {
           :start()
       end)
     end,
-    ---Binds a command to a reusable terminal popup rule
+    ---Binds a command to a reusable terminal popup layout
     ---@param binding HammerspoonBinding
-    ---@param rule table
     ---@param command string
-    popup = function(binding, rule, command)
+    ---@param options { layout: table, title?: string, launch_or_focus?: boolean }
+    popup = function(binding, command, options)
+      assert(type(options) == "table" and options.layout, "Terminal popup options require a layout")
+      assert(not options.launch_or_focus or options.title, "launch_or_focus requires a unique terminal popup title")
+
+      local popup_options = {
+        layout = options.layout,
+        title = options.title or ("popup:" .. hs.host.uuid()),
+        launch_or_focus = options.launch_or_focus,
+      }
+
       hs.hotkey.bind(binding[1], binding[2], function()
-        require("terminal_popups").launch(rule, command)
+        require("terminal_popups").open(command, popup_options)
       end)
     end,
   },
