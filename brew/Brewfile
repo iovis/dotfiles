@@ -3,12 +3,18 @@ tap "nikitabobko/tap", trusted: true
 tap "osx-cross/arm", trusted: true
 tap "osx-cross/avr", trusted: true
 tap "qmk/qmk", trusted: true
+# GNU Privacy Guard (OpenPGP)
+brew "gnupg"
+# Email client that runs in your terminal
+brew "aerc"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Generate compilation database for clang tooling
 brew "bear"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
+# TUI web browser with CSS, inline image and JavaScript support
+brew "chawan"
 # Statistics utility to count lines of code
 brew "cloc"
 # Cross-platform make
@@ -35,8 +41,6 @@ brew "fzf"
 brew "gh"
 # Distributed revision control system
 brew "git"
-# GNU Privacy Guard (OpenPGP)
-brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
 # Language server for the Go language
@@ -59,6 +63,8 @@ brew "lazygit"
 brew "less"
 # Next-gen compiler infrastructure
 brew "llvm"
+# Nice to use pager for humans
+brew "moor"
 # Remote terminal application
 brew "mosh"
 # 'traceroute' and 'ping' in a single tool
@@ -91,6 +97,8 @@ brew "starship"
 brew "stow"
 # Opinionated Lua code formatter
 brew "stylua"
+# TUI-based PDF viewer
+brew "tdf"
 # Very fast implementation of tldr in Rust
 brew "tealdeer"
 # Terminal multiplexer
