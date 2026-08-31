@@ -37,10 +37,30 @@ u.bind.popup({ ctrl_alt_cmd, "e" }, "aerc-terminal", {
   launch_or_focus = true,
   title = "popup:aerc",
 })
-u.bind.popup({ ctrl_alt_cmd, "t" }, "htop", { layout = layouts.centered_66 })
-u.bind.popup({ hyper, "y" }, "yazi", { layout = layouts.centered_50 })
-u.bind.popup({ ctrl_alt_cmd, "u" }, "calc", { layout = layouts.centered_400x200 })
-u.bind.popup({ ctrl_alt_cmd, "o" }, "fn", { layout = layouts.centered_50 })
+
+u.bind.popup({ ctrl_alt_cmd, "t" }, "htop", {
+  layout = layouts.centered_66,
+  launch_or_focus = true,
+  title = "popup:htop",
+})
+
+u.bind.popup({ hyper, "y" }, "yazi", {
+  layout = layouts.centered_50,
+  launch_or_focus = true,
+  title = "popup:yazi",
+})
+
+u.bind.popup({ ctrl_alt_cmd, "u" }, "calc", {
+  layout = layouts.centered_400x200,
+  launch_or_focus = true,
+  title = "popup:calc",
+})
+
+u.bind.popup({ ctrl_alt_cmd, "o" }, "fn", {
+  layout = layouts.centered_50,
+  launch_or_focus = true,
+  title = "popup:fn",
+})
 
 ---- Floating windows
 -- Halves (TODO: not working with fn+ctrl+arrow, so I had to remap at OS level)
