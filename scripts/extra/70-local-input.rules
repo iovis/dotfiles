@@ -1,0 +1,9 @@
+# Prevent the Unicorne and BNK9 from being detected as joysticks.
+ATTRS{idVendor}=="4273", ATTRS{idProduct}=="7563", ENV{ID_INPUT_JOYSTICK}=""
+ATTRS{idVendor}=="4249", ATTRS{idProduct}=="4e39", ENV{ID_INPUT_JOYSTICK}=""
+
+# Prevent the DualSense touchpad from acting as a mouse.
+ATTRS{name}=="*Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
+
+# Prevent the AM INFINITY 8K mouse from waking the system during suspend.
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="3151", ATTR{idProduct}=="5007", TEST=="power/wakeup", ATTR{power/wakeup}="disabled"

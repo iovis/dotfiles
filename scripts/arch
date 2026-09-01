@@ -85,15 +85,18 @@ cargo binstall -y $(cat "$DOTFILES/default/crates")
 echo "[$(date '+%Y-%m-%d %H:%M')] Reflector settings"
 sudo cp "$DOTFILES/scripts/extra/reflector.conf" /etc/xdg/reflector/reflector.conf
 
+echo "[$(date '+%Y-%m-%d %H:%M')] Install local input device rules"
+sudo cp "$DOTFILES/scripts/extra/70-local-input.rules" /etc/udev/rules.d/
+sudo udevadm control --reload
+
 # if [ ! -f "/usr/lib/systemd/system-sleep/disable-some-wake" ]; then
 #   echo "[$(date '+%Y-%m-%d %H:%M')] Fix for not being able to suspend"
 #   sudo cp "$DOTFILES/scripts/extra/disable-some-wake" /usr/lib/systemd/system-sleep
 #   sudo chmod 755 /usr/lib/systemd/system-sleep/disable-some-wake
 # fi
 
-# echo "[$(date '+%Y-%m-%d %H:%M')] Setting dark theme"
-# gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-# gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
+echo "[$(date '+%Y-%m-%d %H:%M')] Setting dark theme"
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Apply monitor settings to GDM"
 if [ -f "$HOME/.config/monitors.xml" ]; then

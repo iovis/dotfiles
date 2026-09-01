@@ -5,7 +5,7 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("systemctl --user start swaync.service")
   hl.exec_cmd("systemctl --user start vicinae.service")
 
-  hl.exec_cmd("GTK_THEME=Adwaita:dark uwsm-app -- swayosd-server")
+  hl.exec_cmd("uwsm-app -- swayosd-server")
   hl.exec_cmd("uwsm-app -- udiskie")
   hl.exec_cmd("systemctl --user start waybar.service")
 
