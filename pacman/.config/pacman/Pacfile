@@ -133,7 +133,6 @@ pipewire
 pipewire-alsa
 python-curl_cffi
 qmk
-qt6ct
 reflector
 ripgrep
 rsync
