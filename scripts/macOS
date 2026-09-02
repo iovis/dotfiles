@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
-# curl --proto '=https' --tlsv1.2 -LsSf https://raw.githubusercontent.com/iovis/dotfiles/master/scripts/apple | bash
+# curl --proto '=https' --tlsv1.2 -LsSf https://raw.githubusercontent.com/iovis/dotfiles/master/scripts/macOS | bash
 set -euo pipefail
 
 export DOTFILES="$HOME/.dotfiles"
+export LOCAL_BIN="${LOCAL_BIN:-$HOME/.local/bin}"
+export PATH="$LOCAL_BIN:$PATH"
 
 if [ ! -d "$DOTFILES" ]; then
   echo "[$(date '+%Y-%m-%d %H:%M')] Installing Dotfiles"
@@ -22,7 +24,7 @@ brew bundle --file "$DOTFILES/brew/Brewfile"
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Stow"
 cd "$DOTFILES" || exit
-stow aerc aerospace bat brew fish fzf ghostty git hammerspoon kitty lazygit mise muxi nvim pry starship stylua tldr tmux vim wezterm
+stow --restow aerc aerospace bat brew fish fzf ghostty git hammerspoon kitty lazygit llvm mise muxi nvim pry starship stylua tldr tmux vim wezterm yazi
 cd || exit
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing mise"
@@ -33,12 +35,25 @@ fi
 mise install -y
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing rust"
-if ! command -v cargo >/dev/null 2>&1; then
+if [ ! -f "$HOME/.cargo/env" ]; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 fi
 
-. "$HOME/.cargo/env"
+if [ -f "$HOME/.cargo/env" ]; then
+  # shellcheck disable=SC1091 # dynamic path created by rustup installer
+  . "$HOME/.cargo/env"
+else
+  echo "rustup env file missing at $HOME/.cargo/env" >&2
+  exit 1
+fi
+
+command -v cargo >/dev/null 2>&1 || {
+  echo "cargo not found after rustup setup" >&2
+  exit 1
+}
+
 cargo install cargo-binstall
+# shellcheck disable=SC2046 # curated newline-delimited crate list
 cargo binstall -y $(cat "$DOTFILES/default/crates")
 
 echo "[$(date '+%Y-%m-%d %H:%M')] macOS Settings"
