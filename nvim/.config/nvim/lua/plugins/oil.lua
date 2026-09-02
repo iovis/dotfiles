@@ -3,15 +3,13 @@ return {
   -- enabled = false,
   -- dev = true,
   version = "*",
+  dependencies = { "nvim-tree/nvim-web-devicons" },
   lazy = false,
   cmd = { "Oil" },
   keys = {
     { ",", "<cmd>Oil --float<cr>" },
     { "-", "<cmd>Oil<cr>" },
     { "_", "<cmd>Oil .<cr>" },
-  },
-  dependencies = {
-    "nvim-tree/nvim-web-devicons",
   },
   config = function()
     local oil = require("oil")
@@ -34,6 +32,7 @@ return {
       watch_for_changes = true,
       lsp_file_methods = { autosave_changes = true },
       columns = { { "icon", add_padding = false } },
+      preview_win = { preview_method = "load" },
       float = {
         max_height = 0.5,
         max_width = 0.5,

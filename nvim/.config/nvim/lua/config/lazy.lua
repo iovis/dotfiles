@@ -31,9 +31,6 @@ require("lazy").setup({
   dev = {
     path = vim.fn.resolve(projects_path .. "/vim"),
   },
-  install = {
-    colorscheme = { "catppuccin" },
-  },
   profiling = {
     -- Enables extra stats on the debug tab related to the loader cache.
     -- Additionally gathers stats about all package.loaders
