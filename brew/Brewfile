@@ -1,8 +1,7 @@
-tap "jesseduffield/lazygit", trusted: true
-tap "nikitabobko/tap", trusted: true
-tap "osx-cross/arm", trusted: true
-tap "osx-cross/avr", trusted: true
-tap "qmk/qmk", trusted: true
+tap "nikitabobko/tap"
+tap "osx-cross/arm", trusted: { formulae: ["arm-none-eabi-binutils", "arm-none-eabi-gcc@8"] }
+tap "osx-cross/avr", trusted: { formulae: ["avr-binutils", "avr-gcc@8"] }
+tap "qmk/qmk", trusted: { formulae: ["hid_bootloader_cli", "mdloader"] }
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
 # Email client that runs in your terminal
@@ -126,11 +125,11 @@ brew "zoxide"
 # UNIX shell (command interpreter)
 brew "zsh"
 # Quantum Mechanical Keyboard (QMK) Firmware
-brew "qmk/qmk/qmk"
+brew "qmk/qmk/qmk", trusted: true
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # AeroSpace is an i3-like tiling window manager for macOS
-cask "nikitabobko/tap/aerospace"
+cask "nikitabobko/tap/aerospace", trusted: true
 # Application uninstaller
 cask "appcleaner"
 # Chromium based browser
