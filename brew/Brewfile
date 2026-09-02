@@ -39,6 +39,8 @@ brew "fish"
 brew "fzf"
 # GitHub command-line tool
 brew "gh"
+# Interpreter for PostScript and PDF
+brew "ghostscript"
 # Distributed revision control system
 brew "git"
 # Open source programming language to build simple/reliable/efficient software

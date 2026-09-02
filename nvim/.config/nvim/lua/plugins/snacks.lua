@@ -68,6 +68,7 @@ return {
             win = {
               list = {
                 keys = {
+                  ["M"] = "toggle_maximize",
                   [","] = "explorer_up",
                   ["."] = "explorer_focus",
                   ["<s-down>"] = "explorer_git_next",
@@ -253,6 +254,7 @@ return {
         win = {
           input = {
             keys = {
+              ["M"] = "toggle_maximize",
               ["<F2>"] = { "toggle_maximize", mode = { "n", "i" } },
               ["<c-a>"] = "",
               ["<c-u>"] = "list_scroll_up",
@@ -273,6 +275,7 @@ return {
           },
           list = {
             keys = {
+              ["M"] = "toggle_maximize",
               ["<leader>H"] = "layout_left",
               ["<leader>J"] = "layout_bottom",
               ["<leader>K"] = "layout_top",
