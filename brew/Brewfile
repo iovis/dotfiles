@@ -6,6 +6,8 @@ tap "qmk/qmk", trusted: { formulae: ["hid_bootloader_cli", "mdloader"] }
 brew "gnupg"
 # Email client that runs in your terminal
 brew "aerc"
+# Tool for generating GNU Standards-compliant Makefiles
+brew "automake"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Generate compilation database for clang tooling
