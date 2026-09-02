@@ -44,7 +44,7 @@ u.bind.popup({ ctrl_alt_cmd, "t" }, "htop", {
   title = "popup:htop",
 })
 
-u.bind.popup({ hyper, "y" }, "yazi", {
+u.bind.popup({ hyper, "y" }, "yazi ~", {
   layout = layouts.centered_50,
   launch_or_focus = true,
   title = "popup:yazi",
