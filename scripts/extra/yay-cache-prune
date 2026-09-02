@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+operation="--remove"
+
+if (( $# > 1 )); then
+  echo "usage: ${0##*/} [--dry-run]" >&2
+  exit 2
+fi
+
+case "${1:-}" in
+  "") ;;
+  --dry-run) operation="--dryrun" ;;
+  *)
+    echo "usage: ${0##*/} [--dry-run]" >&2
+    exit 2
+    ;;
+esac
+
+cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/yay"
+
+if [[ ! -d "$cache_dir" ]]; then
+  echo "yay cache not found at $cache_dir; skipping"
+  exit 0
+fi
+
+if /usr/bin/pgrep -u "$UID" -x yay >/dev/null || /usr/bin/pgrep -u "$UID" -x makepkg >/dev/null; then
+  echo "yay or makepkg is running; skipping"
+  exit 0
+fi
+
+found=false
+
+while IFS= read -r -d '' package_dir; do
+  found=true
+  printf '\n==> checking cache: %s\n' "${package_dir##*/}"
+  /usr/bin/paccache "$operation" --keep 3 --cachedir "$package_dir"
+done < <(
+  /usr/bin/find "$cache_dir" -mindepth 2 -maxdepth 2 -type f -name '*.pkg.tar*' -printf '%h\0' \
+    | /usr/bin/sort -zu
+)
+
+if [[ "$found" == false ]]; then
+  echo "no cached yay package archives found"
+fi

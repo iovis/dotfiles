@@ -37,6 +37,8 @@ if ! command -v yay >/dev/null 2>&1; then
   rm -rf "$PROJECT_HOME/yay-bin/"
 fi
 
+echo "[$(date '+%Y-%m-%d %H:%M')] Configuring yay"
+yay -Y --cleanafter --save
 yay -S --needed --answerclean=none --answerdiff=none - <"$PACMAN_PATH/Aurfile"
 
 ## May be needed on reconciliation
@@ -52,6 +54,22 @@ echo "[$(date '+%Y-%m-%d %H:%M')] Stow"
 cd "$DOTFILES" || exit
 stow aerc bat fish fzf ghostty gdb git hyprland kitty lazygit llvm mise mpv muxi nvim pacman starship stylua swaync tldr tmux vicinae vim waybar yazi
 cd - || exit
+
+echo "[$(date '+%Y-%m-%d %H:%M')] Installing user services"
+install -Dm0755 \
+  "$DOTFILES/scripts/extra/yay-cache-prune" \
+  "$LOCAL_BIN/yay-cache-prune"
+
+install -Dm0644 \
+  "$DOTFILES/scripts/extra/yay-cache-prune.service" \
+  "$HOME/.config/systemd/user/yay-cache-prune.service"
+
+install -Dm0644 \
+  "$DOTFILES/scripts/extra/yay-cache-prune.timer" \
+  "$HOME/.config/systemd/user/yay-cache-prune.timer"
+
+systemctl --user daemon-reload
+systemctl --user enable --now yay-cache-prune.timer
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing mise"
 if ! command -v mise >/dev/null 2>&1; then

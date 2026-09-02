@@ -1,0 +1,20 @@
+[Unit]
+Description=Prune cached yay package archives
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/yay-cache-prune
+
+OOMScoreAdjust=1000
+Nice=19
+CPUSchedulingPolicy=idle
+IOSchedulingClass=idle
+IOSchedulingPriority=7
+
+NoNewPrivileges=yes
+PrivateDevices=yes
+PrivateNetwork=yes
+PrivateTmp=yes
+ProtectSystem=strict
+RestrictRealtime=yes
+RestrictSUIDSGID=yes

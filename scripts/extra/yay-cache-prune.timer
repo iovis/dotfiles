@@ -1,0 +1,10 @@
+[Unit]
+Description=Prune cached yay package archives weekly
+
+[Timer]
+OnCalendar=weekly
+AccuracySec=1h
+Persistent=true
+
+[Install]
+WantedBy=timers.target
