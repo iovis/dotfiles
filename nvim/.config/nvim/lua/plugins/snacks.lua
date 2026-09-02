@@ -24,6 +24,10 @@ return {
       image = {
         math = { enabled = false },
         cache = vim.fn.tempname() .. "/snacks/image",
+        doc = {
+          inline = false,
+          float = false,
+        },
       },
       input = { enabled = true },
       picker = {

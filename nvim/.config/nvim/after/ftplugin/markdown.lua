@@ -16,6 +16,11 @@ vim.opt_local.formatoptions:append("tcroqnl1jp")
 -- Allow *, -, +, ?, > to auto-create the character on line change
 vim.opt_local.comments = "b:*,b:- [ ],b:- [x],b:-,n:>"
 
+vim.keymap.set("n", "gd", Snacks.image.hover, {
+  desc = "Preview image",
+  buf = 0,
+})
+
 ---An incredibly over-engineered task toggler to learn a bit of Treesitter
 ---@param mode string
 function ToggleCheckbox(mode)
