@@ -52,7 +52,7 @@ sudo systemctl enable avahi-daemon bluetooth cpupower fstrim.timer gdm paccache.
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Stow"
 cd "$DOTFILES" || exit
-stow aerc bat fish fzf ghostty gdb git hyprland kitty lazygit llvm mise mpv muxi nvim pacman starship stylua swaync tldr tmux vicinae vim waybar yazi
+stow --restow aerc bat fish fzf ghostty gdb git hyprland kitty lazygit llvm mise mpv muxi nvim pacman starship stylua swaync tldr tmux vicinae vim waybar yazi
 cd - || exit
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing user services"
