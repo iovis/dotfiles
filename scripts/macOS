@@ -1,23 +1,22 @@
 #!/usr/bin/env bash
 
-# curl --proto '=https' --tlsv1.2 -LsSf https://raw.githubusercontent.com/iovis/dotfiles/master/scripts/macOS | bash
+# /bin/bash -c "$(curl --proto '=https' --tlsv1.2 -LsSf https://raw.githubusercontent.com/iovis/dotfiles/master/scripts/macOS)"
 set -euo pipefail
 
 export DOTFILES="$HOME/.dotfiles"
 export LOCAL_BIN="${LOCAL_BIN:-$HOME/.local/bin}"
 export PATH="$LOCAL_BIN:$PATH"
 
+echo "[$(date '+%Y-%m-%d %H:%M')] Installing Libraries"
+if [ ! -x /opt/homebrew/bin/brew ]; then
+  echo "[$(date '+%Y-%m-%d %H:%M')] Installing Homebrew"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 if [ ! -d "$DOTFILES" ]; then
   echo "[$(date '+%Y-%m-%d %H:%M')] Installing Dotfiles"
   git clone https://github.com/iovis/dotfiles "$DOTFILES"
-fi
-
-echo "[$(date '+%Y-%m-%d %H:%M')] Installing Libraries"
-if ! command -v brew >/dev/null 2>&1; then
-  echo "[$(date '+%Y-%m-%d %H:%M')] Installing Homebrew"
-  export NONINTERACTIVE=1
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 brew bundle --file "$DOTFILES/brew/Brewfile"
@@ -57,20 +56,27 @@ cargo install cargo-binstall
 cargo binstall -y $(cat "$DOTFILES/default/crates")
 
 echo "[$(date '+%Y-%m-%d %H:%M')] macOS Settings"
-defaults write -g NSUseSpellCheckerForCompletions -bool false
-defaults write -g NSAllowContinuousSpellChecking -bool false
-defaults write -g ApplePressAndHoldEnabled -bool false   # Enable key repeat
-defaults write -g NSWindowShouldDragOnGesture -bool true # Drag windows from anywhere with ctrl+cmd+click
-defaults write -g com.apple.Dock showhidden -bool true   # Translucent hidden apps in Dock
+# General
+defaults write -g NSUseSpellCheckerForCompletions -bool false # Disable Escape completion menu
+defaults write -g ApplePressAndHoldEnabled -bool false        # Enable key repeat
+defaults write -g NSWindowShouldDragOnGesture -bool true      # Drag windows from anywhere with ctrl+cmd+click
 
-killall Finder
+# Disable automatic transformations
+defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
+defaults write -g NSAutomaticCapitalizationEnabled -bool false
+defaults write -g NSAutomaticPeriodSubstitutionEnabled -bool false
+defaults write -g NSAutomaticQuoteSubstitutionEnabled -bool false
+defaults write -g NSAutomaticDashSubstitutionEnabled -bool false
+
+# Finder settings
+defaults write -g AppleShowAllExtensions -bool true
+defaults write com.apple.finder ShowPathbar -bool true
+defaults write com.apple.finder ShowStatusBar -bool true
+
+# Dock
+defaults write com.apple.dock mru-spaces -bool false   # Don't reorder spaces
+defaults write com.apple.dock show-recents -bool false # Don't show recents in Dock
+defaults write com.apple.dock showhidden -bool true    # Translucent hidden apps in Dock
 killall Dock
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installation ended"
-
-shell=$(basename "$SHELL")
-if [ "$shell" != "fish" ]; then
-  echo "**************"
-  echo "$shell detected."
-  echo "Run chsh -s $(which fish)"
-fi
