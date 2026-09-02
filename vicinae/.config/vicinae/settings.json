@@ -14,16 +14,21 @@
    "close_on_focus_loss": false,
    "consider_preedit": false,
    "pop_to_root_on_close": false,
+   "escape_key_behavior": "close_window",
    "favicon_service": "twenty",
    "keybinding": "default",
    "search_files_in_root": false,
+   "tray": {
+      "enabled": false
+   },
    "global_shortcuts": {
       "toggle": ""
    },
    "font": {
+      "rendering": "native",
       "normal": {
          "family": "FiraCode Nerd Font",
-         "size": 10
+         "size": 11
       }
    },
    "theme": {
@@ -85,7 +90,21 @@
             "paths": [
                "/home/david/.local/share/applications",
                "/usr/share/applications"
-            ]
+            ],
+            "defaultAction": "focus",
+            "launchPrefix": "uwsm-app -- "
+         }
+      },
+      "browser-extension": {
+         "enabled": false
+      },
+      "clipboard": {
+         "preferences": {
+            "eraseOnStartup": false,
+            "evictionThreshold": "2592000",
+            "ignorePasswords": true,
+            "monitoring": true,
+            "preserveTagged": true
          }
       },
       "core": {
@@ -133,7 +152,14 @@
          "enabled": false
       },
       "files": {
-         "enabled": false
+         "enabled": false,
+         "preferences": {
+            "autoIndexing": false,
+            "excludedIndexingPaths": [],
+            "indexingPaths": [
+               "/home/david"
+            ]
+         }
       },
       "font": {
          "entrypoints": {
@@ -145,6 +171,9 @@
       "manage-shortcuts": {
          "enabled": false
       },
+      "media": {
+         "enabled": false
+      },
       "power": {
          "entrypoints": {
             "hibernate": {
@@ -154,7 +183,7 @@
                "enabled": false
             },
             "logout": {
-               "enabled": false
+               "enabled": true
             },
             "power-off": {
                "preferences": {
@@ -170,16 +199,24 @@
                "enabled": false
             },
             "soft-reboot": {
+               "enabled": false,
                "preferences": {
                   "confirm": false
                }
             }
          }
       },
+      "raycast-compat": {
+         "enabled": false
+      },
+      "snippets": {
+         "enabled": false
+      },
       "system": {
          "enabled": false
       },
       "theme": {
+         "enabled": false,
          "entrypoints": {
             "set": {
                "enabled": true
