@@ -21,6 +21,10 @@ return {
         animate = { enabled = false },
       },
       explorer = {},
+      image = {
+        math = { enabled = false },
+        cache = vim.fn.tempname() .. "/snacks/image",
+      },
       input = { enabled = true },
       picker = {
         formatters = {
