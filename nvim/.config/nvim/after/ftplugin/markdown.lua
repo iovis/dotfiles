@@ -55,31 +55,22 @@ function ToggleCheckbox(mode)
   local tasks = vim.treesitter.query.parse(
     "markdown",
     [[
-      ;;query
-      (list_item [
+      [
         (task_list_marker_checked)   @checked
-        (task_list_marker_unchecked) @unchecked])
+        (task_list_marker_unchecked) @unchecked
+      ]
     ]]
   )
 
-  -- Run query in the current line
+  -- Run query in the selected lines
   for id, node in tasks:iter_captures(u.ts.root_node(), 0, start_row, end_row) do
     local capture = tasks.captures[id]
-    local node_row = node:range()
-
-    -- The query gets weird with nested checkboxes for some reason
-    if node_row < start_row or node_row > end_row then
-      -- vim.print(vim.treesitter.get_node_text(node, 0))
-      goto continue
-    end
 
     if capture == "checked" then
       u.ts.replace(node, "[ ]")
     elseif capture == "unchecked" then
       u.ts.replace(node, "[x]")
     end
-
-    ::continue::
   end
 end
 
