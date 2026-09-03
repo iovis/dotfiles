@@ -1,5 +1,19 @@
 local u = require("config.utils")
 
+----Surround settings
+vim.b.minisurround_config = {
+  custom_surroundings = {
+    i = {
+      input = { "_().-()_" },
+      output = { left = "_", right = "_" },
+    },
+    s = {
+      input = { "%*%*().-()%*%*" },
+      output = { left = "**", right = "**" },
+    },
+  },
+}
+
 -- LSP Markdown buffers use buftype=nofile
 if vim.bo.buftype == "" then
   vim.opt_local.conceallevel = 0
