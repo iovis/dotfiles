@@ -1,6 +1,9 @@
 local u = require("config.utils")
 
 ----Surround settings
+local list_pattern = "^%s*()%- ().*()()$"
+local task_pattern = "^%s*()%- %[[ xX]%] ().*()()$"
+
 vim.b.minisurround_config = {
   custom_surroundings = {
     i = {
@@ -10,6 +13,17 @@ vim.b.minisurround_config = {
     s = {
       input = { "%*%*().-()%*%*" },
       output = { left = "**", right = "**" },
+    },
+    l = {
+      input = function()
+        local line = vim.api.nvim_get_current_line()
+        return { line:find(task_pattern) and task_pattern or list_pattern }
+      end,
+      output = { left = "- ", right = "" },
+    },
+    t = {
+      input = { task_pattern },
+      output = { left = "- [ ] ", right = "" },
     },
   },
 }
