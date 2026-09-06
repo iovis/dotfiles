@@ -1,29 +1,34 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-OUTPUT_DIR="${XDG_VIDEOS_DIR:-$HOME/Videos}"
+OUTPUT_DIR="${XDG_VIDEOS_DIR:-}"
 
-if [[ ! -d "$OUTPUT_DIR" ]]; then
-  notify-send --icon org.gnome.Snapshot-symbolic "Screen recording directory does not exist: $OUTPUT_DIR" -u critical -t 3000
-  exit 1
+if [[ -z "$OUTPUT_DIR" ]]; then
+  OUTPUT_DIR=$(xdg-user-dir VIDEOS 2>/dev/null) || OUTPUT_DIR="$HOME/Videos"
+  [[ -n "$OUTPUT_DIR" ]] || OUTPUT_DIR="$HOME/Videos"
 fi
 
 DESKTOP_AUDIO="true"
-MICROPHONE_AUDIO="false"
-WEBCAM="false"
 STOP_RECORDING="false"
+
+usage() {
+  printf 'Usage: %s [--without-desktop-audio] [--stop-recording]\n' "${0##*/}"
+}
 
 for arg in "$@"; do
   case "$arg" in
   --without-desktop-audio) DESKTOP_AUDIO="false" ;;
-  --with-microphone-audio) MICROPHONE_AUDIO="true" ;;
-  --with-webcam) WEBCAM="true" ;;
   --stop-recording) STOP_RECORDING="true" ;;
+  -h | --help)
+    usage
+    exit
+    ;;
+  *)
+    printf 'Unknown option: %s\n' "$arg" >&2
+    usage >&2
+    exit 2
+    ;;
   esac
 done
-
-cleanup_webcam() {
-  pkill -f "WebcamOverlay" 2>/dev/null
-}
 
 watch_screenrecording() {
   local recorder_pid="$1"
@@ -32,58 +37,39 @@ watch_screenrecording() {
     sleep 0.2
   done
 
-  cleanup_webcam
-  toggle_screenrecording_indicator
+  refresh_screenrecording_indicator
 }
 
-start_webcam_overlay() {
-  cleanup_webcam
+show_saved_notification() {
+  local action
 
-  # Get monitor scale
-  local scale=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true) | .scale')
+  action=$(notify-send \
+    --icon org.gnome.Snapshot-symbolic \
+    --action="default=Open Folder" \
+    "Screen recording saved" \
+    "$OUTPUT_DIR" \
+    -t 5000)
 
-  # Target width (base 360px, scaled to monitor)
-  local target_width=$(awk "BEGIN {printf \"%.0f\", 360 * $scale}")
-
-  # Try preferred 16:9 resolutions in order, use first available
-  local preferred_resolutions=("640x360" "1280x720" "1920x1080")
-  local video_size_arg=""
-  local available_formats=$(v4l2-ctl --list-formats-ext -d /dev/video0 2>/dev/null)
-
-  for resolution in "${preferred_resolutions[@]}"; do
-    if echo "$available_formats" | grep -q "$resolution"; then
-      video_size_arg="-video_size $resolution"
-      break
-    fi
-  done
-
-  ffplay -f v4l2 $video_size_arg -framerate 30 /dev/video0 \
-    -vf "scale=${target_width}:-1" \
-    -window_title "WebcamOverlay" \
-    -noborder \
-    -fflags nobuffer -flags low_delay \
-    -probesize 32 -analyzeduration 0 \
-    -loglevel quiet &
-  sleep 1
+  if [[ "$action" == "default" ]]; then
+    setsid -f xdg-open "$OUTPUT_DIR" >/dev/null 2>&1
+  fi
 }
 
 start_screenrecording() {
-  local filename="$OUTPUT_DIR/screenrecording-$(date +'%Y-%m-%d_%H-%M-%S').mp4"
-  local audio_devices=""
-  local audio_args=""
+  local filename
+  local -a recorder_args
   local recorder_pid
 
-  [[ "$DESKTOP_AUDIO" == "true" ]] && audio_devices+="default_output"
-
-  if [[ "$MICROPHONE_AUDIO" == "true" ]]; then
-    # Merge audio tracks into one - separate tracks only play one at a time in most players
-    [[ -n "$audio_devices" ]] && audio_devices+="|"
-    audio_devices+="default_input"
+  if ! mkdir -p "$OUTPUT_DIR"; then
+    notify-send --icon org.gnome.Snapshot-symbolic "Could not create screen recording directory: $OUTPUT_DIR" -u critical -t 3000
+    return 1
   fi
 
-  [[ -n "$audio_devices" ]] && audio_args+="-a $audio_devices"
+  filename="$OUTPUT_DIR/screenrecording-$(date +'%Y-%m-%d_%H-%M-%S').mp4"
+  recorder_args=(-w portal -f 60 -fallback-cpu-encoding yes -o "$filename" -ac aac)
+  [[ "$DESKTOP_AUDIO" == "true" ]] && recorder_args+=(-a default_output)
 
-  gpu-screen-recorder -w portal -f 60 -fallback-cpu-encoding yes -o "$filename" $audio_args -ac aac &
+  gpu-screen-recorder "${recorder_args[@]}" &
   recorder_pid=$!
 
   sleep 0.2
@@ -93,19 +79,16 @@ start_screenrecording() {
     return 1
   fi
 
-  if [[ "$WEBCAM" == "true" ]]; then
-    watch_screenrecording "$recorder_pid" &
-  fi
+  watch_screenrecording "$recorder_pid" >/dev/null 2>&1 &
 
-  toggle_screenrecording_indicator
+  refresh_screenrecording_indicator
 }
 
 stop_screenrecording() {
   # If share picker is still open, user probably cancelled recording
   if pgrep -f "^hyprland-share-picker" >/dev/null; then
     pkill -f "^hyprland-share-picker"
-    cleanup_webcam
-    toggle_screenrecording_indicator
+    refresh_screenrecording_indicator
     exit
   fi
 
@@ -119,25 +102,17 @@ stop_screenrecording() {
   done
 
   if pgrep -f "^gpu-screen-recorder" >/dev/null; then
-    pkill -9 -f "^gpu-screen-recorder"
-    cleanup_webcam
-    toggle_screenrecording_indicator
+    pkill -KILL -f "^gpu-screen-recorder"
+    refresh_screenrecording_indicator
     notify-send --icon org.gnome.Snapshot-symbolic "Screen recording error" "Recording process had to be force-killed. Video may be corrupted." -u critical -t 5000
   else
-    cleanup_webcam
-    toggle_screenrecording_indicator
-
-    local action
-    action=$(notify-send --icon org.gnome.Snapshot-symbolic --action="open=Open Folder" --wait "Screen recording saved to $OUTPUT_DIR" -t 5000)
-
-    if [[ "$action" == "open" ]]; then
-      setsid -f xdg-open "$OUTPUT_DIR" >/dev/null 2>&1
-    fi
+    refresh_screenrecording_indicator
+    show_saved_notification >/dev/null 2>&1 &
   fi
 }
 
-toggle_screenrecording_indicator() {
-  pkill -RTMIN+8 waybar
+refresh_screenrecording_indicator() {
+  pkill -RTMIN+8 waybar 2>/dev/null || true
 }
 
 if pgrep -f "^gpu-screen-recorder" >/dev/null; then
@@ -145,15 +120,8 @@ if pgrep -f "^gpu-screen-recorder" >/dev/null; then
   exit
 fi
 
-if pgrep -f "WebcamOverlay" >/dev/null; then
-  cleanup_webcam
-  toggle_screenrecording_indicator
-fi
-
 if [[ "$STOP_RECORDING" == "false" ]]; then
-  [[ "$WEBCAM" == "true" ]] && start_webcam_overlay
-
-  start_screenrecording || cleanup_webcam
+  start_screenrecording
 else
   exit 1
 fi
