@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
+mkdir -p "$HOME/Pictures/Screenshots"
+
+# `hyprshot --freeze` to freeze the image for the screenshot
 pkill slurp || hyprshot -m "${1:-region}" -m active --raw |
   satty --filename - \
-    --output-filename "$HOME/Pictures/Screenshots/screenshot-$(date +'%Y-%m-%d_%H-%M-%S').png" \
+    --output-filename "$HOME/Pictures/Screenshots/screenshot-%Y-%m-%d_%H-%M-%S.png" \
     --early-exit \
     --actions-on-enter save-to-clipboard \
-    --save-after-copy \
     --copy-command 'wl-copy'
