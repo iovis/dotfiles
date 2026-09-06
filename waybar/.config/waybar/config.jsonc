@@ -72,7 +72,6 @@
   "custom/idle-indicator": {
     "on-click": "hypridle_toggle",
     "exec": "indicator_hypridle",
-    "interval": 10,
     "signal": 9,
     "return-type": "json"
   },
