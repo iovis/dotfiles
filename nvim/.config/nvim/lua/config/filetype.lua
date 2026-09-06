@@ -17,6 +17,7 @@ vim.filetype.add({
     pryrc = "ruby",
   },
   pattern = {
+    [".*/.*%.html.tmpl"] = "gotmpl",
     [".*/yamllint/config"] = "yaml",
     ["Gemfile.*"] = function(path)
       if not path:match(".lock") then
