@@ -24,28 +24,25 @@
     "custom/power"
   ],
   "bluetooth": {
-    "tooltip": true,
-    "rotate": 0,
     "format-disabled": "󰂲",
     "format-off": "󰂲",
     "format-on": "󰂯",
     "format-connected": "󰂯",
-    "format-connected-battery": "󰂯",
-    "interval": 2,
     "tooltip-format-on": "Bluetooth On",
-    "tooltip-format-disabled": "Bluetooth Off",
-    "tooltip-format-connected": "Device: {device_alias}\nMAC: {device_address}\nBattery: {device_battery_percentage}%",
+    "tooltip-format-off": "Bluetooth Off",
+    "tooltip-format-disabled": "Bluetooth Disabled",
+    "tooltip-format-connected": "Device: {device_alias}\nMAC: {device_address}",
+    "tooltip-format-connected-battery": "Device: {device_alias}\nMAC: {device_address}\nBattery: {device_battery_percentage}%",
     "on-click": "hyprclose class:widget.bluetui || kitty --class=widget.bluetui -e bluetui"
   },
   "clock": {
     "format": "{:%H:%M}",
     "tooltip-format": "<span>{calendar}</span>",
-    "on-click": "gnome-calendar",
+    "on-click": "uwsm-app -- gnome-calendar",
     "calendar": {
       "mode": "month",
       "mode-mon-col": 3,
       "on-scroll": 1,
-      "on-click-right": "mode",
       "format": {
         "months": "<span color='#ffead3'><b>{}</b></span>",
         "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
@@ -62,7 +59,7 @@
     "format": "  {usage}% ",
     "tooltip": false,
     "on-click": "hyprclose class:widget.btop || kitty --class=widget.btop -e btop",
-    "on-click-right": "gnome-system-monitor"
+    "on-click-right": "uwsm-app -- gnome-system-monitor"
   },
   "custom/arch": {
     "format": "  󰣇 ",
@@ -116,8 +113,8 @@
   "disk": {
     "format": "  {percentage_used}%  ",
     "interval": 30,
-    "on-click": "baobab",
-    "on-click-right": "gnome-disks",
+    "on-click": "uwsm-app -- baobab",
+    "on-click-right": "uwsm-app -- gnome-disks",
     "path": "/",
     "tooltip-format": "{specific_used:0.2f}/{specific_total:0.2f} GB",
     "unit": "GB"
@@ -125,8 +122,8 @@
   "disk#secondary": {
     "format": " {percentage_used}%  ",
     "interval": 30,
-    "on-click": "baobab",
-    "on-click-right": "gnome-disks",
+    "on-click": "uwsm-app -- baobab",
+    "on-click-right": "uwsm-app -- gnome-disks",
     "path": "/mnt/HDD/",
     "tooltip-format": "{specific_used:0.2f}/{specific_total:0.2f} GB",
     "unit": "GB"
@@ -154,7 +151,7 @@
   "memory": {
     "format": "󰾆 {percentage}%",
     "on-click": "hyprclose class:widget.btop || kitty --class=widget.btop -e htop --sort-key=PERCENT_MEM",
-    "on-click-right": "gnome-system-monitor"
+    "on-click-right": "uwsm-app -- gnome-system-monitor"
   },
   "network": {
     "format-icons": [
@@ -168,12 +165,14 @@
     "format-wifi": "{icon}",
     "format-ethernet": "󰀂",
     "format-disconnected": "󰖪",
+    "format-disabled": "󰖪",
     "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-disconnected": "Disconnected",
+    "tooltip-format-disabled": "Wi-Fi disabled",
     "interval": 3,
     "on-click": "hyprclose class:widget.wiremix || kitty --class=widget.wiremix -e impala",
-    "on-click-right": "XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
+    "on-click-right": "XDG_CURRENT_DESKTOP=GNOME uwsm-app -- gnome-control-center"
   },
   "pulseaudio": {
     "scroll-step": 5, // %, can be a float
@@ -191,7 +190,7 @@
       ]
     },
     "on-click": "hyprclose class:widget.wiremix || kitty --class=widget.wiremix -e wiremix",
-    "on-click-right": "pavucontrol"
+    "on-click-right": "uwsm-app -- pavucontrol"
   },
   "tray": {
     "icon-size": 16,

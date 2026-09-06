@@ -12,23 +12,12 @@ tooltip {
   background: #222;
 }
 
-#clock:hover,
-#custom-notification:hover,
-#bluetooth:hover,
-#network:hover,
-#cpu:hover,
-#memory:hover {
-  transition: all .3s ease;
-}
-
 #custom-notification {
   padding: 0px 5px;
-  transition: all .3s ease;
 }
 
 #clock {
   padding: 0px 5px;
-  transition: all .3s ease;
 }
 
 #workspaces {
@@ -68,24 +57,20 @@ tooltip {
 
 #bluetooth {
   padding: 0px 5px;
-  transition: all .3s ease;
 }
 
 #network {
   padding: 0px 5px;
-  transition: all .3s ease;
 }
 
 #cpu,
 #memory {
   padding: 0px 5px;
-  transition: all .3s ease;
 }
 
 #tray {
   border-left: 1px solid #666;
   padding: 0 12px 0 16px;
-  transition: all .3s ease;
 }
 
 menu {
