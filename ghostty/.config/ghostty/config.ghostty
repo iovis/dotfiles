@@ -12,7 +12,7 @@ font-size = 23
 
 background = #000000
 background-blur = true
-background-opacity = 0.85
+background-opacity = 0.6
 
 macos-option-as-alt = true
 macos-titlebar-style = tabs

@@ -34,9 +34,9 @@ hl.config({
 
     blur = {
       enabled = true,
-      size = 3,
-      passes = 1,
-      vibrancy = 0.1696,
+      size = 5,
+      passes = 2,
+      vibrancy = 0.1696, -- TODO: try "frost" in 0.56
     },
   },
   animations = { enabled = true },

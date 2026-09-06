@@ -1,5 +1,6 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
 -- `hyprctl clients -j | jq '.[].class'`
+
 -- hl.window_rule({
 --   name = "fullscreen games",
 --   match = { class = "^(steam_app_\\d+)$" },
