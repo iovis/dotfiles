@@ -1,0 +1,135 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+repo_dir="$(cd -- "$script_dir/.." && pwd)"
+snapshot_dir="$repo_dir/gnome/keybindings"
+
+snapshot_names=(
+	desktop-wm
+	shell
+	mutter
+	mutter-wayland
+	media-keys
+)
+
+dconf_paths=(
+	/org/gnome/desktop/wm/keybindings/
+	/org/gnome/shell/keybindings/
+	/org/gnome/mutter/keybindings/
+	/org/gnome/mutter/wayland/keybindings/
+	/org/gnome/settings-daemon/plugins/media-keys/
+)
+
+usage() {
+	cat <<'EOF'
+Usage: gnome-keybindings export|import|reset
+
+Export or import only the dconf subtrees used by GNOME Settings for keyboard
+shortcuts. Importing is additive: keys absent from the snapshots are not reset.
+
+Reset clears all overrides in those subtrees. The snapshots in the dotfiles
+repository are not changed.
+EOF
+}
+
+check_dependencies() {
+	local command_name
+
+	for command_name in dconf gsettings; do
+		if ! command -v "$command_name" >/dev/null 2>&1; then
+			echo "gnome-keybindings: $command_name is not installed" >&2
+			exit 1
+		fi
+	done
+
+	if ! gsettings list-schemas |
+		grep -Fx 'org.gnome.desktop.wm.keybindings' >/dev/null; then
+		echo 'gnome-keybindings: GNOME keybinding schemas are not installed' >&2
+		exit 1
+	fi
+}
+
+export_keybindings() {
+	local index
+	local stage_dir
+
+	mkdir -p "$snapshot_dir"
+	stage_dir="$(mktemp -d "$snapshot_dir/.export.XXXXXX")"
+
+	cleanup() {
+		local name
+
+		for name in "${snapshot_names[@]}"; do
+			rm -f -- "$stage_dir/$name.ini"
+		done
+		rmdir -- "$stage_dir" 2>/dev/null || true
+	}
+	trap cleanup EXIT
+
+	for index in "${!snapshot_names[@]}"; do
+		dconf dump "${dconf_paths[index]}" >"$stage_dir/${snapshot_names[index]}.ini"
+	done
+
+	for index in "${!snapshot_names[@]}"; do
+		mv -- "$stage_dir/${snapshot_names[index]}.ini" \
+			"$snapshot_dir/${snapshot_names[index]}.ini"
+	done
+
+	cleanup
+	trap - EXIT
+	echo "Exported GNOME keybindings to $snapshot_dir"
+}
+
+import_keybindings() {
+	local index
+	local snapshot
+
+	for index in "${!snapshot_names[@]}"; do
+		snapshot="$snapshot_dir/${snapshot_names[index]}.ini"
+		if [[ ! -f "$snapshot" ]]; then
+			echo "gnome-keybindings: missing snapshot: $snapshot" >&2
+			exit 1
+		fi
+	done
+
+	for index in "${!snapshot_names[@]}"; do
+		snapshot="$snapshot_dir/${snapshot_names[index]}.ini"
+		dconf load "${dconf_paths[index]}" <"$snapshot"
+	done
+
+	echo "Imported GNOME keybindings from $snapshot_dir"
+}
+
+reset_keybindings() {
+	local dconf_path
+
+	for dconf_path in "${dconf_paths[@]}"; do
+		dconf reset -f "$dconf_path"
+	done
+
+	echo 'Reset GNOME keybindings to their schema defaults'
+}
+
+case "${1:-}" in
+export)
+	check_dependencies
+	export_keybindings
+	;;
+import)
+	check_dependencies
+	import_keybindings
+	;;
+reset)
+	check_dependencies
+	reset_keybindings
+	;;
+-h | --help)
+	usage
+	;;
+*)
+	usage >&2
+	exit 2
+	;;
+esac

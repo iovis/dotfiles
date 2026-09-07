@@ -30,4 +30,9 @@ function upgrade_libraries
         sudo apt update
         sudo apt upgrade -y
     end
+
+    if command -q gnome-shell
+        log_step Exporting $(green GNOME) keybindings
+        gnome-keybindings export
+    end
 end

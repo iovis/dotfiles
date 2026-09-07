@@ -116,6 +116,9 @@ sudo udevadm control --reload
 echo "[$(date '+%Y-%m-%d %H:%M')] Setting dark theme"
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 
+echo "[$(date '+%Y-%m-%d %H:%M')] Restoring GNOME keybindings"
+"$DOTFILES/bin/gnome-keybindings" import
+
 echo "[$(date '+%Y-%m-%d %H:%M')] Apply monitor settings to GDM"
 if [ -f "$HOME/.config/monitors.xml" ]; then
   sudo cp "$HOME/.config/monitors.xml" /etc/xdg/monitors.xml
