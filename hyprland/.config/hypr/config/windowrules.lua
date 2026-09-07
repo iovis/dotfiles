@@ -1,40 +1,19 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
 -- `hyprctl clients -j | jq '.[].class'`
 
--- hl.window_rule({
---   name = "fullscreen games",
---   match = { class = "^(steam_app_\\d+)$" },
---   border_size = 0,
---   fullscreen = true,
---   idle_inhibit = "fullscreen",
---   immediate = true,
---   no_anim = true,
---   rounding = 0,
---   suppress_event = "maximize",
---   sync_fullscreen = true,
--- })
-
--- hl.window_rule({
---   name = "Steam Big Picture fullscreen",
---   match = { title = "Steam Big Picture Mode" },
---   border_size = 0,
---   fullscreen = true,
---   idle_inhibit = "fullscreen",
---   immediate = true,
---   no_anim = true,
---   rounding = 0,
---   suppress_event = "maximize",
---   sync_fullscreen = true,
--- })
+hl.window_rule({
+  name = "Steam games",
+  match = { class = "^(steam_app_\\d+)$" },
+  content = "game",
+  idle_inhibit = "fullscreen",
+})
 
 hl.window_rule({
   name = "screensaver",
   match = { class = "widget\\.screensaver" },
-  border_size = 0,
   fullscreen = true,
   idle_inhibit = "fullscreen",
   no_anim = true,
-  rounding = 0,
 })
 
 ---- Floating applications
