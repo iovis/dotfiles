@@ -1,0 +1,19 @@
+# https://github.com/tsowell/wiremix/blob/main/wiremix.toml
+
+# tab = "output"
+tabs = ["playback", "output", "recording", "input", "configuration"]
+
+# Names taken from:
+# pw-dump | jq -r '
+#   .[]
+#   | select(.type == "PipeWire:Interface:Node")
+#   | select(.info.props["media.class"] == "Audio/Sink")
+#   | [.info.props["node.name"], .info.props["node.description"]]
+#   | @tsv
+# '
+[[filters]]
+matches = [
+  { "node.name" = "alsa_output.pci-0000_01_00.1.hdmi-stereo" },
+  { "node.name" = "alsa_output.usb-Generic_USB_Audio-00.HiFi__SPDIF__sink" },
+  { "node.name" = "alsa_output.usb-Generic_USB_Audio-00.HiFi__Headphones__sink" },
+]
