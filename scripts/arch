@@ -107,6 +107,9 @@ echo "[$(date '+%Y-%m-%d %H:%M')] Install local input device rules"
 sudo cp "$DOTFILES/scripts/extra/70-local-input.rules" /etc/udev/rules.d/
 sudo udevadm control --reload
 
+echo "[$(date '+%Y-%m-%d %H:%M')] Configure deep sleep"
+sudo install -Dm0644 "$DOTFILES/scripts/extra/60-deep-only.conf" /etc/systemd/sleep.conf.d/60-deep-only.conf
+
 # if [ ! -f "/usr/lib/systemd/system-sleep/disable-some-wake" ]; then
 #   echo "[$(date '+%Y-%m-%d %H:%M')] Fix for not being able to suspend"
 #   sudo cp "$DOTFILES/scripts/extra/disable-some-wake" /usr/lib/systemd/system-sleep
