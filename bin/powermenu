@@ -27,9 +27,9 @@ else
 fi
 
 case $action in
-"logout") exec uwsm-app -- hyprshutdown -t logout ;;
-"reboot") exec uwsm-app -- hyprshutdown -t reboot --post-cmd "systemctl reboot" ;;
-"shutdown") exec uwsm-app -- hyprshutdown -t shutdown --post-cmd "systemctl poweroff" ;;
+"logout") exec uwsm-app -- hyprshutdown -t logout >/dev/null 2>&1 ;;
+"reboot") exec uwsm-app -- hyprshutdown -t reboot --post-cmd "systemctl reboot" >/dev/null 2>&1 ;;
+"shutdown") exec uwsm-app -- hyprshutdown -t shutdown --post-cmd "systemctl poweroff" >/dev/null 2>&1 ;;
 "suspend") exec systemctl suspend ;;
 *)
   usage
