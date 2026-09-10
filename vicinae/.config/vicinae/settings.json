@@ -177,31 +177,49 @@
       "power": {
          "entrypoints": {
             "hibernate": {
-               "enabled": false
+               "enabled": false,
+               "preferences": {
+                  "confirm": true
+               }
             },
             "lock": {
                "enabled": false
             },
             "logout": {
-               "enabled": true
+               "enabled": true,
+               "preferences": {
+                  "confirm": false,
+                  "customProgram": "powermenu logout"
+               }
             },
             "power-off": {
                "preferences": {
-                  "confirm": false
+                  "confirm": false,
+                  "customProgram": "powermenu shutdown"
                }
             },
             "reboot": {
                "preferences": {
-                  "confirm": false
+                  "confirm": false,
+                  "customProgram": "powermenu reboot"
                }
             },
             "sleep": {
-               "enabled": false
+               "enabled": false,
+               "preferences": {
+                  "confirm": false
+               }
             },
             "soft-reboot": {
                "enabled": false,
                "preferences": {
                   "confirm": false
+               }
+            },
+            "suspend": {
+               "preferences": {
+                  "confirm": false,
+                  "customProgram": "powermenu suspend"
                }
             }
          }
