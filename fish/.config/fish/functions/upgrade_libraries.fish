@@ -35,4 +35,9 @@ function upgrade_libraries
         log_step Exporting $(green GNOME) keybindings
         gnome-keybindings export
     end
+
+    if functions --query upgrade_libraries_after
+        # @fish-lsp-disable-next-line 7001
+        upgrade_libraries_after
+    end
 end
