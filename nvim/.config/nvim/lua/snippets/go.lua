@@ -42,11 +42,11 @@ return {
       }
       ]],
       {
-        struct = i(1, "Receiver"),
+        struct = i(1, "*Receiver"),
         fname = i(2, "fname"),
         args = i(3),
         ret_type = i(4),
-        body = i(5, "// TODO: body"),
+        body = i(5, 'panic("todo")'),
       }
     ),
     { condition = conds.line_begin }
@@ -61,8 +61,8 @@ return {
       ]],
       {
         fname = c(1, {
+          fmt("(self {}) {}", { i(1, "*Receiver"), i(2, "fname") }),
           i(1, "fname"),
-          fmt("({} {}) {}", { i(1, "app"), i(2, "*application"), i(3, "fname") }),
         }),
         body = i(2, 'panic("todo")'),
       }
