@@ -1,6 +1,6 @@
 # https://github.com/tsowell/wiremix/blob/main/wiremix.toml
 
-# tab = "output"
+tab = "output"
 tabs = ["playback", "output", "recording", "input", "configuration"]
 
 # Names taken from:

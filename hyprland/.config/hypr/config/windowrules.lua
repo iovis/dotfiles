@@ -179,7 +179,7 @@ hl.window_rule({
   dim_around = true,
   float = true,
   pin = true,
-  size = { 1040, 620 },
+  size = { 880, 500 },
 })
 
 ---- Layer Rules (https://wiki.hypr.land/Configuring/Basics/Window-Rules/#layer-rules)
