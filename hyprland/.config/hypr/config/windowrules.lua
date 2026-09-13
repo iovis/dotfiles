@@ -8,14 +8,6 @@ hl.window_rule({
   idle_inhibit = "fullscreen",
 })
 
-hl.window_rule({
-  name = "screensaver",
-  match = { class = "widget\\.screensaver" },
-  fullscreen = true,
-  idle_inhibit = "fullscreen",
-  no_anim = true,
-})
-
 ---- Floating applications
 local floating_applications = table.concat({
   "1password",

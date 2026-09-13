@@ -52,6 +52,8 @@ hl.config({
     exit_window_retains_fullscreen = false,
     focus_on_activate = true,
     force_default_wallpaper = 0,
+    key_press_enables_dpms = true,
+    mouse_move_enables_dpms = true,
   },
 })
 

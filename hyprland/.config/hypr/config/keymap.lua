@@ -18,12 +18,16 @@ local function A(key)
 end
 
 ---- Power management
-local logout = "hyprshutdown -t logout"
 local powermenu = "hyprclose class:widget.powermenu || kitty --class=widget.powermenu -e powermenu"
-local screensaver = "kitty --class=widget.screensaver -o background_opacity=1 -o background=black -e cmatrix -bsk"
-hl.bind(C(G("q")), hl.dsp.exec_cmd(logout))
-hl.bind(G("backspace"), hl.dsp.exec_cmd(screensaver))
-hl.bind(C(G("backspace")), hl.dsp.exec_cmd(powermenu))
+hl.bind(G("backspace"), hl.dsp.exec_cmd(powermenu))
+
+hl.bind(C(G("backspace")), function()
+  -- Setting DPMS directly from a keybind can cause undefined behavior,
+  -- it's better to run it through a timer instead
+  hl.timer(function()
+    hl.dispatch(hl.dsp.dpms({ action = "disable" }))
+  end, { timeout = 500, type = "oneshot" })
+end)
 
 ---- Applications
 -- `hyprctl clients -j | jq '.[].class'`
