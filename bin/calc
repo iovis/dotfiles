@@ -9,9 +9,6 @@ Linux) COPY_CMD="wl-copy {}" ;;
   ;;
 esac
 
-NUMBAT_CMD="numbat --color=always -e"
-INITIAL_QUERY="$*"
-
 fzf \
   --prompt="    " \
   --disabled \
@@ -24,9 +21,9 @@ fzf \
   --reverse \
   --wrap \
   --wrap-sign="" \
-  --bind="start:reload:$NUMBAT_CMD {q} 2>&1" \
-  --bind="change:reload:sleep 0.1; $NUMBAT_CMD {q} 2>&1" \
+  --bind="start:reload:numbat --color=always --expression={q} 2>&1" \
+  --bind="change:reload:sleep 0.1; numbat --color=always --expression={q} 2>&1" \
   --bind="enter:execute-silent($COPY_CMD)+abort" \
   --color=current-bg:-1 \
   --no-preview \
-  --query="$INITIAL_QUERY"
+  --query="$*"
