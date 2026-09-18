@@ -131,6 +131,16 @@ hl.window_rule({
 })
 
 hl.window_rule({
+  name = "gpu-screen-recorder",
+  match = { class = "hyprland-share-picker" },
+  center = true,
+  dim_around = true,
+  float = true,
+  pin = true,
+  size = { 500, 290 },
+})
+
+hl.window_rule({
   name = "localsend",
   match = { class = "org.localsend.localsend_app" },
   center = true,
