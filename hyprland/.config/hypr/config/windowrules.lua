@@ -1,14 +1,5 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
 -- `hyprctl clients -j | jq '.[].class'`
-
-hl.window_rule({
-  name = "Steam games",
-  match = { class = "^(steam_app_\\d+)$" },
-  content = "game",
-  idle_inhibit = "fullscreen",
-})
-
----- Floating applications
 local floating_applications = table.concat({
   "1password",
   "btrfs-assistant",
@@ -44,16 +35,15 @@ hl.window_rule({
 })
 
 hl.window_rule({
-  name = "pdf",
-  match = {
-    class = "kitty",
-    initial_title = "widget\\.pdf",
-  },
+  name = "bluetui",
+  match = { class = "widget\\.bluetui" },
   center = true,
+  dim_around = true,
   float = true,
+  pin = true,
   size = {
-    "monitor_h * 0.60",
-    "monitor_h * 0.75",
+    "monitor_w * 0.35",
+    "monitor_h * 0.40",
   },
 })
 
@@ -78,42 +68,6 @@ hl.window_rule({
   size = {
     "monitor_w * 0.33",
     "monitor_h * 0.33",
-  },
-})
-
-hl.window_rule({
-  name = "satty",
-  match = { class = "com\\.gabm\\.satty" },
-  center = true,
-  float = true,
-  size = {
-    "monitor_w * 0.85",
-    "monitor_h * 0.85",
-  },
-})
-
-hl.window_rule({
-  name = "steam-friends",
-  match = { title = "Friends List" },
-  float = true,
-  size = { 360, 640 },
-  move = {
-    "monitor_w - window_w - 5",
-    "monitor_h - window_h - 5",
-  },
-})
-
----- Pinned applications
-hl.window_rule({
-  name = "bluetui",
-  match = { class = "widget\\.bluetui" },
-  center = true,
-  dim_around = true,
-  float = true,
-  pin = true,
-  size = {
-    "monitor_w * 0.35",
-    "monitor_h * 0.40",
   },
 })
 
@@ -150,6 +104,17 @@ hl.window_rule({
 })
 
 hl.window_rule({
+  name = "pdf",
+  match = { class = "kitty", initial_title = "widget\\.pdf" },
+  center = true,
+  float = true,
+  size = {
+    "monitor_h * 0.60",
+    "monitor_h * 0.75",
+  },
+})
+
+hl.window_rule({
   name = "Picture-in-Picture",
   match = { title = "^(Picture-in-Picture|Picture in picture)$" },
   float = true,
@@ -172,6 +137,35 @@ hl.window_rule({
   float = true,
   pin = true,
   size = { 400, 200 },
+})
+
+hl.window_rule({
+  name = "satty",
+  match = { class = "com\\.gabm\\.satty" },
+  center = true,
+  float = true,
+  size = {
+    "monitor_w * 0.85",
+    "monitor_h * 0.85",
+  },
+})
+
+hl.window_rule({
+  name = "Steam games",
+  match = { class = "^(steam_app_\\d+)$" },
+  content = "game",
+  idle_inhibit = "fullscreen",
+})
+
+hl.window_rule({
+  name = "steam-friends",
+  match = { title = "Friends List" },
+  float = true,
+  size = { 360, 640 },
+  move = {
+    "monitor_w - window_w - 5",
+    "monitor_h - window_h - 5",
+  },
 })
 
 hl.window_rule({
@@ -199,7 +193,7 @@ hl.layer_rule({
   ignore_alpha = 0.5,
 })
 
--- See https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
+---- Workspace Rules (https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/)
 -- Workspace Selectors: https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/#workspace-selectors
 -- w[tv1] -> workspace with 1 window
 --   - t tiled-only
