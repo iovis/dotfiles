@@ -42,7 +42,7 @@
       }
    },
    "launcher_window": {
-      "opacity": 0.95,
+      "opacity": 0.7,
       "client_side_decorations": {
          "enabled": true,
          "rounding": 10,
