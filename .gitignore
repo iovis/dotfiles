@@ -1,57 +1,58 @@
 # aerc
-aerc/.config/aerc/accounts.conf
+/aerc/.config/aerc/accounts.conf
 
 # fish
-fish/.config/fish/fish_variables
-fish/.config/fish/local/*
-fish/.config/fish/completions/*
-!fish/.config/fish/completions/tmux_sessions.fish
+/fish/.config/fish/fish_variables
+/fish/.config/fish/local/*
+/fish/.config/fish/completions/*
+/!fish/.config/fish/completions/tmux_sessions.fish
 
 # ghostty
-ghostty/.config/ghostty/local.ghostty
+/ghostty/.config/ghostty/local.ghostty
 
 # hammerspoon
-hammerspoon/.hammerspoon/local*
+/hammerspoon/.hammerspoon/local*
 
 # kitty
-kitty/.config/kitty/local.conf
+/kitty/.config/kitty/local.conf
 
 # lazygit
-lazygit/.config/lazygit/state.yml
+/lazygit/.config/lazygit/state.yml
+/lazygit/.config/lazygit/github_pull_requests.json
 
 # mpv
-mpv/.config/mpv/watch_later/*
-mpv/.config/mpv/fonts/modernz-icons.ttf
-mpv/.config/mpv/scripts/modernz.lua
-mpv/.config/mpv/scripts/thumbfast.lua
+/mpv/.config/mpv/watch_later/*
+/mpv/.config/mpv/fonts/modernz-icons.ttf
+/mpv/.config/mpv/scripts/modernz.lua
+/mpv/.config/mpv/scripts/thumbfast.lua
 
 # muxi
-muxi/.config/muxi/.lua_ls/
-muxi/.config/muxi/sessions.toml
+/muxi/.config/muxi/.lua_ls/
+/muxi/.config/muxi/sessions.toml
 
 # numbat
-numbat/Library/Application Support/numbat/history
+/numbat/Library/Application Support/numbat/history
 
 # nvim
-.repro/
-nvim/.config/nvim/lua/local*
+/.repro/
+/nvim/.config/nvim/lua/local*
 
 # pgcli
-pgcli/.config/pgcli/history
-pgcli/.config/pgcli/log
+/pgcli/.config/pgcli/history
+/pgcli/.config/pgcli/log
 
 # ruby
-irb/.config/irb/irb_history
+/irb/.config/irb/irb_history
 
 # tmux
-tmux/.config/tmux/local.tmux
+/tmux/.config/tmux/local.tmux
 
 # wezterm
-wezterm/.config/wezterm/locals.lua
+/wezterm/.config/wezterm/locals.lua
 
 # zsh
 *.zwc
-zsh/.config/zsh/.zcompdump*
-zsh/.config/zsh/.zsh_history
-zsh/.config/zsh/local/*
-zsh/.config/zsh/plugins/*
+/zsh/.config/zsh/.zcompdump*
+/zsh/.config/zsh/.zsh_history
+/zsh/.config/zsh/local/*
+/zsh/.config/zsh/plugins/*
