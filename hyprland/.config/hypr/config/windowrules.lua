@@ -1,14 +1,15 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
 -- `hyprctl clients -j | jq '.[].class'`
 local floating_applications = table.concat({
-  "1password",
   "btrfs-assistant",
+  "com.onepassword.OnePassword",
+  "localsend",
   "mpv",
   "org\\.gnome\\.Calendar",
+  "org\\.gnome\\.NautilusPreviewer",
   "org\\.gnome\\.Weather",
   "org\\.gnome\\.baobab",
   "org\\.pulseaudio\\.pavucontrol",
-  "widget\\.kitty",
 }, "|")
 
 hl.window_rule({
@@ -16,10 +17,6 @@ hl.window_rule({
   match = { class = ("^(%s)$"):format(floating_applications) },
   center = true,
   float = true,
-  size = {
-    "monitor_w * 0.5",
-    "monitor_h * 0.5",
-  },
 })
 
 hl.window_rule({
@@ -95,15 +92,6 @@ hl.window_rule({
 })
 
 hl.window_rule({
-  name = "localsend",
-  match = { class = "org.localsend.localsend_app" },
-  center = true,
-  float = true,
-  pin = true,
-  size = { 416, 640 },
-})
-
-hl.window_rule({
   name = "pdf",
   match = { class = "kitty", initial_title = "widget\\.pdf" },
   center = true,
@@ -127,13 +115,6 @@ hl.window_rule({
     "monitor_w - window_w - 9",
     "monitor_h - window_h - 9",
   },
-})
-
-hl.window_rule({
-  name = "preview",
-  match = { class = "org\\.gnome\\.NautilusPreviewer" },
-  center = true,
-  float = true,
 })
 
 hl.window_rule({
