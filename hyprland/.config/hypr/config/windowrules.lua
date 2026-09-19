@@ -130,6 +130,13 @@ hl.window_rule({
 })
 
 hl.window_rule({
+  name = "preview",
+  match = { class = "org\\.gnome\\.NautilusPreviewer" },
+  center = true,
+  float = true,
+})
+
+hl.window_rule({
   name = "powermenu",
   match = { class = "widget\\.powermenu" },
   center = true,
