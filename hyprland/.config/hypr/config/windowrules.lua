@@ -110,10 +110,13 @@ hl.window_rule({
   focus_on_activate = false,
   keep_aspect_ratio = true,
   no_initial_focus = true,
-  size = { 640, 360 },
+  size = {
+    "window_w * min(1, 640 / window_w, 360 / window_h)",
+    "window_h * min(1, 640 / window_w, 360 / window_h)",
+  },
   move = {
-    "monitor_w - window_w - 9",
-    "monitor_h - window_h - 9",
+    "monitor_w - window_w - 8",
+    "monitor_h - window_h - 8",
   },
 })
 
