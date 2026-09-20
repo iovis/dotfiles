@@ -136,8 +136,8 @@ hl.window_rule({
   center = true,
   float = true,
   size = {
-    "monitor_w * 0.85",
-    "monitor_h * 0.85",
+    "window_w * min(1, (monitor_w * 0.85) / window_w, (monitor_h * 0.85) / window_h)",
+    "window_h * min(1, (monitor_w * 0.85) / window_w, (monitor_h * 0.85) / window_h)",
   },
 })
 
