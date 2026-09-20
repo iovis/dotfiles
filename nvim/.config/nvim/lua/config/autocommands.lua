@@ -24,19 +24,47 @@ vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
 -- })
 
 ---- Autosave on focus lost
-vim.api.nvim_create_autocmd({ "FocusLost", "BufLeave" }, {
-  desc = "Autosave on focus lost",
+local function save_buffer(buffer)
+  if not vim.api.nvim_buf_is_valid(buffer) or not vim.api.nvim_buf_is_loaded(buffer) then
+    return
+  end
+
+  local bo = vim.bo[buffer]
+  if bo.buftype ~= "" or bo.readonly or not bo.modifiable or not bo.modified then
+    return
+  end
+
+  local name = vim.api.nvim_buf_get_name(buffer)
+  if name == "" then
+    return
+  end
+
+  local ok, err = pcall(vim.api.nvim_buf_call, buffer, function()
+    vim.cmd("silent update ++p")
+  end)
+
+  if not ok then
+    vim.notify(("Autosave failed for %s: %s"):format(name, err), vim.log.levels.ERROR)
+  end
+end
+
+vim.api.nvim_create_autocmd("BufLeave", {
+  desc = "Autosave file buffer on leave",
   group = config_augroup,
+  nested = true,
+  callback = function(event)
+    save_buffer(event.buf)
+  end,
+})
+
+vim.api.nvim_create_autocmd("FocusLost", {
+  desc = "Autosave file buffers on focus lost",
+  group = config_augroup,
+  nested = true,
   callback = function()
-    local ignored_filetypes = {
-      "oil",
-    }
-
-    if in_ignored_filetypes(ignored_filetypes) then
-      return
+    for _, buffer in ipairs(vim.api.nvim_list_bufs()) do
+      save_buffer(buffer)
     end
-
-    vim.cmd("silent! wall ++p")
   end,
 })
 
