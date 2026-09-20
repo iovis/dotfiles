@@ -43,18 +43,11 @@ __pycache__/
 .ruby-lsp/
 
 ### vim ###
-[._]*.s[a-w][a-z]
-[._]s[a-w][a-z]
-*.un~
-Session.vim
-.netrwhist
 *~
-.projections.json
-.muxi.json
-.nvim.lua
-NvimTree
+.netrwhist
 BqfPreviewBorder
 BqfPreviewScrollBar
+Session.vim
 quickfix-*
 
 ### Visual Studio Code ###
