@@ -1,12 +1,14 @@
 ----Utils
-local u = require("config.utils")
+local function session_path()
+  if vim.v.this_session == "" then
+    return nil
+  end
 
-local function within_session()
-  return not u.is_empty(vim.v.this_session)
+  return vim.v.this_session
 end
 
-local function session_loading()
-  return vim.g.SessionLoad ~= nil
+local function within_session()
+  return session_path() ~= nil
 end
 
 ---@param buffer number: buffer ID.
@@ -35,19 +37,53 @@ local function is_restorable(buffer)
 end
 
 ----Commands
+---@param path string
+---@return boolean
+local function write_session(path)
+  local ok, err = pcall(vim.api.nvim_cmd, {
+    cmd = "mksession",
+    bang = true,
+    args = { path },
+  }, {})
+
+  if not ok then
+    vim.notify(("Failed to save session %s:\n%s"):format(path, err), vim.log.levels.WARN)
+  end
+
+  return ok
+end
+
 local function start_session()
   if within_session() then
-    print("Already in a session!")
+    vim.notify("Already in a session", vim.log.levels.INFO)
     return
   end
 
-  ---@diagnostic disable-next-line param-type-mismatch
-  local ok, _ = pcall(vim.cmd, "source Session.vim")
+  local path = vim.fn.fnamemodify("Session.vim", ":p")
 
-  if not ok then
-    print("creating session")
-    vim.cmd("mksession!")
+  if vim.uv.fs_stat(path) == nil then
+    if write_session(path) then
+      vim.notify(("Created session: %s"):format(path), vim.log.levels.INFO)
+    end
+    return
   end
+
+  local ok, err = pcall(vim.api.nvim_cmd, {
+    cmd = "source",
+    args = { path },
+  }, {})
+
+  if ok then
+    vim.v.this_session = path
+    return
+  end
+
+  -- A generated session sets these near its beginning, so reset them if
+  -- sourcing fails partway through. This prevents a later save from
+  -- overwriting the broken session.
+  vim.v.this_session = ""
+  vim.g.SessionLoad = nil
+  vim.notify(("Failed to load session %s; the file was preserved:\n%s"):format(path, err), vim.log.levels.ERROR)
 end
 
 vim.api.nvim_create_user_command("SessionStart", start_session, {})
@@ -55,27 +91,17 @@ vim.keymap.set("n", "yos", "<cmd>SessionStart<cr>")
 
 ----Autocommands
 local function persist_session()
-  if within_session() and not session_loading() then
-    ---@diagnostic disable-next-line param-type-mismatch
-    local ok, result = pcall(vim.cmd, "mksession!")
+  local path = session_path()
 
-    if not ok and not result:match("E11") then
-      print(result)
-    end
+  if path ~= nil then
+    write_session(path)
   end
 end
 
 local obsession_augroup = vim.api.nvim_create_augroup("obsession", { clear = true })
 
-vim.api.nvim_create_autocmd("FocusLost", {
-  desc = "Autosave session",
-  group = obsession_augroup,
-  pattern = "*",
-  callback = persist_session,
-})
-
 vim.api.nvim_create_autocmd("VimLeavePre", {
-  desc = "Autosave session",
+  desc = "Save session on exit",
   group = obsession_augroup,
   pattern = "*",
   callback = function()
