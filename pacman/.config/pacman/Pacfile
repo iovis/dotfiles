@@ -130,6 +130,7 @@ perf
 perl-image-exiftool
 pipewire
 pipewire-alsa
+pv
 python-curl_cffi
 qmk
 reflector
