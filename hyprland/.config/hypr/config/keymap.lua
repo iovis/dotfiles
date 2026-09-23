@@ -26,7 +26,7 @@ hl.bind(C(G("backspace")), function()
   -- it's better to run it through a timer instead
   hl.timer(function()
     hl.dispatch(hl.dsp.dpms({ action = "disable" }))
-  end, { timeout = 500, type = "oneshot" })
+  end, { timeout = 750, type = "oneshot" })
 end)
 
 ---- Applications
