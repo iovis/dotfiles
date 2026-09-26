@@ -3,12 +3,12 @@
 local floating_applications = table.concat({
   "btrfs-assistant",
   "com.onepassword.OnePassword",
-  "localsend",
   "mpv",
   "org\\.gnome\\.Calendar",
   "org\\.gnome\\.NautilusPreviewer",
   "org\\.gnome\\.Weather",
   "org\\.gnome\\.baobab",
+  "org\\.localsend\\.localsend_app",
   "org\\.pulseaudio\\.pavucontrol",
 }, "|")
 
