@@ -203,7 +203,3 @@ hl.window_rule({
   },
   border_size = 0,
 })
-
--- Don't go to a random workspace when turning on the display
-hl.workspace_rule({ workspace = "1", monitor = "DP-1", default = true })
-hl.workspace_rule({ workspace = "1", monitor = "HDMI-A-2", default = true })
