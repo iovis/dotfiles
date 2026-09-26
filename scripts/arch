@@ -116,8 +116,9 @@ sudo install -Dm0644 "$DOTFILES/scripts/extra/60-deep-only.conf" /etc/systemd/sl
 #   sudo chmod 755 /usr/lib/systemd/system-sleep/disable-some-wake
 # fi
 
-echo "[$(date '+%Y-%m-%d %H:%M')] Setting dark theme"
+echo "[$(date '+%Y-%m-%d %H:%M')] GNOME settings"
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+gsettings set org.gnome.desktop.interface gtk-enable-primary-paste true
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Restoring GNOME keybindings"
 "$DOTFILES/bin/gnome-keybindings" import
