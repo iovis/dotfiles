@@ -44,6 +44,9 @@ bind -T copy-mode-vi u send -X halfpage-up
 bind -T copy-mode-vi [ send -X previous-prompt -o
 bind -T copy-mode-vi ] send -X next-prompt -o
 
+bind -T copy-mode-vi Home send -X history-top
+bind -T copy-mode-vi End  send -X history-bottom
+
 # Selection
 bind -T copy-mode-vi v send -X begin-selection
 bind -T copy-mode-vi i send -X select-word
