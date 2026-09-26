@@ -65,3 +65,15 @@ bind -N "Copy word and paste it directly" -T copy-mode-vi Enter {
   send -X select-word
   send -X copy-pipe-and-cancel "tmux paste-buffer -p"
 }
+
+# Mouse
+# 1 - Left button
+# 2 - Middle button
+# 3 - Right button
+bind -T copy-mode-vi MouseDown1Pane    select-pane \; send -X clear-selection
+bind -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe-no-clear  # Don't cancel copy-mode
+
+bind -T copy-mode-vi MouseDown3Pane    select-pane
+bind -T copy-mode-vi MouseUp3Pane      send -X cancel
+bind -T copy-mode-vi MouseDrag3Pane    select-pane \; send -X begin-selection
+bind -T copy-mode-vi MouseDragEnd3Pane send -X copy-pipe-and-cancel "tmux paste-buffer -p"
