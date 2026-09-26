@@ -3,6 +3,7 @@ confirm-close-surface = false
 copy-on-select = clipboard
 cursor-style-blink = false
 mouse-hide-while-typing = true
+mouse-scroll-multiplier = discrete:1
 shell-integration-features = cursor,no-sudo,title,ssh-env,no-ssh-terminfo,path
 window-padding-x = 16
 
