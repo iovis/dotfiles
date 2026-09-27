@@ -14,6 +14,5 @@ bind -n M-WheelDownPane "select-pane -t= \; send -M"
 bind -T copy-mode-vi M-WheelDownPane send -X scroll-down
 bind -T copy-mode-vi M-WheelUpPane   send -X scroll-up
 
-# Right click focuses the pane; right drag selects text unless the pane handles mouse input
+# Right click focuses the pane and forwards the event to the pane
 bind -n MouseDown3Pane "select-pane -t= \; send -M"
-bind -n MouseDrag3Pane if -F '#{||:#{pane_in_mode},#{mouse_any_flag}}' "send -M" "copy-mode -M"
