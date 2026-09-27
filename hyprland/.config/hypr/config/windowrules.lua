@@ -166,7 +166,10 @@ hl.window_rule({
   dim_around = true,
   float = true,
   pin = true,
-  size = { 880, 500 },
+  size = {
+    "monitor_w * 0.5",
+    "monitor_h * 0.66",
+  },
 })
 
 ---- Layer Rules (https://wiki.hypr.land/Configuring/Basics/Window-Rules/#layer-rules)
