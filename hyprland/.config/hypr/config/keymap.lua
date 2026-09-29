@@ -72,16 +72,17 @@ hl.bind(C(S("space")), hl.dsp.exec_cmd("vicinae_toggle deeplink vicinae://launch
 hl.bind(G("n"), hl.dsp.exec_cmd("swaync-client --toggle-panel --skip-wait"))
 hl.bind(C(G("n")), hl.dsp.exec_cmd("swaync-client --toggle-dnd --skip-wait"))
 hl.bind(G("semicolon"), hl.dsp.exec_cmd("swaync-client --close-panel --close-all --skip-wait"))
-
-hl.bind("print", hl.dsp.exec_cmd("screenshot output"))
-hl.bind(G("print"), hl.dsp.exec_cmd("screenshot window"))
-hl.bind(C("print"), hl.dsp.exec_cmd("screenshot region"))
+hl.bind(S(G("backslash")), hl.dsp.exec_cmd("1password --quick-access"))
 
 ---- Screenshots
 hl.bind(S(G("3")), hl.dsp.exec_cmd("screenshot output"))
 hl.bind(S(G("4")), hl.dsp.exec_cmd("screenshot region"))
 hl.bind(S(G("5")), hl.dsp.exec_cmd("screenrecord"))
 hl.bind(S(G("6")), hl.dsp.exec_cmd("screenshot window"))
+
+hl.bind("print", hl.dsp.exec_cmd("screenshot output"))
+hl.bind(G("print"), hl.dsp.exec_cmd("screenshot window"))
+hl.bind(C("print"), hl.dsp.exec_cmd("screenshot region"))
 
 ---- Window management
 hl.bind(G("q"), hl.dsp.window.close())
