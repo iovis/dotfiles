@@ -92,6 +92,19 @@ hl.window_rule({
 })
 
 hl.window_rule({
+  name = "impala",
+  match = { class = "widget\\.impala" },
+  center = true,
+  dim_around = true,
+  float = true,
+  pin = true,
+  size = {
+    "monitor_w * 0.40",
+    "monitor_h * 0.75",
+  },
+})
+
+hl.window_rule({
   name = "pdf",
   match = { class = "kitty", initial_title = "widget\\.pdf" },
   center = true,
@@ -166,10 +179,7 @@ hl.window_rule({
   dim_around = true,
   float = true,
   pin = true,
-  size = {
-    "monitor_w * 0.5",
-    "monitor_h * 0.66",
-  },
+  size = { 880, 500 },
 })
 
 ---- Layer Rules (https://wiki.hypr.land/Configuring/Basics/Window-Rules/#layer-rules)
