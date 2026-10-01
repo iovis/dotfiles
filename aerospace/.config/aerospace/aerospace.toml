@@ -17,16 +17,14 @@ on-window-detected = [
   { if = "test %{app-bundle-id} = net.kovidgoyal.kitty", run = "layout floating" },
   { if = "test %{app-bundle-id} = com.apple.finder", run = "layout floating" },
   { if = "test %{app-bundle-id} = com.apple.mail", run = "layout floating" },
+  { if = "test %{app-bundle-id} = com.apple.reminders", run = "layout floating" },
   { if = "test %{app-bundle-id} = com.1password.1password", run = "layout floating" },
   { if = "test %{app-bundle-id} = com.apple.Music", run = "layout floating" },
   { if = "test %{app-bundle-id} = com.apple.MobileSMS", run = "layout floating" },
   { if = "test %{app-bundle-id} = com.colliderli.iina", run = "layout floating" },
   { if = "test %{app-bundle-id} = com.cisco.secureclient.gui", run = "layout floating" },
   # Webex
-  { if = "test %{app-bundle-id} = Cisco-Systems.Spark", run = [
-    "layout floating",
-    "move-node-to-monitor main"
-  ] },
+  { if = "test %{app-bundle-id} = Cisco-Systems.Spark", run = ["layout floating", "move-node-to-monitor main"] },
   { if = "test %{app-bundle-id} = com.culturedcode.ThingsMac", run = "layout floating" },
   { if = "test %{app-bundle-id} = com.apple.Home", run = "layout floating" },
   { if = "test %{app-bundle-id} = com.apple.FaceTime", run = "layout floating" },
