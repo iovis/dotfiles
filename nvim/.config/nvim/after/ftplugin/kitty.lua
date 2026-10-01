@@ -13,4 +13,16 @@ if u.current_file():match("kitty.conf") then
       vim.cmd("silent !killall -SIGUSR1 kitty")
     end,
   })
+
+  vim.keymap.set("n", "s?", function()
+    vim.cmd("vnew")
+    vim.cmd("0r !kitty +runpy 'from kitty.config import *; print(commented_out_default_config())'")
+    vim.cmd.normal("gg")
+    vim.bo.filetype = "kitty"
+    vim.bo.buftype = "nofile"
+    vim.keymap.set("n", "q", "<cmd>close<cr>", {
+      buf = 0,
+      nowait = true,
+    })
+  end, { buf = 0 })
 end
