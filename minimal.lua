@@ -208,12 +208,10 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 
 -- Treesitter
 vim.keymap.set("n", "yot", function()
-  vim.b.ts_enabled = not vim.b.ts_enabled
-
-  if vim.b.ts_enabled then
-    vim.treesitter.start()
-  else
+  if vim.treesitter.highlighter.active[vim.api.nvim_get_current_buf()] then
     vim.treesitter.stop()
+  else
+    vim.treesitter.start()
   end
 end, { desc = "Toggle Treesitter" })
 
