@@ -3,6 +3,7 @@
 local floating_applications = table.concat({
   "btrfs-assistant",
   "com.onepassword.OnePassword",
+  "evolution-alarm-notify",
   "mpv",
   "org\\.gnome\\.Calendar",
   "org\\.gnome\\.NautilusPreviewer",
