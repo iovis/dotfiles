@@ -38,7 +38,7 @@ gui:
     inactiveBorderColor:
       - "#737994"
     searchingActiveBorderColor:
-      - "#8caaee"
+      - "#e5c890"
       - bold
     optionsTextColor:
       - "#8caaee"
@@ -48,10 +48,10 @@ gui:
     inactiveViewSelectedLineBgColor:
       - "#1f212e"
       - bold
+    cherryPickedCommitFgColor:
+      - "#ef9f76"
     cherryPickedCommitBgColor:
       - bold
-    cherryPickedCommitFgColor:
-      - "#8caaee"
     defaultFgColor:
       - default
 git:
