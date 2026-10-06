@@ -3,6 +3,7 @@
 # Time format uses Time.Format syntax: https://pkg.go.dev/time#Time.Format
 gui:
   border: rounded
+  commitGraphStyle: detailed
   enlargedSideViewLocation: top
   expandFocusedSidePanel: true
   filterMode: fuzzy
