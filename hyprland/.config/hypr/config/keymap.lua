@@ -71,7 +71,8 @@ hl.bind(G("space"), hl.dsp.exec_cmd("vicinae toggle"))
 hl.bind(C(S("space")), hl.dsp.exec_cmd("vicinae_toggle deeplink vicinae://launch/core/search-emojis"))
 
 hl.bind(G("n"), hl.dsp.exec_cmd("swaync-client --toggle-panel --skip-wait"))
-hl.bind(C(G("n")), hl.dsp.exec_cmd("swaync-client --toggle-dnd --skip-wait"))
+hl.bind(C(G("n")), hl.dsp.exec_cmd("hyprclose class:widget.nortui || kitty --class=widget.nortui -e nortui"))
+hl.bind(S(G("n")), hl.dsp.exec_cmd("swaync-client --toggle-dnd --skip-wait"))
 hl.bind(G("semicolon"), hl.dsp.exec_cmd("swaync-client --close-panel --close-all --skip-wait"))
 hl.bind(S(G("backslash")), hl.dsp.exec_cmd("1password --quick-access"))
 

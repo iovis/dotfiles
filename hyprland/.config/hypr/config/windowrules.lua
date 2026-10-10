@@ -106,6 +106,16 @@ hl.window_rule({
 })
 
 hl.window_rule({
+  name = "nortui",
+  match = { class = "widget\\.nortui" },
+  center = true,
+  dim_around = true,
+  float = true,
+  pin = true,
+  size = { 880, 500 },
+})
+
+hl.window_rule({
   name = "pdf",
   match = { class = "kitty", initial_title = "widget\\.pdf" },
   center = true,
