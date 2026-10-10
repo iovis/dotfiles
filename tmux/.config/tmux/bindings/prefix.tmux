@@ -37,7 +37,11 @@ bind -N "Command prompt" c-\; command-prompt
 bind -N "Command prompt" \; command-prompt
 
 bind -N "List keys" ? {
-  display-popup -w 75% -h 75% -b rounded -T " tmux keybindings " -E "tmux list-keys | nvim +'se ft=tmux' +ZenModeWide"
+  new-pane -E -x 75% -y 75% -T "tmux keybindings"
+  set -p pane-border-status top
+  set -p pane-border-format ' #{pane_title} '
+  move-pane -P centre
+  respawn-pane "tmux list-keys | nvim +'se ft=tmux' +ZenModeWide"
 }
 
 ## Session management
@@ -53,15 +57,18 @@ bind -N "muxi picker" C-/ {
 }
 
 bind -N "Run FZF session picker" C-f {
-  display-popup -w 80% -h 80% -b none -E tmux_sessions
+  new-pane -OKC -B none -x 80% -y 80% tmux_sessions
+  move-pane -P centre
 }
 
 bind -N "Run sessionist" C-k {
-  display-popup -w 50% -h 60% -b none -E sessionist
+  new-pane -OKC -B none -x 50% -y 60% sessionist
+  move-pane -P centre
 }
 
 bind -N "Run zoxide_sessionist" C-o {
-  display-popup -w 50% -h 60% -b none -E zoxide_sessionist
+  new-pane -OKC -B none -x 50% -y 60% zoxide_sessionist
+  move-pane -P centre
 }
 
 bind -N "Rename session" .   command-prompt -I "#S" { rename-session "%%" }
@@ -113,7 +120,8 @@ bind -N "Open yazi" C-y {
 }
 
 bind -N "Open Vim plugin" C-p {
-  display-popup -w 50% -h 60% -b none -E vim_plugins
+  new-pane -O -K -B none -x 50% -y 60% -c "#{pane_current_path}" vim_plugins
+  move-pane -P centre
 }
 
 ## Pane Management

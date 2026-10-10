@@ -26,7 +26,9 @@ fzf_command() {
     --bind="d,x,ctrl-x:execute-silent(tmux kill-session -t '={2}:')+reload:$tmux_sessions" \
     --bind="i,/:show-input+unbind(j,k,q,d,x,p,r,i,/,space)" \
     --bind="focus:transform-preview-label:echo '  {1..2}  '" \
-    --preview="tmux capture-pane -ep -t '={2}:'" \
+    --preview="tmux if -F -t '={2}:' '#{pane_modal_flag}' \
+      'capture-pane -ep -t \"={2}:.{last}\"' \
+      'capture-pane -ep -t \"={2}:\"'" \
     --preview-window="right,75%" \
     --exit-0 \
     --query="${*:-}" || true

@@ -34,3 +34,8 @@ set -ag update-environment TERM_PROGRAM
 # Terminal features
 set -su terminal-features
 set -as terminal-features "xterm*:256:extkeys:hyperlinks:overline:margins:mouse:osc7:progressbar:rectfill:RGB:strikethrough:sync:usstyle"
+
+# Center floating panes by default
+# set-hook -g after-split-window {
+#   if -F "#{pane_floating_flag}" "move-pane -P centre"
+# }

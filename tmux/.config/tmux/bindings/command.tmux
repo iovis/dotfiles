@@ -51,8 +51,13 @@ bind -N "Tmux customization mode" -T command z {
 %hidden just_available="just --summary >/dev/null 2>&1"
 
 bind -N "Run just picker" -T command j {
-  if $just_available {
-    display-popup -w 75% -h 50% -T ' just ' -b rounded -EE "just --choose"
+  if "cd #{q:pane_current_path} && $just_available" {
+    new-pane -E -x 75% -y 50% -c "#{pane_current_path}" -T just
+    set -p pane-border-status top
+    set -p pane-border-format ' #{pane_title} '
+    set -p remain-on-exit on
+    move-pane -P centre
+    respawn-pane "just --choose"
   } {
     display-message "No usable justfile!"
   }
