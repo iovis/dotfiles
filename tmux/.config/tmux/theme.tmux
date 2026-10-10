@@ -47,6 +47,9 @@ set -ag status-right '#[fg=#51576d]#{?#{!=:#{client_key_table},root},<#{client_k
 # Synchronized panes indicator
 set -ag status-right '#[fg=#e78284]#{?pane_synchronized, sync,}'
 
+# Refresh copy-mode indicator
+set -ag status-right '#[fg=#e5c890]#{?refresh_active, refresh,}'
+
 # CPU
 set -ag status-right ' #{cpu_fg_color}#{cpu_percentage}#{cpu_icon}'
 

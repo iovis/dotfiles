@@ -34,6 +34,8 @@ unbind -T copy-mode-vi C-up
 # -P: don't create a tmux buffer
 # bind -T copy-mode-vi o send -X copy-pipe-and-cancel -CP 'jira-open'
 
+bind -T copy-mode-vi . send -X refresh-toggle
+
 # Movement
 bind -T copy-mode-vi H send -X back-to-indentation
 bind -T copy-mode-vi L send -X end-of-line
