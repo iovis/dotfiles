@@ -86,8 +86,13 @@ bind -N "New window (current path)" C-t {
   new-window -c "#{pane_current_path}"
 }
 
-bind -N "Rename window" ,   command-prompt -I "#W" { rename-window "%%" }
-bind -N "Rename window" C-, command-prompt -I "#W" { rename-window "%%" }
+bind -N "Rename window" , command-prompt -I "#W" { rename-window "%%" }
+
+bind -N "Rename window or center floating pane" C-, if -F "#{pane_floating_flag}" {
+  move-pane -P centre
+} {
+  command-prompt -I "#W" { rename-window "%%" }
+}
 
 bind -N "Close window" C-w kill-window
 bind -N "Reset window" q {
@@ -112,7 +117,12 @@ bind -N "Open Vim plugin" C-p {
 }
 
 ## Pane Management
-bind-key -N "Kill pane" C-x kill-pane
+bind -N "Kill pane" C-x kill-pane
+
+bind -N "New floating pane" C-b {
+  new-pane -x 50% -y 50% -c "#{pane_current_path}"
+  move-pane -P centre
+}
 
 bind -N "Horizontal pane" C-h {
   split-window -v -c "#{pane_current_path}"
@@ -131,10 +141,29 @@ bind -N "Resize panes equally" C-= {
 }
 
 # Move panes
-bind -N "Move pane down"  -r c-down  swap-pane -d -t "{down-of}"
-bind -N "Move pane left"  -r c-left  swap-pane -d -t "{left-of}"
-bind -N "Move pane right" -r c-right swap-pane -d -t "{right-of}"
-bind -N "Move pane up"    -r c-up    swap-pane -d -t "{up-of}"
+bind -N "Move pane down" -r c-down if -F "#{pane_floating_flag}" {
+  move-pane -P bottom-centre
+} {
+  swap-pane -d -t "{down-of}"
+}
+
+bind -N "Move pane left" -r c-left if -F "#{pane_floating_flag}" {
+  move-pane -P centre-left
+} {
+  swap-pane -d -t "{left-of}"
+}
+
+bind -N "Move pane right" -r c-right if -F "#{pane_floating_flag}" {
+  move-pane -P centre-right
+} {
+  swap-pane -d -t "{right-of}"
+}
+
+bind -N "Move pane up" -r c-up if -F "#{pane_floating_flag}" {
+  move-pane -P top-centre
+} {
+  swap-pane -d -t "{up-of}"
+}
 
 ## Switch panes (fallback)
 bind down  select-pane -D
@@ -143,10 +172,33 @@ bind right select-pane -R
 bind up    select-pane -U
 
 # Make pane full split
-bind -N "Move pane left (full)"  H move-pane -fh -b -t '.{next}'
-bind -N "Move pane down (full)"  J move-pane -fv -t '.{next}'
-bind -N "Move pane up (full)"    K move-pane -fv -b -t '.{next}'
-bind -N "Move pane right (full)" L move-pane -fh -t '.{next}'
+bind -N "Move pane left (full)" H if -F "#{pane_floating_flag}" {
+  resize-pane -x 50% -y 100%
+  move-pane -P centre-left
+} {
+  move-pane -fh -b -t '.{next}'
+}
+
+bind -N "Move pane down (full)" J if -F "#{pane_floating_flag}" {
+  resize-pane -x 100% -y 50%
+  move-pane -P bottom-centre
+} {
+  move-pane -fv -t '.{next}'
+}
+
+bind -N "Move pane up (full)" K if -F "#{pane_floating_flag}" {
+  resize-pane -x 100% -y 50%
+  move-pane -P top-centre
+} {
+  move-pane -fv -b -t '.{next}'
+}
+
+bind -N "Move pane right (full)" L if -F "#{pane_floating_flag}" {
+  resize-pane -x 50% -y 100%
+  move-pane -P centre-right
+} {
+  move-pane -fh -t '.{next}'
+}
 
 bind -N "Break pane" Tab break-pane
 bind -N "Break pane detached" Enter break-pane -d
