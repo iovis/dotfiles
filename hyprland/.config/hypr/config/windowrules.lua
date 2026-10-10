@@ -158,6 +158,7 @@ hl.window_rule({
   name = "satty",
   match = { class = "com\\.gabm\\.satty" },
   center = true,
+  dim_around = true,
   float = true,
   size = {
     "window_w * min(1, (monitor_w * 0.85) / window_w, (monitor_h * 0.85) / window_h)",
