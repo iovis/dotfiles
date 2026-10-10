@@ -57,4 +57,4 @@ vim.api.nvim_create_user_command("FloatTerm", function(ctx)
   end
 end, { nargs = "*" })
 
-vim.keymap.set({ "t", "n" }, "<m-/>", "<cmd>FloatTerm<cr>")
+-- vim.keymap.set({ "t", "n" }, "<m-/>", "<cmd>FloatTerm<cr>")

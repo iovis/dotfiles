@@ -5,6 +5,8 @@ set -g status-position bottom
 ## Border
 set -g pane-border-style 'fg=#414559'
 set -g pane-active-border-style '#{?pane_in_mode,fg=#e5c890,#{?synchronize-panes,fg=#ea999c,fg=#8caaee}}'
+# set -g pane-border-status top-floating
+# set -g pane-border-format ' #{pane_current_command} '
 
 set -g popup-style 'bg=terminal,fg=terminal'
 set -g popup-border-style 'fg=#414559'
