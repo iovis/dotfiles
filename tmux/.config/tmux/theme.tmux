@@ -1,3 +1,4 @@
+set -s theme terminal
 set -g status-interval 5
 set -g status-position bottom
 
@@ -5,8 +6,17 @@ set -g status-position bottom
 set -g pane-border-style 'fg=#414559'
 set -g pane-active-border-style '#{?pane_in_mode,fg=#e5c890,#{?synchronize-panes,fg=#ea999c,fg=#8caaee}}'
 
+set -g popup-style 'bg=terminal,fg=terminal'
 set -g popup-border-style 'fg=#414559'
 set -g popup-border-lines rounded
+
+## Menus
+set -wg menu-style 'bg=terminal,fg=terminal'
+set -wg menu-border-style 'bg=terminal,fg=#414559'
+
+## Picker borders
+set -wg tree-mode-border-style 'bg=terminal,fg=#414559'
+set -wg display-panes-border-style 'bg=terminal,fg=#414559'
 
 ## Message
 set -g message-style 'bg=default,fg=#8caaee,fill=terminal'
@@ -48,6 +58,7 @@ set -g status-justify absolute-centre # Center window list
 set -g window-status-separator ' '
 set -g window-status-activity-style ''
 set -g window-status-bell-style ''
+set -g window-status-current-style ''
 
 set -g window-status-current-format ''
 set -ag window-status-current-format '#[bg=default,fg=#414559]#[bg=#414559,fg=#a6d189,bold]#I#[bg=#303446,fg=#414559]' # Number
