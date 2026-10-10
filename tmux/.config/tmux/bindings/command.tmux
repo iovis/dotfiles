@@ -30,6 +30,11 @@ bind -N "Browse PRs for current branch" -T command p {
   run -b "gh pr view --web"
 }
 
+bind -N "Reload tmux" -T command r {
+  source "$XDG_CONFIG_HOME/tmux/tmux.conf"
+  display "Tmux reloaded!"
+}
+
 bind -N "Open Notes" -T command u {
   new-window -Sn notes notes
 }

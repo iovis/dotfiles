@@ -6,11 +6,6 @@ unbind Space
 bind C-l send 'C-l'
 
 ## Quick settings
-bind -N "Reload tmux" R {
-  source "$XDG_CONFIG_HOME/tmux/tmux.conf"
-  display "Tmux reloaded!"
-}
-
 bind -N "Toggle status line" z set -sg status
 bind -N "Toggle status position" T set -sg status-position
 
