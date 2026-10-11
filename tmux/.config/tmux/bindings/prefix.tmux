@@ -214,7 +214,11 @@ bind -N "Break pane detached" Enter break-pane -d
 ## Join panes
 bind -N "Join pane" j {
   switch-client -T join_pane
-  display " Join Pane: [h]-Horizontally [v]-Vertically"
+  display -d 30000 " Join Pane: [j]-Last [h]-Horizontally [v]-Vertically"
+}
+
+bind -N "Join last pane" -T join_pane j {
+  join-pane -s '{last}.'
 }
 
 bind -N "Join pane horizontally" -T join_pane h {
