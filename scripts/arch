@@ -56,17 +56,9 @@ stow --restow aerc bat fish fzf ghostty gdb git hyprland kitty lazygit llvm mise
 cd - || exit
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing user services"
-install -Dm0755 \
-  "$DOTFILES/scripts/extra/yay-cache-prune" \
-  "$LOCAL_BIN/yay-cache-prune"
-
-install -Dm0644 \
-  "$DOTFILES/scripts/extra/yay-cache-prune.service" \
-  "$HOME/.config/systemd/user/yay-cache-prune.service"
-
-install -Dm0644 \
-  "$DOTFILES/scripts/extra/yay-cache-prune.timer" \
-  "$HOME/.config/systemd/user/yay-cache-prune.timer"
+install -Dm0755 "$DOTFILES/scripts/extra/yay-cache-prune" "$LOCAL_BIN/yay-cache-prune"
+install -Dm0644 "$DOTFILES/scripts/extra/yay-cache-prune.service" "$HOME/.config/systemd/user/yay-cache-prune.service"
+install -Dm0644 "$DOTFILES/scripts/extra/yay-cache-prune.timer" "$HOME/.config/systemd/user/yay-cache-prune.timer"
 
 systemctl --user daemon-reload
 systemctl --user enable --now yay-cache-prune.timer
