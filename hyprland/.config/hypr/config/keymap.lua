@@ -33,7 +33,6 @@ end)
 -- `hyprctl clients -j | jq '.[].class'`
 local restart_waybar =
   "systemctl --user is-active --quiet waybar.service && systemctl --user stop waybar.service || systemctl --user start waybar.service"
-local ghostty = " env GDK_WAYLAND_DISABLE=ext_background_effect_manager_v1 ghostty "
 
 hl.bind(G("w"), hl.dsp.exec_cmd("hyprclose class:widget.impala || kitty --class=widget.impala -e impala"))
 hl.bind(C(G("w")), hl.dsp.exec_cmd(restart_waybar))
@@ -46,8 +45,8 @@ hl.bind(G("a"), hl.dsp.exec_cmd("hyprfocus class:org.gnome.Nautilus || uwsm-app 
 hl.bind(S(G("a")), hl.dsp.exec_cmd("uwsm-app -- nautilus --new-window"))
 hl.bind(G("s"), hl.dsp.exec_cmd("hyprfocus class:steam || steam"))
 hl.bind(C(G("s")), hl.dsp.exec_cmd("XDG_CURRENT_DESKTOP=GNOME gnome-control-center"))
-hl.bind(G("d"), hl.dsp.exec_cmd("hyprfocus class:com.mitchellh.ghostty || uwsm-app -- " .. ghostty))
-hl.bind(C(G("d")), hl.dsp.exec_cmd("uwsm-app -- " .. ghostty .. "+new-window"))
+hl.bind(G("d"), hl.dsp.exec_cmd("hyprfocus class:com.mitchellh.ghostty || uwsm-app -- ghostty"))
+hl.bind(C(G("d")), hl.dsp.exec_cmd("uwsm-app -- ghostty +new-window"))
 hl.bind(G("f"), hl.dsp.exec_cmd("hyprfocus class:zen || uwsm-app -- zen-browser"))
 hl.bind(C(G("f")), hl.dsp.exec_cmd("uwsm-app -- zen-browser --private-window"))
 hl.bind(G("g"), hl.dsp.exec_cmd("hyprfocus class:chromium || uwsm-app -- chromium"))
@@ -289,7 +288,7 @@ local workspace_bootstrap_apps = {
   },
   {
     workspace = "2",
-    command = "uwsm-app -- env GDK_WAYLAND_DISABLE=ext_background_effect_manager_v1 ghostty",
+    command = "uwsm-app -- ghostty",
     class = "com.mitchellh.ghostty",
   },
   {
