@@ -1,3 +1,6 @@
 # See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
 export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 export QT_QPA_PLATFORMTHEME=xdgdesktopportal
+
+# Bug with hyprland not being able to blur
+export GDK_WAYLAND_DISABLE=ext_background_effect_manager_v1
