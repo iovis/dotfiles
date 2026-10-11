@@ -20,26 +20,6 @@ set -gx FZF_CTRL_T_OPTS "--preview='fzf-preview {}'"
 set -gx FZF_DEFAULT_COMMAND "fd -H -E '.git' -E '.keep' --type file --follow --color=always"
 set -gx FZF_DEFAULT_OPTS_FILE "$HOME/.config/fzf/fzfrc"
 
-set -gx JUST_CHOOSER '\
-    fzf \
-        --prompt="❯ " \
-        --header-border \
-        --input-border \
-        --list-border \
-        --info=inline-right \
-        --ghost="Just" \
-        --reverse \
-        --no-input \
-        --multi \
-        --bind=space,enter:accept \
-        --bind="j:down,k:up,q:abort" \
-        --bind="p,alt-p:toggle-preview" \
-        --bind="r,alt-r:change-preview-window(down|right)" \
-        --bind="i,/:show-input+unbind(j,k,q,p,r,i,/,space)" \
-        --preview="just --unstable --color=always --show={}" \
-        --preview-window="right:75%" \
-        --color=input-border:blue'
-
 ## PATH
 if test -e /opt/homebrew/bin/brew
     # /opt/homebrew/bin/brew shellenv | source

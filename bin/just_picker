@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+fzf_command() {
+  fzf \
+    --prompt="❯ " \
+    --header-border \
+    --input-border \
+    --list-border \
+    --info=inline-right \
+    --list-label " just " \
+    --ghost="just recipes" \
+    --reverse \
+    --no-input \
+    --no-multi \
+    --bind=space,enter:accept \
+    --bind="j:down,k:up,q:abort" \
+    --bind="p,alt-p:toggle-preview" \
+    --bind="r,alt-r:change-preview-window(down|right)" \
+    --bind="i,/:show-input+unbind(j,k,q,p,r,i,/,space)" \
+    --preview="just --color=never --show {} | bat --color=always -pp -l bash" \
+    --preview-window="right:75%" \
+    --color=input-border:blue \
+    --exit-0 \
+    --query="${*:-}"
+}
+
+recipes=$(just --summary)
+selection=$(printf '%s\n' "$recipes" | tr ' ' '\n' | fzf_command "$@") || {
+  status=$?
+  case "$status" in
+  1 | 130) exit 0 ;;
+  *) exit "$status" ;;
+  esac
+}
+
+if [[ -z "$selection" ]]; then
+  exit 0
+fi
+
+status=0
+just "$selection" || status=$?
+
+while IFS= read -rsn1 key; do
+  case "$key" in
+  q | $'\e') break ;;
+  esac
+done
+
+exit "$status"
