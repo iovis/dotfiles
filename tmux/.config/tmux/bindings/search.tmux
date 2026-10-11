@@ -8,7 +8,7 @@ bind -N "flash.tmux" -n C-f if "$forward_keys" {
 
 bind -N "Search mode" f {
   switch-client -T search
-  display " Search: [d]-Dates [f]-Floats [i]-IPs [j]-JIRA [l]-Flash [n]-Numbers [o]-Commits [p]-Paths [r]-RSpec [t]-Time [u]-URLs [,]-Prompts"
+  display -d 30000 " Search: [d]-Dates [f]-Floats [i]-IPs [j]-JIRA [l]-Flash [n]-Numbers [o]-Commits [p]-Paths [r]-RSpec [t]-Time [u]-URLs [,]-Prompts"
 }
 
 bind -N "flash.tmux" -T search l {
