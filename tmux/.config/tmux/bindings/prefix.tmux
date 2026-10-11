@@ -82,7 +82,7 @@ bind -N "Promote pane to session" s {
   run tmux_promote_pane
 }
 
-bind -N "Reset session" Q {
+bind -N "Reset session" q {
   new-window
   kill-window -a
 }
@@ -102,12 +102,12 @@ bind -N "Rename window or center floating pane" C-, if -F "#{pane_floating_flag}
 }
 
 bind -N "Close window" C-w kill-window
-bind -N "Reset window" q {
+bind -N "Reset window" R {
   kill-pane -a
   respawn-pane -k -c "#{pane_current_path}" "$SHELL"
 }
 
-bind -N "Close the rest of the windows" o {
+bind -N "Close the rest of the windows" Q {
   kill-window -a
 }
 
@@ -126,6 +126,10 @@ bind -N "Open Vim plugin" C-p {
 
 ## Pane Management
 bind -N "Kill pane" C-x kill-pane
+
+bind -N "Select next pane" -r o {
+  select-pane -t :.+
+}
 
 bind -N "New floating pane" C-b {
   new-pane -x 50% -y 50% -c "#{pane_current_path}"
