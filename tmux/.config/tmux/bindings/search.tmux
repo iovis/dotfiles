@@ -1,5 +1,4 @@
 bind -N "flash.tmux" -T copy-mode-vi C-f run flash_tmux
-bind -N "flash.tmux" -T copy-mode-vi s   run flash_tmux
 bind -N "flash.tmux" -n C-f if "$forward_keys" {
   send 'C-f'
 } {
@@ -21,7 +20,7 @@ bind -N "Search command prompts" -T copy-mode-vi , {
 }
 
 bind -N "Search command prompts" -T search , {
-  copy-mode
+  copy-mode -e
   send ,
   send n
 }
@@ -32,7 +31,7 @@ bind -N "Search commit hashes" -T copy-mode-vi O {
 }
 
 bind -N "Search commit hashes" -T search o {
-  copy-mode
+  copy-mode -e
   send O
 }
 
@@ -42,7 +41,7 @@ bind -N "Search dates" -T copy-mode-vi D {
 }
 
 bind -N "Search dates" -T search d {
-  copy-mode
+  copy-mode -e
   send D
 }
 
@@ -52,7 +51,7 @@ bind -N "Search floating numbers" -T copy-mode-vi F {
 }
 
 bind -N "Search floating numbers" -T search f {
-  copy-mode
+  copy-mode -e
   send F
 }
 
@@ -62,7 +61,7 @@ bind -N "Search IPs" -T copy-mode-vi I {
 }
 
 bind -N "Search IPs" -T search i {
-  copy-mode
+  copy-mode -e
   send I
 }
 
@@ -72,7 +71,7 @@ bind -N "Search JIRA tickets" -T copy-mode-vi J {
 }
 
 bind -N "Search JIRA tickets" -T search j {
-  copy-mode
+  copy-mode -e
   send J
 }
 
@@ -82,7 +81,7 @@ bind -N "Search numbers" -T copy-mode-vi S {
 }
 
 bind -N "Search numbers" -T search n {
-  copy-mode
+  copy-mode -e
   send S
 }
 
@@ -92,7 +91,7 @@ bind -N "Search paths" -T copy-mode-vi P {
 }
 
 bind -N "Search paths" -T search p {
-  copy-mode
+  copy-mode -e
   send P
 }
 
@@ -102,7 +101,7 @@ bind -N "Search RSpec examples" -T copy-mode-vi R {
 }
 
 bind -N "Search RSpec examples" -T search r {
-  copy-mode
+  copy-mode -e
   send R
 }
 
@@ -112,7 +111,7 @@ bind -N "Search time" -T copy-mode-vi T {
 }
 
 bind -N "Search time" -T search t {
-  copy-mode
+  copy-mode -e
   send T
 }
 
@@ -122,6 +121,6 @@ bind -N "Search URLs" -T copy-mode-vi U {
 }
 
 bind -N "Search URLs" -T search u {
-  copy-mode
+  copy-mode -e
   send U
 }

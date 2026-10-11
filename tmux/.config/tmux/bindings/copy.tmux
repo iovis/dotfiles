@@ -2,13 +2,13 @@
 bind -n C-_ if "$forward_keys" {
   send c-_
 } {
-  copy-mode
+  copy-mode -e
 }
 
 bind -n C-/ if "$forward_keys" {
   send C-/
 } {
-  copy-mode
+  copy-mode -e
 }
 
 # Unbind so they use the "root" binding
@@ -52,6 +52,7 @@ bind -T copy-mode-vi End  send -X history-bottom
 # Selection
 bind -T copy-mode-vi v send -X begin-selection
 bind -T copy-mode-vi i send -X select-word
+bind -T copy-mode-vi s send -X select-word
 
 # Search
 bind -T copy-mode-vi /   command-prompt -i -I "#{pane_search_string}" -T search -p "(search up)" { send-keys -X search-backward-incremental "%%" }

@@ -35,7 +35,9 @@ set -ag update-environment TERM_PROGRAM
 set -su terminal-features
 set -as terminal-features "xterm*:256:extkeys:hyperlinks:overline:margins:mouse:osc7:progressbar:rectfill:RGB:strikethrough:sync:usstyle"
 
-# Center floating panes by default
-# set-hook -g after-split-window {
-#   if -F "#{pane_floating_flag}" "move-pane -P centre"
+# Center floating panes by default (excluding flash_tmux)
+# set-hook -g pane-created {
+#   if -F '#{&&:#{pane_floating_flag},#{!:#{m:*flash_tmux*--interactive*,#{pane_start_command}}}}' {
+#     move-pane -P centre
+#   }
 # }
