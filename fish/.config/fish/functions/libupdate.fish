@@ -9,7 +9,7 @@ function libupdate
     generate_completions
 
     log_step $(green mise) self-update
-    mise self-update --yes
+    mise self-update --yes --quiet
 
     log_step $(green mise) outdated
     mise outdated
