@@ -88,12 +88,15 @@ bind -N "Reset session" q {
 }
 
 ## Window management
-bind -N "New window" C-c new-window
+bind -N "New window"   C-c new-window
+bind -N "Close window" C-w kill-window
 bind -N "New window (current path)" C-t {
   new-window -c "#{pane_current_path}"
 }
 
-bind -N "Rename window" , command-prompt -I "#W" { rename-window "%%" }
+bind -N "Rename window" , command-prompt -I "#W" {
+  rename-window "%%"
+}
 
 bind -N "Rename window or center floating pane" C-, if -F "#{pane_floating_flag}" {
   move-pane -P centre
@@ -101,7 +104,11 @@ bind -N "Rename window or center floating pane" C-, if -F "#{pane_floating_flag}
   command-prompt -I "#W" { rename-window "%%" }
 }
 
-bind -N "Close window" C-w kill-window
+bind -N "Resize and redraw window" r {
+  set -w window-size latest
+  refresh-client
+}
+
 bind -N "Reset window" R {
   kill-pane -a
   respawn-pane -k -c "#{pane_current_path}" "$SHELL"
@@ -125,7 +132,9 @@ bind -N "Open Vim plugin" C-p {
 }
 
 ## Pane Management
-bind -N "Kill pane" C-x kill-pane
+bind -N "Hide pane"  Enter break-pane -d
+bind -N "Break pane" Tab   break-pane
+bind -N "Kill pane"  C-x   kill-pane
 
 bind -N "Select next pane" -r o {
   select-pane -t :.+
@@ -211,9 +220,6 @@ bind -N "Move pane right (full)" L if -F "#{pane_floating_flag}" {
 } {
   move-pane -fh -t '.{next}'
 }
-
-bind -N "Break pane" Tab break-pane
-bind -N "Break pane detached" Enter break-pane -d
 
 ## Join panes
 bind -N "Join pane" j {
