@@ -127,7 +127,7 @@ bind -N "Open yazi" C-y {
 }
 
 bind -N "Open Vim plugin" C-p {
-  new-pane -O -K -B none -x 50% -y 60% -c "#{pane_current_path}" vim_plugins
+  new-pane -OKC -B none -x 50% -y 60% vim_plugins
   move-pane -P centre
 }
 

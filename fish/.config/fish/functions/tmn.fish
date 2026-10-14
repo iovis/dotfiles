@@ -1,3 +1,3 @@
-function tmn --description="start tmux with no configuration file"
+function tmn --wraps='tmux' --description="start tmux with no configuration file"
     tmux -L test -f /dev/null
 end
