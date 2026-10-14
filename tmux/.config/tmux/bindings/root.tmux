@@ -17,16 +17,15 @@ bind -n C-l if "$forward_keys" "send C-l" "select-pane -R"
 bind -N "Toggle floating pane" -n M-/ if -F "#{pane_floating_flag}" {
   join-pane
 } {
-  break-pane -W -x 50% -y 50%
+  break-pane -W -x 66% -y 66%
   move-pane -P centre
 }
 
 bind -N "Reset floating pane dimensions and center" -n C-M-, if -F "#{pane_floating_flag}" {
-  resize-pane -x 50% -y 50%
+  resize-pane -x 66% -y 66%
   move-pane -P centre
 } {
-  break-pane -W -x 50% -y 50%
-  move-pane -P centre
+  select-layout tiled
 }
 
 ## Resize panes
