@@ -32,5 +32,4 @@ elseif u.current_file():match("swaync/") then
   })
 end
 
-vim.keymap.set("n", "'J", ":silent %!jq '.'<left>", { buf = 0 })
-vim.keymap.set("n", "'f", ":R !jq '.'<left> %", { buf = 0 })
+vim.keymap.set("n", "<leader>fj", ":silent %!jq '.'<left>", { buf = 0 })
