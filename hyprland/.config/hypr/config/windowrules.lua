@@ -6,7 +6,6 @@ local floating_applications = table.concat({
   "evolution-alarm-notify",
   "mpv",
   "org\\.gnome\\.Calendar",
-  "org\\.gnome\\.NautilusPreviewer",
   "org\\.gnome\\.Weather",
   "org\\.gnome\\.baobab",
   "org\\.localsend\\.localsend_app",
@@ -103,6 +102,14 @@ hl.window_rule({
     "monitor_w * 0.40",
     "monitor_h * 0.75",
   },
+})
+
+hl.window_rule({
+  name = "nautilus-preview",
+  match = { class = "^org\\.gnome\\.NautilusPreviewer$" },
+  center = true,
+  float = true,
+  size = { 1199, 720 },
 })
 
 hl.window_rule({
