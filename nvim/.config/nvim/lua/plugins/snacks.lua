@@ -342,7 +342,10 @@ return {
     vim.keymap.set("n", "<leader>o", Snacks.picker.files, { desc = "Snacks.picker.files" })
     vim.keymap.set("n", "<leader>r", Snacks.picker.resume, { desc = "Snacks.picker.resume" })
     vim.keymap.set("n", "s<space>", Snacks.picker.pick, { desc = "Snacks.picker.pick" })
-    vim.keymap.set("n", "gm", Snacks.picker.buffers, { desc = "Snacks.picker.buffers" })
+
+    vim.keymap.set("n", "gm", function()
+      Snacks.picker.buffers({ focus = "list" })
+    end, { desc = "Snacks.picker.buffers" })
 
     vim.keymap.set("n", "<leader>j", function()
       Snacks.picker.git_status({ focus = "list" })
@@ -409,7 +412,6 @@ return {
 
     ----Zen
     vim.keymap.set("n", "<leader>z", Snacks.zen.zen, { desc = "Snacks.zen.zen" })
-
     vim.api.nvim_create_user_command("ZenMode", function()
       Snacks.zen.zen()
     end, {})
