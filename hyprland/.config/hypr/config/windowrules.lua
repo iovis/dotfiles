@@ -201,6 +201,16 @@ hl.window_rule({
   size = { 880, 500 },
 })
 
+---- Steam Big Picture
+hl.on("window.active", function(w)
+  if w and w.class == "steam" and w.title == "Steam Big Picture Mode" then
+    hl.dispatch(hl.dsp.window.fullscreen({
+      mode = "fullscreen",
+      action = "set",
+    }))
+  end
+end)
+
 ---- Layer Rules (https://wiki.hypr.land/Configuring/Basics/Window-Rules/#layer-rules)
 local blurred_applications = table.concat({
   "swayosd",
