@@ -62,8 +62,8 @@ return {
         ["gx"] = "actions.open_external",
         ["gh"] = "actions.toggle_hidden",
         ["gs"] = {
-          nowait = true,
           "actions.change_sort",
+          nowait = true,
         },
         -- Custom
         q = { "actions.close", opts = { exit_if_last_buf = true } },
@@ -72,7 +72,7 @@ return {
         ["<m-j>"] = "actions.preview_scroll_down",
         ["<m-k>"] = "actions.preview_scroll_up",
         ["<bs>"] = "actions.refresh",
-        ["<leader>y"] = "actions.copy_to_system_clipboard",
+        ["<leader>y"] = { "actions.copy_to_system_clipboard", mode = "x" },
         ["<leader>p"] = "actions.paste_from_system_clipboard",
         ["<leader>v"] = {
           desc = "Open the entry in a vertical split",
@@ -136,6 +136,7 @@ return {
         },
         ["yof"] = {
           desc = "Toggle floating window",
+          mode = "n",
           callback = function()
             local dir = oil.get_current_dir()
             local floating = vim.api.nvim_win_get_config(0).relative ~= ""
@@ -149,7 +150,7 @@ return {
             end
           end,
         },
-        [";"] = {
+        [":"] = {
           "actions.open_cmdline",
           desc = "Open the command line with the current item as an argument",
           nowait = true,
