@@ -134,7 +134,22 @@ return {
             end
           end,
         },
-        ["'"] = {
+        ["yof"] = {
+          desc = "Toggle floating window",
+          callback = function()
+            local dir = oil.get_current_dir()
+            local floating = vim.api.nvim_win_get_config(0).relative ~= ""
+
+            oil.close()
+
+            if floating then
+              oil.open(dir)
+            else
+              oil.open_float(dir)
+            end
+          end,
+        },
+        [";"] = {
           "actions.open_cmdline",
           desc = "Open the command line with the current item as an argument",
           nowait = true,
