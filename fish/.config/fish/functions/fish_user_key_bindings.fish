@@ -10,4 +10,7 @@ function fish_user_key_bindings
     bind alt-n '__fish_custom_nvim; commandline -f end-of-line'
     bind alt-p '__fish_custom_clipboard; commandline -f end-of-line'
     bind alt-r '__fish_custom_rust_log; commandline -f end-of-line'
+
+    # commands
+    bind alt-o 'nvim +"Oil --preview"'
 end
