@@ -11,6 +11,13 @@ return {
       "node_modules/",
     }
 
+    vim.list_extend(snacks.config.image.formats, {
+      "HEIC",
+      "JPEG",
+      "JPG",
+      "MOV",
+    })
+
     snacks.setup({
       dim = {
         scope = {
