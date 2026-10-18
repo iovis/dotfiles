@@ -18,6 +18,11 @@ bind -N "Open htop" -T command h {
   new-window -Sn htop htop
 }
 
+bind -N "Open oil" -T command i {
+  new-pane -x 60% -y 60% -c "#{pane_current_path}" nvim +"Oil --preview"
+  move-pane -P centre
+}
+
 bind -N "Open numbat" -T command n {
   new-window -Sn numbat numbat
 }
