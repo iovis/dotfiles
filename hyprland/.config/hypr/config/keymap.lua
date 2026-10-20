@@ -55,6 +55,10 @@ hl.bind(C(G("g")), hl.dsp.exec_cmd("uwsm-app -- chromium --incognito"))
 
 hl.bind(G("x"), hl.dsp.exec_cmd("hyprfocus class:org.localsend.localsend_app || localsend"))
 hl.bind(G("c"), hl.dsp.exec_cmd("hyprfocus class:org.gnome.Calendar || uwsm-app -- gnome-calendar"))
+hl.bind(
+  C(G("c")),
+  hl.dsp.exec_cmd("uwsm-app -- ghostty --class=widget.ghostty --working-directory=~/.dotfiles -e fish -ic co")
+)
 hl.bind(G("b"), hl.dsp.exec_cmd("hyprclose class:widget.bluetui || kitty --class=widget.bluetui -e bluetui"))
 hl.bind(G("v"), hl.dsp.exec_cmd("vicinae_toggle deeplink vicinae://launch/clipboard/history"))
 
