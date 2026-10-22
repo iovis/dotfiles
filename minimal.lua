@@ -60,7 +60,6 @@ vim.keymap.set({ "o", "x" }, "io", "iW")
 vim.keymap.set({ "o", "x" }, "ag", "aW")
 vim.keymap.set({ "o", "x" }, "ig", "iW")
 
-
 vim.keymap.set("i", "<tab>", function()
   if vim.fn.pumvisible() == 1 then
     if vim.fn.complete_info({ "selected" }).selected == -1 then
@@ -139,7 +138,7 @@ vim.o.pummaxwidth = 40
 vim.o.relativenumber = true
 vim.o.scrolloff = 4
 vim.o.shiftround = true
-vim.o.shiftwidth = 0
+vim.o.shiftwidth = 2
 vim.o.showmode = false
 vim.o.sidescrolloff = 4
 vim.o.signcolumn = "yes"
