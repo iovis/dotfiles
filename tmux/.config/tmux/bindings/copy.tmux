@@ -77,6 +77,13 @@ bind -N "Copy word and paste it directly" -T copy-mode-vi Enter {
 # 2 - Middle button
 # 3 - Right button
 bind -T copy-mode-vi MouseDown1Pane    select-pane \; send -X clear-selection
-bind -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe-no-clear  # Don't cancel copy-mode
+bind -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel
 
-bind -T copy-mode-vi MouseDown3Pane    select-pane \; send -X cancel
+# Alt+drag copies and clears the selection without leaving copy mode.
+# This replaces tmux's default Alt+drag pane movement.
+bind -n M-MouseDrag1Pane if -F "#{||:#{pane_in_mode},#{mouse_any_flag}}" { send-keys -M } { copy-mode -M }
+bind -T copy-mode-vi M-MouseDrag1Pane    select-pane \; send -X begin-selection
+bind -T copy-mode-vi M-MouseDragEnd1Pane send -X copy-pipe
+
+# Right click to exit copy mode
+bind -T copy-mode-vi MouseDown3Pane select-pane \; send -X cancel
