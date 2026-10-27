@@ -106,7 +106,7 @@
   },
   "custom/screenrecording-indicator": {
     "on-click": "screenrecord --stop",
-    "on-click-right": "screenrecord --menu",
+    "on-click-right": "hyprclose class:widget.screenrecord || kitty --class=widget.screenrecord -e screenrecord --menu",
     "exec": "indicator_screenrecord",
     "signal": 8,
     "return-type": "json"

@@ -81,9 +81,16 @@ hl.bind(G("semicolon"), hl.dsp.exec_cmd("swaync-client --close-panel --close-all
 hl.bind(S(G("backslash")), hl.dsp.exec_cmd("1password --quick-access"))
 
 ---- Screenshots
+local screenrecord = [[
+  if screenrecord --status | jq -e '.state != "idle"' >/dev/null; then
+    screenrecord --stop
+  else
+    hyprclose class:widget.screenrecord || kitty --class=widget.screenrecord -e screenrecord --menu
+  fi
+]]
 hl.bind(S(G("3")), hl.dsp.exec_cmd("screenshot output"))
 hl.bind(S(G("4")), hl.dsp.exec_cmd("screenshot region"))
-hl.bind(S(G("5")), hl.dsp.exec_cmd("screenrecord"))
+hl.bind(S(G("5")), hl.dsp.exec_cmd(screenrecord))
 hl.bind(S(G("6")), hl.dsp.exec_cmd("screenshot window"))
 
 hl.bind("print", hl.dsp.exec_cmd("screenshot output"))
