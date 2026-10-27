@@ -13,6 +13,9 @@
 # hammerspoon
 /hammerspoon/.hammerspoon/local*
 
+# hyprland
+/hyprland/.config/hypr/config/local*
+
 # kitty
 /kitty/.config/kitty/local.conf
 
