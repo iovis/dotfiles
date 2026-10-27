@@ -10,6 +10,7 @@ local floating_applications = table.concat({
   "org\\.gnome\\.baobab",
   "org\\.localsend\\.localsend_app",
   "org\\.pulseaudio\\.pavucontrol",
+  "zoom",
 }, "|")
 
 hl.window_rule({
