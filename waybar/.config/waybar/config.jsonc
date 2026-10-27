@@ -105,7 +105,8 @@
     }
   },
   "custom/screenrecording-indicator": {
-    "on-click": "screenrecord",
+    "on-click": "screenrecord --stop",
+    "on-click-right": "screenrecord --menu",
     "exec": "indicator_screenrecord",
     "signal": 8,
     "return-type": "json"

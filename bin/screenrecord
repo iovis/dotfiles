@@ -1,127 +1,678 @@
 #!/usr/bin/env bash
 
-OUTPUT_DIR="${XDG_VIDEOS_DIR:-}"
+set -uo pipefail
 
-if [[ -z "$OUTPUT_DIR" ]]; then
-  OUTPUT_DIR=$(xdg-user-dir VIDEOS 2>/dev/null) || OUTPUT_DIR="$HOME/Videos"
-  [[ -n "$OUTPUT_DIR" ]] || OUTPUT_DIR="$HOME/Videos"
-fi
-
-DESKTOP_AUDIO="true"
-STOP_RECORDING="false"
+SELF=$(readlink -f -- "${BASH_SOURCE[0]}")
+RUNTIME_DIR="${XDG_RUNTIME_DIR:-/tmp}/screenrecord-$UID"
+STATE_FILE="$RUNTIME_DIR/state.json"
+SOCKET="$RUNTIME_DIR/recorder.sock"
+LOG_FILE="${XDG_STATE_HOME:-$HOME/.local/state}/screenrecord/last.log"
+TARGET='' MONITOR='' CAMERA_DEVICE=''
+MIC_ENABLED=false MIC_DEVICE=default_input
+AUDIO_ENABLED=true AUDIO_DEVICE=default_output WEBCAM_ENABLED=false
+MODE='' SETTINGS_SET=false WAIT_PID='' WAIT_TOKEN='' HANDSHAKE=''
 
 usage() {
-  printf 'Usage: %s [--without-desktop-audio] [--stop-recording]\n' "${0##*/}"
+  cat <<'EOF'
+Usage: screenrecord [TARGET] [SETTINGS]
+       screenrecord --menu | --stop | --status
+
+With no target, open the setup widget. With no arguments while recording,
+stop and save immediately. Settings apply to this invocation only.
+
+Targets:
+EOF
+  printf '  %-24s %s\n' \
+    '--screen [MONITOR]' 'Record the focused screen or a named monitor' \
+    '--window' 'Choose a window in the desktop share picker' \
+    '--region' 'Select a region with slurp' \
+    '--camera [DEVICE]' 'Record only the camera'
+  printf '\nSettings:\n'
+  printf '  %-24s %s\n' \
+    '--mic / --no-mic' 'Microphone on/off (default: off)' \
+    '--mic-device SOURCE' 'Choose microphone and enable it' \
+    '--audio / --no-audio' 'Desktop audio on/off (default: on)' \
+    '--audio-device SOURCE' 'Choose desktop audio source and enable it' \
+    '--webcam / --no-webcam' 'Camera overlay on/off (default: off)' \
+    '--camera-device DEVICE' 'Choose camera, e.g. /dev/video0'
+  printf '\nControls:\n'
+  printf '  %-24s %s\n' \
+    '--menu' 'Open setup or active recording controls' \
+    '--stop' 'Stop and wait for the saved recording' \
+    '--status' 'Print owned recording status as JSON' \
+    '-h, --help' 'Show this help'
+  cat <<'EOF'
+
+The widget uses s/w/r/v for capture, m/a/c for toggles, M/A/C for devices,
+S for monitor selection, and j/k to navigate.
+Window capture requires choosing a source in the portal.
+Audio sources accept default_input/default_output or device:NAME.
+EOF
 }
 
-for arg in "$@"; do
-  case "$arg" in
-  --without-desktop-audio) DESKTOP_AUDIO="false" ;;
-  --stop-recording) STOP_RECORDING="true" ;;
-  -h | --help)
-    usage
-    exit
+cli_error() {
+  printf 'screenrecord: %s\n' "$*" >&2
+  return 2
+}
+
+notify_error() {
+  printf 'screenrecord: %s\n' "$*" >&2
+  notify-send --icon org.gnome.Snapshot-symbolic -u critical -t 5000 \
+    'Screen recording error' "$*"$'\n'"Log: $LOG_FILE" >/dev/null 2>&1 || true
+}
+
+refresh_indicator() {
+  pkill -RTMIN+8 -x waybar 2>/dev/null || true
+}
+
+process_token() {
+  local stat
+  local -a fields
+  [[ $1 =~ ^[0-9]+$ ]] || return 1
+  read -r stat 2>/dev/null <"/proc/$1/stat" || return 1
+  read -r -a fields <<<"${stat##*) }"
+  [[ ${fields[0]} != Z && ${fields[0]} != X ]] || return 1
+  printf '%s\n' "${fields[19]}"
+}
+
+same_process() {
+  [[ $1 =~ ^[0-9]+$ && -n $2 ]] &&
+    kill -0 "$1" 2>/dev/null && [[ $(process_token "$1") == "$2" ]]
+}
+
+running() {
+  local pid token
+  [[ -r $STATE_FILE ]] || return 1
+  IFS=$'\t' read -r pid token < <(jq -r '[.pid, .token] | @tsv' "$STATE_FILE" 2>/dev/null)
+  same_process "${pid:-}" "${token:-}"
+}
+
+status_json() {
+  if running; then
+    jq -c . "$STATE_FILE" 2>/dev/null || printf '{"state":"idle"}\n'
+  else
+    printf '{"state":"idle"}\n'
+  fi
+}
+
+init_runtime() {
+  umask 077
+  if [[ -L $RUNTIME_DIR || (-e $RUNTIME_DIR && (! -d $RUNTIME_DIR || ! -O $RUNTIME_DIR)) ]]; then
+    notify_error "Unsafe runtime directory: $RUNTIME_DIR"
+    return 1
+  fi
+  mkdir -p -- "$RUNTIME_DIR" && chmod 700 -- "$RUNTIME_DIR"
+}
+
+set_phase() {
+  local phase=$1 temporary="$RUNTIME_DIR/state.$BASHPID"
+  [[ -r $STATE_FILE ]] || return 1
+  jq --arg state "$phase" '.state = $state' "$STATE_FILE" >"$temporary" &&
+    mv -- "$temporary" "$STATE_FILE" && refresh_indicator
+}
+
+stop_recording() {
+  local phase pid token control_lock
+  running || return 0
+  exec {control_lock}>"$RUNTIME_DIR/control.lock"
+  flock "$control_lock"
+  if running; then
+    phase=$(jq -r .state "$STATE_FILE")
+    if [[ $phase == selecting ]]; then
+      IFS=$'\t' read -r pid token < <(jq -r '[.pid, .token] | @tsv' "$STATE_FILE")
+      same_process "$pid" "$token" && kill -TERM "$pid"
+      while same_process "$pid" "$token" && running; do sleep 0.1; done
+    else
+      set_phase saving
+      if ! gsr-cli -ipc "$SOCKET" stop; then
+        if running; then
+          set_phase "$phase"
+          notify_error 'Could not stop recording; it is still running.'
+        fi
+        exec {control_lock}>&-
+        return 1
+      fi
+      while running; do sleep 0.1; done
+    fi
+  fi
+  exec {control_lock}>&-
+}
+
+focused_monitor() {
+  hyprctl monitors -j 2>/dev/null | jq -er '.[] | select(.focused) | .name' 2>/dev/null
+}
+
+normalized_args() {
+  RECORDING_ARGS=(--mic-device "$MIC_DEVICE" --audio-device "$AUDIO_DEVICE")
+  [[ -n $TARGET ]] && RECORDING_ARGS+=("--$TARGET")
+  [[ -n $MONITOR && $TARGET == screen ]] && RECORDING_ARGS+=("$MONITOR")
+  [[ -n $MONITOR && $TARGET != screen ]] && RECORDING_ARGS+=(--_monitor "$MONITOR")
+  if [[ $MIC_ENABLED == true ]]; then RECORDING_ARGS+=(--mic); else RECORDING_ARGS+=(--no-mic); fi
+  if [[ $AUDIO_ENABLED == true ]]; then RECORDING_ARGS+=(--audio); else RECORDING_ARGS+=(--no-audio); fi
+  [[ $WEBCAM_ENABLED == true ]] && RECORDING_ARGS+=(--webcam)
+  [[ -n $CAMERA_DEVICE ]] && RECORDING_ARGS+=(--camera-device "$CAMERA_DEVICE")
+  return 0
+}
+
+launch_widget() {
+  init_runtime || return 1
+  [[ -n $MONITOR ]] || MONITOR=$(focused_monitor) || true
+  normalized_args
+  hyprclose class:widget.screenrecord >/dev/null 2>&1 && return 0
+  exec kitty --class=widget.screenrecord -e "$SELF" --_menu "${RECORDING_ARGS[@]}"
+}
+
+launch_recording() {
+  running && {
+    notify_error 'A recording is already running.'
+    return 1
+  }
+  init_runtime || return 1
+  mkdir -p -- "${LOG_FILE%/*}" || return 1
+  normalized_args
+  local handshake result count
+  local -a wait_args=()
+  handshake=$(mktemp "$RUNTIME_DIR/start.XXXXXX") || return 1
+  if [[ $MODE == _menu ]]; then
+    wait_args=(--_wait-widget "$PPID" "$(process_token "$PPID")")
+  fi
+  if setsid --fork "$SELF" --_record --_handshake "$handshake" "${wait_args[@]}" "${RECORDING_ARGS[@]}" \
+    </dev/null >>"$LOG_FILE" 2>&1; then
+    for ((count = 0; count < 50; count++)); do
+      [[ -s $handshake ]] && break
+      sleep 0.1
+    done
+  fi
+  result=$(cat "$handshake")
+  rm -f -- "$handshake"
+  [[ $result == ready ]] || {
+    cli_error "Could not start recording; see $LOG_FILE"
+    return 1
+  }
+}
+
+camera_device() {
+  local path index
+  if [[ -z $CAMERA_DEVICE ]]; then
+    for path in /sys/class/video4linux/video*; do
+      [[ -r $path/index ]] || continue
+      read -r index <"$path/index"
+      if [[ $index == 0 ]]; then
+        CAMERA_DEVICE="/dev/${path##*/}"
+        break
+      fi
+    done
+  fi
+  if [[ -z $CAMERA_DEVICE || $CAMERA_DEVICE == *['|;'$'\n']* ]] ||
+    ! v4l2-ctl -d "$CAMERA_DEVICE" --info 2>/dev/null | rg -q 'Video Capture'; then
+    notify_error "No usable camera found: ${CAMERA_DEVICE:-none}."
+    return 1
+  fi
+}
+
+audio_source() {
+  case $1 in
+  default_input | default_output | device:*) printf '%s' "$1" ;;
+  *) printf 'device:%s' "$1" ;;
+  esac
+}
+
+build_recorder_args() {
+  local source audio=''
+  case $TARGET in
+  screen)
+    [[ -n $MONITOR ]] || MONITOR=$(focused_monitor) || true
+    if [[ -z $MONITOR || $MONITOR == *['|;'$'\n']* ]]; then
+      notify_error 'Could not determine the monitor. Use --screen MONITOR.'
+      return 1
+    fi
+    source="monitor:$MONITOR"
     ;;
-  *)
-    printf 'Unknown option: %s\n' "$arg" >&2
-    usage >&2
-    exit 2
+  window) source=portal ;;
+  region)
+    slurp -f '%wx%h+%x+%y' >"$RUNTIME_DIR/region" &
+    selection_pid=$!
+    wait "$selection_pid" || {
+      cancelled=true
+      return 1
+    }
+    selection_pid=''
+    IFS= read -r geometry <"$RUNTIME_DIR/region"
+    [[ $geometry =~ ^[1-9][0-9]*x[1-9][0-9]*\+-?[0-9]+\+-?[0-9]+$ ]] || {
+      cancelled=true
+      return 1
+    }
+    source=region
+    ;;
+  camera)
+    camera_device || return 1
+    source="v4l2:$CAMERA_DEVICE"
+    ;;
+  *) return 1 ;;
+  esac
+  if [[ $WEBCAM_ENABLED == true && $TARGET != camera ]]; then
+    camera_device || return 1
+    source+="|v4l2:$CAMERA_DEVICE;width=25%;height=25%;halign=end;valign=end"
+  fi
+  RECORDER_ARGS=(-w "$source" -f 60 -k h264 -fallback-cpu-encoding yes -ac aac -o "$filename" -ipc "$SOCKET")
+  [[ $TARGET == region ]] && RECORDER_ARGS+=(-region "$geometry")
+  [[ $AUDIO_ENABLED == true ]] && audio=$(audio_source "$AUDIO_DEVICE")
+  if [[ $MIC_ENABLED == true ]]; then
+    [[ -n $audio ]] && audio+='|'
+    audio+=$(audio_source "$MIC_DEVICE")
+  fi
+  [[ -n $audio ]] && RECORDER_ARGS+=(-a "$audio")
+  return 0
+}
+
+saved_notification() {
+  local file=$1 action
+  action=$(notify-send --icon org.gnome.Snapshot-symbolic -t 5000 \
+    --action='open=Open recording' --action='folder=Open folder' \
+    'Screen recording saved' "$file") || return 0
+  case $action in
+  open) setsid --fork xdg-open "$file" >/dev/null 2>&1 ;;
+  folder) setsid --fork xdg-open "${file%/*}" >/dev/null 2>&1 ;;
+  esac
+}
+
+record() {
+  local instance_lock output_dir filename geometry='' recorder_pid='' selection_pid=''
+  local ready_pid='' cancelled=false ready=false stopping=false count=0 result=0
+  init_runtime || return 1
+  exec {instance_lock}>"$RUNTIME_DIR/record.lock"
+  flock -n "$instance_lock" || {
+    notify_error 'A recording is already starting or running.'
+    return 1
+  }
+  : >"$LOG_FILE"
+  rm -f -- "$SOCKET" "$RUNTIME_DIR/ready"
+  output_dir=${XDG_VIDEOS_DIR:-}
+  [[ -n $output_dir ]] || output_dir=$(xdg-user-dir VIDEOS 2>/dev/null) || true
+  output_dir=${output_dir:-$HOME/Videos}
+  mkdir -p -- "$output_dir" || {
+    notify_error "Could not create $output_dir"
+    return 1
+  }
+  filename="$output_dir/screenrecording-$(date +'%Y-%m-%d_%H-%M-%S')-$$.mp4"
+  if ! jq -n --arg state selecting --arg file "$filename" --argjson pid "$$" \
+    --arg token "$(process_token "$$")" '{state: $state, file: $file, pid: $pid, token: $token}' >"$RUNTIME_DIR/state.$$" ||
+    ! mv -- "$RUNTIME_DIR/state.$$" "$STATE_FILE"; then
+    rm -f -- "$RUNTIME_DIR/state.$$"
+    notify_error 'Could not write recording state; recording was cancelled.'
+    return 1
+  fi
+
+  # shellcheck disable=SC2329 # Invoked by the EXIT trap.
+  cleanup_recording() {
+    [[ -n $ready_pid ]] && kill "$ready_pid" 2>/dev/null || true
+    [[ -n $selection_pid ]] && kill "$selection_pid" 2>/dev/null || true
+    rm -f -- "$STATE_FILE" "$SOCKET" "$RUNTIME_DIR/ready" "$RUNTIME_DIR/region"
+    refresh_indicator
+  }
+  # shellcheck disable=SC2329 # Invoked by the signal traps.
+  cancel_recording() {
+    stopping=true
+    if [[ -f $RUNTIME_DIR/ready || -s $filename ]]; then ready=true; fi
+    if [[ $ready == false ]]; then cancelled=true; else set_phase saving; fi
+    [[ -n $selection_pid ]] && kill "$selection_pid" 2>/dev/null || true
+    [[ -n $recorder_pid ]] && kill -INT "$recorder_pid" 2>/dev/null || true
+  }
+  trap cleanup_recording EXIT
+  trap cancel_recording INT TERM
+  refresh_indicator
+  [[ -n $HANDSHAKE ]] && printf 'ready\n' >"$HANDSHAKE"
+  if [[ -n $WAIT_PID ]]; then
+    while same_process "$WAIT_PID" "$WAIT_TOKEN" && ((count < 50)) && [[ $stopping == false ]]; do
+      sleep 0.1
+      count=$((count + 1))
+    done
+    [[ $stopping == true ]] && exit 0
+    if same_process "$WAIT_PID" "$WAIT_TOKEN"; then
+      notify_error 'The setup window did not close; recording was cancelled.'
+      exit 1
+    fi
+    sleep 0.15
+  fi
+  if ! build_recorder_args; then
+    [[ $cancelled == true ]] && exit 0
+    exit 1
+  fi
+  [[ $stopping == true ]] && exit 0
+  gpu-screen-recorder "${RECORDER_ARGS[@]}" &
+  recorder_pid=$!
+  count=0
+  while kill -0 "$recorder_pid" 2>/dev/null; do
+    if [[ $ready == false && -f $RUNTIME_DIR/ready ]]; then
+      ready=true
+      if [[ $stopping == true ]]; then set_phase saving; else set_phase recording; fi
+    fi
+    if [[ $stopping == true && $ready == false ]]; then
+      count=$((count + 1))
+      # Bound cancellation of a recorder blocked in a portal request. Once it
+      # has produced output, let it finish saving rather than force-killing it.
+      ((count == 30)) && [[ ! -s $filename ]] && kill -KILL "$recorder_pid" 2>/dev/null
+    elif [[ -z $ready_pid && -S $SOCKET ]]; then
+      # This acknowledged no-op waits for initialization; socket existence
+      # alone does not mean the recorder is ready to accept a stop command.
+      (gsr-cli -ipc "$SOCKET" set-paused false && touch "$RUNTIME_DIR/ready") &
+      ready_pid=$!
+    elif [[ $ready == false && -n $ready_pid ]] && ! kill -0 "$ready_pid" 2>/dev/null; then
+      # The socket can be created before it accepts connections.
+      ready_pid=''
+    fi
+    sleep 0.1
+  done
+  wait "$recorder_pid" || result=$?
+  if ((result == 0)) && [[ -s $filename ]]; then
+    (
+      exec {instance_lock}>&-
+      saved_notification "$filename"
+    ) >/dev/null 2>&1 &
+    exit 0
+  fi
+  if [[ $cancelled == true ]] || rg -q 'capture was canceled by the user' "$LOG_FILE"; then
+    exit 0
+  fi
+  notify_error 'Recording failed. See the recording log for details.'
+  exit 1
+}
+
+# The settings file belongs to one widget. fzf callbacks update it without
+# restarting the menu; no shell code is ever read from the file.
+menu_header() {
+  # A space preserves the empty row when command substitution trims newlines.
+  jq -r '
+    def toggle(name; enabled):
+      (if enabled then "\u001b[1;32m" else "\u001b[2m" end)
+      + name + "\u001b[0m";
+    [toggle("audio"; .audio_enabled), toggle("mic"; .mic_enabled),
+     toggle("webcam"; .webcam_enabled)]
+    | join(" \u001b[2m·\u001b[0m ") + "\n "
+  ' "$1"
+}
+
+menu_fzf() {
+  fzf --ansi --prompt="❯ " --reverse --no-input --no-multi --no-preview \
+    --gutter=" " --highlight-line \
+    --no-border --no-header-border --no-list-border --no-footer-border \
+    --no-input-border --no-separator --info=hidden --delimiter=$'\t' \
+    --with-nth=2 --color=header:-1,footer:-1:dim --with-shell="bash -c" \
+    --bind="j:down,k:up,q:abort" --bind="space,enter:accept" "$@"
+}
+
+menu_picker() {
+  menu_fzf --header="$1" \
+    --bind="i,/:show-input+unbind(j,k,q,i,/,space)"
+}
+
+menu_audio_sources() {
+  local kind=$1 default label
+  if [[ $kind == mic ]]; then
+    default=default_input
+    label="Default microphone"
+  else
+    default=default_output
+    label="Default desktop output"
+  fi
+  printf '%s\t%s\n' "$default" "$label"
+  pactl --format=json list sources 2>/dev/null | jq -r --arg kind "$kind" '
+    .[] | select((.name | endswith(".monitor")) == ($kind == "audio")) |
+    ["device:" + .name, (.description // .name)] | @tsv
+  ' || true
+}
+
+menu_cameras() {
+  local path index name
+  # A USB camera often exposes a metadata node as well as its first video node.
+  for path in /sys/class/video4linux/video*; do
+    [[ -r $path/index ]] || continue
+    read -r index <"$path/index"
+    [[ $index == 0 ]] || continue
+    read -r name <"$path/name"
+    printf '/dev/%s\t%s (%s)\n' "${path##*/}" "$name" "${path##*/}"
+  done
+}
+
+menu_action() {
+  local settings_file=$1 action=$2 selection filter value
+  case $action in
+  header)
+    menu_header "$settings_file"
+    return
+    ;;
+  active-header)
+    status_json | jq -r '(.state | ascii_upcase) + "\n" + (.file // "")'
+    return
+    ;;
+  toggle-mic) filter='.mic_enabled = (.mic_enabled | not)' ;;
+  toggle-audio) filter='.audio_enabled = (.audio_enabled | not)' ;;
+  toggle-webcam) filter='.webcam_enabled = (.webcam_enabled | not)' ;;
+  choose-mic | choose-audio)
+    if ! selection=$(menu_audio_sources "${action#choose-}" | menu_picker "Choose ${action#choose-}"); then
+      return 0
+    fi
+    [[ -n $selection ]] || return 0
+    IFS=$'\t' read -r value _ <<<"$selection"
+    filter=".${action#choose-}_device = \$value | .${action#choose-}_enabled = true"
+    ;;
+  choose-camera)
+    if ! selection=$(menu_cameras | menu_picker "Choose camera"); then
+      return 0
+    fi
+    [[ -n $selection ]] || return 0
+    IFS=$'\t' read -r value _ <<<"$selection"
+    # shellcheck disable=SC2016 # This variable belongs to jq.
+    filter='.camera_device = $value'
+    ;;
+  choose-monitor)
+    if ! selection=$(hyprctl monitors -j 2>/dev/null | jq -r '.[] | [.name, (.name + " · " + .description)] | @tsv' | menu_picker "Choose screen"); then
+      return 0
+    fi
+    [[ -n $selection ]] || return 0
+    IFS=$'\t' read -r value _ <<<"$selection"
+    # shellcheck disable=SC2016 # This variable belongs to jq.
+    filter='.monitor = $value'
+    ;;
+  *) return 2 ;;
+  esac
+  if jq --arg value "${value:-}" "$filter" "$settings_file" >"$settings_file.tmp"; then
+    mv -- "$settings_file.tmp" "$settings_file"
+  else
+    rm -f -- "$settings_file.tmp"
+    return 1
+  fi
+  menu_header "$settings_file"
+}
+
+screenrecord_menu() {
+  local settings_file callback selection header
+  local -a values
+
+  settings_file=$(mktemp "$RUNTIME_DIR/menu.XXXXXX") || return 1
+  # Use literal, shell-quoted paths so cleanup also works after this function
+  # returns, or if Kitty closes while fzf is still running.
+  local cleanup
+  printf -v cleanup 'rm -f -- %q %q' "$settings_file" "$settings_file.tmp"
+  # shellcheck disable=SC2064 # Expand the quoted paths before locals disappear.
+  trap "$cleanup" EXIT
+  if ! jq -n \
+    --argjson mic_enabled "$MIC_ENABLED" --arg mic_device "$MIC_DEVICE" \
+    --argjson audio_enabled "$AUDIO_ENABLED" --arg audio_device "$AUDIO_DEVICE" \
+    --argjson webcam_enabled "$WEBCAM_ENABLED" --arg camera_device "$CAMERA_DEVICE" \
+    --arg monitor "$MONITOR" '
+    {
+      mic_enabled: $mic_enabled, mic_device: $mic_device,
+      audio_enabled: $audio_enabled, audio_device: $audio_device,
+      webcam_enabled: $webcam_enabled, camera_device: $camera_device, monitor: $monitor
+    }' >"$settings_file"; then
+    rm -f -- "$settings_file"
+    return 1
+  fi
+
+  printf -v callback '%q --_menu-action %q ' "$SELF" "$settings_file"
+  if running; then
+    header=$(menu_action "$settings_file" active-header)
+    if selection=$(printf 'stop\t[s] Stop / cancel recording\n' |
+      menu_fzf --accept-nth=1 --header="$header" --footer="s stop · q close" \
+        --bind="s:print(stop)+accept"); then
+      [[ ${selection%%$'\n'*} == stop ]] && stop_recording
+    fi
+    # A controls widget never silently turns into a new-recording widget.
+    rm -f -- "$settings_file"
+    return 1
+  fi
+
+  header=$(menu_header "$settings_file")
+  selection=$(printf 'screen\t[s] Record screen\nwindow\t[w] Choose window\nregion\t[r] Choose region\ncamera\t[v] Record camera only\n' |
+    menu_fzf --accept-nth=1 --header="$header" \
+      --footer=$'a audio · m mic · c webcam\nA/M/C devices · S monitor · q cancel' \
+      --bind="s:print(screen)+accept,w:print(window)+accept,r:print(region)+accept,v:print(camera)+accept" \
+      --bind="m:transform-header(${callback}toggle-mic)" \
+      --bind="a:transform-header(${callback}toggle-audio)" \
+      --bind="c:transform-header(${callback}toggle-webcam)" \
+      --bind="M:execute(${callback}choose-mic >/dev/null)+transform-header(${callback}header)" \
+      --bind="A:execute(${callback}choose-audio >/dev/null)+transform-header(${callback}header)" \
+      --bind="C:execute(${callback}choose-camera >/dev/null)+transform-header(${callback}header)" \
+      --bind="S:execute(${callback}choose-monitor >/dev/null)+transform-header(${callback}header)") || {
+    rm -f -- "$settings_file"
+    return 1
+  }
+  TARGET=${selection%%$'\n'*}
+  mapfile -t values < <(jq -r '.mic_enabled, .mic_device, .audio_enabled, .audio_device, .webcam_enabled, .camera_device, .monitor' "$settings_file")
+  MIC_ENABLED=${values[0]}
+  MIC_DEVICE=${values[1]}
+  AUDIO_ENABLED=${values[2]}
+  AUDIO_DEVICE=${values[3]}
+  WEBCAM_ENABLED=${values[4]}
+  CAMERA_DEVICE=${values[5]}
+  MONITOR=${values[6]}
+  rm -f -- "$settings_file"
+  [[ $TARGET == screen || $TARGET == window || $TARGET == region || $TARGET == camera ]]
+}
+
+parse_args() {
+  local option
+  while (($#)); do
+    option=$1
+    shift
+    case $option in
+    --screen | --window | --region | --camera)
+      [[ -z $TARGET ]] || {
+        cli_error 'Choose only one capture target.'
+        return 2
+      }
+      TARGET=${option#--}
+      if [[ $TARGET == screen || $TARGET == camera ]] && (($#)) && [[ $1 != -* ]]; then
+        if [[ $TARGET == screen ]]; then MONITOR=$1; else CAMERA_DEVICE=$1; fi
+        shift
+      fi
+      ;;
+    --mic | --no-mic | --audio | --no-audio | --webcam | --no-webcam)
+      SETTINGS_SET=true
+      case $option in
+      --mic) MIC_ENABLED=true ;;
+      --no-mic) MIC_ENABLED=false ;;
+      --audio) AUDIO_ENABLED=true ;;
+      --no-audio) AUDIO_ENABLED=false ;;
+      --webcam) WEBCAM_ENABLED=true ;;
+      --no-webcam) WEBCAM_ENABLED=false ;;
+      esac
+      ;;
+    --mic-device | --audio-device | --camera-device | --_monitor)
+      (($#)) && [[ -n $1 && $1 != --* ]] || {
+        cli_error "$option requires a value."
+        return 2
+      }
+      [[ $1 != *['|'$'\n']* ]] || {
+        cli_error 'A device must name one source.'
+        return 2
+      }
+      SETTINGS_SET=true
+      case $option in
+      --mic-device) MIC_DEVICE=$1 MIC_ENABLED=true ;;
+      --audio-device) AUDIO_DEVICE=$1 AUDIO_ENABLED=true ;;
+      --camera-device) CAMERA_DEVICE=$1 ;;
+      --_monitor) MONITOR=$1 ;;
+      esac
+      shift
+      ;;
+    --menu | --stop | --status | --_record | --_menu)
+      [[ -z $MODE ]] || {
+        cli_error 'Choose only one control command.'
+        return 2
+      }
+      MODE=${option#--}
+      ;;
+    --_wait-widget)
+      (($# >= 2)) || return 2
+      WAIT_PID=$1 WAIT_TOKEN=$2
+      shift 2
+      ;;
+    --_handshake)
+      (($#)) || return 2
+      HANDSHAKE=$1
+      shift
+      ;;
+    -h | --help)
+      usage
+      exit 0
+      ;;
+    *)
+      cli_error "Unknown option: $option"
+      return 2
+      ;;
+    esac
+  done
+  case $MODE in
+  stop | status)
+    [[ -z $TARGET && $SETTINGS_SET == false ]] || {
+      cli_error 'Recording controls cannot be combined with capture settings.'
+      return 2
+    }
+    ;;
+  menu)
+    [[ -z $TARGET ]] || {
+      cli_error '--menu cannot be combined with a capture target.'
+      return 2
+    }
     ;;
   esac
-done
-
-watch_screenrecording() {
-  local recorder_pid="$1"
-
-  while kill -0 "$recorder_pid" 2>/dev/null; do
-    sleep 0.2
-  done
-
-  refresh_screenrecording_indicator
 }
 
-show_saved_notification() {
-  local action
-
-  action=$(notify-send \
-    --icon org.gnome.Snapshot-symbolic \
-    --action="default=Open Folder" \
-    "Screen recording saved" \
-    "$OUTPUT_DIR" \
-    -t 5000)
-
-  if [[ "$action" == "default" ]]; then
-    setsid -f xdg-open "$OUTPUT_DIR" >/dev/null 2>&1
+main() {
+  if [[ ${1:-} == --_menu-action ]]; then
+    (($# == 3)) || return 2
+    menu_action "$2" "$3"
+    return
   fi
+  local argument_count=$#
+  parse_args "$@" || return $?
+  case $MODE in
+  status) status_json ;;
+  stop) stop_recording ;;
+  _record)
+    record
+    local result=$?
+    [[ -n $HANDSHAKE ]] && printf 'failed\n' >"$HANDSHAKE"
+    return "$result"
+    ;;
+  _menu)
+    if screenrecord_menu; then launch_recording; fi
+    ;;
+  menu) launch_widget ;;
+  *)
+    if ((argument_count == 0)) && running; then
+      stop_recording
+    elif [[ -n $TARGET ]]; then
+      launch_recording
+    else
+      launch_widget
+    fi
+    ;;
+  esac
 }
 
-start_screenrecording() {
-  local filename
-  local -a recorder_args
-  local recorder_pid
-
-  if ! mkdir -p "$OUTPUT_DIR"; then
-    notify-send --icon org.gnome.Snapshot-symbolic "Could not create screen recording directory: $OUTPUT_DIR" -u critical -t 3000
-    return 1
-  fi
-
-  filename="$OUTPUT_DIR/screenrecording-$(date +'%Y-%m-%d_%H-%M-%S').mp4"
-  recorder_args=(-w portal -f 60 -fallback-cpu-encoding yes -o "$filename" -ac aac)
-  [[ "$DESKTOP_AUDIO" == "true" ]] && recorder_args+=(-a default_output)
-
-  gpu-screen-recorder "${recorder_args[@]}" &
-  recorder_pid=$!
-
-  sleep 0.2
-
-  if ! kill -0 "$recorder_pid" 2>/dev/null; then
-    notify-send --icon org.gnome.Snapshot-symbolic "Screen recording error" "Failed to start screen recording." -u critical -t 5000
-    return 1
-  fi
-
-  watch_screenrecording "$recorder_pid" >/dev/null 2>&1 &
-
-  refresh_screenrecording_indicator
-}
-
-stop_screenrecording() {
-  # If share picker is still open, user probably cancelled recording
-  if pgrep -f "^hyprland-share-picker" >/dev/null; then
-    pkill -f "^hyprland-share-picker"
-    refresh_screenrecording_indicator
-    exit
-  fi
-
-  pkill -SIGINT -f "^gpu-screen-recorder" # SIGINT required to save video properly
-
-  # Wait a maximum of 5 seconds to finish before hard killing
-  local count=0
-  while pgrep -f "^gpu-screen-recorder" >/dev/null && [ $count -lt 50 ]; do
-    sleep 0.1
-    count=$((count + 1))
-  done
-
-  if pgrep -f "^gpu-screen-recorder" >/dev/null; then
-    pkill -KILL -f "^gpu-screen-recorder"
-    refresh_screenrecording_indicator
-    notify-send --icon org.gnome.Snapshot-symbolic "Screen recording error" "Recording process had to be force-killed. Video may be corrupted." -u critical -t 5000
-  else
-    refresh_screenrecording_indicator
-    show_saved_notification >/dev/null 2>&1 &
-  fi
-}
-
-refresh_screenrecording_indicator() {
-  pkill -RTMIN+8 waybar 2>/dev/null || true
-}
-
-if pgrep -f "^gpu-screen-recorder" >/dev/null; then
-  stop_screenrecording
-  exit
-fi
-
-if [[ "$STOP_RECORDING" == "false" ]]; then
-  start_screenrecording
-else
-  exit 1
+if [[ ${BASH_SOURCE[0]} == "$0" ]]; then
+  main "$@"
 fi

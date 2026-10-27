@@ -103,6 +103,16 @@ hl.window_rule({
 })
 
 hl.window_rule({
+  name = "screenrecord",
+  match = { class = "widget\\.screenrecord" },
+  center = true,
+  dim_around = true,
+  float = true,
+  pin = true,
+  size = { 650, 300 },
+})
+
+hl.window_rule({
   name = "impala",
   match = { class = "widget\\.impala" },
   center = true,
