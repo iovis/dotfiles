@@ -10,7 +10,7 @@
 --bind=ctrl-n:page-down,ctrl-p:page-up
 --bind=ctrl-r:toggle-raw
 --bind=home:first,end:last
---color=current-bg:black
+--color=current-bg:#232634
 --color=bg:-1
 --color=current-fg:#c6d0f5
 --color=fg:#c6d0f5

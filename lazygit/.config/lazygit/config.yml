@@ -44,7 +44,7 @@ gui:
     optionsTextColor:
       - "#8caaee"
     selectedLineBgColor:
-      - "#292c3c"
+      - "#232634"
       - bold
     inactiveViewSelectedLineBgColor:
       - "#1f212e"
