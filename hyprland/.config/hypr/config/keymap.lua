@@ -85,7 +85,7 @@ local screenrecord = [[
   if screenrecord --status >/dev/null; then
     screenrecord --stop
   else
-    hyprclose class:widget.screenrecord || kitty --class=widget.screenrecord -e screenrecord --menu
+    hyprclose class:widget.screenrecord || kitty --class=widget.screenrecord -e screenrecord
   fi
 ]]
 hl.bind(S(G("3")), hl.dsp.exec_cmd("screenshot output"))

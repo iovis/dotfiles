@@ -17,10 +17,10 @@ MODE='' SETTINGS_SET=false WAIT_PID='' WAIT_TOKEN='' HANDSHAKE=''
 usage() {
   cat <<'EOF'
 Usage: screenrecord [TARGET] [SETTINGS]
-       screenrecord --menu | --stop | --status
+       screenrecord --stop | --status
 
-With no target, show setup in the current terminal. With no arguments while
-recording, stop and save immediately. Recordings use 60 fps.
+With no target, show setup in the current terminal, or stop and save an active
+recording immediately. Recordings use 60 fps.
 Settings apply to this invocation only.
 
 Targets:
@@ -41,8 +41,7 @@ EOF
     '--cursor / --no-cursor' 'Record the cursor on/off (default: on)'
   printf '\nControls:\n'
   printf '  %-24s %s\n' \
-    '--menu' 'Show setup or active controls in this terminal' \
-    '--stop' 'Stop and wait for the saved recording' \
+    '--stop' 'Stop and wait for the saved recording; idle is a no-op' \
     '--status' 'Print recording status and Waybar fields as JSON' \
     '-h, --help' 'Show this help'
   cat <<'EOF'
@@ -128,7 +127,7 @@ status_json() {
       tooltip: ($label
         + (if (.file // "") == "" then ""
            else "\n" + (.file | tostring | @html) end)
-        + "\nLeft click: stop\nRight click: controls"),
+        + "\nClick: stop"),
       class: "active"
     }
   ' "$STATE_FILE" 2>/dev/null); then
@@ -610,10 +609,6 @@ menu_action() {
     menu_header "$settings_file"
     return
     ;;
-  active-header)
-    status_json | jq -r '(.state | ascii_upcase) + "\n" + (.file // "")'
-    return
-    ;;
   toggle-mic) filter='.mic_enabled = (.mic_enabled | not)' ;;
   toggle-audio) filter='.audio_enabled = (.audio_enabled | not)' ;;
   toggle-webcam) filter='.webcam_enabled = (.webcam_enabled | not)' ;;
@@ -687,18 +682,6 @@ screenrecord_menu() {
   fi
 
   printf -v callback '%q --_menu-action %q ' "$SELF" "$settings_file"
-  if running; then
-    header=$(menu_action "$settings_file" active-header)
-    if selection=$(printf 'stop\t[s] Stop / cancel recording\n' |
-      menu_fzf --accept-nth=1 --header="$header" --footer="s stop · q close" \
-        --bind="s:print(stop)+accept"); then
-      [[ ${selection%%$'\n'*} == stop ]] && stop_recording
-    fi
-    # A controls widget never silently turns into a new-recording widget.
-    rm -f -- "$settings_file"
-    return 1
-  fi
-
   header=$(menu_header "$settings_file")
   selection=$(printf 'screen\t[s] Record screen\nwindow\t[w] Choose window\nregion\t[r] Choose region\ncamera\t[v] Record camera only\n' |
     menu_fzf --accept-nth=1 --header="$header" \
@@ -777,7 +760,7 @@ parse_args() {
       esac
       shift
       ;;
-    --menu | --stop | --status | --_record)
+    --stop | --status | --_record)
       [[ -z $MODE ]] || {
         cli_error 'Choose only one control command.'
         return 2
@@ -811,12 +794,6 @@ parse_args() {
       return 2
     }
     ;;
-  menu)
-    [[ -z $TARGET ]] || {
-      cli_error '--menu cannot be combined with a capture target.'
-      return 2
-    }
-    ;;
   esac
 }
 
@@ -826,7 +803,6 @@ main() {
     menu_action "$2" "$3"
     return
   fi
-  local argument_count=$#
   parse_args "$@" || return $?
   case $MODE in
   status) status_json ;;
@@ -837,12 +813,11 @@ main() {
     [[ -n $HANDSHAKE ]] && printf 'failed\n' >"$HANDSHAKE"
     return "$result"
     ;;
-  menu) run_menu ;;
   *)
-    if ((argument_count == 0)) && running; then
-      stop_recording
-    elif [[ -n $TARGET ]]; then
+    if [[ -n $TARGET ]]; then
       launch_recording
+    elif running; then
+      stop_recording
     else
       run_menu
     fi
