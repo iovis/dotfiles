@@ -100,37 +100,68 @@ same_process() {
     kill -0 "$1" 2>/dev/null && [[ $(process_token "$1") == "$2" ]]
 }
 
-state_process_alive() {
-  local pid token pid_key=pid token_key=token
+read_state() {
+  local -n target_state=$1
+  local -a fields
+  local reader_pid
+  target_state=()
   [[ -r $STATE_FILE ]] || return 1
-  if [[ $1 == recorder ]]; then pid_key=recorder_pid token_key=recorder_token; fi
-  IFS=$'\t' read -r pid token < <(jq -r --arg pid "$pid_key" --arg token "$token_key" \
-    '[.[$pid], .[$token]] | @tsv' "$STATE_FILE" 2>/dev/null)
-  same_process "${pid:-}" "${token:-}"
+  mapfile -d '' -t fields < <(jq -js '
+    select(length == 1) | .[0]
+    | select(type == "object"
+        and (.state | IN("selecting", "recording", "saving"))
+        and (.pid | type) == "number" and (.token | type) == "string"
+        and (.file | type) == "string"
+        and (.recorder_pid == null or (.recorder_pid | type) == "number")
+        and (.recorder_token == null or (.recorder_token | type) == "string"))
+    | (tojson, .pid, .token, (.recorder_pid // 0),
+       (.recorder_token // ""), .state, .file)
+    | tostring + "\u0000"
+  ' "$STATE_FILE" 2>/dev/null)
+  reader_pid=$!
+  # mapfile does not report a failed producer; reject incomplete reads too.
+  wait "$reader_pid" && ((${#fields[@]} == 7)) || return 1
+  # shellcheck disable=SC2034,SC2154 # Output is a caller-owned associative array through a nameref.
+  target_state=(
+    [json]="${fields[0]}" [pid]="${fields[1]}" [token]="${fields[2]}"
+    [recorder_pid]="${fields[3]}" [recorder_token]="${fields[4]}"
+    [state]="${fields[5]}" [file]="${fields[6]}"
+  )
+}
+
+state_process_alive() {
+  local -n process_state=$1
+  local pid_key=pid token_key=token
+  if [[ $2 == recorder ]]; then pid_key=recorder_pid token_key=recorder_token; fi
+  same_process "${process_state[$pid_key]}" "${process_state[$token_key]}"
+}
+
+state_running() {
+  state_process_alive "$1" supervisor || state_process_alive "$1" recorder
 }
 
 running() {
-  state_process_alive supervisor || state_process_alive recorder
+  local -A snapshot
+  read_state snapshot && state_running snapshot
 }
 
 status_json() {
+  local -A snapshot
   local status
-  if running && status=$(jq -ce '
+  if read_state snapshot && state_running snapshot && status=$(jq -c '
     {
       selecting: "Choosing recording source",
       recording: "Recording",
       saving: "Saving recording"
     }[.state] as $label
-    | select($label != null)
     | . + {
       text: "  ",
       tooltip: ($label
-        + (if (.file // "") == "" then ""
-           else "\n" + (.file | tostring | @html) end)
+        + (if .file == "" then "" else "\n" + (.file | @html) end)
         + "\nClick: stop"),
       class: "active"
     }
-  ' "$STATE_FILE" 2>/dev/null); then
+  ' <<<"${snapshot[json]}" 2>/dev/null); then
     printf '%s\n' "$status"
     return 0
   fi
@@ -147,6 +178,11 @@ init_runtime() {
   mkdir -p -- "$RUNTIME_DIR" && chmod 700 -- "$RUNTIME_DIR"
 }
 
+clear_recording_state() {
+  rm -f -- "$STATE_FILE" "$SOCKET" "$RUNTIME_DIR/ready" "$RUNTIME_DIR/region" "$RUNTIME_DIR/cancelled"
+  refresh_indicator
+}
+
 set_phase() {
   local phase=$1 temporary="$RUNTIME_DIR/state.$BASHPID"
   [[ -r $STATE_FILE ]] || return 1
@@ -155,28 +191,15 @@ set_phase() {
 }
 
 stop_recording() {
-  local phase pid token recorder_pid recorder_token filename snapshot saved_file='' control_lock recovery_lock count=0
-  local -a identity
+  local phase pid token recorder_pid recorder_token filename saved_file='' control_lock recovery_lock count=0
+  local -A snapshot current
   running || return 0
   exec {control_lock}>"$RUNTIME_DIR/control.lock"
   flock "$control_lock"
-  if running; then
-    if ! snapshot=$(jq -ce . "$STATE_FILE" 2>/dev/null) ||
-      ! jq -e 'type == "object" and (.pid | type) == "number"
-        and (.token | type) == "string" and (.file | type) == "string"' <<<"$snapshot" >/dev/null; then
-      exec {control_lock}>&-
-      return 0
-    fi
-    mapfile -t identity < <(jq -r '(.pid // 0), (.token // ""),
-      (.recorder_pid // 0), (.recorder_token // "")' <<<"$snapshot")
-    pid=${identity[0]} token=${identity[1]}
-    recorder_pid=${identity[2]} recorder_token=${identity[3]}
-    filename=$(jq -r .file <<<"$snapshot")
-    phase=$(jq -r .state <<<"$snapshot")
-    if ! same_process "$pid" "$token" && ! same_process "$recorder_pid" "$recorder_token"; then
-      exec {control_lock}>&-
-      return 0
-    fi
+  if read_state snapshot && state_running snapshot; then
+    pid=${snapshot[pid]} token=${snapshot[token]}
+    recorder_pid=${snapshot[recorder_pid]} recorder_token=${snapshot[recorder_token]}
+    filename=${snapshot[file]} phase=${snapshot[state]}
     if [[ $phase == selecting ]] && same_process "$pid" "$token"; then
       kill -TERM "$pid"
     elif [[ $phase == selecting && ! -f $RUNTIME_DIR/ready && ! -s $filename ]] &&
@@ -208,15 +231,13 @@ stop_recording() {
     while same_process "$pid" "$token" || same_process "$recorder_pid" "$recorder_token"; do
       sleep 0.1
     done
-    if [[ -r $STATE_FILE ]] && jq -e --argjson pid "$pid" --arg token "$token" \
-      '.pid == $pid and .token == $token' "$STATE_FILE" >/dev/null; then
+    if read_state current && [[ ${current[pid]} == "$pid" && ${current[token]} == "$token" ]]; then
       # The supervisor normally removes metadata and shows the saved action.
       # Recover those duties only for its own leftover instance. New workers
       # cannot publish state until this control lock is released.
       exec {recovery_lock}>"$RUNTIME_DIR/record.lock"
       flock "$recovery_lock"
-      rm -f -- "$STATE_FILE" "$SOCKET" "$RUNTIME_DIR/ready" "$RUNTIME_DIR/region" "$RUNTIME_DIR/cancelled"
-      refresh_indicator
+      clear_recording_state
       exec {recovery_lock}>&-
       if [[ -n $saved_file && -s $saved_file ]]; then
         notify_saved "$saved_file" "$pid" "$token" "$control_lock"
@@ -234,10 +255,9 @@ normalized_args() {
   RECORDING_ARGS=(--mic-device "$MIC_DEVICE" --audio-device "$AUDIO_DEVICE")
   [[ -n $TARGET ]] && RECORDING_ARGS+=("--$TARGET")
   [[ -n $MONITOR && $TARGET == screen ]] && RECORDING_ARGS+=("$MONITOR")
-  [[ -n $MONITOR && $TARGET != screen ]] && RECORDING_ARGS+=(--_monitor "$MONITOR")
-  if [[ $MIC_ENABLED == true ]]; then RECORDING_ARGS+=(--mic); else RECORDING_ARGS+=(--no-mic); fi
-  if [[ $AUDIO_ENABLED == true ]]; then RECORDING_ARGS+=(--audio); else RECORDING_ARGS+=(--no-audio); fi
-  if [[ $CURSOR_ENABLED == true ]]; then RECORDING_ARGS+=(--cursor); else RECORDING_ARGS+=(--no-cursor); fi
+  [[ $MIC_ENABLED == false ]] && RECORDING_ARGS+=(--no-mic)
+  [[ $AUDIO_ENABLED == false ]] && RECORDING_ARGS+=(--no-audio)
+  [[ $CURSOR_ENABLED == false ]] && RECORDING_ARGS+=(--no-cursor)
   [[ $WEBCAM_ENABLED == true ]] && RECORDING_ARGS+=(--webcam)
   [[ -n $CAMERA_DEVICE ]] && RECORDING_ARGS+=(--camera-device "$CAMERA_DEVICE")
   return 0
@@ -287,17 +307,22 @@ launch_recording() {
   }
 }
 
+camera_devices() {
+  local path index name
+  # A USB camera often exposes a metadata node as well as its first video node.
+  for path in /sys/class/video4linux/video*; do
+    [[ -r $path/index ]] || continue
+    read -r index <"$path/index"
+    [[ $index == 0 ]] || continue
+    read -r name <"$path/name"
+    printf '/dev/%s\t%s (%s)\n' "${path##*/}" "$name" "${path##*/}"
+  done
+}
+
 camera_device() {
-  local path index
+  local description
   if [[ -z $CAMERA_DEVICE ]]; then
-    for path in /sys/class/video4linux/video*; do
-      [[ -r $path/index ]] || continue
-      read -r index <"$path/index"
-      if [[ $index == 0 ]]; then
-        CAMERA_DEVICE="/dev/${path##*/}"
-        break
-      fi
-    done
+    IFS=$'\t' read -r CAMERA_DEVICE description < <(camera_devices) || true
   fi
   if [[ -z $CAMERA_DEVICE || $CAMERA_DEVICE == *['|;'$'\n']* ]] ||
     ! v4l2-ctl -d "$CAMERA_DEVICE" --info 2>/dev/null | rg -q 'Video Capture'; then
@@ -425,16 +450,16 @@ record() {
 
   # shellcheck disable=SC2329 # Invoked by the EXIT trap.
   cleanup_recording() {
+    local -A snapshot
     # An unexpected supervisor exit must leave a live recorder discoverable.
-    state_process_alive recorder && return
+    read_state snapshot && state_process_alive snapshot recorder && return
     [[ -n $ready_pid ]] && wait "$ready_pid" 2>/dev/null || true
     [[ -n $stop_pid ]] && wait "$stop_pid" 2>/dev/null || true
     same_process "$selection_pid" "$selection_token" && kill "$selection_pid" 2>/dev/null || true
     [[ -n $selection_pid ]] && wait "$selection_pid" 2>/dev/null || true
     if [[ -n ${instance_lock:-} ]]; then exec {instance_lock}>&-; fi
     # No child now holds record.lock. Publishing idle cannot race its release.
-    rm -f -- "$STATE_FILE" "$SOCKET" "$RUNTIME_DIR/ready" "$RUNTIME_DIR/region" "$RUNTIME_DIR/cancelled"
-    refresh_indicator
+    clear_recording_state
   }
   # shellcheck disable=SC2329 # Invoked by the signal traps.
   cancel_recording() {
@@ -590,18 +615,6 @@ menu_audio_sources() {
   ' || true
 }
 
-menu_cameras() {
-  local path index name
-  # A USB camera often exposes a metadata node as well as its first video node.
-  for path in /sys/class/video4linux/video*; do
-    [[ -r $path/index ]] || continue
-    read -r index <"$path/index"
-    [[ $index == 0 ]] || continue
-    read -r name <"$path/name"
-    printf '/dev/%s\t%s (%s)\n' "${path##*/}" "$name" "${path##*/}"
-  done
-}
-
 menu_action() {
   local settings_file=$1 action=$2 selection filter value current
   case $action in
@@ -625,7 +638,7 @@ menu_action() {
   choose-camera)
     current=$(jq -r .camera_device "$settings_file")
     [[ -z $current ]] || current=$(readlink -f -- "$current")
-    if ! selection=$(menu_cameras | menu_picker "$current"); then
+    if ! selection=$(camera_devices | menu_picker "$current"); then
       return 0
     fi
     [[ -n $selection ]] || return 0
@@ -677,7 +690,6 @@ screenrecord_menu() {
       webcam_enabled: $webcam_enabled, camera_device: $camera_device, monitor: $monitor,
       cursor_enabled: $cursor_enabled
     }' >"$settings_file"; then
-    rm -f -- "$settings_file"
     return 1
   fi
 
@@ -694,10 +706,7 @@ screenrecord_menu() {
       --bind="M:execute(${callback}choose-mic >/dev/null)+transform-header(${callback}header)" \
       --bind="A:execute(${callback}choose-audio >/dev/null)+transform-header(${callback}header)" \
       --bind="C:execute(${callback}choose-camera >/dev/null)+transform-header(${callback}header)" \
-      --bind="S:execute(${callback}choose-monitor >/dev/null)+transform-header(${callback}header)") || {
-    rm -f -- "$settings_file"
-    return 1
-  }
+      --bind="S:execute(${callback}choose-monitor >/dev/null)+transform-header(${callback}header)") || return 1
   TARGET=${selection%%$'\n'*}
   mapfile -t values < <(jq -r '.mic_enabled, .mic_device, .audio_enabled, .audio_device, .webcam_enabled, .camera_device, .monitor, .cursor_enabled' "$settings_file")
   MIC_ENABLED=${values[0]}
@@ -708,7 +717,6 @@ screenrecord_menu() {
   CAMERA_DEVICE=${values[5]}
   MONITOR=${values[6]}
   CURSOR_ENABLED=${values[7]}
-  rm -f -- "$settings_file"
   [[ $TARGET == screen || $TARGET == window || $TARGET == region || $TARGET == camera ]]
 }
 
@@ -742,7 +750,7 @@ parse_args() {
       --no-cursor) CURSOR_ENABLED=false ;;
       esac
       ;;
-    --mic-device | --audio-device | --camera-device | --_monitor)
+    --mic-device | --audio-device | --camera-device)
       (($#)) && [[ -n $1 && $1 != --* ]] || {
         cli_error "$option requires a value."
         return 2
@@ -756,7 +764,6 @@ parse_args() {
       --mic-device) MIC_DEVICE=$1 MIC_ENABLED=true ;;
       --audio-device) AUDIO_DEVICE=$1 AUDIO_ENABLED=true ;;
       --camera-device) CAMERA_DEVICE=$1 ;;
-      --_monitor) MONITOR=$1 ;;
       esac
       shift
       ;;
