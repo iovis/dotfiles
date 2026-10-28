@@ -51,7 +51,7 @@ return {
           end,
         })
 
-        -- vim.lsp.set_log_level("debug")
+        -- vim.lsp.log.set_log_level("debug")
         vim.lsp.enable({ "lua_ls" })
       ]],
       {}

@@ -1,4 +1,4 @@
--- vim.lsp.set_log_level("debug")
+-- vim.lsp.log.set_log_level("debug")
 
 vim.keymap.set("n", "<leader>lR", ":lsp restart<cr>")
 vim.keymap.set("n", "<leader>lh", "<cmd>help lspconfig-all<cr>")
