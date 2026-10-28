@@ -35,6 +35,33 @@ return {
   ),
   -- .nvim.lua
   s(
+    "init",
+    fmta(
+      [[
+        vim.g.autoformat = true
+        vim.g.custom_hooks = true
+        vim.g.winbar_full_path = false
+
+        local augroup = vim.api.nvim_create_augroup("my.project.config", { clear = true })
+        vim.api.nvim_create_autocmd("FileType", {
+          group = augroup,
+          pattern = { "lua" },
+          callback = function()
+            -- TODO
+          end,
+        })
+
+        -- vim.lsp.set_log_level("debug")
+        vim.lsp.enable({ "lua_ls" })
+      ]],
+      {}
+    ),
+    {
+      show_condition = u.ls.within(".nvim.lua"),
+      condition = conds.line_begin * u.ls.within(".nvim.lua"),
+    }
+  ),
+  s(
     "filetype",
     fmta(
       [[
