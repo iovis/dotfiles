@@ -23,18 +23,13 @@ end, {})
 vim.lsp.enable({
   "bashls",
   "clangd",
-  "cssls",
   "fish_lsp",
-  "gopls",
-  "html",
   "jsonls",
   "just",
   "lua_ls",
-  "ols",
-  "ruby_lsp",
+  "mise",
   "rust_analyzer",
   "tombi",
-  "ts_ls",
   "yamlls",
 })
 
