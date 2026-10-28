@@ -43,12 +43,13 @@ EOF
   printf '  %-24s %s\n' \
     '--menu' 'Show setup or active controls in this terminal' \
     '--stop' 'Stop and wait for the saved recording' \
-    '--status' 'Print owned recording status as JSON' \
+    '--status' 'Print recording status and Waybar fields as JSON' \
     '-h, --help' 'Show this help'
   cat <<'EOF'
 
 The widget uses s/w/r/v for capture, a/m/c/p for audio/mic/webcam/cursor,
 M/A/C for devices, S for monitor, and j/k to navigate.
+Status exits 0 while selecting, recording, or saving; 1 when idle.
 Window capture requires choosing a source in the portal.
 Audio sources accept default_input/default_output or device:NAME.
 EOF
@@ -114,11 +115,28 @@ running() {
 }
 
 status_json() {
-  if running; then
-    jq -c . "$STATE_FILE" 2>/dev/null || printf '{"state":"idle"}\n'
-  else
-    printf '{"state":"idle"}\n'
+  local status
+  if running && status=$(jq -ce '
+    {
+      selecting: "Choosing recording source",
+      recording: "Recording",
+      saving: "Saving recording"
+    }[.state] as $label
+    | select($label != null)
+    | . + {
+      text: "  ",
+      tooltip: ($label
+        + (if (.file // "") == "" then ""
+           else "\n" + (.file | tostring | @html) end)
+        + "\nLeft click: stop\nRight click: controls"),
+      class: "active"
+    }
+  ' "$STATE_FILE" 2>/dev/null); then
+    printf '%s\n' "$status"
+    return 0
   fi
+  printf '{"state":"idle","text":"","tooltip":"","class":""}\n'
+  return 1
 }
 
 init_runtime() {

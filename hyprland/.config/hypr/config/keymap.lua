@@ -82,7 +82,7 @@ hl.bind(S(G("backslash")), hl.dsp.exec_cmd("1password --quick-access"))
 
 ---- Screenshots
 local screenrecord = [[
-  if screenrecord --status | jq -e '.state != "idle"' >/dev/null; then
+  if screenrecord --status >/dev/null; then
     screenrecord --stop
   else
     hyprclose class:widget.screenrecord || kitty --class=widget.screenrecord -e screenrecord --menu
