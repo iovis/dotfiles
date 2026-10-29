@@ -1,6 +1,7 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Variables/#input
 hl.config({
   binds = {
+    drag_center_window = false,
     scroll_event_delay = 0, -- don't debounce mouse on binds
   },
   input = {

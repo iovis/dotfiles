@@ -34,9 +34,9 @@ hl.config({
 
     blur = {
       enabled = true,
-      size = 5,
-      passes = 2,
-      vibrancy = 0.1696, -- TODO: try "frost" in 0.56
+      size = 8,
+      passes = 3,
+      vibrancy = 0.1696,
     },
   },
   animations = { enabled = true },
@@ -66,7 +66,7 @@ hl.curve("almostLinear", { type = "bezier", points = { { 0.5, 0.5 }, { 0.75, 1 }
 hl.curve("quick", { type = "bezier", points = { { 0.15, 0 }, { 0.1, 1 } } })
 
 -- Default springs
-hl.curve("easy", { type = "spring", mass = 1, stiffness = 238.1191, dampening = 24.21279333 })
+hl.curve("easy", { type = "spring", mass = 1, stiffness = 238.1191, damping = 24.21279333 })
 
 hl.animation({ leaf = "global", enabled = true, speed = 10, bezier = "default" })
 hl.animation({ leaf = "border", enabled = true, speed = 1, bezier = "easeOutQuint" })

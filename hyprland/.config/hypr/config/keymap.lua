@@ -141,33 +141,7 @@ hl.bind(S(G("l")), hl.dsp.window.swap({ direction = "right" }))
 -- move/resize windows with mouse
 hl.bind(G("mouse:272"), hl.dsp.window.drag(), { mouse = true })
 hl.bind(G("mouse:273"), hl.dsp.window.resize(), { mouse = true })
-
--- TODO: temporary till there's a keep_aspect_ratio dispatcher
-local keep_aspect_resize_window = nil
-hl.bind(C(G("mouse:273")), function()
-  keep_aspect_resize_window = hl.get_active_window()
-  if keep_aspect_resize_window then
-    hl.dispatch(hl.dsp.window.set_prop({
-      window = keep_aspect_resize_window,
-      prop = "keep_aspect_ratio",
-      value = "1",
-    }))
-  end
-  hl.dispatch(hl.dsp.window.resize())
-end, { mouse = true })
-
-hl.bind(C(G("mouse:273")), function()
-  if not keep_aspect_resize_window then
-    return
-  end
-
-  hl.dispatch(hl.dsp.window.set_prop({
-    window = keep_aspect_resize_window,
-    prop = "keep_aspect_ratio",
-    value = "unset",
-  }))
-  keep_aspect_resize_window = nil
-end, { release = true })
+hl.bind(C(G("mouse:273")), hl.dsp.window.resize({ keep_aspect_ratio = true }), { mouse = true })
 
 -- Floating windows
 hl.bind(G("y"), hl.dsp.window.float({ action = "toggle" }))
@@ -226,10 +200,7 @@ for i = 1, 9 do
 end
 
 hl.bind(G("tab"), hl.dsp.window.move({ workspace = "empty" }))
-hl.bind(G("return"), function() -- TODO: till we get workspacemovesilent
-  hl.dispatch(hl.dsp.window.move({ workspace = "empty" }))
-  hl.dispatch(hl.dsp.focus({ workspace = "previous" }))
-end)
+hl.bind(G("return"), hl.dsp.window.move({ workspace = "empty", follow = false }))
 
 -- mouse quick switch
 hl.bind(G("mouse_up"), hl.dsp.focus({ workspace = "e+1" }))
