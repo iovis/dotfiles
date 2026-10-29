@@ -7,7 +7,6 @@ mouse-scroll-multiplier = discrete:1
 shell-integration-features = cursor,no-sudo,title,ssh-env,no-ssh-terminfo,path
 window-padding-x = 16
 
-theme = Catppuccin Mocha
 font-family = FiraCode Nerd Font
 font-size = 23
 
@@ -17,6 +16,16 @@ background-opacity = 0.6
 
 macos-option-as-alt = true
 macos-titlebar-style = tabs
+
+theme = Catppuccin Frappe
+selection-background = #292c3c
+selection-foreground = #c6d0f5
+palette = 9=#e78284
+palette = 10=#a6d189
+palette = 11=#e5c890
+palette = 12=#8caaee
+palette = 13=#f4b8e4
+palette = 14=#81c8be
 
 config-file = keymap.ghostty
 config-file = ?local.ghostty
