@@ -3,9 +3,12 @@ confirm-close-surface = false
 copy-on-select = clipboard
 cursor-style-blink = false
 mouse-hide-while-typing = true
-mouse-scroll-multiplier = discrete:1
+mouse-scroll-multiplier = precision:1,discrete:2
 shell-integration-features = cursor,no-sudo,title,ssh-env,no-ssh-terminfo,path
-window-padding-x = 16
+
+window-padding-balance = true
+window-padding-x = 8
+window-padding-y = 8
 
 font-family = FiraCode Nerd Font
 font-size = 23
@@ -15,7 +18,8 @@ background-blur = true
 background-opacity = 0.6
 
 macos-option-as-alt = true
-macos-titlebar-style = tabs
+macos-titlebar-style = hidden
+macos-window-buttons = hidden
 
 theme = Catppuccin Frappe
 selection-background = #292c3c
