@@ -78,14 +78,16 @@ brew "neovim"
 brew "nmap"
 # Statically typed programming language for scientific computations
 brew "numbat"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# AI coding agent, built for the terminal
+brew "opencode"
 # Shell command parallelization utility
 brew "parallel"
 # Package compiler and linker metadata toolkit
 brew "pkgconf"
 # Monitor data's progress through a pipe
 brew "pv"
-# Search tool like grep and The Silver Searcher
-brew "ripgrep"
 # Utility that provides fast incremental file transfer
 brew "rsync"
 # Intuitive find & replace CLI

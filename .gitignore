@@ -40,6 +40,12 @@
 /.repro/
 /nvim/.config/nvim/lua/local*
 
+# opencode
+/opencode/**
+!/opencode/.config/
+!/opencode/.config/opencode/
+!/opencode/.config/opencode/cli.json
+
 # pgcli
 /pgcli/.config/pgcli/history
 /pgcli/.config/pgcli/log

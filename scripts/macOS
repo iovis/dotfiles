@@ -19,11 +19,11 @@ if [ ! -d "$DOTFILES" ]; then
   git clone https://github.com/iovis/dotfiles "$DOTFILES"
 fi
 
-brew bundle --file "$DOTFILES/brew/Brewfile"
+brew bundle --file "$DOTFILES/brew/.config/Brewfile"
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Stow"
 cd "$DOTFILES" || exit
-stow --restow aerc aerospace bat brew fish fzf ghostty git hammerspoon kitty lazygit llvm mise muxi nvim pry starship stylua tldr tmux vim wezterm yazi
+stow --restow aerc aerospace bat brew fish fzf ghostty git hammerspoon kitty lazygit llvm opencode mise muxi nvim pry starship stylua tldr tmux vim wezterm yazi
 cd || exit
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing mise"
