@@ -17,7 +17,7 @@ u.bind.cmd({ hyper, "r" }, "aerospace reload-config --warnings-as-errors", {
 u.bind.app({ ctrl_alt_cmd, "a" }, "zoom.us")
 u.bind.app({ ctrl_alt_cmd, "s" }, "Slack")
 u.bind.app({ ctrl_alt_cmd, "d" }, "Ghostty")
-u.bind.app({ ctrl_alt_cmd, "f" }, "Arc")
+u.bind.app({ ctrl_alt_cmd, "f" }, "Zen")
 u.bind.app({ hyper, "f" }, "Safari")
 u.bind.app({ ctrl_alt_cmd, "g" }, "Google Chrome Canary")
 
