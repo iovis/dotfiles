@@ -132,11 +132,26 @@ hl.bind(G("j"), hl.dsp.focus({ direction = "down" }))
 hl.bind(G("k"), hl.dsp.focus({ direction = "up" }))
 hl.bind(G("l"), hl.dsp.focus({ direction = "right" }))
 
--- swap windows
-hl.bind(S(G("h")), hl.dsp.window.swap({ direction = "left" }))
-hl.bind(S(G("j")), hl.dsp.window.swap({ direction = "down" }))
-hl.bind(S(G("k")), hl.dsp.window.swap({ direction = "up" }))
-hl.bind(S(G("l")), hl.dsp.window.swap({ direction = "right" }))
+-- swap tiled windows, move floating windows
+local function move_or_swap(direction)
+  return function()
+    local window = hl.get_active_window()
+    if not window then
+      return
+    end
+
+    if window.floating then
+      hl.dispatch(hl.dsp.window.move({ direction = direction }))
+    else
+      hl.dispatch(hl.dsp.window.swap({ direction = direction }))
+    end
+  end
+end
+
+hl.bind(S(G("h")), move_or_swap("left"))
+hl.bind(S(G("j")), move_or_swap("down"))
+hl.bind(S(G("k")), move_or_swap("up"))
+hl.bind(S(G("l")), move_or_swap("right"))
 
 -- move/resize windows with mouse
 hl.bind(G("mouse:272"), hl.dsp.window.drag(), { mouse = true })
