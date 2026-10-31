@@ -45,6 +45,7 @@
 !/opencode/.config/
 !/opencode/.config/opencode/
 !/opencode/.config/opencode/cli.json
+!/opencode/.config/opencode/PLANS.md
 
 # pgcli
 /pgcli/.config/pgcli/history
