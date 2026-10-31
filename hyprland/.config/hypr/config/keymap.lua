@@ -103,6 +103,7 @@ hl.bind(C(G("x")), hl.dsp.window.kill())
 hl.bind(G("m"), hl.dsp.window.fullscreen({ mode = "maximized" }))
 hl.bind(C(G("m")), hl.dsp.window.fullscreen({ mode = "fullscreen" }))
 hl.bind(G("r"), hl.dsp.layout("togglesplit"))
+hl.bind(G("equal"), hl.dsp.layout("splitratio 1 exact"))
 
 -- alt tab
 hl.bind(A("tab"), function()
