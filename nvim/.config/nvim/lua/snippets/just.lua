@@ -11,46 +11,38 @@ return {
     "init",
     fmt(
       [[
-        set dotenv-load := true
-
         default: {}
 
-        # lists available tasks
         @list:
             just --list
 
-        # init project
         init:
-            {}
+            git stash push
+            git pull
+            git stash pop || true
 
-        # start the server
         dev:
             {}
 
-        # open the project in the browser
         open:
             {}
 
-        # start a console
         console:
             {}
 
-        # run tests
         test:
             {}
 
-        # Open the DB
         db:
             {}
       ]],
       {
         i(1, "init"),
-        i(2, "bundle install"),
-        i(3, "rails server"),
-        i(4, 'open "$PROJECT_URL" -a "Google Chrome Canary"'),
-        i(5, "rails console"),
-        i(6, "rspec"),
-        i(7, "pgcli $DATABASE_URL"),
+        i(2, "rails server"),
+        i(3, 'open "$PROJECT_URL" -a "Google Chrome Canary"'),
+        i(4, "rails console"),
+        i(5, "rspec"),
+        i(6, "pgcli $DATABASE_URL"),
       }
     ),
     { condition = conds.line_begin }
