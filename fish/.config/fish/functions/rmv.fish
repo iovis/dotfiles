@@ -1,3 +1,3 @@
-function rmv --wraps='rsync -aiv --progress -h --remove-source-files'
-    r --remove-source-files $argv
+function rmv --wraps='rsync -aih --info=progress2 --checksum --remove-source-files'
+    r --checksum --remove-source-files $argv
 end

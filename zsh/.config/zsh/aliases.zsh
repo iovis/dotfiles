@@ -98,12 +98,11 @@ alias gems="gem list"
 # alias rtg="rails -T"
 
 ## rsync
-alias rcp="rsync -av --progress -h"
-alias rmv="rsync -av --progress -h --remove-source-files"
-alias rsync-copy="rsync -av --progress -h"
-alias rsync-move="rsync -av --progress -h --remove-source-files"
-alias rsync-sync="rsync -av --progress -h --update --delete"
-alias rsync-update="rsync -av --progress -h --update"
+alias rcp="rsync -aih --progress"
+alias rmv="rsync -aih --progress --checksum --remove-source-files"
+alias rsync-mirror="rsync -aih --progress --checksum --delete"
+alias rsync-newer="rsync -aih --progress --update"
+alias rsync-newer-prune="rsync -aih --progress --update --delete"
 
 ## rust
 alias cb="cargo build"
