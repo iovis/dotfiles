@@ -1,9 +1,2 @@
 # vim: set ft=sh:
 export PATH="$HOME/.dotfiles/bin:$HOME/.local/bin:$PATH"
-
-# TODO: remove when https://github.com/hyprwm/Hyprland/discussions/16648 is fixed
-#
-# Avoid the realtime CPU-time limit during DPMS connector scans.
-# It could affect input latency or frame timing under load, as hyprland
-# won't have priority access to the CPU anymore
-export HYPRLAND_NO_RT=1
