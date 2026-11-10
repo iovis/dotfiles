@@ -42,6 +42,7 @@
     "calendar": {
       "mode": "month",
       "mode-mon-col": 3,
+      "first-day-of-week": 1,
       "on-scroll": 1,
       "format": {
         "months": "<span color='#ffead3'><b>{}</b></span>",
@@ -113,18 +114,28 @@
   "disk": {
     "format": "  {percentage_used}%  ",
     "interval": 30,
+    "states": {
+      "critical": 90
+    },
     "on-click": "uwsm-app -- baobab",
     "on-click-right": "uwsm-app -- gnome-disks",
-    "path": "/",
+    "paths": [
+      "/"
+    ],
     "tooltip-format": "{specific_used:0.2f}/{specific_total:0.2f} GB",
     "unit": "GB"
   },
   "disk#secondary": {
     "format": " {percentage_used}%  ",
     "interval": 30,
+    "states": {
+      "critical": 90
+    },
     "on-click": "uwsm-app -- baobab",
     "on-click-right": "uwsm-app -- gnome-disks",
-    "path": "/mnt/HDD/",
+    "paths": [
+      "/mnt/HDD/"
+    ],
     "tooltip-format": "{specific_used:0.2f}/{specific_total:0.2f} GB",
     "unit": "GB"
   },
@@ -166,8 +177,8 @@
     "format-ethernet": "󰀂",
     "format-disconnected": "󰖪",
     "format-disabled": "󰖪",
-    "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
-    "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-wifi": "{essid} ({frequency} GHz)\nLink: ⇣{rxBitrate}  ⇡{txBitrate}\nTraffic: ⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-ethernet": "Link: {linkSpeed}\nTraffic: ⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-disconnected": "Disconnected",
     "tooltip-format-disabled": "Wi-Fi disabled",
     "interval": 3,

@@ -68,6 +68,10 @@ tooltip {
   padding: 0px 5px;
 }
 
+#disk.critical {
+  color: #e78285;
+}
+
 #tray {
   border-left: 1px solid #666;
   padding: 0 12px 0 16px;
