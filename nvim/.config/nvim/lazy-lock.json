@@ -19,8 +19,8 @@
   "nvim-autopairs": { "branch": "master", "commit": "3172f40c16563db871a58f20d205c710ad782311" },
   "nvim-bqf": { "branch": "main", "commit": "c282a62bec6c0621a1ef5132aa3f4c9fc4dcc2c7" },
   "nvim-colorizer.lua": { "branch": "master", "commit": "72a05f62c52241bc7441c820eb53946f92b2e6a4" },
-  "nvim-lspconfig": { "branch": "master", "commit": "d5c7e7bcc15bccc01bf1601a03473e10de2f0f7e" },
-  "nvim-treesitter": { "branch": "main", "commit": "915f2bd3d4e2a33704bfc476b5137e9befa82f3d" },
+  "nvim-lspconfig": { "branch": "master", "commit": "443d92c6bea761ab54cdde46fb197a2b4d614bdd" },
+  "nvim-treesitter": { "branch": "main", "commit": "19bdfc04f40ed2ccb3340591d125f759b0406875" },
   "nvim-treesitter-context": { "branch": "master", "commit": "8decd73460d26ef0a0befb745d022dd1fc2c38b8" },
   "nvim-treesitter-endwise": { "branch": "master", "commit": "8fe8a95630f4f2c72a87ba1927af649e0bfaa244" },
   "nvim-treesitter-textobjects": { "branch": "main", "commit": "5c7b0263797dfd1bd6202f2b219f3b53a80b2187" },
@@ -37,6 +37,6 @@
   "vim-projectionist": { "branch": "master", "commit": "5ff7bf79a6ef741036d2038a226bcb5f8b1cd296" },
   "vim-rhubarb": { "branch": "master", "commit": "5496d7c94581c4c9ad7430357449bb57fc59f501" },
   "vim-startuptime": { "branch": "master", "commit": "b2de50f190c8139d70d36d82157dd9c1a8212579" },
-  "vim-test": { "branch": "master", "commit": "4c6ba11524388562f2ad3636dc02cd479204aaff" },
+  "vim-test": { "branch": "master", "commit": "b2166d3934889747ef903ebc7b5079acf8e20c47" },
   "vim-tmux-navigator": { "branch": "master", "commit": "e41c431a0c7b7388ae7ba341f01a0d217eb3a432" }
 }
