@@ -325,6 +325,14 @@ hl.on("window.open", function(window)
       if app.timeout ~= nil then
         app.timeout:set_enabled(false)
       end
+
+      -- focus if in same workspace
+      local workspace = hl.get_active_workspace()
+
+      if workspace and window.workspace and window.workspace.id == workspace.id then
+        hl.dispatch(hl.dsp.focus({ window = window }))
+      end
+
       return
     end
   end
