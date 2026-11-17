@@ -39,6 +39,7 @@ hl.config({
       vibrancy = 0.1696,
     },
   },
+  render = { cm_auto_hdr = 0 },
   animations = { enabled = true },
   dwindle = {
     -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/
