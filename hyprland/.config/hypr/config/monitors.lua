@@ -17,7 +17,7 @@ hl.monitor({
 })
 
 hl.monitor({
-  output = "DP-1",
+  output = "desc:Microstep MPG271QX OLED",
   mode = "2560x1440@360.00",
   position = "0x0",
   scale = "1",
@@ -25,14 +25,5 @@ hl.monitor({
 })
 
 -- Don't go to a random workspace when turning on the display
-hl.workspace_rule({ workspace = "1", monitor = "DP-1", default = true })
-
-hl.monitor({
-  output = "HDMI-A-2",
-  mode = "2560x1440@360.00",
-  position = "0x0",
-  scale = "1",
-  vrr = 3,
-})
-
-hl.workspace_rule({ workspace = "1", monitor = "HDMI-A-2", default = true })
+-- NOTE: `desc:` matches any monitor
+hl.workspace_rule({ workspace = "1", monitor = "desc:", default = true })
